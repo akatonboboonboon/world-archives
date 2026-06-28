@@ -1,0 +1,7135 @@
+{
+  "translations": {
+    "ja": {
+      "app_title": "World Archives",
+      "subtitle": "国・地域・歴史アーカイブ検索",
+      "start_btn": "アーカイブ検索を開始",
+      "search_title": "検索・フィルター",
+      "search_ph": "国名、地域、タグ(G20, EUなど)を入力...",
+      "search_label": "キーワード検索",
+      "search_exec": "検索実行",
+      "history": "検索履歴",
+      "history_label": "最近の検索履歴",
+      "history_empty": "履歴はありません",
+      "result_title": "検索結果",
+      "hits": "件ヒット",
+      "close": "閉じる",
+      "back_home": "トップへ戻る",
+      "back_search": "検索に戻る",
+      "no_result": "該当する国・地域は見つかりませんでした。",
+      "tabs": {
+        "All": "すべて",
+        "Present": "現存",
+        "Past": "過去"
+      },
+      "labels": {
+        "capital": "首都",
+        "region": "地域",
+        "tags": "タグ",
+        "desc": "解説"
+      },
+      "types": {
+        "All": "すべて",
+        "Present": "現存",
+        "Past": "過去"
+      },
+      "capital": "首都",
+      "region": "地域",
+      "tags": "タグ",
+      "desc": "解説"
+    },
+    "en": {
+      "app_title": "World Archives",
+      "subtitle": "Historical & Regional Archives",
+      "start_btn": "Start Search",
+      "search_title": "Search & Filter",
+      "search_ph": "Type name, region, tags (G20, EU)...",
+      "search_label": "Keyword Search",
+      "search_exec": "Search",
+      "history": "Search History",
+      "history_label": "Recent History",
+      "history_empty": "No history yet",
+      "result_title": "Search Results",
+      "hits": " hits",
+      "close": "Close",
+      "back_home": "Back to Top",
+      "back_search": "Back to Search",
+      "no_result": "No countries found.",
+      "tabs": {
+        "All": "All",
+        "Present": "Present",
+        "Past": "Past"
+      },
+      "labels": {
+        "capital": "Capital",
+        "region": "Region",
+        "tags": "Tags",
+        "desc": "Description"
+      },
+      "types": {
+        "All": "All",
+        "Present": "Present",
+        "Past": "Past"
+      },
+      "capital": "Capital",
+      "region": "Region",
+      "tags": "Tags",
+      "desc": "Description"
+    },
+    "zh": {
+      "app_title": "World Archives",
+      "subtitle": "国家与历史档案搜索",
+      "search_ph": "输入名称、地区、标签(G20, EU)...",
+      "search_label": "关键词搜索",
+      "hits": " 个结果",
+      "history": "搜索历史",
+      "history_empty": "暂无历史",
+      "close": "关闭",
+      "back_search": "返回搜索",
+      "tabs": {
+        "All": "全部",
+        "Present": "现存",
+        "Past": "过去"
+      },
+      "labels": {
+        "capital": "首都",
+        "region": "地区",
+        "tags": "标签",
+        "desc": "说明"
+      }
+    }
+  },
+  "countries": [
+    {
+      "names": {
+        "ja": "日本",
+        "en": "Japan",
+        "zh": "日本"
+      },
+      "capital": {
+        "ja": "東京",
+        "en": "Tokyo",
+        "zh": "东京"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "G20",
+        "G7",
+        "UN Member",
+        "Island Nation"
+      ],
+      "desc": {
+        "ja": "東アジアに位置する島国。法的には首都と定められていないが、東京が事実上の首都。",
+        "en": "An island country in East Asia. Tokyo is the de facto capital.",
+        "zh": "位于东亚的岛国。东京是事实上的首都。"
+      },
+      "flag_code": "jp"
+    },
+    {
+      "names": {
+        "ja": "中華人民共和国",
+        "en": "China",
+        "zh": "中国"
+      },
+      "capital": {
+        "ja": "北京",
+        "en": "Beijing",
+        "zh": "北京"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "G20",
+        "BRICS",
+        "UN Member",
+        "Superpower"
+      ],
+      "desc": {
+        "ja": "世界最多級の人口を擁する東アジアの社会主義共和制国家。",
+        "en": "A country in East Asia with the world's largest population.",
+        "zh": "位于东亚的社会主义国家，拥有世界上最多的人口。"
+      },
+      "flag_code": "cn"
+    },
+    {
+      "names": {
+        "ja": "大韓民国",
+        "en": "South Korea",
+        "zh": "韩国"
+      },
+      "capital": {
+        "ja": "ソウル",
+        "en": "Seoul",
+        "zh": "首尔"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "G20",
+        "OECD",
+        "UN Member"
+      ],
+      "desc": {
+        "ja": "朝鮮半島の南半分に位置する共和制国家。",
+        "en": "A republic located in the southern half of the Korean Peninsula.",
+        "zh": "位于朝鲜半岛南部的共和国。"
+      },
+      "flag_code": "kr"
+    },
+    {
+      "names": {
+        "ja": "タイ",
+        "en": "Thailand",
+        "zh": "泰国"
+      },
+      "capital": {
+        "ja": "バンコク",
+        "en": "Bangkok",
+        "zh": "曼谷"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Kingdom",
+        "Tourism"
+      ],
+      "desc": {
+        "ja": "東南アジアの仏教国。「微笑みの国」として知られる。",
+        "en": "A country in Southeast Asia known for tropical beaches.",
+        "zh": "东南亚的佛教国家。"
+      },
+      "flag_code": "th"
+    },
+    {
+      "names": {
+        "ja": "ベトナム",
+        "en": "Vietnam",
+        "zh": "越南"
+      },
+      "capital": {
+        "ja": "ハノイ",
+        "en": "Hanoi",
+        "zh": "河内"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Socialist",
+        "Emerging"
+      ],
+      "desc": {
+        "ja": "インドシナ半島東部に位置する社会主義共和国。",
+        "en": "A Southeast Asian country known for its beaches and rivers.",
+        "zh": "位于中南半岛东部的社会主义国家。"
+      },
+      "flag_code": "vn"
+    },
+    {
+      "names": {
+        "ja": "シンガポール",
+        "en": "Singapore",
+        "zh": "新加坡"
+      },
+      "capital": {
+        "ja": "シンガポール",
+        "en": "Singapore",
+        "zh": "新加坡"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "City-State",
+        "Finance"
+      ],
+      "desc": {
+        "ja": "マレー半島の南端にある都市国家。アジアの金融センター。",
+        "en": "A sovereign island city-state in maritime Southeast Asia.",
+        "zh": "位于马来半岛南端的城市国家。"
+      },
+      "flag_code": "sg"
+    },
+    {
+      "names": {
+        "ja": "フィリピン",
+        "en": "Philippines",
+        "zh": "菲律宾"
+      },
+      "capital": {
+        "ja": "マニラ",
+        "en": "Manila",
+        "zh": "马尼拉"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Island Nation"
+      ],
+      "desc": {
+        "ja": "西太平洋に位置する島国。キリスト教徒が多い。",
+        "en": "An archipelagic country in Southeast Asia.",
+        "zh": "位于西太平洋的岛国。"
+      },
+      "flag_code": "ph"
+    },
+    {
+      "names": {
+        "ja": "マレーシア",
+        "en": "Malaysia",
+        "zh": "马来西亚"
+      },
+      "capital": {
+        "ja": "クアラルンプール",
+        "en": "Kuala Lumpur",
+        "zh": "吉隆坡"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Islamic"
+      ],
+      "desc": {
+        "ja": "マレー半島南部とボルネオ島北部を領土とする連邦立憲君主制国家。",
+        "en": "A federal constitutional monarchy in Southeast Asia.",
+        "zh": "东南亚的联邦君主立宪制国家。"
+      },
+      "flag_code": "my"
+    },
+    {
+      "names": {
+        "ja": "パキスタン",
+        "en": "Pakistan",
+        "zh": "巴基斯坦"
+      },
+      "capital": {
+        "ja": "イスラマバード",
+        "en": "Islamabad",
+        "zh": "伊斯兰堡"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Islamic",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "南アジアのイスラム共和制国家。人口世界5位。",
+        "en": "A country in South Asia. It is the world's fifth-most populous country.",
+        "zh": "南亚的伊斯兰共和国。"
+      },
+      "flag_code": "pk"
+    },
+    {
+      "names": {
+        "ja": "バングラデシュ",
+        "en": "Bangladesh",
+        "zh": "孟加拉国"
+      },
+      "capital": {
+        "ja": "ダッカ",
+        "en": "Dhaka",
+        "zh": "达卡"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Islamic",
+        "Textile"
+      ],
+      "desc": {
+        "ja": "ベンガル湾に面する人口密度の高い国。",
+        "en": "A country in South Asia on the Bay of Bengal.",
+        "zh": "位于孟加拉湾人口稠密的国家。"
+      },
+      "flag_code": "bd"
+    },
+    {
+      "names": {
+        "ja": "カザフスタン",
+        "en": "Kazakhstan",
+        "zh": "哈萨克斯坦"
+      },
+      "capital": {
+        "ja": "アスタナ",
+        "en": "Astana",
+        "zh": "阿斯塔纳"
+      },
+      "type": "Present",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Central Asia",
+        "Resource"
+      ],
+      "desc": {
+        "ja": "世界最大の内陸国。中央アジアの経済的中心。",
+        "en": "The world's largest landlocked country.",
+        "zh": "世界上最大的内陆国。"
+      },
+      "flag_code": "kz"
+    },
+    {
+      "names": {
+        "ja": "イラン",
+        "en": "Iran",
+        "zh": "伊朗"
+      },
+      "capital": {
+        "ja": "テヘラン",
+        "en": "Tehran",
+        "zh": "德黑兰"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Islamic",
+        "Persia",
+        "Oil"
+      ],
+      "desc": {
+        "ja": "西アジア・中東の大国。古代ペルシャの継承国。",
+        "en": "An Islamic Republic in Western Asia.",
+        "zh": "西亚大国。古代波斯的继承者。"
+      },
+      "flag_code": "ir"
+    },
+    {
+      "names": {
+        "ja": "アラブ首長国連邦",
+        "en": "UAE",
+        "zh": "阿联酋"
+      },
+      "capital": {
+        "ja": "アブダビ",
+        "en": "Abu Dhabi",
+        "zh": "阿布扎比"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Oil",
+        "Finance",
+        "Tourism"
+      ],
+      "desc": {
+        "ja": "7つの首長国からなる連邦国家。ドバイが有名。",
+        "en": "A federation of seven emirates.",
+        "zh": "由七个酋长国组成的联邦。"
+      },
+      "flag_code": "ae"
+    },
+    {
+      "names": {
+        "ja": "イスラエル",
+        "en": "Israel",
+        "zh": "以色列"
+      },
+      "capital": {
+        "ja": "エルサレム",
+        "en": "Jerusalem",
+        "zh": "耶路撒冷"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Tech",
+        "Mediterranean"
+      ],
+      "desc": {
+        "ja": "地中海東岸に位置するユダヤ人国家。",
+        "en": "A country in Western Asia on the Mediterranean Sea.",
+        "zh": "位于地中海东岸的国家。"
+      },
+      "flag_code": "il"
+    },
+    {
+      "names": {
+        "ja": "アメリカ合衆国",
+        "en": "United States",
+        "zh": "美国"
+      },
+      "capital": {
+        "ja": "ワシントンD.C.",
+        "en": "Washington, D.C.",
+        "zh": "华盛顿哥伦比亚特区"
+      },
+      "type": "Present",
+      "region": "North America",
+      "tags": [
+        "G20",
+        "G7",
+        "UN Member",
+        "Superpower"
+      ],
+      "desc": {
+        "ja": "北アメリカ大陸に位置する連邦共和国。経済・軍事で世界への影響力が大きい。",
+        "en": "A federal republic located in North America.",
+        "zh": "位于北美洲的联邦共和国。"
+      },
+      "flag_code": "us"
+    },
+    {
+      "names": {
+        "ja": "カナダ",
+        "en": "Canada",
+        "zh": "加拿大"
+      },
+      "capital": {
+        "ja": "オタワ",
+        "en": "Ottawa",
+        "zh": "渥太华"
+      },
+      "type": "Present",
+      "region": "North America",
+      "tags": [
+        "G20",
+        "G7",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "北アメリカ大陸北部に位置し、世界で2番目に広い国土を持つ。",
+        "en": "A country in North America. It has the second largest land area in the world.",
+        "zh": "位于北美洲北部，国土面积世界第二。"
+      },
+      "flag_code": "ca"
+    },
+    {
+      "names": {
+        "ja": "メキシコ",
+        "en": "Mexico",
+        "zh": "墨西哥"
+      },
+      "capital": {
+        "ja": "メキシコシティ",
+        "en": "Mexico City",
+        "zh": "墨西哥城"
+      },
+      "type": "Present",
+      "region": "North America",
+      "tags": [
+        "G20",
+        "OECD",
+        "Latin America"
+      ],
+      "desc": {
+        "ja": "北アメリカ南部に位置する連邦共和制国家。スペイン語圏で人口最多。",
+        "en": "A country in the southern portion of North America.",
+        "zh": "位于北美南部的联邦共和国。"
+      },
+      "flag_code": "mx"
+    },
+    {
+      "names": {
+        "ja": "チリ",
+        "en": "Chile",
+        "zh": "智利"
+      },
+      "capital": {
+        "ja": "サンティアゴ",
+        "en": "Santiago",
+        "zh": "圣地亚哥"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "OECD",
+        "Andes",
+        "Mining"
+      ],
+      "desc": {
+        "ja": "世界で最も細長い国。銅の産出国。",
+        "en": "The longest and narrowest country in the world.",
+        "zh": "世界上最狭长的国家。"
+      },
+      "flag_code": "cl"
+    },
+    {
+      "names": {
+        "ja": "ペルー",
+        "en": "Peru",
+        "zh": "秘鲁"
+      },
+      "capital": {
+        "ja": "リマ",
+        "en": "Lima",
+        "zh": "利马"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Andes",
+        "Inca",
+        "APEC"
+      ],
+      "desc": {
+        "ja": "インカ帝国の中心地。マチュピチュがある。",
+        "en": "Home of Machu Picchu.",
+        "zh": "印加帝国的中心。"
+      },
+      "flag_code": "pe"
+    },
+    {
+      "names": {
+        "ja": "コロンビア",
+        "en": "Colombia",
+        "zh": "哥伦比亚"
+      },
+      "capital": {
+        "ja": "ボゴタ",
+        "en": "Bogota",
+        "zh": "波哥大"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Coffee",
+        "Biodiversity"
+      ],
+      "desc": {
+        "ja": "コーヒーとエメラルドの産地。",
+        "en": "Known for its coffee and emeralds.",
+        "zh": "以咖啡和祖母绿闻名。"
+      },
+      "flag_code": "co"
+    },
+    {
+      "names": {
+        "ja": "ベネズエラ",
+        "en": "Venezuela",
+        "zh": "委内瑞拉"
+      },
+      "capital": {
+        "ja": "カラカス",
+        "en": "Caracas",
+        "zh": "加拉加斯"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Oil",
+        "OPEC"
+      ],
+      "desc": {
+        "ja": "世界最大級の原油埋蔵量を持つ。",
+        "en": "Has the world's largest oil reserves.",
+        "zh": "拥有世界上最大的石油储量。"
+      },
+      "flag_code": "ve"
+    },
+    {
+      "names": {
+        "ja": "キューバ",
+        "en": "Cuba",
+        "zh": "古巴"
+      },
+      "capital": {
+        "ja": "ハバナ",
+        "en": "Havana",
+        "zh": "哈瓦那"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Socialist",
+        "Island"
+      ],
+      "desc": {
+        "ja": "カリブ海最大の島国。",
+        "en": "The largest island in the Caribbean.",
+        "zh": "加勒比海最大的岛国。"
+      },
+      "flag_code": "cu"
+    },
+    {
+      "names": {
+        "ja": "ジャマイカ",
+        "en": "Jamaica",
+        "zh": "牙买加"
+      },
+      "capital": {
+        "ja": "キングストン",
+        "en": "Kingston",
+        "zh": "金斯敦"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Reggae",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "レゲエ発祥の地。陸上が強い。",
+        "en": "Birthplace of reggae music.",
+        "zh": "雷鬼音乐发源地。"
+      },
+      "flag_code": "jm"
+    },
+    {
+      "names": {
+        "ja": "イギリス",
+        "en": "United Kingdom",
+        "zh": "英国"
+      },
+      "capital": {
+        "ja": "ロンドン",
+        "en": "London",
+        "zh": "伦敦"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "G20",
+        "G7",
+        "Commonwealth",
+        "Island Nation"
+      ],
+      "desc": {
+        "ja": "グレートブリテン及び北アイルランド連合王国。産業革命発祥の地。",
+        "en": "The United Kingdom of Great Britain and Northern Ireland.",
+        "zh": "大不列颠及北爱尔兰联合王国。"
+      },
+      "flag_code": "gb"
+    },
+    {
+      "names": {
+        "ja": "ドイツ",
+        "en": "Germany",
+        "zh": "德国"
+      },
+      "capital": {
+        "ja": "ベルリン",
+        "en": "Berlin",
+        "zh": "柏林"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "G20",
+        "G7",
+        "EU",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "ヨーロッパ中部に位置する連邦共和国。EU最大の経済力を持つ。",
+        "en": "A federal republic in Central Europe. The largest economy in the EU.",
+        "zh": "位于中欧的联邦共和国，拥有欧盟最大的经济体。"
+      },
+      "flag_code": "de"
+    },
+    {
+      "names": {
+        "ja": "フランス",
+        "en": "France",
+        "zh": "法国"
+      },
+      "capital": {
+        "ja": "パリ",
+        "en": "Paris",
+        "zh": "巴黎"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "G20",
+        "G7",
+        "EU",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "西ヨーロッパに位置する共和国。芸術と文化の中心地。",
+        "en": "A republic in Western Europe. A global center of art and culture.",
+        "zh": "位于西欧的共和国。艺术与文化的中心。"
+      },
+      "flag_code": "fr"
+    },
+    {
+      "names": {
+        "ja": "イタリア",
+        "en": "Italy",
+        "zh": "意大利"
+      },
+      "capital": {
+        "ja": "ローマ",
+        "en": "Rome",
+        "zh": "罗马"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "G20",
+        "G7",
+        "EU",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "南ヨーロッパに位置する共和制国家。ローマ帝国の故地。",
+        "en": "A republic in Southern Europe. The birthplace of the Roman Empire.",
+        "zh": "位于南欧的共和国。罗马帝国的发源地。"
+      },
+      "flag_code": "it"
+    },
+    {
+      "names": {
+        "ja": "スペイン",
+        "en": "Spain",
+        "zh": "西班牙"
+      },
+      "capital": {
+        "ja": "マドリード",
+        "en": "Madrid",
+        "zh": "马德里"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "G20 Guest"
+      ],
+      "desc": {
+        "ja": "イベリア半島の大部分を占める立憲君主制国家。",
+        "en": "A country on Europe's Iberian Peninsula.",
+        "zh": "位于伊比利亚半岛的君主立宪制国家。"
+      },
+      "flag_code": "es"
+    },
+    {
+      "names": {
+        "ja": "ポーランド",
+        "en": "Poland",
+        "zh": "波兰"
+      },
+      "capital": {
+        "ja": "ワルシャワ",
+        "en": "Warsaw",
+        "zh": "华沙"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "中央ヨーロッパに位置する共和制国家。",
+        "en": "A country located in Central Europe.",
+        "zh": "位于中欧的共和国。"
+      },
+      "flag_code": "pl"
+    },
+    {
+      "names": {
+        "ja": "ポルトガル",
+        "en": "Portugal",
+        "zh": "葡萄牙"
+      },
+      "capital": {
+        "ja": "リスボン",
+        "en": "Lisbon",
+        "zh": "里斯本"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "EU",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "ユーラシア大陸最西端の国。大航海時代の先駆者。",
+        "en": "The oldest nation state on the Iberian Peninsula.",
+        "zh": "欧亚大陆最西端的国家。"
+      },
+      "flag_code": "pt"
+    },
+    {
+      "names": {
+        "ja": "オランダ",
+        "en": "Netherlands",
+        "zh": "荷兰"
+      },
+      "capital": {
+        "ja": "アムステルダム",
+        "en": "Amsterdam",
+        "zh": "阿姆斯特丹"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "風車と運河の国。国際司法裁判所がある。",
+        "en": "Known for a flat landscape of canals and tulip fields.",
+        "zh": "风车与运河之国。"
+      },
+      "flag_code": "nl"
+    },
+    {
+      "names": {
+        "ja": "ベルギー",
+        "en": "Belgium",
+        "zh": "比利时"
+      },
+      "capital": {
+        "ja": "ブリュッセル",
+        "en": "Brussels",
+        "zh": "布鲁塞尔"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Chocolate"
+      ],
+      "desc": {
+        "ja": "EU本部が置かれる欧州の十字路。",
+        "en": "Headquarters of the European Union.",
+        "zh": "欧盟总部所在地。"
+      },
+      "flag_code": "be"
+    },
+    {
+      "names": {
+        "ja": "スイス",
+        "en": "Switzerland",
+        "zh": "瑞士"
+      },
+      "capital": {
+        "ja": "ベルン",
+        "en": "Bern",
+        "zh": "伯尔尼"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Neutral",
+        "Finance",
+        "Alps"
+      ],
+      "desc": {
+        "ja": "永世中立国。アルプス山脈と金融で有名。",
+        "en": "A mountainous Central European country.",
+        "zh": "永久中立国。以阿尔卑斯山和金融闻名。"
+      },
+      "flag_code": "ch"
+    },
+    {
+      "names": {
+        "ja": "スウェーデン",
+        "en": "Sweden",
+        "zh": "瑞典"
+      },
+      "capital": {
+        "ja": "ストックホルム",
+        "en": "Stockholm",
+        "zh": "斯德哥尔摩"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "Scandinavia"
+      ],
+      "desc": {
+        "ja": "北欧最大の国家。福祉国家として知られる。",
+        "en": "A Scandinavian nation with thousands of coastal islands.",
+        "zh": "北欧最大的国家。"
+      },
+      "flag_code": "se"
+    },
+    {
+      "names": {
+        "ja": "ノルウェー",
+        "en": "Norway",
+        "zh": "挪威"
+      },
+      "capital": {
+        "ja": "オスロ",
+        "en": "Oslo",
+        "zh": "奥斯陆"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "Scandinavia",
+        "NATO",
+        "Oil"
+      ],
+      "desc": {
+        "ja": "フィヨルドで有名な北欧の王国。EU非加盟。",
+        "en": "A Scandinavian country encompassing mountains and fjords.",
+        "zh": "以峡湾闻名的北欧王国。"
+      },
+      "flag_code": "no"
+    },
+    {
+      "names": {
+        "ja": "フィンランド",
+        "en": "Finland",
+        "zh": "芬兰"
+      },
+      "capital": {
+        "ja": "ヘルシンキ",
+        "en": "Helsinki",
+        "zh": "赫尔辛基"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "Nordic",
+        "Education"
+      ],
+      "desc": {
+        "ja": "森と湖の国。サンタクロースの故郷とされる。",
+        "en": "A Northern European nation bordering Sweden, Norway and Russia.",
+        "zh": "千湖之国。"
+      },
+      "flag_code": "fi"
+    },
+    {
+      "names": {
+        "ja": "ウクライナ",
+        "en": "Ukraine",
+        "zh": "乌克兰"
+      },
+      "capital": {
+        "ja": "キーウ (キエフ)",
+        "en": "Kyiv",
+        "zh": "基辅"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Eastern Europe",
+        "Grain"
+      ],
+      "desc": {
+        "ja": "東ヨーロッパに位置する大国。肥沃な黒土を持つ。",
+        "en": "A country in Eastern Europe. Famous for its fertile plains.",
+        "zh": "位于东欧的大国。"
+      },
+      "flag_code": "ua"
+    },
+    {
+      "names": {
+        "ja": "ギリシャ",
+        "en": "Greece",
+        "zh": "希腊"
+      },
+      "capital": {
+        "ja": "アテネ",
+        "en": "Athens",
+        "zh": "雅典"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Ancient"
+      ],
+      "desc": {
+        "ja": "西洋文明発祥の地。バルカン半島南端に位置。",
+        "en": "The cradle of Western civilization.",
+        "zh": "西方文明的发源地。"
+      },
+      "flag_code": "gr"
+    },
+    {
+      "names": {
+        "ja": "ブラジル",
+        "en": "Brazil",
+        "zh": "巴西"
+      },
+      "capital": {
+        "ja": "ブラジリア",
+        "en": "Brasilia",
+        "zh": "巴西利亚"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "G20",
+        "BRICS",
+        "Mercosur"
+      ],
+      "desc": {
+        "ja": "南アメリカ大陸最大の面積と人口を持つ連邦共和国。",
+        "en": "The largest country in both South America and Latin America.",
+        "zh": "南美洲面积最大、人口最多的国家。"
+      },
+      "flag_code": "br"
+    },
+    {
+      "names": {
+        "ja": "アルゼンチン",
+        "en": "Argentina",
+        "zh": "阿根廷"
+      },
+      "capital": {
+        "ja": "ブエノスアイレス",
+        "en": "Buenos Aires",
+        "zh": "布宜诺斯艾利斯"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "G20",
+        "Mercosur"
+      ],
+      "desc": {
+        "ja": "南アメリカ南部に位置する連邦共和国。",
+        "en": "A country in the southern half of South America.",
+        "zh": "位于南美洲南部的联邦共和国。"
+      },
+      "flag_code": "ar"
+    },
+    {
+      "names": {
+        "ja": "インド",
+        "en": "India",
+        "zh": "印度"
+      },
+      "capital": {
+        "ja": "ニューデリー",
+        "en": "New Delhi",
+        "zh": "新德里"
+      },
+      "type": "Present",
+      "region": "Asia, Southern Asia",
+      "tags": [
+        "G20",
+        "BRICS",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "南アジアに位置し、世界最多の人口を抱える連邦共和国。",
+        "en": "A country in South Asia. It is the most populous democracy in the world.",
+        "zh": "位于南亚，是世界上人口最多的民主国家。"
+      },
+      "flag_code": "in"
+    },
+    {
+      "names": {
+        "ja": "インドネシア",
+        "en": "Indonesia",
+        "zh": "印度尼西亚"
+      },
+      "capital": {
+        "ja": "ジャカルタ",
+        "en": "Jakarta",
+        "zh": "雅加达"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "G20",
+        "ASEAN",
+        "Island Nation"
+      ],
+      "desc": {
+        "ja": "東南アジア南部に位置する世界最大の島嶼国家。",
+        "en": "The world's largest archipelagic state, located in Southeast Asia.",
+        "zh": "位于东南亚的世界最大群岛国家。"
+      },
+      "flag_code": "id"
+    },
+    {
+      "names": {
+        "ja": "オーストラリア",
+        "en": "Australia",
+        "zh": "澳大利亚"
+      },
+      "capital": {
+        "ja": "キャンベラ",
+        "en": "Canberra",
+        "zh": "堪培拉"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "G20",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "オセアニアに位置し、大陸全土を領有する連邦国家。",
+        "en": "A sovereign country comprising the mainland of the Australian continent.",
+        "zh": "位于大洋洲，领土覆盖整个澳洲大陆。"
+      },
+      "flag_code": "au"
+    },
+    {
+      "names": {
+        "ja": "ロシア",
+        "en": "Russia",
+        "zh": "俄罗斯"
+      },
+      "capital": {
+        "ja": "モスクワ",
+        "en": "Moscow",
+        "zh": "莫斯科"
+      },
+      "type": "Present",
+      "region": "Europe/Asia",
+      "tags": [
+        "G20",
+        "BRICS",
+        "Superpower"
+      ],
+      "desc": {
+        "ja": "ユーラシア大陸北部に広がる世界最大の面積を持つ連邦共和国。",
+        "en": "The largest country in the world, spanning Eastern Europe and Northern Asia.",
+        "zh": "横跨欧亚大陆北部的世界最大国家。"
+      },
+      "flag_code": "ru"
+    },
+    {
+      "names": {
+        "ja": "トルコ",
+        "en": "Turkey",
+        "zh": "土耳其"
+      },
+      "capital": {
+        "ja": "アンカラ",
+        "en": "Ankara",
+        "zh": "安卡拉"
+      },
+      "type": "Present",
+      "region": "Asia/Europe",
+      "tags": [
+        "G20",
+        "NATO"
+      ],
+      "desc": {
+        "ja": "西アジアのアナトリア半島と東ヨーロッパのバルカン半島の一部にまたがる共和国。",
+        "en": "A transcontinental country located mainly on the Anatolian Peninsula.",
+        "zh": "横跨欧亚两洲的共和国。"
+      },
+      "flag_code": "tr"
+    },
+    {
+      "names": {
+        "ja": "サウジアラビア",
+        "en": "Saudi Arabia",
+        "zh": "沙特阿拉伯"
+      },
+      "capital": {
+        "ja": "リヤド",
+        "en": "Riyadh",
+        "zh": "利雅得"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "G20",
+        "OPEC",
+        "Arab League"
+      ],
+      "desc": {
+        "ja": "中東・アラビア半島の大部分を占める絶対君主制国家。",
+        "en": "A country on the Arabian Peninsula in Western Asia.",
+        "zh": "占据阿拉伯半岛大部分的君主制国家。"
+      },
+      "flag_code": "sa"
+    },
+    {
+      "names": {
+        "ja": "南アフリカ",
+        "en": "South Africa",
+        "zh": "南非"
+      },
+      "capital": {
+        "ja": "プレトリア",
+        "en": "Pretoria",
+        "zh": "比勒陀利亚"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "G20",
+        "AU",
+        "BRICS"
+      ],
+      "desc": {
+        "ja": "アフリカ大陸最南端に位置する共和制国家。",
+        "en": "The southernmost country in Africa.",
+        "zh": "位于非洲大陆最南端的共和国。"
+      },
+      "flag_code": "za"
+    },
+    {
+      "names": {
+        "ja": "エジプト",
+        "en": "Egypt",
+        "zh": "埃及"
+      },
+      "capital": {
+        "ja": "カイロ",
+        "en": "Cairo",
+        "zh": "开罗"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "AU",
+        "Arab League"
+      ],
+      "desc": {
+        "ja": "北東アフリカと中東にまたがる共和制国家。古代文明発祥の地。",
+        "en": "A transcontinental country spanning the northeast corner of Africa.",
+        "zh": "横跨东北非和中东的共和国。古代文明发源地。"
+      },
+      "flag_code": "eg"
+    },
+    {
+      "names": {
+        "ja": "ナイジェリア",
+        "en": "Nigeria",
+        "zh": "尼日利亚"
+      },
+      "capital": {
+        "ja": "アブジャ",
+        "en": "Abuja",
+        "zh": "阿布贾"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "AU",
+        "OPEC",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "西アフリカに位置し、アフリカ最大の人口と経済規模を持つ。",
+        "en": "A country in West Africa. It has the largest population in Africa.",
+        "zh": "位于西非，是非洲人口和经济规模最大的国家。"
+      },
+      "flag_code": "ng"
+    },
+    {
+      "names": {
+        "ja": "エチオピア",
+        "en": "Ethiopia",
+        "zh": "埃塞俄比亚"
+      },
+      "capital": {
+        "ja": "アディスアベバ",
+        "en": "Addis Ababa",
+        "zh": "亚的斯亚贝巴"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "AU",
+        "Ancient"
+      ],
+      "desc": {
+        "ja": "東アフリカに位置する内陸国。アフリカ連合本部がある。",
+        "en": "A landlocked country in the Horn of Africa. Headquarters of the AU.",
+        "zh": "位于东非的内陆国。非洲联盟总部所在地。"
+      },
+      "flag_code": "et"
+    },
+    {
+      "names": {
+        "ja": "ケニア",
+        "en": "Kenya",
+        "zh": "肯尼亚"
+      },
+      "capital": {
+        "ja": "ナイロビ",
+        "en": "Nairobi",
+        "zh": "内罗毕"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "AU",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "東アフリカに位置する共和制国家。サファリ観光で有名。",
+        "en": "A country in East Africa known for its safaris.",
+        "zh": "位于东非的共和国。以野生动物游猎闻名。"
+      },
+      "flag_code": "ke"
+    },
+    {
+      "names": {
+        "ja": "モロッコ",
+        "en": "Morocco",
+        "zh": "摩洛哥"
+      },
+      "capital": {
+        "ja": "ラバト",
+        "en": "Rabat",
+        "zh": "拉巴特"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Maghreb",
+        "Arab"
+      ],
+      "desc": {
+        "ja": "アフリカ北西部の王国。サハラ砂漠観光の拠点。",
+        "en": "North African kingdom.",
+        "zh": "北非王国。"
+      },
+      "flag_code": "ma"
+    },
+    {
+      "names": {
+        "ja": "アルジェリア",
+        "en": "Algeria",
+        "zh": "阿尔及利亚"
+      },
+      "capital": {
+        "ja": "アルジェ",
+        "en": "Algiers",
+        "zh": "阿尔及尔"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "OPEC",
+        "Maghreb"
+      ],
+      "desc": {
+        "ja": "アフリカ最大の国土面積を持つ。",
+        "en": "Largest country in Africa by area.",
+        "zh": "非洲面积最大的国家。"
+      },
+      "flag_code": "dz"
+    },
+    {
+      "names": {
+        "ja": "ガーナ",
+        "en": "Ghana",
+        "zh": "加纳"
+      },
+      "capital": {
+        "ja": "アクラ",
+        "en": "Accra",
+        "zh": "阿克拉"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Cocoa",
+        "Gold"
+      ],
+      "desc": {
+        "ja": "カカオ豆の産地として有名。",
+        "en": "Known for cocoa production.",
+        "zh": "以可可生产闻名。"
+      },
+      "flag_code": "gh"
+    },
+    {
+      "names": {
+        "ja": "タンザニア",
+        "en": "Tanzania",
+        "zh": "坦桑尼亚"
+      },
+      "capital": {
+        "ja": "ドドマ",
+        "en": "Dodoma",
+        "zh": "多多马"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Safari",
+        "Kilimanjaro"
+      ],
+      "desc": {
+        "ja": "キリマンジャロ山がある。",
+        "en": "Home to Mount Kilimanjaro.",
+        "zh": "乞力马扎罗山所在地。"
+      },
+      "flag_code": "tz"
+    },
+    {
+      "names": {
+        "ja": "オーストリア",
+        "en": "Austria",
+        "zh": "奥地利"
+      },
+      "capital": {
+        "ja": "ウィーン",
+        "en": "Vienna",
+        "zh": "维也纳"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "Music",
+        "Alps"
+      ],
+      "desc": {
+        "ja": "音楽の都ウィーンを擁する中欧の国。",
+        "en": "Known for its castles and classical music.",
+        "zh": "以音乐和城堡闻名的中欧国家。"
+      },
+      "flag_code": "at"
+    },
+    {
+      "names": {
+        "ja": "ハンガリー",
+        "en": "Hungary",
+        "zh": "匈牙利"
+      },
+      "capital": {
+        "ja": "ブダペスト",
+        "en": "Budapest",
+        "zh": "布达佩斯"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "Danube",
+        "Onsen"
+      ],
+      "desc": {
+        "ja": "ドナウの真珠と呼ばれる美しい首都を持つ。",
+        "en": "Home to Lake Balaton and Budapest.",
+        "zh": "拥有多瑙河明珠布达佩斯。"
+      },
+      "flag_code": "hu"
+    },
+    {
+      "names": {
+        "ja": "チェコ",
+        "en": "Czech Republic",
+        "zh": "捷克"
+      },
+      "capital": {
+        "ja": "プラハ",
+        "en": "Prague",
+        "zh": "布拉格"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "Beer",
+        "History"
+      ],
+      "desc": {
+        "ja": "中世の街並みが残る「百塔の街」。",
+        "en": "Known for its ornate castles and native beers.",
+        "zh": "保留中世纪风貌的国家。"
+      },
+      "flag_code": "cz"
+    },
+    {
+      "names": {
+        "ja": "ルーマニア",
+        "en": "Romania",
+        "zh": "罗马尼亚"
+      },
+      "capital": {
+        "ja": "ブカレスト",
+        "en": "Bucharest",
+        "zh": "布加勒斯特"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "EU",
+        "Transylvania"
+      ],
+      "desc": {
+        "ja": "ドラキュラ伝説のトランシルヴァニア地方がある。",
+        "en": "Known for the forested region of Transylvania.",
+        "zh": "拥有吸血鬼传说的特兰西瓦尼亚。"
+      },
+      "flag_code": "ro"
+    },
+    {
+      "names": {
+        "ja": "ブルガリア",
+        "en": "Bulgaria",
+        "zh": "保加利亚"
+      },
+      "capital": {
+        "ja": "ソフィア",
+        "en": "Sofia",
+        "zh": "索菲亚"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "EU",
+        "Yogurt",
+        "Roses"
+      ],
+      "desc": {
+        "ja": "ヨーグルトとバラの谷で有名。",
+        "en": "Known for roses and yogurt.",
+        "zh": "以酸奶和玫瑰谷闻名。"
+      },
+      "flag_code": "bg"
+    },
+    {
+      "names": {
+        "ja": "セルビア",
+        "en": "Serbia",
+        "zh": "塞尔维亚"
+      },
+      "capital": {
+        "ja": "ベオグラード",
+        "en": "Belgrade",
+        "zh": "贝尔格莱德"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Balkans",
+        "Sports"
+      ],
+      "desc": {
+        "ja": "バルカン半島の要衝。テニスやバスケが強い。",
+        "en": "A country in the Balkans.",
+        "zh": "巴尔干半岛的国家。"
+      },
+      "flag_code": "rs"
+    },
+    {
+      "names": {
+        "ja": "クロアチア",
+        "en": "Croatia",
+        "zh": "克罗地亚"
+      },
+      "capital": {
+        "ja": "ザグレブ",
+        "en": "Zagreb",
+        "zh": "萨格勒布"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "EU",
+        "Tourism",
+        "Adriatic"
+      ],
+      "desc": {
+        "ja": "アドリア海の美しい海岸線を持つ観光国。",
+        "en": "Known for its Adriatic Sea coast.",
+        "zh": "拥有亚得里亚海美丽海岸线的国家。"
+      },
+      "flag_code": "hr"
+    },
+    {
+      "names": {
+        "ja": "イラク",
+        "en": "Iraq",
+        "zh": "伊拉克"
+      },
+      "capital": {
+        "ja": "バグダッド",
+        "en": "Baghdad",
+        "zh": "巴格达"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Mesopotamia",
+        "Oil"
+      ],
+      "desc": {
+        "ja": "メソポタミア文明発祥の地。",
+        "en": "Cradle of civilization.",
+        "zh": "美索不达米亚文明发源地。"
+      },
+      "flag_code": "iq"
+    },
+    {
+      "names": {
+        "ja": "シリア",
+        "en": "Syria",
+        "zh": "叙利亚"
+      },
+      "capital": {
+        "ja": "ダマスカス",
+        "en": "Damascus",
+        "zh": "大马士革"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Ancient",
+        "History"
+      ],
+      "desc": {
+        "ja": "世界最古級の都市ダマスカスを首都とする。",
+        "en": "Home to one of the oldest cities in the world.",
+        "zh": "拥有世界上最古老的城市之一。"
+      },
+      "flag_code": "sy"
+    },
+    {
+      "names": {
+        "ja": "ヨルダン",
+        "en": "Jordan",
+        "zh": "约旦"
+      },
+      "capital": {
+        "ja": "アンマン",
+        "en": "Amman",
+        "zh": "安曼"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Petra",
+        "Dead Sea"
+      ],
+      "desc": {
+        "ja": "ペトラ遺跡や死海で有名な観光国。",
+        "en": "Home to the archaeological site of Petra.",
+        "zh": "以佩特拉古城和死海闻名。"
+      },
+      "flag_code": "jo"
+    },
+    {
+      "names": {
+        "ja": "レバノン",
+        "en": "Lebanon",
+        "zh": "黎巴嫩"
+      },
+      "capital": {
+        "ja": "ベイルート",
+        "en": "Beirut",
+        "zh": "贝鲁特"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Cedars",
+        "Cuisine"
+      ],
+      "desc": {
+        "ja": "「中東のパリ」と呼ばれた美しい国。レバノン杉が象徴。",
+        "en": "Known for its history and cuisine.",
+        "zh": "被称为中东的巴黎。"
+      },
+      "flag_code": "lb"
+    },
+    {
+      "names": {
+        "ja": "カタール",
+        "en": "Qatar",
+        "zh": "卡塔尔"
+      },
+      "capital": {
+        "ja": "ドーハ",
+        "en": "Doha",
+        "zh": "多哈"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Gas",
+        "Rich"
+      ],
+      "desc": {
+        "ja": "天然ガス資源が豊富な富裕国。",
+        "en": "Peninsular Arab country.",
+        "zh": "天然气资源丰富的富裕国家。"
+      },
+      "flag_code": "qa"
+    },
+    {
+      "names": {
+        "ja": "ウズベキスタン",
+        "en": "Uzbekistan",
+        "zh": "乌兹别克斯坦"
+      },
+      "capital": {
+        "ja": "タシュケント",
+        "en": "Tashkent",
+        "zh": "塔什干"
+      },
+      "type": "Present",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Silk Road",
+        "Samarkand"
+      ],
+      "desc": {
+        "ja": "シルクロードの要衝。サマルカンドが有名。",
+        "en": "Central Asian nation known for mosques and mausoleums.",
+        "zh": "丝绸之路的中心。"
+      },
+      "flag_code": "uz"
+    },
+    {
+      "names": {
+        "ja": "モンゴル",
+        "en": "Mongolia",
+        "zh": "蒙古"
+      },
+      "capital": {
+        "ja": "ウランバートル",
+        "en": "Ulaanbaatar",
+        "zh": "乌兰巴托"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Nomad",
+        "Steppe"
+      ],
+      "desc": {
+        "ja": "広大な草原と遊牧文化の国。",
+        "en": "A nation bordered by China and Russia.",
+        "zh": "草原和游牧文化的国家。"
+      },
+      "flag_code": "mn"
+    },
+    {
+      "names": {
+        "ja": "ミャンマー",
+        "en": "Myanmar",
+        "zh": "缅甸"
+      },
+      "capital": {
+        "ja": "ネ比都 (ネピドー)",
+        "en": "Naypyidaw",
+        "zh": "内比都"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Buddhism"
+      ],
+      "desc": {
+        "ja": "黄金のパゴダ（仏塔）が輝く国。",
+        "en": "A Southeast Asian nation of more than 100 ethnic groups.",
+        "zh": "拥有众多佛塔的国家。"
+      },
+      "flag_code": "mm"
+    },
+    {
+      "names": {
+        "ja": "カンボジア",
+        "en": "Cambodia",
+        "zh": "柬埔寨"
+      },
+      "capital": {
+        "ja": "プノンペン",
+        "en": "Phnom Penh",
+        "zh": "金边"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Angkor Wat"
+      ],
+      "desc": {
+        "ja": "アンコール・ワット遺跡群を持つ。",
+        "en": "Home to the massive stone temple complex Angkor Wat.",
+        "zh": "拥有吴哥窟古迹。"
+      },
+      "flag_code": "kh"
+    },
+    {
+      "names": {
+        "ja": "エクアドル",
+        "en": "Ecuador",
+        "zh": "厄瓜多尔"
+      },
+      "capital": {
+        "ja": "キト",
+        "en": "Quito",
+        "zh": "基多"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Andes",
+        "Galapagos",
+        "Equator"
+      ],
+      "desc": {
+        "ja": "赤道直下の国。ガラパゴス諸島を領有。",
+        "en": "Named after the Equator. Home to the Galapagos.",
+        "zh": "赤道之国。拥有加拉帕戈斯群岛。"
+      },
+      "flag_code": "ec"
+    },
+    {
+      "names": {
+        "ja": "ボリビア",
+        "en": "Bolivia",
+        "zh": "玻利维亚"
+      },
+      "capital": {
+        "ja": "ラパス / スクレ",
+        "en": "La Paz / Sucre",
+        "zh": "拉巴斯 / 苏克雷"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Andes",
+        "Uyuni",
+        "Landlocked"
+      ],
+      "desc": {
+        "ja": "ウユニ塩湖で有名な高山国。",
+        "en": "Home to the Salar de Uyuni salt flat.",
+        "zh": "拥有乌尤尼盐沼的高原国家。"
+      },
+      "flag_code": "bo"
+    },
+    {
+      "names": {
+        "ja": "ウルグアイ",
+        "en": "Uruguay",
+        "zh": "乌拉圭"
+      },
+      "capital": {
+        "ja": "モンテビデオ",
+        "en": "Montevideo",
+        "zh": "蒙得维的亚"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Mercosur",
+        "Progressive"
+      ],
+      "desc": {
+        "ja": "「南米のスイス」とも呼ばれる安定した国。",
+        "en": "Often called the Switzerland of South America.",
+        "zh": "被称为南美瑞士的稳定国家。"
+      },
+      "flag_code": "uy"
+    },
+    {
+      "names": {
+        "ja": "パラグアイ",
+        "en": "Paraguay",
+        "zh": "巴拉圭"
+      },
+      "capital": {
+        "ja": "アスンシオン",
+        "en": "Asuncion",
+        "zh": "亚松森"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Mercosur",
+        "Landlocked"
+      ],
+      "desc": {
+        "ja": "南米の内陸国。日系移民も多い。",
+        "en": "A landlocked country in South America.",
+        "zh": "南美内陆国。"
+      },
+      "flag_code": "py"
+    },
+    {
+      "names": {
+        "ja": "パナマ",
+        "en": "Panama",
+        "zh": "巴拿马"
+      },
+      "capital": {
+        "ja": "パナマシティ",
+        "en": "Panama City",
+        "zh": "巴拿马城"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Canal",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "太平洋と大西洋を結ぶパナマ運河がある。",
+        "en": "Famous for the Panama Canal.",
+        "zh": "拥有连接太平洋和大西洋的巴拿马运河。"
+      },
+      "flag_code": "pa"
+    },
+    {
+      "names": {
+        "ja": "コスタリカ",
+        "en": "Costa Rica",
+        "zh": "哥斯达黎加"
+      },
+      "capital": {
+        "ja": "サンホセ",
+        "en": "San Jose",
+        "zh": "圣何塞"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Nature",
+        "Peace"
+      ],
+      "desc": {
+        "ja": "軍隊を持たない国。環境保護先進国。",
+        "en": "Known for its biodiversity and having no standing army.",
+        "zh": "没有军队的国家。环保先进国。"
+      },
+      "flag_code": "cr"
+    },
+    {
+      "names": {
+        "ja": "ドミニカ共和国",
+        "en": "Dominican Republic",
+        "zh": "多米尼加共和国"
+      },
+      "capital": {
+        "ja": "サントドミンゴ",
+        "en": "Santo Domingo",
+        "zh": "圣多明各"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Island",
+        "Baseball"
+      ],
+      "desc": {
+        "ja": "カリブ海のリゾート地。野球が盛ん。",
+        "en": "Known for beaches, resorts and baseball.",
+        "zh": "加勒比海度假胜地。棒球盛行。"
+      },
+      "flag_code": "do"
+    },
+    {
+      "names": {
+        "ja": "コンゴ民主共和国",
+        "en": "DR Congo",
+        "zh": "刚果民主共和国"
+      },
+      "capital": {
+        "ja": "キンシャサ",
+        "en": "Kinshasa",
+        "zh": "金沙萨"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Resource",
+        "Rainforest"
+      ],
+      "desc": {
+        "ja": "アフリカ大陸中央部の巨大国家。鉱物資源が豊富。",
+        "en": "Largest country in Sub-Saharan Africa.",
+        "zh": "位于非洲中部的巨大国家。资源丰富。"
+      },
+      "flag_code": "cd"
+    },
+    {
+      "names": {
+        "ja": "セネガル",
+        "en": "Senegal",
+        "zh": "塞内加尔"
+      },
+      "capital": {
+        "ja": "ダカール",
+        "en": "Dakar",
+        "zh": "达喀尔"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Culture",
+        "Paris-Dakar"
+      ],
+      "desc": {
+        "ja": "西アフリカの玄関口。パリ・ダカールラリーの終点。",
+        "en": "The westernmost country in the mainland of the Old World.",
+        "zh": "西非的门户。"
+      },
+      "flag_code": "sn"
+    },
+    {
+      "names": {
+        "ja": "マダガスカル",
+        "en": "Madagascar",
+        "zh": "马达加斯加"
+      },
+      "capital": {
+        "ja": "アンタナナリボ",
+        "en": "Antananarivo",
+        "zh": "塔那那利佛"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Island",
+        "Nature",
+        "Baobab"
+      ],
+      "desc": {
+        "ja": "固有種の宝庫。バオバブの木で有名。",
+        "en": "Island nation known for lemurs and baobabs.",
+        "zh": "生物多样性的宝库。以猴面包树闻名。"
+      },
+      "flag_code": "mg"
+    },
+    {
+      "names": {
+        "ja": "ジンバブエ",
+        "en": "Zimbabwe",
+        "zh": "津巴布韦"
+      },
+      "capital": {
+        "ja": "ハラレ",
+        "en": "Harare",
+        "zh": "哈拉雷"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Victoria Falls"
+      ],
+      "desc": {
+        "ja": "世界三大瀑布の一つ、ヴィクトリアの滝がある。",
+        "en": "Home to Victoria Falls.",
+        "zh": "拥有维多利亚瀑布。"
+      },
+      "flag_code": "zw"
+    },
+    {
+      "names": {
+        "ja": "ウガンダ",
+        "en": "Uganda",
+        "zh": "乌干达"
+      },
+      "capital": {
+        "ja": "カンパラ",
+        "en": "Kampala",
+        "zh": "坎帕拉"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Gorilla",
+        "Equator"
+      ],
+      "desc": {
+        "ja": "「アフリカの真珠」と呼ばれる。マウンテンゴリラの生息地。",
+        "en": "Known as the Pearl of Africa.",
+        "zh": "被称为非洲明珠。"
+      },
+      "flag_code": "ug"
+    },
+    {
+      "names": {
+        "ja": "アイルランド",
+        "en": "Ireland",
+        "zh": "爱尔兰"
+      },
+      "capital": {
+        "ja": "ダブリン",
+        "en": "Dublin",
+        "zh": "都柏林"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "EU",
+        "Tech",
+        "Celtic"
+      ],
+      "desc": {
+        "ja": "「エメラルドの島」。IT産業が集積。",
+        "en": "Known as the Emerald Isle.",
+        "zh": "翡翠岛。IT产业聚集。"
+      },
+      "flag_code": "ie"
+    },
+    {
+      "names": {
+        "ja": "デンマーク",
+        "en": "Denmark",
+        "zh": "丹麦"
+      },
+      "capital": {
+        "ja": "コペンハーゲン",
+        "en": "Copenhagen",
+        "zh": "哥本哈根"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "Design",
+        "Lego"
+      ],
+      "desc": {
+        "ja": "童話作家アンデルセンの故郷。デザイン大国。",
+        "en": "Scandinavian country known for design.",
+        "zh": "安徒生的故乡。设计大国。"
+      },
+      "flag_code": "dk"
+    },
+    {
+      "names": {
+        "ja": "ネパール",
+        "en": "Nepal",
+        "zh": "尼泊尔"
+      },
+      "capital": {
+        "ja": "カトマンズ",
+        "en": "Kathmandu",
+        "zh": "加德满都"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Himalaya",
+        "Everest"
+      ],
+      "desc": {
+        "ja": "エベレストを擁するヒマラヤの国。",
+        "en": "Home to Mount Everest.",
+        "zh": "拥有珠穆朗玛峰的喜马拉雅国家。"
+      },
+      "flag_code": "np"
+    },
+    {
+      "names": {
+        "ja": "スリランカ",
+        "en": "Sri Lanka",
+        "zh": "斯里兰卡"
+      },
+      "capital": {
+        "ja": "スリジャヤワルダナプラコッテ",
+        "en": "Sri Jayawardenepura Kotte",
+        "zh": "斯里贾亚瓦德纳普拉科特"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Tea",
+        "Island"
+      ],
+      "desc": {
+        "ja": "「インド洋の真珠」。紅茶（セイロンティー）の産地。",
+        "en": "Island nation known for tea and landscapes.",
+        "zh": "印度洋明珠。红茶产地。"
+      },
+      "flag_code": "lk"
+    },
+    {
+      "names": {
+        "ja": "エストニア",
+        "en": "Estonia",
+        "zh": "爱沙尼亚"
+      },
+      "capital": {
+        "ja": "タリン",
+        "en": "Tallinn",
+        "zh": "塔林"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Tech"
+      ],
+      "desc": {
+        "ja": "「e-国家」として知られるIT先進国。Skype発祥の地。",
+        "en": "Advanced digital society. Birthplace of Skype.",
+        "zh": "以电子政务闻名的IT发达国家。"
+      },
+      "flag_code": "ee"
+    },
+    {
+      "names": {
+        "ja": "ラトビア",
+        "en": "Latvia",
+        "zh": "拉脱维亚"
+      },
+      "capital": {
+        "ja": "リガ",
+        "en": "Riga",
+        "zh": "里加"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Baltic"
+      ],
+      "desc": {
+        "ja": "バルト三国の中央。首都リガの旧市街は世界遺産。",
+        "en": "Central country of the Baltic states.",
+        "zh": "波罗的海三国之一。"
+      },
+      "flag_code": "lv"
+    },
+    {
+      "names": {
+        "ja": "リトアニア",
+        "en": "Lithuania",
+        "zh": "立陶宛"
+      },
+      "capital": {
+        "ja": "ヴィリニュス",
+        "en": "Vilnius",
+        "zh": "维尔纽斯"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Baltic"
+      ],
+      "desc": {
+        "ja": "中世には巨大な公国だった歴史を持つ。",
+        "en": "Historically a powerful grand duchy.",
+        "zh": "历史上曾是强大的大公国。"
+      },
+      "flag_code": "lt"
+    },
+    {
+      "names": {
+        "ja": "アイスランド",
+        "en": "Iceland",
+        "zh": "冰岛"
+      },
+      "capital": {
+        "ja": "レイキャビク",
+        "en": "Reykjavik",
+        "zh": "雷克雅未克"
+      },
+      "type": "Present",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "NATO",
+        "Volcano",
+        "Aurora"
+      ],
+      "desc": {
+        "ja": "「火と氷の国」。火山とオーロラ、温泉が有名。",
+        "en": "Land of fire and ice.",
+        "zh": "冰火之国。"
+      },
+      "flag_code": "is"
+    },
+    {
+      "names": {
+        "ja": "ルクセンブルク",
+        "en": "Luxembourg",
+        "zh": "卢森堡"
+      },
+      "capital": {
+        "ja": "ルクセンブルク",
+        "en": "Luxembourg",
+        "zh": "卢森堡"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "EU",
+        "NATO",
+        "Rich"
+      ],
+      "desc": {
+        "ja": "世界有数の富裕国。金融センター。",
+        "en": "One of the world's wealthiest nations.",
+        "zh": "世界上最富有的国家之一。"
+      },
+      "flag_code": "lu"
+    },
+    {
+      "names": {
+        "ja": "ジョージア",
+        "en": "Georgia",
+        "zh": "格鲁吉亚"
+      },
+      "capital": {
+        "ja": "トビリシ",
+        "en": "Tbilisi",
+        "zh": "第比利斯"
+      },
+      "type": "Present",
+      "region": "Asia/Europe",
+      "tags": [
+        "Caucasus",
+        "Wine"
+      ],
+      "desc": {
+        "ja": "ワイン発祥の地とされる。親日国。",
+        "en": "Birthplace of wine.",
+        "zh": "葡萄酒发源地。"
+      },
+      "flag_code": "ge"
+    },
+    {
+      "names": {
+        "ja": "アゼルバイジャン",
+        "en": "Azerbaijan",
+        "zh": "阿塞拜疆"
+      },
+      "capital": {
+        "ja": "バクー",
+        "en": "Baku",
+        "zh": "巴库"
+      },
+      "type": "Present",
+      "region": "Asia/Europe",
+      "tags": [
+        "Caucasus",
+        "Oil",
+        "Fire"
+      ],
+      "desc": {
+        "ja": "「火の国」。カスピ海沿岸の産油国。",
+        "en": "The Land of Fire.",
+        "zh": "火之国。里海沿岸的产油国。"
+      },
+      "flag_code": "az"
+    },
+    {
+      "names": {
+        "ja": "アルメニア",
+        "en": "Armenia",
+        "zh": "亚美尼亚"
+      },
+      "capital": {
+        "ja": "エレバン",
+        "en": "Yerevan",
+        "zh": "埃里温"
+      },
+      "type": "Present",
+      "region": "Asia/Europe",
+      "tags": [
+        "Caucasus",
+        "Christianity"
+      ],
+      "desc": {
+        "ja": "世界で初めてキリスト教を国教化した国。",
+        "en": "First nation to adopt Christianity as state religion.",
+        "zh": "世界上第一个将基督教定为国教的国家。"
+      },
+      "flag_code": "am"
+    },
+    {
+      "names": {
+        "ja": "台湾",
+        "en": "Taiwan",
+        "zh": "台湾"
+      },
+      "capital": {
+        "ja": "台北",
+        "en": "Taipei",
+        "zh": "台北"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Tech",
+        "Semiconductor"
+      ],
+      "desc": {
+        "ja": "半導体産業の世界的な中心地。美食の宝庫。",
+        "en": "Global hub for semiconductor manufacturing.",
+        "zh": "半导体产业的世界中心。美食宝库。"
+      },
+      "flag_code": "tw"
+    },
+    {
+      "names": {
+        "ja": "ラオス",
+        "en": "Laos",
+        "zh": "老挝"
+      },
+      "capital": {
+        "ja": "ビエンチャン",
+        "en": "Vientiane",
+        "zh": "万象"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Mekong"
+      ],
+      "desc": {
+        "ja": "東南アジア唯一の内陸国。メコン川が流れる。",
+        "en": "Landlocked country in Southeast Asia.",
+        "zh": "东南亚唯一的内陆国。"
+      },
+      "flag_code": "la"
+    },
+    {
+      "names": {
+        "ja": "パプアニューギニア",
+        "en": "Papua New Guinea",
+        "zh": "巴布亚新几内亚"
+      },
+      "capital": {
+        "ja": "ポートモレスビー",
+        "en": "Port Moresby",
+        "zh": "莫尔兹比港"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Pacific",
+        "Diversity"
+      ],
+      "desc": {
+        "ja": "800以上の言語が話される多様性の国。",
+        "en": "One of the most culturally diverse countries.",
+        "zh": "拥有800多种语言的多样性国家。"
+      },
+      "flag_code": "pg"
+    },
+    {
+      "names": {
+        "ja": "フィジー",
+        "en": "Fiji",
+        "zh": "斐济"
+      },
+      "capital": {
+        "ja": "スバ",
+        "en": "Suva",
+        "zh": "苏瓦"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Pacific",
+        "Tourism",
+        "Rugby"
+      ],
+      "desc": {
+        "ja": "南太平洋の楽園。ラグビー強豪国。",
+        "en": "Archipelago in the South Pacific. Famous for rugby.",
+        "zh": "南太平洋的乐园。橄榄球强国。"
+      },
+      "flag_code": "fj"
+    },
+    {
+      "names": {
+        "ja": "グアテマラ",
+        "en": "Guatemala",
+        "zh": "危地马拉"
+      },
+      "capital": {
+        "ja": "グアテマラシティ",
+        "en": "Guatemala City",
+        "zh": "危地马拉城"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Maya",
+        "Coffee"
+      ],
+      "desc": {
+        "ja": "マヤ文明の遺跡が多く残る。コーヒー産地。",
+        "en": "Home to volcanoes, rainforests and ancient Maya sites.",
+        "zh": "玛雅文明遗迹众多。咖啡产地。"
+      },
+      "flag_code": "gt"
+    },
+    {
+      "names": {
+        "ja": "ホンジュラス",
+        "en": "Honduras",
+        "zh": "洪都拉斯"
+      },
+      "capital": {
+        "ja": "テグシガルパ",
+        "en": "Tegucigalpa",
+        "zh": "特古西加尔巴"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Caribbean",
+        "Maya"
+      ],
+      "desc": {
+        "ja": "カリブ海に面した中米の国。コパン遺跡がある。",
+        "en": "Central American country with Caribbean coastlines.",
+        "zh": "面临加勒比海的中美洲国家。"
+      },
+      "flag_code": "hn"
+    },
+    {
+      "names": {
+        "ja": "ハイチ",
+        "en": "Haiti",
+        "zh": "海地"
+      },
+      "capital": {
+        "ja": "ポルトープランス",
+        "en": "Port-au-Prince",
+        "zh": "太子港"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Independence",
+        "History"
+      ],
+      "desc": {
+        "ja": "世界初の黒人共和国として独立。",
+        "en": "First independent black republic.",
+        "zh": "世界上第一个独立的黑人共和国。"
+      },
+      "flag_code": "ht"
+    },
+    {
+      "names": {
+        "ja": "スーダン",
+        "en": "Sudan",
+        "zh": "苏丹"
+      },
+      "capital": {
+        "ja": "ハルツーム",
+        "en": "Khartoum",
+        "zh": "喀土穆"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Nile",
+        "History"
+      ],
+      "desc": {
+        "ja": "ナイル川が合流する地。エジプトより多くのピラミッドがある。",
+        "en": "Home to more pyramids than Egypt.",
+        "zh": "拥有的金字塔数量超过埃及。"
+      },
+      "flag_code": "sd"
+    },
+    {
+      "names": {
+        "ja": "アンゴラ",
+        "en": "Angola",
+        "zh": "安哥拉"
+      },
+      "capital": {
+        "ja": "ルアンダ",
+        "en": "Luanda",
+        "zh": "罗安达"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Oil",
+        "Diamond"
+      ],
+      "desc": {
+        "ja": "アフリカ有数の産油国かつダイヤモンド産出国。",
+        "en": "Rich in oil and diamonds.",
+        "zh": "非洲主要的石油和钻石生产国。"
+      },
+      "flag_code": "ao"
+    },
+    {
+      "names": {
+        "ja": "コートジボワール",
+        "en": "Ivory Coast",
+        "zh": "科特迪瓦"
+      },
+      "capital": {
+        "ja": "ヤムスクロ",
+        "en": "Yamoussoukro",
+        "zh": "亚穆苏克罗"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Cocoa",
+        "French"
+      ],
+      "desc": {
+        "ja": "「象牙海岸」。カカオ生産世界一。",
+        "en": "World's largest producer of cocoa.",
+        "zh": "象牙海岸。可可产量世界第一。"
+      },
+      "flag_code": "ci"
+    },
+    {
+      "names": {
+        "ja": "チュニジア",
+        "en": "Tunisia",
+        "zh": "突尼斯"
+      },
+      "capital": {
+        "ja": "チュニス",
+        "en": "Tunis",
+        "zh": "突尼斯"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Maghreb",
+        "Carthage"
+      ],
+      "desc": {
+        "ja": "古代カルタゴの遺跡がある。地中海リゾート地。",
+        "en": "Home to the ruins of Carthage.",
+        "zh": "拥有迦太基古城遗迹。"
+      },
+      "flag_code": "tn"
+    },
+    {
+      "names": {
+        "ja": "スロバキア",
+        "en": "Slovakia",
+        "zh": "斯洛伐克"
+      },
+      "capital": {
+        "ja": "ブラチスラヴァ",
+        "en": "Bratislava",
+        "zh": "布拉迪斯拉发"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "Castles",
+        "Mountains"
+      ],
+      "desc": {
+        "ja": "中欧の山岳国。かつてチェコと同じ国だった。",
+        "en": "Central European country known for mountains and castles.",
+        "zh": "中欧山地国家。曾与捷克同一国家。"
+      },
+      "flag_code": "sk"
+    },
+    {
+      "names": {
+        "ja": "スロベニア",
+        "en": "Slovenia",
+        "zh": "斯洛文尼亚"
+      },
+      "capital": {
+        "ja": "リュブリャナ",
+        "en": "Ljubljana",
+        "zh": "卢布尔雅那"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "EU",
+        "Alps",
+        "Green"
+      ],
+      "desc": {
+        "ja": "アルプスと地中海が出会う国。自然豊か。",
+        "en": "Known for its mountains, ski resorts and lakes.",
+        "zh": "阿尔卑斯山与地中海交汇之国。"
+      },
+      "flag_code": "si"
+    },
+    {
+      "names": {
+        "ja": "ボスニア・ヘルツェゴビナ",
+        "en": "Bosnia and Herzegovina",
+        "zh": "波斯尼亚和黑塞哥维那"
+      },
+      "capital": {
+        "ja": "サラエボ",
+        "en": "Sarajevo",
+        "zh": "萨拉热窝"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Balkans",
+        "History"
+      ],
+      "desc": {
+        "ja": "東洋と西洋の文化が交差する国。",
+        "en": "Country on the Balkan Peninsula.",
+        "zh": "东西方文化交汇的国家。"
+      },
+      "flag_code": "ba"
+    },
+    {
+      "names": {
+        "ja": "アルバニア",
+        "en": "Albania",
+        "zh": "阿尔巴尼亚"
+      },
+      "capital": {
+        "ja": "ティラナ",
+        "en": "Tirana",
+        "zh": "地拉那"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Balkans",
+        "Eagle"
+      ],
+      "desc": {
+        "ja": "「鷲の国」と呼ばれるバルカン半島の国。",
+        "en": "Country with Adriatic and Ionian coastlines.",
+        "zh": "被称为山鹰之国。"
+      },
+      "flag_code": "al"
+    },
+    {
+      "names": {
+        "ja": "ベラルーシ",
+        "en": "Belarus",
+        "zh": "白俄罗斯"
+      },
+      "capital": {
+        "ja": "ミンスク",
+        "en": "Minsk",
+        "zh": "明斯克"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "CIS",
+        "Forest"
+      ],
+      "desc": {
+        "ja": "「森と湖の国」。東欧の内陸国。",
+        "en": "Landlocked country in Eastern Europe.",
+        "zh": "拥有众多森林和湖泊的东欧内陆国。"
+      },
+      "flag_code": "by"
+    },
+    {
+      "names": {
+        "ja": "モルドバ",
+        "en": "Moldova",
+        "zh": "摩尔多瓦"
+      },
+      "capital": {
+        "ja": "キシナウ",
+        "en": "Chisinau",
+        "zh": "基希讷乌"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Wine",
+        "CIS"
+      ],
+      "desc": {
+        "ja": "ワイン産業が盛んな東欧の国。",
+        "en": "Eastern European country known for wineries.",
+        "zh": "以葡萄酒产业闻名的东欧国家。"
+      },
+      "flag_code": "md"
+    },
+    {
+      "names": {
+        "ja": "キプロス",
+        "en": "Cyprus",
+        "zh": "塞浦路斯"
+      },
+      "capital": {
+        "ja": "ニコシア",
+        "en": "Nicosia",
+        "zh": "尼科西亚"
+      },
+      "type": "Present",
+      "region": "Europe/Middle East",
+      "tags": [
+        "EU",
+        "Island",
+        "Aphrodite"
+      ],
+      "desc": {
+        "ja": "地中海の島国。愛の女神アフロディーテ生誕の地。",
+        "en": "Island country in the Eastern Mediterranean.",
+        "zh": "地中海岛国。爱神诞生地。"
+      },
+      "flag_code": "cy"
+    },
+    {
+      "names": {
+        "ja": "マルタ",
+        "en": "Malta",
+        "zh": "马耳他"
+      },
+      "capital": {
+        "ja": "バレッタ",
+        "en": "Valletta",
+        "zh": "瓦莱塔"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "EU",
+        "Knight",
+        "Island"
+      ],
+      "desc": {
+        "ja": "地中海の要衝。騎士団の歴史がある。",
+        "en": "Archipelago in the central Mediterranean.",
+        "zh": "地中海要冲。拥有骑士团历史。"
+      },
+      "flag_code": "mt"
+    },
+    {
+      "names": {
+        "ja": "ブータン",
+        "en": "Bhutan",
+        "zh": "不丹"
+      },
+      "capital": {
+        "ja": "ティンプー",
+        "en": "Thimphu",
+        "zh": "廷布"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Himalaya",
+        "Happiness"
+      ],
+      "desc": {
+        "ja": "国民総幸福量(GNH)を重視するヒマラヤの王国。",
+        "en": "Buddhist kingdom on the Himalayas’ eastern edge.",
+        "zh": "重视国民幸福总值的喜马拉雅王国。"
+      },
+      "flag_code": "bt"
+    },
+    {
+      "names": {
+        "ja": "モルディブ",
+        "en": "Maldives",
+        "zh": "马尔代夫"
+      },
+      "capital": {
+        "ja": "マレ",
+        "en": "Male",
+        "zh": "马累"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Island",
+        "Resort"
+      ],
+      "desc": {
+        "ja": "インド洋の美しい珊瑚礁の島国。",
+        "en": "Tropical nation in the Indian Ocean.",
+        "zh": "印度洋上的珊瑚礁岛国。"
+      },
+      "flag_code": "mv"
+    },
+    {
+      "names": {
+        "ja": "オマーン",
+        "en": "Oman",
+        "zh": "阿曼"
+      },
+      "capital": {
+        "ja": "マスカット",
+        "en": "Muscat",
+        "zh": "马斯喀特"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Maritime",
+        "Desert"
+      ],
+      "desc": {
+        "ja": "アラビア半島の海洋国家。シンドバッド伝説。",
+        "en": "Oldest independent state in the Arab world.",
+        "zh": "阿拉伯半岛的海洋国家。"
+      },
+      "flag_code": "om"
+    },
+    {
+      "names": {
+        "ja": "クウェート",
+        "en": "Kuwait",
+        "zh": "科威特"
+      },
+      "capital": {
+        "ja": "クウェートシティ",
+        "en": "Kuwait City",
+        "zh": "科威特城"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Oil",
+        "Gulf"
+      ],
+      "desc": {
+        "ja": "ペルシャ湾岸の産油国。",
+        "en": "Oil-rich country on the Persian Gulf.",
+        "zh": "波斯湾沿岸的产油国。"
+      },
+      "flag_code": "kw"
+    },
+    {
+      "names": {
+        "ja": "バーレーン",
+        "en": "Bahrain",
+        "zh": "巴林"
+      },
+      "capital": {
+        "ja": "マナーマ",
+        "en": "Manama",
+        "zh": "麦纳麦"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "Island",
+        "Finance"
+      ],
+      "desc": {
+        "ja": "中東の金融センターである島国。",
+        "en": "Island nation in the Persian Gulf.",
+        "zh": "中东金融中心的岛国。"
+      },
+      "flag_code": "bh"
+    },
+    {
+      "names": {
+        "ja": "キルギス",
+        "en": "Kyrgyzstan",
+        "zh": "吉尔吉斯斯坦"
+      },
+      "capital": {
+        "ja": "ビシュケク",
+        "en": "Bishkek",
+        "zh": "比什凯克"
+      },
+      "type": "Present",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Mountain",
+        "Nomad"
+      ],
+      "desc": {
+        "ja": "「中央アジアのスイス」と呼ばれる山岳国。",
+        "en": "Known for the Tian Shan mountains.",
+        "zh": "被称为中亚瑞士的山地国家。"
+      },
+      "flag_code": "kg"
+    },
+    {
+      "names": {
+        "ja": "タジキスタン",
+        "en": "Tajikistan",
+        "zh": "塔吉克斯坦"
+      },
+      "capital": {
+        "ja": "ドゥシャンベ",
+        "en": "Dushanbe",
+        "zh": "杜尚别"
+      },
+      "type": "Present",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Mountain",
+        "Pamir"
+      ],
+      "desc": {
+        "ja": "パミール高原を擁する山岳国。",
+        "en": "Mountainous country in Central Asia.",
+        "zh": "拥有帕米尔高原的国家。"
+      },
+      "flag_code": "tj"
+    },
+    {
+      "names": {
+        "ja": "トルクメニスタン",
+        "en": "Turkmenistan",
+        "zh": "土库曼斯坦"
+      },
+      "capital": {
+        "ja": "アシガバート",
+        "en": "Ashgabat",
+        "zh": "阿什哈巴德"
+      },
+      "type": "Present",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Gas",
+        "Desert"
+      ],
+      "desc": {
+        "ja": "天然ガスが豊富。白亜の首都を持つ。",
+        "en": "Known for the Karakum Desert and gas reserves.",
+        "zh": "天然气丰富。拥有白色大理石首都。"
+      },
+      "flag_code": "tm"
+    },
+    {
+      "names": {
+        "ja": "東ティモール",
+        "en": "East Timor",
+        "zh": "东帝汶"
+      },
+      "capital": {
+        "ja": "ディリ",
+        "en": "Dili",
+        "zh": "帝力"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Island",
+        "New"
+      ],
+      "desc": {
+        "ja": "21世紀最初の独立国。",
+        "en": "First new sovereign state of the 21st century.",
+        "zh": "21世纪第一个独立国家。"
+      },
+      "flag_code": "tl"
+    },
+    {
+      "names": {
+        "ja": "ブルネイ",
+        "en": "Brunei",
+        "zh": "文莱"
+      },
+      "capital": {
+        "ja": "バンダルスリブガワン",
+        "en": "Bandar Seri Begawan",
+        "zh": "斯里巴加湾市"
+      },
+      "type": "Present",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "ASEAN",
+        "Oil",
+        "Rich"
+      ],
+      "desc": {
+        "ja": "ボルネオ島北部の豊かな王国。",
+        "en": "A tiny nation on the island of Borneo.",
+        "zh": "位于婆罗洲北部的富裕王国。"
+      },
+      "flag_code": "bn"
+    },
+    {
+      "names": {
+        "ja": "ルワンダ",
+        "en": "Rwanda",
+        "zh": "卢旺达"
+      },
+      "capital": {
+        "ja": "キガリ",
+        "en": "Kigali",
+        "zh": "基加利"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Tech",
+        "Clean"
+      ],
+      "desc": {
+        "ja": "「千の丘の国」。IT産業振興と清潔さで有名。",
+        "en": "Land of a Thousand Hills.",
+        "zh": "千丘之国。以IT和整洁闻名。"
+      },
+      "flag_code": "rw"
+    },
+    {
+      "names": {
+        "ja": "ボツワナ",
+        "en": "Botswana",
+        "zh": "博茨瓦纳"
+      },
+      "capital": {
+        "ja": "ハボローネ",
+        "en": "Gaborone",
+        "zh": "哈博罗内"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Diamond",
+        "Safari"
+      ],
+      "desc": {
+        "ja": "ダイヤモンド産出で潤う安定した国。",
+        "en": "Known for diamonds and the Kalahari Desert.",
+        "zh": "因钻石而富裕的稳定国家。"
+      },
+      "flag_code": "bw"
+    },
+    {
+      "names": {
+        "ja": "ナミビア",
+        "en": "Namibia",
+        "zh": "纳米比亚"
+      },
+      "capital": {
+        "ja": "ウィントフック",
+        "en": "Windhoek",
+        "zh": "温得和克"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Desert",
+        "Nature"
+      ],
+      "desc": {
+        "ja": "世界最古のナミブ砂漠がある。",
+        "en": "Home to the Namib Desert.",
+        "zh": "拥有最古老的纳米布沙漠。"
+      },
+      "flag_code": "na"
+    },
+    {
+      "names": {
+        "ja": "ザンビア",
+        "en": "Zambia",
+        "zh": "赞比亚"
+      },
+      "capital": {
+        "ja": "ルサカ",
+        "en": "Lusaka",
+        "zh": "卢萨卡"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Copper",
+        "Victoria Falls"
+      ],
+      "desc": {
+        "ja": "銅の産出国。ヴィクトリアの滝への玄関口。",
+        "en": "Landlocked country of rugged terrain.",
+        "zh": "产铜国。维多利亚瀑布门户。"
+      },
+      "flag_code": "zm"
+    },
+    {
+      "names": {
+        "ja": "カメルーン",
+        "en": "Cameroon",
+        "zh": "喀麦隆"
+      },
+      "capital": {
+        "ja": "ヤウンデ",
+        "en": "Yaounde",
+        "zh": "雅温得"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Soccer",
+        "Diversity"
+      ],
+      "desc": {
+        "ja": "「アフリカの縮図」と呼ばれる多様性を持つ。",
+        "en": "Known as Africa in miniature.",
+        "zh": "被称为非洲的缩影。"
+      },
+      "flag_code": "cm"
+    },
+    {
+      "names": {
+        "ja": "オーストリア＝ハンガリー帝国",
+        "en": "Austro-Hungarian Empire",
+        "zh": "奥匈帝国"
+      },
+      "capital": {
+        "ja": "ウィーン / ブダペスト",
+        "en": "Vienna / Budapest",
+        "zh": "维也纳 / 布达佩斯"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Empire",
+        "Dual Monarchy",
+        "WWI"
+      ],
+      "desc": {
+        "ja": "ハプスブルク家が統治した多民族国家。第一次世界大戦で崩壊。",
+        "en": "A dual monarchy in Central Europe ruled by the Habsburgs.",
+        "zh": "哈布斯堡家族统治的中欧多民族国家。"
+      },
+      "flag_code": "at"
+    },
+    {
+      "names": {
+        "ja": "オスマン帝国",
+        "en": "Ottoman Empire",
+        "zh": "奥斯曼帝国"
+      },
+      "capital": {
+        "ja": "コンスタンティノープル",
+        "en": "Constantinople",
+        "zh": "君士坦丁堡"
+      },
+      "type": "Past",
+      "region": "Middle East / Europe / Africa",
+      "tags": [
+        "Empire",
+        "Caliphate",
+        "Islamic"
+      ],
+      "desc": {
+        "ja": "地中海世界を支配したイスラム王朝。600年以上続いた。",
+        "en": "An empire that controlled much of Southeast Europe.",
+        "zh": "统治地中海世界的伊斯兰帝国。"
+      },
+      "flag_code": "tr"
+    },
+    {
+      "names": {
+        "ja": "ロシア帝国",
+        "en": "Russian Empire",
+        "zh": "俄罗斯帝国"
+      },
+      "capital": {
+        "ja": "サンクトペテルブルク",
+        "en": "Saint Petersburg",
+        "zh": "圣彼得堡"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Empire",
+        "Tsardom"
+      ],
+      "desc": {
+        "ja": "ロマノフ朝が支配した巨大帝国。ロシア革命で滅亡。",
+        "en": "An empire that extended across Eurasia and North America.",
+        "zh": "罗曼诺夫王朝统治的巨大帝国。"
+      },
+      "flag_code": "ru"
+    },
+    {
+      "names": {
+        "ja": "ドイツ帝国",
+        "en": "German Empire",
+        "zh": "德意志帝国"
+      },
+      "capital": {
+        "ja": "ベルリン",
+        "en": "Berlin",
+        "zh": "柏林"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Empire",
+        "WWI",
+        "Industrial Power"
+      ],
+      "desc": {
+        "ja": "プロイセンを中心に統一されたドイツ人国家。第一次世界大戦で敗北。",
+        "en": "The German Reich from the unification of Germany.",
+        "zh": "以普鲁士为中心统一的德意志国家。"
+      },
+      "flag_code": "de"
+    },
+    {
+      "names": {
+        "ja": "ソビエト連邦",
+        "en": "Soviet Union",
+        "zh": "苏联"
+      },
+      "capital": {
+        "ja": "モスクワ",
+        "en": "Moscow",
+        "zh": "莫斯科"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Superpower",
+        "Socialist",
+        "Cold War"
+      ],
+      "desc": {
+        "ja": "世界初の社会主義国家。アメリカと冷戦を繰り広げた。",
+        "en": "A socialist state that spanned much of Eurasia.",
+        "zh": "世界上第一个社会主义国家。"
+      },
+      "flag_code": "su"
+    },
+    {
+      "names": {
+        "ja": "清 (清朝)",
+        "en": "Qing Dynasty",
+        "zh": "清朝"
+      },
+      "capital": {
+        "ja": "北京",
+        "en": "Beijing",
+        "zh": "北京"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Empire",
+        "Dynasty"
+      ],
+      "desc": {
+        "ja": "中国最後の統一王朝。満洲族による支配。",
+        "en": "The last imperial dynasty of China.",
+        "zh": "中国最后一个封建王朝。"
+      },
+      "flag_code": "cn"
+    },
+    {
+      "names": {
+        "ja": "大日本帝国",
+        "en": "Empire of Japan",
+        "zh": "大日本帝国"
+      },
+      "capital": {
+        "ja": "東京",
+        "en": "Tokyo",
+        "zh": "东京"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Empire",
+        "WWII",
+        "Modernization"
+      ],
+      "desc": {
+        "ja": "明治維新から第二次世界大戦終結までの日本。",
+        "en": "The historical Japanese state from the Meiji Restoration.",
+        "zh": "从明治维新到二战结束的日本。"
+      },
+      "flag_code": "jp"
+    },
+    {
+      "names": {
+        "ja": "満洲国",
+        "en": "Manchukuo",
+        "zh": "满洲国"
+      },
+      "capital": {
+        "ja": "新京 (長春)",
+        "en": "Hsinking",
+        "zh": "新京"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Puppet State",
+        "WWII"
+      ],
+      "desc": {
+        "ja": "中国東北部に存在した国家。事実上の日本の傀儡国家とされる。",
+        "en": "A puppet state of the Empire of Japan in Northeast China.",
+        "zh": "存在于中国东北的国家。"
+      },
+      "flag_code": "cn"
+    },
+    {
+      "names": {
+        "ja": "東ドイツ (DDR)",
+        "en": "East Germany",
+        "zh": "东德"
+      },
+      "capital": {
+        "ja": "東ベルリン",
+        "en": "East Berlin",
+        "zh": "东柏林"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Socialist",
+        "Cold War",
+        "Warsaw Pact"
+      ],
+      "desc": {
+        "ja": "ドイツ民主共和国。ベルリンの壁崩壊まで存在した社会主義国。",
+        "en": "German Democratic Republic.",
+        "zh": "德意志民主共和国。"
+      },
+      "flag_code": "de"
+    },
+    {
+      "names": {
+        "ja": "ユーゴスラビア",
+        "en": "Yugoslavia",
+        "zh": "南斯拉夫"
+      },
+      "capital": {
+        "ja": "ベオグラード",
+        "en": "Belgrade",
+        "zh": "贝尔格莱德"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Socialist",
+        "Non-Aligned",
+        "Balkans"
+      ],
+      "desc": {
+        "ja": "バルカン半島に存在した連邦国家。",
+        "en": "A country in Southeast Europe.",
+        "zh": "存在于巴尔干半岛的联邦国家。"
+      },
+      "flag_code": "rs"
+    },
+    {
+      "names": {
+        "ja": "チェコスロバキア",
+        "en": "Czechoslovakia",
+        "zh": "捷克斯洛伐克"
+      },
+      "capital": {
+        "ja": "プラハ",
+        "en": "Prague",
+        "zh": "布拉格"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Republic",
+        "Central Europe"
+      ],
+      "desc": {
+        "ja": "中欧に位置した国家。1993年にチェコとスロバキアに平和的に分離。",
+        "en": "Dissolved into Czechia and Slovakia.",
+        "zh": "位于中欧的国家。"
+      },
+      "flag_code": "cz"
+    },
+    {
+      "names": {
+        "ja": "南ベトナム",
+        "en": "South Vietnam",
+        "zh": "南越"
+      },
+      "capital": {
+        "ja": "サイゴン",
+        "en": "Saigon",
+        "zh": "西贡"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Cold War",
+        "Vietnam War"
+      ],
+      "desc": {
+        "ja": "ベトナム共和国。ベトナム戦争の舞台となり、1975年に消滅。",
+        "en": "Republic of Vietnam.",
+        "zh": "越南共和国。"
+      },
+      "flag_code": "vn"
+    },
+    {
+      "names": {
+        "ja": "チベット",
+        "en": "Tibet",
+        "zh": "西藏"
+      },
+      "capital": {
+        "ja": "ラサ",
+        "en": "Lhasa",
+        "zh": "拉萨"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Himalayas",
+        "Buddhism"
+      ],
+      "desc": {
+        "ja": "ヒマラヤ山脈北側に位置する地域。",
+        "en": "Historical region covering the Tibetan Plateau.",
+        "zh": "位于喜马拉雅山脉北侧的地区。"
+      },
+      "flag_code": "cn"
+    },
+    {
+      "names": {
+        "ja": "グラン・コロンビア",
+        "en": "Gran Colombia",
+        "zh": "大哥伦比亚共和国"
+      },
+      "capital": {
+        "ja": "ボゴタ",
+        "en": "Bogota",
+        "zh": "波哥大"
+      },
+      "type": "Past",
+      "region": "South America",
+      "tags": [
+        "Independence",
+        "Bolivar"
+      ],
+      "desc": {
+        "ja": "英雄シモン・ボリバルが夢見た南米の統一共和国。",
+        "en": "State that encompassed much of northern South America.",
+        "zh": "西蒙·玻利瓦尔建立的南美统一共和国。"
+      },
+      "flag_code": "co"
+    },
+    {
+      "names": {
+        "ja": "アメリカ連合国 (CSA)",
+        "en": "Confederate States",
+        "zh": "美利坚联盟国"
+      },
+      "capital": {
+        "ja": "リッチモンド",
+        "en": "Richmond",
+        "zh": "里士满"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Civil War",
+        "Secession"
+      ],
+      "desc": {
+        "ja": "南北戦争時にアメリカ合衆国から分離独立を宣言した南部諸州。",
+        "en": "Unrecognized republic in the Southern US.",
+        "zh": "美国内战期间南部诸州建立的政权。"
+      },
+      "flag_code": "us"
+    },
+    {
+      "names": {
+        "ja": "ハワイ王国",
+        "en": "Hawaiian Kingdom",
+        "zh": "夏威夷王国"
+      },
+      "capital": {
+        "ja": "ホノルル",
+        "en": "Honolulu",
+        "zh": "火奴鲁鲁"
+      },
+      "type": "Past",
+      "region": "Oceania / Pacific",
+      "tags": [
+        "Kingdom",
+        "Island Nation"
+      ],
+      "desc": {
+        "ja": "カメハメハ大王が建国。1898年にアメリカに併合され消滅。",
+        "en": "Sovereign state located in the Hawaiian Islands.",
+        "zh": "位于夏威夷群岛的王国。"
+      },
+      "flag_code": "us"
+    },
+    {
+      "names": {
+        "ja": "ザイール",
+        "en": "Zaire",
+        "zh": "扎伊尔"
+      },
+      "capital": {
+        "ja": "キンシャサ",
+        "en": "Kinshasa",
+        "zh": "金沙萨"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Dictatorship",
+        "Cold War"
+      ],
+      "desc": {
+        "ja": "モブツ独裁政権下のコンゴ民主共和国の旧称(1971-1997)。",
+        "en": "Name of the DRC between 1971 and 1997.",
+        "zh": "1971年至1997年间刚果民主共和国的名称。"
+      },
+      "flag_code": "cd"
+    },
+    {
+      "names": {
+        "ja": "アラブ連合共和国",
+        "en": "United Arab Republic",
+        "zh": "阿拉伯联合共和国"
+      },
+      "capital": {
+        "ja": "カイロ",
+        "en": "Cairo",
+        "zh": "开罗"
+      },
+      "type": "Past",
+      "region": "Middle East / Africa",
+      "tags": [
+        "Pan-Arabism",
+        "Union"
+      ],
+      "desc": {
+        "ja": "エジプトとシリアが合邦して成立した汎アラブ国家。",
+        "en": "Political union between Egypt and Syria.",
+        "zh": "埃及和叙利亚合并成立的泛阿拉伯国家。"
+      },
+      "flag_code": "eg"
+    },
+    {
+      "names": {
+        "ja": "ローデシア",
+        "en": "Rhodesia",
+        "zh": "罗德西亚"
+      },
+      "capital": {
+        "ja": "ソールズベリー",
+        "en": "Salisbury",
+        "zh": "索尔兹伯里"
+      },
+      "type": "Past",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Colonial",
+        "Unrecognized"
+      ],
+      "desc": {
+        "ja": "現在のジンバブエ。白人少数支配の国家として孤立した。",
+        "en": "Unrecognized state equivalent to modern Zimbabwe.",
+        "zh": "津巴布韦的前身。"
+      },
+      "flag_code": "zw"
+    },
+    {
+      "names": {
+        "ja": "モンゴル帝国",
+        "en": "Mongol Empire",
+        "zh": "蒙古帝国"
+      },
+      "capital": {
+        "ja": "カラコルム",
+        "en": "Karakorum",
+        "zh": "哈拉和林"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Empire",
+        "Medieval",
+        "Nomadic"
+      ],
+      "desc": {
+        "ja": "人類史上最大の連続した領土を持った帝国。",
+        "en": "The largest contiguous empire in history.",
+        "zh": "历史上连续疆域最大的帝国。"
+      },
+      "flag_code": "mn"
+    },
+    {
+      "names": {
+        "ja": "神聖ローマ帝国",
+        "en": "Holy Roman Empire",
+        "zh": "神圣罗马帝国"
+      },
+      "capital": {
+        "ja": "なし (巡回)",
+        "en": "None (Itinerant)",
+        "zh": "无 (巡回)"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Empire",
+        "Medieval"
+      ],
+      "desc": {
+        "ja": "中世から近世にかけて中欧に存在した国家連合。",
+        "en": "Multi-ethnic complex of territories in Central Europe.",
+        "zh": "中欧的多民族国家联盟。"
+      },
+      "flag_code": "de"
+    },
+    {
+      "names": {
+        "ja": "東ローマ帝国",
+        "en": "Byzantine Empire",
+        "zh": "拜占庭帝国"
+      },
+      "capital": {
+        "ja": "コンスタンティノープル",
+        "en": "Constantinople",
+        "zh": "君士坦丁堡"
+      },
+      "type": "Past",
+      "region": "Europe / Asia",
+      "tags": [
+        "Empire",
+        "Medieval",
+        "Orthodox"
+      ],
+      "desc": {
+        "ja": "ローマ帝国の東側継承国家。1000年以上存続した。",
+        "en": "The continuation of the Roman Empire.",
+        "zh": "罗马帝国的东部延续。"
+      },
+      "flag_code": "gr"
+    },
+    {
+      "names": {
+        "ja": "アステカ帝国",
+        "en": "Aztec Empire",
+        "zh": "阿兹特克帝国"
+      },
+      "capital": {
+        "ja": "テノチティトラン",
+        "en": "Tenochtitlan",
+        "zh": "特诺奇蒂特兰"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Empire",
+        "Ancient",
+        "Civilization"
+      ],
+      "desc": {
+        "ja": "メキシコ中央高原に栄えた文明。現在のメキシコシティの基礎。",
+        "en": "Alliance of three Nahua altepetl city-states.",
+        "zh": "繁荣于墨西哥中央高原的文明。"
+      },
+      "flag_code": "mx"
+    },
+    {
+      "names": {
+        "ja": "インカ帝国",
+        "en": "Inca Empire",
+        "zh": "印加帝国"
+      },
+      "capital": {
+        "ja": "クスコ",
+        "en": "Cusco",
+        "zh": "库斯科"
+      },
+      "type": "Past",
+      "region": "South America (Andes)",
+      "tags": [
+        "Empire",
+        "Ancient",
+        "Andes"
+      ],
+      "desc": {
+        "ja": "アンデス山脈に栄えた南米最大の帝国。",
+        "en": "The largest empire in pre-Columbian America.",
+        "zh": "安第斯山脉最大的帝国。"
+      },
+      "flag_code": "pe"
+    },
+    {
+      "names": {
+        "ja": "ムガル帝国",
+        "en": "Mughal Empire",
+        "zh": "莫卧儿帝国"
+      },
+      "capital": {
+        "ja": "アグラ / デリー",
+        "en": "Agra / Delhi",
+        "zh": "阿格拉 / 德里"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Islamic",
+        "India"
+      ],
+      "desc": {
+        "ja": "インド亜大陸の大部分を支配したイスラム王朝。",
+        "en": "Early modern empire in South Asia.",
+        "zh": "统治印度次大陆大部分的伊斯兰王朝。"
+      },
+      "flag_code": "in"
+    },
+    {
+      "names": {
+        "ja": "アケメネス朝ペルシャ",
+        "en": "Achaemenid Empire",
+        "zh": "波斯帝国"
+      },
+      "capital": {
+        "ja": "ペルセポリス",
+        "en": "Persepolis",
+        "zh": "波斯波利斯"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Empire",
+        "Ancient",
+        "BC"
+      ],
+      "desc": {
+        "ja": "古代オリエントを統一した最初の世界帝国。",
+        "en": "The First Persian Empire.",
+        "zh": "统一古代东方的第一个世界帝国。"
+      },
+      "flag_code": "ir"
+    },
+    {
+      "names": {
+        "ja": "クメール王朝",
+        "en": "Khmer Empire",
+        "zh": "高棉帝国"
+      },
+      "capital": {
+        "ja": "アンコール",
+        "en": "Angkor",
+        "zh": "吴哥"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Empire",
+        "Medieval",
+        "Angkor Wat"
+      ],
+      "desc": {
+        "ja": "現在のカンボジアを中心に栄えた王朝。アンコール・ワットを建設。",
+        "en": "Hindu-Buddhist empire in Southeast Asia.",
+        "zh": "以现代柬埔寨为中心的王朝。"
+      },
+      "flag_code": "kh"
+    },
+    {
+      "names": {
+        "ja": "マリ帝国",
+        "en": "Mali Empire",
+        "zh": "马里帝国"
+      },
+      "capital": {
+        "ja": "ニアニ",
+        "en": "Niani",
+        "zh": "尼亚尼"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Medieval",
+        "Gold"
+      ],
+      "desc": {
+        "ja": "西アフリカのイスラム国家。マンサ・ムーサ王の黄金巡礼で知られる。",
+        "en": "Empire in West Africa famous for gold.",
+        "zh": "西非的伊斯兰国家。以黄金闻名。"
+      },
+      "flag_code": "ml"
+    },
+    {
+      "names": {
+        "ja": "バチカン市国",
+        "en": "Vatican City",
+        "zh": "梵蒂冈"
+      },
+      "capital": {
+        "ja": "バチカン",
+        "en": "Vatican City",
+        "zh": "梵蒂冈"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Catholic",
+        "Smallest"
+      ],
+      "desc": {
+        "ja": "世界最小の独立国。カトリック教会の総本山。",
+        "en": "Smallest country in the world.",
+        "zh": "世界上最小的国家。天主教中心。"
+      },
+      "flag_code": "va"
+    },
+    {
+      "names": {
+        "ja": "モナコ",
+        "en": "Monaco",
+        "zh": "摩纳哥"
+      },
+      "capital": {
+        "ja": "モナコ",
+        "en": "Monaco",
+        "zh": "摩纳哥"
+      },
+      "type": "Present",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Rich",
+        "F1",
+        "Casino"
+      ],
+      "desc": {
+        "ja": "世界で2番目に小さい国。F1とカジノで有名。",
+        "en": "Principality known for upscale casinos and F1.",
+        "zh": "以F1和赌场闻名的公国。"
+      },
+      "flag_code": "mc"
+    },
+    {
+      "names": {
+        "ja": "サンマリノ",
+        "en": "San Marino",
+        "zh": "圣马力诺"
+      },
+      "capital": {
+        "ja": "サンマリノ",
+        "en": "San Marino",
+        "zh": "圣马力诺"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Oldest",
+        "Enclave"
+      ],
+      "desc": {
+        "ja": "現存する世界最古の共和国。イタリアに囲まれている。",
+        "en": "Oldest surviving sovereign state.",
+        "zh": "世界上现存最古老的共和国。"
+      },
+      "flag_code": "sm"
+    },
+    {
+      "names": {
+        "ja": "リヒテンシュタイン",
+        "en": "Liechtenstein",
+        "zh": "列支敦士登"
+      },
+      "capital": {
+        "ja": "ファドゥーツ",
+        "en": "Vaduz",
+        "zh": "瓦杜兹"
+      },
+      "type": "Present",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Rich",
+        "Alps"
+      ],
+      "desc": {
+        "ja": "スイスとオーストリアに挟まれた公国。",
+        "en": "Principality between Switzerland and Austria.",
+        "zh": "阿尔卑斯山脉中的公国。"
+      },
+      "flag_code": "li"
+    },
+    {
+      "names": {
+        "ja": "アンドラ",
+        "en": "Andorra",
+        "zh": "安道尔"
+      },
+      "capital": {
+        "ja": "アンドララベリャ",
+        "en": "Andorra la Vella",
+        "zh": "安道尔城"
+      },
+      "type": "Present",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Pyrenees",
+        "Tourism"
+      ],
+      "desc": {
+        "ja": "フランスとスペインの国境、ピレネー山脈にある。",
+        "en": "Principality in the Pyrenees mountains.",
+        "zh": "位于比利牛斯山脉的公国。"
+      },
+      "flag_code": "ad"
+    },
+    {
+      "names": {
+        "ja": "アフガニスタン",
+        "en": "Afghanistan",
+        "zh": "阿富汗"
+      },
+      "capital": {
+        "ja": "カブール",
+        "en": "Kabul",
+        "zh": "喀布尔"
+      },
+      "type": "Present",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Silk Road",
+        "Mountain"
+      ],
+      "desc": {
+        "ja": "「文明の十字路」。山岳地帯が多い。",
+        "en": "Landlocked country at the crossroads of Central and South Asia.",
+        "zh": "文明的十字路口。"
+      },
+      "flag_code": "af"
+    },
+    {
+      "names": {
+        "ja": "イエメン",
+        "en": "Yemen",
+        "zh": "也门"
+      },
+      "capital": {
+        "ja": "サナア",
+        "en": "Sanaa",
+        "zh": "萨那"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "History",
+        "Arabia"
+      ],
+      "desc": {
+        "ja": "アラビア半島南端の国。古い摩天楼建築がある。",
+        "en": "Country at the southern end of the Arabian Peninsula.",
+        "zh": "阿拉伯半岛南端的国家。"
+      },
+      "flag_code": "ye"
+    },
+    {
+      "names": {
+        "ja": "エルサルバドル",
+        "en": "El Salvador",
+        "zh": "萨尔瓦多"
+      },
+      "capital": {
+        "ja": "サンサルバドル",
+        "en": "San Salvador",
+        "zh": "圣萨尔瓦多"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Volcano",
+        "Bitcoin"
+      ],
+      "desc": {
+        "ja": "「火山の国」。ビットコインを法定通貨にした。",
+        "en": "Known as the Land of Volcanoes.",
+        "zh": "火山之国。"
+      },
+      "flag_code": "sv"
+    },
+    {
+      "names": {
+        "ja": "ニカラグア",
+        "en": "Nicaragua",
+        "zh": "尼加拉瓜"
+      },
+      "capital": {
+        "ja": "マナグア",
+        "en": "Managua",
+        "zh": "马那瓜"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Lake",
+        "Volcano"
+      ],
+      "desc": {
+        "ja": "中米最大の面積を持つ。湖と火山が多い。",
+        "en": "Largest country in Central America.",
+        "zh": "中美洲面积最大的国家。"
+      },
+      "flag_code": "ni"
+    },
+    {
+      "names": {
+        "ja": "ベリーズ",
+        "en": "Belize",
+        "zh": "伯利兹"
+      },
+      "capital": {
+        "ja": "ベルモパン",
+        "en": "Belmopan",
+        "zh": "贝尔莫潘"
+      },
+      "type": "Present",
+      "region": "Central America",
+      "tags": [
+        "Coral",
+        "Maya"
+      ],
+      "desc": {
+        "ja": "美しいサンゴ礁「ブルーホール」がある。",
+        "en": "Home to the Great Blue Hole.",
+        "zh": "拥有著名的大蓝洞。"
+      },
+      "flag_code": "bz"
+    },
+    {
+      "names": {
+        "ja": "バハマ",
+        "en": "Bahamas",
+        "zh": "巴哈马"
+      },
+      "capital": {
+        "ja": "ナッソー",
+        "en": "Nassau",
+        "zh": "拿骚"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Island",
+        "Tourism"
+      ],
+      "desc": {
+        "ja": "700以上の島々からなるリゾート地。",
+        "en": "Coral-based archipelago.",
+        "zh": "由700多个岛屿组成的度假胜地。"
+      },
+      "flag_code": "bs"
+    },
+    {
+      "names": {
+        "ja": "トリニダード・トバゴ",
+        "en": "Trinidad and Tobago",
+        "zh": "特立尼达和多巴哥"
+      },
+      "capital": {
+        "ja": "ポートオブスペイン",
+        "en": "Port of Spain",
+        "zh": "西班牙港"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Oil",
+        "Carnival"
+      ],
+      "desc": {
+        "ja": "カリブ海南端の産油国。スチールドラム発祥。",
+        "en": "Dual-island Caribbean nation.",
+        "zh": "加勒比海最南端的国家。钢鼓发源地。"
+      },
+      "flag_code": "tt"
+    },
+    {
+      "names": {
+        "ja": "バルバドス",
+        "en": "Barbados",
+        "zh": "巴巴多斯"
+      },
+      "capital": {
+        "ja": "ブリッジタウン",
+        "en": "Bridgetown",
+        "zh": "布里奇敦"
+      },
+      "type": "Present",
+      "region": "Caribbean",
+      "tags": [
+        "Island",
+        "Rihanna"
+      ],
+      "desc": {
+        "ja": "カリブ海の東端。リアーナの出身地。",
+        "en": "Easternmost Caribbean island.",
+        "zh": "加勒比海最东端的岛屿。"
+      },
+      "flag_code": "bb"
+    },
+    {
+      "names": {
+        "ja": "リビア",
+        "en": "Libya",
+        "zh": "利比亚"
+      },
+      "capital": {
+        "ja": "トリポリ",
+        "en": "Tripoli",
+        "zh": "的黎波里"
+      },
+      "type": "Present",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Oil",
+        "Desert"
+      ],
+      "desc": {
+        "ja": "北アフリカの産油国。ローマ遺跡レプティス・マグナがある。",
+        "en": "North African country with oil reserves.",
+        "zh": "北非产油国。"
+      },
+      "flag_code": "ly"
+    },
+    {
+      "names": {
+        "ja": "マリ",
+        "en": "Mali",
+        "zh": "马里"
+      },
+      "capital": {
+        "ja": "バマコ",
+        "en": "Bamako",
+        "zh": "巴马科"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Sahara",
+        "Gold"
+      ],
+      "desc": {
+        "ja": "かつて黄金の都トンブクトゥが栄えた地。",
+        "en": "Home to the historic city of Timbuktu.",
+        "zh": "曾是黄金之都廷巴克图所在地。"
+      },
+      "flag_code": "ml"
+    },
+    {
+      "names": {
+        "ja": "チャド",
+        "en": "Chad",
+        "zh": "乍得"
+      },
+      "capital": {
+        "ja": "ンジャメナ",
+        "en": "N'Djamena",
+        "zh": "恩贾梅纳"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Sahara",
+        "Lake"
+      ],
+      "desc": {
+        "ja": "サハラ砂漠南部の内陸国。",
+        "en": "Landlocked country in north-central Africa.",
+        "zh": "撒哈拉沙漠南部的内陆国。"
+      },
+      "flag_code": "td"
+    },
+    {
+      "names": {
+        "ja": "ソマリア",
+        "en": "Somalia",
+        "zh": "索马里"
+      },
+      "capital": {
+        "ja": "モガディシュ",
+        "en": "Mogadishu",
+        "zh": "摩加迪沙"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Horn",
+        "Pirate"
+      ],
+      "desc": {
+        "ja": "「アフリカの角」に位置する。",
+        "en": "Located in the Horn of Africa.",
+        "zh": "位于非洲之角。"
+      },
+      "flag_code": "so"
+    },
+    {
+      "names": {
+        "ja": "エリトリア",
+        "en": "Eritrea",
+        "zh": "厄立特里亚"
+      },
+      "capital": {
+        "ja": "アスマラ",
+        "en": "Asmara",
+        "zh": "阿斯马拉"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Red Sea"
+      ],
+      "desc": {
+        "ja": "紅海に面した国。首都アスマラは世界遺産。",
+        "en": "Northeast African country on the Red Sea coast.",
+        "zh": "红海沿岸国家。"
+      },
+      "flag_code": "er"
+    },
+    {
+      "names": {
+        "ja": "サモア",
+        "en": "Samoa",
+        "zh": "萨摩亚"
+      },
+      "capital": {
+        "ja": "アピア",
+        "en": "Apia",
+        "zh": "阿皮亚"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Polynesia",
+        "Rugby"
+      ],
+      "desc": {
+        "ja": "ポリネシアの伝統文化が残る島国。",
+        "en": "Country governing the western Samoan Islands.",
+        "zh": "保留波利尼西亚传统的岛国。"
+      },
+      "flag_code": "ws"
+    },
+    {
+      "names": {
+        "ja": "トンガ",
+        "en": "Tonga",
+        "zh": "汤加"
+      },
+      "capital": {
+        "ja": "ヌクアロファ",
+        "en": "Nuku'alofa",
+        "zh": "努库阿洛法"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Polynesia",
+        "Kingdom"
+      ],
+      "desc": {
+        "ja": "ポリネシア唯一の王国。",
+        "en": "Polynesian kingdom.",
+        "zh": "波利尼西亚唯一的王国。"
+      },
+      "flag_code": "to"
+    },
+    {
+      "names": {
+        "ja": "パラオ",
+        "en": "Palau",
+        "zh": "帕劳"
+      },
+      "capital": {
+        "ja": "マルキョク",
+        "en": "Melekeok",
+        "zh": "梅莱凯奥克"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Micronesia",
+        "Diving"
+      ],
+      "desc": {
+        "ja": "世界遺産のロックアイランドを持つ親日国。",
+        "en": "Archipelago of over 500 islands.",
+        "zh": "拥有世界遗产洛克群岛。"
+      },
+      "flag_code": "pw"
+    },
+    {
+      "names": {
+        "ja": "ガイアナ",
+        "en": "Guyana",
+        "zh": "圭亚那"
+      },
+      "capital": {
+        "ja": "ジョージタウン",
+        "en": "Georgetown",
+        "zh": "乔治敦"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "English",
+        "Waterfall"
+      ],
+      "desc": {
+        "ja": "南米唯一の英語圏。カイエトゥール滝がある。",
+        "en": "Only English-speaking country in South America.",
+        "zh": "南美唯一的英语国家。"
+      },
+      "flag_code": "gy"
+    },
+    {
+      "names": {
+        "ja": "スリナム",
+        "en": "Suriname",
+        "zh": "苏里南"
+      },
+      "capital": {
+        "ja": "パラマリボ",
+        "en": "Paramaribo",
+        "zh": "帕拉马里博"
+      },
+      "type": "Present",
+      "region": "South America",
+      "tags": [
+        "Dutch",
+        "Forest"
+      ],
+      "desc": {
+        "ja": "南米唯一のオランダ語圏。自然保護区が世界遺産。",
+        "en": "Former Dutch colony.",
+        "zh": "前荷兰殖民地。"
+      },
+      "flag_code": "sr"
+    },
+    {
+      "names": {
+        "ja": "コソボ",
+        "en": "Kosovo",
+        "zh": "科索沃"
+      },
+      "capital": {
+        "ja": "プリシュティナ",
+        "en": "Pristina",
+        "zh": "普里什蒂纳"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "New",
+        "Balkans"
+      ],
+      "desc": {
+        "ja": "2008年に独立宣言。欧州で一番新しい国の一つ。",
+        "en": "Declared independence in 2008.",
+        "zh": "2008年宣布独立。"
+      },
+      "flag_code": "xk"
+    },
+    {
+      "names": {
+        "ja": "北マケドニア",
+        "en": "North Macedonia",
+        "zh": "北马其顿"
+      },
+      "capital": {
+        "ja": "スコピエ",
+        "en": "Skopje",
+        "zh": "斯科普里"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Alexander",
+        "History"
+      ],
+      "desc": {
+        "ja": "アレクサンドロス大王のゆかりの地。マザー・テレサの故郷。",
+        "en": "Birthplace of Mother Teresa.",
+        "zh": "特蕾莎修女的出生地。"
+      },
+      "flag_code": "mk"
+    },
+    {
+      "names": {
+        "ja": "ニジェール",
+        "en": "Niger",
+        "zh": "尼日尔"
+      },
+      "capital": {
+        "ja": "ニアメ",
+        "en": "Niamey",
+        "zh": "尼亚美"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Sahara",
+        "Uranium"
+      ],
+      "desc": {
+        "ja": "サハラ砂漠の民とニジェール川の国。",
+        "en": "Named after the Niger River.",
+        "zh": "以尼日尔河命名。"
+      },
+      "flag_code": "ne"
+    },
+    {
+      "names": {
+        "ja": "ブルキナファソ",
+        "en": "Burkina Faso",
+        "zh": "布基纳法索"
+      },
+      "capital": {
+        "ja": "ワガドゥグー",
+        "en": "Ouagadougou",
+        "zh": "瓦加杜古"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Culture",
+        "Film"
+      ],
+      "desc": {
+        "ja": "「高潔な人々の国」。アフリカ映画祭が有名。",
+        "en": "Land of Incorruptible People.",
+        "zh": "君子之国。"
+      },
+      "flag_code": "bf"
+    },
+    {
+      "names": {
+        "ja": "モーリタニア",
+        "en": "Mauritania",
+        "zh": "毛里塔尼亚"
+      },
+      "capital": {
+        "ja": "ヌアクショット",
+        "en": "Nouakchott",
+        "zh": "努瓦克肖特"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Sahara",
+        "Iron"
+      ],
+      "desc": {
+        "ja": "国土の大部分が砂漠。「砂漠の眼」がある。",
+        "en": "Known for the Richat Structure (Eye of the Sahara).",
+        "zh": "拥有撒哈拉之眼。"
+      },
+      "flag_code": "mr"
+    },
+    {
+      "names": {
+        "ja": "ガボン",
+        "en": "Gabon",
+        "zh": "加蓬"
+      },
+      "capital": {
+        "ja": "リーブルヴィル",
+        "en": "Libreville",
+        "zh": "利伯维尔"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Forest",
+        "Oil"
+      ],
+      "desc": {
+        "ja": "「シュバイツァー博士」の病院がある。森林豊かな国。",
+        "en": "Stable country with significant oil reserves.",
+        "zh": "拥有丰富的石油和森林资源。"
+      },
+      "flag_code": "ga"
+    },
+    {
+      "names": {
+        "ja": "コンゴ共和国",
+        "en": "Republic of the Congo",
+        "zh": "刚果共和国"
+      },
+      "capital": {
+        "ja": "ブラザヴィル",
+        "en": "Brazzaville",
+        "zh": "布拉柴维尔"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "River",
+        "Forest"
+      ],
+      "desc": {
+        "ja": "コンゴ川の対岸にキンシャサを望む。",
+        "en": "Often called Congo-Brazzaville.",
+        "zh": "通称刚果（布）。"
+      },
+      "flag_code": "cg"
+    },
+    {
+      "names": {
+        "ja": "セーシェル",
+        "en": "Seychelles",
+        "zh": "塞舌尔"
+      },
+      "capital": {
+        "ja": "ビクトリア",
+        "en": "Victoria",
+        "zh": "维多利亚"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Island",
+        "Resort"
+      ],
+      "desc": {
+        "ja": "インド洋の楽園。巨大なリクガメが生息。",
+        "en": "Archipelago in the Indian Ocean.",
+        "zh": "印度洋群岛。"
+      },
+      "flag_code": "sc"
+    },
+    {
+      "names": {
+        "ja": "モーリシャス",
+        "en": "Mauritius",
+        "zh": "毛里求斯"
+      },
+      "capital": {
+        "ja": "ポートルイス",
+        "en": "Port Louis",
+        "zh": "路易港"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Island",
+        "Dodo"
+      ],
+      "desc": {
+        "ja": "「トム・ソーヤー」の作家トウェインが天国と讃えた島。ドードー鳥の故郷。",
+        "en": "Island nation known for its beaches and reefs.",
+        "zh": "渡渡鸟的故乡。"
+      },
+      "flag_code": "mu"
+    },
+    {
+      "names": {
+        "ja": "ソロモン諸島",
+        "en": "Solomon Islands",
+        "zh": "所罗门群岛"
+      },
+      "capital": {
+        "ja": "ホニアラ",
+        "en": "Honiara",
+        "zh": "霍尼亚拉"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Melanesia",
+        "WWII"
+      ],
+      "desc": {
+        "ja": "ガダルカナル島がある。ダイビングの名所。",
+        "en": "Nation of hundreds of islands.",
+        "zh": "拥有瓜达尔卡纳尔岛。"
+      },
+      "flag_code": "sb"
+    },
+    {
+      "names": {
+        "ja": "バヌアツ",
+        "en": "Vanuatu",
+        "zh": "瓦努阿图"
+      },
+      "capital": {
+        "ja": "ポートビラ",
+        "en": "Port Vila",
+        "zh": "维拉港"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Melanesia",
+        "Volcano"
+      ],
+      "desc": {
+        "ja": "バンジージャンプ発祥の地とされる。",
+        "en": "Known for volcanoes and diving.",
+        "zh": "蹦极发源地。"
+      },
+      "flag_code": "vu"
+    },
+    {
+      "names": {
+        "ja": "キリバス",
+        "en": "Kiribati",
+        "zh": "基里巴斯"
+      },
+      "capital": {
+        "ja": "タラワ",
+        "en": "Tarawa",
+        "zh": "塔拉瓦"
+      },
+      "type": "Present",
+      "region": "Oceania",
+      "tags": [
+        "Micronesia",
+        "Equator"
+      ],
+      "desc": {
+        "ja": "世界で一番早く日付が変わる国。",
+        "en": "First country to welcome the New Year.",
+        "zh": "世界上最早迎接新年的国家。"
+      },
+      "flag_code": "ki"
+    },
+    {
+      "names": {
+        "ja": "パレスチナ",
+        "en": "Palestine",
+        "zh": "巴勒斯坦"
+      },
+      "capital": {
+        "ja": "ラマッラ / 東エルサレム",
+        "en": "Ramallah",
+        "zh": "拉姆安拉"
+      },
+      "type": "Present",
+      "region": "Middle East",
+      "tags": [
+        "History",
+        "Conflict"
+      ],
+      "desc": {
+        "ja": "歴史的・宗教的に重要な地域。",
+        "en": "State in the Southern Levant.",
+        "zh": "位于黎凡特南部的国家。"
+      },
+      "flag_code": "ps"
+    },
+    {
+      "names": {
+        "ja": "北朝鮮",
+        "en": "North Korea",
+        "zh": "朝鲜"
+      },
+      "capital": {
+        "ja": "平壌",
+        "en": "Pyongyang",
+        "zh": "平壤"
+      },
+      "type": "Present",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Socialist",
+        "Closed"
+      ],
+      "desc": {
+        "ja": "朝鮮半島北部の社会主義国家。",
+        "en": "Democratic People's Republic of Korea.",
+        "zh": "位于朝鲜半岛北部的国家。"
+      },
+      "flag_code": "kp"
+    },
+    {
+      "names": {
+        "ja": "古代エジプト",
+        "en": "Ancient Egypt",
+        "zh": "古埃及"
+      },
+      "capital": {
+        "ja": "メンフィス / テーベ",
+        "en": "Memphis / Thebes",
+        "zh": "孟斐斯 / 底比斯"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Pharaoh",
+        "Pyramids",
+        "Nile"
+      ],
+      "desc": {
+        "ja": "ナイル川流域に栄えた文明。ピラミッドやヒエログリフで知られる。",
+        "en": "Civilization of ancient North Africa along the Nile.",
+        "zh": "尼罗河流域的文明。以金字塔闻名。",
+        "flag_code": "eg"
+      }
+    },
+    {
+      "names": {
+        "ja": "カルタゴ",
+        "en": "Ancient Carthage",
+        "zh": "迦太基"
+      },
+      "capital": {
+        "ja": "カルタゴ",
+        "en": "Carthage",
+        "zh": "迦太基"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Punic Wars",
+        "Hannibal",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "地中海の覇権をローマと争ったフェニキア人の都市国家。ハンニバル将軍が有名。",
+        "en": "Phoenician city-state that rivaled Rome.",
+        "zh": "与罗马争夺地中海霸权的城邦。",
+        "flag_code": "tn"
+      }
+    },
+    {
+      "names": {
+        "ja": "バビロニア",
+        "en": "Babylonia",
+        "zh": "巴比伦尼亚"
+      },
+      "capital": {
+        "ja": "バビロン",
+        "en": "Babylon",
+        "zh": "巴比伦"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Mesopotamia",
+        "Hammurabi",
+        "BC"
+      ],
+      "desc": {
+        "ja": "メソポタミア南部の古代文明。「目には目を」のハンムラビ法典で有名。",
+        "en": "Ancient state in Mesopotamia. Known for Hammurabi's Code.",
+        "zh": "美索不达米亚南部的古代文明。",
+        "flag_code": "iq"
+      }
+    },
+    {
+      "names": {
+        "ja": "スパルタ",
+        "en": "Sparta",
+        "zh": "斯巴达"
+      },
+      "capital": {
+        "ja": "スパルタ",
+        "en": "Sparta",
+        "zh": "斯巴达"
+      },
+      "type": "Past",
+      "region": "Europe, Greece",
+      "tags": [
+        "Military",
+        "Ancient Greece",
+        "300"
+      ],
+      "desc": {
+        "ja": "古代ギリシャの都市国家。極めて厳格な軍事教育制度で知られる。",
+        "en": "Prominent city-state in ancient Greece known for its military.",
+        "zh": "古希腊城邦。以军事教育闻名。",
+        "flag_code": "gr"
+      }
+    },
+    {
+      "names": {
+        "ja": "ヴェネツィア共和国",
+        "en": "Republic of Venice",
+        "zh": "威尼斯共和国"
+      },
+      "capital": {
+        "ja": "ヴェネツィア",
+        "en": "Venice",
+        "zh": "威尼斯"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Trade",
+        "Maritime",
+        "Renaissance"
+      ],
+      "desc": {
+        "ja": "「アドリア海の女王」と呼ばれた海洋国家。1000年以上続いた商業共和国。",
+        "en": "Maritime republic and financial power in the Middle Ages.",
+        "zh": "被称为“亚得里亚海女王”的海洋国家。",
+        "flag_code": "it"
+      }
+    },
+    {
+      "names": {
+        "ja": "ポーランド・リトアニア共和国",
+        "en": "Polish-Lithuanian Commonwealth",
+        "zh": "波兰立陶宛联邦"
+      },
+      "capital": {
+        "ja": "クラクフ / ワルシャワ",
+        "en": "Krakow / Warsaw",
+        "zh": "克拉科夫 / 华沙"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Winged Hussars",
+        "Democracy",
+        "Huge"
+      ],
+      "desc": {
+        "ja": "当時の欧州最大級の領土を誇った連合国家。貴族民主主義と「有翼重騎兵」で有名。",
+        "en": "One of the largest and most populous countries of 16th century Europe.",
+        "zh": "当时欧洲领土最大的国家之一。",
+        "flag_code": "pl"
+      }
+    },
+    {
+      "names": {
+        "ja": "黄金の国ジパング (室町・戦国)",
+        "en": "Feudal Japan",
+        "zh": "日本 (战国)"
+      },
+      "capital": {
+        "ja": "京都",
+        "en": "Kyoto",
+        "zh": "京都"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Samurai",
+        "Ninja",
+        "Sengoku"
+      ],
+      "desc": {
+        "ja": "サムライや将軍が割拠した時代。マルコ・ポーロによって欧州に伝えられた。",
+        "en": "The era of Samurai, Shoguns, and civil wars.",
+        "zh": "武士和将军割据的时代。",
+        "flag_code": "jp"
+      }
+    },
+    {
+      "names": {
+        "ja": "唐",
+        "en": "Tang Dynasty",
+        "zh": "唐朝"
+      },
+      "capital": {
+        "ja": "長安",
+        "en": "Chang'an",
+        "zh": "长安"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Silk Road",
+        "Culture",
+        "Poetry"
+      ],
+      "desc": {
+        "ja": "中国史上の黄金時代。シルクロードを通じた国際色豊かな文化が花開いた。",
+        "en": "Golden age of Chinese arts and culture.",
+        "zh": "中国历史上的黄金时代。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "李氏朝鮮",
+        "en": "Joseon",
+        "zh": "朝鲜王朝"
+      },
+      "capital": {
+        "ja": "漢城 (ソウル)",
+        "en": "Hanseong",
+        "zh": "汉城"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Confucianism",
+        "Hangul",
+        "Kingdom"
+      ],
+      "desc": {
+        "ja": "朝鮮半島を500年以上統治した王朝。ハングル文字が制定された。",
+        "en": "Dynasty that ruled the Korean peninsula for five centuries.",
+        "zh": "统治朝鲜半岛500多年的王朝。",
+        "flag_code": "kr"
+      }
+    },
+    {
+      "names": {
+        "ja": "テキサス共和国",
+        "en": "Republic of Texas",
+        "zh": "得克萨斯共和国"
+      },
+      "capital": {
+        "ja": "オースティン等",
+        "en": "Austin",
+        "zh": "奥斯汀"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Independence",
+        "Alamo",
+        "USA"
+      ],
+      "desc": {
+        "ja": "メキシコから独立し、後にアメリカ合衆国に併合された「ローンスター」共和国。",
+        "en": "Sovereign state in North America before joining the US.",
+        "zh": "加入美国之前的独立共和国。",
+        "flag_code": "us"
+      }
+    },
+    {
+      "names": {
+        "ja": "教皇領",
+        "en": "Papal States",
+        "zh": "教皇国"
+      },
+      "capital": {
+        "ja": "ローマ",
+        "en": "Rome",
+        "zh": "罗马"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Catholic",
+        "Pope",
+        "Italy"
+      ],
+      "desc": {
+        "ja": "ローマ教皇が世俗の君主として統治した領土。イタリア統一まで存在した。",
+        "en": "Territories in the Italian Peninsula under the sovereign direct rule of the Pope.",
+        "zh": "罗马教皇统治的世俗领土。",
+        "flag_code": "va"
+      }
+    },
+    {
+      "names": {
+        "ja": "ズールー王国",
+        "en": "Zulu Kingdom",
+        "zh": "祖鲁王国"
+      },
+      "capital": {
+        "ja": "ウルンディ",
+        "en": "Ulundi",
+        "zh": "乌伦迪"
+      },
+      "type": "Past",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Warriors",
+        "Shaka",
+        "Empire"
+      ],
+      "desc": {
+        "ja": "19世紀の南アフリカに強大な軍事力を誇った王国。シャカ王が有名。",
+        "en": "Monarchy in Southern Africa known for its military prowess.",
+        "zh": "19世纪南非的强大王国。",
+        "flag_code": "za"
+      }
+    },
+    {
+      "names": {
+        "ja": "マヤ文明",
+        "en": "Maya Civilization",
+        "zh": "玛雅文明"
+      },
+      "capital": {
+        "ja": "ティカル / チチェン・イッツァ",
+        "en": "Tikal / Chichen Itza",
+        "zh": "提卡尔 / 奇琴伊察"
+      },
+      "type": "Past",
+      "region": "North America (Central America)",
+      "tags": [
+        "Jungle",
+        "Pyramids",
+        "Calendar"
+      ],
+      "desc": {
+        "ja": "中米の密林に栄えた文明。高度な天文学と数学、精密な暦を持っていた。",
+        "en": "Mesoamerican civilization noted for its logo-syllabic script and calendar.",
+        "zh": "以天文学、数学和历法闻名的中美洲文明。",
+        "flag_code": "gt"
+      }
+    },
+    {
+      "names": {
+        "ja": "オルメカ文明",
+        "en": "Olmec",
+        "zh": "奥尔梅克文明"
+      },
+      "capital": {
+        "ja": "ラ・ベンタ",
+        "en": "La Venta",
+        "zh": "拉文塔"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Giant Heads",
+        "Ancient",
+        "Mother Culture"
+      ],
+      "desc": {
+        "ja": "メキシコ湾岸の古代文明。巨大な石人頭像で有名。中米の「母なる文明」。",
+        "en": "The earliest known major Mesoamerican civilization.",
+        "zh": "墨西哥湾沿岸的古代文明。以巨型石像闻名。",
+        "flag_code": "mx"
+      }
+    },
+    {
+      "names": {
+        "ja": "イロコイ連邦",
+        "en": "Iroquois Confederacy",
+        "zh": "易洛魁联盟"
+      },
+      "capital": {
+        "ja": "オノンダガ",
+        "en": "Onondaga",
+        "zh": "奥农达加"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Native American",
+        "Democracy",
+        "Six Nations"
+      ],
+      "desc": {
+        "ja": "北米先住民の強力な部族連合。「大いなる平和の法」はアメリカ憲法にも影響を与えたとされる。",
+        "en": "A historical confederacy of Northeast Native American tribes.",
+        "zh": "北美原住民的部落联盟。",
+        "flag_code": "us"
+      }
+    },
+    {
+      "names": {
+        "ja": "アッバース朝",
+        "en": "Abbasid Caliphate",
+        "zh": "阿拔斯王朝"
+      },
+      "capital": {
+        "ja": "バグダッド",
+        "en": "Baghdad",
+        "zh": "巴格达"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Golden Age",
+        "Islam",
+        "Science"
+      ],
+      "desc": {
+        "ja": "イスラム黄金時代を築いた王朝。『千夜一夜物語』の舞台。",
+        "en": "The third caliphate to succeed the Islamic prophet Muhammad.",
+        "zh": "伊斯兰黄金时代的王朝。",
+        "flag_code": "iq"
+      }
+    },
+    {
+      "names": {
+        "ja": "ウマイヤ朝",
+        "en": "Umayyad Caliphate",
+        "zh": "倭马亚王朝"
+      },
+      "capital": {
+        "ja": "ダマスカス",
+        "en": "Damascus",
+        "zh": "大马士革"
+      },
+      "type": "Past",
+      "region": "Middle East / Africa / Europe",
+      "tags": [
+        "Expansion",
+        "Islam",
+        "Caliphate"
+      ],
+      "desc": {
+        "ja": "イスラム史上最大の領土を持った世襲王朝。イベリア半島まで支配した。",
+        "en": "The second of the four major caliphates established after the death of Muhammad.",
+        "zh": "历史上领土最大的伊斯兰王朝。",
+        "flag_code": "sy"
+      }
+    },
+    {
+      "names": {
+        "ja": "後ウマイヤ朝",
+        "en": "Caliphate of Cordoba",
+        "zh": "科尔多瓦哈里发国"
+      },
+      "capital": {
+        "ja": "コルドバ",
+        "en": "Cordoba",
+        "zh": "科尔多瓦"
+      },
+      "type": "Past",
+      "region": "Europe (Spain)",
+      "tags": [
+        "Al-Andalus",
+        "Culture",
+        "Spain"
+      ],
+      "desc": {
+        "ja": "イベリア半島（現在のスペイン）に栄えたイスラム王朝。高度な文化を誇った。",
+        "en": "Islamic state in the Iberian Peninsula.",
+        "zh": "伊比利亚半岛的伊斯兰王朝。",
+        "flag_code": "es"
+      }
+    },
+    {
+      "names": {
+        "ja": "エルサレム王国",
+        "en": "Kingdom of Jerusalem",
+        "zh": "耶路撒冷王国"
+      },
+      "capital": {
+        "ja": "エルサレム",
+        "en": "Jerusalem",
+        "zh": "耶路撒冷"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Crusades",
+        "Christian",
+        "Knights"
+      ],
+      "desc": {
+        "ja": "十字軍によって聖地に建国されたキリスト教国家。",
+        "en": "A Crusader state established in the Southern Levant.",
+        "zh": "十字军建立的基督教国家。",
+        "flag_code": "il"
+      }
+    },
+    {
+      "names": {
+        "ja": "明",
+        "en": "Ming Dynasty",
+        "zh": "明朝"
+      },
+      "capital": {
+        "ja": "南京 / 北京",
+        "en": "Nanjing / Beijing",
+        "zh": "南京 / 北京"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Great Wall",
+        "Voyages",
+        "Ceramics"
+      ],
+      "desc": {
+        "ja": "漢民族による最後の統一王朝。鄭和の大航海や万里の長城の増築で知られる。",
+        "en": "The ruling dynasty of China following the collapse of the Mongol-led Yuan dynasty.",
+        "zh": "汉族建立的最后一个统一王朝。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "漢",
+        "en": "Han Dynasty",
+        "zh": "汉朝"
+      },
+      "capital": {
+        "ja": "長安 / 洛陽",
+        "en": "Chang'an / Luoyang",
+        "zh": "长安 / 洛阳"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Silk Road",
+        "Confucianism",
+        "Ancient"
+      ],
+      "desc": {
+        "ja": "古代中国の黄金時代。「漢字」「漢民族」の語源となった。",
+        "en": "The second imperial dynasty of China.",
+        "zh": "古代中国的黄金时代。“汉字”和“汉族”的语源。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "江戸幕府",
+        "en": "Edo Shogunate",
+        "zh": "江户幕府"
+      },
+      "capital": {
+        "ja": "江戸 (東京)",
+        "en": "Edo",
+        "zh": "江户"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Samurai",
+        "Isolation",
+        "Peace"
+      ],
+      "desc": {
+        "ja": "徳川家康が開いた武家政権。260年以上の平和な時代（パクス・トクガワ）が続いた。",
+        "en": "The military government of Japan during the Edo period.",
+        "zh": "德川家康建立的武家政权。",
+        "flag_code": "jp"
+      }
+    },
+    {
+      "names": {
+        "ja": "琉球王国",
+        "en": "Ryukyu Kingdom",
+        "zh": "琉球王国"
+      },
+      "capital": {
+        "ja": "首里",
+        "en": "Shuri",
+        "zh": "首里"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Island",
+        "Trade",
+        "Karate"
+      ],
+      "desc": {
+        "ja": "沖縄に存在した海洋王国。日本、中国、東南アジアとの中継貿易で栄えた。",
+        "en": "Maritime kingdom in Okinawa known for trade.",
+        "zh": "存在于冲绳的海洋王国。",
+        "flag_code": "jp"
+      }
+    },
+    {
+      "names": {
+        "ja": "マジャパヒト王国",
+        "en": "Majapahit Empire",
+        "zh": "满者伯夷"
+      },
+      "capital": {
+        "ja": "トロウラン",
+        "en": "Trowulan",
+        "zh": "特罗武兰"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Maritime",
+        "Spices",
+        "Archipelago"
+      ],
+      "desc": {
+        "ja": "現在のインドネシアを中心に栄えた海洋帝国。香辛料貿易を支配した。",
+        "en": "A maritime empire based on the island of Java.",
+        "zh": "以现代印度尼西亚为中心的海洋帝国。",
+        "flag_code": "id"
+      }
+    },
+    {
+      "names": {
+        "ja": "アユタヤ王朝",
+        "en": "Ayutthaya Kingdom",
+        "zh": "阿瑜陀耶王国"
+      },
+      "capital": {
+        "ja": "アユタヤ",
+        "en": "Ayutthaya",
+        "zh": "阿瑜陀耶"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Trade",
+        "Buddhism",
+        "Elephant"
+      ],
+      "desc": {
+        "ja": "タイに存在した交易国家。国際色豊かな都市を築いた。",
+        "en": "A Siamese kingdom that existed in Southeast Asia.",
+        "zh": "存在于泰国的贸易国家。",
+        "flag_code": "th"
+      }
+    },
+    {
+      "names": {
+        "ja": "シュリーヴィジャヤ王国",
+        "en": "Srivijaya",
+        "zh": "三佛齐"
+      },
+      "capital": {
+        "ja": "パレンバン",
+        "en": "Palembang",
+        "zh": "巨港"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Maritime",
+        "Buddhism",
+        "Strait"
+      ],
+      "desc": {
+        "ja": "マラッカ海峡を支配し、東西貿易の中継地として栄えた仏教国。",
+        "en": "A dominant thalassocratic Indonesian city-state.",
+        "zh": "控制马六甲海峡的佛教国家。",
+        "flag_code": "id"
+      }
+    },
+    {
+      "names": {
+        "ja": "アクスム王国",
+        "en": "Kingdom of Aksum",
+        "zh": "阿克苏姆王国"
+      },
+      "capital": {
+        "ja": "アクスム",
+        "en": "Aksum",
+        "zh": "阿克苏姆"
+      },
+      "type": "Past",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Ancient",
+        "Trade",
+        "Christianity"
+      ],
+      "desc": {
+        "ja": "古代エチオピアの強国。ローマやインドと交易を行った。",
+        "en": "Ancient trading nation in northern Ethiopia.",
+        "zh": "古代埃塞俄比亚的强国。",
+        "flag_code": "et"
+      }
+    },
+    {
+      "names": {
+        "ja": "クシュ王国",
+        "en": "Kingdom of Kush",
+        "zh": "库施王国"
+      },
+      "capital": {
+        "ja": "メロエ",
+        "en": "Meroe",
+        "zh": "麦罗埃"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Black Pharaohs",
+        "Iron",
+        "Nile"
+      ],
+      "desc": {
+        "ja": "ナイル川上流（現在のスーダン）の王国。「黒いファラオ」としてエジプトを支配した時期もある。",
+        "en": "Ancient kingdom in Nubia.",
+        "zh": "尼罗河上游的王国。",
+        "flag_code": "sd"
+      }
+    },
+    {
+      "names": {
+        "ja": "ソンガイ帝国",
+        "en": "Songhai Empire",
+        "zh": "桑海帝国"
+      },
+      "capital": {
+        "ja": "ガオ",
+        "en": "Gao",
+        "zh": "加奥"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Sahara",
+        "Trade",
+        "Islam"
+      ],
+      "desc": {
+        "ja": "西アフリカ史上最大の帝国。トンブクトゥが学問の中心として栄えた。",
+        "en": "The largest state in African history.",
+        "zh": "西非历史上最大的帝国。",
+        "flag_code": "ml"
+      }
+    },
+    {
+      "names": {
+        "ja": "ベニン王国",
+        "en": "Kingdom of Benin",
+        "zh": "贝宁王国"
+      },
+      "capital": {
+        "ja": "ベニンシティ",
+        "en": "Benin City",
+        "zh": "贝宁城"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Bronze",
+        "Art",
+        "Forest"
+      ],
+      "desc": {
+        "ja": "現在のナイジェリア南部にあった王国。精巧な青銅器（ベニン・ブロンズ）で有名。",
+        "en": "Kingdom known for its brass sculptures.",
+        "zh": "位于现代尼日利亚南部的王国。",
+        "flag_code": "ng"
+      }
+    },
+    {
+      "names": {
+        "ja": "アラゴン連合王国",
+        "en": "Crown of Aragon",
+        "zh": "阿拉贡王权"
+      },
+      "capital": {
+        "ja": "サラゴサ / バルセロナ",
+        "en": "Zaragoza / Barcelona",
+        "zh": "萨拉戈萨 / 巴塞罗那"
+      },
+      "type": "Past",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Mediterranean",
+        "Trade",
+        "Spain"
+      ],
+      "desc": {
+        "ja": "地中海西部に広大な領土を持った連合王国。スペイン統一の母体の一つ。",
+        "en": "A composite monarchy that ruled parts of Spain and Italy.",
+        "zh": "统治地中海西部的联合王国。",
+        "flag_code": "es"
+      }
+    },
+    {
+      "names": {
+        "ja": "カスティーリャ王国",
+        "en": "Kingdom of Castile",
+        "zh": "卡斯蒂利亚王国"
+      },
+      "capital": {
+        "ja": "トレド",
+        "en": "Toledo",
+        "zh": "托莱多"
+      },
+      "type": "Past",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Reconquista",
+        "Spain",
+        "Castles"
+      ],
+      "desc": {
+        "ja": "イベリア半島中央部の強国。アラゴンと統合してスペイン王国となった。",
+        "en": "A large and powerful state on the Iberian Peninsula.",
+        "zh": "伊比利亚半岛中部的强国。",
+        "flag_code": "es"
+      }
+    },
+    {
+      "names": {
+        "ja": "ブルゴーニュ公国",
+        "en": "Duchy of Burgundy",
+        "zh": "勃艮第公国"
+      },
+      "capital": {
+        "ja": "ディジョン",
+        "en": "Dijon",
+        "zh": "第戎"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Wealth",
+        "Wine",
+        "Knights"
+      ],
+      "desc": {
+        "ja": "中世後期にフランスとドイツの間で繁栄し、独自の文化を誇った公国。",
+        "en": "A major power in Western Europe during the 15th century.",
+        "zh": "中世后期繁荣的公国。",
+        "flag_code": "fr"
+      }
+    },
+    {
+      "names": {
+        "ja": "プロイセン王国",
+        "en": "Kingdom of Prussia",
+        "zh": "普鲁士王国"
+      },
+      "capital": {
+        "ja": "ベルリン / ケーニヒスベルク",
+        "en": "Berlin",
+        "zh": "柏林"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Military",
+        "Discipline",
+        "Germany"
+      ],
+      "desc": {
+        "ja": "強力な軍隊を持ち、ドイツ統一の中心となった王国。",
+        "en": "A German kingdom that constituted the state of Prussia.",
+        "zh": "拥有强大军队的王国。",
+        "flag_code": "de"
+      }
+    },
+    {
+      "names": {
+        "ja": "キエフ大公国",
+        "en": "Kievan Rus'",
+        "zh": "基辅罗斯"
+      },
+      "capital": {
+        "ja": "キエフ",
+        "en": "Kiev",
+        "zh": "基辅"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Slavic",
+        "Orthodox",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "東スラブ人の最初の国家。ロシア、ウクライナ、ベラルーシのルーツ。",
+        "en": "A loose federation of East Slavic and Finno-Ugric peoples.",
+        "zh": "东斯拉夫人的第一个国家。",
+        "flag_code": "ua"
+      }
+    },
+    {
+      "names": {
+        "ja": "ノヴゴロド共和国",
+        "en": "Novgorod Republic",
+        "zh": "诺夫哥罗德共和国"
+      },
+      "capital": {
+        "ja": "ノヴゴロド",
+        "en": "Novgorod",
+        "zh": "诺夫哥罗德"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Trade",
+        "Republic",
+        "Fur"
+      ],
+      "desc": {
+        "ja": "北ロシアの商業共和国。ハンザ同盟と交易し、独特の民主制を持っていた。",
+        "en": "A medieval state in Northern Russia.",
+        "zh": "北俄罗斯的商业共和国。",
+        "flag_code": "ru"
+      }
+    },
+    {
+      "names": {
+        "ja": "カルマル同盟",
+        "en": "Kalmar Union",
+        "zh": "卡尔马联盟"
+      },
+      "capital": {
+        "ja": "コペンハーゲン等",
+        "en": "Copenhagen",
+        "zh": "哥本哈根"
+      },
+      "type": "Past",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "Scandinavia",
+        "Union",
+        "Viking"
+      ],
+      "desc": {
+        "ja": "デンマーク、スウェーデン、ノルウェーの北欧三国の同君連合。",
+        "en": "Personal union of Denmark, Sweden, and Norway.",
+        "zh": "北欧三国的共主邦联。",
+        "flag_code": "dk"
+      }
+    },
+    {
+      "names": {
+        "ja": "ティムール帝国",
+        "en": "Timurid Empire",
+        "zh": "帖木儿帝国"
+      },
+      "capital": {
+        "ja": "サマルカンド",
+        "en": "Samarkand",
+        "zh": "撒马尔罕"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Conqueror",
+        "Silk Road",
+        "Art"
+      ],
+      "desc": {
+        "ja": "中央アジアに興ったモンゴルの継承国家。壮麗なイスラム建築を残した。",
+        "en": "Persianate Turco-Mongol empire comprising modern-day Iran, Caucasus, and Central Asia.",
+        "zh": "中亚的突厥-蒙古帝国。",
+        "flag_code": "uz"
+      }
+    },
+    {
+      "names": {
+        "ja": "サファヴィー朝",
+        "en": "Safavid Empire",
+        "zh": "萨法维王朝"
+      },
+      "capital": {
+        "ja": "イスファハーン",
+        "en": "Isfahan",
+        "zh": "伊斯法罕"
+      },
+      "type": "Past",
+      "region": "Middle East (Iran)",
+      "tags": [
+        "Persia",
+        "Shia",
+        "Art"
+      ],
+      "desc": {
+        "ja": "イランのシーア派王朝。「世界の半分」と称されたイスファハーンを建設。",
+        "en": "One of the most significant ruling dynasties of Iran.",
+        "zh": "统治伊朗的什叶派王朝。",
+        "flag_code": "ir"
+      }
+    },
+    {
+      "names": {
+        "ja": "フン帝国",
+        "en": "Hunnic Empire",
+        "zh": "匈人帝国"
+      },
+      "capital": {
+        "ja": "不明 (パンノニア)",
+        "en": "Unknown",
+        "zh": "不明"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Attila",
+        "Nomadic",
+        "Scourge"
+      ],
+      "desc": {
+        "ja": "アッティラ王の下でローマ帝国を恐怖に陥れた騎馬遊牧民の帝国。",
+        "en": "Nomadic empire that threatened Rome.",
+        "zh": "阿提拉统治下的游牧帝国。",
+        "flag_code": "hu"
+      }
+    },
+    {
+      "names": {
+        "ja": "高句麗",
+        "en": "Goguryeo",
+        "zh": "高句丽"
+      },
+      "capital": {
+        "ja": "平壌 / 国内城",
+        "en": "Pyongyang",
+        "zh": "平壤"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Korea",
+        "Warrior",
+        "Ancient"
+      ],
+      "desc": {
+        "ja": "朝鮮半島北部から満州にかけて存在した古代国家。広開土王の石碑で有名。",
+        "en": "One of the Three Kingdoms of Korea.",
+        "zh": "朝鲜半岛北部的古代国家。",
+        "flag_code": "kp"
+      }
+    },
+    {
+      "names": {
+        "ja": "新羅",
+        "en": "Silla",
+        "zh": "新罗"
+      },
+      "capital": {
+        "ja": "慶州",
+        "en": "Gyeongju",
+        "zh": "庆州"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Korea",
+        "Gold",
+        "Buddhism"
+      ],
+      "desc": {
+        "ja": "朝鮮半島を初めて統一した国家。「黄金の国」とも呼ばれた。",
+        "en": "Kingdom that unified the Korean Peninsula.",
+        "zh": "统一朝鲜半岛的国家。",
+        "flag_code": "kr"
+      }
+    },
+    {
+      "names": {
+        "ja": "鎌倉幕府",
+        "en": "Kamakura Shogunate",
+        "zh": "镰仓幕府"
+      },
+      "capital": {
+        "ja": "鎌倉",
+        "en": "Kamakura",
+        "zh": "镰仓"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Samurai",
+        "Zen",
+        "Mongol Invasions"
+      ],
+      "desc": {
+        "ja": "源頼朝が開いた日本初の武家政権。元寇を撃退したことでも知られる。",
+        "en": "The first feudal military government of Japan.",
+        "zh": "日本第一个武家政权。",
+        "flag_code": "jp"
+      }
+    },
+    {
+      "names": {
+        "ja": "大越 (ダイベト)",
+        "en": "Dai Viet",
+        "zh": "大越"
+      },
+      "capital": {
+        "ja": "ハノイ",
+        "en": "Hanoi",
+        "zh": "河内"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Vietnam",
+        "Dynasty",
+        "Independence"
+      ],
+      "desc": {
+        "ja": "中国の支配から独立し、長期にわたり繁栄したベトナムの王朝。",
+        "en": "Historical name for Vietnam during several dynasties.",
+        "zh": "越南历史上的王朝。",
+        "flag_code": "vn"
+      }
+    },
+    {
+      "names": {
+        "ja": "黄金のオルド (キプチャク・ハン国)",
+        "en": "Golden Horde",
+        "zh": "金帐汗国"
+      },
+      "capital": {
+        "ja": "サライ",
+        "en": "Sarai",
+        "zh": "萨莱"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Mongol",
+        "Russia",
+        "Khanate"
+      ],
+      "desc": {
+        "ja": "モンゴル帝国の分裂後にロシア方面を支配したハン国。",
+        "en": "Mongol and later Turkicized khanate.",
+        "zh": "统治俄罗斯的蒙古汗国。",
+        "flag_code": "ru"
+      }
+    },
+    {
+      "names": {
+        "ja": "ポルトガル海上帝国",
+        "en": "Portuguese Empire",
+        "zh": "葡萄牙帝国"
+      },
+      "capital": {
+        "ja": "リスボン",
+        "en": "Lisbon",
+        "zh": "里斯本"
+      },
+      "type": "Past",
+      "region": "Global (Europe)",
+      "tags": [
+        "Exploration",
+        "Maritime",
+        "Spice"
+      ],
+      "desc": {
+        "ja": "大航海時代の先駆けとなり、世界中に植民地を持った海洋帝国。",
+        "en": "The first global empire in history.",
+        "zh": "历史上第一个全球帝国。",
+        "flag_code": "pt"
+      }
+    },
+    {
+      "names": {
+        "ja": "ビャフラ共和国",
+        "en": "Republic of Biafra",
+        "zh": "比夫拉共和国"
+      },
+      "capital": {
+        "ja": "エヌグ",
+        "en": "Enugu",
+        "zh": "埃努古"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Civil War",
+        "Short-lived",
+        "Secession"
+      ],
+      "desc": {
+        "ja": "ナイジェリアから分離独立を宣言し、悲劇的な内戦の末に消滅した国家。",
+        "en": "Secessionist state in West Africa.",
+        "zh": "尼日利亚内战期间的分离国家。",
+        "flag_code": "ng"
+      }
+    },
+    {
+      "names": {
+        "ja": "フランス第一帝政",
+        "en": "First French Empire",
+        "zh": "法兰西第一帝国"
+      },
+      "capital": {
+        "ja": "パリ",
+        "en": "Paris",
+        "zh": "巴黎"
+      },
+      "type": "Past",
+      "region": "Europe",
+      "tags": [
+        "Napoleon",
+        "Revolution",
+        "Military"
+      ],
+      "desc": {
+        "ja": "ナポレオン・ボナパルトが築いた帝国。一時、ヨーロッパの大半を支配した。",
+        "en": "Empire of Napoleon Bonaparte.",
+        "zh": "拿破仑建立的帝国。",
+        "flag_code": "fr"
+      }
+    },
+    {
+      "names": {
+        "ja": "イングランド王国",
+        "en": "Kingdom of England",
+        "zh": "英格兰王国"
+      },
+      "capital": {
+        "ja": "ロンドン",
+        "en": "London",
+        "zh": "伦敦"
+      },
+      "type": "Past",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "Monarchy",
+        "Medieval",
+        "Knights"
+      ],
+      "desc": {
+        "ja": "グレートブリテン島南部の王国。1707年にスコットランドと合同した。",
+        "en": "Sovereign state on the island of Great Britain.",
+        "zh": "大不列颠岛南部的王国。",
+        "flag_code": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      }
+    },
+    {
+      "names": {
+        "ja": "スコットランド王国",
+        "en": "Kingdom of Scotland",
+        "zh": "苏格兰王国"
+      },
+      "capital": {
+        "ja": "エディンバラ",
+        "en": "Edinburgh",
+        "zh": "爱丁堡"
+      },
+      "type": "Past",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "Highlands",
+        "Independence",
+        "Celtic"
+      ],
+      "desc": {
+        "ja": "グレートブリテン島北部の王国。独自の文化と法体系を持つ。",
+        "en": "Sovereign state in northwest Europe.",
+        "zh": "大不列颠岛北部的王国。",
+        "flag_code": "gb-sct"
+      }
+    },
+    {
+      "names": {
+        "ja": "元",
+        "en": "Yuan Dynasty",
+        "zh": "元朝"
+      },
+      "capital": {
+        "ja": "大都 (北京)",
+        "en": "Dadu (Beijing)",
+        "zh": "大都"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Mongol",
+        "Kublai Khan",
+        "Marco Polo"
+      ],
+      "desc": {
+        "ja": "モンゴル帝国の一部で、クビライ・ハンが中国に樹立した王朝。",
+        "en": "Empire established by Kublai Khan.",
+        "zh": "忽必烈建立的王朝。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "宋",
+        "en": "Song Dynasty",
+        "zh": "宋朝"
+      },
+      "capital": {
+        "ja": "開封 / 臨安",
+        "en": "Kaifeng / Lin'an",
+        "zh": "开封 / 临安"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Culture",
+        "Gunpowder",
+        "Economy"
+      ],
+      "desc": {
+        "ja": "経済・文化・技術（火薬・羅針盤）が著しく発展した中国の王朝。",
+        "en": "Imperial dynasty of China known for economic prosperity.",
+        "zh": "经济文化高度发达的王朝。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "ササン朝ペルシャ",
+        "en": "Sassanid Empire",
+        "zh": "萨珊波斯"
+      },
+      "capital": {
+        "ja": "クテシフォン",
+        "en": "Ctesiphon",
+        "zh": "泰西封"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Zoroastrianism",
+        "Persia",
+        "Rivalry"
+      ],
+      "desc": {
+        "ja": "イスラム教以前の最後のペルシャ帝国。ローマ帝国と激しく争った。",
+        "en": "The last Iranian empire before the rise of Islam.",
+        "zh": "伊斯兰教以前的最后一个波斯帝国。",
+        "flag_code": "ir"
+      }
+    },
+    {
+      "names": {
+        "ja": "ブラジル帝国",
+        "en": "Empire of Brazil",
+        "zh": "巴西帝国"
+      },
+      "capital": {
+        "ja": "リオデジャネイロ",
+        "en": "Rio de Janeiro",
+        "zh": "里约热内卢"
+      },
+      "type": "Past",
+      "region": "South America",
+      "tags": [
+        "Monarchy",
+        "Stability",
+        "South America"
+      ],
+      "desc": {
+        "ja": "19世紀のブラジルに存在した立憲君主制国家。政治的に安定していた。",
+        "en": "A 19th-century state that broadly comprised modern Brazil.",
+        "zh": "19世纪存在的君主立宪制国家。",
+        "flag_code": "br"
+      }
+    },
+    {
+      "names": {
+        "ja": "両シチリア王国",
+        "en": "Kingdom of the Two Sicilies",
+        "zh": "两西西里王国"
+      },
+      "capital": {
+        "ja": "ナポリ",
+        "en": "Naples",
+        "zh": "那不勒斯"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Italy",
+        "Bourbon",
+        "Mediterranean"
+      ],
+      "desc": {
+        "ja": "イタリア統一前に南イタリアとシチリア島を支配した王国。",
+        "en": "Largest of the states of Italy before unification.",
+        "zh": "意大利统一前统治南意大利的王国。",
+        "flag_code": "it"
+      }
+    },
+    {
+      "names": {
+        "ja": "ジェノヴァ共和国",
+        "en": "Republic of Genoa",
+        "zh": "热那亚共和国"
+      },
+      "capital": {
+        "ja": "ジェノヴァ",
+        "en": "Genoa",
+        "zh": "热那亚"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Trade",
+        "Maritime",
+        "Rival"
+      ],
+      "desc": {
+        "ja": "ヴェネツィアと地中海の覇権を争った海洋商業国家。",
+        "en": "Independent state in Liguria.",
+        "zh": "与威尼斯争夺霸权的商业国家。",
+        "flag_code": "it"
+      }
+    },
+    {
+      "names": {
+        "ja": "ガーナ王国",
+        "en": "Ghana Empire",
+        "zh": "加纳帝国"
+      },
+      "capital": {
+        "ja": "クンビ・サレー",
+        "en": "Koumbi Saleh",
+        "zh": "昆比萨利赫"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Gold",
+        "Salt",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "「黄金の国」と呼ばれた西アフリカ最初の黒人王国。",
+        "en": "West African empire known for its gold.",
+        "zh": "被称为“黄金之国”的西非王国。",
+        "flag_code": "mr"
+      }
+    },
+    {
+      "names": {
+        "ja": "コンゴ王国",
+        "en": "Kingdom of Kongo",
+        "zh": "刚果王国"
+      },
+      "capital": {
+        "ja": "ンバンザ・コンゴ",
+        "en": "M'banza-Kongo",
+        "zh": "姆班扎刚果"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Christianity",
+        "Trade",
+        "Central Africa"
+      ],
+      "desc": {
+        "ja": "コンゴ川流域の王国。早くからポルトガルと接触しキリスト教を受容した。",
+        "en": "Kingdom in central Africa.",
+        "zh": "刚果河流域的王国。",
+        "flag_code": "ao"
+      }
+    },
+    {
+      "names": {
+        "ja": "トルテカ文明",
+        "en": "Toltec Empire",
+        "zh": "托尔特克"
+      },
+      "capital": {
+        "ja": "トゥーラ",
+        "en": "Tula",
+        "zh": "图拉"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Warrior",
+        "Pre-Aztec",
+        "Art"
+      ],
+      "desc": {
+        "ja": "アステカに先駆けてメキシコ中央高原を支配した軍事国家。",
+        "en": "Mesoamerican culture that dominated a state centered in Tula.",
+        "zh": "阿兹特克之前的墨西哥军事国家。",
+        "flag_code": "mx"
+      }
+    },
+    {
+      "names": {
+        "ja": "チム王国",
+        "en": "Chimu Culture",
+        "zh": "奇穆王国"
+      },
+      "capital": {
+        "ja": "チャンチャン",
+        "en": "Chan Chan",
+        "zh": "昌昌"
+      },
+      "type": "Past",
+      "region": "South America (Peru)",
+      "tags": [
+        "Andes",
+        "Gold",
+        "Mud Brick"
+      ],
+      "desc": {
+        "ja": "インカ帝国に征服されるまでペルー北岸を支配した王国。巨大な泥の都を作った。",
+        "en": "Pre-Incan culture in Peru.",
+        "zh": "秘鲁北岸的王国。被印加征服。",
+        "flag_code": "pe"
+      }
+    },
+    {
+      "names": {
+        "ja": "匈奴",
+        "en": "Xiongnu",
+        "zh": "匈奴"
+      },
+      "capital": {
+        "ja": "統萬城など",
+        "en": "Various",
+        "zh": "统万城等"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Nomadic",
+        "Horse",
+        "Han Rival"
+      ],
+      "desc": {
+        "ja": "モンゴル高原を統一した最初の騎馬遊牧国家。漢帝国を脅かした。",
+        "en": "Tribal confederation of nomadic peoples.",
+        "zh": "统一蒙古高原的游牧国家。",
+        "flag_code": "mn"
+      }
+    },
+    {
+      "names": {
+        "ja": "イルハン国",
+        "en": "Ilkhanate",
+        "zh": "伊儿汗国"
+      },
+      "capital": {
+        "ja": "タブリーズ",
+        "en": "Tabriz",
+        "zh": "大不里士"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Mongol",
+        "Persia",
+        "Islam"
+      ],
+      "desc": {
+        "ja": "モンゴル帝国の西南部（ペルシャ方面）を支配した政権。",
+        "en": "Khanate established in the southwestern sector of the Mongol Empire.",
+        "zh": "统治波斯的蒙古汗国。",
+        "flag_code": "ir"
+      }
+    },
+    {
+      "names": {
+        "ja": "デリー・スルタン朝",
+        "en": "Delhi Sultanate",
+        "zh": "德里苏丹国"
+      },
+      "capital": {
+        "ja": "デリー",
+        "en": "Delhi",
+        "zh": "德里"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Islam",
+        "India",
+        "Sultan"
+      ],
+      "desc": {
+        "ja": "北インドを支配した5つのイスラム王朝の総称。",
+        "en": "Islamic empire based in Delhi.",
+        "zh": "统治北印度的伊斯兰王朝。",
+        "flag_code": "in"
+      }
+    },
+    {
+      "names": {
+        "ja": "シク王国",
+        "en": "Sikh Empire",
+        "zh": "锡克帝国"
+      },
+      "capital": {
+        "ja": "ラホール",
+        "en": "Lahore",
+        "zh": "拉合尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sikhism",
+        "Punjab",
+        "Warrior"
+      ],
+      "desc": {
+        "ja": "19世紀パンジャーブ地方に栄えたシク教徒の王国。「パンジャーブの獅子」ランジート・シングが建国。",
+        "en": "State originating in the Punjab region.",
+        "zh": "旁遮普地区的锡克教王国。",
+        "flag_code": "in"
+      }
+    },
+    {
+      "names": {
+        "ja": "ハザール・カガン国",
+        "en": "Khazars",
+        "zh": "哈扎尔汗国"
+      },
+      "capital": {
+        "ja": "イティル",
+        "en": "Atil",
+        "zh": "阿提尔"
+      },
+      "type": "Past",
+      "region": "Eurasia",
+      "tags": [
+        "Judaism",
+        "Trade",
+        "Nomadic"
+      ],
+      "desc": {
+        "ja": "カスピ海北岸の遊牧国家。支配層がユダヤ教に改宗したことで有名。",
+        "en": "Semi-nomadic Turkic people.",
+        "zh": "里海北岸的游牧国家。改信犹太教。",
+        "flag_code": "kz"
+      }
+    },
+    {
+      "names": {
+        "ja": "アッシリア帝国",
+        "en": "Assyria",
+        "zh": "亚述"
+      },
+      "capital": {
+        "ja": "ニネヴェ",
+        "en": "Nineveh",
+        "zh": "尼尼微"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Ancient",
+        "Military",
+        "Cruel"
+      ],
+      "desc": {
+        "ja": "強力な軍事力で全オリエントを初めて統一した帝国。",
+        "en": "Major Mesopotamian kingdom and empire.",
+        "zh": "首次统一东方的军事帝国。",
+        "flag_code": "iq"
+      }
+    },
+    {
+      "names": {
+        "ja": "ヒッタイト帝国",
+        "en": "Hittite Empire",
+        "zh": "赫梯帝国"
+      },
+      "capital": {
+        "ja": "ハットゥシャ",
+        "en": "Hattusa",
+        "zh": "哈图沙"
+      },
+      "type": "Past",
+      "region": "Middle East (Anatolia)",
+      "tags": [
+        "Iron",
+        "Chariot",
+        "Ancient"
+      ],
+      "desc": {
+        "ja": "アナトリア（トルコ）の帝国。世界で初めて鉄製武器を実用化した。",
+        "en": "Ancient Anatolian people known for iron processing.",
+        "zh": "安纳托利亚的帝国。率先使用铁器。",
+        "flag_code": "tr"
+      }
+    },
+    {
+      "names": {
+        "ja": "ネーデルラント連邦共和国",
+        "en": "Dutch Republic",
+        "zh": "荷兰共和国"
+      },
+      "capital": {
+        "ja": "アムステルダム / ハーグ",
+        "en": "Amsterdam / The Hague",
+        "zh": "阿姆斯特丹 / 海牙"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Trade",
+        "Golden Age",
+        "VOC"
+      ],
+      "desc": {
+        "ja": "17世紀に「黄金時代」を迎えたオランダ。東インド会社を通じた貿易で世界をリードした。",
+        "en": "Republic in Europe known for its trade and Golden Age.",
+        "zh": "17世纪迎来“黄金时代”的荷兰。",
+        "flag_code": "nl"
+      }
+    },
+    {
+      "names": {
+        "ja": "スウェーデン帝国",
+        "en": "Swedish Empire",
+        "zh": "瑞典帝国"
+      },
+      "capital": {
+        "ja": "ストックホルム",
+        "en": "Stockholm",
+        "zh": "斯德哥尔摩"
+      },
+      "type": "Past",
+      "region": "Europe, Northern Europe",
+      "tags": [
+        "Military",
+        "Baltic Sea",
+        "Gustavus"
+      ],
+      "desc": {
+        "ja": "「バルト海はスウェーデンの湖」と言わしめた北欧の軍事大国。",
+        "en": "Sweden as a great power during the 17th and 18th centuries.",
+        "zh": "被称为北欧军事大国的瑞典。",
+        "flag_code": "se"
+      }
+    },
+    {
+      "names": {
+        "ja": "フィレンツェ共和国",
+        "en": "Republic of Florence",
+        "zh": "佛罗伦萨共和国"
+      },
+      "capital": {
+        "ja": "フィレンツェ",
+        "en": "Florence",
+        "zh": "佛罗伦萨"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Renaissance",
+        "Medici",
+        "Art"
+      ],
+      "desc": {
+        "ja": "ルネサンスの中心地。メディチ家が支配し、ダ・ヴィンチやミケランジェロが活躍した。",
+        "en": "City-state in Italy, birthplace of the Renaissance.",
+        "zh": "文艺复兴的中心。",
+        "flag_code": "it"
+      }
+    },
+    {
+      "names": {
+        "ja": "フランク王国",
+        "en": "Frankish Empire",
+        "zh": "法兰克王国"
+      },
+      "capital": {
+        "ja": "アーヘン等",
+        "en": "Aachen",
+        "zh": "亚琛"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Charlemagne",
+        "Medieval",
+        "Christian"
+      ],
+      "desc": {
+        "ja": "西ローマ帝国滅亡後の西欧を統一したゲルマン人の王国。シャルルマーニュ大帝が有名。",
+        "en": "Largest post-Roman barbarian kingdom in Western Europe.",
+        "zh": "统一西欧的日耳曼王国。",
+        "flag_code": "fr"
+      }
+    },
+    {
+      "names": {
+        "ja": "西ゴート王国",
+        "en": "Visigothic Kingdom",
+        "zh": "西哥特王国"
+      },
+      "capital": {
+        "ja": "トゥールーズ / トレド",
+        "en": "Toulouse / Toledo",
+        "zh": "图卢兹 / 托莱多"
+      },
+      "type": "Past",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Barbarian",
+        "Spain",
+        "Rome"
+      ],
+      "desc": {
+        "ja": "ローマ帝国末期にイベリア半島を支配したゲルマン系国家。",
+        "en": "Kingdom that occupied what is now southwestern France and the Iberian Peninsula.",
+        "zh": "统治伊比利亚半岛的日耳曼国家。",
+        "flag_code": "es"
+      }
+    },
+    {
+      "names": {
+        "ja": "ボヘミア王国",
+        "en": "Kingdom of Bohemia",
+        "zh": "波希米亚王国"
+      },
+      "capital": {
+        "ja": "プラハ",
+        "en": "Prague",
+        "zh": "布拉格"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "HRE",
+        "Medieval",
+        "Czech"
+      ],
+      "desc": {
+        "ja": "神聖ローマ帝国の選帝侯国の一つ。現在のチェコの前身。",
+        "en": "A monarchy in Central Europe, predecessor to the Czech Republic.",
+        "zh": "神圣罗马帝国的选帝侯国之一。",
+        "flag_code": "cz"
+      }
+    },
+    {
+      "names": {
+        "ja": "マラッカ王国",
+        "en": "Malacca Sultanate",
+        "zh": "马六甲苏丹国"
+      },
+      "capital": {
+        "ja": "マラッカ",
+        "en": "Malacca",
+        "zh": "马六甲"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Trade",
+        "Islam",
+        "Strait"
+      ],
+      "desc": {
+        "ja": "東西貿易の要衝マラッカ海峡を支配したイスラム教国。",
+        "en": "Malay sultanate centered in the modern-day state of Malacca.",
+        "zh": "控制马六甲海峡的伊斯兰国家。",
+        "flag_code": "my"
+      }
+    },
+    {
+      "names": {
+        "ja": "パガン王朝",
+        "en": "Pagan Kingdom",
+        "zh": "蒲甘王国"
+      },
+      "capital": {
+        "ja": "パガン",
+        "en": "Pagan",
+        "zh": "蒲甘"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Buddhism",
+        "Temples",
+        "Burma"
+      ],
+      "desc": {
+        "ja": "ビルマ（ミャンマー）最初の統一王朝。数千の仏塔が立ち並ぶ遺跡で有名。",
+        "en": "The first kingdom to unify the regions that would later constitute modern-day Burma.",
+        "zh": "缅甸第一个统一王朝。",
+        "flag_code": "mm"
+      }
+    },
+    {
+      "names": {
+        "ja": "チャンパ王国",
+        "en": "Champa",
+        "zh": "占婆"
+      },
+      "capital": {
+        "ja": "ヴィジャヤ等",
+        "en": "Vijaya",
+        "zh": "阇耶"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Maritime",
+        "Hinduism",
+        "Vietnam"
+      ],
+      "desc": {
+        "ja": "ベトナム中部・南部に栄えた海洋国家。ヒンドゥー文化の影響を受けた。",
+        "en": "Collection of independent Cham polities.",
+        "zh": "位于越南中部和南部的海洋国家。",
+        "flag_code": "vn"
+      }
+    },
+    {
+      "names": {
+        "ja": "トゥングー王朝",
+        "en": "Toungoo Dynasty",
+        "zh": "东吁王朝"
+      },
+      "capital": {
+        "ja": "ペグー",
+        "en": "Pegu",
+        "zh": "勃固"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Empire",
+        "Elephant",
+        "Conquest"
+      ],
+      "desc": {
+        "ja": "東南アジア史上最大の版図を誇ったビルマの王朝。",
+        "en": "The ruling dynasty of Burma from the mid-16th century.",
+        "zh": "东南亚历史上版图最大的王朝。",
+        "flag_code": "mm"
+      }
+    },
+    {
+      "names": {
+        "ja": "高麗",
+        "en": "Goryeo",
+        "zh": "高丽"
+      },
+      "capital": {
+        "ja": "開城",
+        "en": "Kaesong",
+        "zh": "开城"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Korea",
+        "Celadon",
+        "Printing"
+      ],
+      "desc": {
+        "ja": "「Korea」の語源となった王朝。世界最古の金属活字や高麗青磁で知られる。",
+        "en": "Korean kingdom that succeeded Silla.",
+        "zh": "“Korea”一词的语源。",
+        "flag_code": "kp"
+      }
+    },
+    {
+      "names": {
+        "ja": "西夏",
+        "en": "Western Xia",
+        "zh": "西夏"
+      },
+      "capital": {
+        "ja": "興慶府 (銀川)",
+        "en": "Xingqing",
+        "zh": "兴庆府"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Silk Road",
+        "Tangut",
+        "Script"
+      ],
+      "desc": {
+        "ja": "シルクロードの要衝を支配したタングート族の国家。独自の西夏文字を持っていた。",
+        "en": "Empire led by the Tangut people.",
+        "zh": "党项族建立的国家。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "金(王朝)",
+        "en": "Jin Dynasty",
+        "zh": "金朝"
+      },
+      "capital": {
+        "ja": "中都 (北京)",
+        "en": "Zhongdu",
+        "zh": "中都"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Jurchen",
+        "War",
+        "China"
+      ],
+      "desc": {
+        "ja": "女真族が建てた王朝。宋を南へ追いやり、中国北部を支配した。",
+        "en": "Dynasty founded by the Jurchen people.",
+        "zh": "女真族建立的王朝。",
+        "flag_code": "cn"
+      }
+    },
+    {
+      "names": {
+        "ja": "マムルーク朝",
+        "en": "Mamluk Sultanate",
+        "zh": "马穆鲁克王朝"
+      },
+      "capital": {
+        "ja": "カイロ",
+        "en": "Cairo",
+        "zh": "开罗"
+      },
+      "type": "Past",
+      "region": "Middle East / Africa",
+      "tags": [
+        "Slave Soldiers",
+        "Mongols",
+        "Islam"
+      ],
+      "desc": {
+        "ja": "エジプトのイスラム王朝。モンゴル軍の進撃を食い止めたことで有名。",
+        "en": "Sultanate ruled by a military caste of mamluks.",
+        "zh": "埃及的伊斯兰王朝。击退了蒙古军队。",
+        "flag_code": "eg"
+      }
+    },
+    {
+      "names": {
+        "ja": "セレウコス朝",
+        "en": "Seleucid Empire",
+        "zh": "塞琉古帝国"
+      },
+      "capital": {
+        "ja": "アンティオキア",
+        "en": "Antioch",
+        "zh": "安条克"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Hellenistic",
+        "Successor",
+        "Greek"
+      ],
+      "desc": {
+        "ja": "アレクサンドロス大王の死後、広大なアジア領土を継承したヘレニズム国家。",
+        "en": "A Greek state in West Asia.",
+        "zh": "亚历山大大帝死后的希腊化国家。",
+        "flag_code": "sy"
+      }
+    },
+    {
+      "names": {
+        "ja": "パルティア",
+        "en": "Parthian Empire",
+        "zh": "帕提亚帝国"
+      },
+      "capital": {
+        "ja": "クテシフォン",
+        "en": "Ctesiphon",
+        "zh": "泰西封"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Horse Archer",
+        "Silk Road",
+        "Rome Rival"
+      ],
+      "desc": {
+        "ja": "ローマ帝国の強力なライバルだったイラン系の騎馬帝国（安息）。",
+        "en": "Major Iranian political and cultural power.",
+        "zh": "罗马帝国的强敌。安息帝国。",
+        "flag_code": "ir"
+      }
+    },
+    {
+      "names": {
+        "ja": "大ジンバブエ (ムタパ王国)",
+        "en": "Kingdom of Mutapa",
+        "zh": "莫诺莫塔帕王国"
+      },
+      "capital": {
+        "ja": "グレート・ジンバブエ",
+        "en": "Great Zimbabwe",
+        "zh": "大津巴布韦"
+      },
+      "type": "Past",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Stone Walls",
+        "Gold",
+        "Trade"
+      ],
+      "desc": {
+        "ja": "巨大な石造建築群「グレート・ジンバブエ」を残した王国。",
+        "en": "Kingdom in Southern Africa known for Great Zimbabwe.",
+        "zh": "留下巨大石造建筑的王国。",
+        "flag_code": "zw"
+      }
+    },
+    {
+      "names": {
+        "ja": "ヌミディア王国",
+        "en": "Numidia",
+        "zh": "努米底亚"
+      },
+      "capital": {
+        "ja": "シルタ",
+        "en": "Cirta",
+        "zh": "西尔塔"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Cavalry",
+        "Berber",
+        "Rome"
+      ],
+      "desc": {
+        "ja": "古代北アフリカのベルベル人国家。優秀な騎兵で知られた。",
+        "en": "Ancient Kingdom of the Numidians.",
+        "zh": "古代北非的柏柏尔人国家。",
+        "flag_code": "dz"
+      }
+    },
+    {
+      "names": {
+        "ja": "アジュラーン・スルタン国",
+        "en": "Ajuran Sultanate",
+        "zh": "阿居兰苏丹国"
+      },
+      "capital": {
+        "ja": "メルカ",
+        "en": "Merca",
+        "zh": "梅尔卡"
+      },
+      "type": "Past",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Somalia",
+        "Trade",
+        "Fortress"
+      ],
+      "desc": {
+        "ja": "中世ソマリアの強力な帝国。水利システムや城塞建築に優れていた。",
+        "en": "Somali empire in the Middle Ages.",
+        "zh": "中世纪索马里的强大帝国。",
+        "flag_code": "so"
+      }
+    },
+    {
+      "names": {
+        "ja": "テオティワカン",
+        "en": "Teotihuacan",
+        "zh": "特奥蒂瓦坎"
+      },
+      "capital": {
+        "ja": "テオティワカン",
+        "en": "Teotihuacan",
+        "zh": "特奥蒂瓦坎"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "City of Gods",
+        "Pyramids",
+        "Mystery"
+      ],
+      "desc": {
+        "ja": "メキシコ盆地に巨大な「太陽のピラミッド」を築いた謎多き古代都市国家。",
+        "en": "Ancient Mesoamerican city located in a sub-valley of the Valley of Mexico.",
+        "zh": "拥有巨大金字塔的古代都市国家。",
+        "flag_code": "mx"
+      }
+    },
+    {
+      "names": {
+        "ja": "ティワナク",
+        "en": "Tiwanaku Empire",
+        "zh": "蒂亚瓦纳科"
+      },
+      "capital": {
+        "ja": "ティワナク",
+        "en": "Tiwanaku",
+        "zh": "蒂亚瓦纳科"
+      },
+      "type": "Past",
+      "region": "South America (Bolivia)",
+      "tags": [
+        "Andes",
+        "Stonework",
+        "Lake Titicaca"
+      ],
+      "desc": {
+        "ja": "インカ帝国以前にアンデス高地で栄えた文明。巨石建築が特徴。",
+        "en": "Pre-Columbian polity in western Bolivia.",
+        "zh": "印加帝国之前的安第斯文明。",
+        "flag_code": "bo"
+      }
+    },
+    {
+      "names": {
+        "ja": "トンガ大首長国",
+        "en": "Tu'i Tonga Empire",
+        "zh": "汤加帝国"
+      },
+      "capital": {
+        "ja": "ムア",
+        "en": "Mua",
+        "zh": "穆阿"
+      },
+      "type": "Past",
+      "region": "Oceania / Pacific",
+      "tags": [
+        "Maritime",
+        "Pacific",
+        "Expansion"
+      ],
+      "desc": {
+        "ja": "南太平洋の広範囲に影響力を持った海洋帝国。",
+        "en": "Powerful empire in Oceania.",
+        "zh": "南太平洋的海洋帝国。",
+        "flag_code": "to"
+      }
+    },
+    {
+      "names": {
+        "ja": "トレビゾンド帝国",
+        "en": "Empire of Trebizond",
+        "zh": "特拉比松帝国"
+      },
+      "capital": {
+        "ja": "トレビゾンド (トラブゾン)",
+        "en": "Trebizond",
+        "zh": "特拉比松"
+      },
+      "type": "Past",
+      "region": "Middle East (Anatolia)",
+      "tags": [
+        "Byzantine",
+        "Black Sea",
+        "Successor"
+      ],
+      "desc": {
+        "ja": "ビザンツ帝国の滅亡後も黒海沿岸で存続した継承国家。",
+        "en": "Successor state to the Byzantine Empire.",
+        "zh": "拜占庭帝国的继承国之一。",
+        "flag_code": "tr"
+      }
+    },
+    {
+      "names": {
+        "ja": "モスクワ大公国",
+        "en": "Grand Duchy of Moscow",
+        "zh": "莫斯科大公国"
+      },
+      "capital": {
+        "ja": "モスクワ",
+        "en": "Moscow",
+        "zh": "莫斯科"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Russia",
+        "Expansion",
+        "Kremlin"
+      ],
+      "desc": {
+        "ja": "モンゴルの支配を脱し、後のロシア帝国の基礎となった国。",
+        "en": "Rus' principality centered on Moscow.",
+        "zh": "俄罗斯帝国的前身。",
+        "flag_code": "ru"
+      }
+    },
+    {
+      "names": {
+        "ja": "ラテン帝国",
+        "en": "Latin Empire",
+        "zh": "拉丁帝国"
+      },
+      "capital": {
+        "ja": "コンスタンティノープル",
+        "en": "Constantinople",
+        "zh": "君士坦丁堡"
+      },
+      "type": "Past",
+      "region": "Europe / Asia",
+      "tags": [
+        "Crusades",
+        "Byzantine",
+        "Short-lived"
+      ],
+      "desc": {
+        "ja": "第4回十字軍がコンスタンティノープルを占領して建てたカトリック国家。",
+        "en": "Feudal Crusader state founded by the leaders of the Fourth Crusade.",
+        "zh": "第四次十字军建立的国家。",
+        "flag_code": "tr"
+      }
+    }
+  ],
+  "history": []
+}
