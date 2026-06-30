@@ -58,7 +58,21 @@
         "Religion": "宗教",
         "Nature & Geography": "自然・地理",
         "Island & Maritime": "島・海洋"
-      }
+      },
+      "sort_asc": "昇順",
+      "sort_desc": "降順",
+      "favorites_only": "お気に入りのみ",
+      "favorite_add": "お気に入りに追加",
+      "favorite_remove": "お気に入りから削除",
+      "quiz": "ミニクイズ",
+      "quiz_title": "ミニクイズ",
+      "quiz_next": "次の問題",
+      "quiz_detail": "詳細を見る",
+      "quiz_correct": "正解です",
+      "quiz_wrong": "不正解です",
+      "quiz_capital": "首都または中心地が「{capital}」なのはどれ？",
+      "quiz_desc": "この説明に当てはまるのはどれ？",
+      "quiz_flag": "この旗の国・地域はどれ？"
     },
     "en": {
       "app_title": "World Archives",
@@ -118,7 +132,21 @@
         "Religion": "Religion",
         "Nature & Geography": "Nature & Geography",
         "Island & Maritime": "Island & Maritime"
-      }
+      },
+      "sort_asc": "Ascending",
+      "sort_desc": "Descending",
+      "favorites_only": "Favorites only",
+      "favorite_add": "Add favorite",
+      "favorite_remove": "Remove favorite",
+      "quiz": "Mini Quiz",
+      "quiz_title": "Mini Quiz",
+      "quiz_next": "Next Question",
+      "quiz_detail": "View Details",
+      "quiz_correct": "Correct",
+      "quiz_wrong": "Not quite",
+      "quiz_capital": "Which one has \"{capital}\" as its capital or main center?",
+      "quiz_desc": "Which entry matches this description?",
+      "quiz_flag": "Which country or historical state uses this flag?"
     },
     "zh": {
       "app_title": "World Archives",
@@ -162,7 +190,21 @@
         "Religion": "宗教",
         "Nature & Geography": "自然与地理",
         "Island & Maritime": "岛屿与海洋"
-      }
+      },
+      "sort_asc": "升序",
+      "sort_desc": "降序",
+      "favorites_only": "仅收藏",
+      "favorite_add": "加入收藏",
+      "favorite_remove": "取消收藏",
+      "quiz": "小测验",
+      "quiz_title": "小测验",
+      "quiz_next": "下一题",
+      "quiz_detail": "查看详情",
+      "quiz_correct": "回答正确",
+      "quiz_wrong": "回答错误",
+      "quiz_capital": "首都或中心地是“{capital}”的是哪一个？",
+      "quiz_desc": "以下说明对应哪一个？",
+      "quiz_flag": "这面旗帜对应哪个国家或历史国家？"
     }
   },
   "countries": [
@@ -7489,5 +7531,6 @@
       }
     }
   ],
-  "history": []
+  "history": [],
+  "favorites": []
 }

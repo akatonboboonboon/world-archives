@@ -10,8 +10,19 @@ import os
 import random
 from datetime import datetime
 
+try:
+    import pykakasi
+except ImportError:
+    pykakasi = None
+
+try:
+    from pypinyin import lazy_pinyin
+except ImportError:
+    lazy_pinyin = None
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
+KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
 
 def init_json():
     """
@@ -34,7 +45,8 @@ def init_json():
                 }
             },
             "countries": [],
-            "history": []
+            "history": [],
+            "favorites": []
         }
         with open(JSON_FILE, 'w', encoding='utf-8') as f:
             json.dump(default_data, f, ensure_ascii=False, indent=2)
@@ -60,17 +72,71 @@ class AppState:
     filter_type = 'All'
     filter_region = None
     filter_tag = None
-    sort_mode = 'default'
+    sort_order = 'asc'
+    show_favorites_only = False
     lang = 'ja'
     search_keyword = ''
     page = 1
     items_per_page = 20
+    quiz = None
 
 state = AppState()
 
+UI_FALLBACKS = {
+    'ja': {
+        'sort_asc': '昇順',
+        'sort_desc': '降順',
+        'favorites_only': 'お気に入りのみ',
+        'favorite_add': 'お気に入りに追加',
+        'favorite_remove': 'お気に入りから削除',
+        'quiz': 'ミニクイズ',
+        'quiz_title': 'ミニクイズ',
+        'quiz_next': '次の問題',
+        'quiz_detail': '詳細を見る',
+        'quiz_correct': '正解です',
+        'quiz_wrong': '不正解です',
+        'quiz_capital': '首都または中心地が「{capital}」なのはどれ？',
+        'quiz_desc': 'この説明に当てはまるのはどれ？',
+        'quiz_flag': 'この旗の国・地域はどれ？',
+    },
+    'en': {
+        'sort_asc': 'Ascending',
+        'sort_desc': 'Descending',
+        'favorites_only': 'Favorites only',
+        'favorite_add': 'Add favorite',
+        'favorite_remove': 'Remove favorite',
+        'quiz': 'Mini Quiz',
+        'quiz_title': 'Mini Quiz',
+        'quiz_next': 'Next Question',
+        'quiz_detail': 'View Details',
+        'quiz_correct': 'Correct',
+        'quiz_wrong': 'Not quite',
+        'quiz_capital': 'Which one has “{capital}” as its capital or main center?',
+        'quiz_desc': 'Which entry matches this description?',
+        'quiz_flag': 'Which country or historical state uses this flag?',
+    },
+    'zh': {
+        'sort_asc': '升序',
+        'sort_desc': '降序',
+        'favorites_only': '仅收藏',
+        'favorite_add': '加入收藏',
+        'favorite_remove': '取消收藏',
+        'quiz': '小测验',
+        'quiz_title': '小测验',
+        'quiz_next': '下一题',
+        'quiz_detail': '查看详情',
+        'quiz_correct': '回答正确',
+        'quiz_wrong': '回答错误',
+        'quiz_capital': '首都或中心地是“{capital}”的是哪一个？',
+        'quiz_desc': '以下说明对应哪一个？',
+        'quiz_flag': '这面旗帜对应哪个国家或历史国家？',
+    },
+}
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
-    val = lang_data.get(key, key)
+    fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
+    val = lang_data.get(key, fallback)
     if subkey and isinstance(val, dict):
         return val.get(subkey, subkey)
     return val
@@ -128,6 +194,118 @@ def normalize_tag_value(value):
             return tag
     return value
 
+def country_key(country):
+    names = country.get('names', {})
+    capital = country.get('capital', {})
+    return '|'.join([
+        names.get('en', names.get('ja', '')),
+        country.get('type', ''),
+        capital.get('en', capital.get('ja', '')),
+    ])
+
+def favorite_keys(data=None):
+    data = data or get_data()
+    return set(data.setdefault('favorites', []))
+
+def is_favorite(country, data=None):
+    return country_key(country) in favorite_keys(data)
+
+def toggle_favorite(country):
+    data = get_data()
+    favorites = data.setdefault('favorites', [])
+    key = country_key(country)
+    if key in favorites:
+        favorites.remove(key)
+    else:
+        favorites.append(key)
+    save_data(data)
+
+def sort_key(country):
+    name = get_localized_text(country.get('names', {}))
+    if state.lang == 'ja' and KAKASI_CONVERTER:
+        try:
+            return ''.join(item.get('hira') or item.get('kana') or item.get('orig', '') for item in KAKASI_CONVERTER.convert(name))
+        except Exception:
+            pass
+    if state.lang == 'zh' and lazy_pinyin:
+        try:
+            return ' '.join(lazy_pinyin(name))
+        except Exception:
+            pass
+    return name.casefold()
+
+def first_sentence(text):
+    text = (text or '').strip()
+    if not text:
+        return ''
+    marks = ['。', '.', '！', '!', '？', '?']
+    positions = [text.find(mark) for mark in marks if text.find(mark) != -1]
+    if not positions:
+        return text
+    return text[:min(positions) + 1]
+
+def countries_by_key(data=None):
+    data = data or get_data()
+    return {country_key(country): country for country in data.get('countries', [])}
+
+def build_quiz():
+    data = get_data()
+    countries = data.get('countries', [])
+    if len(countries) < 4:
+        return None
+
+    question_pools = []
+    desc_candidates = [c for c in countries if first_sentence(get_localized_text(c.get('desc', {})))]
+    capital_candidates = [
+        c for c in countries
+        if get_localized_text(c.get('capital', {})).strip() not in ['', '-']
+    ]
+    flag_candidates = [
+        c for c in countries
+        if c.get('flag_code') and c.get('flag_code') != 'xx'
+    ]
+    if desc_candidates:
+        question_pools.append(('desc', desc_candidates))
+    if capital_candidates:
+        question_pools.append(('capital', capital_candidates))
+    if flag_candidates:
+        question_pools.append(('flag', flag_candidates))
+    if not question_pools:
+        return None
+
+    question_type, candidates = random.choice(question_pools)
+    answer = random.choice(candidates)
+    options = random.sample([c for c in countries if country_key(c) != country_key(answer)], 3)
+    options.append(answer)
+    random.shuffle(options)
+
+    return {
+        'type': question_type,
+        'answer_key': country_key(answer),
+        'options': [country_key(option) for option in options],
+        'selected_key': None,
+        'answered': False,
+    }
+
+def quiz_view_parts(quiz, answer):
+    question_type = quiz.get('type')
+    if question_type == 'capital':
+        capital = get_localized_text(answer.get('capital', {}))
+        question = t('quiz_capital').format(capital=capital)
+        return question, '', None
+    elif question_type == 'flag':
+        question = t('quiz_flag')
+        image = get_flag_url(answer.get('flag_code'))
+        return question, '', image
+    else:
+        question = t('quiz_desc')
+        description = first_sentence(get_localized_text(answer.get('desc', {})))
+        return question, description, None
+
+def start_quiz():
+    state.quiz = build_quiz()
+    show_screen('quiz')
+
 # ========================================
 # 画面切り替え
 # ========================================
@@ -166,7 +344,8 @@ def show_screen(screen_name):
         state.search_keyword = ''
         state.filter_region = None
         state.filter_tag = None
-        state.sort_mode = 'default'
+        state.sort_order = 'asc'
+        state.show_favorites_only = False
         state.page = 1
         if history_drawer.value:
             history_drawer.hide()
@@ -175,16 +354,20 @@ def show_screen(screen_name):
     top_screen.set_visibility(screen_name == 'top')
     main_screen.set_visibility(screen_name == 'main')
     result_screen.set_visibility(screen_name == 'result')
+    quiz_screen.set_visibility(screen_name == 'quiz')
     if screen_name == 'main':
         refresh_main_ui()
     if screen_name == 'result':
         refresh_result_view()
+    if screen_name == 'quiz':
+        refresh_quiz_view()
 
 def switch_language(lang_code):
     state.lang = lang_code
     if top_screen.visible: refresh_top_ui()
     if main_screen.visible: refresh_main_ui()
     if result_screen.visible: refresh_result_view()
+    if quiz_screen.visible: refresh_quiz_view()
 
 # ========================================
 # 1. トップ画面
@@ -244,6 +427,7 @@ def render_header(container):
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
+                ui.button(icon='quiz', on_click=start_quiz).props('flat round color=white').tooltip(t('quiz'))
                 ui.button(icon='history', on_click=open_history).props('flat round color=white')
 
 # ========================================
@@ -259,6 +443,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             ui.label(t('subtitle')).classes('text-xl text-gray-500')
             ui.button('ENTER', on_click=lambda: show_screen('main')) \
                 .classes('bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
+            ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
+                .classes('bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
                 ui.link('EN', '#').on('click', lambda: switch_language('en'))
@@ -288,9 +474,19 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 select_country(target)
                 ui.notify(f'Random Pick: {get_localized_text(target["names"])}')
 
-        def toggle_sort():
-            state.sort_mode = 'name' if state.sort_mode == 'default' else 'default'
+        def toggle_sort_order():
+            state.sort_order = 'desc' if state.sort_order == 'asc' else 'asc'
+            state.page = 1
             refresh_main_ui()
+
+        def toggle_favorites_filter():
+            state.show_favorites_only = not state.show_favorites_only
+            state.page = 1
+            refresh_main_ui()
+
+        def toggle_card_favorite(country):
+            toggle_favorite(country)
+            refresh_search_list()
 
         def load_more():
             state.page += 1
@@ -308,20 +504,28 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                         .props('rounded outlined prepend-inner-icon=search clearable') \
                         .classes('text-lg flex-grow bg-white shadow-inner') \
                         .props(f'placeholder="{t("search_ph")}"')
-                    sort_icon = 'sort_by_alpha' if state.sort_mode == 'name' else 'sort'
-                    sort_bg = 'bg-blue-600' if state.sort_mode == 'name' else 'bg-gray-400'
-                    ui.button(icon=sort_icon, on_click=toggle_sort) \
+                    sort_icon = 'arrow_downward' if state.sort_order == 'asc' else 'arrow_upward'
+                    sort_bg = 'bg-blue-600'
+                    sort_label = t('sort_asc') if state.sort_order == 'asc' else t('sort_desc')
+                    ui.button(sort_label, icon=sort_icon, on_click=toggle_sort_order) \
                         .classes(f'{sort_bg} text-white px-4 py-2 shadow-md') \
-                        .tooltip('Sort by Name')
+                        .tooltip(sort_label)
 
                     ui.button(icon='shuffle', on_click=pick_random) \
                         .classes('bg-purple-500 text-white px-4 py-2 shadow-md')
+
+                    ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
+                        .classes('bg-emerald-600 text-white px-4 py-2 shadow-md')
 
                 with ui.row().classes('w-full gap-4 mt-2'):
                     ui.select(r_opts, value=state.filter_region, label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
                         .classes('w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
                         .classes('w-48 bg-white')
+                    fav_color = 'amber' if state.show_favorites_only else 'grey'
+                    ui.button(t('favorites_only'), icon='star', on_click=toggle_favorites_filter) \
+                        .props(f'color={fav_color}') \
+                        .classes('px-4 py-2 shadow-md')
 
                 with ui.row().classes('w-full justify-between items-center mt-4'):
                     with ui.button_group().props('unelevated'):
@@ -352,6 +556,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
         def refresh_search_list():
             list_container.clear()
             data = get_data()
+            favorites = favorite_keys(data)
             keyword = state.search_keyword.lower() if state.search_keyword else ""
             countries = data.get('countries', [])
             filtered = []
@@ -362,6 +567,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     continue
                 if state.filter_tag and state.filter_tag not in c.get('tags', []):
                     continue
+                if state.show_favorites_only and country_key(c) not in favorites:
+                    continue
 
                 name_local = get_localized_text(c['names'])
                 desc_local = get_localized_text(c['desc'])
@@ -369,8 +576,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 search_target = f"{name_local} {desc_local} {tag_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
-            if state.sort_mode == 'name':
-                filtered.sort(key=lambda x: x['names'].get(state.lang, ''))
+            filtered.sort(
+                key=lambda x: (sort_key(x), x['names'].get('en', '')),
+                reverse=state.sort_order == 'desc',
+            )
 
             total_count = len(filtered)
             current_limit = state.page * state.items_per_page
@@ -391,6 +600,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                                 for tag in c.get('tags', [])[:3]:
                                     ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
                             ui.label(get_localized_text(c['desc'])).classes('text-gray-500 text-sm mt-1 line-clamp-1')
+                        fav_icon = 'star' if country_key(c) in favorites else 'star_border'
+                        ui.button(icon=fav_icon, on_click=lambda _, x=c: toggle_card_favorite(x)) \
+                            .props('flat round color=amber') \
+                            .classes('self-center mr-3')
                 if total_count > current_limit:
                     ui.button(f'Load More ({total_count - current_limit} remaining)', on_click=load_more) \
                         .classes('w-full bg-gray-200 text-gray-600 py-2 hover:bg-gray-300 transition')
@@ -417,8 +630,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
         wiki_url = f"https://ja.wikipedia.org/wiki/{c['names'].get('ja')}"
 
         with result_content:
-            ui.button(t('back_search'), icon='arrow_back', on_click=lambda: show_screen('main')) \
-                .props('flat color=grey dense text-lg')
+            with ui.row().classes('w-full justify-between items-center'):
+                ui.button(t('back_search'), icon='arrow_back', on_click=lambda: show_screen('main')) \
+                    .props('flat color=grey dense text-lg')
+                favorite_label = t('favorite_remove') if is_favorite(c) else t('favorite_add')
+                favorite_icon = 'star' if is_favorite(c) else 'star_border'
+                ui.button(favorite_label, icon=favorite_icon, on_click=lambda: (toggle_favorite(c), refresh_result_view())) \
+                    .props('color=amber')
 
             with ui.card().classes('w-full p-0 overflow-hidden'):
                 with ui.row().classes('w-full bg-white p-6 gap-6 items-start'):
@@ -450,6 +668,88 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                     with ui.column().classes('gap-1'):
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
+
+# ========================================
+# 4. ミニクイズ画面
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
+    header_container_quiz = ui.column().classes('w-full p-0 m-0')
+    quiz_content = ui.column().classes('w-full max-w-3xl p-8 gap-6 self-center')
+
+    def select_quiz_option(option_key):
+        if not state.quiz:
+            return
+        if state.quiz.get('answered'):
+            return
+        state.quiz['selected_key'] = option_key
+        state.quiz['answered'] = True
+        refresh_quiz_view()
+
+    def open_quiz_answer_detail():
+        if not state.quiz:
+            return
+        country = countries_by_key().get(state.quiz['answer_key'])
+        if country:
+            state.selected_country = country
+            add_history(country)
+            show_screen('result')
+
+    def refresh_quiz_view():
+        render_header(header_container_quiz)
+        quiz_content.clear()
+        if not state.quiz:
+            state.quiz = build_quiz()
+
+        quiz = state.quiz
+        if not quiz:
+            with quiz_content:
+                ui.label(t('quiz_title')).classes('text-3xl font-bold text-[#1a2332]')
+                ui.label('No quiz data available.').classes('text-gray-500')
+            return
+
+        lookup = countries_by_key()
+        answer = lookup.get(quiz['answer_key'])
+        question, description, image = quiz_view_parts(quiz, answer) if answer else ('', '', None)
+
+        with quiz_content:
+            with ui.row().classes('w-full justify-between items-center'):
+                ui.label(t('quiz_title')).classes('text-3xl font-bold text-[#1a2332]')
+                ui.button(t('quiz_next'), icon='refresh', on_click=start_quiz).props('outline color=primary')
+
+            with ui.card().classes('w-full p-6 gap-4'):
+                ui.label(question).classes('text-xl font-bold text-gray-800')
+                if description:
+                    ui.markdown(description).classes('text-gray-700 text-lg')
+                if image:
+                    ui.image(image).classes('w-56 shadow-md border rounded')
+
+                with ui.column().classes('w-full gap-2 mt-2'):
+                    for option_key in quiz['options']:
+                        option = lookup.get(option_key)
+                        if not option:
+                            continue
+                        is_selected = quiz.get('selected_key') == option_key
+                        is_answer = quiz.get('answer_key') == option_key
+                        if quiz.get('answered') and is_answer:
+                            color = 'green'
+                        elif quiz.get('answered') and is_selected:
+                            color = 'red'
+                        else:
+                            color = 'blue' if is_selected else 'white'
+                        text_color = 'white' if color in ['green', 'red', 'blue'] else 'grey-9'
+                        ui.button(get_localized_text(option['names']), on_click=lambda _, key=option_key: select_quiz_option(key)) \
+                            .props(f'color={color} text-color={text_color}') \
+                            .classes('w-full justify-start text-left')
+
+                if quiz.get('answered') and answer:
+                    correct = quiz.get('selected_key') == quiz.get('answer_key')
+                    message = t('quiz_correct') if correct else t('quiz_wrong')
+                    badge_color = 'green' if correct else 'red'
+                    with ui.row().classes('items-center gap-3 mt-4'):
+                        ui.badge(message, color=badge_color).classes('text-base px-3 py-2')
+                        ui.label(get_localized_text(answer['names'])).classes('text-lg font-bold')
+                    ui.button(t('quiz_detail'), icon='open_in_new', on_click=open_quiz_answer_detail) \
+                        .classes('bg-[#1a2332] text-white px-4 py-2 mt-2')
 
 # ========================================
 # 初期表示
