@@ -116,8 +116,8 @@
       "tags": [
         "G20",
         "G7",
-        "UN Member",
-        "Island Nation"
+        "Island Nation",
+        "East Asia"
       ],
       "desc": {
         "ja": "東アジアに位置する島国。法的には首都と定められていないが、東京が事実上の首都。",
@@ -142,8 +142,8 @@
       "tags": [
         "G20",
         "BRICS",
-        "UN Member",
-        "Superpower"
+        "Superpower",
+        "East Asia"
       ],
       "desc": {
         "ja": "世界最多級の人口を擁する東アジアの社会主義共和制国家。",
@@ -168,7 +168,7 @@
       "tags": [
         "G20",
         "OECD",
-        "UN Member"
+        "East Asia"
       ],
       "desc": {
         "ja": "朝鮮半島の南半分に位置する共和制国家。",
@@ -193,7 +193,8 @@
       "tags": [
         "ASEAN",
         "Kingdom",
-        "Tourism"
+        "Tourism",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "東南アジアの仏教国。「微笑みの国」として知られる。",
@@ -218,7 +219,8 @@
       "tags": [
         "ASEAN",
         "Socialist",
-        "Emerging"
+        "Economy",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "インドシナ半島東部に位置する社会主義共和国。",
@@ -243,7 +245,8 @@
       "tags": [
         "ASEAN",
         "City-State",
-        "Finance"
+        "Finance",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "マレー半島の南端にある都市国家。アジアの金融センター。",
@@ -267,7 +270,8 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "ASEAN",
-        "Island Nation"
+        "Island Nation",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "西太平洋に位置する島国。キリスト教徒が多い。",
@@ -291,7 +295,8 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "ASEAN",
-        "Islamic"
+        "Islamic",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "マレー半島南部とボルネオ島北部を領土とする連邦立憲君主制国家。",
@@ -314,8 +319,9 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
+        "Commonwealth",
         "Islamic",
-        "Commonwealth"
+        "South Asia"
       ],
       "desc": {
         "ja": "南アジアのイスラム共和制国家。人口世界5位。",
@@ -339,7 +345,9 @@
       "region": "Asia, South Asia",
       "tags": [
         "Islamic",
-        "Textile"
+        "Industry",
+        "Trade",
+        "South Asia"
       ],
       "desc": {
         "ja": "ベンガル湾に面する人口密度の高い国。",
@@ -363,7 +371,7 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Central Asia",
-        "Resource"
+        "Resources"
       ],
       "desc": {
         "ja": "世界最大の内陸国。中央アジアの経済的中心。",
@@ -387,8 +395,9 @@
       "region": "Middle East",
       "tags": [
         "Islamic",
-        "Persia",
-        "Oil"
+        "Persian",
+        "Oil",
+        "Middle East"
       ],
       "desc": {
         "ja": "西アジア・中東の大国。古代ペルシャの継承国。",
@@ -413,7 +422,8 @@
       "tags": [
         "Oil",
         "Finance",
-        "Tourism"
+        "Tourism",
+        "Middle East"
       ],
       "desc": {
         "ja": "7つの首長国からなる連邦国家。ドバイが有名。",
@@ -436,8 +446,9 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Tech",
-        "Mediterranean"
+        "Technology",
+        "Mediterranean",
+        "Middle East"
       ],
       "desc": {
         "ja": "地中海東岸に位置するユダヤ人国家。",
@@ -462,8 +473,8 @@
       "tags": [
         "G20",
         "G7",
-        "UN Member",
-        "Superpower"
+        "Superpower",
+        "North America"
       ],
       "desc": {
         "ja": "北アメリカ大陸に位置する連邦共和国。経済・軍事で世界への影響力が大きい。",
@@ -488,7 +499,8 @@
       "tags": [
         "G20",
         "G7",
-        "Commonwealth"
+        "Commonwealth",
+        "North America"
       ],
       "desc": {
         "ja": "北アメリカ大陸北部に位置し、世界で2番目に広い国土を持つ。",
@@ -513,7 +525,7 @@
       "tags": [
         "G20",
         "OECD",
-        "Latin America"
+        "North America"
       ],
       "desc": {
         "ja": "北アメリカ南部に位置する連邦共和制国家。スペイン語圏で人口最多。",
@@ -538,7 +550,8 @@
       "tags": [
         "OECD",
         "Andes",
-        "Mining"
+        "Mining",
+        "South America"
       ],
       "desc": {
         "ja": "世界で最も細長い国。銅の産出国。",
@@ -562,8 +575,9 @@
       "region": "South America",
       "tags": [
         "Andes",
-        "Inca",
-        "APEC"
+        "Indigenous America",
+        "Trade",
+        "South America"
       ],
       "desc": {
         "ja": "インカ帝国の中心地。マチュピチュがある。",
@@ -586,8 +600,10 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Coffee",
-        "Biodiversity"
+        "Agriculture",
+        "Trade",
+        "Nature",
+        "South America"
       ],
       "desc": {
         "ja": "コーヒーとエメラルドの産地。",
@@ -610,8 +626,9 @@
       "type": "Present",
       "region": "South America",
       "tags": [
+        "OPEC",
         "Oil",
-        "OPEC"
+        "South America"
       ],
       "desc": {
         "ja": "世界最大級の原油埋蔵量を持つ。",
@@ -635,7 +652,8 @@
       "region": "Caribbean",
       "tags": [
         "Socialist",
-        "Island"
+        "Island",
+        "Caribbean"
       ],
       "desc": {
         "ja": "カリブ海最大の島国。",
@@ -658,8 +676,10 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Reggae",
-        "Commonwealth"
+        "Commonwealth",
+        "Music",
+        "Culture",
+        "Caribbean"
       ],
       "desc": {
         "ja": "レゲエ発祥の地。陸上が強い。",
@@ -685,7 +705,9 @@
         "G20",
         "G7",
         "Commonwealth",
-        "Island Nation"
+        "Kingdom",
+        "Island Nation",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "グレートブリテン及び北アイルランド連合王国。産業革命発祥の地。",
@@ -711,7 +733,8 @@
         "G20",
         "G7",
         "EU",
-        "NATO"
+        "NATO",
+        "Western Europe"
       ],
       "desc": {
         "ja": "ヨーロッパ中部に位置する連邦共和国。EU最大の経済力を持つ。",
@@ -737,7 +760,8 @@
         "G20",
         "G7",
         "EU",
-        "NATO"
+        "NATO",
+        "Western Europe"
       ],
       "desc": {
         "ja": "西ヨーロッパに位置する共和国。芸術と文化の中心地。",
@@ -763,7 +787,8 @@
         "G20",
         "G7",
         "EU",
-        "NATO"
+        "NATO",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "南ヨーロッパに位置する共和制国家。ローマ帝国の故地。",
@@ -788,7 +813,8 @@
       "tags": [
         "EU",
         "NATO",
-        "G20 Guest"
+        "G20",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "イベリア半島の大部分を占める立憲君主制国家。",
@@ -812,7 +838,8 @@
       "region": "Europe, Central Europe",
       "tags": [
         "EU",
-        "NATO"
+        "NATO",
+        "Central Europe"
       ],
       "desc": {
         "ja": "中央ヨーロッパに位置する共和制国家。",
@@ -836,7 +863,8 @@
       "region": "Europe, Southern Europe",
       "tags": [
         "EU",
-        "NATO"
+        "NATO",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "ユーラシア大陸最西端の国。大航海時代の先駆者。",
@@ -861,7 +889,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Trade"
+        "Trade",
+        "Western Europe"
       ],
       "desc": {
         "ja": "風車と運河の国。国際司法裁判所がある。",
@@ -886,7 +915,9 @@
       "tags": [
         "EU",
         "NATO",
-        "Chocolate"
+        "Trade",
+        "Culture",
+        "Western Europe"
       ],
       "desc": {
         "ja": "EU本部が置かれる欧州の十字路。",
@@ -911,7 +942,8 @@
       "tags": [
         "Neutral",
         "Finance",
-        "Alps"
+        "Alps",
+        "Central Europe"
       ],
       "desc": {
         "ja": "永世中立国。アルプス山脈と金融で有名。",
@@ -935,7 +967,8 @@
       "region": "Europe, Northern Europe",
       "tags": [
         "EU",
-        "Scandinavia"
+        "Nordic",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "北欧最大の国家。福祉国家として知られる。",
@@ -958,9 +991,10 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Scandinavia",
         "NATO",
-        "Oil"
+        "Nordic",
+        "Oil",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "フィヨルドで有名な北欧の王国。EU非加盟。",
@@ -985,7 +1019,8 @@
       "tags": [
         "EU",
         "Nordic",
-        "Education"
+        "Development",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "森と湖の国。サンタクロースの故郷とされる。",
@@ -1009,7 +1044,7 @@
       "region": "Europe, Eastern Europe",
       "tags": [
         "Eastern Europe",
-        "Grain"
+        "Agriculture"
       ],
       "desc": {
         "ja": "東ヨーロッパに位置する大国。肥沃な黒土を持つ。",
@@ -1034,7 +1069,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Ancient"
+        "Ancient",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "西洋文明発祥の地。バルカン半島南端に位置。",
@@ -1059,7 +1095,8 @@
       "tags": [
         "G20",
         "BRICS",
-        "Mercosur"
+        "Mercosur",
+        "South America"
       ],
       "desc": {
         "ja": "南アメリカ大陸最大の面積と人口を持つ連邦共和国。",
@@ -1083,7 +1120,8 @@
       "region": "South America",
       "tags": [
         "G20",
-        "Mercosur"
+        "Mercosur",
+        "South America"
       ],
       "desc": {
         "ja": "南アメリカ南部に位置する連邦共和国。",
@@ -1108,7 +1146,8 @@
       "tags": [
         "G20",
         "BRICS",
-        "Commonwealth"
+        "Commonwealth",
+        "South Asia"
       ],
       "desc": {
         "ja": "南アジアに位置し、世界最多の人口を抱える連邦共和国。",
@@ -1133,7 +1172,8 @@
       "tags": [
         "G20",
         "ASEAN",
-        "Island Nation"
+        "Island Nation",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "東南アジア南部に位置する世界最大の島嶼国家。",
@@ -1157,7 +1197,8 @@
       "region": "Oceania",
       "tags": [
         "G20",
-        "Commonwealth"
+        "Commonwealth",
+        "Oceania"
       ],
       "desc": {
         "ja": "オセアニアに位置し、大陸全土を領有する連邦国家。",
@@ -1182,7 +1223,9 @@
       "tags": [
         "G20",
         "BRICS",
-        "Superpower"
+        "Superpower",
+        "Europe",
+        "Asia"
       ],
       "desc": {
         "ja": "ユーラシア大陸北部に広がる世界最大の面積を持つ連邦共和国。",
@@ -1206,7 +1249,9 @@
       "region": "Asia/Europe",
       "tags": [
         "G20",
-        "NATO"
+        "NATO",
+        "Asia",
+        "Europe"
       ],
       "desc": {
         "ja": "西アジアのアナトリア半島と東ヨーロッパのバルカン半島の一部にまたがる共和国。",
@@ -1231,7 +1276,8 @@
       "tags": [
         "G20",
         "OPEC",
-        "Arab League"
+        "Arab League",
+        "Middle East"
       ],
       "desc": {
         "ja": "中東・アラビア半島の大部分を占める絶対君主制国家。",
@@ -1256,7 +1302,8 @@
       "tags": [
         "G20",
         "AU",
-        "BRICS"
+        "BRICS",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "アフリカ大陸最南端に位置する共和制国家。",
@@ -1280,7 +1327,8 @@
       "region": "Africa, North Africa",
       "tags": [
         "AU",
-        "Arab League"
+        "Arab League",
+        "North Africa"
       ],
       "desc": {
         "ja": "北東アフリカと中東にまたがる共和制国家。古代文明発祥の地。",
@@ -1305,7 +1353,8 @@
       "tags": [
         "AU",
         "OPEC",
-        "Commonwealth"
+        "Commonwealth",
+        "West Africa"
       ],
       "desc": {
         "ja": "西アフリカに位置し、アフリカ最大の人口と経済規模を持つ。",
@@ -1329,7 +1378,8 @@
       "region": "Africa, East Africa",
       "tags": [
         "AU",
-        "Ancient"
+        "Ancient",
+        "East Africa"
       ],
       "desc": {
         "ja": "東アフリカに位置する内陸国。アフリカ連合本部がある。",
@@ -1353,7 +1403,8 @@
       "region": "Africa, East Africa",
       "tags": [
         "AU",
-        "Commonwealth"
+        "Commonwealth",
+        "East Africa"
       ],
       "desc": {
         "ja": "東アフリカに位置する共和制国家。サファリ観光で有名。",
@@ -1376,8 +1427,8 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Maghreb",
-        "Arab"
+        "North Africa",
+        "Arab World"
       ],
       "desc": {
         "ja": "アフリカ北西部の王国。サハラ砂漠観光の拠点。",
@@ -1401,7 +1452,7 @@
       "region": "Africa, North Africa",
       "tags": [
         "OPEC",
-        "Maghreb"
+        "North Africa"
       ],
       "desc": {
         "ja": "アフリカ最大の国土面積を持つ。",
@@ -1424,8 +1475,10 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Cocoa",
-        "Gold"
+        "Agriculture",
+        "Trade",
+        "Gold",
+        "West Africa"
       ],
       "desc": {
         "ja": "カカオ豆の産地として有名。",
@@ -1448,8 +1501,10 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Safari",
-        "Kilimanjaro"
+        "Tourism",
+        "Nature",
+        "Mountain",
+        "East Africa"
       ],
       "desc": {
         "ja": "キリマンジャロ山がある。",
@@ -1474,7 +1529,9 @@
       "tags": [
         "EU",
         "Music",
-        "Alps"
+        "Culture",
+        "Alps",
+        "Central Europe"
       ],
       "desc": {
         "ja": "音楽の都ウィーンを擁する中欧の国。",
@@ -1498,8 +1555,10 @@
       "region": "Europe, Central Europe",
       "tags": [
         "EU",
-        "Danube",
-        "Onsen"
+        "River",
+        "Central Europe",
+        "Culture",
+        "Tourism"
       ],
       "desc": {
         "ja": "ドナウの真珠と呼ばれる美しい首都を持つ。",
@@ -1523,8 +1582,10 @@
       "region": "Europe, Central Europe",
       "tags": [
         "EU",
-        "Beer",
-        "History"
+        "Republic",
+        "Culture",
+        "Heritage",
+        "Central Europe"
       ],
       "desc": {
         "ja": "中世の街並みが残る「百塔の街」。",
@@ -1548,7 +1609,8 @@
       "region": "Europe, Eastern Europe",
       "tags": [
         "EU",
-        "Transylvania"
+        "Culture",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "ドラキュラ伝説のトランシルヴァニア地方がある。",
@@ -1572,8 +1634,9 @@
       "region": "Europe, Eastern Europe",
       "tags": [
         "EU",
-        "Yogurt",
-        "Roses"
+        "Culture",
+        "Agriculture",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "ヨーグルトとバラの谷で有名。",
@@ -1622,7 +1685,9 @@
       "tags": [
         "EU",
         "Tourism",
-        "Adriatic"
+        "Mediterranean",
+        "Maritime",
+        "Balkans"
       ],
       "desc": {
         "ja": "アドリア海の美しい海岸線を持つ観光国。",
@@ -1645,8 +1710,10 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
+        "Ancient",
         "Mesopotamia",
-        "Oil"
+        "Oil",
+        "Middle East"
       ],
       "desc": {
         "ja": "メソポタミア文明発祥の地。",
@@ -1670,7 +1737,8 @@
       "region": "Middle East",
       "tags": [
         "Ancient",
-        "History"
+        "Heritage",
+        "Middle East"
       ],
       "desc": {
         "ja": "世界最古級の都市ダマスカスを首都とする。",
@@ -1693,8 +1761,11 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Petra",
-        "Dead Sea"
+        "Architecture",
+        "Tourism",
+        "Desert",
+        "Nature",
+        "Middle East"
       ],
       "desc": {
         "ja": "ペトラ遺跡や死海で有名な観光国。",
@@ -1717,8 +1788,9 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Cedars",
-        "Cuisine"
+        "Nature",
+        "Culture",
+        "Middle East"
       ],
       "desc": {
         "ja": "「中東のパリ」と呼ばれた美しい国。レバノン杉が象徴。",
@@ -1742,7 +1814,9 @@
       "region": "Middle East",
       "tags": [
         "Gas",
-        "Rich"
+        "Energy",
+        "Finance",
+        "Middle East"
       ],
       "desc": {
         "ja": "天然ガス資源が豊富な富裕国。",
@@ -1766,7 +1840,8 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Silk Road",
-        "Samarkand"
+        "Trade",
+        "Central Asia"
       ],
       "desc": {
         "ja": "シルクロードの要衝。サマルカンドが有名。",
@@ -1789,8 +1864,9 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Nomad",
-        "Steppe"
+        "Nomadic",
+        "Steppe",
+        "East Asia"
       ],
       "desc": {
         "ja": "広大な草原と遊牧文化の国。",
@@ -1814,7 +1890,8 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "ASEAN",
-        "Buddhism"
+        "Buddhist",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "黄金のパゴダ（仏塔）が輝く国。",
@@ -1838,7 +1915,9 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "ASEAN",
-        "Angkor Wat"
+        "Architecture",
+        "Buddhist",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "アンコール・ワット遺跡群を持つ。",
@@ -1862,8 +1941,9 @@
       "region": "South America",
       "tags": [
         "Andes",
-        "Galapagos",
-        "Equator"
+        "Nature",
+        "Island",
+        "South America"
       ],
       "desc": {
         "ja": "赤道直下の国。ガラパゴス諸島を領有。",
@@ -1887,8 +1967,9 @@
       "region": "South America",
       "tags": [
         "Andes",
-        "Uyuni",
-        "Landlocked"
+        "Nature",
+        "Landlocked",
+        "South America"
       ],
       "desc": {
         "ja": "ウユニ塩湖で有名な高山国。",
@@ -1912,7 +1993,9 @@
       "region": "South America",
       "tags": [
         "Mercosur",
-        "Progressive"
+        "Democracy",
+        "Development",
+        "South America"
       ],
       "desc": {
         "ja": "「南米のスイス」とも呼ばれる安定した国。",
@@ -1936,7 +2019,8 @@
       "region": "South America",
       "tags": [
         "Mercosur",
-        "Landlocked"
+        "Landlocked",
+        "South America"
       ],
       "desc": {
         "ja": "南米の内陸国。日系移民も多い。",
@@ -1959,8 +2043,9 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Canal",
-        "Trade"
+        "Trade",
+        "Maritime",
+        "Central America"
       ],
       "desc": {
         "ja": "太平洋と大西洋を結ぶパナマ運河がある。",
@@ -1984,7 +2069,9 @@
       "region": "Central America",
       "tags": [
         "Nature",
-        "Peace"
+        "Democracy",
+        "Development",
+        "Central America"
       ],
       "desc": {
         "ja": "軍隊を持たない国。環境保護先進国。",
@@ -2007,8 +2094,11 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
+        "Republic",
         "Island",
-        "Baseball"
+        "Sports",
+        "Culture",
+        "Caribbean"
       ],
       "desc": {
         "ja": "カリブ海のリゾート地。野球が盛ん。",
@@ -2031,8 +2121,10 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Resource",
-        "Rainforest"
+        "Resources",
+        "Rainforest",
+        "Nature",
+        "Central Africa"
       ],
       "desc": {
         "ja": "アフリカ大陸中央部の巨大国家。鉱物資源が豊富。",
@@ -2056,7 +2148,8 @@
       "region": "Africa, West Africa",
       "tags": [
         "Culture",
-        "Paris-Dakar"
+        "Sports",
+        "West Africa"
       ],
       "desc": {
         "ja": "西アフリカの玄関口。パリ・ダカールラリーの終点。",
@@ -2081,7 +2174,7 @@
       "tags": [
         "Island",
         "Nature",
-        "Baobab"
+        "East Africa"
       ],
       "desc": {
         "ja": "固有種の宝庫。バオバブの木で有名。",
@@ -2104,7 +2197,9 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Victoria Falls"
+        "Nature",
+        "River",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "世界三大瀑布の一つ、ヴィクトリアの滝がある。",
@@ -2127,8 +2222,8 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Gorilla",
-        "Equator"
+        "Nature",
+        "East Africa"
       ],
       "desc": {
         "ja": "「アフリカの真珠」と呼ばれる。マウンテンゴリラの生息地。",
@@ -2152,8 +2247,10 @@
       "region": "Europe, Western Europe",
       "tags": [
         "EU",
-        "Tech",
-        "Celtic"
+        "Technology",
+        "Culture",
+        "Northern Europe",
+        "Western Europe"
       ],
       "desc": {
         "ja": "「エメラルドの島」。IT産業が集積。",
@@ -2177,8 +2274,9 @@
       "region": "Europe, Northern Europe",
       "tags": [
         "EU",
-        "Design",
-        "Lego"
+        "Culture",
+        "Technology",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "童話作家アンデルセンの故郷。デザイン大国。",
@@ -2201,8 +2299,9 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Himalaya",
-        "Everest"
+        "Mountain",
+        "Nature",
+        "South Asia"
       ],
       "desc": {
         "ja": "エベレストを擁するヒマラヤの国。",
@@ -2225,8 +2324,10 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Tea",
-        "Island"
+        "Agriculture",
+        "Trade",
+        "Island",
+        "South Asia"
       ],
       "desc": {
         "ja": "「インド洋の真珠」。紅茶（セイロンティー）の産地。",
@@ -2251,7 +2352,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Tech"
+        "Technology",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "「e-国家」として知られるIT先進国。Skype発祥の地。",
@@ -2276,7 +2378,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Baltic"
+        "Baltic",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "バルト三国の中央。首都リガの旧市街は世界遺産。",
@@ -2301,7 +2404,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Baltic"
+        "Baltic",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "中世には巨大な公国だった歴史を持つ。",
@@ -2326,7 +2430,8 @@
       "tags": [
         "NATO",
         "Volcano",
-        "Aurora"
+        "Nature",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "「火と氷の国」。火山とオーロラ、温泉が有名。",
@@ -2351,7 +2456,8 @@
       "tags": [
         "EU",
         "NATO",
-        "Rich"
+        "Finance",
+        "Western Europe"
       ],
       "desc": {
         "ja": "世界有数の富裕国。金融センター。",
@@ -2375,7 +2481,9 @@
       "region": "Asia/Europe",
       "tags": [
         "Caucasus",
-        "Wine"
+        "Wine",
+        "Asia",
+        "Europe"
       ],
       "desc": {
         "ja": "ワイン発祥の地とされる。親日国。",
@@ -2400,7 +2508,9 @@
       "tags": [
         "Caucasus",
         "Oil",
-        "Fire"
+        "Energy",
+        "Asia",
+        "Europe"
       ],
       "desc": {
         "ja": "「火の国」。カスピ海沿岸の産油国。",
@@ -2424,7 +2534,9 @@
       "region": "Asia/Europe",
       "tags": [
         "Caucasus",
-        "Christianity"
+        "Christian",
+        "Asia",
+        "Europe"
       ],
       "desc": {
         "ja": "世界で初めてキリスト教を国教化した国。",
@@ -2447,8 +2559,8 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Tech",
-        "Semiconductor"
+        "Technology",
+        "East Asia"
       ],
       "desc": {
         "ja": "半導体産業の世界的な中心地。美食の宝庫。",
@@ -2472,7 +2584,9 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "ASEAN",
-        "Mekong"
+        "River",
+        "Southeast Asian History",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "東南アジア唯一の内陸国。メコン川が流れる。",
@@ -2496,7 +2610,8 @@
       "region": "Oceania",
       "tags": [
         "Pacific",
-        "Diversity"
+        "Culture",
+        "Oceania"
       ],
       "desc": {
         "ja": "800以上の言語が話される多様性の国。",
@@ -2521,7 +2636,9 @@
       "tags": [
         "Pacific",
         "Tourism",
-        "Rugby"
+        "Sports",
+        "Culture",
+        "Oceania"
       ],
       "desc": {
         "ja": "南太平洋の楽園。ラグビー強豪国。",
@@ -2544,8 +2661,11 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Maya",
-        "Coffee"
+        "Indigenous America",
+        "Ancient",
+        "Agriculture",
+        "Trade",
+        "Central America"
       ],
       "desc": {
         "ja": "マヤ文明の遺跡が多く残る。コーヒー産地。",
@@ -2569,7 +2689,9 @@
       "region": "Central America",
       "tags": [
         "Caribbean",
-        "Maya"
+        "Indigenous America",
+        "Ancient",
+        "Central America"
       ],
       "desc": {
         "ja": "カリブ海に面した中米の国。コパン遺跡がある。",
@@ -2593,7 +2715,8 @@
       "region": "Caribbean",
       "tags": [
         "Independence",
-        "History"
+        "Heritage",
+        "Caribbean"
       ],
       "desc": {
         "ja": "世界初の黒人共和国として独立。",
@@ -2617,7 +2740,9 @@
       "region": "Africa, North Africa",
       "tags": [
         "Nile",
-        "History"
+        "River",
+        "Heritage",
+        "North Africa"
       ],
       "desc": {
         "ja": "ナイル川が合流する地。エジプトより多くのピラミッドがある。",
@@ -2641,7 +2766,9 @@
       "region": "Africa, Southern Africa",
       "tags": [
         "Oil",
-        "Diamond"
+        "Mining",
+        "Resources",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "アフリカ有数の産油国かつダイヤモンド産出国。",
@@ -2664,8 +2791,11 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Cocoa",
-        "French"
+        "Agriculture",
+        "Trade",
+        "Culture",
+        "Colonial",
+        "West Africa"
       ],
       "desc": {
         "ja": "「象牙海岸」。カカオ生産世界一。",
@@ -2688,8 +2818,9 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Maghreb",
-        "Carthage"
+        "North Africa",
+        "Ancient",
+        "Trade"
       ],
       "desc": {
         "ja": "古代カルタゴの遺跡がある。地中海リゾート地。",
@@ -2713,8 +2844,11 @@
       "region": "Europe, Central Europe",
       "tags": [
         "EU",
-        "Castles",
-        "Mountains"
+        "Architecture",
+        "Medieval",
+        "Mountain",
+        "Nature",
+        "Central Europe"
       ],
       "desc": {
         "ja": "中欧の山岳国。かつてチェコと同じ国だった。",
@@ -2739,7 +2873,8 @@
       "tags": [
         "EU",
         "Alps",
-        "Green"
+        "Nature",
+        "Central Europe"
       ],
       "desc": {
         "ja": "アルプスと地中海が出会う国。自然豊か。",
@@ -2763,7 +2898,7 @@
       "region": "Europe, Balkans",
       "tags": [
         "Balkans",
-        "History"
+        "Heritage"
       ],
       "desc": {
         "ja": "東洋と西洋の文化が交差する国。",
@@ -2787,7 +2922,7 @@
       "region": "Europe, Balkans",
       "tags": [
         "Balkans",
-        "Eagle"
+        "Culture"
       ],
       "desc": {
         "ja": "「鷲の国」と呼ばれるバルカン半島の国。",
@@ -2811,7 +2946,8 @@
       "region": "Europe, Eastern Europe",
       "tags": [
         "CIS",
-        "Forest"
+        "Forest",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "「森と湖の国」。東欧の内陸国。",
@@ -2834,8 +2970,9 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
+        "CIS",
         "Wine",
-        "CIS"
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "ワイン産業が盛んな東欧の国。",
@@ -2860,7 +2997,10 @@
       "tags": [
         "EU",
         "Island",
-        "Aphrodite"
+        "Culture",
+        "Mediterranean",
+        "Europe",
+        "Middle East"
       ],
       "desc": {
         "ja": "地中海の島国。愛の女神アフロディーテ生誕の地。",
@@ -2884,8 +3024,10 @@
       "region": "Europe, Southern Europe",
       "tags": [
         "EU",
-        "Knight",
-        "Island"
+        "Military",
+        "Medieval",
+        "Island",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "地中海の要衝。騎士団の歴史がある。",
@@ -2908,8 +3050,11 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Himalaya",
-        "Happiness"
+        "Mountain",
+        "Nature",
+        "Culture",
+        "Development",
+        "South Asia"
       ],
       "desc": {
         "ja": "国民総幸福量(GNH)を重視するヒマラヤの王国。",
@@ -2933,7 +3078,8 @@
       "region": "Asia, South Asia",
       "tags": [
         "Island",
-        "Resort"
+        "Tourism",
+        "South Asia"
       ],
       "desc": {
         "ja": "インド洋の美しい珊瑚礁の島国。",
@@ -2957,7 +3103,8 @@
       "region": "Middle East",
       "tags": [
         "Maritime",
-        "Desert"
+        "Desert",
+        "Middle East"
       ],
       "desc": {
         "ja": "アラビア半島の海洋国家。シンドバッド伝説。",
@@ -2981,7 +3128,9 @@
       "region": "Middle East",
       "tags": [
         "Oil",
-        "Gulf"
+        "Energy",
+        "Maritime",
+        "Middle East"
       ],
       "desc": {
         "ja": "ペルシャ湾岸の産油国。",
@@ -3005,7 +3154,8 @@
       "region": "Middle East",
       "tags": [
         "Island",
-        "Finance"
+        "Finance",
+        "Middle East"
       ],
       "desc": {
         "ja": "中東の金融センターである島国。",
@@ -3029,7 +3179,9 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Mountain",
-        "Nomad"
+        "Nature",
+        "Nomadic",
+        "Central Asia"
       ],
       "desc": {
         "ja": "「中央アジアのスイス」と呼ばれる山岳国。",
@@ -3053,7 +3205,8 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Mountain",
-        "Pamir"
+        "Nature",
+        "Central Asia"
       ],
       "desc": {
         "ja": "パミール高原を擁する山岳国。",
@@ -3077,7 +3230,9 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Gas",
-        "Desert"
+        "Energy",
+        "Desert",
+        "Central Asia"
       ],
       "desc": {
         "ja": "天然ガスが豊富。白亜の首都を持つ。",
@@ -3101,7 +3256,8 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "Island",
-        "New"
+        "New State",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "21世紀最初の独立国。",
@@ -3126,7 +3282,8 @@
       "tags": [
         "ASEAN",
         "Oil",
-        "Rich"
+        "Finance",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "ボルネオ島北部の豊かな王国。",
@@ -3149,8 +3306,9 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Tech",
-        "Clean"
+        "Technology",
+        "Development",
+        "East Africa"
       ],
       "desc": {
         "ja": "「千の丘の国」。IT産業振興と清潔さで有名。",
@@ -3173,8 +3331,11 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Diamond",
-        "Safari"
+        "Mining",
+        "Resources",
+        "Tourism",
+        "Nature",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "ダイヤモンド産出で潤う安定した国。",
@@ -3198,7 +3359,8 @@
       "region": "Africa, Southern Africa",
       "tags": [
         "Desert",
-        "Nature"
+        "Nature",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "世界最古のナミブ砂漠がある。",
@@ -3221,8 +3383,10 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Copper",
-        "Victoria Falls"
+        "Mining",
+        "Nature",
+        "River",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "銅の産出国。ヴィクトリアの滝への玄関口。",
@@ -3245,8 +3409,9 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Soccer",
-        "Diversity"
+        "Sports",
+        "Culture",
+        "Central Africa"
       ],
       "desc": {
         "ja": "「アフリカの縮図」と呼ばれる多様性を持つ。",
@@ -3270,8 +3435,10 @@
       "region": "Europe, Central Europe",
       "tags": [
         "Empire",
-        "Dual Monarchy",
-        "WWI"
+        "Monarchy",
+        "Union",
+        "WWI",
+        "Central Europe"
       ],
       "desc": {
         "ja": "ハプスブルク家が統治した多民族国家。第一次世界大戦で崩壊。",
@@ -3296,7 +3463,10 @@
       "tags": [
         "Empire",
         "Caliphate",
-        "Islamic"
+        "Islamic",
+        "Middle East",
+        "Europe",
+        "Africa"
       ],
       "desc": {
         "ja": "地中海世界を支配したイスラム王朝。600年以上続いた。",
@@ -3320,7 +3490,9 @@
       "region": "Eurasia",
       "tags": [
         "Empire",
-        "Tsardom"
+        "Monarchy",
+        "Russian History",
+        "Eurasia"
       ],
       "desc": {
         "ja": "ロマノフ朝が支配した巨大帝国。ロシア革命で滅亡。",
@@ -3345,7 +3517,9 @@
       "tags": [
         "Empire",
         "WWI",
-        "Industrial Power"
+        "Industry",
+        "Economy",
+        "Central Europe"
       ],
       "desc": {
         "ja": "プロイセンを中心に統一されたドイツ人国家。第一次世界大戦で敗北。",
@@ -3368,9 +3542,11 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
+        "Union",
         "Superpower",
         "Socialist",
-        "Cold War"
+        "Cold War",
+        "Eurasia"
       ],
       "desc": {
         "ja": "世界初の社会主義国家。アメリカと冷戦を繰り広げた。",
@@ -3393,8 +3569,9 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Dynasty",
         "Empire",
-        "Dynasty"
+        "East Asia"
       ],
       "desc": {
         "ja": "中国最後の統一王朝。満洲族による支配。",
@@ -3419,7 +3596,9 @@
       "tags": [
         "Empire",
         "WWII",
-        "Modernization"
+        "Modern History",
+        "Industry",
+        "East Asia"
       ],
       "desc": {
         "ja": "明治維新から第二次世界大戦終結までの日本。",
@@ -3442,8 +3621,8 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Puppet State",
-        "WWII"
+        "WWII",
+        "East Asia"
       ],
       "desc": {
         "ja": "中国東北部に存在した国家。事実上の日本の傀儡国家とされる。",
@@ -3468,7 +3647,7 @@
       "tags": [
         "Socialist",
         "Cold War",
-        "Warsaw Pact"
+        "Central Europe"
       ],
       "desc": {
         "ja": "ドイツ民主共和国。ベルリンの壁崩壊まで存在した社会主義国。",
@@ -3541,7 +3720,8 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "Cold War",
-        "Vietnam War"
+        "Conflict",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "ベトナム共和国。ベトナム戦争の舞台となり、1975年に消滅。",
@@ -3564,8 +3744,10 @@
       "type": "Past",
       "region": "Asia, Central Asia",
       "tags": [
-        "Himalayas",
-        "Buddhism"
+        "Mountain",
+        "Nature",
+        "Buddhist",
+        "Central Asia"
       ],
       "desc": {
         "ja": "ヒマラヤ山脈北側に位置する地域。",
@@ -3589,7 +3771,7 @@
       "region": "South America",
       "tags": [
         "Independence",
-        "Bolivar"
+        "South America"
       ],
       "desc": {
         "ja": "英雄シモン・ボリバルが夢見た南米の統一共和国。",
@@ -3613,7 +3795,8 @@
       "region": "North America",
       "tags": [
         "Civil War",
-        "Secession"
+        "Secession",
+        "North America"
       ],
       "desc": {
         "ja": "南北戦争時にアメリカ合衆国から分離独立を宣言した南部諸州。",
@@ -3637,7 +3820,9 @@
       "region": "Oceania / Pacific",
       "tags": [
         "Kingdom",
-        "Island Nation"
+        "Island Nation",
+        "Oceania",
+        "Pacific"
       ],
       "desc": {
         "ja": "カメハメハ大王が建国。1898年にアメリカに併合され消滅。",
@@ -3660,8 +3845,9 @@
       "type": "Past",
       "region": "Africa, Central Africa",
       "tags": [
-        "Dictatorship",
-        "Cold War"
+        "Cold War",
+        "Conflict",
+        "Central Africa"
       ],
       "desc": {
         "ja": "モブツ独裁政権下のコンゴ民主共和国の旧称(1971-1997)。",
@@ -3684,8 +3870,11 @@
       "type": "Past",
       "region": "Middle East / Africa",
       "tags": [
-        "Pan-Arabism",
-        "Union"
+        "Republic",
+        "Arab World",
+        "Union",
+        "Middle East",
+        "Africa"
       ],
       "desc": {
         "ja": "エジプトとシリアが合邦して成立した汎アラブ国家。",
@@ -3709,7 +3898,8 @@
       "region": "Africa, Southern Africa",
       "tags": [
         "Colonial",
-        "Unrecognized"
+        "Unrecognized",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "現在のジンバブエ。白人少数支配の国家として孤立した。",
@@ -3734,7 +3924,8 @@
       "tags": [
         "Empire",
         "Medieval",
-        "Nomadic"
+        "Nomadic",
+        "Eurasia"
       ],
       "desc": {
         "ja": "人類史上最大の連続した領土を持った帝国。",
@@ -3758,7 +3949,8 @@
       "region": "Europe, Central Europe",
       "tags": [
         "Empire",
-        "Medieval"
+        "Medieval",
+        "Central Europe"
       ],
       "desc": {
         "ja": "中世から近世にかけて中欧に存在した国家連合。",
@@ -3783,7 +3975,9 @@
       "tags": [
         "Empire",
         "Medieval",
-        "Orthodox"
+        "Christian",
+        "Europe",
+        "Asia"
       ],
       "desc": {
         "ja": "ローマ帝国の東側継承国家。1000年以上存続した。",
@@ -3808,7 +4002,7 @@
       "tags": [
         "Empire",
         "Ancient",
-        "Civilization"
+        "North America"
       ],
       "desc": {
         "ja": "メキシコ中央高原に栄えた文明。現在のメキシコシティの基礎。",
@@ -3833,7 +4027,8 @@
       "tags": [
         "Empire",
         "Ancient",
-        "Andes"
+        "Andes",
+        "South America"
       ],
       "desc": {
         "ja": "アンデス山脈に栄えた南米最大の帝国。",
@@ -3858,7 +4053,8 @@
       "tags": [
         "Empire",
         "Islamic",
-        "India"
+        "South Asian History",
+        "South Asia"
       ],
       "desc": {
         "ja": "インド亜大陸の大部分を支配したイスラム王朝。",
@@ -3883,7 +4079,7 @@
       "tags": [
         "Empire",
         "Ancient",
-        "BC"
+        "Middle East"
       ],
       "desc": {
         "ja": "古代オリエントを統一した最初の世界帝国。",
@@ -3908,7 +4104,9 @@
       "tags": [
         "Empire",
         "Medieval",
-        "Angkor Wat"
+        "Architecture",
+        "Buddhist",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "現在のカンボジアを中心に栄えた王朝。アンコール・ワットを建設。",
@@ -3933,7 +4131,8 @@
       "tags": [
         "Empire",
         "Medieval",
-        "Gold"
+        "Gold",
+        "West Africa"
       ],
       "desc": {
         "ja": "西アフリカのイスラム国家。マンサ・ムーサ王の黄金巡礼で知られる。",
@@ -3956,8 +4155,9 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Catholic",
-        "Smallest"
+        "Christian",
+        "Small State",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "世界最小の独立国。カトリック教会の総本山。",
@@ -3980,9 +4180,10 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Rich",
-        "F1",
-        "Casino"
+        "Finance",
+        "Sports",
+        "Tourism",
+        "Western Europe"
       ],
       "desc": {
         "ja": "世界で2番目に小さい国。F1とカジノで有名。",
@@ -4005,8 +4206,9 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Oldest",
-        "Enclave"
+        "Small State",
+        "Republic",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "現存する世界最古の共和国。イタリアに囲まれている。",
@@ -4029,8 +4231,9 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Rich",
-        "Alps"
+        "Finance",
+        "Alps",
+        "Central Europe"
       ],
       "desc": {
         "ja": "スイスとオーストリアに挟まれた公国。",
@@ -4053,8 +4256,9 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Pyrenees",
-        "Tourism"
+        "Mountain",
+        "Tourism",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "フランスとスペインの国境、ピレネー山脈にある。",
@@ -4078,7 +4282,10 @@
       "region": "Asia, South Asia",
       "tags": [
         "Silk Road",
-        "Mountain"
+        "Trade",
+        "Mountain",
+        "Nature",
+        "South Asia"
       ],
       "desc": {
         "ja": "「文明の十字路」。山岳地帯が多い。",
@@ -4101,8 +4308,9 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "History",
-        "Arabia"
+        "Heritage",
+        "Arab World",
+        "Middle East"
       ],
       "desc": {
         "ja": "アラビア半島南端の国。古い摩天楼建築がある。",
@@ -4126,7 +4334,9 @@
       "region": "Central America",
       "tags": [
         "Volcano",
-        "Bitcoin"
+        "Finance",
+        "Technology",
+        "Central America"
       ],
       "desc": {
         "ja": "「火山の国」。ビットコインを法定通貨にした。",
@@ -4150,7 +4360,9 @@
       "region": "Central America",
       "tags": [
         "Lake",
-        "Volcano"
+        "Nature",
+        "Volcano",
+        "Central America"
       ],
       "desc": {
         "ja": "中米最大の面積を持つ。湖と火山が多い。",
@@ -4173,8 +4385,11 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Coral",
-        "Maya"
+        "Nature",
+        "Tourism",
+        "Indigenous America",
+        "Ancient",
+        "Central America"
       ],
       "desc": {
         "ja": "美しいサンゴ礁「ブルーホール」がある。",
@@ -4198,7 +4413,8 @@
       "region": "Caribbean",
       "tags": [
         "Island",
-        "Tourism"
+        "Tourism",
+        "Caribbean"
       ],
       "desc": {
         "ja": "700以上の島々からなるリゾート地。",
@@ -4222,7 +4438,8 @@
       "region": "Caribbean",
       "tags": [
         "Oil",
-        "Carnival"
+        "Culture",
+        "Caribbean"
       ],
       "desc": {
         "ja": "カリブ海南端の産油国。スチールドラム発祥。",
@@ -4246,7 +4463,9 @@
       "region": "Caribbean",
       "tags": [
         "Island",
-        "Rihanna"
+        "Music",
+        "Culture",
+        "Caribbean"
       ],
       "desc": {
         "ja": "カリブ海の東端。リアーナの出身地。",
@@ -4270,7 +4489,8 @@
       "region": "Africa, North Africa",
       "tags": [
         "Oil",
-        "Desert"
+        "Desert",
+        "North Africa"
       ],
       "desc": {
         "ja": "北アフリカの産油国。ローマ遺跡レプティス・マグナがある。",
@@ -4294,7 +4514,8 @@
       "region": "Africa, West Africa",
       "tags": [
         "Sahara",
-        "Gold"
+        "Gold",
+        "West Africa"
       ],
       "desc": {
         "ja": "かつて黄金の都トンブクトゥが栄えた地。",
@@ -4318,7 +4539,9 @@
       "region": "Africa, Central Africa",
       "tags": [
         "Sahara",
-        "Lake"
+        "Lake",
+        "Nature",
+        "Central Africa"
       ],
       "desc": {
         "ja": "サハラ砂漠南部の内陸国。",
@@ -4341,8 +4564,9 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Horn",
-        "Pirate"
+        "Maritime",
+        "East Africa",
+        "Conflict"
       ],
       "desc": {
         "ja": "「アフリカの角」に位置する。",
@@ -4365,7 +4589,8 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Red Sea"
+        "Maritime",
+        "East Africa"
       ],
       "desc": {
         "ja": "紅海に面した国。首都アスマラは世界遺産。",
@@ -4388,8 +4613,11 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Polynesia",
-        "Rugby"
+        "Pacific",
+        "Island",
+        "Sports",
+        "Culture",
+        "Oceania"
       ],
       "desc": {
         "ja": "ポリネシアの伝統文化が残る島国。",
@@ -4412,8 +4640,10 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Polynesia",
-        "Kingdom"
+        "Pacific",
+        "Island",
+        "Kingdom",
+        "Oceania"
       ],
       "desc": {
         "ja": "ポリネシア唯一の王国。",
@@ -4436,8 +4666,11 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Micronesia",
-        "Diving"
+        "Pacific",
+        "Island",
+        "Tourism",
+        "Nature",
+        "Oceania"
       ],
       "desc": {
         "ja": "世界遺産のロックアイランドを持つ親日国。",
@@ -4460,8 +4693,10 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "English",
-        "Waterfall"
+        "Commonwealth",
+        "Nature",
+        "River",
+        "South America"
       ],
       "desc": {
         "ja": "南米唯一の英語圏。カイエトゥール滝がある。",
@@ -4484,8 +4719,10 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Dutch",
-        "Forest"
+        "Colonial",
+        "Trade",
+        "Forest",
+        "South America"
       ],
       "desc": {
         "ja": "南米唯一のオランダ語圏。自然保護区が世界遺産。",
@@ -4508,7 +4745,7 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "New",
+        "New State",
         "Balkans"
       ],
       "desc": {
@@ -4532,8 +4769,10 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Alexander",
-        "History"
+        "Hellenistic",
+        "Ancient",
+        "Heritage",
+        "Balkans"
       ],
       "desc": {
         "ja": "アレクサンドロス大王のゆかりの地。マザー・テレサの故郷。",
@@ -4557,7 +4796,9 @@
       "region": "Africa, West Africa",
       "tags": [
         "Sahara",
-        "Uranium"
+        "Mining",
+        "Resources",
+        "West Africa"
       ],
       "desc": {
         "ja": "サハラ砂漠の民とニジェール川の国。",
@@ -4581,7 +4822,7 @@
       "region": "Africa, West Africa",
       "tags": [
         "Culture",
-        "Film"
+        "West Africa"
       ],
       "desc": {
         "ja": "「高潔な人々の国」。アフリカ映画祭が有名。",
@@ -4605,7 +4846,9 @@
       "region": "Africa, West Africa",
       "tags": [
         "Sahara",
-        "Iron"
+        "Mining",
+        "Military",
+        "West Africa"
       ],
       "desc": {
         "ja": "国土の大部分が砂漠。「砂漠の眼」がある。",
@@ -4629,7 +4872,8 @@
       "region": "Africa, Central Africa",
       "tags": [
         "Forest",
-        "Oil"
+        "Oil",
+        "Central Africa"
       ],
       "desc": {
         "ja": "「シュバイツァー博士」の病院がある。森林豊かな国。",
@@ -4652,8 +4896,10 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
+        "Republic",
         "River",
-        "Forest"
+        "Forest",
+        "Central Africa"
       ],
       "desc": {
         "ja": "コンゴ川の対岸にキンシャサを望む。",
@@ -4677,7 +4923,8 @@
       "region": "Africa, East Africa",
       "tags": [
         "Island",
-        "Resort"
+        "Tourism",
+        "East Africa"
       ],
       "desc": {
         "ja": "インド洋の楽園。巨大なリクガメが生息。",
@@ -4701,7 +4948,8 @@
       "region": "Africa, East Africa",
       "tags": [
         "Island",
-        "Dodo"
+        "Nature",
+        "East Africa"
       ],
       "desc": {
         "ja": "「トム・ソーヤー」の作家トウェインが天国と讃えた島。ドードー鳥の故郷。",
@@ -4724,8 +4972,10 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Melanesia",
-        "WWII"
+        "Pacific",
+        "Island",
+        "WWII",
+        "Oceania"
       ],
       "desc": {
         "ja": "ガダルカナル島がある。ダイビングの名所。",
@@ -4748,8 +4998,10 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Melanesia",
-        "Volcano"
+        "Pacific",
+        "Island",
+        "Volcano",
+        "Oceania"
       ],
       "desc": {
         "ja": "バンジージャンプ発祥の地とされる。",
@@ -4772,8 +5024,10 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Micronesia",
-        "Equator"
+        "Pacific",
+        "Island",
+        "Nature",
+        "Oceania"
       ],
       "desc": {
         "ja": "世界で一番早く日付が変わる国。",
@@ -4796,8 +5050,9 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "History",
-        "Conflict"
+        "Heritage",
+        "Conflict",
+        "Middle East"
       ],
       "desc": {
         "ja": "歴史的・宗教的に重要な地域。",
@@ -4821,7 +5076,8 @@
       "region": "Asia, East Asia",
       "tags": [
         "Socialist",
-        "Closed"
+        "Isolation",
+        "East Asia"
       ],
       "desc": {
         "ja": "朝鮮半島北部の社会主義国家。",
@@ -4844,9 +5100,11 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Pharaoh",
+        "Ancient",
         "Pyramids",
-        "Nile"
+        "Nile",
+        "River",
+        "North Africa"
       ],
       "desc": {
         "ja": "ナイル川流域に栄えた文明。ピラミッドやヒエログリフで知られる。",
@@ -4869,9 +5127,10 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Punic Wars",
-        "Hannibal",
-        "Trade"
+        "Military",
+        "Ancient",
+        "Trade",
+        "North Africa"
       ],
       "desc": {
         "ja": "地中海の覇権をローマと争ったフェニキア人の都市国家。ハンニバル将軍が有名。",
@@ -4894,9 +5153,9 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
+        "Ancient",
         "Mesopotamia",
-        "Hammurabi",
-        "BC"
+        "Middle East"
       ],
       "desc": {
         "ja": "メソポタミア南部の古代文明。「目には目を」のハンムラビ法典で有名。",
@@ -4920,8 +5179,9 @@
       "region": "Europe, Greece",
       "tags": [
         "Military",
-        "Ancient Greece",
-        "300"
+        "Ancient",
+        "Hellenistic",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "古代ギリシャの都市国家。極めて厳格な軍事教育制度で知られる。",
@@ -4944,9 +5204,11 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
+        "Republic",
         "Trade",
         "Maritime",
-        "Renaissance"
+        "Renaissance",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "「アドリア海の女王」と呼ばれた海洋国家。1000年以上続いた商業共和国。",
@@ -4969,9 +5231,11 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Winged Hussars",
+        "Commonwealth",
+        "Military",
         "Democracy",
-        "Huge"
+        "Empire",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "当時の欧州最大級の領土を誇った連合国家。貴族民主主義と「有翼重騎兵」で有名。",
@@ -4995,8 +5259,8 @@
       "region": "Asia, East Asia",
       "tags": [
         "Samurai",
-        "Ninja",
-        "Sengoku"
+        "Military",
+        "East Asia"
       ],
       "desc": {
         "ja": "サムライや将軍が割拠した時代。マルコ・ポーロによって欧州に伝えられた。",
@@ -5019,9 +5283,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Dynasty",
         "Silk Road",
+        "Trade",
         "Culture",
-        "Poetry"
+        "Art",
+        "East Asia"
       ],
       "desc": {
         "ja": "中国史上の黄金時代。シルクロードを通じた国際色豊かな文化が花開いた。",
@@ -5044,9 +5311,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Confucianism",
-        "Hangul",
-        "Kingdom"
+        "Confucian",
+        "Korean History",
+        "Culture",
+        "Kingdom",
+        "East Asia"
       ],
       "desc": {
         "ja": "朝鮮半島を500年以上統治した王朝。ハングル文字が制定された。",
@@ -5069,9 +5338,10 @@
       "type": "Past",
       "region": "North America",
       "tags": [
+        "Republic",
         "Independence",
-        "Alamo",
-        "USA"
+        "Military",
+        "North America"
       ],
       "desc": {
         "ja": "メキシコから独立し、後にアメリカ合衆国に併合された「ローンスター」共和国。",
@@ -5094,9 +5364,9 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Catholic",
-        "Pope",
-        "Italy"
+        "Christian",
+        "Italian History",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "ローマ教皇が世俗の君主として統治した領土。イタリア統一まで存在した。",
@@ -5119,9 +5389,10 @@
       "type": "Past",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Warriors",
-        "Shaka",
-        "Empire"
+        "Kingdom",
+        "Military",
+        "Empire",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "19世紀の南アフリカに強大な軍事力を誇った王国。シャカ王が有名。",
@@ -5144,9 +5415,12 @@
       "type": "Past",
       "region": "North America (Central America)",
       "tags": [
-        "Jungle",
+        "Rainforest",
+        "Nature",
         "Pyramids",
-        "Calendar"
+        "Ancient",
+        "Science",
+        "Central America"
       ],
       "desc": {
         "ja": "中米の密林に栄えた文明。高度な天文学と数学、精密な暦を持っていた。",
@@ -5169,9 +5443,10 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Giant Heads",
         "Ancient",
-        "Mother Culture"
+        "Art",
+        "Indigenous America",
+        "North America"
       ],
       "desc": {
         "ja": "メキシコ湾岸の古代文明。巨大な石人頭像で有名。中米の「母なる文明」。",
@@ -5194,9 +5469,11 @@
       "type": "Past",
       "region": "North America",
       "tags": [
-        "Native American",
+        "Confederation",
+        "Indigenous America",
         "Democracy",
-        "Six Nations"
+        "Union",
+        "North America"
       ],
       "desc": {
         "ja": "北米先住民の強力な部族連合。「大いなる平和の法」はアメリカ憲法にも影響を与えたとされる。",
@@ -5219,9 +5496,11 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
+        "Caliphate",
         "Golden Age",
-        "Islam",
-        "Science"
+        "Science",
+        "Islamic",
+        "Middle East"
       ],
       "desc": {
         "ja": "イスラム黄金時代を築いた王朝。『千夜一夜物語』の舞台。",
@@ -5244,9 +5523,13 @@
       "type": "Past",
       "region": "Middle East / Africa / Europe",
       "tags": [
+        "Caliphate",
         "Expansion",
-        "Islam",
-        "Caliphate"
+        "Military",
+        "Islamic",
+        "Middle East",
+        "Africa",
+        "Europe"
       ],
       "desc": {
         "ja": "イスラム史上最大の領土を持った世襲王朝。イベリア半島まで支配した。",
@@ -5269,9 +5552,11 @@
       "type": "Past",
       "region": "Europe (Spain)",
       "tags": [
-        "Al-Andalus",
+        "Caliphate",
+        "Islamic",
+        "Mediterranean",
         "Culture",
-        "Spain"
+        "Southern Europe"
       ],
       "desc": {
         "ja": "イベリア半島（現在のスペイン）に栄えたイスラム王朝。高度な文化を誇った。",
@@ -5294,9 +5579,12 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
+        "Kingdom",
         "Crusades",
         "Christian",
-        "Knights"
+        "Military",
+        "Medieval",
+        "Middle East"
       ],
       "desc": {
         "ja": "十字軍によって聖地に建国されたキリスト教国家。",
@@ -5319,9 +5607,14 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Great Wall",
-        "Voyages",
-        "Ceramics"
+        "Dynasty",
+        "Architecture",
+        "Military",
+        "Exploration",
+        "Maritime",
+        "Art",
+        "Trade",
+        "East Asia"
       ],
       "desc": {
         "ja": "漢民族による最後の統一王朝。鄭和の大航海や万里の長城の増築で知られる。",
@@ -5344,9 +5637,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Dynasty",
         "Silk Road",
-        "Confucianism",
-        "Ancient"
+        "Trade",
+        "Confucian",
+        "Ancient",
+        "East Asia"
       ],
       "desc": {
         "ja": "古代中国の黄金時代。「漢字」「漢民族」の語源となった。",
@@ -5371,7 +5667,9 @@
       "tags": [
         "Samurai",
         "Isolation",
-        "Peace"
+        "Democracy",
+        "Development",
+        "East Asia"
       ],
       "desc": {
         "ja": "徳川家康が開いた武家政権。260年以上の平和な時代（パクス・トクガワ）が続いた。",
@@ -5394,9 +5692,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Kingdom",
         "Island",
         "Trade",
-        "Karate"
+        "Culture",
+        "Maritime",
+        "East Asia"
       ],
       "desc": {
         "ja": "沖縄に存在した海洋王国。日本、中国、東南アジアとの中継貿易で栄えた。",
@@ -5419,9 +5720,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
+        "Empire",
         "Maritime",
-        "Spices",
-        "Archipelago"
+        "Trade",
+        "Island",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "現在のインドネシアを中心に栄えた海洋帝国。香辛料貿易を支配した。",
@@ -5444,9 +5747,12 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
+        "Kingdom",
         "Trade",
-        "Buddhism",
-        "Elephant"
+        "Buddhist",
+        "Culture",
+        "Southeast Asian History",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "タイに存在した交易国家。国際色豊かな都市を築いた。",
@@ -5470,8 +5776,9 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "Maritime",
-        "Buddhism",
-        "Strait"
+        "Buddhist",
+        "Trade",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "マラッカ海峡を支配し、東西貿易の中継地として栄えた仏教国。",
@@ -5494,9 +5801,11 @@
       "type": "Past",
       "region": "Africa, East Africa",
       "tags": [
+        "Kingdom",
         "Ancient",
         "Trade",
-        "Christianity"
+        "Christian",
+        "East Africa"
       ],
       "desc": {
         "ja": "古代エチオピアの強国。ローマやインドと交易を行った。",
@@ -5519,9 +5828,13 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Black Pharaohs",
-        "Iron",
-        "Nile"
+        "Kingdom",
+        "Ancient",
+        "Nile",
+        "Mining",
+        "Military",
+        "River",
+        "North Africa"
       ],
       "desc": {
         "ja": "ナイル川上流（現在のスーダン）の王国。「黒いファラオ」としてエジプトを支配した時期もある。",
@@ -5544,9 +5857,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
+        "Empire",
         "Sahara",
         "Trade",
-        "Islam"
+        "Islamic",
+        "West Africa"
       ],
       "desc": {
         "ja": "西アフリカ史上最大の帝国。トンブクトゥが学問の中心として栄えた。",
@@ -5569,9 +5884,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Bronze",
+        "Kingdom",
         "Art",
-        "Forest"
+        "Trade",
+        "Forest",
+        "West Africa"
       ],
       "desc": {
         "ja": "現在のナイジェリア南部にあった王国。精巧な青銅器（ベニン・ブロンズ）で有名。",
@@ -5596,7 +5913,7 @@
       "tags": [
         "Mediterranean",
         "Trade",
-        "Spain"
+        "Southern Europe"
       ],
       "desc": {
         "ja": "地中海西部に広大な領土を持った連合王国。スペイン統一の母体の一つ。",
@@ -5619,9 +5936,12 @@
       "type": "Past",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Reconquista",
-        "Spain",
-        "Castles"
+        "Kingdom",
+        "Christian",
+        "Military",
+        "Southern Europe",
+        "Architecture",
+        "Medieval"
       ],
       "desc": {
         "ja": "イベリア半島中央部の強国。アラゴンと統合してスペイン王国となった。",
@@ -5644,9 +5964,11 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
-        "Wealth",
+        "Finance",
         "Wine",
-        "Knights"
+        "Military",
+        "Medieval",
+        "Western Europe"
       ],
       "desc": {
         "ja": "中世後期にフランスとドイツの間で繁栄し、独自の文化を誇った公国。",
@@ -5669,9 +5991,9 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
+        "Kingdom",
         "Military",
-        "Discipline",
-        "Germany"
+        "Central Europe"
       ],
       "desc": {
         "ja": "強力な軍隊を持ち、ドイツ統一の中心となった王国。",
@@ -5694,8 +6016,8 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Slavic",
-        "Orthodox",
+        "Eastern Europe",
+        "Christian",
         "Trade"
       ],
       "desc": {
@@ -5719,9 +6041,9 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Trade",
         "Republic",
-        "Fur"
+        "Trade",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "北ロシアの商業共和国。ハンザ同盟と交易し、独特の民主制を持っていた。",
@@ -5744,9 +6066,11 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Scandinavia",
         "Union",
-        "Viking"
+        "Nordic",
+        "Maritime",
+        "Medieval",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "デンマーク、スウェーデン、ノルウェーの北欧三国の同君連合。",
@@ -5769,9 +6093,13 @@
       "type": "Past",
       "region": "Asia, Central Asia",
       "tags": [
-        "Conqueror",
+        "Empire",
+        "Expansion",
+        "Military",
         "Silk Road",
-        "Art"
+        "Trade",
+        "Art",
+        "Central Asia"
       ],
       "desc": {
         "ja": "中央アジアに興ったモンゴルの継承国家。壮麗なイスラム建築を残した。",
@@ -5794,9 +6122,11 @@
       "type": "Past",
       "region": "Middle East (Iran)",
       "tags": [
-        "Persia",
-        "Shia",
-        "Art"
+        "Empire",
+        "Persian",
+        "Islamic",
+        "Art",
+        "Middle East"
       ],
       "desc": {
         "ja": "イランのシーア派王朝。「世界の半分」と称されたイスファハーンを建設。",
@@ -5819,9 +6149,10 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Attila",
+        "Empire",
         "Nomadic",
-        "Scourge"
+        "Military",
+        "Eurasia"
       ],
       "desc": {
         "ja": "アッティラ王の下でローマ帝国を恐怖に陥れた騎馬遊牧民の帝国。",
@@ -5844,9 +6175,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Korea",
-        "Warrior",
-        "Ancient"
+        "Korean History",
+        "Military",
+        "Ancient",
+        "East Asia"
       ],
       "desc": {
         "ja": "朝鮮半島北部から満州にかけて存在した古代国家。広開土王の石碑で有名。",
@@ -5869,9 +6201,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Korea",
+        "Korean History",
         "Gold",
-        "Buddhism"
+        "Buddhist",
+        "East Asia"
       ],
       "desc": {
         "ja": "朝鮮半島を初めて統一した国家。「黄金の国」とも呼ばれた。",
@@ -5895,8 +6228,11 @@
       "region": "Asia, East Asia",
       "tags": [
         "Samurai",
-        "Zen",
-        "Mongol Invasions"
+        "Buddhist",
+        "Culture",
+        "Mongol",
+        "Military",
+        "East Asia"
       ],
       "desc": {
         "ja": "源頼朝が開いた日本初の武家政権。元寇を撃退したことでも知られる。",
@@ -5919,9 +6255,10 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Vietnam",
+        "Vietnamese History",
         "Dynasty",
-        "Independence"
+        "Independence",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "中国の支配から独立し、長期にわたり繁栄したベトナムの王朝。",
@@ -5945,8 +6282,9 @@
       "region": "Eurasia",
       "tags": [
         "Mongol",
-        "Russia",
-        "Khanate"
+        "Russian History",
+        "Nomadic",
+        "Eurasia"
       ],
       "desc": {
         "ja": "モンゴル帝国の分裂後にロシア方面を支配したハン国。",
@@ -5969,9 +6307,11 @@
       "type": "Past",
       "region": "Global (Europe)",
       "tags": [
+        "Empire",
         "Exploration",
         "Maritime",
-        "Spice"
+        "Trade",
+        "Europe"
       ],
       "desc": {
         "ja": "大航海時代の先駆けとなり、世界中に植民地を持った海洋帝国。",
@@ -5994,9 +6334,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
+        "Republic",
         "Civil War",
         "Short-lived",
-        "Secession"
+        "Secession",
+        "West Africa"
       ],
       "desc": {
         "ja": "ナイジェリアから分離独立を宣言し、悲劇的な内戦の末に消滅した国家。",
@@ -6019,9 +6361,10 @@
       "type": "Past",
       "region": "Europe",
       "tags": [
-        "Napoleon",
-        "Revolution",
-        "Military"
+        "Empire",
+        "Military",
+        "Modern History",
+        "Europe"
       ],
       "desc": {
         "ja": "ナポレオン・ボナパルトが築いた帝国。一時、ヨーロッパの大半を支配した。",
@@ -6044,9 +6387,11 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
+        "Kingdom",
         "Monarchy",
         "Medieval",
-        "Knights"
+        "Military",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "グレートブリテン島南部の王国。1707年にスコットランドと合同した。",
@@ -6069,9 +6414,12 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Highlands",
+        "Kingdom",
+        "Mountain",
+        "Nature",
         "Independence",
-        "Celtic"
+        "Culture",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "グレートブリテン島北部の王国。独自の文化と法体系を持つ。",
@@ -6094,9 +6442,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Dynasty",
         "Mongol",
-        "Kublai Khan",
-        "Marco Polo"
+        "Silk Road",
+        "East Asia"
       ],
       "desc": {
         "ja": "モンゴル帝国の一部で、クビライ・ハンが中国に樹立した王朝。",
@@ -6119,9 +6468,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
+        "Dynasty",
         "Culture",
-        "Gunpowder",
-        "Economy"
+        "Science",
+        "Military",
+        "Economy",
+        "East Asia"
       ],
       "desc": {
         "ja": "経済・文化・技術（火薬・羅針盤）が著しく発展した中国の王朝。",
@@ -6144,9 +6496,11 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Zoroastrianism",
-        "Persia",
-        "Rivalry"
+        "Empire",
+        "Religious History",
+        "Persian",
+        "Military",
+        "Middle East"
       ],
       "desc": {
         "ja": "イスラム教以前の最後のペルシャ帝国。ローマ帝国と激しく争った。",
@@ -6169,8 +6523,8 @@
       "type": "Past",
       "region": "South America",
       "tags": [
+        "Empire",
         "Monarchy",
-        "Stability",
         "South America"
       ],
       "desc": {
@@ -6194,9 +6548,11 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Italy",
-        "Bourbon",
-        "Mediterranean"
+        "Kingdom",
+        "Italian History",
+        "Monarchy",
+        "Mediterranean",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "イタリア統一前に南イタリアとシチリア島を支配した王国。",
@@ -6219,9 +6575,10 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
+        "Republic",
         "Trade",
         "Maritime",
-        "Rival"
+        "Southern Europe"
       ],
       "desc": {
         "ja": "ヴェネツィアと地中海の覇権を争った海洋商業国家。",
@@ -6244,9 +6601,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
+        "Empire",
         "Gold",
-        "Salt",
-        "Trade"
+        "Trade",
+        "Resources",
+        "West Africa"
       ],
       "desc": {
         "ja": "「黄金の国」と呼ばれた西アフリカ最初の黒人王国。",
@@ -6269,7 +6628,8 @@
       "type": "Past",
       "region": "Africa, Central Africa",
       "tags": [
-        "Christianity",
+        "Kingdom",
+        "Christian",
         "Trade",
         "Central Africa"
       ],
@@ -6294,9 +6654,12 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Warrior",
-        "Pre-Aztec",
-        "Art"
+        "Empire",
+        "Military",
+        "Indigenous America",
+        "Ancient",
+        "Art",
+        "North America"
       ],
       "desc": {
         "ja": "アステカに先駆けてメキシコ中央高原を支配した軍事国家。",
@@ -6321,7 +6684,9 @@
       "tags": [
         "Andes",
         "Gold",
-        "Mud Brick"
+        "Architecture",
+        "Ancient",
+        "South America"
       ],
       "desc": {
         "ja": "インカ帝国に征服されるまでペルー北岸を支配した王国。巨大な泥の都を作った。",
@@ -6345,8 +6710,9 @@
       "region": "Asia, Central Asia",
       "tags": [
         "Nomadic",
-        "Horse",
-        "Han Rival"
+        "Military",
+        "Chinese History",
+        "Central Asia"
       ],
       "desc": {
         "ja": "モンゴル高原を統一した最初の騎馬遊牧国家。漢帝国を脅かした。",
@@ -6370,8 +6736,9 @@
       "region": "Middle East",
       "tags": [
         "Mongol",
-        "Persia",
-        "Islam"
+        "Persian",
+        "Islamic",
+        "Middle East"
       ],
       "desc": {
         "ja": "モンゴル帝国の西南部（ペルシャ方面）を支配した政権。",
@@ -6394,9 +6761,10 @@
       "type": "Past",
       "region": "Asia, South Asia",
       "tags": [
-        "Islam",
-        "India",
-        "Sultan"
+        "Sultanate",
+        "Islamic",
+        "South Asian History",
+        "South Asia"
       ],
       "desc": {
         "ja": "北インドを支配した5つのイスラム王朝の総称。",
@@ -6419,9 +6787,11 @@
       "type": "Past",
       "region": "Asia, South Asia",
       "tags": [
-        "Sikhism",
-        "Punjab",
-        "Warrior"
+        "Empire",
+        "Religious History",
+        "South Asian History",
+        "Military",
+        "South Asia"
       ],
       "desc": {
         "ja": "19世紀パンジャーブ地方に栄えたシク教徒の王国。「パンジャーブの獅子」ランジート・シングが建国。",
@@ -6444,9 +6814,10 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Judaism",
+        "Religious History",
         "Trade",
-        "Nomadic"
+        "Nomadic",
+        "Eurasia"
       ],
       "desc": {
         "ja": "カスピ海北岸の遊牧国家。支配層がユダヤ教に改宗したことで有名。",
@@ -6471,7 +6842,7 @@
       "tags": [
         "Ancient",
         "Military",
-        "Cruel"
+        "Middle East"
       ],
       "desc": {
         "ja": "強力な軍事力で全オリエントを初めて統一した帝国。",
@@ -6494,9 +6865,11 @@
       "type": "Past",
       "region": "Middle East (Anatolia)",
       "tags": [
-        "Iron",
-        "Chariot",
-        "Ancient"
+        "Empire",
+        "Mining",
+        "Military",
+        "Ancient",
+        "Middle East"
       ],
       "desc": {
         "ja": "アナトリア（トルコ）の帝国。世界で初めて鉄製武器を実用化した。",
@@ -6519,9 +6892,13 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
+        "Republic",
         "Trade",
         "Golden Age",
-        "VOC"
+        "Science",
+        "Colonial",
+        "Maritime",
+        "Western Europe"
       ],
       "desc": {
         "ja": "17世紀に「黄金時代」を迎えたオランダ。東インド会社を通じた貿易で世界をリードした。",
@@ -6544,9 +6921,11 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
+        "Empire",
         "Military",
-        "Baltic Sea",
-        "Gustavus"
+        "Baltic",
+        "Maritime",
+        "Northern Europe"
       ],
       "desc": {
         "ja": "「バルト海はスウェーデンの湖」と言わしめた北欧の軍事大国。",
@@ -6569,9 +6948,10 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
+        "Republic",
         "Renaissance",
-        "Medici",
-        "Art"
+        "Art",
+        "Southern Europe"
       ],
       "desc": {
         "ja": "ルネサンスの中心地。メディチ家が支配し、ダ・ヴィンチやミケランジェロが活躍した。",
@@ -6594,9 +6974,10 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
-        "Charlemagne",
+        "Empire",
         "Medieval",
-        "Christian"
+        "Christian",
+        "Western Europe"
       ],
       "desc": {
         "ja": "西ローマ帝国滅亡後の西欧を統一したゲルマン人の王国。シャルルマーニュ大帝が有名。",
@@ -6619,9 +7000,10 @@
       "type": "Past",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Barbarian",
-        "Spain",
-        "Rome"
+        "Kingdom",
+        "Medieval",
+        "Southern Europe",
+        "Roman History"
       ],
       "desc": {
         "ja": "ローマ帝国末期にイベリア半島を支配したゲルマン系国家。",
@@ -6644,9 +7026,10 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "HRE",
+        "Kingdom",
+        "Empire",
         "Medieval",
-        "Czech"
+        "Central Europe"
       ],
       "desc": {
         "ja": "神聖ローマ帝国の選帝侯国の一つ。現在のチェコの前身。",
@@ -6669,9 +7052,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
+        "Sultanate",
         "Trade",
-        "Islam",
-        "Strait"
+        "Islamic",
+        "Maritime",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "東西貿易の要衝マラッカ海峡を支配したイスラム教国。",
@@ -6694,9 +7079,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Buddhism",
-        "Temples",
-        "Burma"
+        "Kingdom",
+        "Buddhist",
+        "Architecture",
+        "Southeast Asian History",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "ビルマ（ミャンマー）最初の統一王朝。数千の仏塔が立ち並ぶ遺跡で有名。",
@@ -6720,8 +7107,9 @@
       "region": "Asia, Southeast Asia",
       "tags": [
         "Maritime",
-        "Hinduism",
-        "Vietnam"
+        "Religious History",
+        "Vietnamese History",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "ベトナム中部・南部に栄えた海洋国家。ヒンドゥー文化の影響を受けた。",
@@ -6744,9 +7132,13 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
+        "Dynasty",
         "Empire",
-        "Elephant",
-        "Conquest"
+        "Culture",
+        "Southeast Asian History",
+        "Expansion",
+        "Military",
+        "Southeast Asia"
       ],
       "desc": {
         "ja": "東南アジア史上最大の版図を誇ったビルマの王朝。",
@@ -6769,9 +7161,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Korea",
-        "Celadon",
-        "Printing"
+        "Korean History",
+        "Art",
+        "Culture",
+        "Science",
+        "East Asia"
       ],
       "desc": {
         "ja": "「Korea」の語源となった王朝。世界最古の金属活字や高麗青磁で知られる。",
@@ -6795,8 +7189,10 @@
       "region": "Asia, East Asia",
       "tags": [
         "Silk Road",
-        "Tangut",
-        "Script"
+        "Trade",
+        "Chinese History",
+        "Culture",
+        "East Asia"
       ],
       "desc": {
         "ja": "シルクロードの要衝を支配したタングート族の国家。独自の西夏文字を持っていた。",
@@ -6819,9 +7215,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Jurchen",
-        "War",
-        "China"
+        "Dynasty",
+        "Chinese History",
+        "Nomadic",
+        "Military",
+        "East Asia"
       ],
       "desc": {
         "ja": "女真族が建てた王朝。宋を南へ追いやり、中国北部を支配した。",
@@ -6844,9 +7242,12 @@
       "type": "Past",
       "region": "Middle East / Africa",
       "tags": [
-        "Slave Soldiers",
-        "Mongols",
-        "Islam"
+        "Sultanate",
+        "Military",
+        "Islamic",
+        "Mongol",
+        "Middle East",
+        "Africa"
       ],
       "desc": {
         "ja": "エジプトのイスラム王朝。モンゴル軍の進撃を食い止めたことで有名。",
@@ -6869,9 +7270,10 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
+        "Empire",
         "Hellenistic",
-        "Successor",
-        "Greek"
+        "Successor State",
+        "Middle East"
       ],
       "desc": {
         "ja": "アレクサンドロス大王の死後、広大なアジア領土を継承したヘレニズム国家。",
@@ -6894,9 +7296,13 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Horse Archer",
+        "Empire",
+        "Nomadic",
+        "Military",
         "Silk Road",
-        "Rome Rival"
+        "Trade",
+        "Roman History",
+        "Middle East"
       ],
       "desc": {
         "ja": "ローマ帝国の強力なライバルだったイラン系の騎馬帝国（安息）。",
@@ -6919,9 +7325,11 @@
       "type": "Past",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Stone Walls",
+        "Kingdom",
+        "Architecture",
         "Gold",
-        "Trade"
+        "Trade",
+        "Southern Africa"
       ],
       "desc": {
         "ja": "巨大な石造建築群「グレート・ジンバブエ」を残した王国。",
@@ -6944,9 +7352,9 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Cavalry",
-        "Berber",
-        "Rome"
+        "Military",
+        "North Africa",
+        "Roman History"
       ],
       "desc": {
         "ja": "古代北アフリカのベルベル人国家。優秀な騎兵で知られた。",
@@ -6969,9 +7377,11 @@
       "type": "Past",
       "region": "Africa, East Africa",
       "tags": [
-        "Somalia",
+        "Sultanate",
+        "East Africa",
         "Trade",
-        "Fortress"
+        "Military",
+        "Architecture"
       ],
       "desc": {
         "ja": "中世ソマリアの強力な帝国。水利システムや城塞建築に優れていた。",
@@ -6994,9 +7404,9 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "City of Gods",
+        "Ancient",
         "Pyramids",
-        "Mystery"
+        "North America"
       ],
       "desc": {
         "ja": "メキシコ盆地に巨大な「太陽のピラミッド」を築いた謎多き古代都市国家。",
@@ -7019,9 +7429,12 @@
       "type": "Past",
       "region": "South America (Bolivia)",
       "tags": [
+        "Empire",
         "Andes",
-        "Stonework",
-        "Lake Titicaca"
+        "Architecture",
+        "Ancient",
+        "Lake",
+        "South America"
       ],
       "desc": {
         "ja": "インカ帝国以前にアンデス高地で栄えた文明。巨石建築が特徴。",
@@ -7044,9 +7457,12 @@
       "type": "Past",
       "region": "Oceania / Pacific",
       "tags": [
+        "Empire",
         "Maritime",
         "Pacific",
-        "Expansion"
+        "Expansion",
+        "Military",
+        "Oceania"
       ],
       "desc": {
         "ja": "南太平洋の広範囲に影響力を持った海洋帝国。",
@@ -7069,9 +7485,11 @@
       "type": "Past",
       "region": "Middle East (Anatolia)",
       "tags": [
+        "Empire",
         "Byzantine",
-        "Black Sea",
-        "Successor"
+        "Maritime",
+        "Successor State",
+        "Middle East"
       ],
       "desc": {
         "ja": "ビザンツ帝国の滅亡後も黒海沿岸で存続した継承国家。",
@@ -7094,9 +7512,10 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Russia",
+        "Russian History",
         "Expansion",
-        "Kremlin"
+        "Military",
+        "Eastern Europe"
       ],
       "desc": {
         "ja": "モンゴルの支配を脱し、後のロシア帝国の基礎となった国。",
@@ -7119,9 +7538,12 @@
       "type": "Past",
       "region": "Europe / Asia",
       "tags": [
+        "Empire",
         "Crusades",
         "Byzantine",
-        "Short-lived"
+        "Short-lived",
+        "Europe",
+        "Asia"
       ],
       "desc": {
         "ja": "第4回十字軍がコンスタンティノープルを占領して建てたカトリック国家。",
