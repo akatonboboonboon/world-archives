@@ -385,10 +385,11 @@ def switch_language(lang_code):
 def is_mobile_ui():
     return state.ui_mode == 'mobile'
 
-def content_classes(pc_width, pc_padding='p-6', mobile_padding='p-4'):
-    if is_mobile_ui():
-        return f'w-full max-w-md {mobile_padding} gap-4 self-center'
-    return f'w-full {pc_width} {pc_padding} gap-6 self-center'
+def update_mode_classes(element, pc_classes, mobile_classes):
+    element.classes(
+        remove=f'{pc_classes} {mobile_classes}',
+        add=mobile_classes if is_mobile_ui() else pc_classes,
+    )
 
 def refresh_current_screen():
     if top_screen.visible:
@@ -482,7 +483,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
     top_container = ui.column().classes('items-center gap-4')
     def refresh_top_ui():
         top_container.clear()
-        top_container.classes(replace='items-center gap-3 px-6 text-center max-w-sm' if is_mobile_ui() else 'items-center gap-4')
+        update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
             ui.label(t('app_title')).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-5xl font-bold text-[#1a2332]')
@@ -543,8 +544,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
         def refresh_main_ui():
             render_header(header_container_main)
             r_opts, t_opts = get_filter_options()
-            main_content.classes(replace=content_classes('max-w-5xl'))
-            search_area_container.classes(replace='w-full p-4 bg-blue-50 shadow-sm border border-blue-100' if is_mobile_ui() else 'w-full p-6 bg-blue-50 shadow-sm border border-blue-100')
+            update_mode_classes(
+                main_content,
+                'w-full max-w-5xl p-6 gap-6 self-center',
+                'w-full max-w-md p-4 gap-4 self-center',
+            )
+            update_mode_classes(
+                search_area_container,
+                'w-full p-6 bg-blue-50 shadow-sm border border-blue-100',
+                'w-full p-4 bg-blue-50 shadow-sm border border-blue-100',
+            )
 
             search_area_container.clear()
             with search_area_container:
@@ -676,7 +685,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
 
     def refresh_result_view():
         render_header(header_container_result)
-        result_content.classes(replace=content_classes('max-w-4xl', pc_padding='p-8'))
+        update_mode_classes(
+            result_content,
+            'w-full max-w-4xl p-8 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
         result_content.clear()
         c = state.selected_country
         if not c: return
@@ -754,7 +767,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
 
     def refresh_quiz_view():
         render_header(header_container_quiz)
-        quiz_content.classes(replace=content_classes('max-w-3xl', pc_padding='p-8'))
+        update_mode_classes(
+            quiz_content,
+            'w-full max-w-3xl p-8 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
         quiz_content.clear()
         if not state.quiz:
             state.quiz = build_quiz()
