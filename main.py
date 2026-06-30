@@ -73,6 +73,19 @@ def t(key, subkey=None):
         return val.get(subkey, subkey)
     return val
 
+def tag_label(tag, lang=None):
+    lang = lang or state.lang
+    labels = TRANSLATIONS.get(lang, {}).get('tag_labels', {})
+    return labels.get(tag, tag)
+
+def tag_search_text(tag):
+    values = [tag]
+    for lang_data in TRANSLATIONS.values():
+        label = lang_data.get('tag_labels', {}).get(tag)
+        if label and label not in values:
+            values.append(label)
+    return ' '.join(values)
+
 def get_localized_text(data_dict):
     if isinstance(data_dict, dict):
         return data_dict.get(state.lang, data_dict.get('en', ''))
@@ -94,7 +107,20 @@ def get_filter_options():
         if c.get('tags'):
             for tag in c['tags']:
                 tags.add(tag)
-    return sorted(list(regions)), sorted(list(tags))
+    sorted_tags = sorted(tags, key=lambda tag: tag_label(tag).lower())
+    return sorted(list(regions)), {tag: tag_label(tag) for tag in sorted_tags}
+
+def normalize_tag_value(value):
+    if not value:
+        return None
+    data = get_data()
+    tags = {tag for c in data.get('countries', []) for tag in c.get('tags', [])}
+    if value in tags:
+        return value
+    for tag in tags:
+        if tag_label(tag) == value:
+            return tag
+    return value
 
 # ========================================
 # 画面切り替え
@@ -313,7 +339,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             refresh_search_list()
 
         def set_tag_filter(val):
-            state.filter_tag = val
+            state.filter_tag = normalize_tag_value(val)
             state.page = 1
             refresh_search_list()
 
@@ -333,7 +359,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 
                 name_local = get_localized_text(c['names'])
                 desc_local = get_localized_text(c['desc'])
-                search_target = f"{name_local} {desc_local} {' '.join(c.get('tags', []))}".lower()
+                tag_text = ' '.join(tag_search_text(tag) for tag in c.get('tags', []))
+                search_target = f"{name_local} {desc_local} {tag_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
             if state.sort_mode == 'name':
@@ -356,7 +383,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                             with ui.row().classes('gap-1'):
                                 ui.badge(t('tabs', c['type']), color='blue-grey').props('outline dense')
                                 for tag in c.get('tags', [])[:3]:
-                                    ui.chip(tag).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+                                    ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
                             ui.label(get_localized_text(c['desc'])).classes('text-gray-500 text-sm mt-1 line-clamp-1')
                 if total_count > current_limit:
                     ui.button(f'Load More ({total_count - current_limit} remaining)', on_click=load_more) \
@@ -413,7 +440,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                             ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
                             with ui.row().classes('gap-1'):
                                 for tag in c.get('tags', []):
-                                    ui.chip(tag).props('outline color=primary')
+                                    ui.chip(tag_label(tag)).props('outline color=primary')
                     with ui.column().classes('gap-1'):
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
