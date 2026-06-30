@@ -86,6 +86,9 @@ def tag_search_text(tag):
             values.append(label)
     return ' '.join(values)
 
+def selected_tag_label():
+    return tag_label(state.filter_tag) if state.filter_tag else None
+
 def get_localized_text(data_dict):
     if isinstance(data_dict, dict):
         return data_dict.get(state.lang, data_dict.get('en', ''))
@@ -108,7 +111,7 @@ def get_filter_options():
             for tag in c['tags']:
                 tags.add(tag)
     sorted_tags = sorted(tags, key=lambda tag: tag_label(tag).lower())
-    return sorted(list(regions)), {tag: tag_label(tag) for tag in sorted_tags}
+    return sorted(list(regions)), [tag_label(tag) for tag in sorted_tags]
 
 def normalize_tag_value(value):
     if not value:
@@ -118,7 +121,8 @@ def normalize_tag_value(value):
     if value in tags:
         return value
     for tag in tags:
-        if tag_label(tag) == value:
+        labels = [tag_label(tag, lang) for lang in TRANSLATIONS]
+        if value in labels:
             return tag
     return value
 
@@ -314,7 +318,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 with ui.row().classes('w-full gap-4 mt-2'):
                     ui.select(r_opts, value=state.filter_region, label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
                         .classes('w-48 bg-white')
-                    ui.select(t_opts, value=state.filter_tag, label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
+                    ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
                         .classes('w-48 bg-white')
 
                 with ui.row().classes('w-full justify-between items-center mt-4'):
