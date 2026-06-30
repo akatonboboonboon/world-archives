@@ -455,4 +455,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
 # 初期表示
 # ========================================
 show_screen('top')
-ui.run(title='World Archives', favicon='🌍')
+ui.run(
+    title='World Archives',
+    favicon='🌍',
+    host='0.0.0.0',
+    port=int(os.environ.get('PORT', 8080)),
+)
