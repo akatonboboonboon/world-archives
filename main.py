@@ -10,7 +10,8 @@ import os
 import random
 from datetime import datetime
 
-JSON_FILE = 'data.json'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_FILE = os.path.join(BASE_DIR, 'data.json')
 
 def init_json():
     """
@@ -68,7 +69,8 @@ class AppState:
 state = AppState()
 
 def t(key, subkey=None):
-    val = TRANSLATIONS[state.lang].get(key, key)
+    lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
+    val = lang_data.get(key, key)
     if subkey and isinstance(val, dict):
         return val.get(subkey, subkey)
     return val
