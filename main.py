@@ -75,6 +75,7 @@ class AppState:
     sort_order = 'asc'
     show_favorites_only = False
     lang = 'ja'
+    ui_mode = 'pc'
     search_keyword = ''
     page = 1
     items_per_page = 20
@@ -98,6 +99,10 @@ UI_FALLBACKS = {
         'quiz_capital': '首都または中心地が「{capital}」なのはどれ？',
         'quiz_desc': 'この説明に当てはまるのはどれ？',
         'quiz_flag': 'この旗の国・地域はどれ？',
+        'ui_mobile': 'スマホUI',
+        'ui_pc': 'パソコンUI',
+        'switch_to_mobile': 'スマホUIに切替',
+        'switch_to_pc': 'パソコンUIに切替',
     },
     'en': {
         'sort_asc': 'Ascending',
@@ -114,6 +119,10 @@ UI_FALLBACKS = {
         'quiz_capital': 'Which one has “{capital}” as its capital or main center?',
         'quiz_desc': 'Which entry matches this description?',
         'quiz_flag': 'Which country or historical state uses this flag?',
+        'ui_mobile': 'Mobile UI',
+        'ui_pc': 'Desktop UI',
+        'switch_to_mobile': 'Switch to Mobile UI',
+        'switch_to_pc': 'Switch to Desktop UI',
     },
     'zh': {
         'sort_asc': '升序',
@@ -130,6 +139,10 @@ UI_FALLBACKS = {
         'quiz_capital': '首都或中心地是“{capital}”的是哪一个？',
         'quiz_desc': '以下说明对应哪一个？',
         'quiz_flag': '这面旗帜对应哪个国家或历史国家？',
+        'ui_mobile': '手机界面',
+        'ui_pc': '电脑界面',
+        'switch_to_mobile': '切换到手机界面',
+        'switch_to_pc': '切换到电脑界面',
     },
 }
 
@@ -369,6 +382,34 @@ def switch_language(lang_code):
     if result_screen.visible: refresh_result_view()
     if quiz_screen.visible: refresh_quiz_view()
 
+def is_mobile_ui():
+    return state.ui_mode == 'mobile'
+
+def content_classes(pc_width, pc_padding='p-6', mobile_padding='p-4'):
+    if is_mobile_ui():
+        return f'w-full max-w-md {mobile_padding} gap-4 self-center'
+    return f'w-full {pc_width} {pc_padding} gap-6 self-center'
+
+def refresh_current_screen():
+    if top_screen.visible:
+        refresh_top_ui()
+    if main_screen.visible:
+        refresh_main_ui()
+    if result_screen.visible:
+        refresh_result_view()
+    if quiz_screen.visible:
+        refresh_quiz_view()
+
+def toggle_ui_mode():
+    state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
+    refresh_current_screen()
+
+def ui_mode_tooltip():
+    return t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile')
+
+def ui_mode_icon():
+    return 'desktop_windows' if is_mobile_ui() else 'smartphone'
+
 # ========================================
 # 1. トップ画面
 # ========================================
@@ -415,11 +456,15 @@ def refresh_history_content():
 def render_header(container):
     container.clear()
     with container:
-        with ui.row().classes('w-full h-16 bg-[#1a2332] items-center px-4 justify-between shadow-md'):
-            with ui.row().classes('gap-4 items-center cursor-pointer').on('click', lambda: show_screen('top')):
+        header_classes = 'w-full min-h-16 bg-[#1a2332] items-center px-3 py-2 justify-between shadow-md flex-wrap gap-2' if is_mobile_ui() else 'w-full h-16 bg-[#1a2332] items-center px-4 justify-between shadow-md'
+        title_classes = 'text-white font-bold text-base' if is_mobile_ui() else 'text-white font-bold text-lg'
+        action_classes = 'gap-1 items-center' if is_mobile_ui() else 'gap-3 items-center'
+        with ui.row().classes(header_classes):
+            with ui.row().classes('gap-3 items-center cursor-pointer').on('click', lambda: show_screen('top')):
                 ui.icon('public', color='blue-400').classes('text-2xl')
-                ui.label(t('app_title')).classes('text-white font-bold text-lg')
-            with ui.row().classes('gap-3 items-center'):
+                ui.label(t('app_title')).classes(title_classes)
+            with ui.row().classes(action_classes):
+                ui.button(icon=ui_mode_icon(), on_click=toggle_ui_mode).props('flat round color=white').tooltip(ui_mode_tooltip())
                 with ui.dropdown_button(text=state.lang.upper(), icon='language', auto_close=True).props('flat color=white dense'):
                     ui.item('日本語 (JA)', on_click=lambda: switch_language('ja'))
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
@@ -437,14 +482,17 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
     top_container = ui.column().classes('items-center gap-4')
     def refresh_top_ui():
         top_container.clear()
+        top_container.classes(replace='items-center gap-3 px-6 text-center max-w-sm' if is_mobile_ui() else 'items-center gap-4')
         with top_container:
-            ui.icon('public', size='6rem').classes('text-[#1a2332]')
-            ui.label(t('app_title')).classes('text-5xl font-bold text-[#1a2332]')
-            ui.label(t('subtitle')).classes('text-xl text-gray-500')
+            ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
+            ui.label(t('app_title')).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-5xl font-bold text-[#1a2332]')
+            ui.label(t('subtitle')).classes('text-base text-gray-500' if is_mobile_ui() else 'text-xl text-gray-500')
+            ui.button(t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile'), icon=ui_mode_icon(), on_click=toggle_ui_mode) \
+                .classes('w-full bg-white text-[#1a2332] px-6 py-2 rounded-full shadow border border-gray-200' if is_mobile_ui() else 'bg-white text-[#1a2332] px-8 py-2 rounded-full shadow border border-gray-200')
             ui.button('ENTER', on_click=lambda: show_screen('main')) \
-                .classes('bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
+                .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
             ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
-                .classes('bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
+                .classes('w-full bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition' if is_mobile_ui() else 'bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
                 ui.link('EN', '#').on('click', lambda: switch_language('en'))
@@ -454,7 +502,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
     header_container_main = ui.column().classes('w-full p-0 m-0')
 
-    with ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center'):
+    with ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center') as main_content:
         search_area_container = ui.card().classes('w-full p-6 bg-blue-50 shadow-sm border border-blue-100')
         list_container = ui.column().classes('w-full gap-4')
         hits_label = ui.label()
@@ -495,39 +543,41 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
         def refresh_main_ui():
             render_header(header_container_main)
             r_opts, t_opts = get_filter_options()
+            main_content.classes(replace=content_classes('max-w-5xl'))
+            search_area_container.classes(replace='w-full p-4 bg-blue-50 shadow-sm border border-blue-100' if is_mobile_ui() else 'w-full p-6 bg-blue-50 shadow-sm border border-blue-100')
 
             search_area_container.clear()
             with search_area_container:
                 ui.label(t('search_label')).classes('text-sm font-bold text-blue-800 mb-1')
-                with ui.row().classes('w-full gap-2 items-center'):
+                with ui.row().classes('w-full gap-2 items-stretch flex-wrap' if is_mobile_ui() else 'w-full gap-2 items-center'):
                     ui.input(value=state.search_keyword, on_change=update_keyword) \
                         .props('rounded outlined prepend-inner-icon=search clearable') \
-                        .classes('text-lg flex-grow bg-white shadow-inner') \
+                        .classes('text-base w-full bg-white shadow-inner' if is_mobile_ui() else 'text-lg flex-grow bg-white shadow-inner') \
                         .props(f'placeholder="{t("search_ph")}"')
                     sort_icon = 'arrow_downward' if state.sort_order == 'asc' else 'arrow_upward'
                     sort_bg = 'bg-blue-600'
                     sort_label = t('sort_asc') if state.sort_order == 'asc' else t('sort_desc')
                     ui.button(sort_label, icon=sort_icon, on_click=toggle_sort_order) \
-                        .classes(f'{sort_bg} text-white px-4 py-2 shadow-md') \
+                        .classes(f'{sort_bg} text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else f'{sort_bg} text-white px-4 py-2 shadow-md') \
                         .tooltip(sort_label)
 
                     ui.button(icon='shuffle', on_click=pick_random) \
-                        .classes('bg-purple-500 text-white px-4 py-2 shadow-md')
+                        .classes('bg-purple-500 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-purple-500 text-white px-4 py-2 shadow-md')
 
                     ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
-                        .classes('bg-emerald-600 text-white px-4 py-2 shadow-md')
+                        .classes('bg-emerald-600 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-emerald-600 text-white px-4 py-2 shadow-md')
 
-                with ui.row().classes('w-full gap-4 mt-2'):
+                with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
                     ui.select(r_opts, value=state.filter_region, label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
-                        .classes('w-48 bg-white')
+                        .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
-                        .classes('w-48 bg-white')
+                        .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     fav_color = 'amber' if state.show_favorites_only else 'grey'
                     ui.button(t('favorites_only'), icon='star', on_click=toggle_favorites_filter) \
                         .props(f'color={fav_color}') \
-                        .classes('px-4 py-2 shadow-md')
+                        .classes('w-full px-4 py-2 shadow-md' if is_mobile_ui() else 'px-4 py-2 shadow-md')
 
-                with ui.row().classes('w-full justify-between items-center mt-4'):
+                with ui.row().classes('w-full gap-3 items-stretch mt-4 flex-col' if is_mobile_ui() else 'w-full justify-between items-center mt-4'):
                     with ui.button_group().props('unelevated'):
                         for key in ['All', 'Present', 'Past']:
                             label = t('tabs', key)
@@ -589,21 +639,25 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 
             with list_container:
                 for c in display_list:
-                    with ui.card().classes('w-full p-0 flex flex-row no-wrap items-stretch hover:shadow-md transition cursor-pointer overflow-hidden') as card:
+                    card_classes = 'w-full p-0 flex flex-col hover:shadow-md transition cursor-pointer overflow-hidden' if is_mobile_ui() else 'w-full p-0 flex flex-row no-wrap items-stretch hover:shadow-md transition cursor-pointer overflow-hidden'
+                    with ui.card().classes(card_classes) as card:
                         card.on('click', lambda _, x=c: select_country(x))
-                        with ui.column().classes('w-32 bg-gray-200 justify-center items-center'):
-                            ui.image(get_flag_url(c.get('flag_code'))).classes('w-full object-cover')
-                        with ui.column().classes('p-4 gap-1 flex-grow'):
-                            ui.label(get_localized_text(c['names'])).classes('text-xl font-bold text-gray-800')
-                            with ui.row().classes('gap-1'):
-                                ui.badge(t('tabs', c['type']), color='blue-grey').props('outline dense')
-                                for tag in c.get('tags', [])[:3]:
-                                    ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
-                            ui.label(get_localized_text(c['desc'])).classes('text-gray-500 text-sm mt-1 line-clamp-1')
-                        fav_icon = 'star' if country_key(c) in favorites else 'star_border'
-                        ui.button(icon=fav_icon, on_click=lambda _, x=c: toggle_card_favorite(x)) \
-                            .props('flat round color=amber') \
-                            .classes('self-center mr-3')
+                        image_box_classes = 'w-full h-28 bg-gray-200 justify-center items-center' if is_mobile_ui() else 'w-32 bg-gray-200 justify-center items-center'
+                        image_classes = 'w-full h-full object-cover' if is_mobile_ui() else 'w-full object-cover'
+                        with ui.column().classes(image_box_classes):
+                            ui.image(get_flag_url(c.get('flag_code'))).classes(image_classes)
+                        with ui.row().classes('w-full items-start no-wrap' if is_mobile_ui() else 'flex-grow items-stretch no-wrap'):
+                            with ui.column().classes('p-3 gap-1 flex-grow' if is_mobile_ui() else 'p-4 gap-1 flex-grow'):
+                                ui.label(get_localized_text(c['names'])).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
+                                with ui.row().classes('gap-1 flex-wrap'):
+                                    ui.badge(t('tabs', c['type']), color='blue-grey').props('outline dense')
+                                    for tag in c.get('tags', [])[:3]:
+                                        ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+                                ui.label(get_localized_text(c['desc'])).classes('text-gray-500 text-sm mt-1 line-clamp-2' if is_mobile_ui() else 'text-gray-500 text-sm mt-1 line-clamp-1')
+                            fav_icon = 'star' if country_key(c) in favorites else 'star_border'
+                            ui.button(icon=fav_icon, on_click=lambda _, x=c: toggle_card_favorite(x)) \
+                                .props('flat round color=amber') \
+                                .classes('self-start mt-2 mr-2' if is_mobile_ui() else 'self-center mr-3')
                 if total_count > current_limit:
                     ui.button(f'Load More ({total_count - current_limit} remaining)', on_click=load_more) \
                         .classes('w-full bg-gray-200 text-gray-600 py-2 hover:bg-gray-300 transition')
@@ -622,6 +676,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
 
     def refresh_result_view():
         render_header(header_container_result)
+        result_content.classes(replace=content_classes('max-w-4xl', pc_padding='p-8'))
         result_content.clear()
         c = state.selected_country
         if not c: return
@@ -630,25 +685,28 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
         wiki_url = f"https://ja.wikipedia.org/wiki/{c['names'].get('ja')}"
 
         with result_content:
-            with ui.row().classes('w-full justify-between items-center'):
+            with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
                 ui.button(t('back_search'), icon='arrow_back', on_click=lambda: show_screen('main')) \
-                    .props('flat color=grey dense text-lg')
+                    .props('flat color=grey dense text-lg') \
+                    .classes('w-full' if is_mobile_ui() else '')
                 favorite_label = t('favorite_remove') if is_favorite(c) else t('favorite_add')
                 favorite_icon = 'star' if is_favorite(c) else 'star_border'
                 ui.button(favorite_label, icon=favorite_icon, on_click=lambda: (toggle_favorite(c), refresh_result_view())) \
-                    .props('color=amber')
+                    .props('color=amber') \
+                    .classes('w-full' if is_mobile_ui() else '')
 
             with ui.card().classes('w-full p-0 overflow-hidden'):
-                with ui.row().classes('w-full bg-white p-6 gap-6 items-start'):
-                    ui.image(get_flag_url(c.get('flag_code'))).classes('w-48 shadow-md border rounded')
-                    with ui.column().classes('flex-grow gap-2'):
-                        ui.label(get_localized_text(c['names'])).classes('text-4xl font-bold text-[#1a2332]')
-                        ui.label(c['names'].get('en', '')).classes('text-xl text-gray-400 font-serif italic')
+                with ui.row().classes('w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'w-full bg-white p-6 gap-6 items-start'):
+                    ui.image(get_flag_url(c.get('flag_code'))).classes('w-full shadow-md border rounded' if is_mobile_ui() else 'w-48 shadow-md border rounded')
+                    with ui.column().classes('w-full gap-2' if is_mobile_ui() else 'flex-grow gap-2'):
+                        ui.label(get_localized_text(c['names'])).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-4xl font-bold text-[#1a2332]')
+                        ui.label(c['names'].get('en', '')).classes('text-lg text-gray-400 font-serif italic' if is_mobile_ui() else 'text-xl text-gray-400 font-serif italic')
                         with ui.row().classes('mt-2'):ui.badge(t('tabs', c['type']), color='green' if c['type']=='Present' else 'orange').props('text-lg')
                 ui.separator()
-                with ui.grid(columns=2).classes('w-full p-6 gap-6'):
+                detail_container = ui.column().classes('w-full p-4 gap-5') if is_mobile_ui() else ui.grid(columns=2).classes('w-full p-6 gap-6')
+                with detail_container:
                     with ui.column().classes('gap-4'):
-                        with ui.row().classes('gap-2 w-full'):
+                        with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full'):
                             ui.link('📍 Google Maps', map_link, new_tab=True) \
                                 .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
                             ui.link('📖 Wikipedia', wiki_url, new_tab=True) \
@@ -696,6 +754,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
 
     def refresh_quiz_view():
         render_header(header_container_quiz)
+        quiz_content.classes(replace=content_classes('max-w-3xl', pc_padding='p-8'))
         quiz_content.clear()
         if not state.quiz:
             state.quiz = build_quiz()
@@ -712,16 +771,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
         question, description, image = quiz_view_parts(quiz, answer) if answer else ('', '', None)
 
         with quiz_content:
-            with ui.row().classes('w-full justify-between items-center'):
-                ui.label(t('quiz_title')).classes('text-3xl font-bold text-[#1a2332]')
-                ui.button(t('quiz_next'), icon='refresh', on_click=start_quiz).props('outline color=primary')
+            with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
+                ui.label(t('quiz_title')).classes('text-2xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-3xl font-bold text-[#1a2332]')
+                ui.button(t('quiz_next'), icon='refresh', on_click=start_quiz).props('outline color=primary').classes('w-full' if is_mobile_ui() else '')
 
-            with ui.card().classes('w-full p-6 gap-4'):
-                ui.label(question).classes('text-xl font-bold text-gray-800')
+            with ui.card().classes('w-full p-4 gap-4' if is_mobile_ui() else 'w-full p-6 gap-4'):
+                ui.label(question).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
                 if description:
-                    ui.markdown(description).classes('text-gray-700 text-lg')
+                    ui.markdown(description).classes('text-gray-700 text-base' if is_mobile_ui() else 'text-gray-700 text-lg')
                 if image:
-                    ui.image(image).classes('w-56 shadow-md border rounded')
+                    ui.image(image).classes('w-full shadow-md border rounded' if is_mobile_ui() else 'w-56 shadow-md border rounded')
 
                 with ui.column().classes('w-full gap-2 mt-2'):
                     for option_key in quiz['options']:

@@ -72,7 +72,11 @@
       "quiz_wrong": "不正解です",
       "quiz_capital": "首都または中心地が「{capital}」なのはどれ？",
       "quiz_desc": "この説明に当てはまるのはどれ？",
-      "quiz_flag": "この旗の国・地域はどれ？"
+      "quiz_flag": "この旗の国・地域はどれ？",
+      "ui_mobile": "スマホUI",
+      "ui_pc": "パソコンUI",
+      "switch_to_mobile": "スマホUIに切替",
+      "switch_to_pc": "パソコンUIに切替"
     },
     "en": {
       "app_title": "World Archives",
@@ -146,7 +150,11 @@
       "quiz_wrong": "Not quite",
       "quiz_capital": "Which one has \"{capital}\" as its capital or main center?",
       "quiz_desc": "Which entry matches this description?",
-      "quiz_flag": "Which country or historical state uses this flag?"
+      "quiz_flag": "Which country or historical state uses this flag?",
+      "ui_mobile": "Mobile UI",
+      "ui_pc": "Desktop UI",
+      "switch_to_mobile": "Switch to Mobile UI",
+      "switch_to_pc": "Switch to Desktop UI"
     },
     "zh": {
       "app_title": "World Archives",
@@ -204,7 +212,11 @@
       "quiz_wrong": "回答错误",
       "quiz_capital": "首都或中心地是“{capital}”的是哪一个？",
       "quiz_desc": "以下说明对应哪一个？",
-      "quiz_flag": "这面旗帜对应哪个国家或历史国家？"
+      "quiz_flag": "这面旗帜对应哪个国家或历史国家？",
+      "ui_mobile": "手机界面",
+      "ui_pc": "电脑界面",
+      "switch_to_mobile": "切换到手机界面",
+      "switch_to_pc": "切换到电脑界面"
     }
   },
   "countries": [
