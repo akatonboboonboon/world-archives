@@ -101,8 +101,8 @@ UI_FALLBACKS = {
         'quiz_flag': 'この旗の国・地域はどれ？',
         'ui_mobile': 'スマホUI',
         'ui_pc': 'パソコンUI',
-        'switch_to_mobile': 'スマホUIに切替',
-        'switch_to_pc': 'パソコンUIに切替',
+        'switch_to_mobile': 'スマホ表示に切替',
+        'switch_to_pc': 'パソコン表示に切替',
         'page_unit': 'ページ',
         'first_page': '最初のページ',
         'prev_page': '前のページ',
@@ -507,7 +507,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             ui.label(t('app_title')).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-5xl font-bold text-[#1a2332]')
             ui.label(t('subtitle')).classes('text-base text-gray-500' if is_mobile_ui() else 'text-xl text-gray-500')
             ui.button(t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile'), icon=ui_mode_icon(), on_click=toggle_ui_mode) \
-                .classes('w-full bg-white text-[#1a2332] px-6 py-2 rounded-full shadow border border-gray-200' if is_mobile_ui() else 'bg-white text-[#1a2332] px-8 py-2 rounded-full shadow border border-gray-200')
+                .props('outline color=primary') \
+                .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             ui.button('ENTER', on_click=lambda: show_screen('main')) \
                 .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
             ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
