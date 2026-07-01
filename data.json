@@ -76,7 +76,12 @@
       "ui_mobile": "スマホUI",
       "ui_pc": "パソコンUI",
       "switch_to_mobile": "スマホUIに切替",
-      "switch_to_pc": "パソコンUIに切替"
+      "switch_to_pc": "パソコンUIに切替",
+      "page_unit": "ページ",
+      "first_page": "最初のページ",
+      "prev_page": "前のページ",
+      "next_page": "次のページ",
+      "last_page": "最後のページ"
     },
     "en": {
       "app_title": "World Archives",
@@ -154,7 +159,12 @@
       "ui_mobile": "Mobile UI",
       "ui_pc": "Desktop UI",
       "switch_to_mobile": "Switch to Mobile UI",
-      "switch_to_pc": "Switch to Desktop UI"
+      "switch_to_pc": "Switch to Desktop UI",
+      "page_unit": "pages",
+      "first_page": "First page",
+      "prev_page": "Previous page",
+      "next_page": "Next page",
+      "last_page": "Last page"
     },
     "zh": {
       "app_title": "World Archives",
@@ -216,7 +226,13 @@
       "ui_mobile": "手机界面",
       "ui_pc": "电脑界面",
       "switch_to_mobile": "切换到手机界面",
-      "switch_to_pc": "切换到电脑界面"
+      "switch_to_pc": "切换到电脑界面",
+      "page_unit": "页",
+      "first_page": "第一页",
+      "prev_page": "上一页",
+      "next_page": "下一页",
+      "last_page": "最后一页",
+      "no_result": "未找到符合条件的国家或地区。"
     }
   },
   "countries": [

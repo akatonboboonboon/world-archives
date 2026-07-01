@@ -103,6 +103,12 @@ UI_FALLBACKS = {
         'ui_pc': 'パソコンUI',
         'switch_to_mobile': 'スマホUIに切替',
         'switch_to_pc': 'パソコンUIに切替',
+        'page_unit': 'ページ',
+        'first_page': '最初のページ',
+        'prev_page': '前のページ',
+        'next_page': '次のページ',
+        'last_page': '最後のページ',
+        'no_result': '該当する国・地域は見つかりませんでした。',
     },
     'en': {
         'sort_asc': 'Ascending',
@@ -123,6 +129,12 @@ UI_FALLBACKS = {
         'ui_pc': 'Desktop UI',
         'switch_to_mobile': 'Switch to Mobile UI',
         'switch_to_pc': 'Switch to Desktop UI',
+        'page_unit': 'pages',
+        'first_page': 'First page',
+        'prev_page': 'Previous page',
+        'next_page': 'Next page',
+        'last_page': 'Last page',
+        'no_result': 'No countries found.',
     },
     'zh': {
         'sort_asc': '升序',
@@ -143,6 +155,12 @@ UI_FALLBACKS = {
         'ui_pc': '电脑界面',
         'switch_to_mobile': '切换到手机界面',
         'switch_to_pc': '切换到电脑界面',
+        'page_unit': '页',
+        'first_page': '第一页',
+        'prev_page': '上一页',
+        'next_page': '下一页',
+        'last_page': '最后一页',
+        'no_result': '未找到符合条件的国家或地区。',
     },
 }
 
@@ -537,8 +555,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             toggle_favorite(country)
             refresh_search_list()
 
-        def load_more():
-            state.page += 1
+        def change_page(page):
+            state.page = page
             refresh_search_list()
 
         def refresh_main_ui():
@@ -612,6 +630,26 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             state.page = 1
             refresh_search_list()
 
+        def render_page_button(icon, label_key, target_page, disabled=False):
+            props = 'flat round color=grey disable' if disabled else 'flat round color=primary'
+            button = ui.button(icon=icon, on_click=lambda p=target_page: change_page(p)) \
+                .props(props) \
+                .tooltip(t(label_key))
+            return button
+
+        def render_pagination(total_pages):
+            if total_pages <= 1:
+                return
+            prev_disabled = state.page <= 1
+            next_disabled = state.page >= total_pages
+            with ui.row().classes('w-full justify-center items-center gap-2 mt-3 flex-wrap'):
+                render_page_button('first_page', 'first_page', 1, prev_disabled)
+                render_page_button('chevron_left', 'prev_page', state.page - 1, prev_disabled)
+                ui.label(f'{state.page} / {total_pages} {t("page_unit")}') \
+                    .classes('px-3 py-2 text-gray-700 font-bold')
+                render_page_button('chevron_right', 'next_page', state.page + 1, next_disabled)
+                render_page_button('last_page', 'last_page', total_pages, next_disabled)
+
         def refresh_search_list():
             list_container.clear()
             data = get_data()
@@ -641,12 +679,20 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             )
 
             total_count = len(filtered)
-            current_limit = state.page * state.items_per_page
-            display_list = filtered[:current_limit]
+            total_pages = max(1, (total_count + state.items_per_page - 1) // state.items_per_page)
+            state.page = max(1, min(state.page, total_pages))
+            start_index = (state.page - 1) * state.items_per_page
+            end_index = min(start_index + state.items_per_page, total_count)
+            display_list = filtered[start_index:end_index]
 
-            hits_label.text = f"{min(current_limit, total_count)} / {total_count} {t('hits')}"
+            if total_count:
+                hits_label.text = f"{start_index + 1}-{end_index} / {total_count} {t('hits')} | {state.page} / {total_pages} {t('page_unit')}"
+            else:
+                hits_label.text = f"0 / 0 {t('hits')}"
 
             with list_container:
+                if not display_list:
+                    ui.label(t('no_result')).classes('w-full text-center text-gray-500 py-8')
                 for c in display_list:
                     card_classes = 'w-full p-0 flex flex-col hover:shadow-md transition cursor-pointer overflow-hidden' if is_mobile_ui() else 'w-full p-0 flex flex-row no-wrap items-stretch hover:shadow-md transition cursor-pointer overflow-hidden'
                     with ui.card().classes(card_classes) as card:
@@ -667,9 +713,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                             ui.button(icon=fav_icon, on_click=lambda _, x=c: toggle_card_favorite(x)) \
                                 .props('flat round color=amber') \
                                 .classes('self-start mt-2 mr-2' if is_mobile_ui() else 'self-center mr-3')
-                if total_count > current_limit:
-                    ui.button(f'Load More ({total_count - current_limit} remaining)', on_click=load_more) \
-                        .classes('w-full bg-gray-200 text-gray-600 py-2 hover:bg-gray-300 transition')
+                render_pagination(total_pages)
 
         def select_country(country):
             state.selected_country = country
