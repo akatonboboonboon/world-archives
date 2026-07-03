@@ -5,6 +5,7 @@ NiceGUI SPA テンプレート（API版）
 JSONデータをAPIから取得して表示します。
 """
 from nicegui import ui, app
+import hashlib
 import json
 import os
 import random
@@ -46,7 +47,8 @@ def init_json():
             },
             "countries": [],
             "history": [],
-            "favorites": []
+            "favorites": [],
+            "users": {}
         }
         with open(JSON_FILE, 'w', encoding='utf-8') as f:
             json.dump(default_data, f, ensure_ascii=False, indent=2)
@@ -76,6 +78,7 @@ class AppState:
     show_favorites_only = False
     lang = 'ja'
     ui_mode = 'pc'
+    current_user = None
     search_keyword = ''
     page = 1
     items_per_page = 20
@@ -109,6 +112,19 @@ UI_FALLBACKS = {
         'next_page': '次のページ',
         'last_page': '最後のページ',
         'no_result': '該当する国・地域は見つかりませんでした。',
+        'username': 'ユーザー名',
+        'password': 'パスワード',
+        'login': 'ログイン',
+        'register': '新規登録',
+        'logout': 'ログアウト',
+        'logged_in_as': 'ログイン中: {user}',
+        'login_required': 'ログインすると検索・お気に入り・履歴を使えます。',
+        'auth_missing': 'ユーザー名とパスワードを入力してください。',
+        'auth_invalid': 'ユーザー名またはパスワードが違います。',
+        'user_exists': 'そのユーザー名は既に使われています。',
+        'user_created': 'ユーザーを作成しました。',
+        'login_success': 'ログインしました。',
+        'logout_success': 'ログアウトしました。',
     },
     'en': {
         'sort_asc': 'Ascending',
@@ -135,6 +151,19 @@ UI_FALLBACKS = {
         'next_page': 'Next page',
         'last_page': 'Last page',
         'no_result': 'No countries found.',
+        'username': 'Username',
+        'password': 'Password',
+        'login': 'Log in',
+        'register': 'Register',
+        'logout': 'Log out',
+        'logged_in_as': 'Signed in as: {user}',
+        'login_required': 'Log in to use search, favorites, and history.',
+        'auth_missing': 'Enter a username and password.',
+        'auth_invalid': 'The username or password is incorrect.',
+        'user_exists': 'That username is already taken.',
+        'user_created': 'Account created.',
+        'login_success': 'Logged in.',
+        'logout_success': 'Logged out.',
     },
     'zh': {
         'sort_asc': '升序',
@@ -161,6 +190,19 @@ UI_FALLBACKS = {
         'next_page': '下一页',
         'last_page': '最后一页',
         'no_result': '未找到符合条件的国家或地区。',
+        'username': '用户名',
+        'password': '密码',
+        'login': '登录',
+        'register': '注册',
+        'logout': '退出登录',
+        'logged_in_as': '当前登录: {user}',
+        'login_required': '登录后可以使用搜索、收藏和历史记录。',
+        'auth_missing': '请输入用户名和密码。',
+        'auth_invalid': '用户名或密码不正确。',
+        'user_exists': '该用户名已被使用。',
+        'user_created': '用户已创建。',
+        'login_success': '已登录。',
+        'logout_success': '已退出登录。',
     },
 }
 
@@ -234,16 +276,89 @@ def country_key(country):
         capital.get('en', capital.get('ja', '')),
     ])
 
+def clean_username(username):
+    return (username or '').strip()
+
+def password_hash(username, password):
+    return hashlib.sha256(f'{username}:{password}'.encode('utf-8')).hexdigest()
+
+def get_users(data=None):
+    data = data or get_data()
+    return data.setdefault('users', {})
+
+def get_current_user_record(data=None):
+    if not state.current_user:
+        return None
+    users = get_users(data)
+    return users.get(state.current_user)
+
+def login_user(username, password):
+    username = clean_username(username)
+    if not username or not password:
+        ui.notify(t('auth_missing'), color='warning')
+        return False
+    data = get_data()
+    user = get_users(data).get(username)
+    if not user or user.get('password_hash') != password_hash(username, password):
+        ui.notify(t('auth_invalid'), color='negative')
+        return False
+    user.setdefault('favorites', [])
+    user.setdefault('history', [])
+    save_data(data)
+    state.current_user = username
+    ui.notify(t('login_success'), color='positive')
+    show_screen('top')
+    return True
+
+def register_user(username, password):
+    username = clean_username(username)
+    if not username or not password:
+        ui.notify(t('auth_missing'), color='warning')
+        return False
+    data = get_data()
+    users = get_users(data)
+    if username in users:
+        ui.notify(t('user_exists'), color='warning')
+        return False
+    users[username] = {
+        'password_hash': password_hash(username, password),
+        'favorites': [],
+        'history': [],
+    }
+    save_data(data)
+    state.current_user = username
+    ui.notify(t('user_created'), color='positive')
+    show_screen('top')
+    return True
+
+def logout_user():
+    state.current_user = None
+    state.selected_country = None
+    state.search_keyword = ''
+    state.filter_region = None
+    state.filter_tag = None
+    state.show_favorites_only = False
+    state.page = 1
+    ui.notify(t('logout_success'), color='info')
+    show_screen('top')
+
 def favorite_keys(data=None):
     data = data or get_data()
-    return set(data.setdefault('favorites', []))
+    user = get_current_user_record(data)
+    if not user:
+        return set()
+    return set(user.setdefault('favorites', []))
 
 def is_favorite(country, data=None):
     return country_key(country) in favorite_keys(data)
 
 def toggle_favorite(country):
     data = get_data()
-    favorites = data.setdefault('favorites', [])
+    user = get_current_user_record(data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return
+    favorites = user.setdefault('favorites', [])
     key = country_key(country)
     if key in favorites:
         favorites.remove(key)
@@ -351,6 +466,9 @@ def save_data(data):
 
 def add_history(country_data):
     data = get_data()
+    user = get_current_user_record(data)
+    if not user:
+        return
     name = get_localized_text(country_data['names'])
     new_record = {
         "name": name,
@@ -358,20 +476,27 @@ def add_history(country_data):
         "lang": state.lang,
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
     }
-    data['history'].insert(0, new_record)
+    history = user.setdefault('history', [])
+    history.insert(0, new_record)
+    del history[50:]
     save_data(data)
 
 def clear_history():
     data = get_data()
-    data['history'] = []
+    user = get_current_user_record(data)
+    if user:
+        user['history'] = []
     save_data(data)
 
 # ========================================
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
+    if screen_name in ['main', 'result', 'quiz'] and not state.current_user:
+        ui.notify(t('login_required'), color='warning')
+        screen_name = 'top'
+
     if screen_name == 'top':
-        clear_history()
         state.search_keyword = ''
         state.filter_region = None
         state.filter_tag = None
@@ -458,7 +583,8 @@ def jump_from_history(history_item):
 def refresh_history_content():
     history_content.clear()
     data = get_data()
-    histories = data.get('history', [])
+    user = get_current_user_record(data)
+    histories = user.get('history', []) if user else []
     with history_content:
         with ui.row().classes('w-full justify-between items-center mb-4'):
             ui.label(t('history')).classes('text-xl font-bold text-gray-700')
@@ -488,11 +614,15 @@ def render_header(container):
                     ui.item('日本語 (JA)', on_click=lambda: switch_language('ja'))
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
                     ui.item('中文 (ZH)', on_click=lambda: switch_language('zh'))
+                if state.current_user:
+                    ui.label(state.current_user).classes('text-white text-sm font-bold px-2')
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
                 ui.button(icon='quiz', on_click=start_quiz).props('flat round color=white').tooltip(t('quiz'))
                 ui.button(icon='history', on_click=open_history).props('flat round color=white')
+                if state.current_user:
+                    ui.button(icon='logout', on_click=logout_user).props('flat round color=white').tooltip(t('logout'))
 
 # ========================================
 # 2. メイン画面
@@ -509,10 +639,26 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             ui.button(t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile'), icon=ui_mode_icon(), on_click=toggle_ui_mode) \
                 .props('outline color=primary') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
-            ui.button('ENTER', on_click=lambda: show_screen('main')) \
-                .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
-            ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
-                .classes('w-full bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition' if is_mobile_ui() else 'bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
+            if state.current_user:
+                ui.badge(t('logged_in_as').format(user=state.current_user), color='green').classes('px-3 py-2')
+                ui.button('ENTER', on_click=lambda: show_screen('main')) \
+                    .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
+                ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
+                    .classes('w-full bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition' if is_mobile_ui() else 'bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
+                ui.button(t('logout'), icon='logout', on_click=logout_user) \
+                    .props('outline color=grey') \
+                    .classes('w-full px-6 py-2 rounded-full' if is_mobile_ui() else 'px-8 py-2 rounded-full')
+            else:
+                with ui.card().classes('w-full max-w-sm p-5 gap-3 shadow-md'):
+                    ui.label(t('login_required')).classes('text-sm text-gray-500 text-center')
+                    username_input = ui.input(label=t('username')).props('outlined dense').classes('w-full')
+                    password_input = ui.input(label=t('password')).props('outlined dense type=password').classes('w-full')
+                    with ui.row().classes('w-full gap-2 items-center'):
+                        ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value)) \
+                            .classes('flex-grow bg-[#1a2332] text-white')
+                        ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value)) \
+                            .props('outline color=primary') \
+                            .classes('flex-grow')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
                 ui.link('EN', '#').on('click', lambda: switch_language('en'))

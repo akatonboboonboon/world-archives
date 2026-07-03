@@ -81,7 +81,20 @@
       "first_page": "最初のページ",
       "prev_page": "前のページ",
       "next_page": "次のページ",
-      "last_page": "最後のページ"
+      "last_page": "最後のページ",
+      "username": "ユーザー名",
+      "password": "パスワード",
+      "login": "ログイン",
+      "register": "新規登録",
+      "logout": "ログアウト",
+      "logged_in_as": "ログイン中: {user}",
+      "login_required": "ログインすると検索・お気に入り・履歴を使えます。",
+      "auth_missing": "ユーザー名とパスワードを入力してください。",
+      "auth_invalid": "ユーザー名またはパスワードが違います。",
+      "user_exists": "そのユーザー名は既に使われています。",
+      "user_created": "ユーザーを作成しました。",
+      "login_success": "ログインしました。",
+      "logout_success": "ログアウトしました。"
     },
     "en": {
       "app_title": "World Archives",
@@ -164,7 +177,20 @@
       "first_page": "First page",
       "prev_page": "Previous page",
       "next_page": "Next page",
-      "last_page": "Last page"
+      "last_page": "Last page",
+      "username": "Username",
+      "password": "Password",
+      "login": "Log in",
+      "register": "Register",
+      "logout": "Log out",
+      "logged_in_as": "Signed in as: {user}",
+      "login_required": "Log in to use search, favorites, and history.",
+      "auth_missing": "Enter a username and password.",
+      "auth_invalid": "The username or password is incorrect.",
+      "user_exists": "That username is already taken.",
+      "user_created": "Account created.",
+      "login_success": "Logged in.",
+      "logout_success": "Logged out."
     },
     "zh": {
       "app_title": "World Archives",
@@ -232,7 +258,20 @@
       "prev_page": "上一页",
       "next_page": "下一页",
       "last_page": "最后一页",
-      "no_result": "未找到符合条件的国家或地区。"
+      "no_result": "未找到符合条件的国家或地区。",
+      "username": "用户名",
+      "password": "密码",
+      "login": "登录",
+      "register": "注册",
+      "logout": "退出登录",
+      "logged_in_as": "当前登录: {user}",
+      "login_required": "登录后可以使用搜索、收藏和历史记录。",
+      "auth_missing": "请输入用户名和密码。",
+      "auth_invalid": "用户名或密码不正确。",
+      "user_exists": "该用户名已被使用。",
+      "user_created": "用户已创建。",
+      "login_success": "已登录。",
+      "logout_success": "已退出登录。"
     }
   },
   "countries": [
@@ -7560,5 +7599,6 @@
     }
   ],
   "history": [],
-  "favorites": []
+  "favorites": [],
+  "users": {}
 }
