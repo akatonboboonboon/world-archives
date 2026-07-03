@@ -10,6 +10,7 @@ import json
 import os
 import random
 from datetime import datetime
+from html import escape as html_escape
 from urllib.parse import quote_plus
 
 try:
@@ -1064,7 +1065,22 @@ def country_maps_url(country):
     return f"https://www.google.com/maps/search/{quote_plus(country_map_query(country))}"
 
 def country_map_embed_url(country):
-    return f"https://www.google.com/maps?q={quote_plus(country_map_query(country))}&output=embed"
+    return f"https://maps.google.com/maps?output=embed&q={quote_plus(country_map_query(country))}"
+
+def render_map_embed(country, height=420):
+    embed_url = country_map_embed_url(country)
+    iframe_html = (
+        f'<iframe src="{html_escape(embed_url, quote=True)}" '
+        f'style="width:100%;height:{height}px;border:0;border-radius:8px;" '
+        'loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    )
+    try:
+        ui.html(iframe_html, sanitize=False).classes('w-full')
+    except TypeError:
+        ui.element('iframe') \
+            .props(f'src="{embed_url}" loading=lazy referrerpolicy=no-referrer-when-downgrade') \
+            .classes('w-full') \
+            .style(f'height:{height}px;border:0;border-radius:8px;')
 
 def map_target_note(country):
     target = country_map_target(country)
@@ -1874,11 +1890,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                     ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
                 if map_note_text:
                     ui.label(map_note_text).classes('text-sm text-gray-500')
-                ui.html(
-                    f'<iframe src="{country_map_embed_url(c)}" '
-                    'style="width:100%;height:280px;border:0;border-radius:8px;" '
-                    'loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-                ).classes('w-full')
+                render_map_embed(c, height=280)
 
             with ui.card().classes('w-full p-5 gap-3'):
                 ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
@@ -2240,11 +2252,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as map_screen:
                             ui.label(map_note_text).classes('text-sm text-gray-500')
                     ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=country: open_country_detail(c)) \
                         .props('outline color=primary')
-                ui.html(
-                    f'<iframe src="{country_map_embed_url(country)}" '
-                    'style="width:100%;height:520px;border:0;border-radius:8px;" '
-                    'loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-                ).classes('w-full')
+                render_map_embed(country, height=520)
                 ui.link('Google Maps', country_maps_url(country), new_tab=True).classes('text-green-700 font-bold')
 
 # ========================================
