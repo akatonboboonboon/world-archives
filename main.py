@@ -10,6 +10,7 @@ import json
 import os
 import random
 from datetime import datetime
+from urllib.parse import quote_plus
 
 try:
     import pykakasi
@@ -76,6 +77,13 @@ def merge_user_record(current, incoming):
             notes = current.setdefault('notes', {})
             for note_key, note_value in value.items():
                 notes.setdefault(note_key, note_value)
+        elif key == 'collections' and isinstance(value, dict):
+            collections = current.setdefault('collections', {})
+            for collection_name, collection_keys in value.items():
+                collections[collection_name] = merge_unique_list(
+                    collections.get(collection_name, []),
+                    collection_keys,
+                )
         elif key == 'quiz_stats' and isinstance(value, dict):
             stats = current.setdefault('quiz_stats', {})
             for stat_key, stat_value in value.items():
@@ -83,6 +91,8 @@ def merge_user_record(current, incoming):
                     stats[stat_key] = max(stats.get(stat_key, 0), stat_value)
                 else:
                     stats.setdefault(stat_key, stat_value)
+        elif key in ['viewed_keys', 'quiz_history']:
+            current[key] = merge_unique_list(current.get(key, []), value, 200)
         else:
             current.setdefault(key, value)
     return current
@@ -184,6 +194,9 @@ class AppState:
     quiz_mode = 'normal'
     compare_left_key = None
     compare_right_key = None
+    map_country_key = None
+    network_country_key = None
+    collection_filter = None
     timeline_group = 'period_contemporary'
     timeline_page = 1
     timeline_items_per_page = 20
@@ -250,6 +263,33 @@ UI_FALLBACKS = {
         'difficulty_medium': '中級',
         'difficulty_hard': '上級',
         'quiz_stats': '正解 {correct} / {answered}・連続 {streak}・最高 {best}',
+        'account': 'アカウント',
+        'map': '地図',
+        'map_title': '地図ビュー',
+        'map_note': '過去の国は現在の関連地域を表示します。',
+        'network': '関連ネットワーク',
+        'network_title': '関連国家ネットワーク',
+        'collections': 'コレクション',
+        'collection_name': 'コレクション名',
+        'create_collection': '作成',
+        'add_to_collection': 'コレクションに追加',
+        'remove_from_collection': 'コレクションから外す',
+        'collection_created': 'コレクションを作成しました。',
+        'collection_deleted': 'コレクションを削除しました。',
+        'progress': '学習進捗',
+        'viewed_count': '閲覧済み',
+        'favorite_count': 'お気に入り',
+        'review_count': '復習リスト',
+        'quiz_history': 'クイズ履歴',
+        'weakness': '弱点分析',
+        'no_quiz_history': 'クイズ履歴はまだありません。',
+        'no_collections': 'コレクションはまだありません。',
+        'view_on_map': '地図で見る',
+        'key_figures': '重要人物',
+        'major_events': '主な出来事',
+        'fall_reason': '滅亡・変化の理由',
+        'successors': '後継・関連国家',
+        'cultural_features': '文化的特徴',
     },
     'en': {
         'sort_asc': 'Ascending',
@@ -310,6 +350,33 @@ UI_FALLBACKS = {
         'difficulty_medium': 'Medium',
         'difficulty_hard': 'Hard',
         'quiz_stats': 'Correct {correct} / {answered} - Streak {streak} - Best {best}',
+        'account': 'Account',
+        'map': 'Map',
+        'map_title': 'Map View',
+        'map_note': 'Historical states show a related present-day location.',
+        'network': 'Network',
+        'network_title': 'Related Country Network',
+        'collections': 'Collections',
+        'collection_name': 'Collection name',
+        'create_collection': 'Create',
+        'add_to_collection': 'Add to collection',
+        'remove_from_collection': 'Remove from collection',
+        'collection_created': 'Collection created.',
+        'collection_deleted': 'Collection deleted.',
+        'progress': 'Learning Progress',
+        'viewed_count': 'Viewed',
+        'favorite_count': 'Favorites',
+        'review_count': 'Review list',
+        'quiz_history': 'Quiz History',
+        'weakness': 'Weakness Analysis',
+        'no_quiz_history': 'No quiz history yet.',
+        'no_collections': 'No collections yet.',
+        'view_on_map': 'View on map',
+        'key_figures': 'Key figures',
+        'major_events': 'Major events',
+        'fall_reason': 'Fall or transition',
+        'successors': 'Successor or related states',
+        'cultural_features': 'Cultural features',
     },
     'zh': {
         'sort_asc': '升序',
@@ -370,6 +437,33 @@ UI_FALLBACKS = {
         'difficulty_medium': '中级',
         'difficulty_hard': '高级',
         'quiz_stats': '正确 {correct} / {answered}・连续 {streak}・最高 {best}',
+        'account': '账户',
+        'map': '地图',
+        'map_title': '地图视图',
+        'map_note': '历史国家显示相关的现今地区。',
+        'network': '关联网络',
+        'network_title': '相关国家网络',
+        'collections': '收藏集',
+        'collection_name': '收藏集名称',
+        'create_collection': '创建',
+        'add_to_collection': '加入收藏集',
+        'remove_from_collection': '移出收藏集',
+        'collection_created': '已创建收藏集。',
+        'collection_deleted': '已删除收藏集。',
+        'progress': '学习进度',
+        'viewed_count': '已浏览',
+        'favorite_count': '收藏',
+        'review_count': '复习列表',
+        'quiz_history': '测验记录',
+        'weakness': '薄弱点分析',
+        'no_quiz_history': '还没有测验记录。',
+        'no_collections': '还没有收藏集。',
+        'view_on_map': '在地图中查看',
+        'key_figures': '重要人物',
+        'major_events': '主要事件',
+        'fall_reason': '灭亡或转变原因',
+        'successors': '继承或相关国家',
+        'cultural_features': '文化特征',
     },
 }
 
@@ -497,10 +591,12 @@ def get_current_user_record(user_data=None):
     return user
 
 def ensure_user_defaults(user):
-    user.setdefault('favorites', [])
-    user.setdefault('history', [])
-    user.setdefault('notes', {})
-    user.setdefault('review_keys', [])
+    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history']:
+        if not isinstance(user.get(key), list):
+            user[key] = []
+    for key in ['notes', 'collections']:
+        if not isinstance(user.get(key), dict):
+            user[key] = {}
     user.setdefault('quiz_stats', {
         'answered': 0,
         'correct': 0,
@@ -539,6 +635,9 @@ def guest_login():
         'favorites': [],
         'history': [],
         'notes': {},
+        'viewed_keys': [],
+        'collections': {},
+        'quiz_history': [],
         'review_keys': [],
         'quiz_stats': {
             'answered': 0,
@@ -570,6 +669,9 @@ def register_user(username, password):
         'favorites': [],
         'history': [],
         'notes': {},
+        'viewed_keys': [],
+        'collections': {},
+        'quiz_history': [],
         'review_keys': [],
         'quiz_stats': {
             'answered': 0,
@@ -592,6 +694,7 @@ def logout_user():
     state.filter_tag = None
     state.sort_field = 'name'
     state.show_favorites_only = False
+    state.collection_filter = None
     state.page = 1
     ui.notify(t('logout_success'), color='info')
     show_screen('top')
@@ -653,7 +756,98 @@ def get_review_keys(data=None):
         return []
     return user.setdefault('review_keys', [])
 
-def update_quiz_stats(correct, answer_key=None, review_mode=False):
+def get_collections():
+    user = get_current_user_record()
+    if not user:
+        return {}
+    collections = user.setdefault('collections', {})
+    return collections if isinstance(collections, dict) else {}
+
+def create_collection(name):
+    name = (name or '').strip()
+    if not name:
+        return
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return
+    collections = user.setdefault('collections', {})
+    collections.setdefault(name, [])
+    save_user_data(user_data)
+    ui.notify(t('collection_created'), color='positive')
+
+def delete_collection(name):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        return
+    collections = user.setdefault('collections', {})
+    collections.pop(name, None)
+    if state.collection_filter == name:
+        state.collection_filter = None
+    save_user_data(user_data)
+    ui.notify(t('collection_deleted'), color='info')
+
+def toggle_collection_country(collection_name, country):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return
+    key = country_key(country)
+    collection = user.setdefault('collections', {}).setdefault(collection_name, [])
+    if key in collection:
+        collection.remove(key)
+    else:
+        collection.append(key)
+    save_user_data(user_data)
+
+def collection_contains(collection_name, country):
+    return country_key(country) in get_collections().get(collection_name, [])
+
+def get_quiz_history():
+    user = get_current_user_record()
+    if not user:
+        return []
+    return user.setdefault('quiz_history', [])
+
+def quiz_category_label(question_type):
+    if question_type == 'capital':
+        return t('labels', 'capital')
+    if question_type == 'flag':
+        return t('quiz_flag')
+    if question_type == 'period':
+        return t('period')
+    if question_type == 'desc':
+        return t('labels', 'desc')
+    if question_type and question_type.startswith('profile_'):
+        return t('labels', question_type.replace('profile_', '', 1))
+    if question_type and question_type.startswith('detail_'):
+        return t(question_type.replace('detail_', '', 1))
+    return t('quiz')
+
+def quiz_weakness_rows(limit=6):
+    history = get_quiz_history()
+    data = get_data()
+    lookup = countries_by_key(data)
+    counters = {}
+    for entry in history:
+        if entry.get('correct'):
+            continue
+        answer = lookup.get(entry.get('answer_key'))
+        labels = [quiz_category_label(entry.get('type'))]
+        if answer:
+            labels.extend(tag_label(tag) for tag in answer.get('tags', [])[:2])
+            region = region_label(answer.get('region', ''))
+            if region:
+                labels.append(region)
+        for label in labels:
+            if label:
+                counters[label] = counters.get(label, 0) + 1
+    return sorted(counters.items(), key=lambda item: (-item[1], item[0]))[:limit]
+
+def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=None, question_type=None):
     user_data = load_user_data()
     user = get_current_user_record(user_data)
     if not user:
@@ -674,6 +868,16 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False):
         elif not correct and answer_key not in review:
             review.insert(0, answer_key)
             del review[80:]
+    history = user.setdefault('quiz_history', [])
+    history.insert(0, {
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M"),
+        'answer_key': answer_key,
+        'selected_key': selected_key,
+        'correct': bool(correct),
+        'type': question_type or '',
+        'mode': state.quiz_mode,
+    })
+    del history[200:]
     save_user_data(user_data)
 
 def sort_key(country):
@@ -713,6 +917,8 @@ def period_field_label(country):
     return t('labels', 'period')
 
 PROFILE_FIELDS = ['population', 'area', 'languages', 'religions']
+DETAIL_FIELDS = ['key_figures', 'major_events', 'fall_reason', 'successors', 'cultural_features']
+DETAIL_QUIZ_FIELDS = ['major_events', 'fall_reason', 'cultural_features']
 
 def profile_value(country, field):
     profile = country.get('profile') or {}
@@ -738,6 +944,38 @@ def profile_search_text(country):
         value = profile.get(field)
         if isinstance(value, dict):
             values.extend(str(text) for text in value.values() if text)
+        elif value:
+            values.append(str(value))
+    return ' '.join(values)
+
+def detail_value(country, field):
+    details = country.get('details') or {}
+    value = details.get(field)
+    if isinstance(value, dict):
+        return get_localized_text(value)
+    if isinstance(value, list):
+        return ' / '.join(str(item) for item in value if item)
+    if value is None:
+        return ''
+    return str(value)
+
+def detail_rows(country):
+    rows = []
+    for field in DETAIL_FIELDS:
+        value = detail_value(country, field)
+        if value:
+            rows.append((t(field), value))
+    return rows
+
+def detail_search_text(country):
+    values = []
+    details = country.get('details') or {}
+    for field in DETAIL_FIELDS:
+        value = details.get(field)
+        if isinstance(value, dict):
+            values.extend(str(text) for text in value.values() if text)
+        elif isinstance(value, list):
+            values.extend(str(item) for item in value if item)
         elif value:
             values.append(str(value))
     return ' '.join(values)
@@ -794,6 +1032,53 @@ def country_option_maps(data=None):
         label_to_key[label] = key
         key_to_label[key] = label
     return label_to_key, key_to_label
+
+def country_map_target(country, data=None):
+    data = data or get_data()
+    if country.get('type') == 'Present':
+        return country
+    code = country.get('flag_code')
+    if code and code != 'xx':
+        for candidate in data.get('countries', []):
+            if candidate.get('type') == 'Present' and candidate.get('flag_code') == code:
+                return candidate
+    target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
+    for candidate in data.get('countries', []):
+        if candidate.get('type') != 'Present':
+            continue
+        candidate_regions = {part.strip() for part in candidate.get('region', '').replace('/', ',').split(',') if part.strip()}
+        if target_regions & candidate_regions:
+            return candidate
+    return None
+
+def country_map_query(country, data=None):
+    target = country_map_target(country, data)
+    if target:
+        return target.get('names', {}).get('en') or get_localized_text(target.get('names', {}))
+    capital = get_localized_text(country.get('capital', {}))
+    if capital and capital != '-':
+        return capital
+    return country.get('region') or get_localized_text(country.get('names', {}))
+
+def country_maps_url(country):
+    return f"https://www.google.com/maps/search/{quote_plus(country_map_query(country))}"
+
+def country_map_embed_url(country):
+    return f"https://www.google.com/maps?q={quote_plus(country_map_query(country))}&output=embed"
+
+def map_target_note(country):
+    target = country_map_target(country)
+    if not target or country_key(target) == country_key(country):
+        return ''
+    return f"{t('map_note')} {get_localized_text(target.get('names', {}))}"
+
+def set_map_country(country):
+    state.map_country_key = country_key(country)
+    show_screen('map')
+
+def set_network_country(country):
+    state.network_country_key = country_key(country)
+    show_screen('network')
 
 def open_country_detail(country):
     state.selected_country = country
@@ -893,6 +1178,10 @@ def build_quiz():
         profile_candidates = [c for c in answer_source if profile_value(c, field)]
         if profile_candidates:
             question_pools.append((f'profile_{field}', profile_candidates))
+    for field in DETAIL_QUIZ_FIELDS:
+        detail_candidates = [c for c in answer_source if detail_value(c, field)]
+        if detail_candidates:
+            question_pools.append((f'detail_{field}', detail_candidates))
     if not question_pools:
         return None
 
@@ -928,6 +1217,11 @@ def quiz_view_parts(quiz, answer):
         field = question_type.replace('profile_', '', 1)
         value = profile_value(answer, field)
         question = t('quiz_profile').format(label=t('labels', field), value=value)
+        return question, '', None
+    elif question_type.startswith('detail_'):
+        field = question_type.replace('detail_', '', 1)
+        value = detail_value(answer, field)
+        question = t('quiz_profile').format(label=t(field), value=first_sentence(value))
         return question, '', None
     else:
         question = t('quiz_desc')
@@ -972,13 +1266,18 @@ def add_history(country_data):
     user = get_current_user_record(user_data)
     if not user:
         return
+    key = country_key(country_data)
     name = get_localized_text(country_data['names'])
     new_record = {
+        "key": key,
         "name": name,
         "flag_code": country_data.get('flag_code'),
         "lang": state.lang,
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
     }
+    viewed = user.setdefault('viewed_keys', [])
+    if key not in viewed:
+        viewed.append(key)
     history = user.setdefault('history', [])
     history.insert(0, new_record)
     del history[50:]
@@ -995,7 +1294,8 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    if screen_name in ['main', 'result', 'quiz', 'compare', 'timeline'] and not state.current_user:
+    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account']
+    if screen_name in protected_screens and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
 
@@ -1006,6 +1306,7 @@ def show_screen(screen_name):
         state.sort_field = 'name'
         state.sort_order = 'asc'
         state.show_favorites_only = False
+        state.collection_filter = None
         state.page = 1
         if history_drawer.value:
             history_drawer.hide()
@@ -1017,6 +1318,9 @@ def show_screen(screen_name):
     quiz_screen.set_visibility(screen_name == 'quiz')
     compare_screen.set_visibility(screen_name == 'compare')
     timeline_screen.set_visibility(screen_name == 'timeline')
+    map_screen.set_visibility(screen_name == 'map')
+    network_screen.set_visibility(screen_name == 'network')
+    account_screen.set_visibility(screen_name == 'account')
     if screen_name == 'main':
         refresh_main_ui()
     if screen_name == 'result':
@@ -1027,6 +1331,12 @@ def show_screen(screen_name):
         refresh_compare_view()
     if screen_name == 'timeline':
         refresh_timeline_view()
+    if screen_name == 'map':
+        refresh_map_view()
+    if screen_name == 'network':
+        refresh_network_view()
+    if screen_name == 'account':
+        refresh_account_view()
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -1036,6 +1346,9 @@ def switch_language(lang_code):
     if quiz_screen.visible: refresh_quiz_view()
     if compare_screen.visible: refresh_compare_view()
     if timeline_screen.visible: refresh_timeline_view()
+    if map_screen.visible: refresh_map_view()
+    if network_screen.visible: refresh_network_view()
+    if account_screen.visible: refresh_account_view()
 
 def is_mobile_ui():
     return state.ui_mode == 'mobile'
@@ -1059,6 +1372,12 @@ def refresh_current_screen():
         refresh_compare_view()
     if timeline_screen.visible:
         refresh_timeline_view()
+    if map_screen.visible:
+        refresh_map_view()
+    if network_screen.visible:
+        refresh_network_view()
+    if account_screen.visible:
+        refresh_account_view()
 
 def toggle_ui_mode():
     state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
@@ -1077,11 +1396,19 @@ with ui.right_drawer(value=False).classes('bg-gray-100') as history_drawer:
     history_content = ui.column().classes('w-full p-4')
 
 def jump_from_history(history_item):
+    data = get_data()
+    hist_key = history_item.get('key')
+    if hist_key:
+        target_country = countries_by_key(data).get(hist_key)
+        if target_country:
+            state.selected_country = target_country
+            history_drawer.hide()
+            show_screen('result')
+            return
     code = history_item.get('flag_code')
     hist_name = history_item.get('name')
     if not code: return
 
-    data = get_data()
     candidates = [c for c in data['countries'] if c.get('flag_code') == code]
     target_country = None
     for c in candidates:
@@ -1135,8 +1462,11 @@ def render_header(container):
                     refresh_history_content()
                     history_drawer.toggle()
                 ui.button(icon='quiz', on_click=lambda: start_quiz('normal')).props('flat round color=white').tooltip(t('quiz'))
+                ui.button(icon='map', on_click=lambda: show_screen('map')).props('flat round color=white').tooltip(t('map'))
+                ui.button(icon='account_tree', on_click=lambda: show_screen('network')).props('flat round color=white').tooltip(t('network'))
                 ui.button(icon='compare_arrows', on_click=lambda: show_screen('compare')).props('flat round color=white').tooltip(t('compare'))
                 ui.button(icon='timeline', on_click=lambda: show_screen('timeline')).props('flat round color=white').tooltip(t('timeline'))
+                ui.button(icon='account_circle', on_click=lambda: show_screen('account')).props('flat round color=white').tooltip(t('account'))
                 ui.button(icon='history', on_click=open_history).props('flat round color=white')
                 if state.current_user:
                     ui.button(icon='logout', on_click=logout_user).props('flat round color=white').tooltip(t('logout'))
@@ -1178,10 +1508,19 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                     .props('outline color=primary') \
                     .classes('w-full px-8 py-2 rounded-full shadow-sm' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm')
                 with ui.row().classes('w-full gap-2 justify-center flex-wrap'):
+                    ui.button(t('map'), icon='map', on_click=lambda: show_screen('map')) \
+                        .props('outline color=primary') \
+                        .classes('flex-grow' if is_mobile_ui() else 'px-6')
+                    ui.button(t('network'), icon='account_tree', on_click=lambda: show_screen('network')) \
+                        .props('outline color=primary') \
+                        .classes('flex-grow' if is_mobile_ui() else 'px-6')
                     ui.button(t('compare'), icon='compare_arrows', on_click=lambda: show_screen('compare')) \
                         .props('outline color=primary') \
                         .classes('flex-grow' if is_mobile_ui() else 'px-6')
                     ui.button(t('timeline'), icon='timeline', on_click=lambda: show_screen('timeline')) \
+                        .props('outline color=primary') \
+                        .classes('flex-grow' if is_mobile_ui() else 'px-6')
+                    ui.button(t('account'), icon='account_circle', on_click=lambda: show_screen('account')) \
                         .props('outline color=primary') \
                         .classes('flex-grow' if is_mobile_ui() else 'px-6')
                 ui.button(t('logout'), icon='logout', on_click=logout_user) \
@@ -1245,6 +1584,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             state.page = 1
             refresh_main_ui()
 
+        def set_collection_filter(value):
+            state.collection_filter = value
+            state.page = 1
+            refresh_search_list()
+
         def toggle_card_favorite(country):
             toggle_favorite(country)
             refresh_search_list()
@@ -1302,6 +1646,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     ui.button(t('favorites_only'), icon='star', on_click=toggle_favorites_filter) \
                         .props(f'color={fav_color}') \
                         .classes('w-full px-4 py-2 shadow-md' if is_mobile_ui() else 'px-4 py-2 shadow-md')
+                    collection_names = list(get_collections().keys())
+                    if collection_names:
+                        ui.select(collection_names, value=state.collection_filter, label=t('collections'), on_change=lambda e: set_collection_filter(e.value), clearable=True) \
+                            .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
 
                 with ui.row().classes('w-full gap-3 items-stretch mt-4 flex-col' if is_mobile_ui() else 'w-full justify-between items-center mt-4'):
                     with ui.button_group().props('unelevated'):
@@ -1353,6 +1701,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             list_container.clear()
             data = get_data()
             favorites = favorite_keys(data)
+            selected_collection = set(get_collections().get(state.collection_filter, [])) if state.collection_filter else set()
             keyword = state.search_keyword.lower() if state.search_keyword else ""
             countries = data.get('countries', [])
             filtered = []
@@ -1365,6 +1714,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     continue
                 if state.show_favorites_only and country_key(c) not in favorites:
                     continue
+                if state.collection_filter and country_key(c) not in selected_collection:
+                    continue
 
                 name_local = get_localized_text(c['names'])
                 desc_local = get_localized_text(c['desc'])
@@ -1376,8 +1727,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     str(period.get('end') or ''),
                 ])
                 profile_text = profile_search_text(c)
+                detail_text = detail_search_text(c)
                 region_text = region_search_text(c.get('region', ''))
-                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text} {region_text}".lower()
+                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text} {detail_text} {region_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
             if state.sort_field == 'period':
@@ -1450,10 +1802,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
         result_content.clear()
         c = state.selected_country
         if not c: return
-        name_en = c['names'].get('en', c['names'].get('ja'))
-        map_link = f"https://www.google.com/maps/search/{name_en}"
+        map_link = country_maps_url(c)
         wiki_url = f"https://ja.wikipedia.org/wiki/{c['names'].get('ja')}"
         detail_period = period_label(c)
+        map_note_text = map_target_note(c)
 
         with result_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
@@ -1478,6 +1830,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                 with detail_container:
                     with ui.column().classes('gap-4'):
                         with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full'):
+                            ui.button(t('view_on_map'), icon='map', on_click=lambda country=c: set_map_country(country)) \
+                                .props('color=primary') \
+                                .classes('flex-grow')
+                            ui.button(t('network'), icon='account_tree', on_click=lambda country=c: set_network_country(country)) \
+                                .props('outline color=primary') \
+                                .classes('flex-grow')
                             ui.link('📍 Google Maps', map_link, new_tab=True) \
                                 .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
                             ui.link('📖 Wikipedia', wiki_url, new_tab=True) \
@@ -1505,6 +1863,22 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                     with ui.column().classes('gap-1'):
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
+                        for label, value in detail_rows(c):
+                            ui.separator().classes('my-2')
+                            ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                            ui.markdown(value).classes('text-gray-800 leading-relaxed')
+
+            with ui.card().classes('w-full p-5 gap-3'):
+                with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
+                    ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
+                    ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
+                if map_note_text:
+                    ui.label(map_note_text).classes('text-sm text-gray-500')
+                ui.html(
+                    f'<iframe src="{country_map_embed_url(c)}" '
+                    'style="width:100%;height:280px;border:0;border-radius:8px;" '
+                    'loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+                ).classes('w-full')
 
             with ui.card().classes('w-full p-5 gap-3'):
                 ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
@@ -1514,6 +1888,25 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                 ui.button(t('save_note'), icon='save', on_click=lambda country=c, field=note_input: save_note_for_country(country, field.value)) \
                     .props('color=primary') \
                     .classes('self-start')
+
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('collections')).classes('text-lg font-bold text-[#1a2332]')
+                collections = get_collections()
+                if collections:
+                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                        for collection_name in collections:
+                            selected = collection_contains(collection_name, c)
+                            icon = 'check_circle' if selected else 'add_circle'
+                            color = 'green' if selected else 'primary'
+                            ui.button(collection_name, icon=icon, on_click=lambda _, name=collection_name, country=c: (toggle_collection_country(name, country), refresh_result_view())) \
+                                .props(f'outline color={color} dense')
+                else:
+                    ui.label(t('no_collections')).classes('text-sm text-gray-500')
+                with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
+                    collection_input = ui.input(label=t('collection_name')).props('outlined dense').classes('w-full' if is_mobile_ui() else 'flex-grow')
+                    ui.button(t('create_collection'), icon='create_new_folder', on_click=lambda field=collection_input: (create_collection(field.value), refresh_result_view())) \
+                        .props('color=primary') \
+                        .classes('w-full' if is_mobile_ui() else '')
 
             related = related_countries(c)
             if related:
@@ -1547,6 +1940,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
             option_key == state.quiz.get('answer_key'),
             state.quiz.get('answer_key'),
             state.quiz_mode == 'review',
+            option_key,
+            state.quiz.get('type'),
         )
         refresh_quiz_view()
 
@@ -1803,6 +2198,205 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
                         .classes('px-3 py-2 text-gray-700 font-bold')
                     render_timeline_page_button('chevron_right', 'next_page', state.timeline_page + 1, next_disabled)
                     render_timeline_page_button('last_page', 'last_page', total_pages, next_disabled)
+
+# ========================================
+# 7. 地図ビュー
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as map_screen:
+    header_container_map = ui.column().classes('w-full p-0 m-0')
+    map_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def set_map_country_by_label(label):
+        label_to_key, _ = country_option_maps()
+        state.map_country_key = label_to_key.get(label)
+        refresh_map_view()
+
+    def refresh_map_view():
+        render_header(header_container_map)
+        update_mode_classes(
+            map_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        map_content.clear()
+        data = get_data()
+        lookup = countries_by_key(data)
+        label_to_key, key_to_label = country_option_maps(data)
+        if not lookup:
+            return
+        if not state.map_country_key or state.map_country_key not in lookup:
+            state.map_country_key = country_key(state.selected_country) if state.selected_country else next(iter(lookup.keys()))
+        country = lookup[state.map_country_key]
+        map_note_text = map_target_note(country)
+        with map_content:
+            ui.label(t('map_title')).classes('text-3xl font-bold text-[#1a2332]')
+            ui.select(list(label_to_key.keys()), value=key_to_label.get(state.map_country_key), label=t('map'), on_change=lambda e: set_map_country_by_label(e.value)) \
+                .classes('w-full bg-white')
+            with ui.card().classes('w-full p-5 gap-4'):
+                with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
+                    with ui.column().classes('gap-1'):
+                        ui.label(get_localized_text(country['names'])).classes('text-2xl font-bold text-[#1a2332]')
+                        if map_note_text:
+                            ui.label(map_note_text).classes('text-sm text-gray-500')
+                    ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=country: open_country_detail(c)) \
+                        .props('outline color=primary')
+                ui.html(
+                    f'<iframe src="{country_map_embed_url(country)}" '
+                    'style="width:100%;height:520px;border:0;border-radius:8px;" '
+                    'loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+                ).classes('w-full')
+                ui.link('Google Maps', country_maps_url(country), new_tab=True).classes('text-green-700 font-bold')
+
+# ========================================
+# 8. 関連国家ネットワーク
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_screen:
+    header_container_network = ui.column().classes('w-full p-0 m-0')
+    network_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def set_network_country_by_label(label):
+        label_to_key, _ = country_option_maps()
+        state.network_country_key = label_to_key.get(label)
+        refresh_network_view()
+
+    def render_network_country_card(country, central=False):
+        card_class = 'w-full p-5 border-2 border-blue-500 bg-blue-50' if central else 'w-full p-4 cursor-pointer hover:shadow-md transition'
+        with ui.card().classes(card_class) as card:
+            if not central:
+                card.on('click', lambda _, c=country: set_network_country(c))
+            with ui.row().classes('items-center gap-3 no-wrap'):
+                ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
+                with ui.column().classes('gap-1 flex-grow'):
+                    ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-[#1a2332]')
+                    ui.label(region_label(country.get('region', ''))).classes('text-sm text-gray-500')
+                    period_text = period_label(country)
+                    if period_text:
+                        ui.label(period_text).classes('text-xs font-bold text-orange-700')
+                    with ui.row().classes('gap-1 flex-wrap'):
+                        for tag in country.get('tags', [])[:3]:
+                            ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+
+    def refresh_network_view():
+        render_header(header_container_network)
+        update_mode_classes(
+            network_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        network_content.clear()
+        data = get_data()
+        lookup = countries_by_key(data)
+        label_to_key, key_to_label = country_option_maps(data)
+        if not lookup:
+            return
+        if not state.network_country_key or state.network_country_key not in lookup:
+            state.network_country_key = country_key(state.selected_country) if state.selected_country else next(iter(lookup.keys()))
+        country = lookup[state.network_country_key]
+        related = related_countries(country, limit=10)
+        with network_content:
+            ui.label(t('network_title')).classes('text-3xl font-bold text-[#1a2332]')
+            ui.select(list(label_to_key.keys()), value=key_to_label.get(state.network_country_key), label=t('network'), on_change=lambda e: set_network_country_by_label(e.value)) \
+                .classes('w-full bg-white')
+            render_network_country_card(country, central=True)
+            with ui.row().classes('w-full justify-center'):
+                ui.icon('south', size='2rem').classes('text-blue-400')
+            if not related:
+                ui.label(t('no_result')).classes('w-full text-center text-gray-500 py-8')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                for related_country in related:
+                    render_network_country_card(related_country)
+            ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=country: open_country_detail(c)) \
+                .props('color=primary') \
+                .classes('self-start')
+
+# ========================================
+# 9. アカウントページ
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_screen:
+    header_container_account = ui.column().classes('w-full p-0 m-0')
+    account_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def render_stat_card(label, value, detail=''):
+        with ui.card().classes('w-full p-4 gap-1'):
+            ui.label(label).classes('text-sm font-bold text-gray-500')
+            ui.label(value).classes('text-3xl font-bold text-[#1a2332]')
+            if detail:
+                ui.label(detail).classes('text-xs text-gray-500')
+
+    def refresh_account_view():
+        render_header(header_container_account)
+        update_mode_classes(
+            account_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        account_content.clear()
+        user = get_current_user_record()
+        data = get_data()
+        lookup = countries_by_key(data)
+        total = len(lookup)
+        if not user:
+            return
+        favorites = user.setdefault('favorites', [])
+        viewed = user.setdefault('viewed_keys', [])
+        review = user.setdefault('review_keys', [])
+        collections = user.setdefault('collections', {})
+        stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
+        with account_content:
+            ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
+            ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+            with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-4'):
+                render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
+                render_stat_card(t('favorite_count'), str(len(favorites)))
+                render_stat_card(t('review_count'), str(len(review)))
+                render_stat_card(t('quiz'), f"{stats.get('correct', 0)} / {stats.get('answered', 0)}", f"{t('quiz_stats').format(correct=stats.get('correct', 0), answered=stats.get('answered', 0), streak=stats.get('streak', 0), best=stats.get('best_streak', 0))}")
+
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('collections')).classes('text-xl font-bold text-[#1a2332]')
+                with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
+                    collection_input = ui.input(label=t('collection_name')).props('outlined dense').classes('w-full' if is_mobile_ui() else 'flex-grow')
+                    ui.button(t('create_collection'), icon='create_new_folder', on_click=lambda field=collection_input: (create_collection(field.value), refresh_account_view())) \
+                        .props('color=primary') \
+                        .classes('w-full' if is_mobile_ui() else '')
+                if not collections:
+                    ui.label(t('no_collections')).classes('text-gray-500')
+                for name, keys in collections.items():
+                    with ui.row().classes('w-full items-center justify-between gap-2 flex-wrap border-t pt-3'):
+                        ui.button(f'{name} ({len(keys)})', icon='folder', on_click=lambda _, collection=name: (setattr(state, "collection_filter", collection), show_screen('main'))) \
+                            .props('flat color=primary')
+                        ui.button(icon='delete', on_click=lambda _, collection=name: (delete_collection(collection), refresh_account_view())) \
+                            .props('flat round color=red')
+                    preview = [lookup[key] for key in keys[:4] if key in lookup]
+                    if preview:
+                        with ui.row().classes('w-full gap-2 flex-wrap'):
+                            for country in preview:
+                                ui.chip(get_localized_text(country['names'])).props('dense outline color=primary')
+
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                with ui.card().classes('w-full p-5 gap-3'):
+                    ui.label(t('weakness')).classes('text-xl font-bold text-[#1a2332]')
+                    weakness = quiz_weakness_rows()
+                    if not weakness:
+                        ui.label(t('no_quiz_history')).classes('text-gray-500')
+                    for label, count in weakness:
+                        with ui.row().classes('w-full justify-between items-center border-b py-2'):
+                            ui.label(label).classes('font-bold text-gray-700')
+                            ui.badge(str(count), color='red')
+                with ui.card().classes('w-full p-5 gap-3'):
+                    ui.label(t('quiz_history')).classes('text-xl font-bold text-[#1a2332]')
+                    history = get_quiz_history()[:10]
+                    if not history:
+                        ui.label(t('no_quiz_history')).classes('text-gray-500')
+                    for entry in history:
+                        answer = lookup.get(entry.get('answer_key'))
+                        selected = lookup.get(entry.get('selected_key'))
+                        result_color = 'green' if entry.get('correct') else 'red'
+                        with ui.row().classes('w-full gap-2 items-center border-b py-2 no-wrap'):
+                            ui.badge('OK' if entry.get('correct') else 'NG', color=result_color)
+                            with ui.column().classes('gap-0 flex-grow'):
+                                ui.label(get_localized_text(answer['names']) if answer else '-').classes('font-bold text-gray-800')
+                                selected_text = get_localized_text(selected['names']) if selected else '-'
+                                ui.label(f"{quiz_category_label(entry.get('type'))} / {selected_text} / {entry.get('timestamp', '')}").classes('text-xs text-gray-500')
 
 # ========================================
 # 初期表示
