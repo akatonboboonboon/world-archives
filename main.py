@@ -74,6 +74,7 @@ class AppState:
     filter_type = 'All'
     filter_region = None
     filter_tag = None
+    sort_field = 'name'
     sort_order = 'asc'
     show_favorites_only = False
     lang = 'ja'
@@ -88,6 +89,7 @@ class AppState:
     compare_right_key = None
 
 state = AppState()
+GUEST_USERNAME = '__guest__'
 
 UI_FALLBACKS = {
     'ja': {
@@ -373,6 +375,11 @@ def ensure_user_defaults(user):
     })
     return user
 
+def current_user_label():
+    if state.current_user == GUEST_USERNAME:
+        return t('guest_user')
+    return state.current_user or ''
+
 def login_user(username, password):
     username = clean_username(username)
     if not username or not password:
@@ -390,6 +397,29 @@ def login_user(username, password):
     show_screen('top')
     return True
 
+def guest_login():
+    data = get_data()
+    users = get_users(data)
+    guest = users.setdefault(GUEST_USERNAME, {
+        'password_hash': '',
+        'favorites': [],
+        'history': [],
+        'notes': {},
+        'quiz_stats': {
+            'answered': 0,
+            'correct': 0,
+            'streak': 0,
+            'best_streak': 0,
+        },
+    })
+    guest['is_guest'] = True
+    ensure_user_defaults(guest)
+    save_data(data)
+    state.current_user = GUEST_USERNAME
+    ui.notify(t('guest_login_success'), color='positive')
+    show_screen('top')
+    return True
+
 def register_user(username, password):
     username = clean_username(username)
     if not username or not password:
@@ -397,7 +427,7 @@ def register_user(username, password):
         return False
     data = get_data()
     users = get_users(data)
-    if username in users:
+    if username == GUEST_USERNAME or username in users:
         ui.notify(t('user_exists'), color='warning')
         return False
     users[username] = {
@@ -424,6 +454,7 @@ def logout_user():
     state.search_keyword = ''
     state.filter_region = None
     state.filter_tag = None
+    state.sort_field = 'name'
     state.show_favorites_only = False
     state.page = 1
     ui.notify(t('logout_success'), color='info')
@@ -511,6 +542,41 @@ def sort_key(country):
         except Exception:
             pass
     return name.casefold()
+
+def period_start(country):
+    start = (country.get('period') or {}).get('start')
+    return start if isinstance(start, int) else None
+
+def period_end(country):
+    end = (country.get('period') or {}).get('end')
+    return end if isinstance(end, int) else period_start(country)
+
+def period_label(country):
+    period = country.get('period') or {}
+    label = period.get('label')
+    if isinstance(label, dict):
+        return get_localized_text(label)
+    if label:
+        return str(label)
+    return ''
+
+def country_list_sort_key(country):
+    if state.sort_field == 'period':
+        start = period_start(country)
+        end = period_end(country)
+        if start is None:
+            return (1, 0, sort_key(country), country.get('names', {}).get('en', ''))
+        start_value = -start if state.sort_order == 'desc' else start
+        end_value = -end if state.sort_order == 'desc' and end is not None else end
+        return (0, start_value, end_value or 0, sort_key(country), country.get('names', {}).get('en', ''))
+    return (sort_key(country), country.get('names', {}).get('en', ''))
+
+def timeline_sort_key(country):
+    start = period_start(country)
+    end = period_end(country)
+    if start is None:
+        return (1, sort_key(country), country.get('names', {}).get('en', ''))
+    return (0, start, end or start, sort_key(country), country.get('names', {}).get('en', ''))
 
 def first_sentence(text):
     text = (text or '').strip()
@@ -704,6 +770,7 @@ def show_screen(screen_name):
         state.search_keyword = ''
         state.filter_region = None
         state.filter_tag = None
+        state.sort_field = 'name'
         state.sort_order = 'asc'
         state.show_favorites_only = False
         state.page = 1
@@ -831,7 +898,7 @@ def render_header(container):
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
                     ui.item('中文 (ZH)', on_click=lambda: switch_language('zh'))
                 if state.current_user:
-                    ui.label(state.current_user).classes('text-white text-sm font-bold px-2')
+                    ui.label(current_user_label()).classes('text-white text-sm font-bold px-2')
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
@@ -858,7 +925,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .props('outline color=primary') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
-                ui.badge(t('logged_in_as').format(user=state.current_user), color='green').classes('px-3 py-2')
+                ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
                 daily = today_country()
                 if daily:
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
@@ -896,6 +963,9 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                         ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value)) \
                             .props('outline color=primary') \
                             .classes('flex-grow')
+                    ui.button(t('guest_login'), icon='person', on_click=guest_login) \
+                        .props('outline color=grey') \
+                        .classes('w-full')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
                 ui.link('EN', '#').on('click', lambda: switch_language('en'))
@@ -927,6 +997,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 
         def toggle_sort_order():
             state.sort_order = 'desc' if state.sort_order == 'asc' else 'asc'
+            state.page = 1
+            refresh_main_ui()
+
+        def toggle_sort_field():
+            state.sort_field = 'period' if state.sort_field == 'name' else 'name'
             state.page = 1
             refresh_main_ui()
 
@@ -965,6 +1040,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                         .props('rounded outlined prepend-inner-icon=search clearable') \
                         .classes('text-base w-full bg-white shadow-inner' if is_mobile_ui() else 'text-lg flex-grow bg-white shadow-inner') \
                         .props(f'placeholder="{t("search_ph")}"')
+                    sort_field_icon = 'event' if state.sort_field == 'period' else 'sort_by_alpha'
+                    sort_field_label = t('sort_period') if state.sort_field == 'period' else t('sort_name')
+                    ui.button(sort_field_label, icon=sort_field_icon, on_click=toggle_sort_field) \
+                        .classes('bg-sky-700 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-sky-700 text-white px-4 py-2 shadow-md') \
+                        .tooltip(sort_field_label)
                     sort_icon = 'arrow_downward' if state.sort_order == 'asc' else 'arrow_upward'
                     sort_bg = 'bg-blue-600'
                     sort_label = t('sort_asc') if state.sort_order == 'asc' else t('sort_desc')
@@ -1054,13 +1134,22 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 name_local = get_localized_text(c['names'])
                 desc_local = get_localized_text(c['desc'])
                 tag_text = ' '.join(tag_search_text(tag) for tag in c.get('tags', []))
-                search_target = f"{name_local} {desc_local} {tag_text}".lower()
+                period = c.get('period') or {}
+                period_text = ' '.join([
+                    period_label(c),
+                    str(period.get('start', '')),
+                    str(period.get('end', '')),
+                ])
+                search_target = f"{name_local} {desc_local} {tag_text} {period_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
-            filtered.sort(
-                key=lambda x: (sort_key(x), x['names'].get('en', '')),
-                reverse=state.sort_order == 'desc',
-            )
+            if state.sort_field == 'period':
+                filtered.sort(key=country_list_sort_key)
+            else:
+                filtered.sort(
+                    key=country_list_sort_key,
+                    reverse=state.sort_order == 'desc',
+                )
 
             total_count = len(filtered)
             total_pages = max(1, (total_count + state.items_per_page - 1) // state.items_per_page)
@@ -1092,6 +1181,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                                     ui.badge(t('tabs', c['type']), color='blue-grey').props('outline dense')
                                     for tag in c.get('tags', [])[:3]:
                                         ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+                                card_period = period_label(c)
+                                if card_period:
+                                    ui.label(card_period).classes('text-xs font-bold text-orange-700')
                                 ui.label(get_localized_text(c['desc'])).classes('text-gray-500 text-sm mt-1 line-clamp-2' if is_mobile_ui() else 'text-gray-500 text-sm mt-1 line-clamp-1')
                             fav_icon = 'star' if country_key(c) in favorites else 'star_border'
                             ui.button(icon=fav_icon, on_click=lambda _, x=c: toggle_card_favorite(x)) \
@@ -1124,6 +1216,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
         name_en = c['names'].get('en', c['names'].get('ja'))
         map_link = f"https://www.google.com/maps/search/{name_en}"
         wiki_url = f"https://ja.wikipedia.org/wiki/{c['names'].get('ja')}"
+        detail_period = period_label(c)
 
         with result_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
@@ -1156,6 +1249,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'capital')).classes('text-xs font-bold text-gray-400 uppercase')
                             ui.label(get_localized_text(c.get('capital', '-'))).classes('text-lg')
+                        if detail_period:
+                            with ui.column().classes('gap-1'):
+                                ui.label(t('labels', 'period')).classes('text-xs font-bold text-gray-400 uppercase')
+                                ui.label(detail_period).classes('text-lg font-bold text-orange-700')
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
                             ui.label(c.get('region', '-')).classes('text-lg')
@@ -1319,9 +1416,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             ui.separator()
             rows = [
                 (t('labels', 'capital'), get_localized_text(country.get('capital', '-'))),
+            ]
+            compare_period = period_label(country)
+            if compare_period:
+                rows.append((t('labels', 'period'), compare_period))
+            rows.extend([
                 (t('labels', 'region'), country.get('region', '-')),
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
-            ]
+            ])
             for label, value in rows:
                 ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
                 ui.label(value).classes('text-base text-gray-800')
@@ -1383,7 +1485,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
         for country in past_countries:
             grouped[timeline_period(country)].append(country)
         for countries in grouped.values():
-            countries.sort(key=lambda country: (sort_key(country), country.get('names', {}).get('en', '')))
+            countries.sort(key=timeline_sort_key)
 
         with timeline_content:
             ui.label(t('timeline_title')).classes('text-3xl font-bold text-[#1a2332]')
@@ -1400,6 +1502,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
                                 ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
                                 with ui.column().classes('gap-1 flex-grow'):
                                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-gray-800')
+                                    timeline_period_text = period_label(country)
+                                    if timeline_period_text:
+                                        ui.label(timeline_period_text).classes('text-xs font-bold text-orange-700')
                                     ui.label(country.get('region', '')).classes('text-sm text-gray-500')
                                     ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-600 line-clamp-2')
 
