@@ -85,6 +85,7 @@ class AppState:
     items_per_page = 20
     quiz = None
     quiz_difficulty = 'medium'
+    quiz_mode = 'normal'
     compare_left_key = None
     compare_right_key = None
     timeline_group = 'period_contemporary'
@@ -370,6 +371,7 @@ def ensure_user_defaults(user):
     user.setdefault('favorites', [])
     user.setdefault('history', [])
     user.setdefault('notes', {})
+    user.setdefault('review_keys', [])
     user.setdefault('quiz_stats', {
         'answered': 0,
         'correct': 0,
@@ -408,6 +410,7 @@ def guest_login():
         'favorites': [],
         'history': [],
         'notes': {},
+        'review_keys': [],
         'quiz_stats': {
             'answered': 0,
             'correct': 0,
@@ -438,6 +441,7 @@ def register_user(username, password):
         'favorites': [],
         'history': [],
         'notes': {},
+        'review_keys': [],
         'quiz_stats': {
             'answered': 0,
             'correct': 0,
@@ -517,7 +521,14 @@ def get_quiz_stats(data=None):
         return {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0}
     return user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
 
-def update_quiz_stats(correct):
+def get_review_keys(data=None):
+    data = data or get_data()
+    user = get_current_user_record(data)
+    if not user:
+        return []
+    return user.setdefault('review_keys', [])
+
+def update_quiz_stats(correct, answer_key=None, review_mode=False):
     data = get_data()
     user = get_current_user_record(data)
     if not user:
@@ -530,6 +541,14 @@ def update_quiz_stats(correct):
     else:
         stats['streak'] = 0
     stats['best_streak'] = max(stats.get('best_streak', 0), stats.get('streak', 0))
+    if answer_key:
+        review = user.setdefault('review_keys', [])
+        if correct and review_mode:
+            if answer_key in review:
+                review.remove(answer_key)
+        elif not correct and answer_key not in review:
+            review.insert(0, answer_key)
+            del review[80:]
     save_data(data)
 
 def sort_key(country):
@@ -567,6 +586,25 @@ def period_field_label(country):
     if country.get('type') == 'Present':
         return t('labels', 'founded')
     return t('labels', 'period')
+
+PROFILE_FIELDS = ['population', 'area', 'languages', 'religions']
+
+def profile_value(country, field):
+    profile = country.get('profile') or {}
+    value = profile.get(field)
+    if isinstance(value, dict):
+        return get_localized_text(value)
+    if value is None:
+        return ''
+    return str(value)
+
+def profile_rows(country):
+    rows = []
+    for field in PROFILE_FIELDS:
+        value = profile_value(country, field)
+        if value:
+            rows.append((t('labels', field), value))
+    return rows
 
 def country_list_sort_key(country):
     if state.sort_field == 'period':
@@ -635,10 +673,14 @@ def today_country():
     index = int(hashlib.sha256(seed.encode('utf-8')).hexdigest(), 16) % len(countries)
     return countries[index]
 
-def related_countries(country, limit=4):
+def related_countries(country, limit=6):
     data = get_data()
     target_tags = set(country.get('tags', []))
     target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
+    target_start = period_start(country)
+    target_timeline = timeline_period(country)
+    target_languages = profile_value(country, 'languages')
+    target_religions = profile_value(country, 'religions')
     scored = []
     for candidate in data.get('countries', []):
         if country_key(candidate) == country_key(country):
@@ -646,6 +688,19 @@ def related_countries(country, limit=4):
         candidate_tags = set(candidate.get('tags', []))
         candidate_regions = {part.strip() for part in candidate.get('region', '').replace('/', ',').split(',') if part.strip()}
         score = len(target_tags & candidate_tags) * 2 + len(target_regions & candidate_regions)
+        if target_timeline == timeline_period(candidate):
+            score += 2
+        candidate_start = period_start(candidate)
+        if target_start is not None and candidate_start is not None:
+            diff = abs(target_start - candidate_start)
+            if diff <= 25:
+                score += 4
+            elif diff <= 100:
+                score += 2
+        if target_languages and target_languages == profile_value(candidate, 'languages'):
+            score += 2
+        if target_religions and target_religions == profile_value(candidate, 'religions'):
+            score += 2
         if score:
             scored.append((score, sort_key(candidate), candidate))
     scored.sort(key=lambda item: (-item[0], item[1]))
@@ -671,23 +726,37 @@ def build_quiz():
     countries = data.get('countries', [])
     if len(countries) < 4:
         return None
+    lookup = countries_by_key(data)
+    answer_source = countries
+    if state.quiz_mode == 'review':
+        review_source = [lookup[key] for key in get_review_keys(data) if key in lookup]
+        if not review_source:
+            return None
+        answer_source = review_source
 
     question_pools = []
-    desc_candidates = [c for c in countries if first_sentence(get_localized_text(c.get('desc', {})))]
+    desc_candidates = [c for c in answer_source if first_sentence(get_localized_text(c.get('desc', {})))]
     capital_candidates = [
-        c for c in countries
+        c for c in answer_source
         if get_localized_text(c.get('capital', {})).strip() not in ['', '-']
     ]
     flag_candidates = [
-        c for c in countries
+        c for c in answer_source
         if c.get('flag_code') and c.get('flag_code') != 'xx'
     ]
+    period_candidates = [c for c in answer_source if period_label(c)]
     if desc_candidates:
         question_pools.append(('desc', desc_candidates))
     if capital_candidates:
         question_pools.append(('capital', capital_candidates))
     if flag_candidates:
         question_pools.append(('flag', flag_candidates))
+    if period_candidates:
+        question_pools.append(('period', period_candidates))
+    for field in PROFILE_FIELDS:
+        profile_candidates = [c for c in answer_source if profile_value(c, field)]
+        if profile_candidates:
+            question_pools.append((f'profile_{field}', profile_candidates))
     if not question_pools:
         return None
 
@@ -716,17 +785,31 @@ def quiz_view_parts(quiz, answer):
         question = t('quiz_flag')
         image = get_flag_url(answer.get('flag_code'))
         return question, '', image
+    elif question_type == 'period':
+        question = t('quiz_period').format(period=period_label(answer))
+        return question, '', None
+    elif question_type.startswith('profile_'):
+        field = question_type.replace('profile_', '', 1)
+        value = profile_value(answer, field)
+        question = t('quiz_profile').format(label=t('labels', field), value=value)
+        return question, '', None
     else:
         question = t('quiz_desc')
         description = first_sentence(get_localized_text(answer.get('desc', {})))
         return question, description, None
 
-def start_quiz():
+def start_quiz(mode=None):
     if not state.current_user:
         ui.notify(t('login_required'), color='warning')
         show_screen('top')
         return
+    if mode:
+        state.quiz_mode = mode
     state.quiz = build_quiz()
+    if state.quiz_mode == 'review' and not state.quiz:
+        ui.notify(t('review_empty'), color='info')
+        state.quiz_mode = 'normal'
+        state.quiz = build_quiz()
     show_screen('quiz')
 
 def set_quiz_difficulty(difficulty):
@@ -913,7 +996,7 @@ def render_header(container):
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
-                ui.button(icon='quiz', on_click=start_quiz).props('flat round color=white').tooltip(t('quiz'))
+                ui.button(icon='quiz', on_click=lambda: start_quiz('normal')).props('flat round color=white').tooltip(t('quiz'))
                 ui.button(icon='compare_arrows', on_click=lambda: show_screen('compare')).props('flat round color=white').tooltip(t('compare'))
                 ui.button(icon='timeline', on_click=lambda: show_screen('timeline')).props('flat round color=white').tooltip(t('timeline'))
                 ui.button(icon='history', on_click=open_history).props('flat round color=white')
@@ -951,8 +1034,11 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                             .classes('w-full')
                 ui.button('ENTER', on_click=lambda: show_screen('main')) \
                     .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
-                ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
+                ui.button(t('quiz'), icon='quiz', on_click=lambda: start_quiz('normal')) \
                     .classes('w-full bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition' if is_mobile_ui() else 'bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
+                ui.button(t('quiz_mode_review'), icon='school', on_click=lambda: start_quiz('review')) \
+                    .props('outline color=primary') \
+                    .classes('w-full px-8 py-2 rounded-full shadow-sm' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm')
                 with ui.row().classes('w-full gap-2 justify-center flex-wrap'):
                     ui.button(t('compare'), icon='compare_arrows', on_click=lambda: show_screen('compare')) \
                         .props('outline color=primary') \
@@ -1066,7 +1152,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     ui.button(icon='shuffle', on_click=pick_random) \
                         .classes('bg-purple-500 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-purple-500 text-white px-4 py-2 shadow-md')
 
-                    ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
+                    ui.button(t('quiz'), icon='quiz', on_click=lambda: start_quiz('normal')) \
                         .classes('bg-emerald-600 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-emerald-600 text-white px-4 py-2 shadow-md')
 
                 with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
@@ -1151,7 +1237,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     str(period.get('start', '')),
                     str(period.get('end') or ''),
                 ])
-                search_target = f"{name_local} {desc_local} {tag_text} {period_text}".lower()
+                profile_text = ' '.join(profile_value(c, field) for field in PROFILE_FIELDS)
+                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
             if state.sort_field == 'period':
@@ -1272,6 +1359,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                             with ui.row().classes('gap-1'):
                                 for tag in c.get('tags', []):
                                     ui.chip(tag_label(tag)).props('outline color=primary')
+                        profile_detail_rows = profile_rows(c)
+                        if profile_detail_rows:
+                            with ui.column().classes('gap-2'):
+                                ui.label(t('basic_profile')).classes('text-xs font-bold text-gray-400 uppercase')
+                                for label, value in profile_detail_rows:
+                                    with ui.row().classes('w-full justify-between gap-3 no-wrap'):
+                                        ui.label(label).classes('text-sm text-gray-500')
+                                        ui.label(value).classes('text-sm font-bold text-gray-800 text-right')
                     with ui.column().classes('gap-1'):
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
@@ -1313,7 +1408,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
             return
         state.quiz['selected_key'] = option_key
         state.quiz['answered'] = True
-        update_quiz_stats(option_key == state.quiz.get('answer_key'))
+        update_quiz_stats(
+            option_key == state.quiz.get('answer_key'),
+            state.quiz.get('answer_key'),
+            state.quiz_mode == 'review',
+        )
         refresh_quiz_view()
 
     def open_quiz_answer_detail():
@@ -1359,6 +1458,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                 streak=stats.get('streak', 0),
                 best=stats.get('best_streak', 0),
             )).classes('text-sm text-gray-600 font-bold')
+            review_count = len(get_review_keys())
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                ui.label(t('quiz_mode')).classes('text-sm font-bold text-gray-500')
+                for key, label_key in [('normal', 'quiz_mode_normal'), ('review', 'quiz_mode_review')]:
+                    color = 'primary' if state.quiz_mode == key else 'grey'
+                    ui.button(t(label_key) if key == 'normal' else f'{t(label_key)} ({review_count})', on_click=lambda _, m=key: start_quiz(m)) \
+                        .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
                 ui.label(t('difficulty')).classes('text-sm font-bold text-gray-500')
                 for key in ['easy', 'medium', 'hard']:
@@ -1431,6 +1537,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             compare_period = period_label(country)
             if compare_period:
                 rows.append((period_field_label(country), compare_period))
+            rows.extend(profile_rows(country))
             rows.extend([
                 (t('labels', 'region'), country.get('region', '-')),
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
