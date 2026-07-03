@@ -1001,6 +1001,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2000万人",
+          "en": "about 20 million",
+          "zh": "约2000万人"
+        },
+        "area": {
+          "ja": "約2,724,900 km²",
+          "en": "about 2,724,900 km²",
+          "zh": "约2,724,900 km²"
+        },
+        "languages": {
+          "ja": "Kazakh and Russian",
+          "en": "Kazakh and Russian",
+          "zh": "Kazakh and Russian"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
+        }
       }
     },
     {
@@ -1540,6 +1562,28 @@
           "en": "Founded 1811",
           "zh": "1811年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2900万人",
+          "en": "about 29 million",
+          "zh": "约2900万人"
+        },
+        "area": {
+          "ja": "約916,445 km²",
+          "en": "about 916,445 km²",
+          "zh": "约916,445 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -1573,6 +1617,28 @@
           "ja": "1902年成立",
           "en": "Founded 1902",
           "zh": "1902年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1100万人",
+          "en": "about 11 million",
+          "zh": "约1100万人"
+        },
+        "area": {
+          "ja": "約109,884 km²",
+          "en": "about 109,884 km²",
+          "zh": "约109,884 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
         }
       }
     },
@@ -1608,6 +1674,28 @@
           "ja": "1962年成立",
           "en": "Founded 1962",
           "zh": "1962年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約280万人",
+          "en": "about 2.8 million",
+          "zh": "约280万人"
+        },
+        "area": {
+          "ja": "約10,991 km²",
+          "en": "about 10,991 km²",
+          "zh": "约10,991 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -2087,6 +2175,28 @@
           "en": "Founded 1830",
           "zh": "1830年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1200万人",
+          "en": "about 12 million",
+          "zh": "约1200万人"
+        },
+        "area": {
+          "ja": "約30,528 km²",
+          "en": "about 30,528 km²",
+          "zh": "约30,528 km²"
+        },
+        "languages": {
+          "ja": "Dutch, French, and German",
+          "en": "Dutch, French, and German",
+          "zh": "Dutch, French, and German"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -2121,6 +2231,28 @@
           "ja": "1291年成立",
           "en": "Founded 1291",
           "zh": "1291年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約900万人",
+          "en": "about 9 million",
+          "zh": "约900万人"
+        },
+        "area": {
+          "ja": "約41,285 km²",
+          "en": "about 41,285 km²",
+          "zh": "约41,285 km²"
+        },
+        "languages": {
+          "ja": "German, French, Italian, and Romansh",
+          "en": "German, French, Italian, and Romansh",
+          "zh": "German, French, Italian, and Romansh"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
         }
       }
     },
@@ -2321,6 +2453,28 @@
           "ja": "1991年成立",
           "en": "Founded 1991",
           "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3700万人",
+          "en": "about 37 million",
+          "zh": "约3700万人"
+        },
+        "area": {
+          "ja": "約603,500 km²",
+          "en": "about 603,500 km²",
+          "zh": "约603,500 km²"
+        },
+        "languages": {
+          "ja": "Ukrainian",
+          "en": "Ukrainian",
+          "zh": "Ukrainian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -3359,6 +3513,28 @@
           "en": "Founded 1955",
           "zh": "1955年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約900万人",
+          "en": "about 9 million",
+          "zh": "约900万人"
+        },
+        "area": {
+          "ja": "約83,879 km²",
+          "en": "about 83,879 km²",
+          "zh": "约83,879 km²"
+        },
+        "languages": {
+          "ja": "German",
+          "en": "German",
+          "zh": "German"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -3395,6 +3571,28 @@
           "en": "Founded 1000",
           "zh": "1000年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1000万人",
+          "en": "about 10 million",
+          "zh": "约1000万人"
+        },
+        "area": {
+          "ja": "約93,028 km²",
+          "en": "about 93,028 km²",
+          "zh": "约93,028 km²"
+        },
+        "languages": {
+          "ja": "Hungarian",
+          "en": "Hungarian",
+          "zh": "Hungarian"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -3430,6 +3628,28 @@
           "en": "Founded 1993",
           "zh": "1993年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1100万人",
+          "en": "about 11 million",
+          "zh": "约1100万人"
+        },
+        "area": {
+          "ja": "約78,865 km²",
+          "en": "about 78,865 km²",
+          "zh": "约78,865 km²"
+        },
+        "languages": {
+          "ja": "Czech",
+          "en": "Czech",
+          "zh": "Czech"
+        },
+        "religions": {
+          "ja": "Unaffiliated and Christianity",
+          "en": "Unaffiliated and Christianity",
+          "zh": "Unaffiliated and Christianity"
+        }
       }
     },
     {
@@ -3463,6 +3683,28 @@
           "ja": "1859年成立",
           "en": "Founded 1859",
           "zh": "1859年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1900万人",
+          "en": "about 19 million",
+          "zh": "约1900万人"
+        },
+        "area": {
+          "ja": "約238,397 km²",
+          "en": "about 238,397 km²",
+          "zh": "约238,397 km²"
+        },
+        "languages": {
+          "ja": "Romanian",
+          "en": "Romanian",
+          "zh": "Romanian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -3499,6 +3741,28 @@
           "en": "Founded 681",
           "zh": "681年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約640万人",
+          "en": "about 6.4 million",
+          "zh": "约640万人"
+        },
+        "area": {
+          "ja": "約110,879 km²",
+          "en": "about 110,879 km²",
+          "zh": "约110,879 km²"
+        },
+        "languages": {
+          "ja": "Bulgarian",
+          "en": "Bulgarian",
+          "zh": "Bulgarian"
+        },
+        "religions": {
+          "ja": "Christianity and Islam",
+          "en": "Christianity and Islam",
+          "zh": "Christianity and Islam"
+        }
       }
     },
     {
@@ -3531,6 +3795,28 @@
           "ja": "1878年成立",
           "en": "Founded 1878",
           "zh": "1878年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約660万人",
+          "en": "about 6.6 million",
+          "zh": "约660万人"
+        },
+        "area": {
+          "ja": "約88,361 km²",
+          "en": "about 88,361 km²",
+          "zh": "约88,361 km²"
+        },
+        "languages": {
+          "ja": "Serbian",
+          "en": "Serbian",
+          "zh": "Serbian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -3568,6 +3854,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約390万人",
+          "en": "about 3.9 million",
+          "zh": "约390万人"
+        },
+        "area": {
+          "ja": "約56,594 km²",
+          "en": "about 56,594 km²",
+          "zh": "约56,594 km²"
+        },
+        "languages": {
+          "ja": "Croatian",
+          "en": "Croatian",
+          "zh": "Croatian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -3602,6 +3910,28 @@
           "en": "Founded 1932",
           "zh": "1932年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約4600万人",
+          "en": "about 46 million",
+          "zh": "约4600万人"
+        },
+        "area": {
+          "ja": "約438,317 km²",
+          "en": "about 438,317 km²",
+          "zh": "约438,317 km²"
+        },
+        "languages": {
+          "ja": "Arabic and Kurdish",
+          "en": "Arabic and Kurdish",
+          "zh": "Arabic and Kurdish"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -3635,6 +3965,28 @@
           "ja": "1946年成立",
           "en": "Founded 1946",
           "zh": "1946年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2400万人",
+          "en": "about 24 million",
+          "zh": "约2400万人"
+        },
+        "area": {
+          "ja": "約185,180 km²",
+          "en": "about 185,180 km²",
+          "zh": "约185,180 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
         }
       }
     },
@@ -3671,6 +4023,28 @@
           "en": "Founded 1946",
           "zh": "1946年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1100万人",
+          "en": "about 11 million",
+          "zh": "约1100万人"
+        },
+        "area": {
+          "ja": "約89,342 km²",
+          "en": "about 89,342 km²",
+          "zh": "约89,342 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
+        }
       }
     },
     {
@@ -3705,6 +4079,28 @@
           "en": "Founded 1943",
           "zh": "1943年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約550万人",
+          "en": "about 5.5 million",
+          "zh": "约550万人"
+        },
+        "area": {
+          "ja": "約10,452 km²",
+          "en": "about 10,452 km²",
+          "zh": "约10,452 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
+        }
       }
     },
     {
@@ -3737,6 +4133,28 @@
           "ja": "1971年成立",
           "en": "Founded 1971",
           "zh": "1971年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約300万人",
+          "en": "about 3 million",
+          "zh": "约300万人"
+        },
+        "area": {
+          "ja": "約11,586 km²",
+          "en": "about 11,586 km²",
+          "zh": "约11,586 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -3772,6 +4190,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3600万人",
+          "en": "about 36 million",
+          "zh": "约3600万人"
+        },
+        "area": {
+          "ja": "約447,400 km²",
+          "en": "about 447,400 km²",
+          "zh": "约447,400 km²"
+        },
+        "languages": {
+          "ja": "Uzbek",
+          "en": "Uzbek",
+          "zh": "Uzbek"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -3804,6 +4244,28 @@
           "ja": "1911年成立",
           "en": "Founded 1911",
           "zh": "1911年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約350万人",
+          "en": "about 3.5 million",
+          "zh": "约350万人"
+        },
+        "area": {
+          "ja": "約1,564,110 km²",
+          "en": "about 1,564,110 km²",
+          "zh": "约1,564,110 km²"
+        },
+        "languages": {
+          "ja": "Mongolian",
+          "en": "Mongolian",
+          "zh": "Mongolian"
+        },
+        "religions": {
+          "ja": "Buddhism and traditional beliefs",
+          "en": "Buddhism and traditional beliefs",
+          "zh": "Buddhism and traditional beliefs"
         }
       }
     },
@@ -3838,6 +4300,28 @@
           "ja": "1948年成立",
           "en": "Founded 1948",
           "zh": "1948年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約5500万人",
+          "en": "about 55 million",
+          "zh": "约5500万人"
+        },
+        "area": {
+          "ja": "約676,578 km²",
+          "en": "about 676,578 km²",
+          "zh": "约676,578 km²"
+        },
+        "languages": {
+          "ja": "Burmese",
+          "en": "Burmese",
+          "zh": "Burmese"
+        },
+        "religions": {
+          "ja": "Buddhism",
+          "en": "Buddhism",
+          "zh": "Buddhism"
         }
       }
     },
@@ -3874,6 +4358,28 @@
           "en": "Founded 1953",
           "zh": "1953年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1700万人",
+          "en": "about 17 million",
+          "zh": "约1700万人"
+        },
+        "area": {
+          "ja": "約181,035 km²",
+          "en": "about 181,035 km²",
+          "zh": "约181,035 km²"
+        },
+        "languages": {
+          "ja": "Khmer",
+          "en": "Khmer",
+          "zh": "Khmer"
+        },
+        "religions": {
+          "ja": "Buddhism",
+          "en": "Buddhism",
+          "zh": "Buddhism"
+        }
       }
     },
     {
@@ -3908,6 +4414,28 @@
           "en": "Founded 1830",
           "zh": "1830年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1800万人",
+          "en": "about 18 million",
+          "zh": "约1800万人"
+        },
+        "area": {
+          "ja": "約283,561 km²",
+          "en": "about 283,561 km²",
+          "zh": "约283,561 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -3940,6 +4468,28 @@
           "ja": "1825年成立",
           "en": "Founded 1825",
           "zh": "1825年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1200万人",
+          "en": "about 12 million",
+          "zh": "约1200万人"
+        },
+        "area": {
+          "ja": "約1,098,581 km²",
+          "en": "about 1,098,581 km²",
+          "zh": "约1,098,581 km²"
+        },
+        "languages": {
+          "ja": "Spanish, Quechua, and Aymara",
+          "en": "Spanish, Quechua, and Aymara",
+          "zh": "Spanish, Quechua, and Aymara"
+        },
+        "religions": {
+          "ja": "Christianity and Indigenous beliefs",
+          "en": "Christianity and Indigenous beliefs",
+          "zh": "Christianity and Indigenous beliefs"
         }
       }
     },
@@ -3976,6 +4526,28 @@
           "en": "Founded 1828",
           "zh": "1828年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約340万人",
+          "en": "about 3.4 million",
+          "zh": "约340万人"
+        },
+        "area": {
+          "ja": "約176,215 km²",
+          "en": "about 176,215 km²",
+          "zh": "约176,215 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -4010,6 +4582,28 @@
           "en": "Founded 1811",
           "zh": "1811年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約690万人",
+          "en": "about 6.9 million",
+          "zh": "约690万人"
+        },
+        "area": {
+          "ja": "約406,752 km²",
+          "en": "about 406,752 km²",
+          "zh": "约406,752 km²"
+        },
+        "languages": {
+          "ja": "Spanish and Guarani",
+          "en": "Spanish and Guarani",
+          "zh": "Spanish and Guarani"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -4043,6 +4637,28 @@
           "ja": "1903年成立",
           "en": "Founded 1903",
           "zh": "1903年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約450万人",
+          "en": "about 4.5 million",
+          "zh": "约450万人"
+        },
+        "area": {
+          "ja": "約75,417 km²",
+          "en": "about 75,417 km²",
+          "zh": "约75,417 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -4079,6 +4695,28 @@
           "en": "Founded 1821",
           "zh": "1821年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約520万人",
+          "en": "about 5.2 million",
+          "zh": "约520万人"
+        },
+        "area": {
+          "ja": "約51,100 km²",
+          "en": "about 51,100 km²",
+          "zh": "约51,100 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -4114,6 +4752,28 @@
           "en": "Founded 1844",
           "zh": "1844年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1100万人",
+          "en": "about 11 million",
+          "zh": "约1100万人"
+        },
+        "area": {
+          "ja": "約48,671 km²",
+          "en": "about 48,671 km²",
+          "zh": "约48,671 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -4148,6 +4808,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1.02億人",
+          "en": "about 102 million",
+          "zh": "约1.02亿人"
+        },
+        "area": {
+          "ja": "約2,344,858 km²",
+          "en": "about 2,344,858 km²",
+          "zh": "约2,344,858 km²"
+        },
+        "languages": {
+          "ja": "French, Lingala, Swahili, Kikongo, and Tshiluba",
+          "en": "French, Lingala, Swahili, Kikongo, and Tshiluba",
+          "zh": "French, Lingala, Swahili, Kikongo, and Tshiluba"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
+        }
       }
     },
     {
@@ -4180,6 +4862,28 @@
           "ja": "1960年成立",
           "en": "Founded 1960",
           "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1800万人",
+          "en": "about 18 million",
+          "zh": "约1800万人"
+        },
+        "area": {
+          "ja": "約196,722 km²",
+          "en": "about 196,722 km²",
+          "zh": "约196,722 km²"
+        },
+        "languages": {
+          "ja": "French and Wolof",
+          "en": "French and Wolof",
+          "zh": "French and Wolof"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -4215,6 +4919,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3100万人",
+          "en": "about 31 million",
+          "zh": "约3100万人"
+        },
+        "area": {
+          "ja": "約587,041 km²",
+          "en": "about 587,041 km²",
+          "zh": "约587,041 km²"
+        },
+        "languages": {
+          "ja": "Malagasy and French",
+          "en": "Malagasy and French",
+          "zh": "Malagasy and French"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
+        }
       }
     },
     {
@@ -4248,6 +4974,28 @@
           "en": "Founded 1980",
           "zh": "1980年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1600万人",
+          "en": "about 16 million",
+          "zh": "约1600万人"
+        },
+        "area": {
+          "ja": "約390,757 km²",
+          "en": "about 390,757 km²",
+          "zh": "约390,757 km²"
+        },
+        "languages": {
+          "ja": "English, Shona, and Ndebele",
+          "en": "English, Shona, and Ndebele",
+          "zh": "English, Shona, and Ndebele"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
+        }
       }
     },
     {
@@ -4280,6 +5028,28 @@
           "ja": "1962年成立",
           "en": "Founded 1962",
           "zh": "1962年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約4900万人",
+          "en": "about 49 million",
+          "zh": "约4900万人"
+        },
+        "area": {
+          "ja": "約241,550 km²",
+          "en": "about 241,550 km²",
+          "zh": "约241,550 km²"
+        },
+        "languages": {
+          "ja": "English and Swahili",
+          "en": "English and Swahili",
+          "zh": "English and Swahili"
+        },
+        "religions": {
+          "ja": "Christianity and Islam",
+          "en": "Christianity and Islam",
+          "zh": "Christianity and Islam"
         }
       }
     },
@@ -4316,6 +5086,28 @@
           "en": "Founded 1922",
           "zh": "1922年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約530万人",
+          "en": "about 5.3 million",
+          "zh": "约530万人"
+        },
+        "area": {
+          "ja": "約70,273 km²",
+          "en": "about 70,273 km²",
+          "zh": "约70,273 km²"
+        },
+        "languages": {
+          "ja": "Irish and English",
+          "en": "Irish and English",
+          "zh": "Irish and English"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -4351,6 +5143,28 @@
           "en": "Founded 965",
           "zh": "965年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約600万人",
+          "en": "about 6 million",
+          "zh": "约600万人"
+        },
+        "area": {
+          "ja": "約43,094 km²",
+          "en": "about 43,094 km²",
+          "zh": "约43,094 km²"
+        },
+        "languages": {
+          "ja": "Danish",
+          "en": "Danish",
+          "zh": "Danish"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -4383,6 +5197,28 @@
           "ja": "1768年成立",
           "en": "Founded 1768",
           "zh": "1768年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3100万人",
+          "en": "about 31 million",
+          "zh": "约3100万人"
+        },
+        "area": {
+          "ja": "約147,181 km²",
+          "en": "about 147,181 km²",
+          "zh": "约147,181 km²"
+        },
+        "languages": {
+          "ja": "Nepali",
+          "en": "Nepali",
+          "zh": "Nepali"
+        },
+        "religions": {
+          "ja": "Hinduism and Buddhism",
+          "en": "Hinduism and Buddhism",
+          "zh": "Hinduism and Buddhism"
         }
       }
     },
@@ -4418,6 +5254,28 @@
           "en": "Founded 1948",
           "zh": "1948年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2200万人",
+          "en": "about 22 million",
+          "zh": "约2200万人"
+        },
+        "area": {
+          "ja": "約65,610 km²",
+          "en": "about 65,610 km²",
+          "zh": "约65,610 km²"
+        },
+        "languages": {
+          "ja": "Sinhala and Tamil",
+          "en": "Sinhala and Tamil",
+          "zh": "Sinhala and Tamil"
+        },
+        "religions": {
+          "ja": "Buddhism, Hinduism, Islam, and Christianity",
+          "en": "Buddhism, Hinduism, Islam, and Christianity",
+          "zh": "Buddhism, Hinduism, Islam, and Christianity"
+        }
       }
     },
     {
@@ -4451,6 +5309,28 @@
           "ja": "1918年成立",
           "en": "Founded 1918",
           "zh": "1918年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約140万人",
+          "en": "about 1.4 million",
+          "zh": "约140万人"
+        },
+        "area": {
+          "ja": "約45,227 km²",
+          "en": "about 45,227 km²",
+          "zh": "约45,227 km²"
+        },
+        "languages": {
+          "ja": "Estonian",
+          "en": "Estonian",
+          "zh": "Estonian"
+        },
+        "religions": {
+          "ja": "Unaffiliated and Christianity",
+          "en": "Unaffiliated and Christianity",
+          "zh": "Unaffiliated and Christianity"
         }
       }
     },
@@ -4486,6 +5366,28 @@
           "en": "Founded 1918",
           "zh": "1918年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約190万人",
+          "en": "about 1.9 million",
+          "zh": "约190万人"
+        },
+        "area": {
+          "ja": "約64,589 km²",
+          "en": "about 64,589 km²",
+          "zh": "约64,589 km²"
+        },
+        "languages": {
+          "ja": "Latvian",
+          "en": "Latvian",
+          "zh": "Latvian"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -4519,6 +5421,28 @@
           "ja": "1918年成立",
           "en": "Founded 1918",
           "zh": "1918年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約290万人",
+          "en": "about 2.9 million",
+          "zh": "约290万人"
+        },
+        "area": {
+          "ja": "約65,300 km²",
+          "en": "about 65,300 km²",
+          "zh": "约65,300 km²"
+        },
+        "languages": {
+          "ja": "Lithuanian",
+          "en": "Lithuanian",
+          "zh": "Lithuanian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -4554,6 +5478,28 @@
           "en": "Founded 1944",
           "zh": "1944年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約40万人",
+          "en": "about 0.4 million",
+          "zh": "约40万人"
+        },
+        "area": {
+          "ja": "約103,000 km²",
+          "en": "about 103,000 km²",
+          "zh": "约103,000 km²"
+        },
+        "languages": {
+          "ja": "Icelandic",
+          "en": "Icelandic",
+          "zh": "Icelandic"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -4587,6 +5533,28 @@
           "ja": "963年成立",
           "en": "Founded 963",
           "zh": "963年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約70万人",
+          "en": "about 0.7 million",
+          "zh": "约70万人"
+        },
+        "area": {
+          "ja": "約2,586 km²",
+          "en": "about 2,586 km²",
+          "zh": "约2,586 km²"
+        },
+        "languages": {
+          "ja": "Luxembourgish, French, and German",
+          "en": "Luxembourgish, French, and German",
+          "zh": "Luxembourgish, French, and German"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
         }
       }
     },
@@ -4624,6 +5592,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約370万人",
+          "en": "about 3.7 million",
+          "zh": "约370万人"
+        },
+        "area": {
+          "ja": "約69,700 km²",
+          "en": "about 69,700 km²",
+          "zh": "约69,700 km²"
+        },
+        "languages": {
+          "ja": "Georgian",
+          "en": "Georgian",
+          "zh": "Georgian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -4658,6 +5648,28 @@
           "ja": "1991年成立",
           "en": "Founded 1991",
           "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1000万人",
+          "en": "about 10 million",
+          "zh": "约1000万人"
+        },
+        "area": {
+          "ja": "約86,600 km²",
+          "en": "about 86,600 km²",
+          "zh": "约86,600 km²"
+        },
+        "languages": {
+          "ja": "Azerbaijani",
+          "en": "Azerbaijani",
+          "zh": "Azerbaijani"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -4694,6 +5706,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約300万人",
+          "en": "about 3 million",
+          "zh": "约300万人"
+        },
+        "area": {
+          "ja": "約29,743 km²",
+          "en": "about 29,743 km²",
+          "zh": "约29,743 km²"
+        },
+        "languages": {
+          "ja": "Armenian",
+          "en": "Armenian",
+          "zh": "Armenian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -4726,6 +5760,28 @@
           "ja": "1912年成立",
           "en": "Founded 1912",
           "zh": "1912年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2340万人",
+          "en": "about 23.4 million",
+          "zh": "约2340万人"
+        },
+        "area": {
+          "ja": "約36,193 km²",
+          "en": "about 36,193 km²",
+          "zh": "约36,193 km²"
+        },
+        "languages": {
+          "ja": "Mandarin Chinese",
+          "en": "Mandarin Chinese",
+          "zh": "Mandarin Chinese"
+        },
+        "religions": {
+          "ja": "Buddhism, Taoism, folk religion, and Christianity",
+          "en": "Buddhism, Taoism, folk religion, and Christianity",
+          "zh": "Buddhism, Taoism, folk religion, and Christianity"
         }
       }
     },
@@ -4762,6 +5818,28 @@
           "en": "Founded 1953",
           "zh": "1953年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約760万人",
+          "en": "about 7.6 million",
+          "zh": "约760万人"
+        },
+        "area": {
+          "ja": "約236,800 km²",
+          "en": "about 236,800 km²",
+          "zh": "约236,800 km²"
+        },
+        "languages": {
+          "ja": "Lao",
+          "en": "Lao",
+          "zh": "Lao"
+        },
+        "religions": {
+          "ja": "Buddhism",
+          "en": "Buddhism",
+          "zh": "Buddhism"
+        }
       }
     },
     {
@@ -4795,6 +5873,28 @@
           "ja": "1975年成立",
           "en": "Founded 1975",
           "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1000万人",
+          "en": "about 10 million",
+          "zh": "约1000万人"
+        },
+        "area": {
+          "ja": "約462,840 km²",
+          "en": "about 462,840 km²",
+          "zh": "约462,840 km²"
+        },
+        "languages": {
+          "ja": "English, Tok Pisin, and Hiri Motu",
+          "en": "English, Tok Pisin, and Hiri Motu",
+          "zh": "English, Tok Pisin, and Hiri Motu"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
         }
       }
     },
@@ -4831,6 +5931,28 @@
           "en": "Founded 1970",
           "zh": "1970年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約90万人",
+          "en": "about 0.9 million",
+          "zh": "约90万人"
+        },
+        "area": {
+          "ja": "約18,274 km²",
+          "en": "about 18,274 km²",
+          "zh": "约18,274 km²"
+        },
+        "languages": {
+          "ja": "English, Fijian, and Hindi",
+          "en": "English, Fijian, and Hindi",
+          "zh": "English, Fijian, and Hindi"
+        },
+        "religions": {
+          "ja": "Christianity, Hinduism, and Islam",
+          "en": "Christianity, Hinduism, and Islam",
+          "zh": "Christianity, Hinduism, and Islam"
+        }
       }
     },
     {
@@ -4866,6 +5988,28 @@
           "en": "Founded 1821",
           "zh": "1821年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1800万人",
+          "en": "about 18 million",
+          "zh": "约1800万人"
+        },
+        "area": {
+          "ja": "約108,889 km²",
+          "en": "about 108,889 km²",
+          "zh": "约108,889 km²"
+        },
+        "languages": {
+          "ja": "Spanish and Mayan languages",
+          "en": "Spanish and Mayan languages",
+          "zh": "Spanish and Mayan languages"
+        },
+        "religions": {
+          "ja": "Christianity and Indigenous beliefs",
+          "en": "Christianity and Indigenous beliefs",
+          "zh": "Christianity and Indigenous beliefs"
+        }
       }
     },
     {
@@ -4900,6 +6044,28 @@
           "ja": "1821年成立",
           "en": "Founded 1821",
           "zh": "1821年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1100万人",
+          "en": "about 11 million",
+          "zh": "约1100万人"
+        },
+        "area": {
+          "ja": "約112,492 km²",
+          "en": "about 112,492 km²",
+          "zh": "约112,492 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -4937,6 +6103,28 @@
           "en": "Founded 1804",
           "zh": "1804年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1200万人",
+          "en": "about 12 million",
+          "zh": "约1200万人"
+        },
+        "area": {
+          "ja": "約27,750 km²",
+          "en": "about 27,750 km²",
+          "zh": "约27,750 km²"
+        },
+        "languages": {
+          "ja": "Haitian Creole and French",
+          "en": "Haitian Creole and French",
+          "zh": "Haitian Creole and French"
+        },
+        "religions": {
+          "ja": "Christianity and Vodou",
+          "en": "Christianity and Vodou",
+          "zh": "Christianity and Vodou"
+        }
       }
     },
     {
@@ -4971,6 +6159,28 @@
           "en": "Founded 1956",
           "zh": "1956年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約5000万人",
+          "en": "about 50 million",
+          "zh": "约5000万人"
+        },
+        "area": {
+          "ja": "約1,886,068 km²",
+          "en": "about 1,886,068 km²",
+          "zh": "约1,886,068 km²"
+        },
+        "languages": {
+          "ja": "Arabic and English",
+          "en": "Arabic and English",
+          "zh": "Arabic and English"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5003,6 +6213,28 @@
           "ja": "1975年成立",
           "en": "Founded 1975",
           "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3700万人",
+          "en": "about 37 million",
+          "zh": "约3700万人"
+        },
+        "area": {
+          "ja": "約1,246,700 km²",
+          "en": "about 1,246,700 km²",
+          "zh": "约1,246,700 km²"
+        },
+        "languages": {
+          "ja": "Portuguese",
+          "en": "Portuguese",
+          "zh": "Portuguese"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
         }
       }
     },
@@ -5039,6 +6271,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3100万人",
+          "en": "about 31 million",
+          "zh": "约3100万人"
+        },
+        "area": {
+          "ja": "約322,463 km²",
+          "en": "about 322,463 km²",
+          "zh": "约322,463 km²"
+        },
+        "languages": {
+          "ja": "French",
+          "en": "French",
+          "zh": "French"
+        },
+        "religions": {
+          "ja": "Islam, Christianity, and traditional beliefs",
+          "en": "Islam, Christianity, and traditional beliefs",
+          "zh": "Islam, Christianity, and traditional beliefs"
+        }
       }
     },
     {
@@ -5072,6 +6326,28 @@
           "ja": "1956年成立",
           "en": "Founded 1956",
           "zh": "1956年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1200万人",
+          "en": "about 12 million",
+          "zh": "约1200万人"
+        },
+        "area": {
+          "ja": "約163,610 km²",
+          "en": "about 163,610 km²",
+          "zh": "约163,610 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -5109,6 +6385,28 @@
           "en": "Founded 1993",
           "zh": "1993年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約540万人",
+          "en": "about 5.4 million",
+          "zh": "约540万人"
+        },
+        "area": {
+          "ja": "約49,037 km²",
+          "en": "about 49,037 km²",
+          "zh": "约49,037 km²"
+        },
+        "languages": {
+          "ja": "Slovak",
+          "en": "Slovak",
+          "zh": "Slovak"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -5143,6 +6441,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約210万人",
+          "en": "about 2.1 million",
+          "zh": "约210万人"
+        },
+        "area": {
+          "ja": "約20,273 km²",
+          "en": "about 20,273 km²",
+          "zh": "约20,273 km²"
+        },
+        "languages": {
+          "ja": "Slovene",
+          "en": "Slovene",
+          "zh": "Slovene"
+        },
+        "religions": {
+          "ja": "Christianity and unaffiliated",
+          "en": "Christianity and unaffiliated",
+          "zh": "Christianity and unaffiliated"
+        }
       }
     },
     {
@@ -5176,6 +6496,28 @@
           "en": "Founded 1992",
           "zh": "1992年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約320万人",
+          "en": "about 3.2 million",
+          "zh": "约320万人"
+        },
+        "area": {
+          "ja": "約51,209 km²",
+          "en": "about 51,209 km²",
+          "zh": "约51,209 km²"
+        },
+        "languages": {
+          "ja": "Bosnian, Croatian, and Serbian",
+          "en": "Bosnian, Croatian, and Serbian",
+          "zh": "Bosnian, Croatian, and Serbian"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
+        }
       }
     },
     {
@@ -5208,6 +6550,28 @@
           "ja": "1912年成立",
           "en": "Founded 1912",
           "zh": "1912年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約280万人",
+          "en": "about 2.8 million",
+          "zh": "约280万人"
+        },
+        "area": {
+          "ja": "約28,748 km²",
+          "en": "about 28,748 km²",
+          "zh": "约28,748 km²"
+        },
+        "languages": {
+          "ja": "Albanian",
+          "en": "Albanian",
+          "zh": "Albanian"
+        },
+        "religions": {
+          "ja": "Islam, Christianity, and unaffiliated",
+          "en": "Islam, Christianity, and unaffiliated",
+          "zh": "Islam, Christianity, and unaffiliated"
         }
       }
     },
@@ -5243,6 +6607,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約920万人",
+          "en": "about 9.2 million",
+          "zh": "约920万人"
+        },
+        "area": {
+          "ja": "約207,600 km²",
+          "en": "about 207,600 km²",
+          "zh": "约207,600 km²"
+        },
+        "languages": {
+          "ja": "Belarusian and Russian",
+          "en": "Belarusian and Russian",
+          "zh": "Belarusian and Russian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -5277,6 +6663,28 @@
           "ja": "1991年成立",
           "en": "Founded 1991",
           "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約260万人",
+          "en": "about 2.6 million",
+          "zh": "约260万人"
+        },
+        "area": {
+          "ja": "約33,846 km²",
+          "en": "about 33,846 km²",
+          "zh": "约33,846 km²"
+        },
+        "languages": {
+          "ja": "Romanian",
+          "en": "Romanian",
+          "zh": "Romanian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -5314,6 +6722,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約130万人",
+          "en": "about 1.3 million",
+          "zh": "约130万人"
+        },
+        "area": {
+          "ja": "約9,251 km²",
+          "en": "about 9,251 km²",
+          "zh": "约9,251 km²"
+        },
+        "languages": {
+          "ja": "Greek and Turkish",
+          "en": "Greek and Turkish",
+          "zh": "Greek and Turkish"
+        },
+        "religions": {
+          "ja": "Christianity and Islam",
+          "en": "Christianity and Islam",
+          "zh": "Christianity and Islam"
+        }
       }
     },
     {
@@ -5350,6 +6780,28 @@
           "en": "Founded 1964",
           "zh": "1964年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約50万人",
+          "en": "about 0.5 million",
+          "zh": "约50万人"
+        },
+        "area": {
+          "ja": "約316 km²",
+          "en": "about 316 km²",
+          "zh": "约316 km²"
+        },
+        "languages": {
+          "ja": "Maltese and English",
+          "en": "Maltese and English",
+          "zh": "Maltese and English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -5384,6 +6836,28 @@
           "ja": "1907年成立",
           "en": "Founded 1907",
           "zh": "1907年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約80万人",
+          "en": "about 0.8 million",
+          "zh": "约80万人"
+        },
+        "area": {
+          "ja": "約38,394 km²",
+          "en": "about 38,394 km²",
+          "zh": "约38,394 km²"
+        },
+        "languages": {
+          "ja": "Dzongkha",
+          "en": "Dzongkha",
+          "zh": "Dzongkha"
+        },
+        "religions": {
+          "ja": "Buddhism and Hinduism",
+          "en": "Buddhism and Hinduism",
+          "zh": "Buddhism and Hinduism"
         }
       }
     },
@@ -5420,6 +6894,28 @@
           "en": "Founded 1965",
           "zh": "1965年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約50万人",
+          "en": "about 0.5 million",
+          "zh": "约50万人"
+        },
+        "area": {
+          "ja": "約300 km²",
+          "en": "about 300 km²",
+          "zh": "约300 km²"
+        },
+        "languages": {
+          "ja": "Dhivehi",
+          "en": "Dhivehi",
+          "zh": "Dhivehi"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5453,6 +6949,28 @@
           "ja": "1744年成立",
           "en": "Founded 1744",
           "zh": "1744年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約510万人",
+          "en": "about 5.1 million",
+          "zh": "约510万人"
+        },
+        "area": {
+          "ja": "約309,500 km²",
+          "en": "about 309,500 km²",
+          "zh": "约309,500 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -5488,6 +7006,28 @@
           "en": "Founded 1961",
           "zh": "1961年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約430万人",
+          "en": "about 4.3 million",
+          "zh": "约430万人"
+        },
+        "area": {
+          "ja": "約17,818 km²",
+          "en": "about 17,818 km²",
+          "zh": "约17,818 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5521,6 +7061,28 @@
           "ja": "1971年成立",
           "en": "Founded 1971",
           "zh": "1971年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約160万人",
+          "en": "about 1.6 million",
+          "zh": "约160万人"
+        },
+        "area": {
+          "ja": "約765 km²",
+          "en": "about 765 km²",
+          "zh": "约765 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -5556,6 +7118,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約710万人",
+          "en": "about 7.1 million",
+          "zh": "约710万人"
+        },
+        "area": {
+          "ja": "約199,951 km²",
+          "en": "about 199,951 km²",
+          "zh": "约199,951 km²"
+        },
+        "languages": {
+          "ja": "Kyrgyz and Russian",
+          "en": "Kyrgyz and Russian",
+          "zh": "Kyrgyz and Russian"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5588,6 +7172,28 @@
           "ja": "1991年成立",
           "en": "Founded 1991",
           "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1050万人",
+          "en": "about 10.5 million",
+          "zh": "约1050万人"
+        },
+        "area": {
+          "ja": "約143,100 km²",
+          "en": "about 143,100 km²",
+          "zh": "约143,100 km²"
+        },
+        "languages": {
+          "ja": "Tajik",
+          "en": "Tajik",
+          "zh": "Tajik"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -5623,6 +7229,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約650万人",
+          "en": "about 6.5 million",
+          "zh": "约650万人"
+        },
+        "area": {
+          "ja": "約488,100 km²",
+          "en": "about 488,100 km²",
+          "zh": "约488,100 km²"
+        },
+        "languages": {
+          "ja": "Turkmen",
+          "en": "Turkmen",
+          "zh": "Turkmen"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5656,6 +7284,28 @@
           "ja": "2002年成立",
           "en": "Founded 2002",
           "zh": "2002年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約140万人",
+          "en": "about 1.4 million",
+          "zh": "约140万人"
+        },
+        "area": {
+          "ja": "約14,874 km²",
+          "en": "about 14,874 km²",
+          "zh": "约14,874 km²"
+        },
+        "languages": {
+          "ja": "Tetum and Portuguese",
+          "en": "Tetum and Portuguese",
+          "zh": "Tetum and Portuguese"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -5691,6 +7341,28 @@
           "en": "Founded 1984",
           "zh": "1984年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約50万人",
+          "en": "about 0.5 million",
+          "zh": "约50万人"
+        },
+        "area": {
+          "ja": "約5,765 km²",
+          "en": "about 5,765 km²",
+          "zh": "约5,765 km²"
+        },
+        "languages": {
+          "ja": "Malay",
+          "en": "Malay",
+          "zh": "Malay"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -5724,6 +7396,28 @@
           "ja": "1962年成立",
           "en": "Founded 1962",
           "zh": "1962年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1400万人",
+          "en": "about 14 million",
+          "zh": "约1400万人"
+        },
+        "area": {
+          "ja": "約26,338 km²",
+          "en": "about 26,338 km²",
+          "zh": "约26,338 km²"
+        },
+        "languages": {
+          "ja": "Kinyarwanda, English, French, and Swahili",
+          "en": "Kinyarwanda, English, French, and Swahili",
+          "zh": "Kinyarwanda, English, French, and Swahili"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -5760,6 +7454,28 @@
           "en": "Founded 1966",
           "zh": "1966年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約270万人",
+          "en": "about 2.7 million",
+          "zh": "约270万人"
+        },
+        "area": {
+          "ja": "約581,730 km²",
+          "en": "about 581,730 km²",
+          "zh": "约581,730 km²"
+        },
+        "languages": {
+          "ja": "English and Setswana",
+          "en": "English and Setswana",
+          "zh": "English and Setswana"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
+        }
       }
     },
     {
@@ -5792,6 +7508,28 @@
           "ja": "1990年成立",
           "en": "Founded 1990",
           "zh": "1990年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約270万人",
+          "en": "about 2.7 million",
+          "zh": "约270万人"
+        },
+        "area": {
+          "ja": "約824,292 km²",
+          "en": "about 824,292 km²",
+          "zh": "约824,292 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
         }
       }
     },
@@ -5827,6 +7565,28 @@
           "en": "Founded 1964",
           "zh": "1964年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2100万人",
+          "en": "about 21 million",
+          "zh": "约2100万人"
+        },
+        "area": {
+          "ja": "約752,612 km²",
+          "en": "about 752,612 km²",
+          "zh": "约752,612 km²"
+        },
+        "languages": {
+          "ja": "English and Bemba",
+          "en": "English and Bemba",
+          "zh": "English and Bemba"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -5859,6 +7619,28 @@
           "ja": "1960年成立",
           "en": "Founded 1960",
           "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2900万人",
+          "en": "about 29 million",
+          "zh": "约2900万人"
+        },
+        "area": {
+          "ja": "約475,442 km²",
+          "en": "about 475,442 km²",
+          "zh": "约475,442 km²"
+        },
+        "languages": {
+          "ja": "French and English",
+          "en": "French and English",
+          "zh": "French and English"
+        },
+        "religions": {
+          "ja": "Christianity, Islam, and traditional beliefs",
+          "en": "Christianity, Islam, and traditional beliefs",
+          "zh": "Christianity, Islam, and traditional beliefs"
         }
       }
     },
@@ -6871,6 +8653,28 @@
           "en": "Founded 1929",
           "zh": "1929年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,000人",
+          "en": "about 1,000 people",
+          "zh": "约1,000人"
+        },
+        "area": {
+          "ja": "約0.49 km²",
+          "en": "about 0.49 km²",
+          "zh": "约0.49 km²"
+        },
+        "languages": {
+          "ja": "Italian and Latin",
+          "en": "Italian and Latin",
+          "zh": "Italian and Latin"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -6905,6 +8709,28 @@
           "en": "Founded 1297",
           "zh": "1297年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約40,000人",
+          "en": "about 40,000 people",
+          "zh": "约40,000人"
+        },
+        "area": {
+          "ja": "約2 km²",
+          "en": "about 2 km²",
+          "zh": "约2 km²"
+        },
+        "languages": {
+          "ja": "French",
+          "en": "French",
+          "zh": "French"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -6937,6 +8763,28 @@
           "ja": "301年成立",
           "en": "Founded 301",
           "zh": "301年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約34,000人",
+          "en": "about 34,000 people",
+          "zh": "约34,000人"
+        },
+        "area": {
+          "ja": "約61 km²",
+          "en": "about 61 km²",
+          "zh": "约61 km²"
+        },
+        "languages": {
+          "ja": "Italian",
+          "en": "Italian",
+          "zh": "Italian"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -6971,6 +8819,28 @@
           "ja": "1719年成立",
           "en": "Founded 1719",
           "zh": "1719年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約40,000人",
+          "en": "about 40,000 people",
+          "zh": "约40,000人"
+        },
+        "area": {
+          "ja": "約160 km²",
+          "en": "about 160 km²",
+          "zh": "约160 km²"
+        },
+        "languages": {
+          "ja": "German",
+          "en": "German",
+          "zh": "German"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -7007,6 +8877,28 @@
           "en": "Founded 1278",
           "zh": "1278年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約80,000人",
+          "en": "about 80,000 people",
+          "zh": "约80,000人"
+        },
+        "area": {
+          "ja": "約468 km²",
+          "en": "about 468 km²",
+          "zh": "约468 km²"
+        },
+        "languages": {
+          "ja": "Catalan",
+          "en": "Catalan",
+          "zh": "Catalan"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7042,6 +8934,28 @@
           "en": "Founded 1747",
           "zh": "1747年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約4200万人",
+          "en": "about 42 million",
+          "zh": "约4200万人"
+        },
+        "area": {
+          "ja": "約652,230 km²",
+          "en": "about 652,230 km²",
+          "zh": "约652,230 km²"
+        },
+        "languages": {
+          "ja": "Dari and Pashto",
+          "en": "Dari and Pashto",
+          "zh": "Dari and Pashto"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7074,6 +8988,28 @@
           "ja": "1990年成立",
           "en": "Founded 1990",
           "zh": "1990年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3500万人",
+          "en": "about 35 million",
+          "zh": "约3500万人"
+        },
+        "area": {
+          "ja": "約527,968 km²",
+          "en": "about 527,968 km²",
+          "zh": "约527,968 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
         }
       }
     },
@@ -7110,6 +9046,28 @@
           "en": "Founded 1821",
           "zh": "1821年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約640万人",
+          "en": "about 6.4 million",
+          "zh": "约640万人"
+        },
+        "area": {
+          "ja": "約21,041 km²",
+          "en": "about 21,041 km²",
+          "zh": "约21,041 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7142,6 +9100,28 @@
           "ja": "1821年成立",
           "en": "Founded 1821",
           "zh": "1821年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約700万人",
+          "en": "about 7 million",
+          "zh": "约700万人"
+        },
+        "area": {
+          "ja": "約130,373 km²",
+          "en": "about 130,373 km²",
+          "zh": "约130,373 km²"
+        },
+        "languages": {
+          "ja": "Spanish",
+          "en": "Spanish",
+          "zh": "Spanish"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -7179,6 +9159,28 @@
           "en": "Founded 1981",
           "zh": "1981年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約40万人",
+          "en": "about 0.4 million",
+          "zh": "约40万人"
+        },
+        "area": {
+          "ja": "約22,966 km²",
+          "en": "about 22,966 km²",
+          "zh": "约22,966 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7213,6 +9215,28 @@
           "ja": "1973年成立",
           "en": "Founded 1973",
           "zh": "1973年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約40万人",
+          "en": "about 0.4 million",
+          "zh": "约40万人"
+        },
+        "area": {
+          "ja": "約13,943 km²",
+          "en": "about 13,943 km²",
+          "zh": "约13,943 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -7249,6 +9273,28 @@
           "en": "Founded 1962",
           "zh": "1962年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約150万人",
+          "en": "about 1.5 million",
+          "zh": "约150万人"
+        },
+        "area": {
+          "ja": "約5,130 km²",
+          "en": "about 5,130 km²",
+          "zh": "约5,130 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity, Hinduism, and Islam",
+          "en": "Christianity, Hinduism, and Islam",
+          "zh": "Christianity, Hinduism, and Islam"
+        }
       }
     },
     {
@@ -7282,6 +9328,28 @@
           "ja": "1966年成立",
           "en": "Founded 1966",
           "zh": "1966年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約30万人",
+          "en": "about 0.3 million",
+          "zh": "约30万人"
+        },
+        "area": {
+          "ja": "約430 km²",
+          "en": "about 430 km²",
+          "zh": "约430 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -7317,6 +9385,28 @@
           "en": "Founded 1951",
           "zh": "1951年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約700万人",
+          "en": "about 7 million",
+          "zh": "约700万人"
+        },
+        "area": {
+          "ja": "約1,759,540 km²",
+          "en": "about 1,759,540 km²",
+          "zh": "约1,759,540 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7351,6 +9441,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2300万人",
+          "en": "about 23 million",
+          "zh": "约2300万人"
+        },
+        "area": {
+          "ja": "約1,240,192 km²",
+          "en": "about 1,240,192 km²",
+          "zh": "约1,240,192 km²"
+        },
+        "languages": {
+          "ja": "French and Bambara",
+          "en": "French and Bambara",
+          "zh": "French and Bambara"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7383,6 +9495,28 @@
           "ja": "1960年成立",
           "en": "Founded 1960",
           "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1900万人",
+          "en": "about 19 million",
+          "zh": "约1900万人"
+        },
+        "area": {
+          "ja": "約1,284,000 km²",
+          "en": "about 1,284,000 km²",
+          "zh": "约1,284,000 km²"
+        },
+        "languages": {
+          "ja": "French and Arabic",
+          "en": "French and Arabic",
+          "zh": "French and Arabic"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
         }
       }
     },
@@ -7418,6 +9552,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1800万人",
+          "en": "about 18 million",
+          "zh": "约1800万人"
+        },
+        "area": {
+          "ja": "約637,657 km²",
+          "en": "about 637,657 km²",
+          "zh": "约637,657 km²"
+        },
+        "languages": {
+          "ja": "Somali and Arabic",
+          "en": "Somali and Arabic",
+          "zh": "Somali and Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7450,6 +9606,28 @@
           "ja": "1993年成立",
           "en": "Founded 1993",
           "zh": "1993年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約370万人",
+          "en": "about 3.7 million",
+          "zh": "约370万人"
+        },
+        "area": {
+          "ja": "約117,600 km²",
+          "en": "about 117,600 km²",
+          "zh": "约117,600 km²"
+        },
+        "languages": {
+          "ja": "Tigrinya, Arabic, and English",
+          "en": "Tigrinya, Arabic, and English",
+          "zh": "Tigrinya, Arabic, and English"
+        },
+        "religions": {
+          "ja": "Christianity and Islam",
+          "en": "Christianity and Islam",
+          "zh": "Christianity and Islam"
         }
       }
     },
@@ -7485,6 +9663,28 @@
           "en": "Founded 1962",
           "zh": "1962年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約20万人",
+          "en": "about 0.2 million",
+          "zh": "约20万人"
+        },
+        "area": {
+          "ja": "約2,842 km²",
+          "en": "about 2,842 km²",
+          "zh": "约2,842 km²"
+        },
+        "languages": {
+          "ja": "Samoan and English",
+          "en": "Samoan and English",
+          "zh": "Samoan and English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7518,6 +9718,28 @@
           "ja": "1875年成立",
           "en": "Founded 1875",
           "zh": "1875年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約10万人",
+          "en": "about 0.1 million",
+          "zh": "约10万人"
+        },
+        "area": {
+          "ja": "約747 km²",
+          "en": "about 747 km²",
+          "zh": "约747 km²"
+        },
+        "languages": {
+          "ja": "Tongan and English",
+          "en": "Tongan and English",
+          "zh": "Tongan and English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -7555,6 +9777,28 @@
           "en": "Founded 1994",
           "zh": "1994年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約20,000人",
+          "en": "about 20,000 people",
+          "zh": "约20,000人"
+        },
+        "area": {
+          "ja": "約459 km²",
+          "en": "about 459 km²",
+          "zh": "约459 km²"
+        },
+        "languages": {
+          "ja": "Palauan and English",
+          "en": "Palauan and English",
+          "zh": "Palauan and English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7588,6 +9832,28 @@
           "ja": "1966年成立",
           "en": "Founded 1966",
           "zh": "1966年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約80万人",
+          "en": "about 0.8 million",
+          "zh": "约80万人"
+        },
+        "area": {
+          "ja": "約214,969 km²",
+          "en": "about 214,969 km²",
+          "zh": "约214,969 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity, Hinduism, and Islam",
+          "en": "Christianity, Hinduism, and Islam",
+          "zh": "Christianity, Hinduism, and Islam"
         }
       }
     },
@@ -7624,6 +9890,28 @@
           "en": "Founded 1975",
           "zh": "1975年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約60万人",
+          "en": "about 0.6 million",
+          "zh": "约60万人"
+        },
+        "area": {
+          "ja": "約163,820 km²",
+          "en": "about 163,820 km²",
+          "zh": "约163,820 km²"
+        },
+        "languages": {
+          "ja": "Dutch",
+          "en": "Dutch",
+          "zh": "Dutch"
+        },
+        "religions": {
+          "ja": "Christianity, Hinduism, and Islam",
+          "en": "Christianity, Hinduism, and Islam",
+          "zh": "Christianity, Hinduism, and Islam"
+        }
       }
     },
     {
@@ -7656,6 +9944,28 @@
           "ja": "2008年成立",
           "en": "Founded 2008",
           "zh": "2008年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約180万人",
+          "en": "about 1.8 million",
+          "zh": "约180万人"
+        },
+        "area": {
+          "ja": "約10,887 km²",
+          "en": "about 10,887 km²",
+          "zh": "约10,887 km²"
+        },
+        "languages": {
+          "ja": "Albanian and Serbian",
+          "en": "Albanian and Serbian",
+          "zh": "Albanian and Serbian"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
         }
       }
     },
@@ -7691,6 +10001,28 @@
           "en": "Founded 1991",
           "zh": "1991年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約180万人",
+          "en": "about 1.8 million",
+          "zh": "约180万人"
+        },
+        "area": {
+          "ja": "約25,713 km²",
+          "en": "about 25,713 km²",
+          "zh": "约25,713 km²"
+        },
+        "languages": {
+          "ja": "Macedonian and Albanian",
+          "en": "Macedonian and Albanian",
+          "zh": "Macedonian and Albanian"
+        },
+        "religions": {
+          "ja": "Christianity and Islam",
+          "en": "Christianity and Islam",
+          "zh": "Christianity and Islam"
+        }
       }
     },
     {
@@ -7725,6 +10057,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2700万人",
+          "en": "about 27 million",
+          "zh": "约2700万人"
+        },
+        "area": {
+          "ja": "約1,267,000 km²",
+          "en": "about 1,267,000 km²",
+          "zh": "约1,267,000 km²"
+        },
+        "languages": {
+          "ja": "French and Hausa",
+          "en": "French and Hausa",
+          "zh": "French and Hausa"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7757,6 +10111,28 @@
           "ja": "1960年成立",
           "en": "Founded 1960",
           "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2300万人",
+          "en": "about 23 million",
+          "zh": "约2300万人"
+        },
+        "area": {
+          "ja": "約274,200 km²",
+          "en": "about 274,200 km²",
+          "zh": "约274,200 km²"
+        },
+        "languages": {
+          "ja": "French and Moore",
+          "en": "French and Moore",
+          "zh": "French and Moore"
+        },
+        "religions": {
+          "ja": "Islam, Christianity, and traditional beliefs",
+          "en": "Islam, Christianity, and traditional beliefs",
+          "zh": "Islam, Christianity, and traditional beliefs"
         }
       }
     },
@@ -7793,6 +10169,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約500万人",
+          "en": "about 5 million",
+          "zh": "约500万人"
+        },
+        "area": {
+          "ja": "約1,030,700 km²",
+          "en": "about 1,030,700 km²",
+          "zh": "约1,030,700 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam",
+          "en": "Islam",
+          "zh": "Islam"
+        }
       }
     },
     {
@@ -7827,6 +10225,28 @@
           "en": "Founded 1960",
           "zh": "1960年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約240万人",
+          "en": "about 2.4 million",
+          "zh": "约240万人"
+        },
+        "area": {
+          "ja": "約267,668 km²",
+          "en": "about 267,668 km²",
+          "zh": "约267,668 km²"
+        },
+        "languages": {
+          "ja": "French",
+          "en": "French",
+          "zh": "French"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
+        }
       }
     },
     {
@@ -7860,6 +10280,28 @@
           "ja": "1960年成立",
           "en": "Founded 1960",
           "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約600万人",
+          "en": "about 6 million",
+          "zh": "约600万人"
+        },
+        "area": {
+          "ja": "約342,000 km²",
+          "en": "about 342,000 km²",
+          "zh": "约342,000 km²"
+        },
+        "languages": {
+          "ja": "French",
+          "en": "French",
+          "zh": "French"
+        },
+        "religions": {
+          "ja": "Christianity and traditional beliefs",
+          "en": "Christianity and traditional beliefs",
+          "zh": "Christianity and traditional beliefs"
         }
       }
     },
@@ -7896,6 +10338,28 @@
           "en": "Founded 1976",
           "zh": "1976年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約10万人",
+          "en": "about 0.1 million",
+          "zh": "约10万人"
+        },
+        "area": {
+          "ja": "約452 km²",
+          "en": "about 452 km²",
+          "zh": "约452 km²"
+        },
+        "languages": {
+          "ja": "English, French, and Seychellois Creole",
+          "en": "English, French, and Seychellois Creole",
+          "zh": "English, French, and Seychellois Creole"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7929,6 +10393,28 @@
           "ja": "1968年成立",
           "en": "Founded 1968",
           "zh": "1968年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約130万人",
+          "en": "about 1.3 million",
+          "zh": "约130万人"
+        },
+        "area": {
+          "ja": "約2,040 km²",
+          "en": "about 2,040 km²",
+          "zh": "约2,040 km²"
+        },
+        "languages": {
+          "ja": "English, French, and Mauritian Creole",
+          "en": "English, French, and Mauritian Creole",
+          "zh": "English, French, and Mauritian Creole"
+        },
+        "religions": {
+          "ja": "Hinduism, Christianity, and Islam",
+          "en": "Hinduism, Christianity, and Islam",
+          "zh": "Hinduism, Christianity, and Islam"
         }
       }
     },
@@ -7965,6 +10451,28 @@
           "en": "Founded 1978",
           "zh": "1978年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約70万人",
+          "en": "about 0.7 million",
+          "zh": "约70万人"
+        },
+        "area": {
+          "ja": "約28,896 km²",
+          "en": "about 28,896 km²",
+          "zh": "约28,896 km²"
+        },
+        "languages": {
+          "ja": "English",
+          "en": "English",
+          "zh": "English"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -7998,6 +10506,28 @@
           "ja": "1980年成立",
           "en": "Founded 1980",
           "zh": "1980年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約30万人",
+          "en": "about 0.3 million",
+          "zh": "约30万人"
+        },
+        "area": {
+          "ja": "約12,189 km²",
+          "en": "about 12,189 km²",
+          "zh": "约12,189 km²"
+        },
+        "languages": {
+          "ja": "Bislama, English, and French",
+          "en": "Bislama, English, and French",
+          "zh": "Bislama, English, and French"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
         }
       }
     },
@@ -8033,6 +10563,28 @@
           "en": "Founded 1979",
           "zh": "1979年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約10万人",
+          "en": "about 0.1 million",
+          "zh": "约10万人"
+        },
+        "area": {
+          "ja": "約811 km²",
+          "en": "about 811 km²",
+          "zh": "约811 km²"
+        },
+        "languages": {
+          "ja": "English and Gilbertese",
+          "en": "English and Gilbertese",
+          "zh": "English and Gilbertese"
+        },
+        "religions": {
+          "ja": "Christianity",
+          "en": "Christianity",
+          "zh": "Christianity"
+        }
       }
     },
     {
@@ -8067,6 +10619,28 @@
           "en": "Founded 1988",
           "zh": "1988年成立"
         }
+      },
+      "profile": {
+        "population": {
+          "ja": "約550万人",
+          "en": "about 5.5 million",
+          "zh": "约550万人"
+        },
+        "area": {
+          "ja": "約6,020 km²",
+          "en": "about 6,020 km²",
+          "zh": "约6,020 km²"
+        },
+        "languages": {
+          "ja": "Arabic",
+          "en": "Arabic",
+          "zh": "Arabic"
+        },
+        "religions": {
+          "ja": "Islam and Christianity",
+          "en": "Islam and Christianity",
+          "zh": "Islam and Christianity"
+        }
       }
     },
     {
@@ -8099,6 +10673,28 @@
           "ja": "1948年成立",
           "en": "Founded 1948",
           "zh": "1948年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2600万人",
+          "en": "about 26 million",
+          "zh": "约2600万人"
+        },
+        "area": {
+          "ja": "約120,538 km²",
+          "en": "about 120,538 km²",
+          "zh": "约120,538 km²"
+        },
+        "languages": {
+          "ja": "Korean",
+          "en": "Korean",
+          "zh": "Korean"
+        },
+        "religions": {
+          "ja": "State atheism and traditional beliefs",
+          "en": "State atheism and traditional beliefs",
+          "zh": "State atheism and traditional beliefs"
         }
       }
     },

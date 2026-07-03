@@ -1351,6 +1351,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                             with ui.column().classes('gap-1'):
                                 ui.label(period_field_label(c)).classes('text-xs font-bold text-gray-400 uppercase')
                                 ui.label(detail_period).classes('text-lg font-bold text-orange-700')
+                        for label, value in profile_rows(c):
+                            with ui.column().classes('gap-1'):
+                                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                                ui.label(value).classes('text-lg')
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
                             ui.label(c.get('region', '-')).classes('text-lg')
@@ -1359,14 +1363,6 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                             with ui.row().classes('gap-1'):
                                 for tag in c.get('tags', []):
                                     ui.chip(tag_label(tag)).props('outline color=primary')
-                        profile_detail_rows = profile_rows(c)
-                        if profile_detail_rows:
-                            with ui.column().classes('gap-2'):
-                                ui.label(t('basic_profile')).classes('text-xs font-bold text-gray-400 uppercase')
-                                for label, value in profile_detail_rows:
-                                    with ui.row().classes('w-full justify-between gap-3 no-wrap'):
-                                        ui.label(label).classes('text-sm text-gray-500')
-                                        ui.label(value).classes('text-sm font-bold text-gray-800 text-right')
                     with ui.column().classes('gap-1'):
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
