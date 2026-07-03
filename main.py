@@ -83,6 +83,9 @@ class AppState:
     page = 1
     items_per_page = 20
     quiz = None
+    quiz_difficulty = 'medium'
+    compare_left_key = None
+    compare_right_key = None
 
 state = AppState()
 
@@ -125,6 +128,27 @@ UI_FALLBACKS = {
         'user_created': 'ユーザーを作成しました。',
         'login_success': 'ログインしました。',
         'logout_success': 'ログアウトしました。',
+        'compare': '比較',
+        'compare_title': '国を比較',
+        'compare_left': '比較する国 1',
+        'compare_right': '比較する国 2',
+        'today_country': '今日の国',
+        'view_detail': '詳細を見る',
+        'notes': '自分用メモ',
+        'save_note': 'メモを保存',
+        'note_saved': 'メモを保存しました。',
+        'related_countries': '関連する国',
+        'timeline': '年表',
+        'timeline_title': '歴史年表',
+        'period_ancient': '古代',
+        'period_medieval': '中世',
+        'period_modern': '近現代',
+        'period_other': 'その他',
+        'difficulty': '難易度',
+        'difficulty_easy': '初級',
+        'difficulty_medium': '中級',
+        'difficulty_hard': '上級',
+        'quiz_stats': '正解 {correct} / {answered}・連続 {streak}・最高 {best}',
     },
     'en': {
         'sort_asc': 'Ascending',
@@ -164,6 +188,27 @@ UI_FALLBACKS = {
         'user_created': 'Account created.',
         'login_success': 'Logged in.',
         'logout_success': 'Logged out.',
+        'compare': 'Compare',
+        'compare_title': 'Compare Countries',
+        'compare_left': 'Country 1',
+        'compare_right': 'Country 2',
+        'today_country': "Today's Country",
+        'view_detail': 'View Details',
+        'notes': 'My Notes',
+        'save_note': 'Save Note',
+        'note_saved': 'Note saved.',
+        'related_countries': 'Related Countries',
+        'timeline': 'Timeline',
+        'timeline_title': 'Historical Timeline',
+        'period_ancient': 'Ancient',
+        'period_medieval': 'Medieval',
+        'period_modern': 'Modern',
+        'period_other': 'Other',
+        'difficulty': 'Difficulty',
+        'difficulty_easy': 'Easy',
+        'difficulty_medium': 'Medium',
+        'difficulty_hard': 'Hard',
+        'quiz_stats': 'Correct {correct} / {answered} - Streak {streak} - Best {best}',
     },
     'zh': {
         'sort_asc': '升序',
@@ -203,6 +248,27 @@ UI_FALLBACKS = {
         'user_created': '用户已创建。',
         'login_success': '已登录。',
         'logout_success': '已退出登录。',
+        'compare': '比较',
+        'compare_title': '国家比较',
+        'compare_left': '比较国家 1',
+        'compare_right': '比较国家 2',
+        'today_country': '今日国家',
+        'view_detail': '查看详情',
+        'notes': '我的笔记',
+        'save_note': '保存笔记',
+        'note_saved': '笔记已保存。',
+        'related_countries': '相关国家',
+        'timeline': '年表',
+        'timeline_title': '历史年表',
+        'period_ancient': '古代',
+        'period_medieval': '中世纪',
+        'period_modern': '近现代',
+        'period_other': '其他',
+        'difficulty': '难度',
+        'difficulty_easy': '初级',
+        'difficulty_medium': '中级',
+        'difficulty_hard': '高级',
+        'quiz_stats': '正确 {correct} / {answered}・连续 {streak}・最高 {best}',
     },
 }
 
@@ -290,7 +356,22 @@ def get_current_user_record(data=None):
     if not state.current_user:
         return None
     users = get_users(data)
-    return users.get(state.current_user)
+    user = users.get(state.current_user)
+    if user:
+        ensure_user_defaults(user)
+    return user
+
+def ensure_user_defaults(user):
+    user.setdefault('favorites', [])
+    user.setdefault('history', [])
+    user.setdefault('notes', {})
+    user.setdefault('quiz_stats', {
+        'answered': 0,
+        'correct': 0,
+        'streak': 0,
+        'best_streak': 0,
+    })
+    return user
 
 def login_user(username, password):
     username = clean_username(username)
@@ -302,8 +383,7 @@ def login_user(username, password):
     if not user or user.get('password_hash') != password_hash(username, password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
-    user.setdefault('favorites', [])
-    user.setdefault('history', [])
+    ensure_user_defaults(user)
     save_data(data)
     state.current_user = username
     ui.notify(t('login_success'), color='positive')
@@ -324,6 +404,13 @@ def register_user(username, password):
         'password_hash': password_hash(username, password),
         'favorites': [],
         'history': [],
+        'notes': {},
+        'quiz_stats': {
+            'answered': 0,
+            'correct': 0,
+            'streak': 0,
+            'best_streak': 0,
+        },
     }
     save_data(data)
     state.current_user = username
@@ -366,6 +453,51 @@ def toggle_favorite(country):
         favorites.append(key)
     save_data(data)
 
+def get_note_for_country(country, data=None):
+    data = data or get_data()
+    user = get_current_user_record(data)
+    if not user:
+        return ''
+    return user.setdefault('notes', {}).get(country_key(country), '')
+
+def save_note_for_country(country, note_text):
+    data = get_data()
+    user = get_current_user_record(data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return
+    notes = user.setdefault('notes', {})
+    key = country_key(country)
+    text = (note_text or '').strip()
+    if text:
+        notes[key] = text
+    else:
+        notes.pop(key, None)
+    save_data(data)
+    ui.notify(t('note_saved'), color='positive')
+
+def get_quiz_stats(data=None):
+    data = data or get_data()
+    user = get_current_user_record(data)
+    if not user:
+        return {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0}
+    return user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
+
+def update_quiz_stats(correct):
+    data = get_data()
+    user = get_current_user_record(data)
+    if not user:
+        return
+    stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
+    stats['answered'] = stats.get('answered', 0) + 1
+    if correct:
+        stats['correct'] = stats.get('correct', 0) + 1
+        stats['streak'] = stats.get('streak', 0) + 1
+    else:
+        stats['streak'] = 0
+    stats['best_streak'] = max(stats.get('best_streak', 0), stats.get('streak', 0))
+    save_data(data)
+
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
     if state.lang == 'ja' and KAKASI_CONVERTER:
@@ -394,6 +526,69 @@ def countries_by_key(data=None):
     data = data or get_data()
     return {country_key(country): country for country in data.get('countries', [])}
 
+def country_option_label(country):
+    local_name = get_localized_text(country.get('names', {}))
+    en_name = country.get('names', {}).get('en', '')
+    if en_name and en_name != local_name:
+        return f'{local_name} / {en_name}'
+    return local_name
+
+def country_option_maps(data=None):
+    data = data or get_data()
+    label_to_key = {}
+    key_to_label = {}
+    for country in sorted(data.get('countries', []), key=lambda c: (sort_key(c), c.get('names', {}).get('en', ''))):
+        label = country_option_label(country)
+        if label in label_to_key:
+            label = f'{label} ({get_localized_text(country.get("capital", {}))})'
+        key = country_key(country)
+        label_to_key[label] = key
+        key_to_label[key] = label
+    return label_to_key, key_to_label
+
+def open_country_detail(country):
+    state.selected_country = country
+    add_history(country)
+    show_screen('result')
+
+def today_country():
+    data = get_data()
+    countries = data.get('countries', [])
+    if not countries or not state.current_user:
+        return None
+    seed = f'{datetime.now().strftime("%Y-%m-%d")}:{state.current_user}'
+    index = int(hashlib.sha256(seed.encode('utf-8')).hexdigest(), 16) % len(countries)
+    return countries[index]
+
+def related_countries(country, limit=4):
+    data = get_data()
+    target_tags = set(country.get('tags', []))
+    target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
+    scored = []
+    for candidate in data.get('countries', []):
+        if country_key(candidate) == country_key(country):
+            continue
+        candidate_tags = set(candidate.get('tags', []))
+        candidate_regions = {part.strip() for part in candidate.get('region', '').replace('/', ',').split(',') if part.strip()}
+        score = len(target_tags & candidate_tags) * 2 + len(target_regions & candidate_regions)
+        if score:
+            scored.append((score, sort_key(candidate), candidate))
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [candidate for _, _, candidate in scored[:limit]]
+
+def timeline_period(country):
+    tags = set(country.get('tags', []))
+    if 'Ancient' in tags:
+        return 'period_ancient'
+    if 'Medieval' in tags:
+        return 'period_medieval'
+    if 'Modern History' in tags:
+        return 'period_modern'
+    return 'period_other'
+
+def quiz_option_count():
+    return {'easy': 3, 'medium': 4, 'hard': 5}.get(state.quiz_difficulty, 4)
+
 def build_quiz():
     data = get_data()
     countries = data.get('countries', [])
@@ -421,7 +616,8 @@ def build_quiz():
 
     question_type, candidates = random.choice(question_pools)
     answer = random.choice(candidates)
-    options = random.sample([c for c in countries if country_key(c) != country_key(answer)], 3)
+    distractor_count = min(quiz_option_count() - 1, len(countries) - 1)
+    options = random.sample([c for c in countries if country_key(c) != country_key(answer)], distractor_count)
     options.append(answer)
     random.shuffle(options)
 
@@ -449,8 +645,16 @@ def quiz_view_parts(quiz, answer):
         return question, description, None
 
 def start_quiz():
+    if not state.current_user:
+        ui.notify(t('login_required'), color='warning')
+        show_screen('top')
+        return
     state.quiz = build_quiz()
     show_screen('quiz')
+
+def set_quiz_difficulty(difficulty):
+    state.quiz_difficulty = difficulty
+    start_quiz()
 
 # ========================================
 # 画面切り替え
@@ -492,7 +696,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    if screen_name in ['main', 'result', 'quiz'] and not state.current_user:
+    if screen_name in ['main', 'result', 'quiz', 'compare', 'timeline'] and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
 
@@ -511,12 +715,18 @@ def show_screen(screen_name):
     main_screen.set_visibility(screen_name == 'main')
     result_screen.set_visibility(screen_name == 'result')
     quiz_screen.set_visibility(screen_name == 'quiz')
+    compare_screen.set_visibility(screen_name == 'compare')
+    timeline_screen.set_visibility(screen_name == 'timeline')
     if screen_name == 'main':
         refresh_main_ui()
     if screen_name == 'result':
         refresh_result_view()
     if screen_name == 'quiz':
         refresh_quiz_view()
+    if screen_name == 'compare':
+        refresh_compare_view()
+    if screen_name == 'timeline':
+        refresh_timeline_view()
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -524,6 +734,8 @@ def switch_language(lang_code):
     if main_screen.visible: refresh_main_ui()
     if result_screen.visible: refresh_result_view()
     if quiz_screen.visible: refresh_quiz_view()
+    if compare_screen.visible: refresh_compare_view()
+    if timeline_screen.visible: refresh_timeline_view()
 
 def is_mobile_ui():
     return state.ui_mode == 'mobile'
@@ -543,6 +755,10 @@ def refresh_current_screen():
         refresh_result_view()
     if quiz_screen.visible:
         refresh_quiz_view()
+    if compare_screen.visible:
+        refresh_compare_view()
+    if timeline_screen.visible:
+        refresh_timeline_view()
 
 def toggle_ui_mode():
     state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
@@ -620,6 +836,8 @@ def render_header(container):
                     refresh_history_content()
                     history_drawer.toggle()
                 ui.button(icon='quiz', on_click=start_quiz).props('flat round color=white').tooltip(t('quiz'))
+                ui.button(icon='compare_arrows', on_click=lambda: show_screen('compare')).props('flat round color=white').tooltip(t('compare'))
+                ui.button(icon='timeline', on_click=lambda: show_screen('timeline')).props('flat round color=white').tooltip(t('timeline'))
                 ui.button(icon='history', on_click=open_history).props('flat round color=white')
                 if state.current_user:
                     ui.button(icon='logout', on_click=logout_user).props('flat round color=white').tooltip(t('logout'))
@@ -641,10 +859,29 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
                 ui.badge(t('logged_in_as').format(user=state.current_user), color='green').classes('px-3 py-2')
+                daily = today_country()
+                if daily:
+                    with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
+                        ui.label(t('today_country')).classes('text-sm font-bold text-blue-700')
+                        with ui.row().classes('w-full items-center gap-3 no-wrap'):
+                            ui.image(get_flag_url(daily.get('flag_code'))).classes('w-20 shadow border rounded')
+                            with ui.column().classes('gap-1 flex-grow'):
+                                ui.label(get_localized_text(daily['names'])).classes('text-xl font-bold text-[#1a2332]')
+                                ui.label(first_sentence(get_localized_text(daily.get('desc', {})))).classes('text-sm text-gray-500 line-clamp-2')
+                        ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=daily: open_country_detail(c)) \
+                            .props('outline color=primary') \
+                            .classes('w-full')
                 ui.button('ENTER', on_click=lambda: show_screen('main')) \
                     .classes('w-full bg-[#1a2332] text-white px-8 py-3 rounded-full text-base shadow-lg hover:scale-105 transition' if is_mobile_ui() else 'bg-[#1a2332] text-white px-10 py-3 rounded-full text-lg shadow-lg hover:scale-105 transition')
                 ui.button(t('quiz'), icon='quiz', on_click=start_quiz) \
                     .classes('w-full bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition' if is_mobile_ui() else 'bg-blue-600 text-white px-8 py-2 rounded-full shadow hover:bg-blue-700 transition')
+                with ui.row().classes('w-full gap-2 justify-center flex-wrap'):
+                    ui.button(t('compare'), icon='compare_arrows', on_click=lambda: show_screen('compare')) \
+                        .props('outline color=primary') \
+                        .classes('flex-grow' if is_mobile_ui() else 'px-6')
+                    ui.button(t('timeline'), icon='timeline', on_click=lambda: show_screen('timeline')) \
+                        .props('outline color=primary') \
+                        .classes('flex-grow' if is_mobile_ui() else 'px-6')
                 ui.button(t('logout'), icon='logout', on_click=logout_user) \
                     .props('outline color=grey') \
                     .classes('w-full px-6 py-2 rounded-full' if is_mobile_ui() else 'px-8 py-2 rounded-full')
@@ -931,6 +1168,29 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                         ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
                         ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
 
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
+                note_input = ui.textarea(value=get_note_for_country(c), placeholder=t('notes')) \
+                    .props('outlined autogrow') \
+                    .classes('w-full')
+                ui.button(t('save_note'), icon='save', on_click=lambda country=c, field=note_input: save_note_for_country(country, field.value)) \
+                    .props('color=primary') \
+                    .classes('self-start')
+
+            related = related_countries(c)
+            if related:
+                with ui.card().classes('w-full p-5 gap-3'):
+                    ui.label(t('related_countries')).classes('text-lg font-bold text-[#1a2332]')
+                    with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
+                        for related_country in related:
+                            with ui.card().classes('w-full p-3 cursor-pointer hover:shadow-md transition') as related_card:
+                                related_card.on('click', lambda _, x=related_country: open_country_detail(x))
+                                with ui.row().classes('items-center gap-3 no-wrap'):
+                                    ui.image(get_flag_url(related_country.get('flag_code'))).classes('w-16 shadow border rounded')
+                                    with ui.column().classes('gap-1'):
+                                        ui.label(get_localized_text(related_country['names'])).classes('font-bold text-gray-800')
+                                        ui.label(related_country.get('region', '')).classes('text-xs text-gray-500')
+
 # ========================================
 # 4. ミニクイズ画面
 # ========================================
@@ -945,6 +1205,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
             return
         state.quiz['selected_key'] = option_key
         state.quiz['answered'] = True
+        update_quiz_stats(option_key == state.quiz.get('answer_key'))
         refresh_quiz_view()
 
     def open_quiz_answer_detail():
@@ -983,6 +1244,20 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                 ui.label(t('quiz_title')).classes('text-2xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-3xl font-bold text-[#1a2332]')
                 ui.button(t('quiz_next'), icon='refresh', on_click=start_quiz).props('outline color=primary').classes('w-full' if is_mobile_ui() else '')
 
+            stats = get_quiz_stats()
+            ui.label(t('quiz_stats').format(
+                correct=stats.get('correct', 0),
+                answered=stats.get('answered', 0),
+                streak=stats.get('streak', 0),
+                best=stats.get('best_streak', 0),
+            )).classes('text-sm text-gray-600 font-bold')
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                ui.label(t('difficulty')).classes('text-sm font-bold text-gray-500')
+                for key in ['easy', 'medium', 'hard']:
+                    color = 'primary' if state.quiz_difficulty == key else 'grey'
+                    ui.button(t(f'difficulty_{key}'), on_click=lambda _, d=key: set_quiz_difficulty(d)) \
+                        .props(f'outline color={color} dense')
+
             with ui.card().classes('w-full p-4 gap-4' if is_mobile_ui() else 'w-full p-6 gap-4'):
                 ui.label(question).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
                 if description:
@@ -1017,6 +1292,116 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                         ui.label(get_localized_text(answer['names'])).classes('text-lg font-bold')
                     ui.button(t('quiz_detail'), icon='open_in_new', on_click=open_quiz_answer_detail) \
                         .classes('bg-[#1a2332] text-white px-4 py-2 mt-2')
+
+# ========================================
+# 5. 比較画面
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_screen:
+    header_container_compare = ui.column().classes('w-full p-0 m-0')
+    compare_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def set_compare_country(side, label):
+        label_to_key, _ = country_option_maps()
+        key = label_to_key.get(label)
+        if side == 'left':
+            state.compare_left_key = key
+        else:
+            state.compare_right_key = key
+        refresh_compare_view()
+
+    def render_compare_column(country):
+        if not country:
+            return
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.image(get_flag_url(country.get('flag_code'))).classes('w-full max-h-32 object-contain border rounded bg-gray-50')
+            ui.label(get_localized_text(country['names'])).classes('text-2xl font-bold text-[#1a2332]')
+            ui.label(country.get('names', {}).get('en', '')).classes('text-sm text-gray-400 font-serif italic')
+            ui.separator()
+            rows = [
+                (t('labels', 'capital'), get_localized_text(country.get('capital', '-'))),
+                (t('labels', 'region'), country.get('region', '-')),
+                (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
+            ]
+            for label, value in rows:
+                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                ui.label(value).classes('text-base text-gray-800')
+            ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
+            ui.markdown(get_localized_text(country.get('desc', {}))).classes('text-gray-700 leading-relaxed')
+            ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=country: open_country_detail(c)) \
+                .props('outline color=primary') \
+                .classes('self-start')
+
+    def refresh_compare_view():
+        render_header(header_container_compare)
+        update_mode_classes(
+            compare_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        compare_content.clear()
+        data = get_data()
+        countries = data.get('countries', [])
+        if len(countries) < 2:
+            return
+        lookup = countries_by_key(data)
+        label_to_key, key_to_label = country_option_maps(data)
+        keys = list(lookup.keys())
+        if not state.compare_left_key or state.compare_left_key not in lookup:
+            state.compare_left_key = keys[0]
+        if not state.compare_right_key or state.compare_right_key not in lookup:
+            state.compare_right_key = keys[1]
+
+        with compare_content:
+            ui.label(t('compare_title')).classes('text-3xl font-bold text-[#1a2332]')
+            with ui.row().classes('w-full gap-3 flex-col' if is_mobile_ui() else 'w-full gap-4 items-center'):
+                ui.select(list(label_to_key.keys()), value=key_to_label.get(state.compare_left_key), label=t('compare_left'), on_change=lambda e: set_compare_country('left', e.value)) \
+                    .classes('w-full bg-white' if is_mobile_ui() else 'w-1/2 bg-white')
+                ui.select(list(label_to_key.keys()), value=key_to_label.get(state.compare_right_key), label=t('compare_right'), on_change=lambda e: set_compare_country('right', e.value)) \
+                    .classes('w-full bg-white' if is_mobile_ui() else 'w-1/2 bg-white')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                render_compare_column(lookup.get(state.compare_left_key))
+                render_compare_column(lookup.get(state.compare_right_key))
+
+# ========================================
+# 6. 年表画面
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_screen:
+    header_container_timeline = ui.column().classes('w-full p-0 m-0')
+    timeline_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def refresh_timeline_view():
+        render_header(header_container_timeline)
+        update_mode_classes(
+            timeline_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        timeline_content.clear()
+        data = get_data()
+        past_countries = [country for country in data.get('countries', []) if country.get('type') == 'Past']
+        grouped = {key: [] for key in ['period_ancient', 'period_medieval', 'period_modern', 'period_other']}
+        for country in past_countries:
+            grouped[timeline_period(country)].append(country)
+        for countries in grouped.values():
+            countries.sort(key=lambda country: (sort_key(country), country.get('names', {}).get('en', '')))
+
+        with timeline_content:
+            ui.label(t('timeline_title')).classes('text-3xl font-bold text-[#1a2332]')
+            for period_key in ['period_ancient', 'period_medieval', 'period_modern', 'period_other']:
+                countries = grouped[period_key]
+                if not countries:
+                    continue
+                ui.label(t(period_key)).classes('text-xl font-bold text-blue-800 mt-2')
+                with ui.column().classes('w-full gap-3'):
+                    for country in countries:
+                        with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
+                            card.on('click', lambda _, x=country: open_country_detail(x))
+                            with ui.row().classes('items-start gap-3 no-wrap'):
+                                ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
+                                with ui.column().classes('gap-1 flex-grow'):
+                                    ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-gray-800')
+                                    ui.label(country.get('region', '')).classes('text-sm text-gray-500')
+                                    ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-600 line-clamp-2')
 
 # ========================================
 # 初期表示
