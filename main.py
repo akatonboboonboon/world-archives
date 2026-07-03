@@ -2402,9 +2402,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 # 初期表示
 # ========================================
 show_screen('top')
+server_port = int(os.environ.get('PORT', 8080))
+print(f'Starting World Archives on 0.0.0.0:{server_port}', flush=True)
 ui.run(
     title='World Archives',
     favicon='🌍',
     host='0.0.0.0',
-    port=int(os.environ.get('PORT', 8080)),
+    port=server_port,
+    reload=False,
+    show=False,
 )

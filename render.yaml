@@ -3,7 +3,7 @@ services:
     name: world-archives
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
+    startCommand: python -u main.py
     envVars:
       - key: USER_DATA_FILE
         value: /var/data/user_data.json
