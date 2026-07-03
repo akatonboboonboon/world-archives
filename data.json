@@ -138,7 +138,52 @@
       "quiz_mode_normal": "通常",
       "quiz_mode_review": "復習",
       "review_empty": "復習リストはまだ空です。",
-      "same_period": "近い年代"
+      "same_period": "近い年代",
+      "region_labels": {
+        "Africa, Central Africa": "アフリカ、中央アフリカ",
+        "Africa, East Africa": "アフリカ、東アフリカ",
+        "Africa, North Africa": "アフリカ、北アフリカ",
+        "Africa, Southern Africa": "アフリカ、南部アフリカ",
+        "Africa, West Africa": "アフリカ、西アフリカ",
+        "Asia, Central Asia": "アジア、中央アジア",
+        "Asia, East Asia": "アジア、東アジア",
+        "Asia, South Asia": "アジア、南アジア",
+        "Asia, Southeast Asia": "アジア、東南アジア",
+        "Asia, Southern Asia": "アジア、南アジア",
+        "Asia/Europe": "アジア・ヨーロッパ",
+        "Caribbean": "カリブ海地域",
+        "Central America": "中央アメリカ",
+        "Eurasia": "ユーラシア",
+        "Europe": "ヨーロッパ",
+        "Europe (Spain)": "ヨーロッパ（スペイン）",
+        "Europe / Asia": "ヨーロッパ・アジア",
+        "Europe, Balkans": "ヨーロッパ、バルカン半島",
+        "Europe, Central Europe": "ヨーロッパ、中央ヨーロッパ",
+        "Europe, Eastern Europe": "ヨーロッパ、東ヨーロッパ",
+        "Europe, Greece": "ヨーロッパ、ギリシャ",
+        "Europe, Italy": "ヨーロッパ、イタリア",
+        "Europe, Northern Europe": "ヨーロッパ、北ヨーロッパ",
+        "Europe, Southern Europe": "ヨーロッパ、南ヨーロッパ",
+        "Europe, Western Europe": "ヨーロッパ、西ヨーロッパ",
+        "Europe/Asia": "ヨーロッパ・アジア",
+        "Europe/Middle East": "ヨーロッパ・中東",
+        "Global (Europe)": "世界規模（ヨーロッパ中心）",
+        "Middle East": "中東",
+        "Middle East (Anatolia)": "中東（アナトリア）",
+        "Middle East (Iran)": "中東（イラン）",
+        "Middle East / Africa": "中東・アフリカ",
+        "Middle East / Africa / Europe": "中東・アフリカ・ヨーロッパ",
+        "Middle East / Europe / Africa": "中東・ヨーロッパ・アフリカ",
+        "North America": "北アメリカ",
+        "North America (Central America)": "北アメリカ（中央アメリカ）",
+        "North America (Mexico)": "北アメリカ（メキシコ）",
+        "Oceania": "オセアニア",
+        "Oceania / Pacific": "オセアニア・太平洋",
+        "South America": "南アメリカ",
+        "South America (Andes)": "南アメリカ（アンデス）",
+        "South America (Bolivia)": "南アメリカ（ボリビア）",
+        "South America (Peru)": "南アメリカ（ペルー）"
+      }
     },
     "en": {
       "app_title": "World Archives",
@@ -278,7 +323,52 @@
       "quiz_mode_normal": "Normal",
       "quiz_mode_review": "Review",
       "review_empty": "Your review list is empty.",
-      "same_period": "Similar period"
+      "same_period": "Similar period",
+      "region_labels": {
+        "Africa, Central Africa": "Africa, Central Africa",
+        "Africa, East Africa": "Africa, East Africa",
+        "Africa, North Africa": "Africa, North Africa",
+        "Africa, Southern Africa": "Africa, Southern Africa",
+        "Africa, West Africa": "Africa, West Africa",
+        "Asia, Central Asia": "Asia, Central Asia",
+        "Asia, East Asia": "Asia, East Asia",
+        "Asia, South Asia": "Asia, South Asia",
+        "Asia, Southeast Asia": "Asia, Southeast Asia",
+        "Asia, Southern Asia": "Asia, Southern Asia",
+        "Asia/Europe": "Asia/Europe",
+        "Caribbean": "Caribbean",
+        "Central America": "Central America",
+        "Eurasia": "Eurasia",
+        "Europe": "Europe",
+        "Europe (Spain)": "Europe (Spain)",
+        "Europe / Asia": "Europe / Asia",
+        "Europe, Balkans": "Europe, Balkans",
+        "Europe, Central Europe": "Europe, Central Europe",
+        "Europe, Eastern Europe": "Europe, Eastern Europe",
+        "Europe, Greece": "Europe, Greece",
+        "Europe, Italy": "Europe, Italy",
+        "Europe, Northern Europe": "Europe, Northern Europe",
+        "Europe, Southern Europe": "Europe, Southern Europe",
+        "Europe, Western Europe": "Europe, Western Europe",
+        "Europe/Asia": "Europe/Asia",
+        "Europe/Middle East": "Europe/Middle East",
+        "Global (Europe)": "Global (Europe)",
+        "Middle East": "Middle East",
+        "Middle East (Anatolia)": "Middle East (Anatolia)",
+        "Middle East (Iran)": "Middle East (Iran)",
+        "Middle East / Africa": "Middle East / Africa",
+        "Middle East / Africa / Europe": "Middle East / Africa / Europe",
+        "Middle East / Europe / Africa": "Middle East / Europe / Africa",
+        "North America": "North America",
+        "North America (Central America)": "North America (Central America)",
+        "North America (Mexico)": "North America (Mexico)",
+        "Oceania": "Oceania",
+        "Oceania / Pacific": "Oceania / Pacific",
+        "South America": "South America",
+        "South America (Andes)": "South America (Andes)",
+        "South America (Bolivia)": "South America (Bolivia)",
+        "South America (Peru)": "South America (Peru)"
+      }
     },
     "zh": {
       "app_title": "World Archives",
@@ -403,7 +493,52 @@
       "quiz_mode_normal": "普通",
       "quiz_mode_review": "复习",
       "review_empty": "复习列表还是空的。",
-      "same_period": "相近年代"
+      "same_period": "相近年代",
+      "region_labels": {
+        "Africa, Central Africa": "非洲、中部非洲",
+        "Africa, East Africa": "非洲、东非",
+        "Africa, North Africa": "非洲、北非",
+        "Africa, Southern Africa": "非洲、南部非洲",
+        "Africa, West Africa": "非洲、西非",
+        "Asia, Central Asia": "亚洲、中亚",
+        "Asia, East Asia": "亚洲、东亚",
+        "Asia, South Asia": "亚洲、南亚",
+        "Asia, Southeast Asia": "亚洲、东南亚",
+        "Asia, Southern Asia": "亚洲、南亚",
+        "Asia/Europe": "亚洲・欧洲",
+        "Caribbean": "加勒比地区",
+        "Central America": "中美洲",
+        "Eurasia": "欧亚大陆",
+        "Europe": "欧洲",
+        "Europe (Spain)": "欧洲（西班牙）",
+        "Europe / Asia": "欧洲・亚洲",
+        "Europe, Balkans": "欧洲、巴尔干半岛",
+        "Europe, Central Europe": "欧洲、中欧",
+        "Europe, Eastern Europe": "欧洲、东欧",
+        "Europe, Greece": "欧洲、希腊",
+        "Europe, Italy": "欧洲、意大利",
+        "Europe, Northern Europe": "欧洲、北欧",
+        "Europe, Southern Europe": "欧洲、南欧",
+        "Europe, Western Europe": "欧洲、西欧",
+        "Europe/Asia": "欧洲・亚洲",
+        "Europe/Middle East": "欧洲・中东",
+        "Global (Europe)": "全球（以欧洲为中心）",
+        "Middle East": "中东",
+        "Middle East (Anatolia)": "中东（安纳托利亚）",
+        "Middle East (Iran)": "中东（伊朗）",
+        "Middle East / Africa": "中东・非洲",
+        "Middle East / Africa / Europe": "中东・非洲・欧洲",
+        "Middle East / Europe / Africa": "中东・欧洲・非洲",
+        "North America": "北美洲",
+        "North America (Central America)": "北美洲（中美洲）",
+        "North America (Mexico)": "北美洲（墨西哥）",
+        "Oceania": "大洋洲",
+        "Oceania / Pacific": "大洋洲・太平洋",
+        "South America": "南美洲",
+        "South America (Andes)": "南美洲（安第斯）",
+        "South America (Bolivia)": "南美洲（玻利维亚）",
+        "South America (Peru)": "南美洲（秘鲁）"
+      }
     }
   },
   "countries": [
@@ -452,14 +587,14 @@
           "zh": "约377,975 km²"
         },
         "languages": {
-          "ja": "Japanese",
+          "ja": "日本語",
           "en": "Japanese",
-          "zh": "Japanese"
+          "zh": "日语"
         },
         "religions": {
-          "ja": "Shinto and Buddhism",
+          "ja": "神道、仏教",
           "en": "Shinto and Buddhism",
-          "zh": "Shinto and Buddhism"
+          "zh": "神道教、佛教"
         }
       }
     },
@@ -507,14 +642,14 @@
           "zh": "约9,600,000 km²"
         },
         "languages": {
-          "ja": "Standard Chinese",
+          "ja": "標準中国語",
           "en": "Standard Chinese",
-          "zh": "Standard Chinese"
+          "zh": "标准汉语"
         },
         "religions": {
-          "ja": "Folk religion, Buddhism, and unaffiliated",
+          "ja": "民間信仰、仏教、無宗教",
           "en": "Folk religion, Buddhism, and unaffiliated",
-          "zh": "Folk religion, Buddhism, and unaffiliated"
+          "zh": "民间信仰、佛教、无宗教"
         }
       }
     },
@@ -562,14 +697,14 @@
           "zh": "约100,210 km²"
         },
         "languages": {
-          "ja": "Korean",
+          "ja": "朝鮮語",
           "en": "Korean",
-          "zh": "Korean"
+          "zh": "韩语"
         },
         "religions": {
-          "ja": "Unaffiliated, Christianity, and Buddhism",
+          "ja": "無宗教、キリスト教、仏教",
           "en": "Unaffiliated, Christianity, and Buddhism",
-          "zh": "Unaffiliated, Christianity, and Buddhism"
+          "zh": "无宗教、基督教、佛教"
         }
       }
     },
@@ -620,14 +755,14 @@
           "zh": "约513,120 km²"
         },
         "languages": {
-          "ja": "Thai",
+          "ja": "タイ語",
           "en": "Thai",
-          "zh": "Thai"
+          "zh": "泰语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -677,14 +812,14 @@
           "zh": "约331,212 km²"
         },
         "languages": {
-          "ja": "Vietnamese",
+          "ja": "ベトナム語",
           "en": "Vietnamese",
-          "zh": "Vietnamese"
+          "zh": "越南语"
         },
         "religions": {
-          "ja": "Folk religion, Buddhism, and unaffiliated",
+          "ja": "民間信仰、仏教、無宗教",
           "en": "Folk religion, Buddhism, and unaffiliated",
-          "zh": "Folk religion, Buddhism, and unaffiliated"
+          "zh": "民间信仰、佛教、无宗教"
         }
       }
     },
@@ -734,14 +869,14 @@
           "zh": "约728 km²"
         },
         "languages": {
-          "ja": "English, Malay, Mandarin, and Tamil",
+          "ja": "英語、マレー語、標準中国語、タミル語",
           "en": "English, Malay, Mandarin, and Tamil",
-          "zh": "English, Malay, Mandarin, and Tamil"
+          "zh": "英语、马来语、普通话、泰米尔语"
         },
         "religions": {
-          "ja": "Buddhism, Christianity, Islam, Hinduism, and unaffiliated",
+          "ja": "仏教、キリスト教、イスラム教、ヒンドゥー教、無宗教",
           "en": "Buddhism, Christianity, Islam, Hinduism, and unaffiliated",
-          "zh": "Buddhism, Christianity, Islam, Hinduism, and unaffiliated"
+          "zh": "佛教、基督教、伊斯兰教、印度教、无宗教"
         }
       }
     },
@@ -790,14 +925,14 @@
           "zh": "约300,000 km²"
         },
         "languages": {
-          "ja": "Filipino and English",
+          "ja": "フィリピノ語、英語",
           "en": "Filipino and English",
-          "zh": "Filipino and English"
+          "zh": "菲律宾语、英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -846,14 +981,14 @@
           "zh": "约330,803 km²"
         },
         "languages": {
-          "ja": "Malay",
+          "ja": "マレー語",
           "en": "Malay",
-          "zh": "Malay"
+          "zh": "马来语"
         },
         "religions": {
-          "ja": "Islam, Buddhism, Christianity, and Hinduism",
+          "ja": "イスラム教、仏教、キリスト教、ヒンドゥー教",
           "en": "Islam, Buddhism, Christianity, and Hinduism",
-          "zh": "Islam, Buddhism, Christianity, and Hinduism"
+          "zh": "伊斯兰教、佛教、基督教、印度教"
         }
       }
     },
@@ -902,14 +1037,14 @@
           "zh": "约881,913 km²"
         },
         "languages": {
-          "ja": "Urdu and English",
+          "ja": "ウルドゥー語、英語",
           "en": "Urdu and English",
-          "zh": "Urdu and English"
+          "zh": "乌尔都语、英语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -959,14 +1094,14 @@
           "zh": "约147,570 km²"
         },
         "languages": {
-          "ja": "Bengali",
+          "ja": "ベンガル語",
           "en": "Bengali",
-          "zh": "Bengali"
+          "zh": "孟加拉语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -1014,14 +1149,14 @@
           "zh": "约2,724,900 km²"
         },
         "languages": {
-          "ja": "Kazakh and Russian",
+          "ja": "カザフ語、ロシア語",
           "en": "Kazakh and Russian",
-          "zh": "Kazakh and Russian"
+          "zh": "哈萨克语、俄语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -1071,14 +1206,14 @@
           "zh": "约1,648,195 km²"
         },
         "languages": {
-          "ja": "Persian",
+          "ja": "ペルシア語",
           "en": "Persian",
-          "zh": "Persian"
+          "zh": "波斯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -1127,14 +1262,14 @@
           "zh": "约83,600 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -1184,14 +1319,14 @@
           "zh": "约22,072 km²"
         },
         "languages": {
-          "ja": "Hebrew and Arabic",
+          "ja": "ヘブライ語、アラビア語",
           "en": "Hebrew and Arabic",
-          "zh": "Hebrew and Arabic"
+          "zh": "希伯来语、阿拉伯语"
         },
         "religions": {
-          "ja": "Judaism, Islam, and Christianity",
+          "ja": "ユダヤ教、イスラム教、キリスト教",
           "en": "Judaism, Islam, and Christianity",
-          "zh": "Judaism, Islam, and Christianity"
+          "zh": "犹太教、伊斯兰教、基督教"
         }
       }
     },
@@ -1239,14 +1374,14 @@
           "zh": "约9,833,517 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1294,14 +1429,14 @@
           "zh": "约9,984,670 km²"
         },
         "languages": {
-          "ja": "English and French",
+          "ja": "英語、フランス語",
           "en": "English and French",
-          "zh": "English and French"
+          "zh": "英语、法语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1349,14 +1484,14 @@
           "zh": "约1,964,375 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1406,14 +1541,14 @@
           "zh": "约756,102 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1463,14 +1598,14 @@
           "zh": "约1,285,216 km²"
         },
         "languages": {
-          "ja": "Spanish, Quechua, and Aymara",
+          "ja": "スペイン語、ケチュア語、アイマラ語",
           "en": "Spanish, Quechua, and Aymara",
-          "zh": "Spanish, Quechua, and Aymara"
+          "zh": "西班牙语、克丘亚语、艾马拉语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1519,14 +1654,14 @@
           "zh": "约1,141,748 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1575,14 +1710,14 @@
           "zh": "约916,445 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1631,14 +1766,14 @@
           "zh": "约109,884 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1688,14 +1823,14 @@
           "zh": "约10,991 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1745,14 +1880,14 @@
           "zh": "约243,610 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1800,14 +1935,14 @@
           "zh": "约357,022 km²"
         },
         "languages": {
-          "ja": "German",
+          "ja": "ドイツ語",
           "en": "German",
-          "zh": "German"
+          "zh": "德语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -1855,14 +1990,14 @@
           "zh": "约551,695 km²"
         },
         "languages": {
-          "ja": "French",
+          "ja": "フランス語",
           "en": "French",
-          "zh": "French"
+          "zh": "法语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and unaffiliated",
+          "ja": "キリスト教、イスラム教、無宗教",
           "en": "Christianity, Islam, and unaffiliated",
-          "zh": "Christianity, Islam, and unaffiliated"
+          "zh": "基督教、伊斯兰教、无宗教"
         }
       }
     },
@@ -1910,14 +2045,14 @@
           "zh": "约301,340 km²"
         },
         "languages": {
-          "ja": "Italian",
+          "ja": "イタリア語",
           "en": "Italian",
-          "zh": "Italian"
+          "zh": "意大利语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -1965,14 +2100,14 @@
           "zh": "约505,990 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2020,14 +2155,14 @@
           "zh": "约312,696 km²"
         },
         "languages": {
-          "ja": "Polish",
+          "ja": "ポーランド語",
           "en": "Polish",
-          "zh": "Polish"
+          "zh": "波兰语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -2075,14 +2210,14 @@
           "zh": "约92,212 km²"
         },
         "languages": {
-          "ja": "Portuguese",
+          "ja": "ポルトガル語",
           "en": "Portuguese",
-          "zh": "Portuguese"
+          "zh": "葡萄牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -2131,14 +2266,14 @@
           "zh": "约41,543 km²"
         },
         "languages": {
-          "ja": "Dutch",
+          "ja": "オランダ語",
           "en": "Dutch",
-          "zh": "Dutch"
+          "zh": "荷兰语"
         },
         "religions": {
-          "ja": "Unaffiliated and Christianity",
+          "ja": "無宗教、キリスト教",
           "en": "Unaffiliated and Christianity",
-          "zh": "Unaffiliated and Christianity"
+          "zh": "无宗教、基督教"
         }
       }
     },
@@ -2188,14 +2323,14 @@
           "zh": "约30,528 km²"
         },
         "languages": {
-          "ja": "Dutch, French, and German",
+          "ja": "オランダ語、フランス語、ドイツ語",
           "en": "Dutch, French, and German",
-          "zh": "Dutch, French, and German"
+          "zh": "荷兰语、法语、德语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2245,14 +2380,14 @@
           "zh": "约41,285 km²"
         },
         "languages": {
-          "ja": "German, French, Italian, and Romansh",
+          "ja": "ドイツ語、フランス語、イタリア語、ロマンシュ語",
           "en": "German, French, Italian, and Romansh",
-          "zh": "German, French, Italian, and Romansh"
+          "zh": "德语、法语、意大利语、罗曼什语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2300,14 +2435,14 @@
           "zh": "约450,295 km²"
         },
         "languages": {
-          "ja": "Swedish",
+          "ja": "スウェーデン語",
           "en": "Swedish",
-          "zh": "Swedish"
+          "zh": "瑞典语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2356,14 +2491,14 @@
           "zh": "约385,207 km²"
         },
         "languages": {
-          "ja": "Norwegian",
+          "ja": "ノルウェー語",
           "en": "Norwegian",
-          "zh": "Norwegian"
+          "zh": "挪威语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2412,14 +2547,14 @@
           "zh": "约338,145 km²"
         },
         "languages": {
-          "ja": "Finnish and Swedish",
+          "ja": "フィンランド語、スウェーデン語",
           "en": "Finnish and Swedish",
-          "zh": "Finnish and Swedish"
+          "zh": "芬兰语、瑞典语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2467,14 +2602,14 @@
           "zh": "约603,500 km²"
         },
         "languages": {
-          "ja": "Ukrainian",
+          "ja": "ウクライナ語",
           "en": "Ukrainian",
-          "zh": "Ukrainian"
+          "zh": "乌克兰语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -2523,14 +2658,14 @@
           "zh": "约131,957 km²"
         },
         "languages": {
-          "ja": "Greek",
+          "ja": "ギリシャ語",
           "en": "Greek",
-          "zh": "Greek"
+          "zh": "希腊语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -2578,14 +2713,14 @@
           "zh": "约8,515,767 km²"
         },
         "languages": {
-          "ja": "Portuguese",
+          "ja": "ポルトガル語",
           "en": "Portuguese",
-          "zh": "Portuguese"
+          "zh": "葡萄牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -2633,14 +2768,14 @@
           "zh": "约2,780,400 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2688,14 +2823,14 @@
           "zh": "约3,287,263 km²"
         },
         "languages": {
-          "ja": "Hindi and English",
+          "ja": "ヒンディー語、英語",
           "en": "Hindi and English",
-          "zh": "Hindi and English"
+          "zh": "印地语、英语"
         },
         "religions": {
-          "ja": "Hinduism, Islam, Christianity, Sikhism, and Buddhism",
+          "ja": "ヒンドゥー教、イスラム教、キリスト教、シク教、仏教",
           "en": "Hinduism, Islam, Christianity, Sikhism, and Buddhism",
-          "zh": "Hinduism, Islam, Christianity, Sikhism, and Buddhism"
+          "zh": "印度教、伊斯兰教、基督教、锡克教、佛教"
         }
       }
     },
@@ -2744,14 +2879,14 @@
           "zh": "约1,904,569 km²"
         },
         "languages": {
-          "ja": "Indonesian",
+          "ja": "インドネシア語",
           "en": "Indonesian",
-          "zh": "Indonesian"
+          "zh": "印度尼西亚语"
         },
         "religions": {
-          "ja": "Islam, Christianity, Hinduism, and Buddhism",
+          "ja": "イスラム教、キリスト教、ヒンドゥー教、仏教",
           "en": "Islam, Christianity, Hinduism, and Buddhism",
-          "zh": "Islam, Christianity, Hinduism, and Buddhism"
+          "zh": "伊斯兰教、基督教、印度教、佛教"
         }
       }
     },
@@ -2799,14 +2934,14 @@
           "zh": "约7,692,024 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -2855,14 +2990,14 @@
           "zh": "约17,098,242 km²"
         },
         "languages": {
-          "ja": "Russian",
+          "ja": "ロシア語",
           "en": "Russian",
-          "zh": "Russian"
+          "zh": "俄语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and unaffiliated",
+          "ja": "キリスト教、イスラム教、無宗教",
           "en": "Christianity, Islam, and unaffiliated",
-          "zh": "Christianity, Islam, and unaffiliated"
+          "zh": "基督教、伊斯兰教、无宗教"
         }
       }
     },
@@ -2911,14 +3046,14 @@
           "zh": "约783,562 km²"
         },
         "languages": {
-          "ja": "Turkish",
+          "ja": "トルコ語",
           "en": "Turkish",
-          "zh": "Turkish"
+          "zh": "土耳其语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -2967,14 +3102,14 @@
           "zh": "约2,149,690 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -3022,14 +3157,14 @@
           "zh": "约1,221,037 km²"
         },
         "languages": {
-          "ja": "Zulu, Xhosa, Afrikaans, English, and others",
+          "ja": "ズールー語、コサ語、アフリカーンス語、英語、その他",
           "en": "Zulu, Xhosa, Afrikaans, English, and others",
-          "zh": "Zulu, Xhosa, Afrikaans, English, and others"
+          "zh": "祖鲁语、科萨语、南非荷兰语、英语、其他"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -3078,14 +3213,14 @@
           "zh": "约1,002,450 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -3134,14 +3269,14 @@
           "zh": "约923,768 km²"
         },
         "languages": {
-          "ja": "English, Hausa, Yoruba, Igbo, and others",
+          "ja": "英語、ハウサ語、ヨルバ語、イボ語、その他",
           "en": "English, Hausa, Yoruba, Igbo, and others",
-          "zh": "English, Hausa, Yoruba, Igbo, and others"
+          "zh": "英语、豪萨语、约鲁巴语、伊博语、其他"
         },
         "religions": {
-          "ja": "Islam, Christianity, and traditional beliefs",
+          "ja": "イスラム教、キリスト教、伝統信仰",
           "en": "Islam, Christianity, and traditional beliefs",
-          "zh": "Islam, Christianity, and traditional beliefs"
+          "zh": "伊斯兰教、基督教、传统信仰"
         }
       }
     },
@@ -3190,14 +3325,14 @@
           "zh": "约1,104,300 km²"
         },
         "languages": {
-          "ja": "Amharic, Oromo, and others",
+          "ja": "アムハラ語、オロモ語、その他",
           "en": "Amharic, Oromo, and others",
-          "zh": "Amharic, Oromo, and others"
+          "zh": "阿姆哈拉语、奥罗莫语、其他"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -3245,14 +3380,14 @@
           "zh": "约580,367 km²"
         },
         "languages": {
-          "ja": "Swahili and English",
+          "ja": "スワヒリ語、英語",
           "en": "Swahili and English",
-          "zh": "Swahili and English"
+          "zh": "斯瓦希里语、英语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -3301,14 +3436,14 @@
           "zh": "约446,550 km²"
         },
         "languages": {
-          "ja": "Arabic and Amazigh",
+          "ja": "アラビア語、アマジグ語",
           "en": "Arabic and Amazigh",
-          "zh": "Arabic and Amazigh"
+          "zh": "阿拉伯语、阿马齐格语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -3357,14 +3492,14 @@
           "zh": "约2,381,741 km²"
         },
         "languages": {
-          "ja": "Arabic and Tamazight",
+          "ja": "アラビア語、タマジクト語",
           "en": "Arabic and Tamazight",
-          "zh": "Arabic and Tamazight"
+          "zh": "阿拉伯语、塔马齐格特语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -3412,14 +3547,14 @@
           "zh": "约238,533 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and traditional beliefs",
+          "ja": "キリスト教、イスラム教、伝統信仰",
           "en": "Christianity, Islam, and traditional beliefs",
-          "zh": "Christianity, Islam, and traditional beliefs"
+          "zh": "基督教、伊斯兰教、传统信仰"
         }
       }
     },
@@ -3469,14 +3604,14 @@
           "zh": "约947,303 km²"
         },
         "languages": {
-          "ja": "Swahili and English",
+          "ja": "スワヒリ語、英語",
           "en": "Swahili and English",
-          "zh": "Swahili and English"
+          "zh": "斯瓦希里语、英语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and traditional beliefs",
+          "ja": "キリスト教、イスラム教、伝統信仰",
           "en": "Christianity, Islam, and traditional beliefs",
-          "zh": "Christianity, Islam, and traditional beliefs"
+          "zh": "基督教、伊斯兰教、传统信仰"
         }
       }
     },
@@ -3526,14 +3661,14 @@
           "zh": "约83,879 km²"
         },
         "languages": {
-          "ja": "German",
+          "ja": "ドイツ語",
           "en": "German",
-          "zh": "German"
+          "zh": "德语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -3584,14 +3719,14 @@
           "zh": "约93,028 km²"
         },
         "languages": {
-          "ja": "Hungarian",
+          "ja": "ハンガリー語",
           "en": "Hungarian",
-          "zh": "Hungarian"
+          "zh": "匈牙利语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -3641,14 +3776,14 @@
           "zh": "约78,865 km²"
         },
         "languages": {
-          "ja": "Czech",
+          "ja": "チェコ語",
           "en": "Czech",
-          "zh": "Czech"
+          "zh": "捷克语"
         },
         "religions": {
-          "ja": "Unaffiliated and Christianity",
+          "ja": "無宗教、キリスト教",
           "en": "Unaffiliated and Christianity",
-          "zh": "Unaffiliated and Christianity"
+          "zh": "无宗教、基督教"
         }
       }
     },
@@ -3697,14 +3832,14 @@
           "zh": "约238,397 km²"
         },
         "languages": {
-          "ja": "Romanian",
+          "ja": "ルーマニア語",
           "en": "Romanian",
-          "zh": "Romanian"
+          "zh": "罗马尼亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -3754,14 +3889,14 @@
           "zh": "约110,879 km²"
         },
         "languages": {
-          "ja": "Bulgarian",
+          "ja": "ブルガリア語",
           "en": "Bulgarian",
-          "zh": "Bulgarian"
+          "zh": "保加利亚语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -3809,14 +3944,14 @@
           "zh": "约88,361 km²"
         },
         "languages": {
-          "ja": "Serbian",
+          "ja": "セルビア語",
           "en": "Serbian",
-          "zh": "Serbian"
+          "zh": "塞尔维亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -3867,14 +4002,14 @@
           "zh": "约56,594 km²"
         },
         "languages": {
-          "ja": "Croatian",
+          "ja": "クロアチア語",
           "en": "Croatian",
-          "zh": "Croatian"
+          "zh": "克罗地亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -3923,14 +4058,14 @@
           "zh": "约438,317 km²"
         },
         "languages": {
-          "ja": "Arabic and Kurdish",
+          "ja": "アラビア語、クルド語",
           "en": "Arabic and Kurdish",
-          "zh": "Arabic and Kurdish"
+          "zh": "阿拉伯语、库尔德语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -3979,14 +4114,14 @@
           "zh": "约185,180 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -4036,14 +4171,14 @@
           "zh": "约89,342 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -4092,14 +4227,14 @@
           "zh": "约10,452 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -4147,14 +4282,14 @@
           "zh": "约11,586 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -4203,14 +4338,14 @@
           "zh": "约447,400 km²"
         },
         "languages": {
-          "ja": "Uzbek",
+          "ja": "ウズベク語",
           "en": "Uzbek",
-          "zh": "Uzbek"
+          "zh": "乌兹别克语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -4258,14 +4393,14 @@
           "zh": "约1,564,110 km²"
         },
         "languages": {
-          "ja": "Mongolian",
+          "ja": "モンゴル語",
           "en": "Mongolian",
-          "zh": "Mongolian"
+          "zh": "蒙古语"
         },
         "religions": {
-          "ja": "Buddhism and traditional beliefs",
+          "ja": "仏教、伝統信仰",
           "en": "Buddhism and traditional beliefs",
-          "zh": "Buddhism and traditional beliefs"
+          "zh": "佛教、传统信仰"
         }
       }
     },
@@ -4314,14 +4449,14 @@
           "zh": "约676,578 km²"
         },
         "languages": {
-          "ja": "Burmese",
+          "ja": "ビルマ語",
           "en": "Burmese",
-          "zh": "Burmese"
+          "zh": "缅甸语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -4371,14 +4506,14 @@
           "zh": "约181,035 km²"
         },
         "languages": {
-          "ja": "Khmer",
+          "ja": "クメール語",
           "en": "Khmer",
-          "zh": "Khmer"
+          "zh": "高棉语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -4427,14 +4562,14 @@
           "zh": "约283,561 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -4482,14 +4617,14 @@
           "zh": "约1,098,581 km²"
         },
         "languages": {
-          "ja": "Spanish, Quechua, and Aymara",
+          "ja": "スペイン語、ケチュア語、アイマラ語",
           "en": "Spanish, Quechua, and Aymara",
-          "zh": "Spanish, Quechua, and Aymara"
+          "zh": "西班牙语、克丘亚语、艾马拉语"
         },
         "religions": {
-          "ja": "Christianity and Indigenous beliefs",
+          "ja": "キリスト教、先住民信仰",
           "en": "Christianity and Indigenous beliefs",
-          "zh": "Christianity and Indigenous beliefs"
+          "zh": "基督教、原住民信仰"
         }
       }
     },
@@ -4539,14 +4674,14 @@
           "zh": "约176,215 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -4595,14 +4730,14 @@
           "zh": "约406,752 km²"
         },
         "languages": {
-          "ja": "Spanish and Guarani",
+          "ja": "スペイン語、グアラニー語",
           "en": "Spanish and Guarani",
-          "zh": "Spanish and Guarani"
+          "zh": "西班牙语、瓜拉尼语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -4651,14 +4786,14 @@
           "zh": "约75,417 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -4708,14 +4843,14 @@
           "zh": "约51,100 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -4765,14 +4900,14 @@
           "zh": "约48,671 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -4821,14 +4956,14 @@
           "zh": "约2,344,858 km²"
         },
         "languages": {
-          "ja": "French, Lingala, Swahili, Kikongo, and Tshiluba",
+          "ja": "フランス語、リンガラ語、スワヒリ語、キコンゴ語、チルバ語",
           "en": "French, Lingala, Swahili, Kikongo, and Tshiluba",
-          "zh": "French, Lingala, Swahili, Kikongo, and Tshiluba"
+          "zh": "法语、林加拉语、斯瓦希里语、刚果语、齐卢巴语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -4876,14 +5011,14 @@
           "zh": "约196,722 km²"
         },
         "languages": {
-          "ja": "French and Wolof",
+          "ja": "フランス語、ウォロフ語",
           "en": "French and Wolof",
-          "zh": "French and Wolof"
+          "zh": "法语、沃洛夫语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -4932,14 +5067,14 @@
           "zh": "约587,041 km²"
         },
         "languages": {
-          "ja": "Malagasy and French",
+          "ja": "マダガスカル語、フランス語",
           "en": "Malagasy and French",
-          "zh": "Malagasy and French"
+          "zh": "马达加斯加语、法语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -4987,14 +5122,14 @@
           "zh": "约390,757 km²"
         },
         "languages": {
-          "ja": "English, Shona, and Ndebele",
+          "ja": "英語、ショナ語、ンデベレ語",
           "en": "English, Shona, and Ndebele",
-          "zh": "English, Shona, and Ndebele"
+          "zh": "英语、绍纳语、恩德贝莱语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -5042,14 +5177,14 @@
           "zh": "约241,550 km²"
         },
         "languages": {
-          "ja": "English and Swahili",
+          "ja": "英語、スワヒリ語",
           "en": "English and Swahili",
-          "zh": "English and Swahili"
+          "zh": "英语、斯瓦希里语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -5099,14 +5234,14 @@
           "zh": "约70,273 km²"
         },
         "languages": {
-          "ja": "Irish and English",
+          "ja": "アイルランド語、英語",
           "en": "Irish and English",
-          "zh": "Irish and English"
+          "zh": "爱尔兰语、英语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -5156,14 +5291,14 @@
           "zh": "约43,094 km²"
         },
         "languages": {
-          "ja": "Danish",
+          "ja": "デンマーク語",
           "en": "Danish",
-          "zh": "Danish"
+          "zh": "丹麦语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -5211,14 +5346,14 @@
           "zh": "约147,181 km²"
         },
         "languages": {
-          "ja": "Nepali",
+          "ja": "ネパール語",
           "en": "Nepali",
-          "zh": "Nepali"
+          "zh": "尼泊尔语"
         },
         "religions": {
-          "ja": "Hinduism and Buddhism",
+          "ja": "ヒンドゥー教、仏教",
           "en": "Hinduism and Buddhism",
-          "zh": "Hinduism and Buddhism"
+          "zh": "印度教、佛教"
         }
       }
     },
@@ -5267,14 +5402,14 @@
           "zh": "约65,610 km²"
         },
         "languages": {
-          "ja": "Sinhala and Tamil",
+          "ja": "シンハラ語、タミル語",
           "en": "Sinhala and Tamil",
-          "zh": "Sinhala and Tamil"
+          "zh": "僧伽罗语、泰米尔语"
         },
         "religions": {
-          "ja": "Buddhism, Hinduism, Islam, and Christianity",
+          "ja": "仏教、ヒンドゥー教、イスラム教、キリスト教",
           "en": "Buddhism, Hinduism, Islam, and Christianity",
-          "zh": "Buddhism, Hinduism, Islam, and Christianity"
+          "zh": "佛教、印度教、伊斯兰教、基督教"
         }
       }
     },
@@ -5323,14 +5458,14 @@
           "zh": "约45,227 km²"
         },
         "languages": {
-          "ja": "Estonian",
+          "ja": "エストニア語",
           "en": "Estonian",
-          "zh": "Estonian"
+          "zh": "爱沙尼亚语"
         },
         "religions": {
-          "ja": "Unaffiliated and Christianity",
+          "ja": "無宗教、キリスト教",
           "en": "Unaffiliated and Christianity",
-          "zh": "Unaffiliated and Christianity"
+          "zh": "无宗教、基督教"
         }
       }
     },
@@ -5379,14 +5514,14 @@
           "zh": "约64,589 km²"
         },
         "languages": {
-          "ja": "Latvian",
+          "ja": "ラトビア語",
           "en": "Latvian",
-          "zh": "Latvian"
+          "zh": "拉脱维亚语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -5435,14 +5570,14 @@
           "zh": "约65,300 km²"
         },
         "languages": {
-          "ja": "Lithuanian",
+          "ja": "リトアニア語",
           "en": "Lithuanian",
-          "zh": "Lithuanian"
+          "zh": "立陶宛语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -5491,14 +5626,14 @@
           "zh": "约103,000 km²"
         },
         "languages": {
-          "ja": "Icelandic",
+          "ja": "アイスランド語",
           "en": "Icelandic",
-          "zh": "Icelandic"
+          "zh": "冰岛语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -5547,14 +5682,14 @@
           "zh": "约2,586 km²"
         },
         "languages": {
-          "ja": "Luxembourgish, French, and German",
+          "ja": "ルクセンブルク語、フランス語、ドイツ語",
           "en": "Luxembourgish, French, and German",
-          "zh": "Luxembourgish, French, and German"
+          "zh": "卢森堡语、法语、德语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -5605,14 +5740,14 @@
           "zh": "约69,700 km²"
         },
         "languages": {
-          "ja": "Georgian",
+          "ja": "ジョージア語",
           "en": "Georgian",
-          "zh": "Georgian"
+          "zh": "格鲁吉亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -5662,14 +5797,14 @@
           "zh": "约86,600 km²"
         },
         "languages": {
-          "ja": "Azerbaijani",
+          "ja": "アゼルバイジャン語",
           "en": "Azerbaijani",
-          "zh": "Azerbaijani"
+          "zh": "阿塞拜疆语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -5719,14 +5854,14 @@
           "zh": "约29,743 km²"
         },
         "languages": {
-          "ja": "Armenian",
+          "ja": "アルメニア語",
           "en": "Armenian",
-          "zh": "Armenian"
+          "zh": "亚美尼亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -5774,14 +5909,14 @@
           "zh": "约36,193 km²"
         },
         "languages": {
-          "ja": "Mandarin Chinese",
+          "ja": "標準中国語",
           "en": "Mandarin Chinese",
-          "zh": "Mandarin Chinese"
+          "zh": "普通话"
         },
         "religions": {
-          "ja": "Buddhism, Taoism, folk religion, and Christianity",
+          "ja": "仏教、道教、民間信仰、キリスト教",
           "en": "Buddhism, Taoism, folk religion, and Christianity",
-          "zh": "Buddhism, Taoism, folk religion, and Christianity"
+          "zh": "佛教、道教、民间信仰、基督教"
         }
       }
     },
@@ -5831,14 +5966,14 @@
           "zh": "约236,800 km²"
         },
         "languages": {
-          "ja": "Lao",
+          "ja": "ラオ語",
           "en": "Lao",
-          "zh": "Lao"
+          "zh": "老挝语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -5887,14 +6022,14 @@
           "zh": "约462,840 km²"
         },
         "languages": {
-          "ja": "English, Tok Pisin, and Hiri Motu",
+          "ja": "英語、トク・ピシン、ヒリモツ語",
           "en": "English, Tok Pisin, and Hiri Motu",
-          "zh": "English, Tok Pisin, and Hiri Motu"
+          "zh": "英语、托克皮辛语、希里莫图语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -5944,14 +6079,14 @@
           "zh": "约18,274 km²"
         },
         "languages": {
-          "ja": "English, Fijian, and Hindi",
+          "ja": "英語、フィジー語、ヒンディー語",
           "en": "English, Fijian, and Hindi",
-          "zh": "English, Fijian, and Hindi"
+          "zh": "英语、斐济语、印地语"
         },
         "religions": {
-          "ja": "Christianity, Hinduism, and Islam",
+          "ja": "キリスト教、ヒンドゥー教、イスラム教",
           "en": "Christianity, Hinduism, and Islam",
-          "zh": "Christianity, Hinduism, and Islam"
+          "zh": "基督教、印度教、伊斯兰教"
         }
       }
     },
@@ -6001,14 +6136,14 @@
           "zh": "约108,889 km²"
         },
         "languages": {
-          "ja": "Spanish and Mayan languages",
+          "ja": "スペイン語、マヤ諸語",
           "en": "Spanish and Mayan languages",
-          "zh": "Spanish and Mayan languages"
+          "zh": "西班牙语、玛雅诸语"
         },
         "religions": {
-          "ja": "Christianity and Indigenous beliefs",
+          "ja": "キリスト教、先住民信仰",
           "en": "Christianity and Indigenous beliefs",
-          "zh": "Christianity and Indigenous beliefs"
+          "zh": "基督教、原住民信仰"
         }
       }
     },
@@ -6058,14 +6193,14 @@
           "zh": "约112,492 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -6116,14 +6251,14 @@
           "zh": "约27,750 km²"
         },
         "languages": {
-          "ja": "Haitian Creole and French",
+          "ja": "ハイチ・クレオール語、フランス語",
           "en": "Haitian Creole and French",
-          "zh": "Haitian Creole and French"
+          "zh": "海地克里奥尔语、法语"
         },
         "religions": {
-          "ja": "Christianity and Vodou",
+          "ja": "キリスト教、ヴードゥー",
           "en": "Christianity and Vodou",
-          "zh": "Christianity and Vodou"
+          "zh": "基督教、伏都教"
         }
       }
     },
@@ -6172,14 +6307,14 @@
           "zh": "约1,886,068 km²"
         },
         "languages": {
-          "ja": "Arabic and English",
+          "ja": "アラビア語、英語",
           "en": "Arabic and English",
-          "zh": "Arabic and English"
+          "zh": "阿拉伯语、英语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -6227,14 +6362,14 @@
           "zh": "约1,246,700 km²"
         },
         "languages": {
-          "ja": "Portuguese",
+          "ja": "ポルトガル語",
           "en": "Portuguese",
-          "zh": "Portuguese"
+          "zh": "葡萄牙语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -6284,14 +6419,14 @@
           "zh": "约322,463 km²"
         },
         "languages": {
-          "ja": "French",
+          "ja": "フランス語",
           "en": "French",
-          "zh": "French"
+          "zh": "法语"
         },
         "religions": {
-          "ja": "Islam, Christianity, and traditional beliefs",
+          "ja": "イスラム教、キリスト教、伝統信仰",
           "en": "Islam, Christianity, and traditional beliefs",
-          "zh": "Islam, Christianity, and traditional beliefs"
+          "zh": "伊斯兰教、基督教、传统信仰"
         }
       }
     },
@@ -6340,14 +6475,14 @@
           "zh": "约163,610 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -6398,14 +6533,14 @@
           "zh": "约49,037 km²"
         },
         "languages": {
-          "ja": "Slovak",
+          "ja": "スロバキア語",
           "en": "Slovak",
-          "zh": "Slovak"
+          "zh": "斯洛伐克语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -6454,14 +6589,14 @@
           "zh": "约20,273 km²"
         },
         "languages": {
-          "ja": "Slovene",
+          "ja": "スロベニア語",
           "en": "Slovene",
-          "zh": "Slovene"
+          "zh": "斯洛文尼亚语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -6509,14 +6644,14 @@
           "zh": "约51,209 km²"
         },
         "languages": {
-          "ja": "Bosnian, Croatian, and Serbian",
+          "ja": "ボスニア語、クロアチア語、セルビア語",
           "en": "Bosnian, Croatian, and Serbian",
-          "zh": "Bosnian, Croatian, and Serbian"
+          "zh": "波斯尼亚语、克罗地亚语、塞尔维亚语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -6564,14 +6699,14 @@
           "zh": "约28,748 km²"
         },
         "languages": {
-          "ja": "Albanian",
+          "ja": "アルバニア語",
           "en": "Albanian",
-          "zh": "Albanian"
+          "zh": "阿尔巴尼亚语"
         },
         "religions": {
-          "ja": "Islam, Christianity, and unaffiliated",
+          "ja": "イスラム教、キリスト教、無宗教",
           "en": "Islam, Christianity, and unaffiliated",
-          "zh": "Islam, Christianity, and unaffiliated"
+          "zh": "伊斯兰教、基督教、无宗教"
         }
       }
     },
@@ -6620,14 +6755,14 @@
           "zh": "约207,600 km²"
         },
         "languages": {
-          "ja": "Belarusian and Russian",
+          "ja": "ベラルーシ語、ロシア語",
           "en": "Belarusian and Russian",
-          "zh": "Belarusian and Russian"
+          "zh": "白俄罗斯语、俄语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -6677,14 +6812,14 @@
           "zh": "约33,846 km²"
         },
         "languages": {
-          "ja": "Romanian",
+          "ja": "ルーマニア語",
           "en": "Romanian",
-          "zh": "Romanian"
+          "zh": "罗马尼亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -6735,14 +6870,14 @@
           "zh": "约9,251 km²"
         },
         "languages": {
-          "ja": "Greek and Turkish",
+          "ja": "ギリシャ語、トルコ語",
           "en": "Greek and Turkish",
-          "zh": "Greek and Turkish"
+          "zh": "希腊语、土耳其语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -6793,14 +6928,14 @@
           "zh": "约316 km²"
         },
         "languages": {
-          "ja": "Maltese and English",
+          "ja": "マルタ語、英語",
           "en": "Maltese and English",
-          "zh": "Maltese and English"
+          "zh": "马耳他语、英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -6850,14 +6985,14 @@
           "zh": "约38,394 km²"
         },
         "languages": {
-          "ja": "Dzongkha",
+          "ja": "ゾンカ語",
           "en": "Dzongkha",
-          "zh": "Dzongkha"
+          "zh": "宗卡语"
         },
         "religions": {
-          "ja": "Buddhism and Hinduism",
+          "ja": "仏教、ヒンドゥー教",
           "en": "Buddhism and Hinduism",
-          "zh": "Buddhism and Hinduism"
+          "zh": "佛教、印度教"
         }
       }
     },
@@ -6907,14 +7042,14 @@
           "zh": "约300 km²"
         },
         "languages": {
-          "ja": "Dhivehi",
+          "ja": "ディベヒ語",
           "en": "Dhivehi",
-          "zh": "Dhivehi"
+          "zh": "迪维希语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -6963,14 +7098,14 @@
           "zh": "约309,500 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7019,14 +7154,14 @@
           "zh": "约17,818 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7075,14 +7210,14 @@
           "zh": "约765 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7131,14 +7266,14 @@
           "zh": "约199,951 km²"
         },
         "languages": {
-          "ja": "Kyrgyz and Russian",
+          "ja": "キルギス語、ロシア語",
           "en": "Kyrgyz and Russian",
-          "zh": "Kyrgyz and Russian"
+          "zh": "吉尔吉斯语、俄语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7186,14 +7321,14 @@
           "zh": "约143,100 km²"
         },
         "languages": {
-          "ja": "Tajik",
+          "ja": "タジク語",
           "en": "Tajik",
-          "zh": "Tajik"
+          "zh": "塔吉克语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7242,14 +7377,14 @@
           "zh": "约488,100 km²"
         },
         "languages": {
-          "ja": "Turkmen",
+          "ja": "トルクメン語",
           "en": "Turkmen",
-          "zh": "Turkmen"
+          "zh": "土库曼语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7298,14 +7433,14 @@
           "zh": "约14,874 km²"
         },
         "languages": {
-          "ja": "Tetum and Portuguese",
+          "ja": "テトゥン語、ポルトガル語",
           "en": "Tetum and Portuguese",
-          "zh": "Tetum and Portuguese"
+          "zh": "德顿语、葡萄牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -7354,14 +7489,14 @@
           "zh": "约5,765 km²"
         },
         "languages": {
-          "ja": "Malay",
+          "ja": "マレー語",
           "en": "Malay",
-          "zh": "Malay"
+          "zh": "马来语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -7410,14 +7545,14 @@
           "zh": "约26,338 km²"
         },
         "languages": {
-          "ja": "Kinyarwanda, English, French, and Swahili",
+          "ja": "キニアルワンダ語、英語、フランス語、スワヒリ語",
           "en": "Kinyarwanda, English, French, and Swahili",
-          "zh": "Kinyarwanda, English, French, and Swahili"
+          "zh": "卢旺达语、英语、法语、斯瓦希里语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -7467,14 +7602,14 @@
           "zh": "约581,730 km²"
         },
         "languages": {
-          "ja": "English and Setswana",
+          "ja": "英語、ツワナ語",
           "en": "English and Setswana",
-          "zh": "English and Setswana"
+          "zh": "英语、茨瓦纳语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -7522,14 +7657,14 @@
           "zh": "约824,292 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -7578,14 +7713,14 @@
           "zh": "约752,612 km²"
         },
         "languages": {
-          "ja": "English and Bemba",
+          "ja": "英語、ベンバ語",
           "en": "English and Bemba",
-          "zh": "English and Bemba"
+          "zh": "英语、本巴语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -7633,14 +7768,14 @@
           "zh": "约475,442 km²"
         },
         "languages": {
-          "ja": "French and English",
+          "ja": "フランス語、英語",
           "en": "French and English",
-          "zh": "French and English"
+          "zh": "法语、英语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and traditional beliefs",
+          "ja": "キリスト教、イスラム教、伝統信仰",
           "en": "Christianity, Islam, and traditional beliefs",
-          "zh": "Christianity, Islam, and traditional beliefs"
+          "zh": "基督教、伊斯兰教、传统信仰"
         }
       }
     },
@@ -7692,14 +7827,14 @@
           "zh": "最大领域估计：约676,615 km²"
         },
         "languages": {
-          "ja": "German, Hungarian, Czech, Slovak, Polish, Croatian, and others",
+          "ja": "ドイツ語、ハンガリー語、チェコ語、スロバキア語、ポーランド語、クロアチア語、その他",
           "en": "German, Hungarian, Czech, Slovak, Polish, Croatian, and others",
-          "zh": "German, Hungarian, Czech, Slovak, Polish, Croatian, and others"
+          "zh": "德语、匈牙利语、捷克语、斯洛伐克语、波兰语、克罗地亚语、其他"
         },
         "religions": {
-          "ja": "Christianity, Judaism, and Islam",
+          "ja": "キリスト教、ユダヤ教、イスラム教",
           "en": "Christianity, Judaism, and Islam",
-          "zh": "Christianity, Judaism, and Islam"
+          "zh": "基督教、犹太教、伊斯兰教"
         }
       }
     },
@@ -7750,14 +7885,14 @@
           "zh": "最大领域估计：约5,200,000 km²"
         },
         "languages": {
-          "ja": "Ottoman Turkish, Arabic, Greek, Armenian, Kurdish, and others",
+          "ja": "オスマン・トルコ語、アラビア語、ギリシャ語、アルメニア語、クルド語、その他",
           "en": "Ottoman Turkish, Arabic, Greek, Armenian, Kurdish, and others",
-          "zh": "Ottoman Turkish, Arabic, Greek, Armenian, Kurdish, and others"
+          "zh": "奥斯曼土耳其语、阿拉伯语、希腊语、亚美尼亚语、库尔德语、其他"
         },
         "religions": {
-          "ja": "Islam, Christianity, and Judaism",
+          "ja": "イスラム教、キリスト教、ユダヤ教",
           "en": "Islam, Christianity, and Judaism",
-          "zh": "Islam, Christianity, and Judaism"
+          "zh": "伊斯兰教、基督教、犹太教"
         }
       }
     },
@@ -7808,14 +7943,14 @@
           "zh": "最大领域估计：约22,800,000 km²"
         },
         "languages": {
-          "ja": "Russian, Ukrainian, Polish, Finnish, Turkic languages, and others",
+          "ja": "ロシア語、ウクライナ語、ポーランド語、フィンランド語、テュルク諸語、その他",
           "en": "Russian, Ukrainian, Polish, Finnish, Turkic languages, and others",
-          "zh": "Russian, Ukrainian, Polish, Finnish, Turkic languages, and others"
+          "zh": "俄语、乌克兰语、波兰语、芬兰语、突厥语族、其他"
         },
         "religions": {
-          "ja": "Christianity, Islam, Buddhism, and Judaism",
+          "ja": "キリスト教、イスラム教、仏教、ユダヤ教",
           "en": "Christianity, Islam, Buddhism, and Judaism",
-          "zh": "Christianity, Islam, Buddhism, and Judaism"
+          "zh": "基督教、伊斯兰教、佛教、犹太教"
         }
       }
     },
@@ -7867,14 +8002,14 @@
           "zh": "最大领域估计：约540,858 km²"
         },
         "languages": {
-          "ja": "German",
+          "ja": "ドイツ語",
           "en": "German",
-          "zh": "German"
+          "zh": "德语"
         },
         "religions": {
-          "ja": "Christianity and Judaism",
+          "ja": "キリスト教、ユダヤ教",
           "en": "Christianity and Judaism",
-          "zh": "Christianity and Judaism"
+          "zh": "基督教、犹太教"
         }
       }
     },
@@ -7926,14 +8061,14 @@
           "zh": "最大领域估计：约22,402,200 km²"
         },
         "languages": {
-          "ja": "Russian and other Soviet languages",
+          "ja": "ロシア語、その他のソビエト諸語",
           "en": "Russian and other Soviet languages",
-          "zh": "Russian and other Soviet languages"
+          "zh": "俄语、其他苏联语言"
         },
         "religions": {
-          "ja": "State atheism, Christianity, Islam, Buddhism, and Judaism",
+          "ja": "国家無神論、キリスト教、イスラム教、仏教、ユダヤ教",
           "en": "State atheism, Christianity, Islam, Buddhism, and Judaism",
-          "zh": "State atheism, Christianity, Islam, Buddhism, and Judaism"
+          "zh": "国家无神论、基督教、伊斯兰教、佛教、犹太教"
         }
       }
     },
@@ -7981,14 +8116,14 @@
           "zh": "最大领域估计：约14,700,000 km²"
         },
         "languages": {
-          "ja": "Manchu, Chinese, Mongolian, Tibetan, Uyghur, and others",
+          "ja": "満洲語、中国語、モンゴル語、チベット語、ウイグル語、その他",
           "en": "Manchu, Chinese, Mongolian, Tibetan, Uyghur, and others",
-          "zh": "Manchu, Chinese, Mongolian, Tibetan, Uyghur, and others"
+          "zh": "满语、汉语、蒙古语、藏语、维吾尔语、其他"
         },
         "religions": {
-          "ja": "Confucianism, Buddhism, Taoism, Islam, and folk religions",
+          "ja": "儒教、仏教、道教、イスラム教、民間信仰",
           "en": "Confucianism, Buddhism, Taoism, Islam, and folk religions",
-          "zh": "Confucianism, Buddhism, Taoism, Islam, and folk religions"
+          "zh": "儒教、佛教、道教、伊斯兰教、民间信仰"
         }
       }
     },
@@ -8039,14 +8174,14 @@
           "zh": "最大领域估计：约7,400,000 km²"
         },
         "languages": {
-          "ja": "Japanese, Korean, Chinese, and others",
+          "ja": "日本語、朝鮮語、中国語、その他",
           "en": "Japanese, Korean, Chinese, and others",
-          "zh": "Japanese, Korean, Chinese, and others"
+          "zh": "日语、韩语、汉语、其他"
         },
         "religions": {
-          "ja": "Shinto, Buddhism, Christianity, and local religions",
+          "ja": "神道、仏教、キリスト教、地域宗教",
           "en": "Shinto, Buddhism, Christianity, and local religions",
-          "zh": "Shinto, Buddhism, Christianity, and local religions"
+          "zh": "神道教、佛教、基督教、地方宗教"
         }
       }
     },
@@ -8095,14 +8230,14 @@
           "zh": "最大领域估计：约1,303,000 km²"
         },
         "languages": {
-          "ja": "Chinese, Japanese, Manchu, Mongolian, and Korean",
+          "ja": "中国語、日本語、満洲語、モンゴル語、朝鮮語",
           "en": "Chinese, Japanese, Manchu, Mongolian, and Korean",
-          "zh": "Chinese, Japanese, Manchu, Mongolian, and Korean"
+          "zh": "汉语、日语、满语、蒙古语、韩语"
         },
         "religions": {
-          "ja": "Buddhism, Shinto, and folk religions",
+          "ja": "仏教、神道、民間信仰",
           "en": "Buddhism, Shinto, and folk religions",
-          "zh": "Buddhism, Shinto, and folk religions"
+          "zh": "佛教、神道教、民间信仰"
         }
       }
     },
@@ -8152,14 +8287,14 @@
           "zh": "最大领域估计：约108,333 km²"
         },
         "languages": {
-          "ja": "German",
+          "ja": "ドイツ語",
           "en": "German",
-          "zh": "German"
+          "zh": "德语"
         },
         "religions": {
-          "ja": "Christianity and state atheism",
+          "ja": "キリスト教、国家無神論",
           "en": "Christianity and state atheism",
-          "zh": "Christianity and state atheism"
+          "zh": "基督教、国家无神论"
         }
       }
     },
@@ -8207,14 +8342,14 @@
           "zh": "最大领域估计：约255,804 km²"
         },
         "languages": {
-          "ja": "Serbo-Croatian, Slovene, Macedonian, Albanian, and others",
+          "ja": "セルボ・クロアチア語、スロベニア語、マケドニア語、アルバニア語、その他",
           "en": "Serbo-Croatian, Slovene, Macedonian, Albanian, and others",
-          "zh": "Serbo-Croatian, Slovene, Macedonian, Albanian, and others"
+          "zh": "塞尔维亚-克罗地亚语、斯洛文尼亚语、马其顿语、阿尔巴尼亚语、其他"
         },
         "religions": {
-          "ja": "Christianity, Islam, and unaffiliated",
+          "ja": "キリスト教、イスラム教、無宗教",
           "en": "Christianity, Islam, and unaffiliated",
-          "zh": "Christianity, Islam, and unaffiliated"
+          "zh": "基督教、伊斯兰教、无宗教"
         }
       }
     },
@@ -8262,14 +8397,14 @@
           "zh": "最大领域估计：约127,900 km²"
         },
         "languages": {
-          "ja": "Czech and Slovak",
+          "ja": "チェコ語、スロバキア語",
           "en": "Czech and Slovak",
-          "zh": "Czech and Slovak"
+          "zh": "捷克语、斯洛伐克语"
         },
         "religions": {
-          "ja": "Christianity and unaffiliated",
+          "ja": "キリスト教、無宗教",
           "en": "Christianity and unaffiliated",
-          "zh": "Christianity and unaffiliated"
+          "zh": "基督教、无宗教"
         }
       }
     },
@@ -8318,14 +8453,14 @@
           "zh": "最大领域估计：约173,809 km²"
         },
         "languages": {
-          "ja": "Vietnamese",
+          "ja": "ベトナム語",
           "en": "Vietnamese",
-          "zh": "Vietnamese"
+          "zh": "越南语"
         },
         "religions": {
-          "ja": "Buddhism, Christianity, Cao Dai, and Hoa Hao",
+          "ja": "仏教、キリスト教、カオダイ教、ホアハオ教",
           "en": "Buddhism, Christianity, Cao Dai, and Hoa Hao",
-          "zh": "Buddhism, Christianity, Cao Dai, and Hoa Hao"
+          "zh": "佛教、基督教、高台教、和好教"
         }
       }
     },
@@ -8374,14 +8509,14 @@
           "zh": "最大领域估计：约1,220,000 km²"
         },
         "languages": {
-          "ja": "Tibetan",
+          "ja": "チベット語",
           "en": "Tibetan",
-          "zh": "Tibetan"
+          "zh": "藏语"
         },
         "religions": {
-          "ja": "Tibetan Buddhism and Bon",
+          "ja": "チベット仏教、ボン教",
           "en": "Tibetan Buddhism and Bon",
-          "zh": "Tibetan Buddhism and Bon"
+          "zh": "藏传佛教、苯教"
         }
       }
     },
@@ -8430,14 +8565,14 @@
           "zh": "最大领域估计：约2,500,000 km²"
         },
         "languages": {
-          "ja": "Spanish and Indigenous languages",
+          "ja": "スペイン語、先住民諸語",
           "en": "Spanish and Indigenous languages",
-          "zh": "Spanish and Indigenous languages"
+          "zh": "西班牙语、原住民语言"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -8487,14 +8622,14 @@
           "zh": "最大领域估计：约1,995,392 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -8543,14 +8678,14 @@
           "zh": "最大领域估计：约28,313 km²"
         },
         "languages": {
-          "ja": "Hawaiian and English",
+          "ja": "ハワイ語、英語",
           "en": "Hawaiian and English",
-          "zh": "Hawaiian and English"
+          "zh": "夏威夷语、英语"
         },
         "religions": {
-          "ja": "Christianity and Hawaiian traditional religion",
+          "ja": "キリスト教、ハワイ伝統宗教",
           "en": "Christianity and Hawaiian traditional religion",
-          "zh": "Christianity and Hawaiian traditional religion"
+          "zh": "基督教、夏威夷传统宗教"
         }
       }
     },
@@ -8599,14 +8734,14 @@
           "zh": "最大领域估计：约2,344,858 km²"
         },
         "languages": {
-          "ja": "French, Lingala, Swahili, Kikongo, Tshiluba, and others",
+          "ja": "フランス語、リンガラ語、スワヒリ語、キコンゴ語、チルバ語、その他",
           "en": "French, Lingala, Swahili, Kikongo, Tshiluba, and others",
-          "zh": "French, Lingala, Swahili, Kikongo, Tshiluba, and others"
+          "zh": "法语、林加拉语、斯瓦希里语、刚果语、齐卢巴语、其他"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -8656,14 +8791,14 @@
           "zh": "最大领域估计：约1,188,000 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -8713,14 +8848,14 @@
           "zh": "最大领域估计：约390,580 km²"
         },
         "languages": {
-          "ja": "English, Shona, and Ndebele",
+          "ja": "英語、ショナ語、ンデベレ語",
           "en": "English, Shona, and Ndebele",
-          "zh": "English, Shona, and Ndebele"
+          "zh": "英语、绍纳语、恩德贝莱语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -8771,14 +8906,14 @@
           "zh": "最大领域估计：约24,000,000 km²"
         },
         "languages": {
-          "ja": "Mongolian, Turkic languages, Chinese, Persian, and others",
+          "ja": "モンゴル語、テュルク諸語、中国語、ペルシア語、その他",
           "en": "Mongolian, Turkic languages, Chinese, Persian, and others",
-          "zh": "Mongolian, Turkic languages, Chinese, Persian, and others"
+          "zh": "蒙古语、突厥语族、汉语、波斯语、其他"
         },
         "religions": {
-          "ja": "Tengrism, Buddhism, Islam, Christianity, and local religions",
+          "ja": "テングリ信仰、仏教、イスラム教、キリスト教、地域宗教",
           "en": "Tengrism, Buddhism, Islam, Christianity, and local religions",
-          "zh": "Tengrism, Buddhism, Islam, Christianity, and local religions"
+          "zh": "腾格里信仰、佛教、伊斯兰教、基督教、地方宗教"
         }
       }
     },
@@ -8827,14 +8962,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "German, Latin, Italian, Czech, Dutch, French, and others",
+          "ja": "ドイツ語、ラテン語、イタリア語、チェコ語、オランダ語、フランス語、その他",
           "en": "German, Latin, Italian, Czech, Dutch, French, and others",
-          "zh": "German, Latin, Italian, Czech, Dutch, French, and others"
+          "zh": "德语、拉丁语、意大利语、捷克语、荷兰语、法语、其他"
         },
         "religions": {
-          "ja": "Christianity and Judaism",
+          "ja": "キリスト教、ユダヤ教",
           "en": "Christianity and Judaism",
-          "zh": "Christianity and Judaism"
+          "zh": "基督教、犹太教"
         }
       }
     },
@@ -8885,14 +9020,14 @@
           "zh": "最大领域估计：约3,500,000 km²"
         },
         "languages": {
-          "ja": "Greek, Latin, Armenian, Syriac, Coptic, and others",
+          "ja": "ギリシャ語、ラテン語、アルメニア語、シリア語、コプト語、その他",
           "en": "Greek, Latin, Armenian, Syriac, Coptic, and others",
-          "zh": "Greek, Latin, Armenian, Syriac, Coptic, and others"
+          "zh": "希腊语、拉丁语、亚美尼亚语、叙利亚语、科普特语、其他"
         },
         "religions": {
-          "ja": "Christianity, Judaism, and Islam",
+          "ja": "キリスト教、ユダヤ教、イスラム教",
           "en": "Christianity, Judaism, and Islam",
-          "zh": "Christianity, Judaism, and Islam"
+          "zh": "基督教、犹太教、伊斯兰教"
         }
       }
     },
@@ -8941,14 +9076,14 @@
           "zh": "最大领域估计：约220,000 km²"
         },
         "languages": {
-          "ja": "Nahuatl and other Mesoamerican languages",
+          "ja": "ナワトル語、その他のメソアメリカ諸語",
           "en": "Nahuatl and other Mesoamerican languages",
-          "zh": "Nahuatl and other Mesoamerican languages"
+          "zh": "纳瓦特尔语、其他中美洲语言"
         },
         "religions": {
-          "ja": "Aztec and Mesoamerican religions",
+          "ja": "アステカ宗教、メソアメリカ宗教",
           "en": "Aztec and Mesoamerican religions",
-          "zh": "Aztec and Mesoamerican religions"
+          "zh": "阿兹特克宗教、中美洲宗教"
         }
       }
     },
@@ -8998,14 +9133,14 @@
           "zh": "最大领域估计：约2,000,000 km²"
         },
         "languages": {
-          "ja": "Quechua, Aymara, and other Andean languages",
+          "ja": "ケチュア語、アイマラ語、その他のアンデス諸語",
           "en": "Quechua, Aymara, and other Andean languages",
-          "zh": "Quechua, Aymara, and other Andean languages"
+          "zh": "克丘亚语、艾马拉语、其他安第斯语言"
         },
         "religions": {
-          "ja": "Andean religion",
+          "ja": "アンデス宗教",
           "en": "Andean religion",
-          "zh": "Andean religion"
+          "zh": "安第斯宗教"
         }
       }
     },
@@ -9055,14 +9190,14 @@
           "zh": "最大领域估计：约4,000,000 km²"
         },
         "languages": {
-          "ja": "Persian, Hindustani, Bengali, and regional languages",
+          "ja": "ペルシア語、ヒンドゥスターニー語、ベンガル語、地域諸語",
           "en": "Persian, Hindustani, Bengali, and regional languages",
-          "zh": "Persian, Hindustani, Bengali, and regional languages"
+          "zh": "波斯语、印度斯坦语、孟加拉语、地区语言"
         },
         "religions": {
-          "ja": "Islam, Hinduism, Sikhism, Jainism, and others",
+          "ja": "イスラム教、ヒンドゥー教、シク教、ジャイナ教、その他",
           "en": "Islam, Hinduism, Sikhism, Jainism, and others",
-          "zh": "Islam, Hinduism, Sikhism, Jainism, and others"
+          "zh": "伊斯兰教、印度教、锡克教、耆那教、其他"
         }
       }
     },
@@ -9111,14 +9246,14 @@
           "zh": "最大领域估计：约5,500,000 km²"
         },
         "languages": {
-          "ja": "Old Persian, Aramaic, Elamite, Akkadian, and others",
+          "ja": "古代ペルシア語、アラム語、エラム語、アッカド語、その他",
           "en": "Old Persian, Aramaic, Elamite, Akkadian, and others",
-          "zh": "Old Persian, Aramaic, Elamite, Akkadian, and others"
+          "zh": "古波斯语、阿拉姆语、埃兰语、阿卡德语、其他"
         },
         "religions": {
-          "ja": "Zoroastrianism and local religions",
+          "ja": "ゾロアスター教、地域宗教",
           "en": "Zoroastrianism and local religions",
-          "zh": "Zoroastrianism and local religions"
+          "zh": "琐罗亚斯德教、地方宗教"
         }
       }
     },
@@ -9169,14 +9304,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Old Khmer and Sanskrit",
+          "ja": "古クメール語、サンスクリット語",
           "en": "Old Khmer and Sanskrit",
-          "zh": "Old Khmer and Sanskrit"
+          "zh": "古高棉语、梵语"
         },
         "religions": {
-          "ja": "Hinduism and Buddhism",
+          "ja": "ヒンドゥー教、仏教",
           "en": "Hinduism and Buddhism",
-          "zh": "Hinduism and Buddhism"
+          "zh": "印度教、佛教"
         }
       }
     },
@@ -9226,14 +9361,14 @@
           "zh": "最大领域估计：约1,100,000 km²"
         },
         "languages": {
-          "ja": "Manding languages and Arabic",
+          "ja": "マンディング諸語、アラビア語",
           "en": "Manding languages and Arabic",
-          "zh": "Manding languages and Arabic"
+          "zh": "曼丁语族、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and traditional beliefs",
+          "ja": "イスラム教、伝統信仰",
           "en": "Islam and traditional beliefs",
-          "zh": "Islam and traditional beliefs"
+          "zh": "伊斯兰教、传统信仰"
         }
       }
     },
@@ -9282,14 +9417,14 @@
           "zh": "约0.49 km²"
         },
         "languages": {
-          "ja": "Italian and Latin",
+          "ja": "イタリア語、ラテン語",
           "en": "Italian and Latin",
-          "zh": "Italian and Latin"
+          "zh": "意大利语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9338,14 +9473,14 @@
           "zh": "约2 km²"
         },
         "languages": {
-          "ja": "French",
+          "ja": "フランス語",
           "en": "French",
-          "zh": "French"
+          "zh": "法语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9393,14 +9528,14 @@
           "zh": "约61 km²"
         },
         "languages": {
-          "ja": "Italian",
+          "ja": "イタリア語",
           "en": "Italian",
-          "zh": "Italian"
+          "zh": "意大利语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9449,14 +9584,14 @@
           "zh": "约160 km²"
         },
         "languages": {
-          "ja": "German",
+          "ja": "ドイツ語",
           "en": "German",
-          "zh": "German"
+          "zh": "德语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9506,14 +9641,14 @@
           "zh": "约468 km²"
         },
         "languages": {
-          "ja": "Catalan",
+          "ja": "カタルーニャ語",
           "en": "Catalan",
-          "zh": "Catalan"
+          "zh": "加泰罗尼亚语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9563,14 +9698,14 @@
           "zh": "约652,230 km²"
         },
         "languages": {
-          "ja": "Dari and Pashto",
+          "ja": "ダリー語、パシュトー語",
           "en": "Dari and Pashto",
-          "zh": "Dari and Pashto"
+          "zh": "达里语、普什图语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -9618,14 +9753,14 @@
           "zh": "约527,968 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -9675,14 +9810,14 @@
           "zh": "约21,041 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9730,14 +9865,14 @@
           "zh": "约130,373 km²"
         },
         "languages": {
-          "ja": "Spanish",
+          "ja": "スペイン語",
           "en": "Spanish",
-          "zh": "Spanish"
+          "zh": "西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9788,14 +9923,14 @@
           "zh": "约22,966 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9845,14 +9980,14 @@
           "zh": "约13,943 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -9902,14 +10037,14 @@
           "zh": "约5,130 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity, Hinduism, and Islam",
+          "ja": "キリスト教、ヒンドゥー教、イスラム教",
           "en": "Christianity, Hinduism, and Islam",
-          "zh": "Christianity, Hinduism, and Islam"
+          "zh": "基督教、印度教、伊斯兰教"
         }
       }
     },
@@ -9958,14 +10093,14 @@
           "zh": "约430 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -10014,14 +10149,14 @@
           "zh": "约1,759,540 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -10070,14 +10205,14 @@
           "zh": "约1,240,192 km²"
         },
         "languages": {
-          "ja": "French and Bambara",
+          "ja": "フランス語、バンバラ語",
           "en": "French and Bambara",
-          "zh": "French and Bambara"
+          "zh": "法语、班巴拉语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -10125,14 +10260,14 @@
           "zh": "约1,284,000 km²"
         },
         "languages": {
-          "ja": "French and Arabic",
+          "ja": "フランス語、アラビア語",
           "en": "French and Arabic",
-          "zh": "French and Arabic"
+          "zh": "法语、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -10181,14 +10316,14 @@
           "zh": "约637,657 km²"
         },
         "languages": {
-          "ja": "Somali and Arabic",
+          "ja": "ソマリ語、アラビア語",
           "en": "Somali and Arabic",
-          "zh": "Somali and Arabic"
+          "zh": "索马里语、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -10236,14 +10371,14 @@
           "zh": "约117,600 km²"
         },
         "languages": {
-          "ja": "Tigrinya, Arabic, and English",
+          "ja": "ティグリニャ語、アラビア語、英語",
           "en": "Tigrinya, Arabic, and English",
-          "zh": "Tigrinya, Arabic, and English"
+          "zh": "提格里尼亚语、阿拉伯语、英语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -10292,14 +10427,14 @@
           "zh": "约2,842 km²"
         },
         "languages": {
-          "ja": "Samoan and English",
+          "ja": "サモア語、英語",
           "en": "Samoan and English",
-          "zh": "Samoan and English"
+          "zh": "萨摩亚语、英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -10348,14 +10483,14 @@
           "zh": "约747 km²"
         },
         "languages": {
-          "ja": "Tongan and English",
+          "ja": "トンガ語、英語",
           "en": "Tongan and English",
-          "zh": "Tongan and English"
+          "zh": "汤加语、英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -10406,14 +10541,14 @@
           "zh": "约459 km²"
         },
         "languages": {
-          "ja": "Palauan and English",
+          "ja": "パラオ語、英語",
           "en": "Palauan and English",
-          "zh": "Palauan and English"
+          "zh": "帕劳语、英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -10462,14 +10597,14 @@
           "zh": "约214,969 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity, Hinduism, and Islam",
+          "ja": "キリスト教、ヒンドゥー教、イスラム教",
           "en": "Christianity, Hinduism, and Islam",
-          "zh": "Christianity, Hinduism, and Islam"
+          "zh": "基督教、印度教、伊斯兰教"
         }
       }
     },
@@ -10519,14 +10654,14 @@
           "zh": "约163,820 km²"
         },
         "languages": {
-          "ja": "Dutch",
+          "ja": "オランダ語",
           "en": "Dutch",
-          "zh": "Dutch"
+          "zh": "荷兰语"
         },
         "religions": {
-          "ja": "Christianity, Hinduism, and Islam",
+          "ja": "キリスト教、ヒンドゥー教、イスラム教",
           "en": "Christianity, Hinduism, and Islam",
-          "zh": "Christianity, Hinduism, and Islam"
+          "zh": "基督教、印度教、伊斯兰教"
         }
       }
     },
@@ -10574,14 +10709,14 @@
           "zh": "约10,887 km²"
         },
         "languages": {
-          "ja": "Albanian and Serbian",
+          "ja": "アルバニア語、セルビア語",
           "en": "Albanian and Serbian",
-          "zh": "Albanian and Serbian"
+          "zh": "阿尔巴尼亚语、塞尔维亚语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -10630,14 +10765,14 @@
           "zh": "约25,713 km²"
         },
         "languages": {
-          "ja": "Macedonian and Albanian",
+          "ja": "マケドニア語、アルバニア語",
           "en": "Macedonian and Albanian",
-          "zh": "Macedonian and Albanian"
+          "zh": "马其顿语、阿尔巴尼亚语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -10686,14 +10821,14 @@
           "zh": "约1,267,000 km²"
         },
         "languages": {
-          "ja": "French and Hausa",
+          "ja": "フランス語、ハウサ語",
           "en": "French and Hausa",
-          "zh": "French and Hausa"
+          "zh": "法语、豪萨语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -10741,14 +10876,14 @@
           "zh": "约274,200 km²"
         },
         "languages": {
-          "ja": "French and Moore",
+          "ja": "フランス語、モシ語",
           "en": "French and Moore",
-          "zh": "French and Moore"
+          "zh": "法语、莫西语"
         },
         "religions": {
-          "ja": "Islam, Christianity, and traditional beliefs",
+          "ja": "イスラム教、キリスト教、伝統信仰",
           "en": "Islam, Christianity, and traditional beliefs",
-          "zh": "Islam, Christianity, and traditional beliefs"
+          "zh": "伊斯兰教、基督教、传统信仰"
         }
       }
     },
@@ -10798,14 +10933,14 @@
           "zh": "约1,030,700 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -10854,14 +10989,14 @@
           "zh": "约267,668 km²"
         },
         "languages": {
-          "ja": "French",
+          "ja": "フランス語",
           "en": "French",
-          "zh": "French"
+          "zh": "法语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -10910,14 +11045,14 @@
           "zh": "约342,000 km²"
         },
         "languages": {
-          "ja": "French",
+          "ja": "フランス語",
           "en": "French",
-          "zh": "French"
+          "zh": "法语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -10967,14 +11102,14 @@
           "zh": "约452 km²"
         },
         "languages": {
-          "ja": "English, French, and Seychellois Creole",
+          "ja": "英語、フランス語、セーシェル・クレオール語",
           "en": "English, French, and Seychellois Creole",
-          "zh": "English, French, and Seychellois Creole"
+          "zh": "英语、法语、塞舌尔克里奥尔语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11023,14 +11158,14 @@
           "zh": "约2,040 km²"
         },
         "languages": {
-          "ja": "English, French, and Mauritian Creole",
+          "ja": "英語、フランス語、モーリシャス・クレオール語",
           "en": "English, French, and Mauritian Creole",
-          "zh": "English, French, and Mauritian Creole"
+          "zh": "英语、法语、毛里求斯克里奥尔语"
         },
         "religions": {
-          "ja": "Hinduism, Christianity, and Islam",
+          "ja": "ヒンドゥー教、キリスト教、イスラム教",
           "en": "Hinduism, Christianity, and Islam",
-          "zh": "Hinduism, Christianity, and Islam"
+          "zh": "印度教、基督教、伊斯兰教"
         }
       }
     },
@@ -11080,14 +11215,14 @@
           "zh": "约28,896 km²"
         },
         "languages": {
-          "ja": "English",
+          "ja": "英語",
           "en": "English",
-          "zh": "English"
+          "zh": "英语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11136,14 +11271,14 @@
           "zh": "约12,189 km²"
         },
         "languages": {
-          "ja": "Bislama, English, and French",
+          "ja": "ビスラマ語、英語、フランス語",
           "en": "Bislama, English, and French",
-          "zh": "Bislama, English, and French"
+          "zh": "比斯拉马语、英语、法语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11192,14 +11327,14 @@
           "zh": "约811 km²"
         },
         "languages": {
-          "ja": "English and Gilbertese",
+          "ja": "英語、キリバス語",
           "en": "English and Gilbertese",
-          "zh": "English and Gilbertese"
+          "zh": "英语、吉尔伯特语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11248,14 +11383,14 @@
           "zh": "约6,020 km²"
         },
         "languages": {
-          "ja": "Arabic",
+          "ja": "アラビア語",
           "en": "Arabic",
-          "zh": "Arabic"
+          "zh": "阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -11303,14 +11438,14 @@
           "zh": "约120,538 km²"
         },
         "languages": {
-          "ja": "Korean",
+          "ja": "朝鮮語",
           "en": "Korean",
-          "zh": "Korean"
+          "zh": "韩语"
         },
         "religions": {
-          "ja": "State atheism and traditional beliefs",
+          "ja": "国家無神論、伝統信仰",
           "en": "State atheism and traditional beliefs",
-          "zh": "State atheism and traditional beliefs"
+          "zh": "国家无神论、传统信仰"
         }
       }
     },
@@ -11360,14 +11495,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Ancient Egyptian",
+          "ja": "古代エジプト語",
           "en": "Ancient Egyptian",
-          "zh": "Ancient Egyptian"
+          "zh": "古埃及语"
         },
         "religions": {
-          "ja": "Ancient Egyptian religion",
+          "ja": "古代エジプト宗教",
           "en": "Ancient Egyptian religion",
-          "zh": "Ancient Egyptian religion"
+          "zh": "古埃及宗教"
         }
       }
     },
@@ -11417,14 +11552,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Punic and Berber languages",
+          "ja": "ポエニ語、ベルベル諸語",
           "en": "Punic and Berber languages",
-          "zh": "Punic and Berber languages"
+          "zh": "布匿语、柏柏尔语族"
         },
         "religions": {
-          "ja": "Punic religion and local religions",
+          "ja": "ポエニ宗教、地域宗教",
           "en": "Punic religion and local religions",
-          "zh": "Punic religion and local religions"
+          "zh": "布匿宗教、地方宗教"
         }
       }
     },
@@ -11472,14 +11607,14 @@
           "zh": "最大领域估计：约500,000 km²"
         },
         "languages": {
-          "ja": "Akkadian, Sumerian, and Aramaic",
+          "ja": "アッカド語、シュメール語、アラム語",
           "en": "Akkadian, Sumerian, and Aramaic",
-          "zh": "Akkadian, Sumerian, and Aramaic"
+          "zh": "阿卡德语、苏美尔语、阿拉姆语"
         },
         "religions": {
-          "ja": "Mesopotamian religion",
+          "ja": "メソポタミア宗教",
           "en": "Mesopotamian religion",
-          "zh": "Mesopotamian religion"
+          "zh": "美索不达米亚宗教"
         }
       }
     },
@@ -11529,14 +11664,14 @@
           "zh": "最大领域估计：约8,500 km²"
         },
         "languages": {
-          "ja": "Greek",
+          "ja": "ギリシャ語",
           "en": "Greek",
-          "zh": "Greek"
+          "zh": "希腊语"
         },
         "religions": {
-          "ja": "Ancient Greek religion",
+          "ja": "古代ギリシャ宗教",
           "en": "Ancient Greek religion",
-          "zh": "Ancient Greek religion"
+          "zh": "古希腊宗教"
         }
       }
     },
@@ -11588,14 +11723,14 @@
           "zh": "最大领域估计：约70,000 km²"
         },
         "languages": {
-          "ja": "Venetian, Italian, Greek, and Slavic languages",
+          "ja": "ヴェネト語、イタリア語、ギリシャ語、スラヴ諸語",
           "en": "Venetian, Italian, Greek, and Slavic languages",
-          "zh": "Venetian, Italian, Greek, and Slavic languages"
+          "zh": "威尼斯语、意大利语、希腊语、斯拉夫语族"
         },
         "religions": {
-          "ja": "Christianity, Judaism, and Islam",
+          "ja": "キリスト教、ユダヤ教、イスラム教",
           "en": "Christianity, Judaism, and Islam",
-          "zh": "Christianity, Judaism, and Islam"
+          "zh": "基督教、犹太教、伊斯兰教"
         }
       }
     },
@@ -11646,14 +11781,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Polish, Lithuanian, Ruthenian, Latin, Yiddish, and others",
+          "ja": "ポーランド語、リトアニア語、ルーシ語、ラテン語、イディッシュ語、その他",
           "en": "Polish, Lithuanian, Ruthenian, Latin, Yiddish, and others",
-          "zh": "Polish, Lithuanian, Ruthenian, Latin, Yiddish, and others"
+          "zh": "波兰语、立陶宛语、鲁塞尼亚语、拉丁语、意第绪语、其他"
         },
         "religions": {
-          "ja": "Christianity, Judaism, and Islam",
+          "ja": "キリスト教、ユダヤ教、イスラム教",
           "en": "Christianity, Judaism, and Islam",
-          "zh": "Christianity, Judaism, and Islam"
+          "zh": "基督教、犹太教、伊斯兰教"
         }
       }
     },
@@ -11702,14 +11837,14 @@
           "zh": "最大领域估计：约377,975 km²"
         },
         "languages": {
-          "ja": "Japanese",
+          "ja": "日本語",
           "en": "Japanese",
-          "zh": "Japanese"
+          "zh": "日语"
         },
         "religions": {
-          "ja": "Buddhism, Shinto, and Confucianism",
+          "ja": "仏教、神道、儒教",
           "en": "Buddhism, Shinto, and Confucianism",
-          "zh": "Buddhism, Shinto, and Confucianism"
+          "zh": "佛教、神道教、儒教"
         }
       }
     },
@@ -11759,14 +11894,14 @@
           "zh": "最大领域估计：约5,400,000 km²"
         },
         "languages": {
-          "ja": "Middle Chinese and regional languages",
+          "ja": "中古中国語、地域諸語",
           "en": "Middle Chinese and regional languages",
-          "zh": "Middle Chinese and regional languages"
+          "zh": "中古汉语、地区语言"
         },
         "religions": {
-          "ja": "Buddhism, Taoism, Confucianism, and folk religions",
+          "ja": "仏教、道教、儒教、民間信仰",
           "en": "Buddhism, Taoism, Confucianism, and folk religions",
-          "zh": "Buddhism, Taoism, Confucianism, and folk religions"
+          "zh": "佛教、道教、儒教、民间信仰"
         }
       }
     },
@@ -11816,14 +11951,14 @@
           "zh": "最大领域估计：约220,000 km²"
         },
         "languages": {
-          "ja": "Korean",
+          "ja": "朝鮮語",
           "en": "Korean",
-          "zh": "Korean"
+          "zh": "韩语"
         },
         "religions": {
-          "ja": "Confucianism, Buddhism, and Korean shamanism",
+          "ja": "儒教、仏教、朝鮮シャーマニズム",
           "en": "Confucianism, Buddhism, and Korean shamanism",
-          "zh": "Confucianism, Buddhism, and Korean shamanism"
+          "zh": "儒教、佛教、韩国萨满信仰"
         }
       }
     },
@@ -11873,14 +12008,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "English and Spanish",
+          "ja": "英語、スペイン語",
           "en": "English and Spanish",
-          "zh": "English and Spanish"
+          "zh": "英语、西班牙语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11929,14 +12064,14 @@
           "zh": "最大领域估计：约41,000 km²"
         },
         "languages": {
-          "ja": "Italian and Latin",
+          "ja": "イタリア語、ラテン語",
           "en": "Italian and Latin",
-          "zh": "Italian and Latin"
+          "zh": "意大利语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -11986,14 +12121,14 @@
           "zh": "最大领域估计：约30,000 km²"
         },
         "languages": {
-          "ja": "Zulu",
+          "ja": "ズールー語",
           "en": "Zulu",
-          "zh": "Zulu"
+          "zh": "祖鲁语"
         },
         "religions": {
-          "ja": "Traditional Zulu religion and Christianity",
+          "ja": "ズールー伝統宗教、キリスト教",
           "en": "Traditional Zulu religion and Christianity",
-          "zh": "Traditional Zulu religion and Christianity"
+          "zh": "祖鲁传统宗教、基督教"
         }
       }
     },
@@ -12044,14 +12179,14 @@
           "zh": "最大领域估计：约350,000 km²"
         },
         "languages": {
-          "ja": "Mayan languages",
+          "ja": "マヤ諸語",
           "en": "Mayan languages",
-          "zh": "Mayan languages"
+          "zh": "玛雅诸语"
         },
         "religions": {
-          "ja": "Maya religion",
+          "ja": "マヤ宗教",
           "en": "Maya religion",
-          "zh": "Maya religion"
+          "zh": "玛雅宗教"
         }
       }
     },
@@ -12100,14 +12235,14 @@
           "zh": "最大领域估计：约20,000 km²"
         },
         "languages": {
-          "ja": "Mixe-Zoquean languages",
+          "ja": "ミヘ・ソケ諸語",
           "en": "Mixe-Zoquean languages",
-          "zh": "Mixe-Zoquean languages"
+          "zh": "米赫-索克语族"
         },
         "religions": {
-          "ja": "Mesoamerican religion",
+          "ja": "メソアメリカ宗教",
           "en": "Mesoamerican religion",
-          "zh": "Mesoamerican religion"
+          "zh": "中美洲宗教"
         }
       }
     },
@@ -12156,14 +12291,14 @@
           "zh": "最大领域估计：约60,000 km²"
         },
         "languages": {
-          "ja": "Iroquoian languages",
+          "ja": "イロコイ諸語",
           "en": "Iroquoian languages",
-          "zh": "Iroquoian languages"
+          "zh": "易洛魁语族"
         },
         "religions": {
-          "ja": "Indigenous religions and Christianity",
+          "ja": "先住民宗教、キリスト教",
           "en": "Indigenous religions and Christianity",
-          "zh": "Indigenous religions and Christianity"
+          "zh": "原住民宗教、基督教"
         }
       }
     },
@@ -12214,14 +12349,14 @@
           "zh": "最大领域估计：约11,000,000 km²"
         },
         "languages": {
-          "ja": "Arabic, Persian, Aramaic, Greek, and others",
+          "ja": "アラビア語、ペルシア語、アラム語、ギリシャ語、その他",
           "en": "Arabic, Persian, Aramaic, Greek, and others",
-          "zh": "Arabic, Persian, Aramaic, Greek, and others"
+          "zh": "阿拉伯语、波斯语、阿拉姆语、希腊语、其他"
         },
         "religions": {
-          "ja": "Islam, Christianity, Judaism, and others",
+          "ja": "イスラム教、キリスト教、ユダヤ教、その他",
           "en": "Islam, Christianity, Judaism, and others",
-          "zh": "Islam, Christianity, Judaism, and others"
+          "zh": "伊斯兰教、基督教、犹太教、其他"
         }
       }
     },
@@ -12273,14 +12408,14 @@
           "zh": "最大领域估计：约11,100,000 km²"
         },
         "languages": {
-          "ja": "Arabic, Berber languages, Greek, Persian, and others",
+          "ja": "アラビア語、ベルベル諸語、ギリシャ語、ペルシア語、その他",
           "en": "Arabic, Berber languages, Greek, Persian, and others",
-          "zh": "Arabic, Berber languages, Greek, Persian, and others"
+          "zh": "阿拉伯语、柏柏尔语族、希腊语、波斯语、其他"
         },
         "religions": {
-          "ja": "Islam, Christianity, Judaism, and others",
+          "ja": "イスラム教、キリスト教、ユダヤ教、その他",
           "en": "Islam, Christianity, Judaism, and others",
-          "zh": "Islam, Christianity, Judaism, and others"
+          "zh": "伊斯兰教、基督教、犹太教、其他"
         }
       }
     },
@@ -12331,14 +12466,14 @@
           "zh": "最大领域估计：约580,000 km²"
         },
         "languages": {
-          "ja": "Arabic, Romance languages, Hebrew, and Berber languages",
+          "ja": "アラビア語、ロマンス諸語、ヘブライ語、ベルベル諸語",
           "en": "Arabic, Romance languages, Hebrew, and Berber languages",
-          "zh": "Arabic, Romance languages, Hebrew, and Berber languages"
+          "zh": "阿拉伯语、罗曼语族、希伯来语、柏柏尔语族"
         },
         "religions": {
-          "ja": "Islam, Christianity, and Judaism",
+          "ja": "イスラム教、キリスト教、ユダヤ教",
           "en": "Islam, Christianity, and Judaism",
-          "zh": "Islam, Christianity, and Judaism"
+          "zh": "伊斯兰教、基督教、犹太教"
         }
       }
     },
@@ -12389,14 +12524,14 @@
           "zh": "最大领域估计：约20,000 km²"
         },
         "languages": {
-          "ja": "Latin, Old French, Arabic, Greek, and Armenian",
+          "ja": "ラテン語、古フランス語、アラビア語、ギリシャ語、アルメニア語",
           "en": "Latin, Old French, Arabic, Greek, and Armenian",
-          "zh": "Latin, Old French, Arabic, Greek, and Armenian"
+          "zh": "拉丁语、古法语、阿拉伯语、希腊语、亚美尼亚语"
         },
         "religions": {
-          "ja": "Christianity, Islam, and Judaism",
+          "ja": "キリスト教、イスラム教、ユダヤ教",
           "en": "Christianity, Islam, and Judaism",
-          "zh": "Christianity, Islam, and Judaism"
+          "zh": "基督教、伊斯兰教、犹太教"
         }
       }
     },
@@ -12448,14 +12583,14 @@
           "zh": "最大领域估计：约6,500,000 km²"
         },
         "languages": {
-          "ja": "Chinese and regional languages",
+          "ja": "中国語、地域諸語",
           "en": "Chinese and regional languages",
-          "zh": "Chinese and regional languages"
+          "zh": "汉语、地区语言"
         },
         "religions": {
-          "ja": "Confucianism, Buddhism, Taoism, Islam, and folk religions",
+          "ja": "儒教、仏教、道教、イスラム教、民間信仰",
           "en": "Confucianism, Buddhism, Taoism, Islam, and folk religions",
-          "zh": "Confucianism, Buddhism, Taoism, Islam, and folk religions"
+          "zh": "儒教、佛教、道教、伊斯兰教、民间信仰"
         }
       }
     },
@@ -12507,14 +12642,14 @@
           "zh": "最大领域估计：约6,000,000 km²"
         },
         "languages": {
-          "ja": "Chinese and regional languages",
+          "ja": "中国語、地域諸語",
           "en": "Chinese and regional languages",
-          "zh": "Chinese and regional languages"
+          "zh": "汉语、地区语言"
         },
         "religions": {
-          "ja": "Confucianism, Taoism, and folk religions",
+          "ja": "儒教、道教、民間信仰",
           "en": "Confucianism, Taoism, and folk religions",
-          "zh": "Confucianism, Taoism, and folk religions"
+          "zh": "儒教、道教、民间信仰"
         }
       }
     },
@@ -12565,14 +12700,14 @@
           "zh": "最大领域估计：约377,975 km²"
         },
         "languages": {
-          "ja": "Japanese",
+          "ja": "日本語",
           "en": "Japanese",
-          "zh": "Japanese"
+          "zh": "日语"
         },
         "religions": {
-          "ja": "Buddhism, Shinto, and Confucianism",
+          "ja": "仏教、神道、儒教",
           "en": "Buddhism, Shinto, and Confucianism",
-          "zh": "Buddhism, Shinto, and Confucianism"
+          "zh": "佛教、神道教、儒教"
         }
       }
     },
@@ -12623,14 +12758,14 @@
           "zh": "最大领域估计：约4,600 km²"
         },
         "languages": {
-          "ja": "Ryukyuan languages and Classical Chinese",
+          "ja": "琉球諸語、漢文",
           "en": "Ryukyuan languages and Classical Chinese",
-          "zh": "Ryukyuan languages and Classical Chinese"
+          "zh": "琉球诸语、文言文"
         },
         "religions": {
-          "ja": "Ryukyuan religion, Buddhism, and Confucianism",
+          "ja": "琉球信仰、仏教、儒教",
           "en": "Ryukyuan religion, Buddhism, and Confucianism",
-          "zh": "Ryukyuan religion, Buddhism, and Confucianism"
+          "zh": "琉球信仰、佛教、儒教"
         }
       }
     },
@@ -12680,14 +12815,14 @@
           "zh": "最大领域估计：约1,500,000 km²"
         },
         "languages": {
-          "ja": "Old Javanese, Sanskrit, and Malay",
+          "ja": "古ジャワ語、サンスクリット語、マレー語",
           "en": "Old Javanese, Sanskrit, and Malay",
-          "zh": "Old Javanese, Sanskrit, and Malay"
+          "zh": "古爪哇语、梵语、马来语"
         },
         "religions": {
-          "ja": "Hinduism and Buddhism",
+          "ja": "ヒンドゥー教、仏教",
           "en": "Hinduism and Buddhism",
-          "zh": "Hinduism and Buddhism"
+          "zh": "印度教、佛教"
         }
       }
     },
@@ -12738,14 +12873,14 @@
           "zh": "最大领域估计：约190,000 km²"
         },
         "languages": {
-          "ja": "Thai",
+          "ja": "タイ語",
           "en": "Thai",
-          "zh": "Thai"
+          "zh": "泰语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -12795,14 +12930,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Old Malay and Sanskrit",
+          "ja": "古マレー語、サンスクリット語",
           "en": "Old Malay and Sanskrit",
-          "zh": "Old Malay and Sanskrit"
+          "zh": "古马来语、梵语"
         },
         "religions": {
-          "ja": "Buddhism and Hinduism",
+          "ja": "仏教、ヒンドゥー教",
           "en": "Buddhism and Hinduism",
-          "zh": "Buddhism and Hinduism"
+          "zh": "佛教、印度教"
         }
       }
     },
@@ -12853,14 +12988,14 @@
           "zh": "最大领域估计：约1,250,000 km²"
         },
         "languages": {
-          "ja": "Ge'ez and other Ethiopian Semitic languages",
+          "ja": "ゲエズ語、その他のエチオピア・セム諸語",
           "en": "Ge'ez and other Ethiopian Semitic languages",
-          "zh": "Ge'ez and other Ethiopian Semitic languages"
+          "zh": "吉兹语、其他埃塞俄比亚闪米特语"
         },
         "religions": {
-          "ja": "Christianity, Judaism, and traditional beliefs",
+          "ja": "キリスト教、ユダヤ教、伝統信仰",
           "en": "Christianity, Judaism, and traditional beliefs",
-          "zh": "Christianity, Judaism, and traditional beliefs"
+          "zh": "基督教、犹太教、传统信仰"
         }
       }
     },
@@ -12912,14 +13047,14 @@
           "zh": "最大领域估计：约1,000,000 km²"
         },
         "languages": {
-          "ja": "Meroitic and Egyptian",
+          "ja": "メロエ語、エジプト語",
           "en": "Meroitic and Egyptian",
-          "zh": "Meroitic and Egyptian"
+          "zh": "麦罗埃语、埃及语"
         },
         "religions": {
-          "ja": "Ancient Nubian and Egyptian religions",
+          "ja": "古代ヌビア宗教、エジプト宗教",
           "en": "Ancient Nubian and Egyptian religions",
-          "zh": "Ancient Nubian and Egyptian religions"
+          "zh": "古努比亚宗教、埃及宗教"
         }
       }
     },
@@ -12970,14 +13105,14 @@
           "zh": "最大领域估计：约1,400,000 km²"
         },
         "languages": {
-          "ja": "Songhay languages and Arabic",
+          "ja": "ソンガイ諸語、アラビア語",
           "en": "Songhay languages and Arabic",
-          "zh": "Songhay languages and Arabic"
+          "zh": "桑海语族、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam and traditional beliefs",
+          "ja": "イスラム教、伝統信仰",
           "en": "Islam and traditional beliefs",
-          "zh": "Islam and traditional beliefs"
+          "zh": "伊斯兰教、传统信仰"
         }
       }
     },
@@ -13028,14 +13163,14 @@
           "zh": "最大领域估计：约100,000 km²"
         },
         "languages": {
-          "ja": "Edo",
+          "ja": "エド語",
           "en": "Edo",
-          "zh": "Edo"
+          "zh": "埃多语"
         },
         "religions": {
-          "ja": "Traditional Edo religion and Christianity",
+          "ja": "エド族の伝統宗教、キリスト教",
           "en": "Traditional Edo religion and Christianity",
-          "zh": "Traditional Edo religion and Christianity"
+          "zh": "埃多人传统宗教、基督教"
         }
       }
     },
@@ -13084,14 +13219,14 @@
           "zh": "最大领域估计：约500,000 km²"
         },
         "languages": {
-          "ja": "Catalan, Aragonese, Latin, Sardinian, and others",
+          "ja": "カタルーニャ語、アラゴン語、ラテン語、サルデーニャ語、その他",
           "en": "Catalan, Aragonese, Latin, Sardinian, and others",
-          "zh": "Catalan, Aragonese, Latin, Sardinian, and others"
+          "zh": "加泰罗尼亚语、阿拉贡语、拉丁语、撒丁语、其他"
         },
         "religions": {
-          "ja": "Christianity, Islam, and Judaism",
+          "ja": "キリスト教、イスラム教、ユダヤ教",
           "en": "Christianity, Islam, and Judaism",
-          "zh": "Christianity, Islam, and Judaism"
+          "zh": "基督教、伊斯兰教、犹太教"
         }
       }
     },
@@ -13143,14 +13278,14 @@
           "zh": "最大领域估计：约400,000 km²"
         },
         "languages": {
-          "ja": "Castilian, Latin, Arabic, and others",
+          "ja": "カスティーリャ語、ラテン語、アラビア語、その他",
           "en": "Castilian, Latin, Arabic, and others",
-          "zh": "Castilian, Latin, Arabic, and others"
+          "zh": "卡斯蒂利亚语、拉丁语、阿拉伯语、其他"
         },
         "religions": {
-          "ja": "Christianity, Islam, and Judaism",
+          "ja": "キリスト教、イスラム教、ユダヤ教",
           "en": "Christianity, Islam, and Judaism",
-          "zh": "Christianity, Islam, and Judaism"
+          "zh": "基督教、伊斯兰教、犹太教"
         }
       }
     },
@@ -13201,14 +13336,14 @@
           "zh": "最大领域估计：约50,000 km²"
         },
         "languages": {
-          "ja": "French, Burgundian, Dutch, and Latin",
+          "ja": "フランス語、ブルグント語、オランダ語、ラテン語",
           "en": "French, Burgundian, Dutch, and Latin",
-          "zh": "French, Burgundian, Dutch, and Latin"
+          "zh": "法语、勃艮第语、荷兰语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -13257,14 +13392,14 @@
           "zh": "最大领域估计：约348,780 km²"
         },
         "languages": {
-          "ja": "German, Polish, Lithuanian, and others",
+          "ja": "ドイツ語、ポーランド語、リトアニア語、その他",
           "en": "German, Polish, Lithuanian, and others",
-          "zh": "German, Polish, Lithuanian, and others"
+          "zh": "德语、波兰语、立陶宛语、其他"
         },
         "religions": {
-          "ja": "Christianity and Judaism",
+          "ja": "キリスト教、ユダヤ教",
           "en": "Christianity and Judaism",
-          "zh": "Christianity and Judaism"
+          "zh": "基督教、犹太教"
         }
       }
     },
@@ -13313,14 +13448,14 @@
           "zh": "最大领域估计：约1,300,000 km²"
         },
         "languages": {
-          "ja": "Old East Slavic, Old Norse, and Church Slavonic",
+          "ja": "古東スラヴ語、古ノルド語、教会スラヴ語",
           "en": "Old East Slavic, Old Norse, and Church Slavonic",
-          "zh": "Old East Slavic, Old Norse, and Church Slavonic"
+          "zh": "古东斯拉夫语、古诺尔斯语、教会斯拉夫语"
         },
         "religions": {
-          "ja": "Christianity and Slavic paganism",
+          "ja": "キリスト教、スラヴ多神教",
           "en": "Christianity and Slavic paganism",
-          "zh": "Christianity and Slavic paganism"
+          "zh": "基督教、斯拉夫多神信仰"
         }
       }
     },
@@ -13369,14 +13504,14 @@
           "zh": "最大领域估计：约300,000 km²"
         },
         "languages": {
-          "ja": "Old East Slavic",
+          "ja": "古東スラヴ語",
           "en": "Old East Slavic",
-          "zh": "Old East Slavic"
+          "zh": "古东斯拉夫语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -13426,14 +13561,14 @@
           "zh": "最大领域估计：约1,200,000 km²"
         },
         "languages": {
-          "ja": "Danish, Swedish, Norwegian, Icelandic, and Finnish",
+          "ja": "デンマーク語、スウェーデン語、ノルウェー語、アイスランド語、フィンランド語",
           "en": "Danish, Swedish, Norwegian, Icelandic, and Finnish",
-          "zh": "Danish, Swedish, Norwegian, Icelandic, and Finnish"
+          "zh": "丹麦语、瑞典语、挪威语、冰岛语、芬兰语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -13484,14 +13619,14 @@
           "zh": "最大领域估计：约4,400,000 km²"
         },
         "languages": {
-          "ja": "Persian, Chagatai Turkic, and Arabic",
+          "ja": "ペルシア語、チャガタイ・テュルク語、アラビア語",
           "en": "Persian, Chagatai Turkic, and Arabic",
-          "zh": "Persian, Chagatai Turkic, and Arabic"
+          "zh": "波斯语、察合台突厥语、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -13541,14 +13676,14 @@
           "zh": "最大领域估计：约2,850,000 km²"
         },
         "languages": {
-          "ja": "Persian, Azerbaijani Turkic, Armenian, and Kurdish",
+          "ja": "ペルシア語、アゼルバイジャン系テュルク語、アルメニア語、クルド語",
           "en": "Persian, Azerbaijani Turkic, Armenian, and Kurdish",
-          "zh": "Persian, Azerbaijani Turkic, Armenian, and Kurdish"
+          "zh": "波斯语、阿塞拜疆突厥语、亚美尼亚语、库尔德语"
         },
         "religions": {
-          "ja": "Shia Islam, Christianity, Judaism, and Zoroastrianism",
+          "ja": "シーア派イスラム教、キリスト教、ユダヤ教、ゾロアスター教",
           "en": "Shia Islam, Christianity, Judaism, and Zoroastrianism",
-          "zh": "Shia Islam, Christianity, Judaism, and Zoroastrianism"
+          "zh": "什叶派伊斯兰教、基督教、犹太教、琐罗亚斯德教"
         }
       }
     },
@@ -13599,14 +13734,14 @@
           "zh": "最大领域估计：约4,000,000 km²"
         },
         "languages": {
-          "ja": "Hunnic, Gothic, Latin, and other steppe languages",
+          "ja": "フン語、ゴート語、ラテン語、その他の草原地帯の言語",
           "en": "Hunnic, Gothic, Latin, and other steppe languages",
-          "zh": "Hunnic, Gothic, Latin, and other steppe languages"
+          "zh": "匈人语、哥特语、拉丁语、其他草原语言"
         },
         "religions": {
-          "ja": "Tengrism, shamanism, and local religions",
+          "ja": "テングリ信仰、シャーマニズム、地域宗教",
           "en": "Tengrism, shamanism, and local religions",
-          "zh": "Tengrism, shamanism, and local religions"
+          "zh": "腾格里信仰、萨满信仰、地方宗教"
         }
       }
     },
@@ -13656,14 +13791,14 @@
           "zh": "最大领域估计：约800,000 km²"
         },
         "languages": {
-          "ja": "Goguryeo Korean and Classical Chinese",
+          "ja": "高句麗語、漢文",
           "en": "Goguryeo Korean and Classical Chinese",
-          "zh": "Goguryeo Korean and Classical Chinese"
+          "zh": "高句丽语、文言文"
         },
         "religions": {
-          "ja": "Buddhism and Korean shamanism",
+          "ja": "仏教、朝鮮シャーマニズム",
           "en": "Buddhism and Korean shamanism",
-          "zh": "Buddhism and Korean shamanism"
+          "zh": "佛教、韩国萨满信仰"
         }
       }
     },
@@ -13713,14 +13848,14 @@
           "zh": "最大领域估计：约200,000 km²"
         },
         "languages": {
-          "ja": "Silla Korean and Classical Chinese",
+          "ja": "新羅語、漢文",
           "en": "Silla Korean and Classical Chinese",
-          "zh": "Silla Korean and Classical Chinese"
+          "zh": "新罗语、文言文"
         },
         "religions": {
-          "ja": "Buddhism and Korean shamanism",
+          "ja": "仏教、朝鮮シャーマニズム",
           "en": "Buddhism and Korean shamanism",
-          "zh": "Buddhism and Korean shamanism"
+          "zh": "佛教、韩国萨满信仰"
         }
       }
     },
@@ -13771,14 +13906,14 @@
           "zh": "最大领域估计：约377,975 km²"
         },
         "languages": {
-          "ja": "Japanese",
+          "ja": "日本語",
           "en": "Japanese",
-          "zh": "Japanese"
+          "zh": "日语"
         },
         "religions": {
-          "ja": "Buddhism and Shinto",
+          "ja": "仏教、神道",
           "en": "Buddhism and Shinto",
-          "zh": "Buddhism and Shinto"
+          "zh": "佛教、神道教"
         }
       }
     },
@@ -13829,14 +13964,14 @@
           "zh": "最大领域估计：约150,000 km²"
         },
         "languages": {
-          "ja": "Vietnamese and Classical Chinese",
+          "ja": "ベトナム語、漢文",
           "en": "Vietnamese and Classical Chinese",
-          "zh": "Vietnamese and Classical Chinese"
+          "zh": "越南语、文言文"
         },
         "religions": {
-          "ja": "Buddhism, Confucianism, and Taoism",
+          "ja": "仏教、儒教、道教",
           "en": "Buddhism, Confucianism, and Taoism",
-          "zh": "Buddhism, Confucianism, and Taoism"
+          "zh": "佛教、儒教、道教"
         }
       }
     },
@@ -13887,14 +14022,14 @@
           "zh": "最大领域估计：约6,000,000 km²"
         },
         "languages": {
-          "ja": "Kipchak Turkic, Mongolian, Persian, and Rus' languages",
+          "ja": "キプチャク・テュルク語、モンゴル語、ペルシア語、ルーシ諸語",
           "en": "Kipchak Turkic, Mongolian, Persian, and Rus' languages",
-          "zh": "Kipchak Turkic, Mongolian, Persian, and Rus' languages"
+          "zh": "钦察突厥语、蒙古语、波斯语、罗斯诸语"
         },
         "religions": {
-          "ja": "Islam, Tengrism, and Christianity",
+          "ja": "イスラム教、テングリ信仰、キリスト教",
           "en": "Islam, Tengrism, and Christianity",
-          "zh": "Islam, Tengrism, and Christianity"
+          "zh": "伊斯兰教、腾格里信仰、基督教"
         }
       }
     },
@@ -13944,14 +14079,14 @@
           "zh": "最大领域估计：约10,400,000 km²"
         },
         "languages": {
-          "ja": "Portuguese and colonial languages",
+          "ja": "ポルトガル語、植民地諸語",
           "en": "Portuguese and colonial languages",
-          "zh": "Portuguese and colonial languages"
+          "zh": "葡萄牙语、殖民地语言"
         },
         "religions": {
-          "ja": "Christianity, Islam, Hinduism, and local religions",
+          "ja": "キリスト教、イスラム教、ヒンドゥー教、地域宗教",
           "en": "Christianity, Islam, Hinduism, and local religions",
-          "zh": "Christianity, Islam, Hinduism, and local religions"
+          "zh": "基督教、伊斯兰教、印度教、地方宗教"
         }
       }
     },
@@ -14001,14 +14136,14 @@
           "zh": "最大领域估计：约77,000 km²"
         },
         "languages": {
-          "ja": "Igbo and English",
+          "ja": "イボ語、英語",
           "en": "Igbo and English",
-          "zh": "Igbo and English"
+          "zh": "伊博语、英语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -14058,14 +14193,14 @@
           "zh": "最大领域估计：约2,100,000 km²"
         },
         "languages": {
-          "ja": "French, Italian, German, Dutch, Polish, and others",
+          "ja": "フランス語、イタリア語、ドイツ語、オランダ語、ポーランド語、その他",
           "en": "French, Italian, German, Dutch, Polish, and others",
-          "zh": "French, Italian, German, Dutch, Polish, and others"
+          "zh": "法语、意大利语、德语、荷兰语、波兰语、其他"
         },
         "religions": {
-          "ja": "Christianity and secularism",
+          "ja": "キリスト教、世俗主義",
           "en": "Christianity and secularism",
-          "zh": "Christianity and secularism"
+          "zh": "基督教、世俗主义"
         }
       }
     },
@@ -14115,14 +14250,14 @@
           "zh": "最大领域估计：约151,000 km²"
         },
         "languages": {
-          "ja": "English, French, Latin, and Welsh",
+          "ja": "英語、フランス語、ラテン語、ウェールズ語",
           "en": "English, French, Latin, and Welsh",
-          "zh": "English, French, Latin, and Welsh"
+          "zh": "英语、法语、拉丁语、威尔士语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -14174,14 +14309,14 @@
           "zh": "最大领域估计：约77,933 km²"
         },
         "languages": {
-          "ja": "Scots, Gaelic, English, and Latin",
+          "ja": "スコットランド語、ゲール語、英語、ラテン語",
           "en": "Scots, Gaelic, English, and Latin",
-          "zh": "Scots, Gaelic, English, and Latin"
+          "zh": "苏格兰语、盖尔语、英语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -14231,14 +14366,14 @@
           "zh": "最大领域估计：约11,000,000 km²"
         },
         "languages": {
-          "ja": "Mongolian, Chinese, Tibetan, Persian, and others",
+          "ja": "モンゴル語、中国語、チベット語、ペルシア語、その他",
           "en": "Mongolian, Chinese, Tibetan, Persian, and others",
-          "zh": "Mongolian, Chinese, Tibetan, Persian, and others"
+          "zh": "蒙古语、汉语、藏语、波斯语、其他"
         },
         "religions": {
-          "ja": "Buddhism, Confucianism, Taoism, Islam, Christianity, and shamanism",
+          "ja": "仏教、儒教、道教、イスラム教、キリスト教、シャーマニズム",
           "en": "Buddhism, Confucianism, Taoism, Islam, Christianity, and shamanism",
-          "zh": "Buddhism, Confucianism, Taoism, Islam, Christianity, and shamanism"
+          "zh": "佛教、儒教、道教、伊斯兰教、基督教、萨满信仰"
         }
       }
     },
@@ -14290,14 +14425,14 @@
           "zh": "最大领域估计：约3,100,000 km²"
         },
         "languages": {
-          "ja": "Chinese and regional languages",
+          "ja": "中国語、地域諸語",
           "en": "Chinese and regional languages",
-          "zh": "Chinese and regional languages"
+          "zh": "汉语、地区语言"
         },
         "religions": {
-          "ja": "Confucianism, Buddhism, Taoism, and folk religions",
+          "ja": "儒教、仏教、道教、民間信仰",
           "en": "Confucianism, Buddhism, Taoism, and folk religions",
-          "zh": "Confucianism, Buddhism, Taoism, and folk religions"
+          "zh": "儒教、佛教、道教、民间信仰"
         }
       }
     },
@@ -14348,14 +14483,14 @@
           "zh": "最大领域估计：约3,500,000 km²"
         },
         "languages": {
-          "ja": "Middle Persian, Aramaic, Armenian, and others",
+          "ja": "中期ペルシア語、アラム語、アルメニア語、その他",
           "en": "Middle Persian, Aramaic, Armenian, and others",
-          "zh": "Middle Persian, Aramaic, Armenian, and others"
+          "zh": "中古波斯语、阿拉姆语、亚美尼亚语、其他"
         },
         "religions": {
-          "ja": "Zoroastrianism, Christianity, Judaism, and Buddhism",
+          "ja": "ゾロアスター教、キリスト教、ユダヤ教、仏教",
           "en": "Zoroastrianism, Christianity, Judaism, and Buddhism",
-          "zh": "Zoroastrianism, Christianity, Judaism, and Buddhism"
+          "zh": "琐罗亚斯德教、基督教、犹太教、佛教"
         }
       }
     },
@@ -14404,14 +14539,14 @@
           "zh": "最大领域估计：约8,337,000 km²"
         },
         "languages": {
-          "ja": "Portuguese and Indigenous languages",
+          "ja": "ポルトガル語、先住民諸語",
           "en": "Portuguese and Indigenous languages",
-          "zh": "Portuguese and Indigenous languages"
+          "zh": "葡萄牙语、原住民语言"
         },
         "religions": {
-          "ja": "Christianity and Afro-Brazilian religions",
+          "ja": "キリスト教、アフリカ系ブラジル宗教",
           "en": "Christianity and Afro-Brazilian religions",
-          "zh": "Christianity and Afro-Brazilian religions"
+          "zh": "基督教、非裔巴西宗教"
         }
       }
     },
@@ -14461,14 +14596,14 @@
           "zh": "最大领域估计：约111,900 km²"
         },
         "languages": {
-          "ja": "Italian, Neapolitan, and Sicilian",
+          "ja": "イタリア語、ナポリ語、シチリア語",
           "en": "Italian, Neapolitan, and Sicilian",
-          "zh": "Italian, Neapolitan, and Sicilian"
+          "zh": "意大利语、那不勒斯语、西西里语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -14518,14 +14653,14 @@
           "zh": "最大领域估计：约30,000 km²"
         },
         "languages": {
-          "ja": "Ligurian and Italian",
+          "ja": "リグリア語、イタリア語",
           "en": "Ligurian and Italian",
-          "zh": "Ligurian and Italian"
+          "zh": "利古里亚语、意大利语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -14574,14 +14709,14 @@
           "zh": "最大领域估计：约800,000 km²"
         },
         "languages": {
-          "ja": "Soninke and Mande languages",
+          "ja": "ソニンケ語、マンデ諸語",
           "en": "Soninke and Mande languages",
-          "zh": "Soninke and Mande languages"
+          "zh": "索宁克语、曼德语族"
         },
         "religions": {
-          "ja": "Traditional beliefs and Islam",
+          "ja": "伝統信仰、イスラム教",
           "en": "Traditional beliefs and Islam",
-          "zh": "Traditional beliefs and Islam"
+          "zh": "传统信仰、伊斯兰教"
         }
       }
     },
@@ -14631,14 +14766,14 @@
           "zh": "最大领域估计：约130,000 km²"
         },
         "languages": {
-          "ja": "Kikongo",
+          "ja": "キコンゴ語",
           "en": "Kikongo",
-          "zh": "Kikongo"
+          "zh": "刚果语"
         },
         "religions": {
-          "ja": "Christianity and traditional beliefs",
+          "ja": "キリスト教、伝統信仰",
           "en": "Christianity and traditional beliefs",
-          "zh": "Christianity and traditional beliefs"
+          "zh": "基督教、传统信仰"
         }
       }
     },
@@ -14689,14 +14824,14 @@
           "zh": "最大领域估计：约150,000 km²"
         },
         "languages": {
-          "ja": "Nahuatl and related languages",
+          "ja": "ナワトル語、関連諸語",
           "en": "Nahuatl and related languages",
-          "zh": "Nahuatl and related languages"
+          "zh": "纳瓦特尔语、相关语言"
         },
         "religions": {
-          "ja": "Mesoamerican religion",
+          "ja": "メソアメリカ宗教",
           "en": "Mesoamerican religion",
-          "zh": "Mesoamerican religion"
+          "zh": "中美洲宗教"
         }
       }
     },
@@ -14747,14 +14882,14 @@
           "zh": "最大领域估计：约100,000 km²"
         },
         "languages": {
-          "ja": "Quingnam and Mochica languages",
+          "ja": "キンナム語、モチカ語",
           "en": "Quingnam and Mochica languages",
-          "zh": "Quingnam and Mochica languages"
+          "zh": "金纳姆语、莫奇卡语"
         },
         "religions": {
-          "ja": "Andean religion",
+          "ja": "アンデス宗教",
           "en": "Andean religion",
-          "zh": "Andean religion"
+          "zh": "安第斯宗教"
         }
       }
     },
@@ -14803,14 +14938,14 @@
           "zh": "最大领域估计：约9,000,000 km²"
         },
         "languages": {
-          "ja": "Xiongnu and other steppe languages",
+          "ja": "匈奴語、その他の草原地帯の言語",
           "en": "Xiongnu and other steppe languages",
-          "zh": "Xiongnu and other steppe languages"
+          "zh": "匈奴语、其他草原语言"
         },
         "religions": {
-          "ja": "Tengrism and shamanism",
+          "ja": "テングリ信仰、シャーマニズム",
           "en": "Tengrism and shamanism",
-          "zh": "Tengrism and shamanism"
+          "zh": "腾格里信仰、萨满信仰"
         }
       }
     },
@@ -14860,14 +14995,14 @@
           "zh": "最大领域估计：约3,750,000 km²"
         },
         "languages": {
-          "ja": "Mongolian, Persian, Arabic, and Turkic languages",
+          "ja": "モンゴル語、ペルシア語、アラビア語、テュルク諸語",
           "en": "Mongolian, Persian, Arabic, and Turkic languages",
-          "zh": "Mongolian, Persian, Arabic, and Turkic languages"
+          "zh": "蒙古语、波斯语、阿拉伯语、突厥语族"
         },
         "religions": {
-          "ja": "Islam, Buddhism, Christianity, and shamanism",
+          "ja": "イスラム教、仏教、キリスト教、シャーマニズム",
           "en": "Islam, Buddhism, Christianity, and shamanism",
-          "zh": "Islam, Buddhism, Christianity, and shamanism"
+          "zh": "伊斯兰教、佛教、基督教、萨满信仰"
         }
       }
     },
@@ -14917,14 +15052,14 @@
           "zh": "最大领域估计：约3,200,000 km²"
         },
         "languages": {
-          "ja": "Persian, Hindavi, Arabic, and regional languages",
+          "ja": "ペルシア語、ヒンダヴィー語、アラビア語、地域諸語",
           "en": "Persian, Hindavi, Arabic, and regional languages",
-          "zh": "Persian, Hindavi, Arabic, and regional languages"
+          "zh": "波斯语、欣达维语、阿拉伯语、地区语言"
         },
         "religions": {
-          "ja": "Islam, Hinduism, Jainism, and others",
+          "ja": "イスラム教、ヒンドゥー教、ジャイナ教、その他",
           "en": "Islam, Hinduism, Jainism, and others",
-          "zh": "Islam, Hinduism, Jainism, and others"
+          "zh": "伊斯兰教、印度教、耆那教、其他"
         }
       }
     },
@@ -14975,14 +15110,14 @@
           "zh": "最大领域估计：约500,000 km²"
         },
         "languages": {
-          "ja": "Punjabi, Persian, and Kashmiri",
+          "ja": "パンジャーブ語、ペルシア語、カシミール語",
           "en": "Punjabi, Persian, and Kashmiri",
-          "zh": "Punjabi, Persian, and Kashmiri"
+          "zh": "旁遮普语、波斯语、克什米尔语"
         },
         "religions": {
-          "ja": "Sikhism, Islam, Hinduism, and Buddhism",
+          "ja": "シク教、イスラム教、ヒンドゥー教、仏教",
           "en": "Sikhism, Islam, Hinduism, and Buddhism",
-          "zh": "Sikhism, Islam, Hinduism, and Buddhism"
+          "zh": "锡克教、伊斯兰教、印度教、佛教"
         }
       }
     },
@@ -15033,14 +15168,14 @@
           "zh": "最大领域估计：约3,000,000 km²"
         },
         "languages": {
-          "ja": "Khazar and other Turkic languages",
+          "ja": "ハザール語、その他のテュルク諸語",
           "en": "Khazar and other Turkic languages",
-          "zh": "Khazar and other Turkic languages"
+          "zh": "可萨语、其他突厥语言"
         },
         "religions": {
-          "ja": "Judaism, Tengrism, Christianity, and Islam",
+          "ja": "ユダヤ教、テングリ信仰、キリスト教、イスラム教",
           "en": "Judaism, Tengrism, Christianity, and Islam",
-          "zh": "Judaism, Tengrism, Christianity, and Islam"
+          "zh": "犹太教、腾格里信仰、基督教、伊斯兰教"
         }
       }
     },
@@ -15089,14 +15224,14 @@
           "zh": "最大领域估计：约1,400,000 km²"
         },
         "languages": {
-          "ja": "Akkadian and Aramaic",
+          "ja": "アッカド語、アラム語",
           "en": "Akkadian and Aramaic",
-          "zh": "Akkadian and Aramaic"
+          "zh": "阿卡德语、阿拉姆语"
         },
         "religions": {
-          "ja": "Mesopotamian religion",
+          "ja": "メソポタミア宗教",
           "en": "Mesopotamian religion",
-          "zh": "Mesopotamian religion"
+          "zh": "美索不达米亚宗教"
         }
       }
     },
@@ -15147,14 +15282,14 @@
           "zh": "最大领域估计：约500,000 km²"
         },
         "languages": {
-          "ja": "Hittite, Luwian, and Hattic",
+          "ja": "ヒッタイト語、ルウィ語、ハッティ語",
           "en": "Hittite, Luwian, and Hattic",
-          "zh": "Hittite, Luwian, and Hattic"
+          "zh": "赫梯语、卢维语、哈梯语"
         },
         "religions": {
-          "ja": "Hittite and Anatolian religions",
+          "ja": "ヒッタイト宗教、アナトリア系宗教",
           "en": "Hittite and Anatolian religions",
-          "zh": "Hittite and Anatolian religions"
+          "zh": "赫梯宗教、安纳托利亚宗教"
         }
       }
     },
@@ -15207,14 +15342,14 @@
           "zh": "最大领域估计：约44,000 km²"
         },
         "languages": {
-          "ja": "Dutch",
+          "ja": "オランダ語",
           "en": "Dutch",
-          "zh": "Dutch"
+          "zh": "荷兰语"
         },
         "religions": {
-          "ja": "Christianity and Judaism",
+          "ja": "キリスト教、ユダヤ教",
           "en": "Christianity and Judaism",
-          "zh": "Christianity and Judaism"
+          "zh": "基督教、犹太教"
         }
       }
     },
@@ -15264,14 +15399,14 @@
           "zh": "最大领域估计：约1,100,000 km²"
         },
         "languages": {
-          "ja": "Swedish, Finnish, Baltic languages, and German",
+          "ja": "スウェーデン語、フィンランド語、バルト諸語、ドイツ語",
           "en": "Swedish, Finnish, Baltic languages, and German",
-          "zh": "Swedish, Finnish, Baltic languages, and German"
+          "zh": "瑞典语、芬兰语、波罗的语族、德语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -15321,14 +15456,14 @@
           "zh": "最大领域估计：约15,000 km²"
         },
         "languages": {
-          "ja": "Tuscan Italian and Latin",
+          "ja": "トスカーナ・イタリア語、ラテン語",
           "en": "Tuscan Italian and Latin",
-          "zh": "Tuscan Italian and Latin"
+          "zh": "托斯卡纳意大利语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -15378,14 +15513,14 @@
           "zh": "最大领域估计：约1,200,000 km²"
         },
         "languages": {
-          "ja": "Frankish, Latin, and Romance languages",
+          "ja": "フランク語、ラテン語、ロマンス諸語",
           "en": "Frankish, Latin, and Romance languages",
-          "zh": "Frankish, Latin, and Romance languages"
+          "zh": "法兰克语、拉丁语、罗曼语族"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -15435,14 +15570,14 @@
           "zh": "最大领域估计：约600,000 km²"
         },
         "languages": {
-          "ja": "Gothic, Latin, and Romance languages",
+          "ja": "ゴート語、ラテン語、ロマンス諸語",
           "en": "Gothic, Latin, and Romance languages",
-          "zh": "Gothic, Latin, and Romance languages"
+          "zh": "哥特语、拉丁语、罗曼语族"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -15492,14 +15627,14 @@
           "zh": "最大领域估计：约80,000 km²"
         },
         "languages": {
-          "ja": "Czech, German, and Latin",
+          "ja": "チェコ語、ドイツ語、ラテン語",
           "en": "Czech, German, and Latin",
-          "zh": "Czech, German, and Latin"
+          "zh": "捷克语、德语、拉丁语"
         },
         "religions": {
-          "ja": "Christianity and Judaism",
+          "ja": "キリスト教、ユダヤ教",
           "en": "Christianity and Judaism",
-          "zh": "Christianity and Judaism"
+          "zh": "基督教、犹太教"
         }
       }
     },
@@ -15550,14 +15685,14 @@
           "zh": "最大领域估计：约100,000 km²"
         },
         "languages": {
-          "ja": "Malay",
+          "ja": "マレー語",
           "en": "Malay",
-          "zh": "Malay"
+          "zh": "马来语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -15607,14 +15742,14 @@
           "zh": "最大领域估计：约600,000 km²"
         },
         "languages": {
-          "ja": "Burmese, Mon, and Pali",
+          "ja": "ビルマ語、モン語、パーリ語",
           "en": "Burmese, Mon, and Pali",
-          "zh": "Burmese, Mon, and Pali"
+          "zh": "缅甸语、孟语、巴利语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -15664,14 +15799,14 @@
           "zh": "最大领域估计：约150,000 km²"
         },
         "languages": {
-          "ja": "Cham and Sanskrit",
+          "ja": "チャム語、サンスクリット語",
           "en": "Cham and Sanskrit",
-          "zh": "Cham and Sanskrit"
+          "zh": "占语、梵语"
         },
         "religions": {
-          "ja": "Hinduism, Buddhism, and Islam",
+          "ja": "ヒンドゥー教、仏教、イスラム教",
           "en": "Hinduism, Buddhism, and Islam",
-          "zh": "Hinduism, Buddhism, and Islam"
+          "zh": "印度教、佛教、伊斯兰教"
         }
       }
     },
@@ -15721,14 +15856,14 @@
           "zh": "最大领域估计：约1,550,000 km²"
         },
         "languages": {
-          "ja": "Burmese, Mon, Shan, and Thai languages",
+          "ja": "ビルマ語、モン語、シャン語、タイ諸語",
           "en": "Burmese, Mon, Shan, and Thai languages",
-          "zh": "Burmese, Mon, Shan, and Thai languages"
+          "zh": "缅甸语、孟语、掸语、泰语族"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -15777,14 +15912,14 @@
           "zh": "最大领域估计：约220,000 km²"
         },
         "languages": {
-          "ja": "Korean and Classical Chinese",
+          "ja": "朝鮮語、漢文",
           "en": "Korean and Classical Chinese",
-          "zh": "Korean and Classical Chinese"
+          "zh": "韩语、文言文"
         },
         "religions": {
-          "ja": "Buddhism, Confucianism, and Korean shamanism",
+          "ja": "仏教、儒教、朝鮮シャーマニズム",
           "en": "Buddhism, Confucianism, and Korean shamanism",
-          "zh": "Buddhism, Confucianism, and Korean shamanism"
+          "zh": "佛教、儒教、韩国萨满信仰"
         }
       }
     },
@@ -15833,14 +15968,14 @@
           "zh": "最大领域估计：约800,000 km²"
         },
         "languages": {
-          "ja": "Tangut, Chinese, and Tibetan",
+          "ja": "タングート語、中国語、チベット語",
           "en": "Tangut, Chinese, and Tibetan",
-          "zh": "Tangut, Chinese, and Tibetan"
+          "zh": "西夏语、汉语、藏语"
         },
         "religions": {
-          "ja": "Buddhism",
+          "ja": "仏教",
           "en": "Buddhism",
-          "zh": "Buddhism"
+          "zh": "佛教"
         }
       }
     },
@@ -15890,14 +16025,14 @@
           "zh": "最大领域估计：约2,300,000 km²"
         },
         "languages": {
-          "ja": "Jurchen and Chinese",
+          "ja": "女真語、中国語",
           "en": "Jurchen and Chinese",
-          "zh": "Jurchen and Chinese"
+          "zh": "女真语、汉语"
         },
         "religions": {
-          "ja": "Buddhism, Confucianism, and shamanism",
+          "ja": "仏教、儒教、シャーマニズム",
           "en": "Buddhism, Confucianism, and shamanism",
-          "zh": "Buddhism, Confucianism, and shamanism"
+          "zh": "佛教、儒教、萨满信仰"
         }
       }
     },
@@ -15949,14 +16084,14 @@
           "zh": "最大领域估计：约2,100,000 km²"
         },
         "languages": {
-          "ja": "Arabic and Turkic languages",
+          "ja": "アラビア語、テュルク諸語",
           "en": "Arabic and Turkic languages",
-          "zh": "Arabic and Turkic languages"
+          "zh": "阿拉伯语、突厥语族"
         },
         "religions": {
-          "ja": "Islam and Christianity",
+          "ja": "イスラム教、キリスト教",
           "en": "Islam and Christianity",
-          "zh": "Islam and Christianity"
+          "zh": "伊斯兰教、基督教"
         }
       }
     },
@@ -16007,14 +16142,14 @@
           "zh": "最大领域估计：约3,000,000 km²"
         },
         "languages": {
-          "ja": "Greek, Aramaic, Persian, and local languages",
+          "ja": "ギリシャ語、アラム語、ペルシア語、地域諸語",
           "en": "Greek, Aramaic, Persian, and local languages",
-          "zh": "Greek, Aramaic, Persian, and local languages"
+          "zh": "希腊语、阿拉姆语、波斯语、地方语言"
         },
         "religions": {
-          "ja": "Greek religion, Zoroastrianism, and local religions",
+          "ja": "ギリシャ宗教、ゾロアスター教、地域宗教",
           "en": "Greek religion, Zoroastrianism, and local religions",
-          "zh": "Greek religion, Zoroastrianism, and local religions"
+          "zh": "希腊宗教、琐罗亚斯德教、地方宗教"
         }
       }
     },
@@ -16067,14 +16202,14 @@
           "zh": "最大领域估计：约2,800,000 km²"
         },
         "languages": {
-          "ja": "Parthian, Greek, Aramaic, and Persian",
+          "ja": "パルティア語、ギリシャ語、アラム語、ペルシア語",
           "en": "Parthian, Greek, Aramaic, and Persian",
-          "zh": "Parthian, Greek, Aramaic, and Persian"
+          "zh": "帕提亚语、希腊语、阿拉姆语、波斯语"
         },
         "religions": {
-          "ja": "Zoroastrianism and local religions",
+          "ja": "ゾロアスター教、地域宗教",
           "en": "Zoroastrianism and local religions",
-          "zh": "Zoroastrianism and local religions"
+          "zh": "琐罗亚斯德教、地方宗教"
         }
       }
     },
@@ -16124,14 +16259,14 @@
           "zh": "最大领域估计：约700,000 km²"
         },
         "languages": {
-          "ja": "Shona",
+          "ja": "ショナ語",
           "en": "Shona",
-          "zh": "Shona"
+          "zh": "绍纳语"
         },
         "religions": {
-          "ja": "Traditional beliefs and Christianity",
+          "ja": "伝統信仰、キリスト教",
           "en": "Traditional beliefs and Christianity",
-          "zh": "Traditional beliefs and Christianity"
+          "zh": "传统信仰、基督教"
         }
       }
     },
@@ -16181,14 +16316,14 @@
           "zh": "最大领域估计：约300,000 km²"
         },
         "languages": {
-          "ja": "Berber languages, Punic, and Latin",
+          "ja": "ベルベル諸語、ポエニ語、ラテン語",
           "en": "Berber languages, Punic, and Latin",
-          "zh": "Berber languages, Punic, and Latin"
+          "zh": "柏柏尔语族、布匿语、拉丁语"
         },
         "religions": {
-          "ja": "Berber religion and later Roman religion",
+          "ja": "ベルベル宗教、後期ローマ宗教",
           "en": "Berber religion and later Roman religion",
-          "zh": "Berber religion and later Roman religion"
+          "zh": "柏柏尔宗教、后期罗马宗教"
         }
       }
     },
@@ -16240,14 +16375,14 @@
           "zh": "最大领域估计：约500,000 km²"
         },
         "languages": {
-          "ja": "Somali and Arabic",
+          "ja": "ソマリ語、アラビア語",
           "en": "Somali and Arabic",
-          "zh": "Somali and Arabic"
+          "zh": "索马里语、阿拉伯语"
         },
         "religions": {
-          "ja": "Islam",
+          "ja": "イスラム教",
           "en": "Islam",
-          "zh": "Islam"
+          "zh": "伊斯兰教"
         }
       }
     },
@@ -16296,14 +16431,14 @@
           "zh": "最大领域估计：约20,000 km²"
         },
         "languages": {
-          "ja": "Unknown Mesoamerican languages",
+          "ja": "不明なメソアメリカ諸語",
           "en": "Unknown Mesoamerican languages",
-          "zh": "Unknown Mesoamerican languages"
+          "zh": "未知中美洲语言"
         },
         "religions": {
-          "ja": "Mesoamerican religion",
+          "ja": "メソアメリカ宗教",
           "en": "Mesoamerican religion",
-          "zh": "Mesoamerican religion"
+          "zh": "中美洲宗教"
         }
       }
     },
@@ -16354,14 +16489,14 @@
           "zh": "最大领域估计：约600,000 km²"
         },
         "languages": {
-          "ja": "Puquina, Aymara, and other Andean languages",
+          "ja": "プキナ語、アイマラ語、その他のアンデス諸語",
           "en": "Puquina, Aymara, and other Andean languages",
-          "zh": "Puquina, Aymara, and other Andean languages"
+          "zh": "普基纳语、艾马拉语、其他安第斯语言"
         },
         "religions": {
-          "ja": "Andean religion",
+          "ja": "アンデス宗教",
           "en": "Andean religion",
-          "zh": "Andean religion"
+          "zh": "安第斯宗教"
         }
       }
     },
@@ -16411,14 +16546,14 @@
           "zh": "最大领域估计：约100,000 km²"
         },
         "languages": {
-          "ja": "Tongan and Polynesian languages",
+          "ja": "トンガ語、ポリネシア諸語",
           "en": "Tongan and Polynesian languages",
-          "zh": "Tongan and Polynesian languages"
+          "zh": "汤加语、波利尼西亚语族"
         },
         "religions": {
-          "ja": "Polynesian traditional religion and Christianity later",
+          "ja": "ポリネシア伝統宗教、後世のキリスト教",
           "en": "Polynesian traditional religion and Christianity later",
-          "zh": "Polynesian traditional religion and Christianity later"
+          "zh": "波利尼西亚传统宗教、后来的基督教"
         }
       }
     },
@@ -16469,14 +16604,14 @@
           "zh": "最大领域估计：约50,000 km²"
         },
         "languages": {
-          "ja": "Greek, Laz, Armenian, and Turkish",
+          "ja": "ギリシャ語、ラズ語、アルメニア語、トルコ語",
           "en": "Greek, Laz, Armenian, and Turkish",
-          "zh": "Greek, Laz, Armenian, and Turkish"
+          "zh": "希腊语、拉兹语、亚美尼亚语、土耳其语"
         },
         "religions": {
-          "ja": "Christianity and Islam",
+          "ja": "キリスト教、イスラム教",
           "en": "Christianity and Islam",
-          "zh": "Christianity and Islam"
+          "zh": "基督教、伊斯兰教"
         }
       }
     },
@@ -16525,14 +16660,14 @@
           "zh": "最大领域估计：约430,000 km²"
         },
         "languages": {
-          "ja": "Russian and Church Slavonic",
+          "ja": "ロシア語、教会スラヴ語",
           "en": "Russian and Church Slavonic",
-          "zh": "Russian and Church Slavonic"
+          "zh": "俄语、教会斯拉夫语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     },
@@ -16584,14 +16719,14 @@
           "zh": "最大领域估计：约300,000 km²"
         },
         "languages": {
-          "ja": "Latin, Old French, Greek, and Venetian",
+          "ja": "ラテン語、古フランス語、ギリシャ語、ヴェネト語",
           "en": "Latin, Old French, Greek, and Venetian",
-          "zh": "Latin, Old French, Greek, and Venetian"
+          "zh": "拉丁语、古法语、希腊语、威尼斯语"
         },
         "religions": {
-          "ja": "Christianity",
+          "ja": "キリスト教",
           "en": "Christianity",
-          "zh": "Christianity"
+          "zh": "基督教"
         }
       }
     }

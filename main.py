@@ -302,6 +302,24 @@ def tag_search_text(tag):
 def selected_tag_label():
     return tag_label(state.filter_tag) if state.filter_tag else None
 
+def region_label(region, lang=None):
+    if not region:
+        return ''
+    lang = lang or state.lang
+    labels = TRANSLATIONS.get(lang, {}).get('region_labels', {})
+    return labels.get(region, region)
+
+def region_search_text(region):
+    values = [region]
+    for lang_data in TRANSLATIONS.values():
+        label = lang_data.get('region_labels', {}).get(region)
+        if label and label not in values:
+            values.append(label)
+    return ' '.join(values)
+
+def selected_region_label():
+    return region_label(state.filter_region) if state.filter_region else None
+
 def get_localized_text(data_dict):
     if isinstance(data_dict, dict):
         return data_dict.get(state.lang, data_dict.get('en', ''))
@@ -324,7 +342,21 @@ def get_filter_options():
             for tag in c['tags']:
                 tags.add(tag)
     sorted_tags = sorted(tags, key=lambda tag: tag_label(tag).lower())
-    return sorted(list(regions)), [tag_label(tag) for tag in sorted_tags]
+    sorted_regions = sorted(regions, key=lambda region: region_label(region).lower())
+    return [region_label(region) for region in sorted_regions], [tag_label(tag) for tag in sorted_tags]
+
+def normalize_region_value(value):
+    if not value:
+        return None
+    data = get_data()
+    regions = {c.get('region') for c in data.get('countries', []) if c.get('region')}
+    if value in regions:
+        return value
+    for region in regions:
+        labels = [region_label(region, lang) for lang in TRANSLATIONS]
+        if value in labels:
+            return region
+    return value
 
 def normalize_tag_value(value):
     if not value:
@@ -605,6 +637,17 @@ def profile_rows(country):
         if value:
             rows.append((t('labels', field), value))
     return rows
+
+def profile_search_text(country):
+    values = []
+    profile = country.get('profile') or {}
+    for field in PROFILE_FIELDS:
+        value = profile.get(field)
+        if isinstance(value, dict):
+            values.extend(str(text) for text in value.values() if text)
+        elif value:
+            values.append(str(value))
+    return ' '.join(values)
 
 def country_list_sort_key(country):
     if state.sort_field == 'period':
@@ -1156,7 +1199,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                         .classes('bg-emerald-600 text-white px-3 py-2 shadow-md flex-grow' if is_mobile_ui() else 'bg-emerald-600 text-white px-4 py-2 shadow-md')
 
                 with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
-                    ui.select(r_opts, value=state.filter_region, label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
+                    ui.select(r_opts, value=selected_region_label(), label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
@@ -1182,7 +1225,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             state.page = 1
             refresh_main_ui()
         def set_region_filter(val):
-            state.filter_region = val
+            state.filter_region = normalize_region_value(val)
             state.page = 1
             refresh_search_list()
 
@@ -1237,8 +1280,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     str(period.get('start', '')),
                     str(period.get('end') or ''),
                 ])
-                profile_text = ' '.join(profile_value(c, field) for field in PROFILE_FIELDS)
-                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text}".lower()
+                profile_text = profile_search_text(c)
+                region_text = region_search_text(c.get('region', ''))
+                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text} {region_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
             if state.sort_field == 'period':
@@ -1357,7 +1401,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                                 ui.label(value).classes('text-lg')
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
-                            ui.label(c.get('region', '-')).classes('text-lg')
+                            ui.label(region_label(c.get('region', '-'))).classes('text-lg')
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
                             with ui.row().classes('gap-1'):
@@ -1388,7 +1432,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                                     ui.image(get_flag_url(related_country.get('flag_code'))).classes('w-16 shadow border rounded')
                                     with ui.column().classes('gap-1'):
                                         ui.label(get_localized_text(related_country['names'])).classes('font-bold text-gray-800')
-                                        ui.label(related_country.get('region', '')).classes('text-xs text-gray-500')
+                                        ui.label(region_label(related_country.get('region', ''))).classes('text-xs text-gray-500')
 
 # ========================================
 # 4. ミニクイズ画面
@@ -1535,7 +1579,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
                 rows.append((period_field_label(country), compare_period))
             rows.extend(profile_rows(country))
             rows.extend([
-                (t('labels', 'region'), country.get('region', '-')),
+                (t('labels', 'region'), region_label(country.get('region', '-'))),
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
             ])
             for label, value in rows:
@@ -1652,7 +1696,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
                                 timeline_period_text = period_label(country)
                                 if timeline_period_text:
                                     ui.label(timeline_period_text).classes('text-xs font-bold text-orange-700')
-                                ui.label(country.get('region', '')).classes('text-sm text-gray-500')
+                                ui.label(region_label(country.get('region', ''))).classes('text-sm text-gray-500')
                                 ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-600 line-clamp-2')
             if total_pages > 1:
                 prev_disabled = state.timeline_page <= 1
