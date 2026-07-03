@@ -87,6 +87,9 @@ class AppState:
     quiz_difficulty = 'medium'
     compare_left_key = None
     compare_right_key = None
+    timeline_group = 'period_contemporary'
+    timeline_page = 1
+    timeline_items_per_page = 20
 
 state = AppState()
 GUEST_USERNAME = '__guest__'
@@ -549,7 +552,7 @@ def period_start(country):
 
 def period_end(country):
     end = (country.get('period') or {}).get('end')
-    return end if isinstance(end, int) else period_start(country)
+    return end if isinstance(end, int) else None
 
 def period_label(country):
     period = country.get('period') or {}
@@ -560,6 +563,11 @@ def period_label(country):
         return str(label)
     return ''
 
+def period_field_label(country):
+    if country.get('type') == 'Present':
+        return t('labels', 'founded')
+    return t('labels', 'period')
+
 def country_list_sort_key(country):
     if state.sort_field == 'period':
         start = period_start(country)
@@ -567,8 +575,9 @@ def country_list_sort_key(country):
         if start is None:
             return (1, 0, sort_key(country), country.get('names', {}).get('en', ''))
         start_value = -start if state.sort_order == 'desc' else start
-        end_value = -end if state.sort_order == 'desc' and end is not None else end
-        return (0, start_value, end_value or 0, sort_key(country), country.get('names', {}).get('en', ''))
+        end_for_sort = end if end is not None else start
+        end_value = -end_for_sort if state.sort_order == 'desc' else end_for_sort
+        return (0, start_value, end_value, sort_key(country), country.get('names', {}).get('en', ''))
     return (sort_key(country), country.get('names', {}).get('en', ''))
 
 def timeline_sort_key(country):
@@ -576,7 +585,7 @@ def timeline_sort_key(country):
     end = period_end(country)
     if start is None:
         return (1, sort_key(country), country.get('names', {}).get('en', ''))
-    return (0, start, end or start, sort_key(country), country.get('names', {}).get('en', ''))
+    return (0, start, end if end is not None else start, sort_key(country), country.get('names', {}).get('en', ''))
 
 def first_sentence(text):
     text = (text or '').strip()
@@ -643,14 +652,16 @@ def related_countries(country, limit=4):
     return [candidate for _, _, candidate in scored[:limit]]
 
 def timeline_period(country):
-    tags = set(country.get('tags', []))
-    if 'Ancient' in tags:
+    start = period_start(country)
+    if start is None:
+        return 'period_other'
+    if start < 500:
         return 'period_ancient'
-    if 'Medieval' in tags:
+    if start < 1500:
         return 'period_medieval'
-    if 'Modern History' in tags:
+    if start < 1945:
         return 'period_modern'
-    return 'period_other'
+    return 'period_contemporary'
 
 def quiz_option_count():
     return {'easy': 3, 'medium': 4, 'hard': 5}.get(state.quiz_difficulty, 4)
@@ -1138,7 +1149,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 period_text = ' '.join([
                     period_label(c),
                     str(period.get('start', '')),
-                    str(period.get('end', '')),
+                    str(period.get('end') or ''),
                 ])
                 search_target = f"{name_local} {desc_local} {tag_text} {period_text}".lower()
                 if keyword in search_target:
@@ -1251,7 +1262,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                             ui.label(get_localized_text(c.get('capital', '-'))).classes('text-lg')
                         if detail_period:
                             with ui.column().classes('gap-1'):
-                                ui.label(t('labels', 'period')).classes('text-xs font-bold text-gray-400 uppercase')
+                                ui.label(period_field_label(c)).classes('text-xs font-bold text-gray-400 uppercase')
                                 ui.label(detail_period).classes('text-lg font-bold text-orange-700')
                         with ui.column().classes('gap-1'):
                             ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
@@ -1419,7 +1430,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             ]
             compare_period = period_label(country)
             if compare_period:
-                rows.append((t('labels', 'period'), compare_period))
+                rows.append((period_field_label(country), compare_period))
             rows.extend([
                 (t('labels', 'region'), country.get('region', '-')),
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
@@ -1471,6 +1482,21 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
     header_container_timeline = ui.column().classes('w-full p-0 m-0')
     timeline_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
 
+    def set_timeline_group(period_key):
+        state.timeline_group = period_key
+        state.timeline_page = 1
+        refresh_timeline_view()
+
+    def change_timeline_page(page):
+        state.timeline_page = page
+        refresh_timeline_view()
+
+    def render_timeline_page_button(icon, label_key, target_page, disabled=False):
+        props = 'flat round color=grey disable' if disabled else 'flat round color=primary'
+        ui.button(icon=icon, on_click=lambda p=target_page: change_timeline_page(p)) \
+            .props(props) \
+            .tooltip(t(label_key))
+
     def refresh_timeline_view():
         render_header(header_container_timeline)
         update_mode_classes(
@@ -1480,33 +1506,61 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
         )
         timeline_content.clear()
         data = get_data()
-        past_countries = [country for country in data.get('countries', []) if country.get('type') == 'Past']
-        grouped = {key: [] for key in ['period_ancient', 'period_medieval', 'period_modern', 'period_other']}
-        for country in past_countries:
+        period_keys = ['period_ancient', 'period_medieval', 'period_modern', 'period_contemporary', 'period_other']
+        grouped = {key: [] for key in period_keys}
+        timeline_countries = [country for country in data.get('countries', []) if country.get('period')]
+        for country in timeline_countries:
             grouped[timeline_period(country)].append(country)
         for countries in grouped.values():
             countries.sort(key=timeline_sort_key)
+        if state.timeline_group not in grouped or not grouped[state.timeline_group]:
+            state.timeline_group = next((key for key in period_keys if grouped[key]), 'period_other')
+
+        selected_countries = grouped.get(state.timeline_group, [])
+        total_count = len(selected_countries)
+        total_pages = max(1, (total_count + state.timeline_items_per_page - 1) // state.timeline_items_per_page)
+        state.timeline_page = max(1, min(state.timeline_page, total_pages))
+        start_index = (state.timeline_page - 1) * state.timeline_items_per_page
+        end_index = min(start_index + state.timeline_items_per_page, total_count)
+        display_list = selected_countries[start_index:end_index]
 
         with timeline_content:
             ui.label(t('timeline_title')).classes('text-3xl font-bold text-[#1a2332]')
-            for period_key in ['period_ancient', 'period_medieval', 'period_modern', 'period_other']:
-                countries = grouped[period_key]
-                if not countries:
-                    continue
-                ui.label(t(period_key)).classes('text-xl font-bold text-blue-800 mt-2')
-                with ui.column().classes('w-full gap-3'):
-                    for country in countries:
-                        with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
-                            card.on('click', lambda _, x=country: open_country_detail(x))
-                            with ui.row().classes('items-start gap-3 no-wrap'):
-                                ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
-                                with ui.column().classes('gap-1 flex-grow'):
+            with ui.row().classes('w-full gap-2 flex-wrap'):
+                for period_key in period_keys:
+                    count = len(grouped[period_key])
+                    color = 'primary' if state.timeline_group == period_key else 'grey'
+                    ui.button(f'{t(period_key)} ({count})', on_click=lambda _, key=period_key: set_timeline_group(key)) \
+                        .props(f'outline color={color} dense')
+            ui.label(f'{t(state.timeline_group)}: {start_index + 1 if total_count else 0}-{end_index} / {total_count} {t("hits")}') \
+                .classes('text-sm text-gray-500 font-bold')
+            if not display_list:
+                ui.label(t('no_result')).classes('w-full text-center text-gray-500 py-8')
+            with ui.column().classes('w-full gap-3'):
+                for country in display_list:
+                    with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
+                        card.on('click', lambda _, x=country: open_country_detail(x))
+                        with ui.row().classes('items-start gap-3 no-wrap'):
+                            ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
+                            with ui.column().classes('gap-1 flex-grow'):
+                                with ui.row().classes('gap-2 items-center flex-wrap'):
                                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-gray-800')
-                                    timeline_period_text = period_label(country)
-                                    if timeline_period_text:
-                                        ui.label(timeline_period_text).classes('text-xs font-bold text-orange-700')
-                                    ui.label(country.get('region', '')).classes('text-sm text-gray-500')
-                                    ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-600 line-clamp-2')
+                                    ui.badge(t('tabs', country.get('type', 'Present')), color='green' if country.get('type') == 'Present' else 'orange')
+                                timeline_period_text = period_label(country)
+                                if timeline_period_text:
+                                    ui.label(timeline_period_text).classes('text-xs font-bold text-orange-700')
+                                ui.label(country.get('region', '')).classes('text-sm text-gray-500')
+                                ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-600 line-clamp-2')
+            if total_pages > 1:
+                prev_disabled = state.timeline_page <= 1
+                next_disabled = state.timeline_page >= total_pages
+                with ui.row().classes('w-full justify-center items-center gap-2 mt-3 flex-wrap'):
+                    render_timeline_page_button('first_page', 'first_page', 1, prev_disabled)
+                    render_timeline_page_button('chevron_left', 'prev_page', state.timeline_page - 1, prev_disabled)
+                    ui.label(f'{state.timeline_page} / {total_pages} {t("page_unit")}') \
+                        .classes('px-3 py-2 text-gray-700 font-bold')
+                    render_timeline_page_button('chevron_right', 'next_page', state.timeline_page + 1, next_disabled)
+                    render_timeline_page_button('last_page', 'last_page', total_pages, next_disabled)
 
 # ========================================
 # 初期表示
