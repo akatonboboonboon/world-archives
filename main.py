@@ -23,7 +23,105 @@ except ImportError:
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
+USER_DATA_FILE = os.environ.get('USER_DATA_FILE', os.path.join(BASE_DIR, 'user_data.json'))
+GUEST_USERNAME = '__guest__'
 KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
+
+def default_user_data():
+    return {'users': {}}
+
+def load_user_data():
+    if not os.path.exists(USER_DATA_FILE):
+        return default_user_data()
+    try:
+        with open(USER_DATA_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        if not isinstance(data, dict):
+            return default_user_data()
+        if not isinstance(data.get('users'), dict):
+            data['users'] = {}
+        return data
+    except Exception as e:
+        print(f"Error loading user data: {e}")
+        return default_user_data()
+
+def save_user_data(data):
+    user_dir = os.path.dirname(USER_DATA_FILE)
+    if user_dir:
+        os.makedirs(user_dir, exist_ok=True)
+    with open(USER_DATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def merge_unique_list(current, incoming, limit=None):
+    merged = list(current) if isinstance(current, list) else []
+    incoming_items = incoming if isinstance(incoming, list) else []
+    for item in incoming_items:
+        if item not in merged:
+            merged.append(item)
+    if limit:
+        del merged[limit:]
+    return merged
+
+def merge_user_record(current, incoming):
+    if not isinstance(current, dict):
+        current = {}
+    if not isinstance(incoming, dict):
+        return current
+    for key, value in incoming.items():
+        if key in ['favorites', 'review_keys']:
+            current[key] = merge_unique_list(current.get(key, []), value)
+        elif key == 'history':
+            current[key] = merge_unique_list(current.get(key, []), value, 50)
+        elif key == 'notes' and isinstance(value, dict):
+            notes = current.setdefault('notes', {})
+            for note_key, note_value in value.items():
+                notes.setdefault(note_key, note_value)
+        elif key == 'quiz_stats' and isinstance(value, dict):
+            stats = current.setdefault('quiz_stats', {})
+            for stat_key, stat_value in value.items():
+                if isinstance(stat_value, int):
+                    stats[stat_key] = max(stats.get(stat_key, 0), stat_value)
+                else:
+                    stats.setdefault(stat_key, stat_value)
+        else:
+            current.setdefault(key, value)
+    return current
+
+def migrate_embedded_user_data():
+    if not os.path.exists(JSON_FILE):
+        return
+    try:
+        with open(JSON_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"Error checking embedded user data: {e}")
+        return
+
+    embedded_users = data.get('users') if isinstance(data.get('users'), dict) else {}
+    legacy_history = data.get('history') if isinstance(data.get('history'), list) else []
+    legacy_favorites = data.get('favorites') if isinstance(data.get('favorites'), list) else []
+    has_user_keys = any(key in data for key in ['users', 'history', 'favorites'])
+
+    if embedded_users or legacy_history or legacy_favorites:
+        user_data = load_user_data()
+        users = user_data.setdefault('users', {})
+        for username, record in embedded_users.items():
+            users[username] = merge_user_record(users.get(username, {}), record)
+        if legacy_history or legacy_favorites:
+            users[GUEST_USERNAME] = merge_user_record(
+                users.get(GUEST_USERNAME, {}),
+                {'history': legacy_history, 'favorites': legacy_favorites},
+            )
+        save_user_data(user_data)
+
+    if has_user_keys:
+        for key in ['users', 'history', 'favorites']:
+            data.pop(key, None)
+        try:
+            with open(JSON_FILE, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"Error removing embedded user data: {e}")
 
 def init_json():
     """
@@ -45,10 +143,7 @@ def init_json():
                     'labels': {'capital': 'Capital', 'region': 'Region', 'tags': 'Tags', 'desc': 'Description'}
                 }
             },
-            "countries": [],
-            "history": [],
-            "favorites": [],
-            "users": {}
+            "countries": []
         }
         with open(JSON_FILE, 'w', encoding='utf-8') as f:
             json.dump(default_data, f, ensure_ascii=False, indent=2)
@@ -66,6 +161,7 @@ def load_translations():
     return {}
 
 init_json()
+migrate_embedded_user_data()
 
 TRANSLATIONS = load_translations()
 
@@ -93,7 +189,6 @@ class AppState:
     timeline_items_per_page = 20
 
 state = AppState()
-GUEST_USERNAME = '__guest__'
 
 UI_FALLBACKS = {
     'ja': {
@@ -386,14 +481,16 @@ def clean_username(username):
 def password_hash(username, password):
     return hashlib.sha256(f'{username}:{password}'.encode('utf-8')).hexdigest()
 
-def get_users(data=None):
-    data = data or get_data()
-    return data.setdefault('users', {})
+def get_users(user_data=None):
+    user_data = user_data or load_user_data()
+    if not isinstance(user_data.get('users'), dict):
+        user_data['users'] = {}
+    return user_data['users']
 
-def get_current_user_record(data=None):
+def get_current_user_record(user_data=None):
     if not state.current_user:
         return None
-    users = get_users(data)
+    users = get_users(user_data)
     user = users.get(state.current_user)
     if user:
         ensure_user_defaults(user)
@@ -422,21 +519,21 @@ def login_user(username, password):
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
         return False
-    data = get_data()
-    user = get_users(data).get(username)
+    user_data = load_user_data()
+    user = get_users(user_data).get(username)
     if not user or user.get('password_hash') != password_hash(username, password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
     ensure_user_defaults(user)
-    save_data(data)
+    save_user_data(user_data)
     state.current_user = username
     ui.notify(t('login_success'), color='positive')
     show_screen('top')
     return True
 
 def guest_login():
-    data = get_data()
-    users = get_users(data)
+    user_data = load_user_data()
+    users = get_users(user_data)
     guest = users.setdefault(GUEST_USERNAME, {
         'password_hash': '',
         'favorites': [],
@@ -452,7 +549,7 @@ def guest_login():
     })
     guest['is_guest'] = True
     ensure_user_defaults(guest)
-    save_data(data)
+    save_user_data(user_data)
     state.current_user = GUEST_USERNAME
     ui.notify(t('guest_login_success'), color='positive')
     show_screen('top')
@@ -463,8 +560,8 @@ def register_user(username, password):
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
         return False
-    data = get_data()
-    users = get_users(data)
+    user_data = load_user_data()
+    users = get_users(user_data)
     if username == GUEST_USERNAME or username in users:
         ui.notify(t('user_exists'), color='warning')
         return False
@@ -481,7 +578,7 @@ def register_user(username, password):
             'best_streak': 0,
         },
     }
-    save_data(data)
+    save_user_data(user_data)
     state.current_user = username
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
@@ -500,8 +597,7 @@ def logout_user():
     show_screen('top')
 
 def favorite_keys(data=None):
-    data = data or get_data()
-    user = get_current_user_record(data)
+    user = get_current_user_record()
     if not user:
         return set()
     return set(user.setdefault('favorites', []))
@@ -510,8 +606,8 @@ def is_favorite(country, data=None):
     return country_key(country) in favorite_keys(data)
 
 def toggle_favorite(country):
-    data = get_data()
-    user = get_current_user_record(data)
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
     if not user:
         ui.notify(t('login_required'), color='warning')
         return
@@ -521,18 +617,17 @@ def toggle_favorite(country):
         favorites.remove(key)
     else:
         favorites.append(key)
-    save_data(data)
+    save_user_data(user_data)
 
 def get_note_for_country(country, data=None):
-    data = data or get_data()
-    user = get_current_user_record(data)
+    user = get_current_user_record()
     if not user:
         return ''
     return user.setdefault('notes', {}).get(country_key(country), '')
 
 def save_note_for_country(country, note_text):
-    data = get_data()
-    user = get_current_user_record(data)
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
     if not user:
         ui.notify(t('login_required'), color='warning')
         return
@@ -543,26 +638,24 @@ def save_note_for_country(country, note_text):
         notes[key] = text
     else:
         notes.pop(key, None)
-    save_data(data)
+    save_user_data(user_data)
     ui.notify(t('note_saved'), color='positive')
 
 def get_quiz_stats(data=None):
-    data = data or get_data()
-    user = get_current_user_record(data)
+    user = get_current_user_record()
     if not user:
         return {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0}
     return user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
 
 def get_review_keys(data=None):
-    data = data or get_data()
-    user = get_current_user_record(data)
+    user = get_current_user_record()
     if not user:
         return []
     return user.setdefault('review_keys', [])
 
 def update_quiz_stats(correct, answer_key=None, review_mode=False):
-    data = get_data()
-    user = get_current_user_record(data)
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
     if not user:
         return
     stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
@@ -581,7 +674,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False):
         elif not correct and answer_key not in review:
             review.insert(0, answer_key)
             del review[80:]
-    save_data(data)
+    save_user_data(user_data)
 
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
@@ -772,7 +865,7 @@ def build_quiz():
     lookup = countries_by_key(data)
     answer_source = countries
     if state.quiz_mode == 'review':
-        review_source = [lookup[key] for key in get_review_keys(data) if key in lookup]
+        review_source = [lookup[key] for key in get_review_keys() if key in lookup]
         if not review_source:
             return None
         answer_source = review_source
@@ -868,12 +961,15 @@ def get_data():
         return json.load(f)
 
 def save_data(data):
+    data = dict(data)
+    for key in ['users', 'history', 'favorites']:
+        data.pop(key, None)
     with open(JSON_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def add_history(country_data):
-    data = get_data()
-    user = get_current_user_record(data)
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
     if not user:
         return
     name = get_localized_text(country_data['names'])
@@ -886,14 +982,14 @@ def add_history(country_data):
     history = user.setdefault('history', [])
     history.insert(0, new_record)
     del history[50:]
-    save_data(data)
+    save_user_data(user_data)
 
 def clear_history():
-    data = get_data()
-    user = get_current_user_record(data)
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
     if user:
         user['history'] = []
-    save_data(data)
+        save_user_data(user_data)
 
 # ========================================
 # 画面切り替え
@@ -1002,8 +1098,7 @@ def jump_from_history(history_item):
 
 def refresh_history_content():
     history_content.clear()
-    data = get_data()
-    user = get_current_user_record(data)
+    user = get_current_user_record()
     histories = user.get('history', []) if user else []
     with history_content:
         with ui.row().classes('w-full justify-between items-center mb-4'):
