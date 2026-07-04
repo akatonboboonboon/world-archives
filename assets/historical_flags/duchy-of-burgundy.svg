@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100" role="img">
-<title>Duchy of Burgundy historical flag image</title>
-<rect x="0" y="0" width="160" height="100" fill="#f8fafc"/>
-<line x1="-10" y1="-5" x2="170" y2="105" stroke="#1d4ed8" stroke-width="18"/>
-<line x1="-10" y1="105" x2="170" y2="-5" stroke="#1d4ed8" stroke-width="18"/>
-<line x1="-10" y1="-5" x2="170" y2="105" stroke="#b91c1c" stroke-width="10"/>
-<line x1="-10" y1="105" x2="170" y2="-5" stroke="#b91c1c" stroke-width="10"/>
-<rect x="1" y="1" width="158" height="98" fill="none" stroke="#1f2937" stroke-width="2" rx="2"/>
-</svg>

@@ -11369,7 +11369,7 @@
         "en": "A dual monarchy in Central Europe ruled by the Habsburgs. Its main center was Vienna / Budapest, and it developed in Europe. In addition, its imperial character involved ruling broad territories and diverse communities; monarchy and royal authority are important themes in understanding its history; and changes in government and state institutions help explain its historical development.",
         "zh": "哈布斯堡家族统治的中欧多民族国家。 中心地是维也纳 / 布达佩斯，曾在欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；王权和君主制传统是理解其政治与文化的重要主题；政治体制和国家制度的变化，有助于理解其历史发展。"
       },
-      "flag_code": "asset:historical_flags/austro-hungarian-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Civil_Ensign_of_Austria-Hungary_%281869-1918%29.svg",
       "period": {
         "start": 1867,
         "end": 1918,
@@ -11454,7 +11454,7 @@
         "en": "An empire that controlled much of Southeast Europe. Its main center was Constantinople, and it developed in the Middle East, Europe, and Africa. In addition, its imperial character involved ruling broad territories and diverse communities; and religious traditions and diversity have strongly influenced society and history.",
         "zh": "统治地中海世界的伊斯兰帝国。 中心地是君士坦丁堡，曾在中东、欧洲、非洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；宗教传统和信仰多样性深刻影响社会与历史。"
       },
-      "flag_code": "asset:historical_flags/ottoman-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Ottoman_Empire_%281844%E2%80%931922%29.svg",
       "period": {
         "start": 1299,
         "end": 1922,
@@ -11539,7 +11539,7 @@
         "en": "An empire that extended across Eurasia and North America. Its main center was Saint Petersburg, and it developed in Asia, and Europe. In addition, its imperial character involved ruling broad territories and diverse communities; monarchy and royal authority are important themes in understanding its history; and modern independence, reform, nationalism, or diplomacy shaped its later history.",
         "zh": "罗曼诺夫王朝统治的巨大帝国。 中心地是圣彼得堡，曾在亚洲、欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；王权和君主制传统是理解其政治与文化的重要主题；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史。"
       },
-      "flag_code": "asset:historical_flags/russian-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Russia_%281858%E2%80%931883%29.svg",
       "period": {
         "start": 1721,
         "end": 1917,
@@ -11625,7 +11625,7 @@
         "en": "The German Reich from the unification of Germany. Its main center was Berlin, and it developed in Europe. In addition, its imperial character involved ruling broad territories and diverse communities; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "以普鲁士为中心统一的德意志国家。 中心地是柏林，曾在欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/german-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_German_Empire.svg",
       "period": {
         "start": 1871,
         "end": 1918,
@@ -11711,7 +11711,7 @@
         "en": "A socialist state that spanned much of Eurasia. Its main center was Moscow, and it developed in Asia, and Europe. In addition, changes in government and state institutions help explain its historical development; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "世界上第一个社会主义国家。 中心地是莫斯科，曾在亚洲、欧洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/soviet-union.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Soviet_Union.svg",
       "period": {
         "start": 1922,
         "end": 1991,
@@ -11793,7 +11793,7 @@
         "en": "The last imperial dynasty of China. Its main center was Beijing, and it developed in Asia. In addition, its imperial character involved ruling broad territories and diverse communities.",
         "zh": "中国最后一个封建王朝。 中心地是北京，曾在亚洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治。"
       },
-      "flag_code": "asset:historical_flags/qing-dynasty.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_China_%281889%E2%80%931912%29.svg",
       "period": {
         "start": 1644,
         "end": 1912,
@@ -11878,7 +11878,7 @@
         "en": "The historical Japanese state from the Meiji Restoration. Its main center was Tokyo, and it developed in Asia. In addition, its imperial character involved ruling broad territories and diverse communities; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "从明治维新到二战结束的日本。 中心地是东京，曾在亚洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/empire-of-japan.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Japan.svg",
       "period": {
         "start": 1868,
         "end": 1947,
@@ -11961,7 +11961,7 @@
         "en": "A puppet state of the Empire of Japan in Northeast China. Its main center was Hsinking, and it developed in Asia. In addition, modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "存在于中国东北的国家。 中心地是新京，曾在亚洲发展。 此外，近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/manchukuo.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Manchukuo.svg",
       "period": {
         "start": 1932,
         "end": 1945,
@@ -12045,7 +12045,7 @@
         "en": "German Democratic Republic. Its main center was East Berlin, and it developed in Europe. In addition, changes in government and state institutions help explain its historical development; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "德意志民主共和国。 中心地是东柏林，曾在欧洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/east-germany.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_East_Germany.svg",
       "period": {
         "start": 1949,
         "end": 1990,
@@ -12127,7 +12127,7 @@
         "en": "A country in Southeast Europe. Its main center was Belgrade, and it developed in Europe. In addition, changes in government and state institutions help explain its historical development.",
         "zh": "存在于巴尔干半岛的联邦国家。 中心地是贝尔格莱德，曾在欧洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展。"
       },
-      "flag_code": "asset:historical_flags/yugoslavia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Yugoslavia_%281946-1992%29.svg",
       "period": {
         "start": 1918,
         "end": 1992,
@@ -12209,7 +12209,7 @@
         "en": "Dissolved into Czechia and Slovakia. Its main center was Prague, and it developed in Europe. In addition, changes in government and state institutions help explain its historical development.",
         "zh": "位于中欧的国家。 中心地是布拉格，曾在欧洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展。"
       },
-      "flag_code": "asset:historical_flags/czechoslovakia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Czechoslovakia.svg",
       "period": {
         "start": 1918,
         "end": 1992,
@@ -12292,7 +12292,7 @@
         "en": "Republic of Vietnam. Its main center was Saigon, and it developed in Asia. In addition, modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "越南共和国。 中心地是西贡，曾在亚洲发展。 此外，近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/south-vietnam.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_South_Vietnam.svg",
       "period": {
         "start": 1955,
         "end": 1975,
@@ -12375,7 +12375,7 @@
         "en": "Historical region covering the Tibetan Plateau. Its main center was Lhasa, and it developed in Asia. In addition, religious traditions and diversity have strongly influenced society and history; and landforms, climate, rivers, mountains, and natural environments shaped settlement and history.",
         "zh": "位于喜马拉雅山脉北侧的地区。 中心地是拉萨，曾在亚洲发展。 此外，宗教传统和信仰多样性深刻影响社会与历史；地形、气候、河流、山地和自然环境塑造了聚落与历史。"
       },
-      "flag_code": "asset:historical_flags/tibet.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Tibet.svg",
       "period": {
         "start": 1912,
         "end": 1951,
@@ -12458,7 +12458,7 @@
         "en": "State that encompassed much of northern South America. Its main center was Bogota, and it developed in the Americas. In addition, changes in government and state institutions help explain its historical development; and modern independence, reform, nationalism, or diplomacy shaped its later history.",
         "zh": "西蒙·玻利瓦尔建立的南美统一共和国。 中心地是波哥大，曾在美洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史。"
       },
-      "flag_code": "asset:historical_flags/gran-colombia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Gran_Colombia.svg",
       "period": {
         "start": 1819,
         "end": 1831,
@@ -12542,7 +12542,7 @@
         "en": "Unrecognized republic in the Southern US. Its main center was Richmond, and it developed in the Americas. In addition, changes in government and state institutions help explain its historical development; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "美国内战期间南部诸州建立的政权。 中心地是里士满，曾在美洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/confederate-states.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Confederate_States_%281861%E2%80%931863%29.svg",
       "period": {
         "start": 1861,
         "end": 1865,
@@ -12625,7 +12625,7 @@
         "en": "Sovereign state located in the Hawaiian Islands. Its main center was Honolulu, and it developed in Oceania. In addition, monarchy and royal authority are important themes in understanding its history; and islands, coastlines, sea routes, and maritime exchange influenced its development.",
         "zh": "位于夏威夷群岛的王国。 中心地是火奴鲁鲁，曾在大洋洲发展。 此外，王权和君主制传统是理解其政治与文化的重要主题；岛屿、海岸、海上通道和海洋交流影响了其发展。"
       },
-      "flag_code": "asset:historical_flags/hawaiian-kingdom.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Hawaii.svg",
       "period": {
         "start": 1795,
         "end": 1893,
@@ -12708,7 +12708,7 @@
         "en": "Name of the DRC between 1971 and 1997. Its main center was Kinshasa, and it developed in Africa. In addition, modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "1971年至1997年间刚果民主共和国的名称。 中心地是金沙萨，曾在非洲发展。 此外，近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/zaire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Zaire.svg",
       "period": {
         "start": 1971,
         "end": 1997,
@@ -12792,7 +12792,7 @@
         "en": "Political union between Egypt and Syria. Its main center was Cairo, and it developed in the Middle East, and Africa. In addition, changes in government and state institutions help explain its historical development; and language, arts, customs, cuisine, and everyday culture give it a distinct identity.",
         "zh": "埃及和叙利亚合并成立的泛阿拉伯国家。 中心地是开罗，曾在中东、非洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；语言、艺术、习俗、饮食和日常文化形成了独特身份。"
       },
-      "flag_code": "asset:historical_flags/united-arab-republic.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Arab_Republic.svg",
       "period": {
         "start": 1958,
         "end": 1971,
@@ -12876,7 +12876,7 @@
         "en": "Unrecognized state equivalent to modern Zimbabwe. Its main center was Salisbury, and it developed in Africa. In addition, changes in government and state institutions help explain its historical development; modern independence, reform, nationalism, or diplomacy shaped its later history; and war and conflict affected its borders, politics, and society.",
         "zh": "津巴布韦的前身。 中心地是索尔兹伯里，曾在非洲发展。 此外，政治体制和国家制度的变化，有助于理解其历史发展；近现代的独立、改革、民族主义或外交变化塑造了其后来的历史；战争和冲突影响了其边界、政治和社会。"
       },
-      "flag_code": "asset:historical_flags/rhodesia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Rhodesia_%281968%E2%80%931979%29.svg",
       "period": {
         "start": 1965,
         "end": 1979,
@@ -12961,7 +12961,7 @@
         "en": "The largest contiguous empire in history. Its main center was Karakorum, and it developed in Asia, and Europe. In addition, its imperial character involved ruling broad territories and diverse communities; medieval trade, religion, warfare, and urban development are central to its story; and language, arts, customs, cuisine, and everyday culture give it a distinct identity.",
         "zh": "历史上连续疆域最大的帝国。 中心地是哈拉和林，曾在亚洲、欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；中世纪的贸易、宗教、战争和城市发展是重要背景；语言、艺术、习俗、饮食和日常文化形成了独特身份。"
       },
-      "flag_code": "asset:historical_flags/mongol-empire.svg",
+      "flag_code": "xx",
       "period": {
         "start": 1206,
         "end": 1368,
@@ -13044,7 +13044,7 @@
         "en": "Multi-ethnic complex of territories in Central Europe. Its main center was None (Itinerant), and it developed in Europe. In addition, its imperial character involved ruling broad territories and diverse communities; and medieval trade, religion, warfare, and urban development are central to its story.",
         "zh": "中欧的多民族国家联盟。 中心地是无 (巡回)，曾在欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；中世纪的贸易、宗教、战争和城市发展是重要背景。"
       },
-      "flag_code": "asset:historical_flags/holy-roman-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Banner_of_the_Holy_Roman_Emperor_with_haloes_%281400-1806%29.svg",
       "period": {
         "start": 962,
         "end": 1806,
@@ -13129,7 +13129,7 @@
         "en": "The continuation of the Roman Empire. Its main center was Constantinople, and it developed in Asia, and Europe. In addition, its imperial character involved ruling broad territories and diverse communities; medieval trade, religion, warfare, and urban development are central to its story; and religious traditions and diversity have strongly influenced society and history.",
         "zh": "罗马帝国的东部延续。 中心地是君士坦丁堡，曾在亚洲、欧洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；中世纪的贸易、宗教、战争和城市发展是重要背景；宗教传统和信仰多样性深刻影响社会与历史。"
       },
-      "flag_code": "asset:historical_flags/byzantine-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Byzantine_imperial_flag%2C_14th_century.svg",
       "period": {
         "start": 330,
         "end": 1453,
@@ -13212,7 +13212,7 @@
         "en": "Alliance of three Nahua altepetl city-states. Its main center was Tenochtitlan, and it developed in the Americas. In addition, its imperial character involved ruling broad territories and diverse communities; and it is connected with ancient civilization, early state formation, or classical heritage.",
         "zh": "繁荣于墨西哥中央高原的文明。 中心地是特诺奇蒂特兰，曾在美洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；它与古代文明、早期国家形成或古典遗产有关。"
       },
-      "flag_code": "asset:historical_flags/aztec-empire.svg",
+      "flag_code": "xx",
       "period": {
         "start": 1428,
         "end": 1521,
@@ -13296,7 +13296,7 @@
         "en": "The largest empire in pre-Columbian America. Its main center was Cusco, and it developed in the Americas. In addition, its imperial character involved ruling broad territories and diverse communities; it is connected with ancient civilization, early state formation, or classical heritage; and landforms, climate, rivers, mountains, and natural environments shaped settlement and history.",
         "zh": "安第斯山脉最大的帝国。 中心地是库斯科，曾在美洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；它与古代文明、早期国家形成或古典遗产有关；地形、气候、河流、山地和自然环境塑造了聚落与历史。"
       },
-      "flag_code": "asset:historical_flags/inca-empire.svg",
+      "flag_code": "xx",
       "period": {
         "start": 1438,
         "end": 1533,
@@ -13380,7 +13380,7 @@
         "en": "Early modern empire in South Asia. Its main center was Agra / Delhi, and it developed in Asia. In addition, its imperial character involved ruling broad territories and diverse communities; language, arts, customs, cuisine, and everyday culture give it a distinct identity; and religious traditions and diversity have strongly influenced society and history.",
         "zh": "统治印度次大陆大部分的伊斯兰王朝。 中心地是阿格拉 / 德里，曾在亚洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；语言、艺术、习俗、饮食和日常文化形成了独特身份；宗教传统和信仰多样性深刻影响社会与历史。"
       },
-      "flag_code": "asset:historical_flags/mughal-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Alam_of_the_Mughal_Empire.svg",
       "period": {
         "start": 1526,
         "end": 1857,
@@ -13463,7 +13463,7 @@
         "en": "The First Persian Empire. Its main center was Persepolis, and it developed in the Middle East. In addition, its imperial character involved ruling broad territories and diverse communities; and it is connected with ancient civilization, early state formation, or classical heritage.",
         "zh": "统一古代东方的第一个世界帝国。 中心地是波斯波利斯，曾在中东发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；它与古代文明、早期国家形成或古典遗产有关。"
       },
-      "flag_code": "asset:historical_flags/achaemenid-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Standard_of_Cyrus_the_Great.svg",
       "period": {
         "start": -550,
         "end": -330,
@@ -13548,7 +13548,7 @@
         "en": "Hindu-Buddhist empire in Southeast Asia. Its main center was Angkor, and it developed in Asia. In addition, its imperial character involved ruling broad territories and diverse communities; medieval trade, religion, warfare, and urban development are central to its story; and language, arts, customs, cuisine, and everyday culture give it a distinct identity.",
         "zh": "以现代柬埔寨为中心的王朝。 中心地是吴哥，曾在亚洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；中世纪的贸易、宗教、战争和城市发展是重要背景；语言、艺术、习俗、饮食和日常文化形成了独特身份。"
       },
-      "flag_code": "asset:historical_flags/khmer-empire.svg",
+      "flag_code": "xx",
       "period": {
         "start": 802,
         "end": 1431,
@@ -13632,7 +13632,7 @@
         "en": "Empire in West Africa famous for gold. Its main center was Niani, and it developed in Africa. In addition, its imperial character involved ruling broad territories and diverse communities; medieval trade, religion, warfare, and urban development are central to its story; and trade, resources, industry, and finance are key themes in its development.",
         "zh": "西非的伊斯兰国家。以黄金闻名。 中心地是尼亚尼，曾在非洲发展。 此外，其帝国性质体现在对广阔地区和多元人群的统治；中世纪的贸易、宗教、战争和城市发展是重要背景；贸易、资源、产业和金融是其发展的重要主题。"
       },
-      "flag_code": "asset:historical_flags/mali-empire.svg",
+      "flag_code": "xx",
       "period": {
         "start": 1235,
         "end": 1670,
@@ -16801,7 +16801,7 @@
           "zh": "公元前3100年—公元前332年"
         }
       },
-      "flag_code": "asset:historical_flags/ancient-egypt.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -16885,7 +16885,7 @@
           "zh": "公元前814年—公元前146年"
         }
       },
-      "flag_code": "asset:historical_flags/ancient-carthage.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -16967,7 +16967,7 @@
           "zh": "公元前1894年—公元前539年"
         }
       },
-      "flag_code": "asset:historical_flags/babylonia.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約200万人",
@@ -17051,7 +17051,7 @@
           "zh": "公元前900年—公元前192年"
         }
       },
-      "flag_code": "asset:historical_flags/sparta.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約20万人",
@@ -17137,7 +17137,7 @@
           "zh": "697年—1797年"
         }
       },
-      "flag_code": "asset:historical_flags/republic-of-venice.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Republic_of_Venice.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約250万人",
@@ -17222,7 +17222,7 @@
           "zh": "1569年—1795年"
         }
       },
-      "flag_code": "asset:historical_flags/polish-lithuanian-commonwealth.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Royal_Banner_of_the_Polish-Lithuanian_Commonwealth.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1100万人",
@@ -17305,7 +17305,7 @@
           "zh": "1185年—1868年"
         }
       },
-      "flag_code": "asset:historical_flags/feudal-japan.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約3000万人",
@@ -17389,7 +17389,7 @@
           "zh": "618年—907年"
         }
       },
-      "flag_code": "asset:historical_flags/tang-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Dunhuang_Zhang_Yichao_army.jpg/320px-Dunhuang_Zhang_Yichao_army.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約8000万人",
@@ -17473,7 +17473,7 @@
           "zh": "1392年—1897年"
         }
       },
-      "flag_code": "asset:historical_flags/joseon.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Korea_%281882-1910%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1700万人",
@@ -17557,7 +17557,7 @@
           "zh": "1836年—1846年"
         }
       },
-      "flag_code": "asset:historical_flags/republic-of-texas.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Texas.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約70,000人",
@@ -17640,7 +17640,7 @@
           "zh": "756年—1870年"
         }
       },
-      "flag_code": "asset:historical_flags/papal-states.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Papal_States_%281808-1870%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約300万人",
@@ -17724,7 +17724,7 @@
           "zh": "1816年—1897年"
         }
       },
-      "flag_code": "asset:historical_flags/zulu-kingdom.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約25万人",
@@ -17809,7 +17809,7 @@
           "zh": "公元前2000年—1697年"
         }
       },
-      "flag_code": "asset:historical_flags/maya-civilization.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1000万人",
@@ -17892,7 +17892,7 @@
           "zh": "公元前1600年—公元前400年"
         }
       },
-      "flag_code": "asset:historical_flags/olmec.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約30万人",
@@ -17975,7 +17975,7 @@
           "zh": "1450年—1784年"
         }
       },
-      "flag_code": "asset:historical_flags/iroquois-confederacy.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Iroquois_Confederacy.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約20,000人",
@@ -18060,7 +18060,7 @@
           "zh": "750年—1258年"
         }
       },
-      "flag_code": "asset:historical_flags/abbasid-caliphate.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_flag.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約5000万人",
@@ -18146,7 +18146,7 @@
           "zh": "661年—750年"
         }
       },
-      "flag_code": "asset:historical_flags/umayyad-caliphate.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Umayyad_Flag.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約6000万人",
@@ -18231,7 +18231,7 @@
           "zh": "929年—1031年"
         }
       },
-      "flag_code": "asset:historical_flags/caliphate-of-cordoba.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -18316,7 +18316,7 @@
           "zh": "1099年—1291年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-jerusalem.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Vexillum_Regni_Hierosolymae.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約30万人",
@@ -18402,7 +18402,7 @@
           "zh": "1368年—1644年"
         }
       },
-      "flag_code": "asset:historical_flags/ming-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/%E6%AD%A6%E5%82%99%E5%BF%97_%E8%8C%85%E5%85%83%E5%84%80_%E6%98%8E%E6%9C%9D_%E6%88%B0%E6%97%97_07.jpg/320px-%E6%AD%A6%E5%82%99%E5%BF%97_%E8%8C%85%E5%85%83%E5%84%80_%E6%98%8E%E6%9C%9D_%E6%88%B0%E6%97%97_07.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1.6億人",
@@ -18488,7 +18488,7 @@
           "zh": "公元前202年—220年"
         }
       },
-      "flag_code": "asset:historical_flags/han-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Han_Dynasty_Tomb_Mural_in_Yang-shan_Town_%28%E7%BE%8A%E5%B1%B1%E9%8E%AD%29%2C_Chin-hsiang_County_%28%E9%87%91%E9%84%95%E7%B8%A3%29.jpg/320px-Han_Dynasty_Tomb_Mural_in_Yang-shan_Town_%28%E7%BE%8A%E5%B1%B1%E9%8E%AD%29%2C_Chin-hsiang_County_%28%E9%87%91%E9%84%95%E7%B8%A3%29.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約6000万人",
@@ -18573,7 +18573,7 @@
           "zh": "1603年—1868年"
         }
       },
-      "flag_code": "asset:historical_flags/edo-shogunate.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Tokugawa_Shogunate.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約3100万人",
@@ -18658,7 +18658,7 @@
           "zh": "1429年—1879年"
         }
       },
-      "flag_code": "asset:historical_flags/ryukyu-kingdom.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Merchant_flag_of_the_Ryukyu_Kingdom.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約20万人",
@@ -18742,7 +18742,7 @@
           "zh": "1293年—1527年"
         }
       },
-      "flag_code": "asset:historical_flags/majapahit-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Naval_flag_of_Majapahit_Kingdom.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1000万人",
@@ -18827,7 +18827,7 @@
           "zh": "1351年—1767年"
         }
       },
-      "flag_code": "asset:historical_flags/ayutthaya-kingdom.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Thailand_%28Ayutthaya_period%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -18911,7 +18911,7 @@
           "zh": "650年—1377年"
         }
       },
-      "flag_code": "asset:historical_flags/srivijaya.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約200万人",
@@ -18996,7 +18996,7 @@
           "zh": "100年—940年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-aksum.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -19082,7 +19082,7 @@
           "zh": "公元前1070年—350年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-kush.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -19167,7 +19167,7 @@
           "zh": "1464年—1591年"
         }
       },
-      "flag_code": "asset:historical_flags/songhai-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約300万人",
@@ -19252,7 +19252,7 @@
           "zh": "1180年—1897年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-benin.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -19335,7 +19335,7 @@
           "zh": "1137年—1716年"
         }
       },
-      "flag_code": "asset:historical_flags/crown-of-aragon.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Royal_Banner_of_Aragon.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -19421,7 +19421,7 @@
           "zh": "1065年—1715年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-castile.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Royal_Banner_of_the_Kingdom_of_Castile.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約600万人",
@@ -19506,7 +19506,7 @@
           "zh": "918年—1482年"
         }
       },
-      "flag_code": "asset:historical_flags/duchy-of-burgundy.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Burgundy.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約150万人",
@@ -19589,7 +19589,7 @@
           "zh": "1701年—1918年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-prussia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Kingdom_of_Prussia_%281803-1892%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約4000万人",
@@ -19672,7 +19672,7 @@
           "zh": "882年—1240年"
         }
       },
-      "flag_code": "asset:historical_flags/kievan-rus.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -19755,7 +19755,7 @@
           "zh": "1136年—1478年"
         }
       },
-      "flag_code": "asset:historical_flags/novgorod-republic.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -19839,7 +19839,7 @@
           "zh": "1397年—1523年"
         }
       },
-      "flag_code": "asset:historical_flags/kalmar-union.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Kalmar_Union.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約150万人",
@@ -19924,7 +19924,7 @@
           "zh": "1370年—1507年"
         }
       },
-      "flag_code": "asset:historical_flags/timurid-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約700万人",
@@ -20008,7 +20008,7 @@
           "zh": "1501年—1736年"
         }
       },
-      "flag_code": "asset:historical_flags/safavid-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1000万人",
@@ -20093,7 +20093,7 @@
           "zh": "370年—469年"
         }
       },
-      "flag_code": "asset:historical_flags/hunnic-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -20177,7 +20177,7 @@
           "zh": "公元前37年—668年"
         }
       },
-      "flag_code": "asset:historical_flags/goguryeo.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約350万人",
@@ -20261,7 +20261,7 @@
           "zh": "公元前57年—935年"
         }
       },
-      "flag_code": "asset:historical_flags/silla.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約300万人",
@@ -20346,7 +20346,7 @@
           "zh": "1185年—1333年"
         }
       },
-      "flag_code": "asset:historical_flags/kamakura-shogunate.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約700万人",
@@ -20431,7 +20431,7 @@
           "zh": "1054年—1804年"
         }
       },
-      "flag_code": "asset:historical_flags/dai-viet.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -20516,7 +20516,7 @@
           "zh": "1242年—1502年"
         }
       },
-      "flag_code": "asset:historical_flags/golden-horde.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_Horde_flag_1339.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -20600,7 +20600,7 @@
           "zh": "1415年—1999年"
         }
       },
-      "flag_code": "asset:historical_flags/portuguese-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Portugal_%281830%E2%80%931910%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約3000万人",
@@ -20684,7 +20684,7 @@
           "zh": "1967年—1970年"
         }
       },
-      "flag_code": "asset:historical_flags/republic-of-biafra.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Biafra.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1400万人",
@@ -20768,7 +20768,7 @@
           "zh": "1804年—1815年"
         }
       },
-      "flag_code": "asset:historical_flags/first-french-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_France.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約4400万人",
@@ -20852,7 +20852,7 @@
           "zh": "927年—1707年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-england.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_England.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -20938,7 +20938,7 @@
           "zh": "843年—1707年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-scotland.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Scotland.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約120万人",
@@ -21022,7 +21022,7 @@
           "zh": "1271年—1368年"
         }
       },
-      "flag_code": "asset:historical_flags/yuan-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yuan_dynasty_flag_%2851168573616%29.jpg/320px-Yuan_dynasty_flag_%2851168573616%29.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約8700万人",
@@ -21108,7 +21108,7 @@
           "zh": "960年—1279年"
         }
       },
-      "flag_code": "asset:historical_flags/song-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Song_dynasty_flag_%2851167903362%29.jpg/320px-Song_dynasty_flag_%2851167903362%29.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1.2億人",
@@ -21193,7 +21193,7 @@
           "zh": "224年—651年"
         }
       },
-      "flag_code": "asset:historical_flags/sassanid-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Derafsh_Kaviani_flag_of_the_late_Sassanid_Empire.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約2000万人",
@@ -21276,7 +21276,7 @@
           "zh": "1822年—1889年"
         }
       },
-      "flag_code": "asset:historical_flags/empire-of-brazil.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Bandeira_do_Imp%C3%A9rio_do_Brasil_com_n%C3%B3_e_cores_corretos.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1400万人",
@@ -21360,7 +21360,7 @@
           "zh": "1816年—1861年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-the-two-sicilies.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Kingdom_of_the_Two_Sicilies_%281816%29.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約900万人",
@@ -21444,7 +21444,7 @@
           "zh": "1005年—1797年"
         }
       },
-      "flag_code": "asset:historical_flags/republic-of-genoa.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Genoa.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約60万人",
@@ -21527,7 +21527,7 @@
           "zh": "300年—1200年"
         }
       },
-      "flag_code": "asset:historical_flags/ghana-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -21611,7 +21611,7 @@
           "zh": "1390年—1914年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-kongo.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Kingdom_of_Kongo_according_to_Giovanni_Cavazzi_da_Montecuccolo.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -21696,7 +21696,7 @@
           "zh": "900年—1150年"
         }
       },
-      "flag_code": "asset:historical_flags/toltec-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -21781,7 +21781,7 @@
           "zh": "900年—1470年"
         }
       },
-      "flag_code": "asset:historical_flags/chimu-culture.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -21864,7 +21864,7 @@
           "zh": "公元前209年—93年"
         }
       },
-      "flag_code": "asset:historical_flags/xiongnu.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -21948,7 +21948,7 @@
           "zh": "1256年—1335年"
         }
       },
-      "flag_code": "asset:historical_flags/ilkhanate.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -22032,7 +22032,7 @@
           "zh": "1206年—1526年"
         }
       },
-      "flag_code": "asset:historical_flags/delhi-sultanate.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約3500万人",
@@ -22117,7 +22117,7 @@
           "zh": "1799年—1849年"
         }
       },
-      "flag_code": "asset:historical_flags/sikh-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Sikh_Empire.png",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約350万人",
@@ -22202,7 +22202,7 @@
           "zh": "650年—969年"
         }
       },
-      "flag_code": "asset:historical_flags/khazars.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -22285,7 +22285,7 @@
           "zh": "公元前2025年—公元前609年"
         }
       },
-      "flag_code": "asset:historical_flags/assyria.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約300万人",
@@ -22370,7 +22370,7 @@
           "zh": "公元前1600年—公元前1180年"
         }
       },
-      "flag_code": "asset:historical_flags/hittite-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -22457,7 +22457,7 @@
           "zh": "1588年—1795年"
         }
       },
-      "flag_code": "asset:historical_flags/dutch-republic.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Prinsenvlag.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約200万人",
@@ -22541,7 +22541,7 @@
           "zh": "1611年—1721年"
         }
       },
-      "flag_code": "asset:historical_flags/swedish-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Sweden.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約250万人",
@@ -22625,7 +22625,7 @@
           "zh": "1115年—1532年"
         }
       },
-      "flag_code": "asset:historical_flags/republic-of-florence.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Florence.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約40万人",
@@ -22709,7 +22709,7 @@
           "zh": "481年—843年"
         }
       },
-      "flag_code": "asset:historical_flags/frankish-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約1500万人",
@@ -22793,7 +22793,7 @@
           "zh": "418年—721年"
         }
       },
-      "flag_code": "asset:historical_flags/visigothic-kingdom.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -22877,7 +22877,7 @@
           "zh": "1198年—1918年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-bohemia.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Bohemia.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約600万人",
@@ -22962,7 +22962,7 @@
           "zh": "1400年—1511年"
         }
       },
-      "flag_code": "asset:historical_flags/malacca-sultanate.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約10万人",
@@ -23046,7 +23046,7 @@
           "zh": "849年—1297年"
         }
       },
-      "flag_code": "asset:historical_flags/pagan-kingdom.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約150万人",
@@ -23130,7 +23130,7 @@
           "zh": "192年—1832年"
         }
       },
-      "flag_code": "asset:historical_flags/champa.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -23214,7 +23214,7 @@
           "zh": "1510年—1752年"
         }
       },
-      "flag_code": "asset:historical_flags/toungoo-dynasty.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約400万人",
@@ -23297,7 +23297,7 @@
           "zh": "918年—1392年"
         }
       },
-      "flag_code": "asset:historical_flags/goryeo.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -23380,7 +23380,7 @@
           "zh": "1038年—1227年"
         }
       },
-      "flag_code": "asset:historical_flags/western-xia.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Xixia_Painting_from_Hongfo_Pagoda_%2828069106568%29.jpg/320px-Xixia_Painting_from_Hongfo_Pagoda_%2828069106568%29.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約300万人",
@@ -23464,7 +23464,7 @@
           "zh": "1115年—1234年"
         }
       },
-      "flag_code": "asset:historical_flags/jin-dynasty.svg",
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Jin_%28Jurchen%29_flags_%2851168762566%29.jpg/320px-Jin_%28Jurchen%29_flags_%2851168762566%29.jpg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約5000万人",
@@ -23550,7 +23550,7 @@
           "zh": "1250年—1517年"
         }
       },
-      "flag_code": "asset:historical_flags/mamluk-sultanate.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Mameluke_Flag.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約500万人",
@@ -23635,7 +23635,7 @@
           "zh": "公元前312年—公元前63年"
         }
       },
-      "flag_code": "asset:historical_flags/seleucid-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約3000万人",
@@ -23722,7 +23722,7 @@
           "zh": "公元前247年—224年"
         }
       },
-      "flag_code": "asset:historical_flags/parthian-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約800万人",
@@ -23806,7 +23806,7 @@
           "zh": "1430年—1760年"
         }
       },
-      "flag_code": "asset:historical_flags/kingdom-of-mutapa.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -23890,7 +23890,7 @@
           "zh": "公元前202年—公元前46年"
         }
       },
-      "flag_code": "asset:historical_flags/numidia.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
@@ -23976,7 +23976,7 @@
           "zh": "1300年—1700年"
         }
       },
-      "flag_code": "asset:historical_flags/ajuran-sultanate.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -24059,7 +24059,7 @@
           "zh": "公元前100年—550年"
         }
       },
-      "flag_code": "asset:historical_flags/teotihuacan.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約15万人",
@@ -24144,7 +24144,7 @@
           "zh": "500年—1000年"
         }
       },
-      "flag_code": "asset:historical_flags/tiwanaku-empire.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約100万人",
@@ -24228,7 +24228,7 @@
           "zh": "950年—1865年"
         }
       },
-      "flag_code": "asset:historical_flags/tu-i-tonga-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Tonga.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約10万人",
@@ -24313,7 +24313,7 @@
           "zh": "1204年—1461年"
         }
       },
-      "flag_code": "asset:historical_flags/empire-of-trebizond.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Empire_of_Trebizond.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約30万人",
@@ -24396,7 +24396,7 @@
           "zh": "1263年—1547年"
         }
       },
-      "flag_code": "asset:historical_flags/grand-duchy-of-moscow.svg",
+      "flag_code": "xx",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約200万人",
@@ -24482,7 +24482,7 @@
           "zh": "1204年—1261年"
         }
       },
-      "flag_code": "asset:historical_flags/latin-empire.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Latin_Empire.svg",
       "profile": {
         "population": {
           "ja": "最盛期推定: 約50万人",
