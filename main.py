@@ -1477,13 +1477,16 @@ def render_header(container):
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
-                ui.button(icon='quiz', on_click=lambda: start_quiz('normal')).props('flat round color=white').tooltip(t('quiz'))
-                ui.button(icon='map', on_click=lambda: show_screen('map')).props('flat round color=white').tooltip(t('map'))
-                ui.button(icon='account_tree', on_click=lambda: show_screen('network')).props('flat round color=white').tooltip(t('network'))
-                ui.button(icon='compare_arrows', on_click=lambda: show_screen('compare')).props('flat round color=white').tooltip(t('compare'))
-                ui.button(icon='timeline', on_click=lambda: show_screen('timeline')).props('flat round color=white').tooltip(t('timeline'))
-                ui.button(icon='account_circle', on_click=lambda: show_screen('account')).props('flat round color=white').tooltip(t('account'))
-                ui.button(icon='history', on_click=open_history).props('flat round color=white')
+                menu_text = {'ja': '機能', 'en': 'Features', 'zh': '功能'}.get(state.lang, 'Features')
+                with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
+                    ui.item(t('quiz'), on_click=lambda: start_quiz('normal'))
+                    ui.item(t('map'), on_click=lambda: show_screen('map'))
+                    ui.item(t('network'), on_click=lambda: show_screen('network'))
+                    ui.item(t('compare'), on_click=lambda: show_screen('compare'))
+                    ui.item(t('timeline'), on_click=lambda: show_screen('timeline'))
+                    ui.item(t('account'), on_click=lambda: show_screen('account'))
+                    ui.separator()
+                    ui.item(t('history'), on_click=open_history)
                 if state.current_user:
                     ui.button(icon='logout', on_click=logout_user).props('flat round color=white').tooltip(t('logout'))
 
