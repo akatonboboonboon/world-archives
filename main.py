@@ -25,7 +25,17 @@ except ImportError:
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
-USER_DATA_FILE = os.environ.get('USER_DATA_FILE', os.path.join(BASE_DIR, 'user_data.json'))
+
+def resolve_user_data_file():
+    configured_path = os.environ.get('USER_DATA_FILE')
+    if configured_path:
+        return configured_path
+    render_disk_path = '/var/data'
+    if os.environ.get('RENDER') and os.path.isdir(render_disk_path):
+        return os.path.join(render_disk_path, 'user_data.json')
+    return os.path.join(BASE_DIR, 'user_data.json')
+
+USER_DATA_FILE = resolve_user_data_file()
 GUEST_USERNAME = '__guest__'
 KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
 
@@ -606,6 +616,67 @@ def ensure_user_defaults(user):
     })
     return user
 
+BROWSER_BACKUP_KEY = 'world_archives_user_backups'
+
+def sync_current_user_to_browser(user_data=None):
+    if not state.current_user:
+        return
+    user_data = user_data or load_user_data()
+    user = user_data.get('users', {}).get(state.current_user)
+    if not user:
+        return
+    ensure_user_defaults(user)
+    payload = {
+        'username': state.current_user,
+        'record': user,
+        'updated_at': datetime.now().isoformat(timespec='seconds'),
+    }
+    payload_json = json.dumps(payload, ensure_ascii=False)
+    script = f"""
+    (() => {{
+      const payload = {payload_json};
+      const key = '{BROWSER_BACKUP_KEY}';
+      let backups = {{}};
+      try {{
+        backups = JSON.parse(localStorage.getItem(key) || '{{}}');
+      }} catch (error) {{
+        backups = {{}};
+      }}
+      backups[payload.username] = payload;
+      localStorage.setItem(key, JSON.stringify(backups));
+      localStorage.setItem('world_archives_last_user', payload.username);
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Browser backup skipped: {e}", flush=True)
+
+def persist_current_user_data(user_data):
+    save_user_data(user_data)
+    sync_current_user_to_browser(user_data)
+
+def request_browser_backup_restore():
+    script = f"""
+    (async () => {{
+      const raw = localStorage.getItem('{BROWSER_BACKUP_KEY}');
+      if (!raw) return;
+      try {{
+        await fetch('/api/restore-user-backups', {{
+          method: 'POST',
+          headers: {{'Content-Type': 'application/json'}},
+          body: raw,
+        }});
+      }} catch (error) {{
+        console.warn('World Archives backup restore failed', error);
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Browser restore skipped: {e}", flush=True)
+
 def current_user_label():
     if state.current_user == GUEST_USERNAME:
         return t('guest_user')
@@ -621,9 +692,9 @@ def login_user(username, password):
     if not user or user.get('password_hash') != password_hash(username, password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
-    ensure_user_defaults(user)
-    save_user_data(user_data)
     state.current_user = username
+    ensure_user_defaults(user)
+    persist_current_user_data(user_data)
     ui.notify(t('login_success'), color='positive')
     show_screen('top')
     return True
@@ -648,9 +719,9 @@ def guest_login():
         },
     })
     guest['is_guest'] = True
-    ensure_user_defaults(guest)
-    save_user_data(user_data)
     state.current_user = GUEST_USERNAME
+    ensure_user_defaults(guest)
+    persist_current_user_data(user_data)
     ui.notify(t('guest_login_success'), color='positive')
     show_screen('top')
     return True
@@ -681,8 +752,8 @@ def register_user(username, password):
             'best_streak': 0,
         },
     }
-    save_user_data(user_data)
     state.current_user = username
+    persist_current_user_data(user_data)
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
     return True
@@ -721,7 +792,7 @@ def toggle_favorite(country):
         favorites.remove(key)
     else:
         favorites.append(key)
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
 
 def get_note_for_country(country, data=None):
     user = get_current_user_record()
@@ -742,7 +813,7 @@ def save_note_for_country(country, note_text):
         notes[key] = text
     else:
         notes.pop(key, None)
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
     ui.notify(t('note_saved'), color='positive')
 
 def get_quiz_stats(data=None):
@@ -775,7 +846,7 @@ def create_collection(name):
         return
     collections = user.setdefault('collections', {})
     collections.setdefault(name, [])
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
     ui.notify(t('collection_created'), color='positive')
 
 def delete_collection(name):
@@ -787,7 +858,7 @@ def delete_collection(name):
     collections.pop(name, None)
     if state.collection_filter == name:
         state.collection_filter = None
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
     ui.notify(t('collection_deleted'), color='info')
 
 def toggle_collection_country(collection_name, country):
@@ -802,7 +873,7 @@ def toggle_collection_country(collection_name, country):
         collection.remove(key)
     else:
         collection.append(key)
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
 
 def collection_contains(collection_name, country):
     return country_key(country) in get_collections().get(collection_name, [])
@@ -879,7 +950,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
         'mode': state.quiz_mode,
     })
     del history[200:]
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
 
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
@@ -1270,6 +1341,28 @@ def get_data():
     with open(JSON_FILE, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+@app.post('/api/restore-user-backups')
+async def restore_user_backups(payload: dict):
+    if not isinstance(payload, dict):
+        return {'ok': False, 'restored': 0}
+    user_data = load_user_data()
+    users = user_data.setdefault('users', {})
+    restored = 0
+    for raw_username, backup in payload.items():
+        username = clean_username(raw_username)
+        if not username or not isinstance(backup, dict):
+            continue
+        record = backup.get('record', backup)
+        if not isinstance(record, dict):
+            continue
+        users[username] = merge_user_record(users.get(username, {}), record)
+        ensure_user_defaults(users[username])
+        restored += 1
+    if restored:
+        save_user_data(user_data)
+        print(f'Restored {restored} browser user backup(s) to {USER_DATA_FILE}', flush=True)
+    return {'ok': True, 'restored': restored}
+
 def save_data(data):
     data = dict(data)
     for key in ['users', 'history', 'favorites']:
@@ -1297,14 +1390,14 @@ def add_history(country_data):
     history = user.setdefault('history', [])
     history.insert(0, new_record)
     del history[50:]
-    save_user_data(user_data)
+    persist_current_user_data(user_data)
 
 def clear_history():
     user_data = load_user_data()
     user = get_current_user_record(user_data)
     if user:
         user['history'] = []
-        save_user_data(user_data)
+        persist_current_user_data(user_data)
 
 # ========================================
 # 画面切り替え
@@ -1497,6 +1590,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
     top_container = ui.column().classes('items-center gap-4')
     def refresh_top_ui():
         top_container.clear()
+        if not state.current_user:
+            request_browser_backup_restore()
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
@@ -2415,6 +2510,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 show_screen('top')
 server_port = int(os.environ.get('PORT', 8080))
 print(f'Starting World Archives on 0.0.0.0:{server_port}', flush=True)
+print(f'User data file: {USER_DATA_FILE}', flush=True)
 ui.run(
     title='World Archives',
     favicon='🌍',
