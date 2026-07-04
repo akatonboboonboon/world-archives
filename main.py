@@ -547,6 +547,8 @@ def get_flag_url(code):
         return 'https://placehold.co/160x100?text=No+Flag'
     if isinstance(code, str) and code.startswith('asset:'):
         return f"/assets/{code.split(':', 1)[1].lstrip('/')}"
+    if isinstance(code, str) and code.startswith(('http://', 'https://')):
+        return code
     return f'https://flagcdn.com/w160/{code.lower()}.png'
 
 def get_filter_options():

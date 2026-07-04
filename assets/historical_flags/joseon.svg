@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100" role="img">
+<title>Joseon historical flag image</title>
+<rect x="0" y="0" width="160" height="100" fill="#ffffff"/>
+<circle cx="80" cy="50" r="20" fill="#cd2e3a"/>
+<polygon points="60,50 80,50 80,70 60,70" fill="#0047a0"/>
+<circle cx="80" cy="60" r="10" fill="#0047a0"/>
+<rect x="34" y="28" width="22" height="4" fill="#111827"/>
+<rect x="34" y="36" width="22" height="4" fill="#111827"/>
+<rect x="34" y="44" width="22" height="4" fill="#111827"/>
+<rect x="120" y="28" width="22" height="4" fill="#111827"/>
+<rect x="120" y="36" width="22" height="4" fill="#111827"/>
+<rect x="120" y="44" width="22" height="4" fill="#111827"/>
+<rect x="1" y="1" width="158" height="98" fill="none" stroke="#1f2937" stroke-width="2" rx="2"/>
+</svg>

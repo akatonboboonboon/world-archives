@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100" role="img">
+<title>Qing Dynasty historical flag image</title>
+<rect x="0" y="0" width="160" height="100" fill="#ffd21e"/>
+<circle cx="130" cy="24" r="8" fill="#e11d48"/>
+<path d="M 30 60 Q 46 38 Q 62 58 Q 80 34 Q 98 56 Q 116 40 Q 132 58" fill="none" stroke="#1d4ed8" stroke-width="9" stroke-linecap="round"/>
+<polygon points="36.0,25.0 37.73,29.62 42.66,29.84 38.8,32.91 40.11,37.66 36.0,34.94 31.89,37.66 33.2,32.91 29.34,29.84 34.27,29.62" fill="#1d4ed8"/>
+<rect x="1" y="1" width="158" height="98" fill="none" stroke="#1f2937" stroke-width="2" rx="2"/>
+</svg>

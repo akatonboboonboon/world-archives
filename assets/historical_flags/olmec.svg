@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100" role="img">
+<title>Olmec historical flag image</title>
+<rect x="0" y="0" width="160" height="100" fill="#064e3b"/>
+<rect x="0" y="0" width="160" height="14" fill="#94a3b8"/>
+<rect x="0" y="86" width="160" height="14" fill="#94a3b8"/>
+<circle cx="80" cy="38" r="16" fill="#facc15"/>
+<polygon points="45,78 115,78 104,66 94,66 88,56 72,56 66,66 56,66" fill="#f8fafc"/>
+<rect x="58" y="78" width="44" height="5" fill="#111827"/>
+<rect x="1" y="1" width="158" height="98" fill="none" stroke="#1f2937" stroke-width="2" rx="2"/>
+</svg>
