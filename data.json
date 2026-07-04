@@ -24532,6 +24532,100 @@
           "zh": "其文化与拉丁语、古法语、希腊语、威尼斯语和基督教关系密切。亚洲、欧洲、帝国、近现代等特征体现在制度、生活文化和对外关系中。"
         }
       }
+    },
+    {
+      "names": {
+        "ja": "ケッテン連邦国",
+        "en": "Confederation of Ketten",
+        "zh": "凯滕联邦国"
+      },
+      "type": "Past",
+      "capital": {
+        "ja": "ウィーン",
+        "en": "Vienna",
+        "zh": "维也纳"
+      },
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Europe",
+        "Modern History",
+        "War & Conflict",
+        "Culture"
+      ],
+      "period": {
+        "start": 1989,
+        "end": 2016,
+        "label": {
+          "ja": "1989年建国 - 2016年終戦",
+          "en": "Founded 1989 - Civil war ended 2016",
+          "zh": "1989年建国 - 2016年内战结束"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約840万8,900人",
+          "en": "about 8,408,900 people",
+          "zh": "约840.89万人"
+        },
+        "area": {
+          "ja": "165,290 km²",
+          "en": "165,290 km²",
+          "zh": "165,290 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語、日本語、セイヴリス語",
+          "en": "German, Japanese, and Savris",
+          "zh": "德语、日语、赛夫里斯语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリックなど",
+          "en": "Christianity, including Catholic traditions",
+          "zh": "基督教、天主教等"
+        }
+      },
+      "desc": {
+        "ja": "ノートに描かれた架空国家。ヨーロッパ中央部に位置するという設定で、首都はウィーン。赤い旗と白い紋章、黒い斜線が象徴として描かれている。検索で見つけた人だけが読めるサプライズ用の国。",
+        "en": "A fictional state from a notebook setting. It is placed in Central Europe with Vienna as its capital, and its red flag, white emblem, and black diagonal mark serve as its symbols. This entry is hidden from normal browsing and appears only through search.",
+        "zh": "源自笔记设定的架空国家。设定上位于中欧，首都是维也纳，红色旗帜、白色徽章和黑色斜线是其象征。该条目不会在普通浏览中出现，只能通过搜索找到。"
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ノート上ではラーラ総統閣下、クリタ一世、アドルフ・ヌケリッチ・バートなどの人物名が確認できる。国家設定では、皇帝・総統・議会が並び立つ独自の政治構造を持つ。",
+          "en": "The notebook setting names figures such as Supreme Leader Lara, Kurita I, and Adolf Nukelich Bate. Its fictional politics combine imperial, executive, and parliamentary elements.",
+          "zh": "笔记设定中可见拉拉总统一类人物、栗田一世以及阿道夫・努克利奇・巴特等名称。其虚构政治体制结合了皇帝、总统与议会要素。"
+        },
+        "major_events": {
+          "ja": "1989年11月10日に建国したという設定。1989年12月にはアインハイト憲法が制定され、2003年ごろから内戦期に入り、2016年11月1日に終戦したとされる。",
+          "en": "In the setting, the state was founded on November 10, 1989. The Einheit Constitution followed in December 1989, a civil-war period began around 2003, and the war ended on November 1, 2016.",
+          "zh": "设定中该国于1989年11月10日建国，同年12月制定《统一宪法》。约2003年进入内战期，并于2016年11月1日结束战争。"
+        },
+        "fall_reason": {
+          "ja": "内戦と政治対立により国家統合が揺らいだ設定。戦後も国外退避者や対立勢力が残り、完全に安定した国家とは言いがたい状態が続いた。",
+          "en": "The state weakened through civil war and political conflict. Even after the war, exiles and rival factions remained, leaving the country unstable in the setting.",
+          "zh": "设定中，内战和政治对立削弱了国家整合。战争结束后仍有流亡者和对立势力存在，国家并未完全稳定。"
+        },
+        "successors": {
+          "ja": "関連国家として、日本、ドイツ、イギリス、フランス、オーストリア、イタリアを参照する。文化、地理、政治設定の手がかりとして配置されている。",
+          "en": "Related references are Japan, Germany, the United Kingdom, France, Austria, and Italy. They work as cultural, geographic, and political anchors for the setting.",
+          "zh": "相关国家包括日本、德国、英国、法国、奥地利和意大利，用作文化、地理和政治设定的参照。"
+        },
+        "cultural_features": {
+          "ja": "農産物としてトウモロコシや小麦、紅茶、イチゴなどが挙げられている。ドイツ語圏を基調にしつつ、日本語や独自言語を混ぜた多文化国家として描かれている。",
+          "en": "The setting lists crops such as corn, wheat, tea, and strawberries. It blends a German-speaking base with Japanese and a fictional local language, giving it a multicultural flavor.",
+          "zh": "设定中提到玉米、小麦、红茶和草莓等农产物。该国以德语圈文化为基础，同时混合日语和虚构本地语言，呈现多文化色彩。"
+        }
+      },
+      "related": [
+        "Japan",
+        "Germany",
+        "United Kingdom",
+        "France",
+        "Austria",
+        "Italy"
+      ],
+      "hidden": true,
+      "hide_external_links": true,
+      "flag_code": "asset:ketten_flag.png"
     }
   ]
 }

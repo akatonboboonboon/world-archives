@@ -1,8 +1,9 @@
 """
-NiceGUI SPA テンプレート（API版）
+World Archives.
 
-3画面構成：トップ → メイン → 結果
-JSONデータをAPIから取得して表示します。
+国・地域・歴史国家を検索、比較、クイズ化するNiceGUI製のWebアプリです。
+国データはdata.json、ログイン後のユーザーデータはuser_data.jsonまたは
+Render Disk上のUSER_DATA_FILEに保存します。
 """
 from nicegui import ui, app
 import hashlib
@@ -25,6 +26,11 @@ except ImportError:
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
+ASSETS_DIR = os.path.join(BASE_DIR, 'assets')
+
+# 生成した国旗など、リポジトリ内に置いた画像を /assets/... で配信します。
+if os.path.isdir(ASSETS_DIR):
+    app.add_static_files('/assets', ASSETS_DIR)
 
 def resolve_user_data_file():
     configured_path = os.environ.get('USER_DATA_FILE')
@@ -525,14 +531,27 @@ def get_localized_text(data_dict):
         return data_dict.get(state.lang, data_dict.get('en', ''))
     return str(data_dict)
 
+# hidden=True の国はサプライズ用です。検索で名前を入れた時だけ表示します。
+def is_hidden_country(country):
+    return bool(country.get('hidden'))
+
+def public_country_list(data=None):
+    data = data or get_data()
+    return [country for country in data.get('countries', []) if not is_hidden_country(country)]
+
+def public_countries_by_key(data=None):
+    return {country_key(country): country for country in public_country_list(data)}
+
 def get_flag_url(code):
     if not code or code == 'xx':
         return 'https://placehold.co/160x100?text=No+Flag'
+    if isinstance(code, str) and code.startswith('asset:'):
+        return f"/assets/{code.split(':', 1)[1].lstrip('/')}"
     return f'https://flagcdn.com/w160/{code.lower()}.png'
 
 def get_filter_options():
     data = get_data()
-    countries = data.get('countries', [])
+    countries = public_country_list(data)
     regions = set()
     tags = set()
     for c in countries:
@@ -714,6 +733,50 @@ def detail_tab_labels():
         'ja': {'basic': '基本データ', 'desc': '解説', 'map': '地図', 'personal': 'メモ・コレクション', 'related': '関連国家'},
         'en': {'basic': 'Basic', 'desc': 'Details', 'map': 'Map', 'personal': 'Notes & Collections', 'related': 'Related'},
         'zh': {'basic': '基本资料', 'desc': '说明', 'map': '地图', 'personal': '笔记与收藏集', 'related': '相关国家'},
+    }
+    return labels.get(state.lang, labels['en'])
+
+def help_labels():
+    labels = {
+        'ja': {
+            'nav': '使い方',
+            'title': 'World Archivesの使い方',
+            'intro': '国・地域・歴史国家を探し、比較し、クイズで復習するためのページです。',
+            'sections': [
+                ('ログイン', '通常ログインをすると、お気に入り、履歴、メモ、クイズ結果が保存されます。すぐ試したい時はゲストログインも使えます。'),
+                ('検索', '国名、地域、タグ、言語、宗教、説明文などで検索できます。表示順は名前順または年代順に切り替えられます。'),
+                ('詳細ページ', '基本データ、解説、地図、メモ、関連国家をタブで切り替えて確認できます。昔の国は現在の関連地域の地図を表示します。'),
+                ('お気に入りとコレクション', '気になる国をお気に入りに入れたり、自分用のコレクションにまとめたりできます。'),
+                ('ミニクイズと復習', '国データから問題が出ます。間違えた問題は復習モードで再挑戦できます。'),
+                ('バックアップ', 'アカウントページから学習データを書き出し、別の環境で読み込めます。Renderの更新前にも保存しておくと安心です。'),
+            ],
+        },
+        'en': {
+            'nav': 'Help',
+            'title': 'How to Use World Archives',
+            'intro': 'Search countries, compare them, and review them with quizzes.',
+            'sections': [
+                ('Login', 'A normal account saves favorites, history, notes, and quiz results. Guest login is available for quick use.'),
+                ('Search', 'Search by name, region, tag, language, religion, or description. Sort by name or historical period.'),
+                ('Details', 'Use tabs for basic data, descriptions, maps, personal notes, and related countries. Historical states show related present-day map locations.'),
+                ('Favorites and collections', 'Save interesting countries as favorites or group them into personal collections.'),
+                ('Mini quiz and review', 'Quiz questions are generated from country data. Missed questions can be retried in review mode.'),
+                ('Backup', 'Export your learning data from the account page and import it on another environment. This is useful before redeploying.'),
+            ],
+        },
+        'zh': {
+            'nav': '使用说明',
+            'title': 'World Archives使用说明',
+            'intro': '用于搜索国家、比较资料，并通过小测验复习。',
+            'sections': [
+                ('登录', '普通账号会保存收藏、浏览记录、笔记和测验结果。也可以使用访客登录快速体验。'),
+                ('搜索', '可以按国名、地区、标签、语言、宗教或说明文字搜索，并按名称或年代排序。'),
+                ('详情页', '通过标签页查看基本资料、说明、地图、笔记和相关国家。历史国家会显示相关的现代地区地图。'),
+                ('收藏与收藏集', '可以把感兴趣的国家加入收藏，或整理到自己的收藏集中。'),
+                ('小测验与复习', '题目会从国家数据中生成，答错的内容可以在复习模式中再次练习。'),
+                ('备份', '在账户页导出学习数据，并在其他环境中导入。重新部署前建议先备份。'),
+            ],
+        },
     }
     return labels.get(state.lang, labels['en'])
 
@@ -1041,7 +1104,7 @@ def quiz_category_label(question_type):
 def quiz_weakness_rows(limit=6):
     history = get_quiz_history()
     data = get_data()
-    lookup = countries_by_key(data)
+    lookup = public_countries_by_key(data)
     counters = {}
     for entry in history:
         if entry.get('correct'):
@@ -1235,7 +1298,7 @@ def country_option_maps(data=None):
     data = data or get_data()
     label_to_key = {}
     key_to_label = {}
-    for country in sorted(data.get('countries', []), key=lambda c: (sort_key(c), c.get('names', {}).get('en', ''))):
+    for country in sorted(public_country_list(data), key=lambda c: (sort_key(c), c.get('names', {}).get('en', ''))):
         label = country_option_label(country)
         if label in label_to_key:
             label = f'{label} ({get_localized_text(country.get("capital", {}))})'
@@ -1246,15 +1309,17 @@ def country_option_maps(data=None):
 
 def country_map_target(country, data=None):
     data = data or get_data()
+    if country.get('hide_external_links'):
+        return None
     if country.get('type') == 'Present':
         return country
     code = country.get('flag_code')
     if code and code != 'xx':
-        for candidate in data.get('countries', []):
+        for candidate in public_country_list(data):
             if candidate.get('type') == 'Present' and candidate.get('flag_code') == code:
                 return candidate
     target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
-    for candidate in data.get('countries', []):
+    for candidate in public_country_list(data):
         if candidate.get('type') != 'Present':
             continue
         candidate_regions = {part.strip() for part in candidate.get('region', '').replace('/', ',').split(',') if part.strip()}
@@ -1313,7 +1378,7 @@ def open_country_detail(country):
 
 def today_country():
     data = get_data()
-    countries = data.get('countries', [])
+    countries = public_country_list(data)
     if not countries or not state.current_user:
         return None
     seed = f'{datetime.now().strftime("%Y-%m-%d")}:{state.current_user}'
@@ -1322,6 +1387,9 @@ def today_country():
 
 def related_countries(country, limit=6):
     data = get_data()
+    explicit_related = explicit_related_countries(country, data)
+    if explicit_related:
+        return explicit_related[:limit]
     target_tags = set(country.get('tags', []))
     target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
     target_start = period_start(country)
@@ -1329,7 +1397,7 @@ def related_countries(country, limit=6):
     target_languages = profile_value(country, 'languages')
     target_religions = profile_value(country, 'religions')
     scored = []
-    for candidate in data.get('countries', []):
+    for candidate in public_country_list(data):
         if country_key(candidate) == country_key(country):
             continue
         candidate_tags = set(candidate.get('tags', []))
@@ -1353,6 +1421,22 @@ def related_countries(country, limit=6):
     scored.sort(key=lambda item: (-item[0], item[1]))
     return [candidate for _, _, candidate in scored[:limit]]
 
+def explicit_related_countries(country, data=None):
+    data = data or get_data()
+    wanted_names = country.get('related', [])
+    if not wanted_names:
+        return []
+    countries = public_country_list(data)
+    related = []
+    for wanted in wanted_names:
+        wanted_lower = str(wanted).lower()
+        for candidate in countries:
+            names = candidate.get('names', {})
+            if any(str(name).lower() == wanted_lower for name in names.values()):
+                related.append(candidate)
+                break
+    return related
+
 def timeline_period(country):
     start = period_start(country)
     if start is None:
@@ -1370,10 +1454,10 @@ def quiz_option_count():
 
 def build_quiz():
     data = get_data()
-    countries = data.get('countries', [])
+    countries = public_country_list(data)
     if len(countries) < 4:
         return None
-    lookup = countries_by_key(data)
+    lookup = public_countries_by_key(data)
     answer_source = countries
     if state.quiz_mode == 'review':
         review_source = [lookup[key] for key in get_review_keys() if key in lookup]
@@ -1495,6 +1579,8 @@ def save_data(data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def add_history(country_data):
+    if is_hidden_country(country_data):
+        return
     user_data = load_user_data()
     user = get_current_user_record(user_data)
     if not user:
@@ -1554,6 +1640,7 @@ def show_screen(screen_name):
     map_screen.set_visibility(screen_name == 'map')
     network_screen.set_visibility(screen_name == 'network')
     account_screen.set_visibility(screen_name == 'account')
+    help_screen.set_visibility(screen_name == 'help')
     if screen_name == 'main':
         refresh_main_ui()
     if screen_name == 'result':
@@ -1570,6 +1657,8 @@ def show_screen(screen_name):
         refresh_network_view()
     if screen_name == 'account':
         refresh_account_view()
+    if screen_name == 'help':
+        refresh_help_view()
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -1582,6 +1671,7 @@ def switch_language(lang_code):
     if map_screen.visible: refresh_map_view()
     if network_screen.visible: refresh_network_view()
     if account_screen.visible: refresh_account_view()
+    if help_screen.visible: refresh_help_view()
 
 def is_mobile_ui():
     return state.ui_mode == 'mobile'
@@ -1611,6 +1701,8 @@ def refresh_current_screen():
         refresh_network_view()
     if account_screen.visible:
         refresh_account_view()
+    if help_screen.visible:
+        refresh_help_view()
 
 def toggle_ui_mode():
     state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
@@ -1696,6 +1788,8 @@ def render_header(container):
                     history_drawer.toggle()
                 menu_text = {'ja': '機能', 'en': 'Features', 'zh': '功能'}.get(state.lang, 'Features')
                 with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
+                    ui.item(help_labels()['nav'], on_click=lambda: show_screen('help'))
+                    ui.separator()
                     ui.item(t('quiz'), on_click=lambda: start_quiz('normal'))
                     ui.item(t('map'), on_click=lambda: show_screen('map'))
                     ui.item(t('network'), on_click=lambda: show_screen('network'))
@@ -1722,6 +1816,9 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             ui.label(t('app_title')).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-5xl font-bold text-[#1a2332]')
             ui.label(t('subtitle')).classes('text-base text-gray-500' if is_mobile_ui() else 'text-xl text-gray-500')
             ui.button(t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile'), icon=ui_mode_icon(), on_click=toggle_ui_mode) \
+                .props('outline color=primary') \
+                .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
+            ui.button(help_labels()['nav'], icon='help', on_click=lambda: show_screen('help')) \
                 .props('outline color=primary') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
@@ -1784,6 +1881,38 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 ui.link('ZH', '#').on('click', lambda: switch_language('zh'))
     refresh_top_ui()
 
+# ========================================
+# 使い方ページ
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_screen:
+    header_container_help = ui.column().classes('w-full p-0 m-0')
+    help_content = ui.column().classes('w-full max-w-4xl p-8 gap-5 self-center')
+
+    def refresh_help_view():
+        render_header(header_container_help)
+        update_mode_classes(
+            help_content,
+            'w-full max-w-4xl p-8 gap-5 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        help_content.clear()
+        labels = help_labels()
+        with help_content:
+            ui.label(labels['title']).classes('text-3xl font-bold text-[#1a2332]')
+            ui.markdown(labels['intro']).classes('text-gray-600 text-lg')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                for title, body in labels['sections']:
+                    with ui.card().classes('w-full p-5 gap-2'):
+                        ui.label(title).classes('text-xl font-bold text-[#1a2332]')
+                        ui.markdown(body).classes('text-gray-700 leading-relaxed')
+            with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-3'):
+                ui.button('ENTER', icon='search', on_click=lambda: show_screen('main')) \
+                    .props('color=primary') \
+                    .classes('w-full' if is_mobile_ui() else '')
+                ui.button(t('back_home'), icon='home', on_click=lambda: show_screen('top')) \
+                    .props('outline color=grey') \
+                    .classes('w-full' if is_mobile_ui() else '')
+
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
     header_container_main = ui.column().classes('w-full p-0 m-0')
 
@@ -1801,7 +1930,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 
         def pick_random():
             data = get_data()
-            countries = data.get('countries', [])
+            countries = public_country_list(data)
             if countries:
                 target = random.choice(countries)
                 select_country(target)
@@ -1944,6 +2073,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             countries = data.get('countries', [])
             filtered = []
             for c in countries:
+                # サプライズ用の国は、検索語がある時だけ候補に入れます。
+                if is_hidden_country(c) and not keyword:
+                    continue
                 if state.filter_type != 'All' and c['type'] != state.filter_type:
                     continue
                 if state.filter_region and state.filter_region != c.get('region'):
@@ -1956,6 +2088,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     continue
 
                 name_local = get_localized_text(c['names'])
+                name_text = ' '.join(str(name) for name in c.get('names', {}).values())
                 desc_local = get_localized_text(c['desc'])
                 tag_text = ' '.join(tag_search_text(tag) for tag in c.get('tags', []))
                 period = c.get('period') or {}
@@ -1967,7 +2100,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 profile_text = profile_search_text(c)
                 detail_text = detail_search_text(c)
                 region_text = region_search_text(c.get('region', ''))
-                search_target = f"{name_local} {desc_local} {tag_text} {period_text} {profile_text} {detail_text} {region_text}".lower()
+                search_target = f"{name_local} {name_text} {desc_local} {tag_text} {period_text} {profile_text} {detail_text} {region_text}".lower()
                 if keyword in search_target:
                     filtered.append(c)
             if state.sort_field == 'period':
@@ -2044,6 +2177,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
         wiki_url = f"https://ja.wikipedia.org/wiki/{c['names'].get('ja')}"
         detail_period = period_label(c)
         map_note_text = map_target_note(c)
+        hide_external_links = bool(c.get('hide_external_links'))
 
         with result_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
@@ -2072,7 +2206,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                 with ui.tabs().props('dense inline-label mobile-arrows outside-arrows').classes('w-full bg-white text-[#1a2332]') as detail_tabs:
                     basic_tab = ui.tab(tabs['basic'], icon='info')
                     desc_tab = ui.tab(tabs['desc'], icon='article')
-                    map_tab = ui.tab(tabs['map'], icon='map')
+                    if not hide_external_links:
+                        map_tab = ui.tab(tabs['map'], icon='map')
                     personal_tab = ui.tab(tabs['personal'], icon='edit_note')
                     related_tab = ui.tab(tabs['related'], icon='account_tree')
 
@@ -2081,17 +2216,18 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                         detail_container = ui.column().classes('w-full gap-5') if is_mobile_ui() else ui.grid(columns=2).classes('w-full gap-6')
                         with detail_container:
                             with ui.column().classes('gap-4'):
-                                with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full flex-wrap'):
-                                    ui.button(t('view_on_map'), icon='map', on_click=lambda country=c: set_map_country(country)) \
-                                        .props('color=primary') \
-                                        .classes('flex-grow')
-                                    ui.button(t('network'), icon='account_tree', on_click=lambda country=c: set_network_country(country)) \
-                                        .props('outline color=primary') \
-                                        .classes('flex-grow')
-                                    ui.link('Google Maps', map_link, new_tab=True) \
-                                        .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
-                                    ui.link('Wikipedia', wiki_url, new_tab=True) \
-                                        .classes('flex-grow bg-gray-600 text-white text-center px-4 py-2 rounded shadow hover:bg-gray-700 no-underline font-bold transition')
+                                if not hide_external_links:
+                                    with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full flex-wrap'):
+                                        ui.button(t('view_on_map'), icon='map', on_click=lambda country=c: set_map_country(country)) \
+                                            .props('color=primary') \
+                                            .classes('flex-grow')
+                                        ui.button(t('network'), icon='account_tree', on_click=lambda country=c: set_network_country(country)) \
+                                            .props('outline color=primary') \
+                                            .classes('flex-grow')
+                                        ui.link('Google Maps', map_link, new_tab=True) \
+                                            .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
+                                        ui.link('Wikipedia', wiki_url, new_tab=True) \
+                                            .classes('flex-grow bg-gray-600 text-white text-center px-4 py-2 rounded shadow hover:bg-gray-700 no-underline font-bold transition')
 
                                 with ui.column().classes('gap-1'):
                                     ui.label(t('labels', 'capital')).classes('text-xs font-bold text-gray-400 uppercase')
@@ -2123,14 +2259,15 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                                 ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
                                 ui.markdown(value).classes('text-gray-800 leading-relaxed')
 
-                    with ui.tab_panel(map_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
-                        with ui.column().classes('w-full gap-3'):
-                            with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
-                                ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
-                                ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
-                            if map_note_text:
-                                ui.label(map_note_text).classes('text-sm text-gray-500')
-                            render_map_embed(c, height=420 if not is_mobile_ui() else 300)
+                    if not hide_external_links:
+                        with ui.tab_panel(map_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                            with ui.column().classes('w-full gap-3'):
+                                with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
+                                    ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
+                                    ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
+                                if map_note_text:
+                                    ui.label(map_note_text).classes('text-sm text-gray-500')
+                                render_map_embed(c, height=420 if not is_mobile_ui() else 300)
 
                     with ui.tab_panel(personal_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                         with ui.column().classes('w-full gap-5'):
@@ -2346,10 +2483,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
         )
         compare_content.clear()
         data = get_data()
-        countries = data.get('countries', [])
+        countries = public_country_list(data)
         if len(countries) < 2:
             return
-        lookup = countries_by_key(data)
+        lookup = public_countries_by_key(data)
         label_to_key, key_to_label = country_option_maps(data)
         keys = list(lookup.keys())
         if not state.compare_left_key or state.compare_left_key not in lookup:
@@ -2401,7 +2538,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
         data = get_data()
         period_keys = ['period_ancient', 'period_medieval', 'period_modern', 'period_contemporary', 'period_other']
         grouped = {key: [] for key in period_keys}
-        timeline_countries = [country for country in data.get('countries', []) if country.get('period')]
+        timeline_countries = [country for country in public_country_list(data) if country.get('period')]
         for country in timeline_countries:
             grouped[timeline_period(country)].append(country)
         for countries in grouped.values():
@@ -2476,7 +2613,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as map_screen:
         )
         map_content.clear()
         data = get_data()
-        lookup = countries_by_key(data)
+        lookup = public_countries_by_key(data)
         label_to_key, key_to_label = country_option_maps(data)
         if not lookup:
             return
@@ -2537,7 +2674,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
         )
         network_content.clear()
         data = get_data()
-        lookup = countries_by_key(data)
+        lookup = public_countries_by_key(data)
         label_to_key, key_to_label = country_option_maps(data)
         if not lookup:
             return
@@ -2585,7 +2722,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         account_content.clear()
         user = get_current_user_record()
         data = get_data()
-        lookup = countries_by_key(data)
+        lookup = public_countries_by_key(data)
         total = len(lookup)
         if not user:
             return
