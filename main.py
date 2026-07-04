@@ -677,6 +677,145 @@ def request_browser_backup_restore():
     except Exception as e:
         print(f"Browser restore skipped: {e}", flush=True)
 
+def backup_labels():
+    labels = {
+        'ja': {
+            'section': 'バックアップ',
+            'export': 'バックアップを書き出す',
+            'import': 'バックアップを読み込む',
+            'restore_browser': 'ブラウザ保存から復元',
+            'exported': 'バックアップを書き出しました。',
+            'imported': 'バックアップを読み込みました。',
+            'invalid': 'バックアップファイルを読み込めませんでした。',
+        },
+        'en': {
+            'section': 'Backup',
+            'export': 'Export backup',
+            'import': 'Import backup',
+            'restore_browser': 'Restore from browser',
+            'exported': 'Backup exported.',
+            'imported': 'Backup imported.',
+            'invalid': 'Could not read the backup file.',
+        },
+        'zh': {
+            'section': '备份',
+            'export': '导出备份',
+            'import': '导入备份',
+            'restore_browser': '从浏览器恢复',
+            'exported': '已导出备份。',
+            'imported': '已导入备份。',
+            'invalid': '无法读取备份文件。',
+        },
+    }
+    return labels.get(state.lang, labels['en'])
+
+def detail_tab_labels():
+    labels = {
+        'ja': {'basic': '基本データ', 'desc': '解説', 'map': '地図', 'personal': 'メモ・コレクション', 'related': '関連国家'},
+        'en': {'basic': 'Basic', 'desc': 'Details', 'map': 'Map', 'personal': 'Notes & Collections', 'related': 'Related'},
+        'zh': {'basic': '基本资料', 'desc': '说明', 'map': '地图', 'personal': '笔记与收藏集', 'related': '相关国家'},
+    }
+    return labels.get(state.lang, labels['en'])
+
+def current_user_backup_payload():
+    if not state.current_user:
+        return None
+    user_data = load_user_data()
+    user = user_data.get('users', {}).get(state.current_user)
+    if not user:
+        return None
+    ensure_user_defaults(user)
+    return {
+        'username': state.current_user,
+        'record': user,
+        'updated_at': datetime.now().isoformat(timespec='seconds'),
+    }
+
+def safe_backup_filename(username):
+    safe_name = ''.join(ch if ch.isalnum() else '_' for ch in (username or 'user'))[:40] or 'user'
+    return f'world_archives_backup_{safe_name}.json'
+
+def export_current_user_backup():
+    labels = backup_labels()
+    payload = current_user_backup_payload()
+    if not payload:
+        ui.notify(t('login_required'), color='warning')
+        return
+    data_text = json.dumps(payload, ensure_ascii=False, indent=2)
+    filename = safe_backup_filename(payload['username'])
+    script = f"""
+    (() => {{
+      const data = {json.dumps(data_text)};
+      const blob = new Blob([data], {{type: 'application/json;charset=utf-8'}});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = {json.dumps(filename)};
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }})();
+    """
+    ui.run_javascript(script)
+    sync_current_user_to_browser()
+    ui.notify(labels['exported'], color='positive')
+
+def normalize_backup_payload(payload):
+    if not isinstance(payload, dict):
+        return {}
+    if isinstance(payload.get('users'), dict):
+        return {username: {'record': record} for username, record in payload['users'].items()}
+    if payload.get('username') and isinstance(payload.get('record'), dict):
+        return {payload['username']: payload}
+    return payload
+
+def restore_user_backup_payload(payload):
+    backups = normalize_backup_payload(payload)
+    if not backups:
+        return 0
+    user_data = load_user_data()
+    users = user_data.setdefault('users', {})
+    restored = 0
+    for raw_username, backup in backups.items():
+        username = clean_username(raw_username)
+        if not username or not isinstance(backup, dict):
+            continue
+        record = backup.get('record', backup)
+        if not isinstance(record, dict):
+            continue
+        users[username] = merge_user_record(users.get(username, {}), record)
+        ensure_user_defaults(users[username])
+        restored += 1
+    if restored:
+        save_user_data(user_data)
+        if state.current_user in users:
+            sync_current_user_to_browser(user_data)
+    return restored
+
+def import_user_backup_file(event):
+    labels = backup_labels()
+    try:
+        raw = event.content.read()
+        if isinstance(raw, bytes):
+            raw = raw.decode('utf-8-sig')
+        payload = json.loads(raw)
+        restored = restore_user_backup_payload(payload)
+    except Exception as e:
+        print(f'Backup import failed: {e}', flush=True)
+        ui.notify(labels['invalid'], color='negative')
+        return
+    if restored:
+        ui.notify(labels['imported'], color='positive')
+        refresh_account_view()
+    else:
+        ui.notify(labels['invalid'], color='warning')
+
+def restore_from_browser_backup():
+    labels = backup_labels()
+    request_browser_backup_restore()
+    ui.notify(labels['restore_browser'], color='info')
+
 def current_user_label():
     if state.current_user == GUEST_USERNAME:
         return t('guest_user')
@@ -1343,23 +1482,8 @@ def get_data():
 
 @app.post('/api/restore-user-backups')
 async def restore_user_backups(payload: dict):
-    if not isinstance(payload, dict):
-        return {'ok': False, 'restored': 0}
-    user_data = load_user_data()
-    users = user_data.setdefault('users', {})
-    restored = 0
-    for raw_username, backup in payload.items():
-        username = clean_username(raw_username)
-        if not username or not isinstance(backup, dict):
-            continue
-        record = backup.get('record', backup)
-        if not isinstance(record, dict):
-            continue
-        users[username] = merge_user_record(users.get(username, {}), record)
-        ensure_user_defaults(users[username])
-        restored += 1
+    restored = restore_user_backup_payload(payload)
     if restored:
-        save_user_data(user_data)
         print(f'Restored {restored} browser user backup(s) to {USER_DATA_FILE}', flush=True)
     return {'ok': True, 'restored': restored}
 
@@ -1932,105 +2056,127 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                     .props('color=amber') \
                     .classes('w-full' if is_mobile_ui() else '')
 
-            with ui.card().classes('w-full p-0 overflow-hidden'):
+            tabs = detail_tab_labels()
+            related = related_countries(c)
+
+            with ui.card().classes('w-full p-0 overflow-hidden bg-white'):
                 with ui.row().classes('w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'w-full bg-white p-6 gap-6 items-start'):
                     ui.image(get_flag_url(c.get('flag_code'))).classes('w-full shadow-md border rounded' if is_mobile_ui() else 'w-48 shadow-md border rounded')
                     with ui.column().classes('w-full gap-2' if is_mobile_ui() else 'flex-grow gap-2'):
                         ui.label(get_localized_text(c['names'])).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-4xl font-bold text-[#1a2332]')
                         ui.label(c['names'].get('en', '')).classes('text-lg text-gray-400 font-serif italic' if is_mobile_ui() else 'text-xl text-gray-400 font-serif italic')
-                        with ui.row().classes('mt-2'):ui.badge(t('tabs', c['type']), color='green' if c['type']=='Present' else 'orange').props('text-lg')
+                        with ui.row().classes('mt-2'):
+                            ui.badge(t('tabs', c['type']), color='green' if c['type']=='Present' else 'orange').props('text-lg')
+
                 ui.separator()
-                detail_container = ui.column().classes('w-full p-4 gap-5') if is_mobile_ui() else ui.grid(columns=2).classes('w-full p-6 gap-6')
-                with detail_container:
-                    with ui.column().classes('gap-4'):
-                        with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full'):
-                            ui.button(t('view_on_map'), icon='map', on_click=lambda country=c: set_map_country(country)) \
-                                .props('color=primary') \
-                                .classes('flex-grow')
-                            ui.button(t('network'), icon='account_tree', on_click=lambda country=c: set_network_country(country)) \
-                                .props('outline color=primary') \
-                                .classes('flex-grow')
-                            ui.link('📍 Google Maps', map_link, new_tab=True) \
-                                .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
-                            ui.link('📖 Wikipedia', wiki_url, new_tab=True) \
-                                .classes('flex-grow bg-gray-600 text-white text-center px-4 py-2 rounded shadow hover:bg-gray-700 no-underline font-bold transition')
+                with ui.tabs().props('dense inline-label mobile-arrows outside-arrows').classes('w-full bg-white text-[#1a2332]') as detail_tabs:
+                    basic_tab = ui.tab(tabs['basic'], icon='info')
+                    desc_tab = ui.tab(tabs['desc'], icon='article')
+                    map_tab = ui.tab(tabs['map'], icon='map')
+                    personal_tab = ui.tab(tabs['personal'], icon='edit_note')
+                    related_tab = ui.tab(tabs['related'], icon='account_tree')
 
-                        with ui.column().classes('gap-1'):
-                            ui.label(t('labels', 'capital')).classes('text-xs font-bold text-gray-400 uppercase')
-                            ui.label(get_localized_text(c.get('capital', '-'))).classes('text-lg')
-                        if detail_period:
-                            with ui.column().classes('gap-1'):
-                                ui.label(period_field_label(c)).classes('text-xs font-bold text-gray-400 uppercase')
-                                ui.label(detail_period).classes('text-lg font-bold text-orange-700')
-                        for label, value in profile_rows(c):
-                            with ui.column().classes('gap-1'):
-                                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
-                                ui.label(value).classes('text-lg')
-                        with ui.column().classes('gap-1'):
-                            ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
-                            ui.label(region_label(c.get('region', '-'))).classes('text-lg')
-                        with ui.column().classes('gap-1'):
-                            ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
-                            with ui.row().classes('gap-1'):
-                                for tag in c.get('tags', []):
-                                    ui.chip(tag_label(tag)).props('outline color=primary')
-                    with ui.column().classes('gap-1'):
-                        ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
-                        ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
-                        for label, value in detail_rows(c):
-                            ui.separator().classes('my-2')
-                            ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
-                            ui.markdown(value).classes('text-gray-800 leading-relaxed')
+                with ui.tab_panels(detail_tabs, value=basic_tab).classes('w-full bg-white'):
+                    with ui.tab_panel(basic_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                        detail_container = ui.column().classes('w-full gap-5') if is_mobile_ui() else ui.grid(columns=2).classes('w-full gap-6')
+                        with detail_container:
+                            with ui.column().classes('gap-4'):
+                                with ui.row().classes('gap-2 w-full flex-col' if is_mobile_ui() else 'gap-2 w-full flex-wrap'):
+                                    ui.button(t('view_on_map'), icon='map', on_click=lambda country=c: set_map_country(country)) \
+                                        .props('color=primary') \
+                                        .classes('flex-grow')
+                                    ui.button(t('network'), icon='account_tree', on_click=lambda country=c: set_network_country(country)) \
+                                        .props('outline color=primary') \
+                                        .classes('flex-grow')
+                                    ui.link('Google Maps', map_link, new_tab=True) \
+                                        .classes('flex-grow bg-green-600 text-white text-center px-4 py-2 rounded shadow hover:bg-green-700 no-underline font-bold transition')
+                                    ui.link('Wikipedia', wiki_url, new_tab=True) \
+                                        .classes('flex-grow bg-gray-600 text-white text-center px-4 py-2 rounded shadow hover:bg-gray-700 no-underline font-bold transition')
 
-            with ui.card().classes('w-full p-5 gap-3'):
-                with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
-                    ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
-                    ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
-                if map_note_text:
-                    ui.label(map_note_text).classes('text-sm text-gray-500')
-                render_map_embed(c, height=280)
-
-            with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
-                note_input = ui.textarea(value=get_note_for_country(c), placeholder=t('notes')) \
-                    .props('outlined autogrow') \
-                    .classes('w-full')
-                ui.button(t('save_note'), icon='save', on_click=lambda country=c, field=note_input: save_note_for_country(country, field.value)) \
-                    .props('color=primary') \
-                    .classes('self-start')
-
-            with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('collections')).classes('text-lg font-bold text-[#1a2332]')
-                collections = get_collections()
-                if collections:
-                    with ui.row().classes('w-full gap-2 flex-wrap'):
-                        for collection_name in collections:
-                            selected = collection_contains(collection_name, c)
-                            icon = 'check_circle' if selected else 'add_circle'
-                            color = 'green' if selected else 'primary'
-                            ui.button(collection_name, icon=icon, on_click=lambda _, name=collection_name, country=c: (toggle_collection_country(name, country), refresh_result_view())) \
-                                .props(f'outline color={color} dense')
-                else:
-                    ui.label(t('no_collections')).classes('text-sm text-gray-500')
-                with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
-                    collection_input = ui.input(label=t('collection_name')).props('outlined dense').classes('w-full' if is_mobile_ui() else 'flex-grow')
-                    ui.button(t('create_collection'), icon='create_new_folder', on_click=lambda field=collection_input: (create_collection(field.value), refresh_result_view())) \
-                        .props('color=primary') \
-                        .classes('w-full' if is_mobile_ui() else '')
-
-            related = related_countries(c)
-            if related:
-                with ui.card().classes('w-full p-5 gap-3'):
-                    ui.label(t('related_countries')).classes('text-lg font-bold text-[#1a2332]')
-                    with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
-                        for related_country in related:
-                            with ui.card().classes('w-full p-3 cursor-pointer hover:shadow-md transition') as related_card:
-                                related_card.on('click', lambda _, x=related_country: open_country_detail(x))
-                                with ui.row().classes('items-center gap-3 no-wrap'):
-                                    ui.image(get_flag_url(related_country.get('flag_code'))).classes('w-16 shadow border rounded')
+                                with ui.column().classes('gap-1'):
+                                    ui.label(t('labels', 'capital')).classes('text-xs font-bold text-gray-400 uppercase')
+                                    ui.label(get_localized_text(c.get('capital', '-'))).classes('text-lg')
+                                if detail_period:
                                     with ui.column().classes('gap-1'):
-                                        ui.label(get_localized_text(related_country['names'])).classes('font-bold text-gray-800')
-                                        ui.label(region_label(related_country.get('region', ''))).classes('text-xs text-gray-500')
+                                        ui.label(period_field_label(c)).classes('text-xs font-bold text-gray-400 uppercase')
+                                        ui.label(detail_period).classes('text-lg font-bold text-orange-700')
+                                with ui.column().classes('gap-1'):
+                                    ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
+                                    ui.label(region_label(c.get('region', '-'))).classes('text-lg')
+                                with ui.column().classes('gap-1'):
+                                    ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
+                                    with ui.row().classes('gap-1 flex-wrap'):
+                                        for tag in c.get('tags', []):
+                                            ui.chip(tag_label(tag)).props('outline color=primary')
+                            with ui.column().classes('gap-4'):
+                                for label, value in profile_rows(c):
+                                    with ui.column().classes('gap-1'):
+                                        ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                                        ui.label(value).classes('text-lg')
+
+                    with ui.tab_panel(desc_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                        with ui.column().classes('w-full gap-3'):
+                            ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
+                            ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
+                            for label, value in detail_rows(c):
+                                ui.separator().classes('my-1')
+                                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                                ui.markdown(value).classes('text-gray-800 leading-relaxed')
+
+                    with ui.tab_panel(map_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                        with ui.column().classes('w-full gap-3'):
+                            with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
+                                ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
+                                ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
+                            if map_note_text:
+                                ui.label(map_note_text).classes('text-sm text-gray-500')
+                            render_map_embed(c, height=420 if not is_mobile_ui() else 300)
+
+                    with ui.tab_panel(personal_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                        with ui.column().classes('w-full gap-5'):
+                            with ui.column().classes('w-full gap-3'):
+                                ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
+                                note_input = ui.textarea(value=get_note_for_country(c), placeholder=t('notes')) \
+                                    .props('outlined autogrow') \
+                                    .classes('w-full')
+                                ui.button(t('save_note'), icon='save', on_click=lambda country=c, field=note_input: save_note_for_country(country, field.value)) \
+                                    .props('color=primary') \
+                                    .classes('self-start')
+
+                            ui.separator()
+                            with ui.column().classes('w-full gap-3'):
+                                ui.label(t('collections')).classes('text-lg font-bold text-[#1a2332]')
+                                collections = get_collections()
+                                if collections:
+                                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                                        for collection_name in collections:
+                                            selected = collection_contains(collection_name, c)
+                                            icon = 'check_circle' if selected else 'add_circle'
+                                            color = 'green' if selected else 'primary'
+                                            ui.button(collection_name, icon=icon, on_click=lambda _, name=collection_name, country=c: (toggle_collection_country(name, country), refresh_result_view())) \
+                                                .props(f'outline color={color} dense')
+                                else:
+                                    ui.label(t('no_collections')).classes('text-sm text-gray-500')
+                                with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
+                                    collection_input = ui.input(label=t('collection_name')).props('outlined dense').classes('w-full' if is_mobile_ui() else 'flex-grow')
+                                    ui.button(t('create_collection'), icon='create_new_folder', on_click=lambda field=collection_input: (create_collection(field.value), refresh_result_view())) \
+                                        .props('color=primary') \
+                                        .classes('w-full' if is_mobile_ui() else '')
+
+                    with ui.tab_panel(related_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
+                        with ui.column().classes('w-full gap-3'):
+                            ui.label(t('related_countries')).classes('text-lg font-bold text-[#1a2332]')
+                            if not related:
+                                ui.label('-').classes('text-sm text-gray-500')
+                            else:
+                                with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
+                                    for related_country in related:
+                                        with ui.row().classes('w-full p-3 cursor-pointer hover:shadow-md transition border rounded items-center gap-3 no-wrap') as related_card:
+                                            related_card.on('click', lambda _, x=related_country: open_country_detail(x))
+                                            ui.image(get_flag_url(related_country.get('flag_code'))).classes('w-16 shadow border rounded')
+                                            with ui.column().classes('gap-1'):
+                                                ui.label(get_localized_text(related_country['names'])).classes('font-bold text-gray-800')
+                                                ui.label(region_label(related_country.get('region', ''))).classes('text-xs text-gray-500')
 
 # ========================================
 # 4. ミニクイズ画面
@@ -2456,6 +2602,21 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                 render_stat_card(t('favorite_count'), str(len(favorites)))
                 render_stat_card(t('review_count'), str(len(review)))
                 render_stat_card(t('quiz'), f"{stats.get('correct', 0)} / {stats.get('answered', 0)}", f"{t('quiz_stats').format(correct=stats.get('correct', 0), answered=stats.get('answered', 0), streak=stats.get('streak', 0), best=stats.get('best_streak', 0))}")
+
+            backup = backup_labels()
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(backup['section']).classes('text-xl font-bold text-[#1a2332]')
+                with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-2 items-center flex-wrap'):
+                    ui.button(backup['export'], icon='download', on_click=export_current_user_backup) \
+                        .props('color=primary') \
+                        .classes('w-full' if is_mobile_ui() else '')
+                    ui.button(backup['restore_browser'], icon='cloud_sync', on_click=lambda: (restore_from_browser_backup(), refresh_account_view())) \
+                        .props('outline color=primary') \
+                        .classes('w-full' if is_mobile_ui() else '')
+                ui.label(backup['import']).classes('text-sm font-bold text-gray-500')
+                ui.upload(on_upload=import_user_backup_file, auto_upload=True) \
+                    .props('accept=.json') \
+                    .classes('w-full')
 
             with ui.card().classes('w-full p-5 gap-3'):
                 ui.label(t('collections')).classes('text-xl font-bold text-[#1a2332]')
