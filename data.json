@@ -24539,7 +24539,7 @@
         "en": "Confederation of Ketten",
         "zh": "凯滕联邦国"
       },
-      "type": "Past",
+      "type": "Present",
       "capital": {
         "ja": "ウィーン",
         "en": "Vienna",
@@ -24554,11 +24554,11 @@
       ],
       "period": {
         "start": 1989,
-        "end": 2016,
+        "end": null,
         "label": {
-          "ja": "1989年建国 - 2016年終戦",
-          "en": "Founded 1989 - Civil war ended 2016",
-          "zh": "1989年建国 - 2016年内战结束"
+          "ja": "1989年建国 - 現在",
+          "en": "Founded 1989 - present",
+          "zh": "1989年建国 - 至今"
         }
       },
       "profile": {
@@ -24584,35 +24584,35 @@
         }
       },
       "desc": {
-        "ja": "ノートに描かれた架空国家。ヨーロッパ中央部に位置するという設定で、首都はウィーン。赤い旗と白い紋章、黒い斜線が象徴として描かれている。検索で見つけた人だけが読めるサプライズ用の国。",
-        "en": "A fictional state from a notebook setting. It is placed in Central Europe with Vienna as its capital, and its red flag, white emblem, and black diagonal mark serve as its symbols. This entry is hidden from normal browsing and appears only through search.",
-        "zh": "源自笔记设定的架空国家。设定上位于中欧，首都是维也纳，红色旗帜、白色徽章和黑色斜线是其象征。该条目不会在普通浏览中出现，只能通过搜索找到。"
+        "ja": "ヨーロッパ中央部に位置し、首都をウィーンに置く連邦国家。赤い旗、白い円形紋章、黒い斜線を組み合わせた国旗を掲げ、ドイツ語圏文化と独自の多民族社会を併せ持つ。検索で見つけた人だけが読めるサプライズ用の国。",
+        "en": "A federal state in Central Europe with Vienna as its capital. Its flag combines a red field, a white roundel, and a black diagonal emblem, while its society blends German-speaking culture with a distinct multicultural identity. This entry is hidden from normal browsing and appears only through search.",
+        "zh": "位于中欧、以维也纳为首都的联邦国家。国旗由红色底面、白色圆形徽章和黑色斜线标志组成，社会文化融合了德语圈传统与独特的多民族特色。该条目不会在普通浏览中出现，只能通过搜索找到。"
       },
       "details": {
         "key_figures": {
-          "ja": "ノート上ではラーラ総統閣下、クリタ一世、アドルフ・ヌケリッチ・バートなどの人物名が確認できる。国家設定では、皇帝・総統・議会が並び立つ独自の政治構造を持つ。",
-          "en": "The notebook setting names figures such as Supreme Leader Lara, Kurita I, and Adolf Nukelich Bate. Its fictional politics combine imperial, executive, and parliamentary elements.",
-          "zh": "笔记设定中可见拉拉总统一类人物、栗田一世以及阿道夫・努克利奇・巴特等名称。其虚构政治体制结合了皇帝、总统与议会要素。"
+          "ja": "ラーラ総統、クリタ一世、アドルフ・ヌケリッチ・バートなどが政治史の重要人物として知られる。皇帝、総統、議会が並び立つ独自の政治構造を持ち、権力分散と強い指導体制が同居している。",
+          "en": "Supreme Leader Lara, Kurita I, and Adolf Nukelich Bate are treated as major figures in the country's political history. Its political order combines imperial, executive, and parliamentary elements, balancing distributed authority with strong leadership.",
+          "zh": "拉拉总统、栗田一世和阿道夫・努克利奇・巴特等人被视为该国政治史上的重要人物。其政治结构结合皇帝、总统与议会要素，在权力分散与强势领导之间形成独特平衡。"
         },
         "major_events": {
-          "ja": "1989年11月10日に建国したという設定。1989年12月にはアインハイト憲法が制定され、2003年ごろから内戦期に入り、2016年11月1日に終戦したとされる。",
-          "en": "In the setting, the state was founded on November 10, 1989. The Einheit Constitution followed in December 1989, a civil-war period began around 2003, and the war ended on November 1, 2016.",
-          "zh": "设定中该国于1989年11月10日建国，同年12月制定《统一宪法》。约2003年进入内战期，并于2016年11月1日结束战争。"
+          "ja": "1989年11月10日に建国。1989年12月にはアインハイト憲法が制定され、2003年ごろから長い内戦期に入った。2016年11月1日に終戦を迎え、以後は復興と制度再編が国家運営の中心課題となっている。",
+          "en": "The country was founded on November 10, 1989. The Einheit Constitution was enacted in December 1989, and a long civil-war period began around 2003. The war ended on November 1, 2016, after which reconstruction and institutional reform became central national priorities.",
+          "zh": "该国于1989年11月10日建国，同年12月制定《统一宪法》。约2003年进入长期内战期，2016年11月1日战争结束。此后，复兴与制度重组成为国家运行的核心课题。"
         },
         "fall_reason": {
-          "ja": "内戦と政治対立により国家統合が揺らいだ設定。戦後も国外退避者や対立勢力が残り、完全に安定した国家とは言いがたい状態が続いた。",
-          "en": "The state weakened through civil war and political conflict. Even after the war, exiles and rival factions remained, leaving the country unstable in the setting.",
-          "zh": "设定中，内战和政治对立削弱了国家整合。战争结束后仍有流亡者和对立势力存在，国家并未完全稳定。"
+          "ja": "現存国家のため滅亡理由はない。内戦と政治対立により国家統合は大きく揺らいだが、終戦後は国外退避者の帰還、対立勢力との調整、行政制度の再建が進められている。",
+          "en": "As a present-day state, it has no fall. Civil war and political conflict severely strained national unity, but the postwar period has focused on returning exiles, negotiating with rival factions, and rebuilding administrative institutions.",
+          "zh": "作为现存国家，该国没有灭亡原因。内战和政治对立曾严重动摇国家整合，战后则重点推进流亡者回归、与对立势力协调以及行政制度重建。"
         },
         "successors": {
-          "ja": "関連国家として、日本、ドイツ、イギリス、フランス、オーストリア、イタリアを参照する。文化、地理、政治設定の手がかりとして配置されている。",
-          "en": "Related references are Japan, Germany, the United Kingdom, France, Austria, and Italy. They work as cultural, geographic, and political anchors for the setting.",
-          "zh": "相关国家包括日本、德国、英国、法国、奥地利和意大利，用作文化、地理和政治设定的参照。"
+          "ja": "現在も連邦国家として存続しており、関連国家として日本、ドイツ、イギリス、フランス、オーストリア、イタリアを参照できる。文化、地理、外交、政治制度の比較対象として重要である。",
+          "en": "It continues to exist as a federal state. Related countries include Japan, Germany, the United Kingdom, France, Austria, and Italy, which are useful points of comparison for culture, geography, diplomacy, and political institutions.",
+          "zh": "该国作为联邦国家延续至今。相关国家包括日本、德国、英国、法国、奥地利和意大利，可作为文化、地理、外交和政治制度方面的重要比较对象。"
         },
         "cultural_features": {
-          "ja": "農産物としてトウモロコシや小麦、紅茶、イチゴなどが挙げられている。ドイツ語圏を基調にしつつ、日本語や独自言語を混ぜた多文化国家として描かれている。",
-          "en": "The setting lists crops such as corn, wheat, tea, and strawberries. It blends a German-speaking base with Japanese and a fictional local language, giving it a multicultural flavor.",
-          "zh": "设定中提到玉米、小麦、红茶和草莓等农产物。该国以德语圈文化为基础，同时混合日语和虚构本地语言，呈现多文化色彩。"
+          "ja": "農産物ではトウモロコシ、小麦、紅茶、イチゴなどが知られる。ドイツ語圏文化を基調にしながら、日本語やセイヴリス語も使われる多文化国家で、都市部では複数の言語と宗教が日常的に共存している。",
+          "en": "Its agricultural products include corn, wheat, tea, and strawberries. The country is grounded in German-speaking culture while also using Japanese and Savris, and its urban life is marked by the everyday coexistence of multiple languages and religions.",
+          "zh": "该国农产物包括玉米、小麦、红茶和草莓等。它以德语圈文化为基础，同时使用日语和赛夫里斯语，城市生活中多种语言与宗教日常共存。"
         }
       },
       "related": [
