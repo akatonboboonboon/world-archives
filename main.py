@@ -66,6 +66,35 @@ ui.add_head_html("""
   font-weight: 700;
   letter-spacing: 0;
 }
+.wa-avatar-editor {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+  background: #ffffff;
+}
+.wa-avatar-editor:active {
+  cursor: grabbing;
+}
+.wa-avatar-editor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.wa-avatar-target {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 1px rgba(26, 35, 50, 0.75);
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
 </style>
 """)
 
@@ -589,7 +618,7 @@ EXTRA_UI_FALLBACKS = {
         'best_streak': '最高連続正解',
         'public_collections': '公開コレクション',
         'avatar_adjust': 'アイコンの表示調整',
-        'avatar_adjust_hint': '中心位置と拡大率は、国旗アイコンにもアップロード画像にも反映されます。',
+        'avatar_adjust_hint': '丸いプレビュー上をドラッグして中心位置を動かせます。拡大率はスライダーで調整できます。',
         'avatar_zoom': '拡大率',
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
@@ -605,7 +634,7 @@ EXTRA_UI_FALLBACKS = {
         'best_streak': 'Best streak',
         'public_collections': 'Public collections',
         'avatar_adjust': 'Icon framing',
-        'avatar_adjust_hint': 'Center position and zoom apply to both flag icons and uploaded images.',
+        'avatar_adjust_hint': 'Drag on the round preview to move the center point. Use the slider for zoom.',
         'avatar_zoom': 'Zoom',
         'avatar_position_x': 'Center position X',
         'avatar_position_y': 'Center position Y',
@@ -621,7 +650,7 @@ EXTRA_UI_FALLBACKS = {
         'best_streak': '最高连续答对',
         'public_collections': '公开收藏集',
         'avatar_adjust': '头像显示调整',
-        'avatar_adjust_hint': '中心位置和缩放会应用到旗帜头像和上传图片。',
+        'avatar_adjust_hint': '在圆形预览上拖动即可移动中心位置。缩放请使用滑块。',
         'avatar_zoom': '缩放',
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
@@ -1347,6 +1376,85 @@ def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_clas
     else:
         ui.icon('account_circle', size=icon_size).classes(icon_classes)
 
+def render_avatar_drag_editor(avatar_url, source):
+    adjust = avatar_adjustment(source)
+    scale = adjust['zoom'] / 100
+    x = adjust['position_x']
+    y = adjust['position_y']
+    editor_id = f"avatar-editor-{random.randint(100000, 999999)}"
+    src = html_escape(str(avatar_url), quote=True)
+    ui.html(
+        f'''
+        <div id="{editor_id}" class="wa-avatar-editor border shadow bg-white">
+          <img src="{src}" style="object-position:{x}% {y}%;transform:scale({scale});transform-origin:{x}% {y}%;">
+          <div class="wa-avatar-target" style="left:{x}%;top:{y}%;"></div>
+        </div>
+        ''',
+        sanitize=False,
+    )
+    script = f"""
+    (() => {{
+      const frame = document.getElementById({json.dumps(editor_id)});
+      if (!frame || frame.dataset.ready === '1') return;
+      frame.dataset.ready = '1';
+      const image = frame.querySelector('img');
+      const target = frame.querySelector('.wa-avatar-target');
+      let x = {x};
+      let y = {y};
+      const zoom = {adjust['zoom']};
+      let dragging = false;
+      const clamp = value => Math.max(0, Math.min(100, value));
+      const apply = () => {{
+        image.style.objectPosition = `${{x}}% ${{y}}%`;
+        image.style.transformOrigin = `${{x}}% ${{y}}%`;
+        image.style.transform = `scale(${{zoom / 100}})`;
+        target.style.left = `${{x}}%`;
+        target.style.top = `${{y}}%`;
+      }};
+      const setFromPointer = event => {{
+        const rect = frame.getBoundingClientRect();
+        x = clamp(((event.clientX - rect.left) / rect.width) * 100);
+        y = clamp(((event.clientY - rect.top) / rect.height) * 100);
+        apply();
+      }};
+      const save = async () => {{
+        try {{
+          await fetch('/api/avatar-adjust', {{
+            method: 'POST',
+            headers: {{'Content-Type': 'application/json'}},
+            body: JSON.stringify({{
+              position_x: Math.round(x),
+              position_y: Math.round(y),
+            }}),
+          }});
+        }} catch (error) {{
+          console.warn('Avatar position save failed', error);
+        }}
+      }};
+      frame.addEventListener('pointerdown', event => {{
+        event.preventDefault();
+        dragging = true;
+        frame.setPointerCapture(event.pointerId);
+        setFromPointer(event);
+      }});
+      frame.addEventListener('pointermove', event => {{
+        if (!dragging) return;
+        event.preventDefault();
+        setFromPointer(event);
+      }});
+      const finish = event => {{
+        if (!dragging) return;
+        dragging = false;
+        try {{ frame.releasePointerCapture(event.pointerId); }} catch (error) {{}}
+        save();
+      }};
+      frame.addEventListener('pointerup', finish);
+      frame.addEventListener('pointercancel', finish);
+      apply();
+    }})();
+    """
+    ui.timer(0.1, lambda script=script: ui.run_javascript(script), once=True)
+
 def flag_avatar_option_maps(data=None):
     data = data or get_data()
     label_to_key = {}
@@ -1438,6 +1546,23 @@ def update_avatar_adjustment(field, value):
     avatar[field] = int(clamp_number(value, min_value, max_value, default))
     persist_current_user_data(user_data)
     refresh_current_screen()
+
+def save_avatar_adjustment_values(values):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        return False
+    avatar = user.setdefault('avatar', {'mode': 'default'})
+    if avatar.get('mode') not in ['flag', 'upload']:
+        return False
+    if 'zoom' in values:
+        avatar['zoom'] = int(clamp_number(values.get('zoom'), 100, 250, avatar.get('zoom', 100)))
+    if 'position_x' in values:
+        avatar['position_x'] = int(clamp_number(values.get('position_x'), 0, 100, avatar.get('position_x', 50)))
+    if 'position_y' in values:
+        avatar['position_y'] = int(clamp_number(values.get('position_y'), 0, 100, avatar.get('position_y', 50)))
+    persist_current_user_data(user_data)
+    return True
 
 def reset_avatar():
     user_data = load_user_data()
@@ -2080,6 +2205,11 @@ async def restore_user_backups(payload: dict):
     if restored:
         print(f'Restored {restored} browser user backup(s) to {USER_DATA_FILE}', flush=True)
     return {'ok': True, 'restored': restored}
+
+@app.post('/api/avatar-adjust')
+async def save_avatar_adjustment(payload: dict):
+    ok = save_avatar_adjustment_values(payload)
+    return {'ok': ok}
 
 def save_data(data):
     data = dict(data)
@@ -3377,18 +3507,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     with ui.column().classes('w-full p-4 gap-3 bg-gray-50 border border-gray-200 rounded'):
                         ui.label(t('avatar_adjust')).classes('text-sm font-bold text-gray-700')
                         ui.label(t('avatar_adjust_hint')).classes('text-xs text-gray-500')
-                        with ui.grid(columns=1 if is_mobile_ui() else 3).classes('w-full gap-4'):
-                            with ui.column().classes('gap-1'):
+                        with ui.row().classes('w-full gap-4 items-center flex-col' if is_mobile_ui() else 'w-full gap-5 items-center no-wrap'):
+                            render_avatar_drag_editor(avatar_url, user)
+                            with ui.column().classes('w-full gap-1'):
                                 ui.label(t('avatar_zoom')).classes('text-xs font-bold text-gray-500')
                                 ui.slider(min=100, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
-                                    .props('label-always')
-                            with ui.column().classes('gap-1'):
-                                ui.label(t('avatar_position_x')).classes('text-xs font-bold text-gray-500')
-                                ui.slider(min=0, max=100, step=1, value=adjust['position_x'], on_change=lambda e: update_avatar_adjustment('position_x', e.value)) \
-                                    .props('label-always')
-                            with ui.column().classes('gap-1'):
-                                ui.label(t('avatar_position_y')).classes('text-xs font-bold text-gray-500')
-                                ui.slider(min=0, max=100, step=1, value=adjust['position_y'], on_change=lambda e: update_avatar_adjustment('position_y', e.value)) \
                                     .props('label-always')
             with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
