@@ -10,7 +10,7 @@ import hashlib
 import json
 import os
 import random
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from html import escape as html_escape
 from urllib.parse import quote_plus
 
@@ -44,9 +44,50 @@ def resolve_user_data_file():
 USER_DATA_FILE = resolve_user_data_file()
 GUEST_USERNAME = '__guest__'
 KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
+APP_TIMEZONE = timezone(timedelta(hours=9), 'JST')
 USER_ASSETS_DIR = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'user_assets')
 os.makedirs(USER_ASSETS_DIR, exist_ok=True)
 app.add_static_files('/user-assets', USER_ASSETS_DIR)
+ui.add_head_html("""
+<style>
+.wa-flag-frame .q-img,
+.wa-flag-frame .q-img__container {
+  height: 100%;
+  width: 100%;
+}
+.wa-flag-frame img,
+.wa-flag-frame .q-img__image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.wa-tag-chip {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+</style>
+""")
+
+def app_now():
+    return datetime.now(APP_TIMEZONE)
+
+def current_timestamp():
+    return datetime.now(timezone.utc).isoformat(timespec='seconds')
+
+def format_timestamp(value):
+    if not value:
+        return ''
+    try:
+        raw = str(value).strip().replace('Z', '+00:00')
+        dt = datetime.fromisoformat(raw)
+    except ValueError:
+        try:
+            dt = datetime.strptime(str(value), '%Y-%m-%d %H:%M')
+        except ValueError:
+            return str(value)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(APP_TIMEZONE).strftime('%Y-%m-%d %H:%M')
 
 def default_user_data():
     return {'users': {}}
@@ -536,6 +577,42 @@ UI_FALLBACKS = {
     },
 }
 
+EXTRA_UI_FALLBACKS = {
+    'ja': {
+        'users': 'ユーザー',
+        'users_title': 'ユーザー一覧',
+        'public_users_notice': '公開されるのは学習状況だけです。パスワードとメモは表示されません。',
+        'current_user_badge': '自分',
+        'public_favorites': '公開お気に入り',
+        'last_viewed': '最終閲覧',
+        'best_streak': '最高連続正解',
+        'no_users': '表示できるユーザーはまだいません。',
+    },
+    'en': {
+        'users': 'Users',
+        'users_title': 'Users',
+        'public_users_notice': 'Only learning progress is shown. Passwords and personal notes are hidden.',
+        'current_user_badge': 'You',
+        'public_favorites': 'Public favorites',
+        'last_viewed': 'Last viewed',
+        'best_streak': 'Best streak',
+        'no_users': 'No users to show yet.',
+    },
+    'zh': {
+        'users': '用户',
+        'users_title': '用户列表',
+        'public_users_notice': '这里只显示学习进度。密码和个人笔记不会显示。',
+        'current_user_badge': '自己',
+        'public_favorites': '公开收藏',
+        'last_viewed': '最后浏览',
+        'best_streak': '最高连续答对',
+        'no_users': '还没有可显示的用户。',
+    },
+}
+
+for lang_code, labels in EXTRA_UI_FALLBACKS.items():
+    UI_FALLBACKS.setdefault(lang_code, {}).update(labels)
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -557,32 +634,38 @@ def tag_search_text(tag):
             values.append(label)
     return ' '.join(values)
 
-TAG_COLOR_CLASSES = {
-    'Asia': 'bg-red-100 text-red-900 border-red-300',
-    'Europe': 'bg-blue-100 text-blue-900 border-blue-300',
-    'Africa': 'bg-emerald-100 text-emerald-900 border-emerald-300',
-    'Americas': 'bg-indigo-100 text-indigo-900 border-indigo-300',
-    'Oceania': 'bg-cyan-100 text-cyan-900 border-cyan-300',
-    'Ancient': 'bg-amber-100 text-amber-900 border-amber-300',
-    'Medieval': 'bg-stone-100 text-stone-900 border-stone-300',
-    'Modern History': 'bg-sky-100 text-sky-900 border-sky-300',
-    'Empire': 'bg-purple-100 text-purple-900 border-purple-300',
-    'Kingdom': 'bg-yellow-100 text-yellow-900 border-yellow-300',
-    'Republic': 'bg-lime-100 text-lime-900 border-lime-300',
-    'Government': 'bg-slate-100 text-slate-900 border-slate-300',
-    'War & Conflict': 'bg-rose-100 text-rose-900 border-rose-300',
-    'Trade & Economy': 'bg-orange-100 text-orange-900 border-orange-300',
-    'Culture': 'bg-pink-100 text-pink-900 border-pink-300',
-    'Religion': 'bg-violet-100 text-violet-900 border-violet-300',
-    'International': 'bg-teal-100 text-teal-900 border-teal-300',
-    'Island & Maritime': 'bg-cyan-100 text-cyan-900 border-cyan-300',
-    'Nature & Geography': 'bg-green-100 text-green-900 border-green-300',
-    'Technology & Industry': 'bg-fuchsia-100 text-fuchsia-900 border-fuchsia-300',
+TAG_COLOR_STYLES = {
+    'Asia': ('#fff1f2', '#7f1d1d', '#fecdd3'),
+    'Europe': ('#eff6ff', '#1e3a8a', '#bfdbfe'),
+    'Africa': ('#ecfdf5', '#064e3b', '#a7f3d0'),
+    'Americas': ('#eef2ff', '#312e81', '#c7d2fe'),
+    'Oceania': ('#ecfeff', '#155e75', '#a5f3fc'),
+    'Ancient': ('#fffbeb', '#78350f', '#fde68a'),
+    'Medieval': ('#f5f5f4', '#292524', '#d6d3d1'),
+    'Modern History': ('#f0f9ff', '#075985', '#bae6fd'),
+    'Empire': ('#faf5ff', '#581c87', '#e9d5ff'),
+    'Kingdom': ('#fefce8', '#713f12', '#fde68a'),
+    'Republic': ('#f7fee7', '#365314', '#d9f99d'),
+    'Government': ('#f8fafc', '#0f172a', '#cbd5e1'),
+    'War & Conflict': ('#fff1f2', '#881337', '#fecdd3'),
+    'Trade & Economy': ('#fff7ed', '#7c2d12', '#fed7aa'),
+    'Culture': ('#fdf2f8', '#831843', '#fbcfe8'),
+    'Religion': ('#f5f3ff', '#4c1d95', '#ddd6fe'),
+    'International': ('#f0fdfa', '#134e4a', '#99f6e4'),
+    'Island & Maritime': ('#ecfeff', '#164e63', '#a5f3fc'),
+    'Nature & Geography': ('#f0fdf4', '#14532d', '#bbf7d0'),
+    'Technology & Industry': ('#fdf4ff', '#701a75', '#f5d0fe'),
 }
 
 def tag_chip(tag, dense=True):
     props = 'dense size=xs' if dense else 'dense'
-    return ui.chip(tag_label(tag)).props(props).classes(f'{TAG_COLOR_CLASSES.get(tag, "bg-gray-100 text-gray-900 border-gray-300")} border font-bold')
+    bg, fg, border = TAG_COLOR_STYLES.get(tag, ('#f8fafc', '#111827', '#cbd5e1'))
+    return (
+        ui.chip(tag_label(tag))
+        .props(props)
+        .classes('wa-tag-chip')
+        .style(f'background-color: {bg} !important; color: {fg} !important; border: 1px solid {border} !important;')
+    )
 
 def selected_tag_label():
     return tag_label(state.filter_tag) if state.filter_tag else None
@@ -629,6 +712,10 @@ def get_flag_url(code):
     if isinstance(code, str) and code.startswith(('http://', 'https://')):
         return code
     return f'https://flagcdn.com/w160/{code.lower()}.png'
+
+def render_flag_frame(country, frame_classes, image_classes='w-full h-full object-cover'):
+    with ui.column().classes(f'wa-flag-frame {frame_classes} overflow-hidden bg-gray-100 justify-center items-center gap-0'):
+        ui.image(get_flag_url(country.get('flag_code'))).classes(image_classes)
 
 def get_filter_options():
     data = get_data()
@@ -731,7 +818,7 @@ def sync_current_user_to_browser(user_data=None):
     payload = {
         'username': state.current_user,
         'record': user,
-        'updated_at': datetime.now().isoformat(timespec='seconds'),
+        'updated_at': current_timestamp(),
     }
     payload_json = json.dumps(payload, ensure_ascii=False)
     script = f"""
@@ -874,7 +961,7 @@ def current_user_backup_payload():
     return {
         'username': state.current_user,
         'record': user,
-        'updated_at': datetime.now().isoformat(timespec='seconds'),
+        'updated_at': current_timestamp(),
     }
 
 def safe_backup_filename(username):
@@ -1215,6 +1302,35 @@ def current_avatar_country_label(user=None):
     _, key_to_label = flag_avatar_option_maps()
     return key_to_label.get(avatar.get('country_key'))
 
+def public_user_profiles():
+    user_data = load_user_data()
+    lookup = public_countries_by_key()
+    profiles = []
+    for username, record in sorted(get_users(user_data).items(), key=lambda item: item[0].lower()):
+        if username == GUEST_USERNAME or not isinstance(record, dict):
+            continue
+        ensure_user_defaults(record)
+        favorites = [key for key in record.get('favorites', []) if key in lookup]
+        viewed = [key for key in record.get('viewed_keys', []) if key in lookup]
+        review = [key for key in record.get('review_keys', []) if key in lookup]
+        collections = record.get('collections', {}) if isinstance(record.get('collections'), dict) else {}
+        stats = record.get('quiz_stats', {}) if isinstance(record.get('quiz_stats'), dict) else {}
+        history = record.get('history', []) if isinstance(record.get('history'), list) else []
+        latest_history = history[0] if history and isinstance(history[0], dict) else {}
+        profiles.append({
+            'username': username,
+            'avatar_url': current_user_avatar_url(record),
+            'favorites': favorites,
+            'viewed_count': len(viewed),
+            'review_count': len(review),
+            'collection_count': len(collections),
+            'answered': stats.get('answered', 0),
+            'correct': stats.get('correct', 0),
+            'best_streak': stats.get('best_streak', 0),
+            'last_viewed': format_timestamp(latest_history.get('timestamp')),
+        })
+    return profiles
+
 def set_avatar_country(label):
     label_to_key, _ = flag_avatar_option_maps()
     key = label_to_key.get(label)
@@ -1268,7 +1384,7 @@ def upload_avatar_image(event):
         user['avatar'] = {
             'mode': 'upload',
             'file': relative_file.replace(os.sep, '/'),
-            'version': datetime.now().strftime('%Y%m%d%H%M%S'),
+            'version': app_now().strftime('%Y%m%d%H%M%S'),
         }
         persist_current_user_data(user_data)
         ui.notify(t('avatar_saved'), color='positive')
@@ -1341,7 +1457,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
             del review[80:]
     history = user.setdefault('quiz_history', [])
     history.insert(0, {
-        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M"),
+        'timestamp': current_timestamp(),
         'answer_key': answer_key,
         'selected_key': selected_key,
         'correct': bool(correct),
@@ -1578,7 +1694,7 @@ def today_country():
     countries = public_country_list(data)
     if not countries or not state.current_user:
         return None
-    seed = f'{datetime.now().strftime("%Y-%m-%d")}:{state.current_user}'
+    seed = f'{app_now().strftime("%Y-%m-%d")}:{state.current_user}'
     index = int(hashlib.sha256(seed.encode('utf-8')).hexdigest(), 16) % len(countries)
     return countries[index]
 
@@ -1892,7 +2008,7 @@ def add_history(country_data):
         "name": name,
         "flag_code": country_data.get('flag_code'),
         "lang": state.lang,
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+        "timestamp": current_timestamp()
     }
     viewed = user.setdefault('viewed_keys', [])
     if key not in viewed:
@@ -1913,7 +2029,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account']
+    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users']
     if screen_name in protected_screens and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
@@ -1940,6 +2056,7 @@ def show_screen(screen_name):
     map_screen.set_visibility(screen_name == 'map')
     network_screen.set_visibility(screen_name == 'network')
     account_screen.set_visibility(screen_name == 'account')
+    users_screen.set_visibility(screen_name == 'users')
     help_screen.set_visibility(screen_name == 'help')
     if screen_name == 'main':
         refresh_main_ui()
@@ -1957,6 +2074,8 @@ def show_screen(screen_name):
         refresh_network_view()
     if screen_name == 'account':
         refresh_account_view()
+    if screen_name == 'users':
+        refresh_users_view()
     if screen_name == 'help':
         refresh_help_view()
 
@@ -1971,6 +2090,7 @@ def switch_language(lang_code):
     if map_screen.visible: refresh_map_view()
     if network_screen.visible: refresh_network_view()
     if account_screen.visible: refresh_account_view()
+    if users_screen.visible: refresh_users_view()
     if help_screen.visible: refresh_help_view()
 
 def is_mobile_ui():
@@ -2001,6 +2121,8 @@ def refresh_current_screen():
         refresh_network_view()
     if account_screen.visible:
         refresh_account_view()
+    if users_screen.visible:
+        refresh_users_view()
     if help_screen.visible:
         refresh_help_view()
 
@@ -2063,7 +2185,7 @@ def refresh_history_content():
                 with ui.card().classes('w-full p-3 bg-white text-sm border-l-4 border-blue-500 cursor-pointer hover:bg-blue-50 transition') as card:
                     card.on('click', lambda _, item=h: jump_from_history(item))
                     ui.label(h['name']).classes('font-bold text-gray-800')
-                    ui.label(f"{h['timestamp']}").classes('text-xs text-gray-400 mt-1')
+                    ui.label(format_timestamp(h.get('timestamp'))).classes('text-xs text-gray-400 mt-1')
 
 def render_header(container):
     container.clear()
@@ -2100,6 +2222,7 @@ def render_header(container):
                     ui.item(t('network'), on_click=lambda: show_screen('network'))
                     ui.item(t('compare'), on_click=lambda: show_screen('compare'))
                     ui.item(t('timeline'), on_click=lambda: show_screen('timeline'))
+                    ui.item(t('users'), on_click=lambda: show_screen('users'))
                     ui.item(t('account'), on_click=lambda: show_screen('account'))
                     ui.separator()
                     ui.item(t('history'), on_click=open_history)
@@ -2133,7 +2256,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
                         ui.label(t('today_country')).classes('text-sm font-bold text-blue-700')
                         with ui.row().classes('w-full items-center gap-3 no-wrap'):
-                            ui.image(get_flag_url(daily.get('flag_code'))).classes('w-20 shadow border rounded')
+                            render_flag_frame(daily, 'w-20 h-14 flex-shrink-0 shadow border rounded')
                             with ui.column().classes('gap-1 flex-grow'):
                                 ui.label(get_localized_text(daily['names'])).classes('text-xl font-bold text-[#1a2332]')
                                 ui.label(first_sentence(get_localized_text(daily.get('desc', {})))).classes('text-sm text-gray-500 line-clamp-2')
@@ -2435,10 +2558,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     card_classes = 'w-full p-0 flex flex-col hover:shadow-md transition cursor-pointer overflow-hidden' if is_mobile_ui() else 'w-full p-0 flex flex-row no-wrap items-stretch hover:shadow-md transition cursor-pointer overflow-hidden'
                     with ui.card().classes(card_classes) as card:
                         card.on('click', lambda _, x=c: select_country(x))
-                        image_box_classes = 'w-full h-28 bg-gray-200 justify-center items-center' if is_mobile_ui() else 'w-32 bg-gray-200 justify-center items-center'
-                        image_classes = 'w-full h-full object-cover' if is_mobile_ui() else 'w-full object-cover'
-                        with ui.column().classes(image_box_classes):
-                            ui.image(get_flag_url(c.get('flag_code'))).classes(image_classes)
+                        flag_frame_classes = 'w-full h-28 rounded-none' if is_mobile_ui() else 'w-32 h-32 flex-shrink-0 rounded-none'
+                        render_flag_frame(c, flag_frame_classes)
                         with ui.row().classes('w-full items-start no-wrap' if is_mobile_ui() else 'flex-grow items-stretch no-wrap'):
                             with ui.column().classes('p-3 gap-1 flex-grow' if is_mobile_ui() else 'p-4 gap-1 flex-grow'):
                                 ui.label(get_localized_text(c['names'])).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
@@ -2500,7 +2621,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
 
             with ui.card().classes('w-full p-0 overflow-hidden bg-white'):
                 with ui.row().classes('w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'w-full bg-white p-6 gap-6 items-start'):
-                    ui.image(get_flag_url(c.get('flag_code'))).classes('w-full shadow-md border rounded' if is_mobile_ui() else 'w-48 shadow-md border rounded')
+                    render_flag_frame(
+                        c,
+                        'w-full h-44 shadow-md border rounded' if is_mobile_ui() else 'w-56 h-36 flex-shrink-0 shadow-md border rounded',
+                    )
                     with ui.column().classes('w-full gap-2' if is_mobile_ui() else 'flex-grow gap-2'):
                         ui.label(get_localized_text(c['names'])).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-4xl font-bold text-[#1a2332]')
                         ui.label(c['names'].get('en', '')).classes('text-lg text-gray-400 font-serif italic' if is_mobile_ui() else 'text-xl text-gray-400 font-serif italic')
@@ -2882,7 +3006,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
                     with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
                         card.on('click', lambda _, x=country: open_country_detail(x))
                         with ui.row().classes('items-start gap-3 no-wrap'):
-                            ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
+                            render_flag_frame(country, 'w-20 h-14 flex-shrink-0 shadow border rounded')
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('gap-2 items-center flex-wrap'):
                                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-gray-800')
@@ -2965,7 +3089,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
             if not central:
                 card.on('click', lambda _, c=country: set_network_country(c))
             with ui.row().classes('items-center gap-3 no-wrap'):
-                ui.image(get_flag_url(country.get('flag_code'))).classes('w-20 shadow border rounded')
+                render_flag_frame(country, 'w-20 h-14 flex-shrink-0 shadow border rounded')
                 with ui.column().classes('gap-1 flex-grow'):
                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-[#1a2332]')
                     ui.label(region_label(country.get('region', ''))).classes('text-sm text-gray-500')
@@ -3010,7 +3134,65 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
                 .classes('self-start')
 
 # ========================================
-# 9. アカウントページ
+# 9. ユーザー一覧ページ
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen:
+    header_container_users = ui.column().classes('w-full p-0 m-0')
+    users_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def render_public_user_metric(label, value):
+        with ui.column().classes('gap-0 rounded border border-gray-200 bg-gray-50 p-3'):
+            ui.label(label).classes('text-xs font-bold text-gray-500')
+            ui.label(str(value)).classes('text-xl font-bold text-[#1a2332]')
+
+    def refresh_users_view():
+        render_header(header_container_users)
+        update_mode_classes(
+            users_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        users_content.clear()
+        lookup = public_countries_by_key()
+        with users_content:
+            ui.label(t('users_title')).classes('text-3xl font-bold text-[#1a2332]')
+            ui.label(t('public_users_notice')).classes('text-sm text-gray-500')
+            profiles = public_user_profiles()
+            if not profiles:
+                ui.label(t('no_users')).classes('text-gray-500')
+                return
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                for profile in profiles:
+                    with ui.card().classes('w-full p-5 gap-4'):
+                        with ui.row().classes('w-full items-center gap-3 no-wrap'):
+                            if profile.get('avatar_url'):
+                                ui.image(profile['avatar_url']).classes('w-16 h-16 rounded-full object-cover border shadow bg-white flex-shrink-0')
+                            else:
+                                ui.icon('account_circle', size='4rem').classes('text-gray-400 flex-shrink-0')
+                            with ui.column().classes('gap-1 flex-grow'):
+                                with ui.row().classes('items-center gap-2 flex-wrap'):
+                                    ui.label(profile['username']).classes('text-xl font-bold text-[#1a2332]')
+                                    if profile['username'] == state.current_user:
+                                        ui.badge(t('current_user_badge'), color='green')
+                                if profile.get('last_viewed'):
+                                    ui.label(f"{t('last_viewed')}: {profile['last_viewed']}").classes('text-xs text-gray-500')
+                        with ui.grid(columns=2).classes('w-full gap-2'):
+                            render_public_user_metric(t('viewed_count'), profile['viewed_count'])
+                            render_public_user_metric(t('favorite_count'), len(profile['favorites']))
+                            render_public_user_metric(t('review_count'), profile['review_count'])
+                            render_public_user_metric(t('collections'), profile['collection_count'])
+                            render_public_user_metric(t('quiz'), f"{profile['correct']} / {profile['answered']}")
+                            render_public_user_metric(t('best_streak'), profile['best_streak'])
+                        if profile['favorites']:
+                            ui.label(t('public_favorites')).classes('text-sm font-bold text-gray-500')
+                            with ui.row().classes('w-full gap-2 flex-wrap'):
+                                for key in profile['favorites'][:6]:
+                                    country = lookup.get(key)
+                                    if country:
+                                        ui.chip(get_localized_text(country['names'])).props('dense outline color=primary')
+
+# ========================================
+# 10. アカウントページ
 # ========================================
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_screen:
     header_container_account = ui.column().classes('w-full p-0 m-0')
@@ -3044,7 +3226,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
         with account_content:
             ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
-            ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+            with ui.row().classes('w-full items-center gap-2 flex-wrap'):
+                ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+                ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
+                    .props('outline color=primary dense')
             with ui.card().classes('w-full p-5 gap-4'):
                 ui.label(t('avatar')).classes('text-xl font-bold text-[#1a2332]')
                 with ui.row().classes('w-full gap-4 items-center flex-col' if is_mobile_ui() else 'w-full gap-4 items-center no-wrap'):
@@ -3138,7 +3323,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             with ui.column().classes('gap-0 flex-grow'):
                                 ui.label(get_localized_text(answer['names']) if answer else '-').classes('font-bold text-gray-800')
                                 selected_text = get_localized_text(selected['names']) if selected else '-'
-                                ui.label(f"{quiz_category_label(entry.get('type'))} / {selected_text} / {entry.get('timestamp', '')}").classes('text-xs text-gray-500')
+                                ui.label(f"{quiz_category_label(entry.get('type'))} / {selected_text} / {format_timestamp(entry.get('timestamp'))}").classes('text-xs text-gray-500')
 
 # ========================================
 # 初期表示
