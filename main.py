@@ -292,6 +292,9 @@ class AppState:
     timeline_group = 'period_contemporary'
     timeline_page = 1
     timeline_items_per_page = 20
+    users_page = 1
+    users_items_per_page = 6
+    users_browser_restore_requested = False
 
 state = AppState()
 
@@ -617,6 +620,8 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': '最終閲覧',
         'best_streak': '最高連続正解',
         'public_collections': '公開コレクション',
+        'users_restore_browser': 'ブラウザ内のユーザーを再読み込み',
+        'users_count': '表示ユーザー',
         'avatar_adjust': 'アイコンの表示調整',
         'avatar_adjust_hint': '丸いプレビュー上をドラッグして中心位置を動かせます。拡大率はスライダーで調整できます。',
         'avatar_zoom': '拡大率',
@@ -633,6 +638,8 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': 'Last viewed',
         'best_streak': 'Best streak',
         'public_collections': 'Public collections',
+        'users_restore_browser': 'Reload browser users',
+        'users_count': 'Users shown',
         'avatar_adjust': 'Icon framing',
         'avatar_adjust_hint': 'Drag on the round preview to move the center point. Use the slider for zoom.',
         'avatar_zoom': 'Zoom',
@@ -649,6 +656,8 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': '最后浏览',
         'best_streak': '最高连续答对',
         'public_collections': '公开收藏集',
+        'users_restore_browser': '重新读取浏览器用户',
+        'users_count': '显示用户',
         'avatar_adjust': '头像显示调整',
         'avatar_adjust_hint': '在圆形预览上拖动即可移动中心位置。缩放请使用滑块。',
         'avatar_zoom': '缩放',
@@ -826,6 +835,13 @@ def get_users(user_data=None):
     if not isinstance(user_data.get('users'), dict):
         user_data['users'] = {}
     return user_data['users']
+
+def is_guest_record(username, record=None):
+    return (
+        username == GUEST_USERNAME
+        or str(username).startswith(f'{GUEST_USERNAME}:')
+        or (isinstance(record, dict) and bool(record.get('is_guest')))
+    )
 
 def get_current_user_record(user_data=None):
     if not state.current_user:
@@ -1132,6 +1148,7 @@ def login_user(username, password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
     state.current_user = username
+    state.users_browser_restore_requested = False
     ensure_user_defaults(user)
     persist_current_user_data(user_data)
     ui.notify(t('login_success'), color='positive')
@@ -1159,6 +1176,7 @@ def guest_login():
     })
     guest['is_guest'] = True
     state.current_user = GUEST_USERNAME
+    state.users_browser_restore_requested = False
     ensure_user_defaults(guest)
     persist_current_user_data(user_data)
     ui.notify(t('guest_login_success'), color='positive')
@@ -1192,6 +1210,7 @@ def register_user(username, password):
         },
     }
     state.current_user = username
+    state.users_browser_restore_requested = False
     persist_current_user_data(user_data)
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
@@ -1199,6 +1218,7 @@ def register_user(username, password):
 
 def logout_user():
     state.current_user = None
+    state.users_browser_restore_requested = False
     state.selected_country = None
     state.search_keyword = ''
     state.filter_region = None
@@ -1481,7 +1501,7 @@ def public_user_profiles():
     lookup = public_countries_by_key()
     profiles = []
     for username, record in sorted(get_users(user_data).items(), key=lambda item: item[0].lower()):
-        if username == GUEST_USERNAME or not isinstance(record, dict):
+        if is_guest_record(username, record) or not isinstance(record, dict):
             continue
         ensure_user_defaults(record)
         favorites = [key for key in record.get('favorites', []) if key in lookup]
@@ -3382,7 +3402,40 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 chip = ui.chip(get_localized_text(country['names'])).props('dense outline color=primary').classes('cursor-pointer')
                 chip.on('click', lambda _, c=country: open_country_detail(c))
 
+    def restore_browser_users_for_list():
+        request_browser_backup_restore()
+        ui.notify(t('users_restore_browser'), color='info')
+        ui.timer(0.8, refresh_users_view, once=True)
+
+    def change_users_page(page):
+        state.users_page = page
+        refresh_users_view()
+
+    def render_users_page_button(icon, label_key, target_page, disabled=False):
+        button = ui.button(icon=icon, on_click=lambda p=target_page: change_users_page(p)) \
+            .props(f'flat round dense color={"grey" if disabled else "primary"}') \
+            .tooltip(t(label_key))
+        if disabled:
+            button.disable()
+
+    def render_users_pagination(total_pages):
+        if total_pages <= 1:
+            return
+        prev_disabled = state.users_page <= 1
+        next_disabled = state.users_page >= total_pages
+        with ui.row().classes('w-full justify-center items-center gap-2 mt-2 flex-wrap'):
+            render_users_page_button('first_page', 'first_page', 1, prev_disabled)
+            render_users_page_button('chevron_left', 'prev_page', state.users_page - 1, prev_disabled)
+            ui.label(f'{state.users_page} / {total_pages} {t("page_unit")}') \
+                .classes('px-3 py-2 text-gray-700 font-bold')
+            render_users_page_button('chevron_right', 'next_page', state.users_page + 1, next_disabled)
+            render_users_page_button('last_page', 'last_page', total_pages, next_disabled)
+
     def refresh_users_view():
+        if not state.users_browser_restore_requested:
+            state.users_browser_restore_requested = True
+            request_browser_backup_restore()
+            ui.timer(0.8, refresh_users_view, once=True)
         render_header(header_container_users)
         update_mode_classes(
             users_content,
@@ -3393,13 +3446,24 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
         lookup = public_countries_by_key()
         with users_content:
             ui.label(t('users_title')).classes('text-3xl font-bold text-[#1a2332]')
-            ui.label(t('public_users_notice')).classes('text-sm text-gray-500')
+            with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                ui.label(t('public_users_notice')).classes('text-sm text-gray-500')
+                ui.button(t('users_restore_browser'), icon='cloud_sync', on_click=restore_browser_users_for_list) \
+                    .props('outline color=primary dense')
             profiles = public_user_profiles()
+            total_count = len(profiles)
+            total_pages = max(1, (total_count + state.users_items_per_page - 1) // state.users_items_per_page)
+            state.users_page = max(1, min(state.users_page, total_pages))
+            start_index = (state.users_page - 1) * state.users_items_per_page
+            end_index = min(start_index + state.users_items_per_page, total_count)
+            display_profiles = profiles[start_index:end_index]
             if not profiles:
                 ui.label(t('no_users')).classes('text-gray-500')
                 return
+            ui.label(f'{t("users_count")}: {start_index + 1}-{end_index} / {total_count}') \
+                .classes('text-sm text-gray-500 font-bold')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
-                for profile in profiles:
+                for profile in display_profiles:
                     with ui.card().classes('w-full p-5 gap-4'):
                         with ui.row().classes('w-full items-center gap-3 no-wrap'):
                             render_avatar_image(
@@ -3432,6 +3496,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                                 with ui.column().classes('w-full gap-2 border-t border-gray-200 py-2'):
                                     ui.label(f"{collection['name']} ({len(collection['keys'])})").classes('text-sm font-bold text-gray-700')
                                     render_public_country_chips(collection['keys'], lookup)
+            render_users_pagination(total_pages)
 
 # ========================================
 # 10. アカウントページ
