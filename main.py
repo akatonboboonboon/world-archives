@@ -44,6 +44,9 @@ def resolve_user_data_file():
 USER_DATA_FILE = resolve_user_data_file()
 GUEST_USERNAME = '__guest__'
 KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
+USER_ASSETS_DIR = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'user_assets')
+os.makedirs(USER_ASSETS_DIR, exist_ok=True)
+app.add_static_files('/user-assets', USER_ASSETS_DIR)
 
 def default_user_data():
     return {'users': {}}
@@ -290,6 +293,14 @@ UI_FALLBACKS = {
         'difficulty_hard': '上級',
         'quiz_stats': '正解 {correct} / {answered}・連続 {streak}・最高 {best}',
         'account': 'アカウント',
+        'avatar': 'アイコン',
+        'avatar_current': '現在のアイコン',
+        'avatar_flag': '国旗をアイコンにする',
+        'avatar_upload': '画像をアップロード',
+        'avatar_reset': '標準アイコンに戻す',
+        'avatar_saved': 'アイコンを更新しました。',
+        'avatar_upload_failed': '画像をアップロードできませんでした。',
+        'avatar_file_hint': 'PNG、JPG、WEBP、GIFを選べます。',
         'map': '地図',
         'map_title': '地図ビュー',
         'map_note': '過去の国は現在の関連地域を表示します。',
@@ -385,6 +396,14 @@ UI_FALLBACKS = {
         'difficulty_hard': 'Hard',
         'quiz_stats': 'Correct {correct} / {answered} - Streak {streak} - Best {best}',
         'account': 'Account',
+        'avatar': 'Icon',
+        'avatar_current': 'Current Icon',
+        'avatar_flag': 'Use a Flag',
+        'avatar_upload': 'Upload Image',
+        'avatar_reset': 'Reset Icon',
+        'avatar_saved': 'Icon updated.',
+        'avatar_upload_failed': 'Could not upload the image.',
+        'avatar_file_hint': 'PNG, JPG, WEBP, or GIF files are supported.',
         'map': 'Map',
         'map_title': 'Map View',
         'map_note': 'Historical states show a related present-day location.',
@@ -480,6 +499,14 @@ UI_FALLBACKS = {
         'difficulty_hard': '高级',
         'quiz_stats': '正确 {correct} / {answered}・连续 {streak}・最高 {best}',
         'account': '账户',
+        'avatar': '头像',
+        'avatar_current': '当前头像',
+        'avatar_flag': '使用旗帜',
+        'avatar_upload': '上传图片',
+        'avatar_reset': '恢复默认头像',
+        'avatar_saved': '头像已更新。',
+        'avatar_upload_failed': '无法上传图片。',
+        'avatar_file_hint': '支持 PNG、JPG、WEBP、GIF。',
         'map': '地图',
         'map_title': '地图视图',
         'map_note': '历史国家显示相关的现今地区。',
@@ -529,6 +556,33 @@ def tag_search_text(tag):
         if label and label not in values:
             values.append(label)
     return ' '.join(values)
+
+TAG_COLOR_CLASSES = {
+    'Asia': 'bg-red-100 text-red-900 border-red-300',
+    'Europe': 'bg-blue-100 text-blue-900 border-blue-300',
+    'Africa': 'bg-emerald-100 text-emerald-900 border-emerald-300',
+    'Americas': 'bg-indigo-100 text-indigo-900 border-indigo-300',
+    'Oceania': 'bg-cyan-100 text-cyan-900 border-cyan-300',
+    'Ancient': 'bg-amber-100 text-amber-900 border-amber-300',
+    'Medieval': 'bg-stone-100 text-stone-900 border-stone-300',
+    'Modern History': 'bg-sky-100 text-sky-900 border-sky-300',
+    'Empire': 'bg-purple-100 text-purple-900 border-purple-300',
+    'Kingdom': 'bg-yellow-100 text-yellow-900 border-yellow-300',
+    'Republic': 'bg-lime-100 text-lime-900 border-lime-300',
+    'Government': 'bg-slate-100 text-slate-900 border-slate-300',
+    'War & Conflict': 'bg-rose-100 text-rose-900 border-rose-300',
+    'Trade & Economy': 'bg-orange-100 text-orange-900 border-orange-300',
+    'Culture': 'bg-pink-100 text-pink-900 border-pink-300',
+    'Religion': 'bg-violet-100 text-violet-900 border-violet-300',
+    'International': 'bg-teal-100 text-teal-900 border-teal-300',
+    'Island & Maritime': 'bg-cyan-100 text-cyan-900 border-cyan-300',
+    'Nature & Geography': 'bg-green-100 text-green-900 border-green-300',
+    'Technology & Industry': 'bg-fuchsia-100 text-fuchsia-900 border-fuchsia-300',
+}
+
+def tag_chip(tag, dense=True):
+    props = 'dense size=xs' if dense else 'dense'
+    return ui.chip(tag_label(tag)).props(props).classes(f'{TAG_COLOR_CLASSES.get(tag, "bg-gray-100 text-gray-900 border-gray-300")} border font-bold')
 
 def selected_tag_label():
     return tag_label(state.filter_tag) if state.filter_tag else None
@@ -660,6 +714,8 @@ def ensure_user_defaults(user):
         'streak': 0,
         'best_streak': 0,
     })
+    if not isinstance(user.get('avatar'), dict):
+        user['avatar'] = {'mode': 'default'}
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
@@ -1107,6 +1163,120 @@ def toggle_collection_country(collection_name, country):
 def collection_contains(collection_name, country):
     return country_key(country) in get_collections().get(collection_name, [])
 
+def displayable_flag_code(code):
+    return bool(code) and code != 'xx'
+
+def avatar_user_dir(username=None):
+    username = username or state.current_user or 'guest'
+    digest = hashlib.sha1(username.encode('utf-8')).hexdigest()[:16]
+    path = os.path.join(USER_ASSETS_DIR, 'avatars', digest)
+    os.makedirs(path, exist_ok=True)
+    return path
+
+def user_asset_url(relative_path, version=None):
+    url = f"/user-assets/{relative_path.replace(os.sep, '/')}"
+    if version:
+        url += f"?v={version}"
+    return url
+
+def current_user_avatar_url(user=None):
+    user = user or get_current_user_record()
+    if not user:
+        return None
+    avatar = user.get('avatar') if isinstance(user.get('avatar'), dict) else {}
+    if avatar.get('mode') == 'upload' and avatar.get('file'):
+        file_path = os.path.join(USER_ASSETS_DIR, avatar['file'])
+        if os.path.exists(file_path):
+            return user_asset_url(avatar['file'], avatar.get('version'))
+    if avatar.get('mode') == 'flag' and avatar.get('country_key'):
+        country = public_countries_by_key().get(avatar['country_key'])
+        if country and displayable_flag_code(country.get('flag_code')):
+            return get_flag_url(country.get('flag_code'))
+    return None
+
+def flag_avatar_option_maps(data=None):
+    data = data or get_data()
+    label_to_key = {}
+    key_to_label = {}
+    for country in public_country_list(data):
+        if not displayable_flag_code(country.get('flag_code')):
+            continue
+        label = country_option_label(country)
+        key = country_key(country)
+        label_to_key[label] = key
+        key_to_label[key] = label
+    return label_to_key, key_to_label
+
+def current_avatar_country_label(user=None):
+    user = user or get_current_user_record()
+    avatar = user.get('avatar') if user and isinstance(user.get('avatar'), dict) else {}
+    if avatar.get('mode') != 'flag':
+        return None
+    _, key_to_label = flag_avatar_option_maps()
+    return key_to_label.get(avatar.get('country_key'))
+
+def set_avatar_country(label):
+    label_to_key, _ = flag_avatar_option_maps()
+    key = label_to_key.get(label)
+    if not key:
+        return
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return
+    user['avatar'] = {'mode': 'flag', 'country_key': key}
+    persist_current_user_data(user_data)
+    ui.notify(t('avatar_saved'), color='positive')
+    refresh_current_screen()
+
+def reset_avatar():
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        return
+    user['avatar'] = {'mode': 'default'}
+    persist_current_user_data(user_data)
+    ui.notify(t('avatar_saved'), color='positive')
+    refresh_current_screen()
+
+def upload_avatar_image(event):
+    allowed_extensions = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
+    try:
+        ext = os.path.splitext(event.name or '')[1].lower()
+        if ext not in allowed_extensions:
+            raise ValueError('unsupported image extension')
+        content = event.content.read()
+        if not content or len(content) > 3 * 1024 * 1024:
+            raise ValueError('invalid image size')
+        user_data = load_user_data()
+        user = get_current_user_record(user_data)
+        if not user:
+            ui.notify(t('login_required'), color='warning')
+            return
+        folder = avatar_user_dir(state.current_user)
+        for name in os.listdir(folder):
+            if name.startswith('avatar.'):
+                try:
+                    os.remove(os.path.join(folder, name))
+                except OSError:
+                    pass
+        filename = f'avatar{ext}'
+        with open(os.path.join(folder, filename), 'wb') as f:
+            f.write(content)
+        relative_file = os.path.relpath(os.path.join(folder, filename), USER_ASSETS_DIR)
+        user['avatar'] = {
+            'mode': 'upload',
+            'file': relative_file.replace(os.sep, '/'),
+            'version': datetime.now().strftime('%Y%m%d%H%M%S'),
+        }
+        persist_current_user_data(user_data)
+        ui.notify(t('avatar_saved'), color='positive')
+        refresh_current_screen()
+    except Exception as e:
+        print(f'Avatar upload failed: {e}', flush=True)
+        ui.notify(t('avatar_upload_failed'), color='negative')
+
 def get_quiz_history():
     user = get_current_user_record()
     if not user:
@@ -1502,8 +1672,7 @@ def quiz_question_matches_category(question_type):
     return True
 
 def has_quiz_flag(country):
-    code = country.get('flag_code')
-    return bool(code) and code != 'xx'
+    return displayable_flag_code(country.get('flag_code'))
 
 def normalized_text(value):
     return str(value or '').strip().casefold()
@@ -1913,6 +2082,11 @@ def render_header(container):
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
                     ui.item('中文 (ZH)', on_click=lambda: switch_language('zh'))
                 if state.current_user:
+                    avatar_url = current_user_avatar_url()
+                    if avatar_url:
+                        ui.image(avatar_url).classes('w-8 h-8 rounded-full object-cover border-2 border-white shadow bg-white')
+                    else:
+                        ui.icon('account_circle', color='white').classes('text-3xl')
                     ui.label(current_user_label()).classes('text-white text-sm font-bold px-2')
                 def open_history():
                     refresh_history_content()
@@ -2271,7 +2445,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                                 with ui.row().classes('gap-1 flex-wrap'):
                                     ui.badge(t('tabs', c['type']), color='blue-grey').props('outline dense')
                                     for tag in c.get('tags', [])[:3]:
-                                        ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+                                        tag_chip(tag)
                                 card_period = period_label(c)
                                 if card_period:
                                     ui.label(card_period).classes('text-xs font-bold text-orange-700')
@@ -2374,7 +2548,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                                     ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
                                     with ui.row().classes('gap-1 flex-wrap'):
                                         for tag in c.get('tags', []):
-                                            ui.chip(tag_label(tag)).props('outline color=primary')
+                                            tag_chip(tag, dense=False)
                             with ui.column().classes('gap-4'):
                                 for label, value in profile_rows(c):
                                     with ui.column().classes('gap-1'):
@@ -2800,7 +2974,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
                         ui.label(period_text).classes('text-xs font-bold text-orange-700')
                     with ui.row().classes('gap-1 flex-wrap'):
                         for tag in country.get('tags', [])[:3]:
-                            ui.chip(tag_label(tag)).props('dense size=xs bg-color=blue-1 text-color=blue-9')
+                            tag_chip(tag)
 
     def refresh_network_view():
         render_header(header_container_network)
@@ -2871,6 +3045,33 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         with account_content:
             ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
             ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+            with ui.card().classes('w-full p-5 gap-4'):
+                ui.label(t('avatar')).classes('text-xl font-bold text-[#1a2332]')
+                with ui.row().classes('w-full gap-4 items-center flex-col' if is_mobile_ui() else 'w-full gap-4 items-center no-wrap'):
+                    avatar_url = current_user_avatar_url(user)
+                    if avatar_url:
+                        ui.image(avatar_url).classes('w-24 h-24 rounded-full object-cover border shadow bg-white')
+                    else:
+                        ui.icon('account_circle', size='6rem').classes('text-gray-400')
+                    with ui.column().classes('w-full gap-2'):
+                        ui.label(t('avatar_current')).classes('text-sm font-bold text-gray-500')
+                        label_to_key, key_to_label = flag_avatar_option_maps(data)
+                        flag_options = list(label_to_key.keys())
+                        ui.select(
+                            flag_options,
+                            value=current_avatar_country_label(user),
+                            label=t('avatar_flag'),
+                            on_change=lambda e: set_avatar_country(e.value),
+                            clearable=True,
+                        ).props('outlined dense').classes('w-full')
+                        ui.label(t('avatar_upload')).classes('text-sm font-bold text-gray-500')
+                        ui.label(t('avatar_file_hint')).classes('text-xs text-gray-500')
+                        ui.upload(on_upload=upload_avatar_image, auto_upload=True) \
+                            .props('accept=image/png,image/jpeg,image/webp,image/gif max-files=1') \
+                            .classes('w-full')
+                        ui.button(t('avatar_reset'), icon='restart_alt', on_click=reset_avatar) \
+                            .props('outline color=grey') \
+                            .classes('w-full' if is_mobile_ui() else 'self-start')
             with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
                 render_stat_card(t('favorite_count'), str(len(favorites)))
