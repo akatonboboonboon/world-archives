@@ -586,6 +586,12 @@ EXTRA_UI_FALLBACKS = {
         'public_favorites': '公開お気に入り',
         'last_viewed': '最終閲覧',
         'best_streak': '最高連続正解',
+        'public_collections': '公開コレクション',
+        'avatar_adjust': 'アイコンの表示調整',
+        'avatar_adjust_hint': '中心位置と拡大率は、国旗アイコンにもアップロード画像にも反映されます。',
+        'avatar_zoom': '拡大率',
+        'avatar_position_x': '中心位置（左右）',
+        'avatar_position_y': '中心位置（上下）',
         'no_users': '表示できるユーザーはまだいません。',
     },
     'en': {
@@ -596,6 +602,12 @@ EXTRA_UI_FALLBACKS = {
         'public_favorites': 'Public favorites',
         'last_viewed': 'Last viewed',
         'best_streak': 'Best streak',
+        'public_collections': 'Public collections',
+        'avatar_adjust': 'Icon framing',
+        'avatar_adjust_hint': 'Center position and zoom apply to both flag icons and uploaded images.',
+        'avatar_zoom': 'Zoom',
+        'avatar_position_x': 'Center position X',
+        'avatar_position_y': 'Center position Y',
         'no_users': 'No users to show yet.',
     },
     'zh': {
@@ -606,6 +618,12 @@ EXTRA_UI_FALLBACKS = {
         'public_favorites': '公开收藏',
         'last_viewed': '最后浏览',
         'best_streak': '最高连续答对',
+        'public_collections': '公开收藏集',
+        'avatar_adjust': '头像显示调整',
+        'avatar_adjust_hint': '中心位置和缩放会应用到旗帜头像和上传图片。',
+        'avatar_zoom': '缩放',
+        'avatar_position_x': '中心位置（左右）',
+        'avatar_position_y': '中心位置（上下）',
         'no_users': '还没有可显示的用户。',
     },
 }
@@ -788,6 +806,24 @@ def get_current_user_record(user_data=None):
         ensure_user_defaults(user)
     return user
 
+def clamp_number(value, min_value, max_value, default):
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        number = default
+    return max(min_value, min(max_value, number))
+
+def default_avatar_adjustment():
+    return {'zoom': 100, 'position_x': 50, 'position_y': 50}
+
+def normalize_avatar_adjustment(avatar):
+    if not isinstance(avatar, dict):
+        return {'mode': 'default', **default_avatar_adjustment()}
+    avatar['zoom'] = int(clamp_number(avatar.get('zoom'), 100, 250, 100))
+    avatar['position_x'] = int(clamp_number(avatar.get('position_x'), 0, 100, 50))
+    avatar['position_y'] = int(clamp_number(avatar.get('position_y'), 0, 100, 50))
+    return avatar
+
 def ensure_user_defaults(user):
     for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history']:
         if not isinstance(user.get(key), list):
@@ -803,6 +839,7 @@ def ensure_user_defaults(user):
     })
     if not isinstance(user.get('avatar'), dict):
         user['avatar'] = {'mode': 'default'}
+    normalize_avatar_adjustment(user['avatar'])
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
@@ -1281,6 +1318,34 @@ def current_user_avatar_url(user=None):
             return get_flag_url(country.get('flag_code'))
     return None
 
+def avatar_adjustment(source=None):
+    avatar = source if isinstance(source, dict) and source.get('mode') else None
+    if not avatar and isinstance(source, dict):
+        avatar = source.get('avatar') if isinstance(source.get('avatar'), dict) else {}
+    avatar = normalize_avatar_adjustment(dict(avatar or {}))
+    return {
+        'zoom': avatar.get('zoom', 100),
+        'position_x': avatar.get('position_x', 50),
+        'position_y': avatar.get('position_y', 50),
+    }
+
+def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_classes='text-gray-400'):
+    if avatar_url:
+        adjust = avatar_adjustment(source)
+        scale = adjust['zoom'] / 100
+        x = adjust['position_x']
+        y = adjust['position_y']
+        src = html_escape(str(avatar_url), quote=True)
+        with ui.element('div').classes(f'{classes} overflow-hidden'):
+            ui.html(
+                f'<img src="{src}" '
+                f'style="width:100%;height:100%;object-fit:cover;object-position:{x}% {y}%;'
+                f'transform:scale({scale});transform-origin:{x}% {y}%;display:block;">',
+                sanitize=False,
+            )
+    else:
+        ui.icon('account_circle', size=icon_size).classes(icon_classes)
+
 def flag_avatar_option_maps(data=None):
     data = data or get_data()
     label_to_key = {}
@@ -1314,16 +1379,23 @@ def public_user_profiles():
         viewed = [key for key in record.get('viewed_keys', []) if key in lookup]
         review = [key for key in record.get('review_keys', []) if key in lookup]
         collections = record.get('collections', {}) if isinstance(record.get('collections'), dict) else {}
+        public_collections = [
+            {'name': name, 'keys': [key for key in keys if key in lookup]}
+            for name, keys in collections.items()
+            if isinstance(keys, list)
+        ]
         stats = record.get('quiz_stats', {}) if isinstance(record.get('quiz_stats'), dict) else {}
         history = record.get('history', []) if isinstance(record.get('history'), list) else []
         latest_history = history[0] if history and isinstance(history[0], dict) else {}
         profiles.append({
             'username': username,
             'avatar_url': current_user_avatar_url(record),
+            'avatar': record.get('avatar', {}),
             'favorites': favorites,
             'viewed_count': len(viewed),
             'review_count': len(review),
-            'collection_count': len(collections),
+            'collection_count': len(public_collections),
+            'collections': public_collections,
             'answered': stats.get('answered', 0),
             'correct': stats.get('correct', 0),
             'best_streak': stats.get('best_streak', 0),
@@ -1341,9 +1413,29 @@ def set_avatar_country(label):
     if not user:
         ui.notify(t('login_required'), color='warning')
         return
-    user['avatar'] = {'mode': 'flag', 'country_key': key}
+    user['avatar'] = {'mode': 'flag', 'country_key': key, **default_avatar_adjustment()}
     persist_current_user_data(user_data)
     ui.notify(t('avatar_saved'), color='positive')
+    refresh_current_screen()
+
+def update_avatar_adjustment(field, value):
+    allowed_fields = {
+        'zoom': (100, 250, 100),
+        'position_x': (0, 100, 50),
+        'position_y': (0, 100, 50),
+    }
+    if field not in allowed_fields:
+        return
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        return
+    avatar = user.setdefault('avatar', {'mode': 'default'})
+    if avatar.get('mode') not in ['flag', 'upload']:
+        return
+    min_value, max_value, default = allowed_fields[field]
+    avatar[field] = int(clamp_number(value, min_value, max_value, default))
+    persist_current_user_data(user_data)
     refresh_current_screen()
 
 def reset_avatar():
@@ -1351,7 +1443,7 @@ def reset_avatar():
     user = get_current_user_record(user_data)
     if not user:
         return
-    user['avatar'] = {'mode': 'default'}
+    user['avatar'] = {'mode': 'default', **default_avatar_adjustment()}
     persist_current_user_data(user_data)
     ui.notify(t('avatar_saved'), color='positive')
     refresh_current_screen()
@@ -1385,6 +1477,7 @@ def upload_avatar_image(event):
             'mode': 'upload',
             'file': relative_file.replace(os.sep, '/'),
             'version': app_now().strftime('%Y%m%d%H%M%S'),
+            **default_avatar_adjustment(),
         }
         persist_current_user_data(user_data)
         ui.notify(t('avatar_saved'), color='positive')
@@ -2204,11 +2297,14 @@ def render_header(container):
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
                     ui.item('中文 (ZH)', on_click=lambda: switch_language('zh'))
                 if state.current_user:
-                    avatar_url = current_user_avatar_url()
-                    if avatar_url:
-                        ui.image(avatar_url).classes('w-8 h-8 rounded-full object-cover border-2 border-white shadow bg-white')
-                    else:
-                        ui.icon('account_circle', color='white').classes('text-3xl')
+                    header_user = get_current_user_record()
+                    render_avatar_image(
+                        current_user_avatar_url(header_user),
+                        header_user,
+                        'w-8 h-8 rounded-full border-2 border-white shadow bg-white flex-shrink-0',
+                        icon_size='2rem',
+                        icon_classes='text-white',
+                    )
                     ui.label(current_user_label()).classes('text-white text-sm font-bold px-2')
                 def open_history():
                     refresh_history_content()
@@ -3145,6 +3241,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             ui.label(label).classes('text-xs font-bold text-gray-500')
             ui.label(str(value)).classes('text-xl font-bold text-[#1a2332]')
 
+    def render_public_country_chips(keys, lookup):
+        valid_countries = [lookup[key] for key in keys if key in lookup]
+        if not valid_countries:
+            ui.label(t('no_result')).classes('text-xs text-gray-500')
+            return
+        with ui.row().classes('w-full gap-2 flex-wrap'):
+            for country in valid_countries:
+                chip = ui.chip(get_localized_text(country['names'])).props('dense outline color=primary').classes('cursor-pointer')
+                chip.on('click', lambda _, c=country: open_country_detail(c))
+
     def refresh_users_view():
         render_header(header_container_users)
         update_mode_classes(
@@ -3165,10 +3271,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 for profile in profiles:
                     with ui.card().classes('w-full p-5 gap-4'):
                         with ui.row().classes('w-full items-center gap-3 no-wrap'):
-                            if profile.get('avatar_url'):
-                                ui.image(profile['avatar_url']).classes('w-16 h-16 rounded-full object-cover border shadow bg-white flex-shrink-0')
-                            else:
-                                ui.icon('account_circle', size='4rem').classes('text-gray-400 flex-shrink-0')
+                            render_avatar_image(
+                                profile.get('avatar_url'),
+                                profile.get('avatar', {}),
+                                'w-16 h-16 rounded-full border shadow bg-white flex-shrink-0',
+                                icon_size='4rem',
+                                icon_classes='text-gray-400 flex-shrink-0',
+                            )
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('items-center gap-2 flex-wrap'):
                                     ui.label(profile['username']).classes('text-xl font-bold text-[#1a2332]')
@@ -3183,13 +3292,15 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             render_public_user_metric(t('collections'), profile['collection_count'])
                             render_public_user_metric(t('quiz'), f"{profile['correct']} / {profile['answered']}")
                             render_public_user_metric(t('best_streak'), profile['best_streak'])
-                        if profile['favorites']:
-                            ui.label(t('public_favorites')).classes('text-sm font-bold text-gray-500')
-                            with ui.row().classes('w-full gap-2 flex-wrap'):
-                                for key in profile['favorites'][:6]:
-                                    country = lookup.get(key)
-                                    if country:
-                                        ui.chip(get_localized_text(country['names'])).props('dense outline color=primary')
+                        with ui.expansion(f"{t('public_favorites')} ({len(profile['favorites'])})", icon='star').classes('w-full'):
+                            render_public_country_chips(profile['favorites'], lookup)
+                        with ui.expansion(f"{t('public_collections')} ({len(profile['collections'])})", icon='folder').classes('w-full'):
+                            if not profile['collections']:
+                                ui.label(t('no_collections')).classes('text-xs text-gray-500')
+                            for collection in profile['collections']:
+                                with ui.column().classes('w-full gap-2 border-t border-gray-200 py-2'):
+                                    ui.label(f"{collection['name']} ({len(collection['keys'])})").classes('text-sm font-bold text-gray-700')
+                                    render_public_country_chips(collection['keys'], lookup)
 
 # ========================================
 # 10. アカウントページ
@@ -3234,10 +3345,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                 ui.label(t('avatar')).classes('text-xl font-bold text-[#1a2332]')
                 with ui.row().classes('w-full gap-4 items-center flex-col' if is_mobile_ui() else 'w-full gap-4 items-center no-wrap'):
                     avatar_url = current_user_avatar_url(user)
-                    if avatar_url:
-                        ui.image(avatar_url).classes('w-24 h-24 rounded-full object-cover border shadow bg-white')
-                    else:
-                        ui.icon('account_circle', size='6rem').classes('text-gray-400')
+                    render_avatar_image(
+                        avatar_url,
+                        user,
+                        'w-24 h-24 rounded-full border shadow bg-white flex-shrink-0',
+                        icon_size='6rem',
+                        icon_classes='text-gray-400',
+                    )
                     with ui.column().classes('w-full gap-2'):
                         ui.label(t('avatar_current')).classes('text-sm font-bold text-gray-500')
                         label_to_key, key_to_label = flag_avatar_option_maps(data)
@@ -3257,6 +3371,24 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         ui.button(t('avatar_reset'), icon='restart_alt', on_click=reset_avatar) \
                             .props('outline color=grey') \
                             .classes('w-full' if is_mobile_ui() else 'self-start')
+                if avatar_url and user.get('avatar', {}).get('mode') in ['flag', 'upload']:
+                    adjust = avatar_adjustment(user)
+                    with ui.column().classes('w-full p-4 gap-3 bg-gray-50 border border-gray-200 rounded'):
+                        ui.label(t('avatar_adjust')).classes('text-sm font-bold text-gray-700')
+                        ui.label(t('avatar_adjust_hint')).classes('text-xs text-gray-500')
+                        with ui.grid(columns=1 if is_mobile_ui() else 3).classes('w-full gap-4'):
+                            with ui.column().classes('gap-1'):
+                                ui.label(t('avatar_zoom')).classes('text-xs font-bold text-gray-500')
+                                ui.slider(min=100, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
+                                    .props('label-always')
+                            with ui.column().classes('gap-1'):
+                                ui.label(t('avatar_position_x')).classes('text-xs font-bold text-gray-500')
+                                ui.slider(min=0, max=100, step=1, value=adjust['position_x'], on_change=lambda e: update_avatar_adjustment('position_x', e.value)) \
+                                    .props('label-always')
+                            with ui.column().classes('gap-1'):
+                                ui.label(t('avatar_position_y')).classes('text-xs font-bold text-gray-500')
+                                ui.slider(min=0, max=100, step=1, value=adjust['position_y'], on_change=lambda e: update_avatar_adjustment('position_y', e.value)) \
+                                    .props('label-always')
             with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
                 render_stat_card(t('favorite_count'), str(len(favorites)))
