@@ -689,6 +689,7 @@ EXTRA_UI_FALLBACKS = {
         'current_password': '現在のパスワード',
         'new_password': '新しいパスワード',
         'name_color': '名前の色',
+        'name_color_presets': 'プリセット',
         'save_name_color': '名前の色を保存',
         'name_color_saved': '名前の色を更新しました。',
         'account_updated': 'アカウント情報を更新しました。',
@@ -742,6 +743,7 @@ EXTRA_UI_FALLBACKS = {
         'current_password': 'Current password',
         'new_password': 'New password',
         'name_color': 'Name color',
+        'name_color_presets': 'Presets',
         'save_name_color': 'Save name color',
         'name_color_saved': 'Name color updated.',
         'account_updated': 'Account updated.',
@@ -795,6 +797,7 @@ EXTRA_UI_FALLBACKS = {
         'current_password': '当前密码',
         'new_password': '新密码',
         'name_color': '名字颜色',
+        'name_color_presets': '预设',
         'save_name_color': '保存名字颜色',
         'name_color_saved': '名字颜色已更新。',
         'account_updated': '账户信息已更新。',
@@ -1056,7 +1059,7 @@ def user_name_color(user=None):
 def normalize_avatar_adjustment(avatar):
     if not isinstance(avatar, dict):
         return {'mode': 'default', **default_avatar_adjustment()}
-    avatar['zoom'] = int(clamp_number(avatar.get('zoom'), 100, 250, 100))
+    avatar['zoom'] = int(clamp_number(avatar.get('zoom'), 50, 250, 100))
     avatar['position_x'] = int(clamp_number(avatar.get('position_x'), 0, 100, 50))
     avatar['position_y'] = int(clamp_number(avatar.get('position_y'), 0, 100, 50))
     return avatar
@@ -1885,7 +1888,7 @@ def set_avatar_country(label):
 
 def update_avatar_adjustment(field, value):
     allowed_fields = {
-        'zoom': (100, 250, 100),
+        'zoom': (50, 250, 100),
         'position_x': (0, 100, 50),
         'position_y': (0, 100, 50),
     }
@@ -1912,7 +1915,7 @@ def save_avatar_adjustment_values(values):
     if avatar.get('mode') not in ['flag', 'upload']:
         return False
     if 'zoom' in values:
-        avatar['zoom'] = int(clamp_number(values.get('zoom'), 100, 250, avatar.get('zoom', 100)))
+        avatar['zoom'] = int(clamp_number(values.get('zoom'), 50, 250, avatar.get('zoom', 100)))
     if 'position_x' in values:
         avatar['position_x'] = int(clamp_number(values.get('position_x'), 0, 100, avatar.get('position_x', 50)))
     if 'position_y' in values:
@@ -1936,8 +1939,18 @@ def upload_avatar_image(event):
         ext = os.path.splitext(event.name or '')[1].lower()
         if ext not in allowed_extensions:
             raise ValueError('unsupported image extension')
-        content = event.content.read()
-        if not content or len(content) > 3 * 1024 * 1024:
+        content_source = event.content
+        if hasattr(content_source, 'seek'):
+            try:
+                content_source.seek(0)
+            except Exception:
+                pass
+        content = content_source.read() if hasattr(content_source, 'read') else content_source
+        if isinstance(content, str):
+            content = content.encode('utf-8')
+        if not isinstance(content, (bytes, bytearray)):
+            raise ValueError('invalid image content')
+        if not content or len(content) > 8 * 1024 * 1024:
             raise ValueError('invalid image size')
         user_data = load_user_data()
         user = get_current_user_record(user_data)
@@ -4298,7 +4311,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         ui.label(t('avatar_upload')).classes('text-sm font-bold text-gray-500')
                         ui.label(t('avatar_file_hint')).classes('text-xs text-gray-500')
                         ui.upload(on_upload=upload_avatar_image, auto_upload=True) \
-                            .props('accept=image/png,image/jpeg,image/webp,image/gif max-files=1') \
+                            .props('accept=image/png,image/jpeg,image/webp,image/gif max-files=1 max-file-size=8388608') \
                             .classes('w-full')
                         ui.button(t('avatar_reset'), icon='restart_alt', on_click=reset_avatar) \
                             .props('outline color=grey') \
@@ -4312,7 +4325,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             render_avatar_drag_editor(avatar_url, user)
                             with ui.column().classes('w-full gap-1'):
                                 ui.label(t('avatar_zoom')).classes('text-xs font-bold text-gray-500')
-                                ui.slider(min=100, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
+                                ui.slider(min=50, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
                                     .props('label-always')
             with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
@@ -4332,12 +4345,15 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             icon='palette',
                             on_click=lambda field=name_color_input: set_current_name_color(field.value),
                         ).props('color=primary').classes('w-full' if is_mobile_ui() else '')
-                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                    ui.label(t('name_color_presets')).classes('text-xs font-bold text-gray-500')
+                    with ui.row().classes('w-full gap-2 flex-wrap items-center'):
                         for color_option in NAME_COLOR_OPTIONS:
                             ui.button(
-                                icon='circle',
+                                '',
                                 on_click=lambda value=color_option: set_current_name_color(value),
-                            ).props('flat round dense').style(f'color: {color_option};')
+                            ).props('flat round dense') \
+                                .classes('shadow-sm border border-gray-300') \
+                                .style(f'background-color: {color_option}; width: 2rem; height: 2rem; min-width: 2rem;')
                 if state.current_user == GUEST_USERNAME:
                     ui.label(t('cannot_manage_guest')).classes('text-sm text-gray-500')
                 else:
