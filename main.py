@@ -60,6 +60,7 @@ ui.add_head_html("""
   height: 100%;
   width: 100%;
   object-fit: cover;
+  object-position: left center;
 }
 .wa-tag-chip {
   font-weight: 700;
@@ -732,7 +733,7 @@ def get_flag_url(code):
     return f'https://flagcdn.com/w160/{code.lower()}.png'
 
 def render_flag_frame(country, frame_classes, image_classes='w-full h-full object-cover'):
-    with ui.column().classes(f'wa-flag-frame {frame_classes} overflow-hidden bg-gray-100 justify-center items-center gap-0'):
+    with ui.column().classes(f'wa-flag-frame {frame_classes} overflow-hidden bg-gray-100 justify-center items-center gap-0').style('aspect-ratio: 3 / 2;'):
         ui.image(get_flag_url(country.get('flag_code'))).classes(image_classes)
 
 def get_filter_options():
@@ -2352,7 +2353,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
                         ui.label(t('today_country')).classes('text-sm font-bold text-blue-700')
                         with ui.row().classes('w-full items-center gap-3 no-wrap'):
-                            render_flag_frame(daily, 'w-20 h-14 flex-shrink-0 shadow border rounded')
+                            render_flag_frame(daily, 'w-24 flex-shrink-0 shadow border rounded')
                             with ui.column().classes('gap-1 flex-grow'):
                                 ui.label(get_localized_text(daily['names'])).classes('text-xl font-bold text-[#1a2332]')
                                 ui.label(first_sentence(get_localized_text(daily.get('desc', {})))).classes('text-sm text-gray-500 line-clamp-2')
@@ -2654,7 +2655,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     card_classes = 'w-full p-0 flex flex-col hover:shadow-md transition cursor-pointer overflow-hidden' if is_mobile_ui() else 'w-full p-0 flex flex-row no-wrap items-stretch hover:shadow-md transition cursor-pointer overflow-hidden'
                     with ui.card().classes(card_classes) as card:
                         card.on('click', lambda _, x=c: select_country(x))
-                        flag_frame_classes = 'w-full h-28 rounded-none' if is_mobile_ui() else 'w-32 h-32 flex-shrink-0 rounded-none'
+                        flag_frame_classes = 'w-full rounded-none' if is_mobile_ui() else 'w-48 flex-shrink-0 rounded-none'
                         render_flag_frame(c, flag_frame_classes)
                         with ui.row().classes('w-full items-start no-wrap' if is_mobile_ui() else 'flex-grow items-stretch no-wrap'):
                             with ui.column().classes('p-3 gap-1 flex-grow' if is_mobile_ui() else 'p-4 gap-1 flex-grow'):
@@ -2719,7 +2720,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                 with ui.row().classes('w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'w-full bg-white p-6 gap-6 items-start'):
                     render_flag_frame(
                         c,
-                        'w-full h-44 shadow-md border rounded' if is_mobile_ui() else 'w-56 h-36 flex-shrink-0 shadow-md border rounded',
+                        'w-full shadow-md border rounded' if is_mobile_ui() else 'w-56 flex-shrink-0 shadow-md border rounded',
                     )
                     with ui.column().classes('w-full gap-2' if is_mobile_ui() else 'flex-grow gap-2'):
                         ui.label(get_localized_text(c['names'])).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-4xl font-bold text-[#1a2332]')
@@ -2835,7 +2836,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
                                     for related_country in related:
                                         with ui.row().classes('w-full p-3 cursor-pointer hover:shadow-md transition border rounded items-center gap-3 no-wrap') as related_card:
                                             related_card.on('click', lambda _, x=related_country: open_country_detail(x))
-                                            ui.image(get_flag_url(related_country.get('flag_code'))).classes('w-16 shadow border rounded')
+                                            render_flag_frame(related_country, 'w-20 flex-shrink-0 shadow border rounded')
                                             with ui.column().classes('gap-1'):
                                                 ui.label(get_localized_text(related_country['names'])).classes('font-bold text-gray-800')
                                                 ui.label(region_label(related_country.get('region', ''))).classes('text-xs text-gray-500')
@@ -2981,7 +2982,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
         if not country:
             return
         with ui.card().classes('w-full p-5 gap-3'):
-            ui.image(get_flag_url(country.get('flag_code'))).classes('w-full max-h-32 object-contain border rounded bg-gray-50')
+            render_flag_frame(country, 'w-full border rounded bg-gray-50')
             ui.label(get_localized_text(country['names'])).classes('text-2xl font-bold text-[#1a2332]')
             ui.label(country.get('names', {}).get('en', '')).classes('text-sm text-gray-400 font-serif italic')
             ui.separator()
@@ -3102,7 +3103,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
                     with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
                         card.on('click', lambda _, x=country: open_country_detail(x))
                         with ui.row().classes('items-start gap-3 no-wrap'):
-                            render_flag_frame(country, 'w-20 h-14 flex-shrink-0 shadow border rounded')
+                            render_flag_frame(country, 'w-24 flex-shrink-0 shadow border rounded')
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('gap-2 items-center flex-wrap'):
                                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-gray-800')
@@ -3185,7 +3186,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
             if not central:
                 card.on('click', lambda _, c=country: set_network_country(c))
             with ui.row().classes('items-center gap-3 no-wrap'):
-                render_flag_frame(country, 'w-20 h-14 flex-shrink-0 shadow border rounded')
+                render_flag_frame(country, 'w-24 flex-shrink-0 shadow border rounded')
                 with ui.column().classes('gap-1 flex-grow'):
                     ui.label(get_localized_text(country['names'])).classes('text-lg font-bold text-[#1a2332]')
                     ui.label(region_label(country.get('region', ''))).classes('text-sm text-gray-500')
