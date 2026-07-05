@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import random
+import re
 from datetime import datetime, timedelta, timezone
 from html import escape as html_escape
 from urllib.parse import quote_plus
@@ -80,8 +81,9 @@ ui.add_head_html("""
   cursor: grabbing;
 }
 .wa-avatar-editor img {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   object-fit: cover;
   display: block;
 }
@@ -122,22 +124,52 @@ def format_timestamp(value):
 def default_user_data():
     return {'users': {}}
 
+USER_RECORD_KEYS = {
+    'password_hash',
+    'favorites',
+    'history',
+    'notes',
+    'viewed_keys',
+    'collections',
+    'quiz_history',
+    'review_keys',
+    'quiz_stats',
+    'avatar',
+    'battle_wins',
+}
+
+def looks_like_user_record(value):
+    return isinstance(value, dict) and bool(USER_RECORD_KEYS.intersection(value.keys()))
+
+def normalize_user_data_file(data):
+    if not isinstance(data, dict):
+        return default_user_data()
+    users = data.get('users') if isinstance(data.get('users'), dict) else {}
+    backup_username = str(data.get('username') or '').strip()
+    if backup_username and looks_like_user_record(data.get('record')) and backup_username not in users:
+        users[backup_username] = data['record']
+    for key, value in list(data.items()):
+        if key == 'users':
+            continue
+        if looks_like_user_record(value) and key not in users:
+            users[key] = value
+    data['users'] = users
+    return data
+
 def load_user_data():
     if not os.path.exists(USER_DATA_FILE):
         return default_user_data()
     try:
         with open(USER_DATA_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        if not isinstance(data, dict):
-            return default_user_data()
-        if not isinstance(data.get('users'), dict):
-            data['users'] = {}
-        return data
+        return normalize_user_data_file(data)
     except Exception as e:
         print(f"Error loading user data: {e}")
         return default_user_data()
 
 def save_user_data(data):
+    data = normalize_user_data_file(data)
+    data = {'users': data.get('users', {})}
     user_dir = os.path.dirname(USER_DATA_FILE)
     if user_dir:
         os.makedirs(user_dir, exist_ok=True)
@@ -184,6 +216,8 @@ def merge_user_record(current, incoming):
                     stats.setdefault(stat_key, stat_value)
         elif key in ['viewed_keys', 'quiz_history']:
             current[key] = merge_unique_list(current.get(key, []), value, 200)
+        elif key == 'battle_wins' and isinstance(value, int):
+            current[key] = max(current.get(key, 0), value)
         else:
             current.setdefault(key, value)
     return current
@@ -295,8 +329,15 @@ class AppState:
     users_page = 1
     users_items_per_page = 6
     users_browser_restore_requested = False
+    battle_id = None
+    battle_selected_keys = set()
 
 state = AppState()
+
+BATTLE_QUEUE = []
+BATTLE_ROOMS = {}
+BATTLE_USER_ROOM = {}
+BATTLE_COUNTER = 0
 
 UI_FALLBACKS = {
     'ja': {
@@ -628,6 +669,37 @@ EXTRA_UI_FALLBACKS = {
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
         'no_users': '表示できるユーザーはまだいません。',
+        'account_settings': 'アカウント設定',
+        'change_username': 'アカウント名を変更',
+        'change_password': 'パスワードを変更',
+        'delete_account': 'アカウントを削除',
+        'new_username': '新しいアカウント名',
+        'current_password': '現在のパスワード',
+        'new_password': '新しいパスワード',
+        'account_updated': 'アカウント情報を更新しました。',
+        'password_changed': 'パスワードを変更しました。',
+        'account_deleted': 'アカウントを削除しました。',
+        'password_required': '現在のパスワードを入力してください。',
+        'cannot_manage_guest': 'ゲストアカウントではこの操作はできません。',
+        'delete_account_warning': '削除すると、このアカウントの学習データは戻せません。',
+        'battle': '国力対戦',
+        'battle_title': '国力対戦',
+        'battle_locked': 'すべての国を閲覧すると、国力対戦が解放されます。',
+        'battle_join': 'マッチング開始',
+        'battle_waiting': '対戦相手を待っています。',
+        'battle_cancel': '待機をやめる',
+        'battle_refresh': '更新',
+        'battle_hp': 'HP',
+        'battle_hand': '手札',
+        'battle_power': '国力',
+        'battle_submit': 'この手で勝負',
+        'battle_wait_opponent': '相手の選択を待っています。',
+        'battle_defenseless': '手札切れのため、このターンは無防備です。',
+        'battle_turn': 'ターン',
+        'battle_log': '対戦ログ',
+        'battle_win': '勝利',
+        'battle_lose': '敗北',
+        'battle_wins': '対戦勝利',
     },
     'en': {
         'users': 'Users',
@@ -646,6 +718,37 @@ EXTRA_UI_FALLBACKS = {
         'avatar_position_x': 'Center position X',
         'avatar_position_y': 'Center position Y',
         'no_users': 'No users to show yet.',
+        'account_settings': 'Account settings',
+        'change_username': 'Change username',
+        'change_password': 'Change password',
+        'delete_account': 'Delete account',
+        'new_username': 'New username',
+        'current_password': 'Current password',
+        'new_password': 'New password',
+        'account_updated': 'Account updated.',
+        'password_changed': 'Password changed.',
+        'account_deleted': 'Account deleted.',
+        'password_required': 'Enter your current password.',
+        'cannot_manage_guest': 'This action is not available for guest accounts.',
+        'delete_account_warning': 'Deleting this account permanently removes its learning data.',
+        'battle': 'Power Battle',
+        'battle_title': 'Power Battle',
+        'battle_locked': 'View every country to unlock Power Battle.',
+        'battle_join': 'Start matching',
+        'battle_waiting': 'Waiting for an opponent.',
+        'battle_cancel': 'Leave queue',
+        'battle_refresh': 'Refresh',
+        'battle_hp': 'HP',
+        'battle_hand': 'Hand',
+        'battle_power': 'Power',
+        'battle_submit': 'Play this hand',
+        'battle_wait_opponent': 'Waiting for the opponent.',
+        'battle_defenseless': 'Your hand is empty, so you are defenseless this turn.',
+        'battle_turn': 'Turn',
+        'battle_log': 'Battle log',
+        'battle_win': 'Win',
+        'battle_lose': 'Loss',
+        'battle_wins': 'Battle wins',
     },
     'zh': {
         'users': '用户',
@@ -664,6 +767,37 @@ EXTRA_UI_FALLBACKS = {
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
         'no_users': '还没有可显示的用户。',
+        'account_settings': '账户设置',
+        'change_username': '更改用户名',
+        'change_password': '更改密码',
+        'delete_account': '删除账户',
+        'new_username': '新用户名',
+        'current_password': '当前密码',
+        'new_password': '新密码',
+        'account_updated': '账户信息已更新。',
+        'password_changed': '密码已更改。',
+        'account_deleted': '账户已删除。',
+        'password_required': '请输入当前密码。',
+        'cannot_manage_guest': '访客账户不能执行此操作。',
+        'delete_account_warning': '删除后，该账户的学习数据无法恢复。',
+        'battle': '国力对战',
+        'battle_title': '国力对战',
+        'battle_locked': '浏览所有国家后即可解锁国力对战。',
+        'battle_join': '开始匹配',
+        'battle_waiting': '正在等待对手。',
+        'battle_cancel': '取消等待',
+        'battle_refresh': '刷新',
+        'battle_hp': 'HP',
+        'battle_hand': '手牌',
+        'battle_power': '国力',
+        'battle_submit': '用这手牌对战',
+        'battle_wait_opponent': '等待对手选择。',
+        'battle_defenseless': '手牌已空，本回合处于无防备状态。',
+        'battle_turn': '回合',
+        'battle_log': '对战记录',
+        'battle_win': '胜利',
+        'battle_lose': '失败',
+        'battle_wins': '对战胜利',
     },
 }
 
@@ -886,6 +1020,8 @@ def ensure_user_defaults(user):
     if not isinstance(user.get('avatar'), dict):
         user['avatar'] = {'mode': 'default'}
     normalize_avatar_adjustment(user['avatar'])
+    if not isinstance(user.get('battle_wins'), int):
+        user['battle_wins'] = 0
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
@@ -923,6 +1059,30 @@ def sync_current_user_to_browser(user_data=None):
         ui.run_javascript(script)
     except Exception as e:
         print(f"Browser backup skipped: {e}", flush=True)
+
+def remove_browser_backup(username):
+    if not username:
+        return
+    script = f"""
+    (() => {{
+      const key = '{BROWSER_BACKUP_KEY}';
+      let backups = {{}};
+      try {{
+        backups = JSON.parse(localStorage.getItem(key) || '{{}}');
+      }} catch (error) {{
+        backups = {{}};
+      }}
+      delete backups[{json.dumps(username)}];
+      localStorage.setItem(key, JSON.stringify(backups));
+      if (localStorage.getItem('world_archives_last_user') === {json.dumps(username)}) {{
+        localStorage.removeItem('world_archives_last_user');
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Browser backup removal skipped: {e}", flush=True)
 
 def persist_current_user_data(user_data):
     save_user_data(user_data)
@@ -1230,6 +1390,103 @@ def logout_user():
     ui.notify(t('logout_success'), color='info')
     show_screen('top')
 
+def current_password_is_valid(user, password):
+    if not state.current_user or not password:
+        return False
+    return user.get('password_hash') == password_hash(state.current_user, password)
+
+def rename_current_account(new_username, current_password):
+    old_username = state.current_user
+    if not old_username:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    if old_username == GUEST_USERNAME:
+        ui.notify(t('cannot_manage_guest'), color='warning')
+        return False
+    new_username = clean_username(new_username)
+    if not new_username or not current_password:
+        ui.notify(t('auth_missing'), color='warning')
+        return False
+    user_data = load_user_data()
+    users = get_users(user_data)
+    user = users.get(old_username)
+    if not user or not current_password_is_valid(user, current_password):
+        ui.notify(t('auth_invalid'), color='negative')
+        return False
+    if new_username == GUEST_USERNAME or (new_username != old_username and new_username in users):
+        ui.notify(t('user_exists'), color='warning')
+        return False
+    if new_username == old_username:
+        ui.notify(t('account_updated'), color='info')
+        return True
+    if old_username in BATTLE_QUEUE:
+        BATTLE_QUEUE.remove(old_username)
+    BATTLE_USER_ROOM.pop(old_username, None)
+    record = users.pop(old_username)
+    ensure_user_defaults(record)
+    record['password_hash'] = password_hash(new_username, current_password)
+    users[new_username] = record
+    state.current_user = new_username
+    state.battle_id = None
+    state.battle_selected_keys = set()
+    persist_current_user_data(user_data)
+    remove_browser_backup(old_username)
+    ui.notify(t('account_updated'), color='positive')
+    refresh_current_screen()
+    return True
+
+def change_current_password(current_password, new_password):
+    if not state.current_user:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    if state.current_user == GUEST_USERNAME:
+        ui.notify(t('cannot_manage_guest'), color='warning')
+        return False
+    if not current_password or not new_password:
+        ui.notify(t('auth_missing'), color='warning')
+        return False
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user or not current_password_is_valid(user, current_password):
+        ui.notify(t('auth_invalid'), color='negative')
+        return False
+    user['password_hash'] = password_hash(state.current_user, new_password)
+    persist_current_user_data(user_data)
+    ui.notify(t('password_changed'), color='positive')
+    refresh_current_screen()
+    return True
+
+def delete_current_account(current_password):
+    username = state.current_user
+    if not username:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    if username == GUEST_USERNAME:
+        ui.notify(t('cannot_manage_guest'), color='warning')
+        return False
+    if not current_password:
+        ui.notify(t('password_required'), color='warning')
+        return False
+    user_data = load_user_data()
+    users = get_users(user_data)
+    user = users.get(username)
+    if not user or not current_password_is_valid(user, current_password):
+        ui.notify(t('auth_invalid'), color='negative')
+        return False
+    if username in BATTLE_QUEUE:
+        BATTLE_QUEUE.remove(username)
+    BATTLE_USER_ROOM.pop(username, None)
+    users.pop(username, None)
+    save_user_data(user_data)
+    remove_browser_backup(username)
+    state.current_user = None
+    state.selected_country = None
+    state.battle_id = None
+    state.battle_selected_keys = set()
+    ui.notify(t('account_deleted'), color='info')
+    show_screen('top')
+    return True
+
 def favorite_keys(data=None):
     user = get_current_user_record()
     if not user:
@@ -1379,18 +1636,20 @@ def avatar_adjustment(source=None):
         'position_y': avatar.get('position_y', 50),
     }
 
-def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_classes='text-gray-400'):
+def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_classes='text-gray-400', live=True):
     if avatar_url:
         adjust = avatar_adjustment(source)
-        scale = adjust['zoom'] / 100
+        zoom = adjust['zoom']
         x = adjust['position_x']
         y = adjust['position_y']
         src = html_escape(str(avatar_url), quote=True)
-        with ui.element('div').classes(f'{classes} overflow-hidden'):
+        live_attr = 'data-wa-avatar-live="current"' if live else ''
+        with ui.element('div').classes(f'{classes} overflow-hidden relative'):
             ui.html(
-                f'<img src="{src}" '
-                f'style="width:100%;height:100%;object-fit:cover;object-position:{x}% {y}%;'
-                f'transform:scale({scale});transform-origin:{x}% {y}%;display:block;">',
+                f'<img class="wa-avatar-crop-image" {live_attr} src="{src}" '
+                f'style="position:absolute;left:50%;top:50%;width:{zoom}%;height:{zoom}%;'
+                f'object-fit:cover;object-position:{x}% {y}%;'
+                f'transform:translate(-50%, -50%);display:block;">',
                 sanitize=False,
             )
     else:
@@ -1398,7 +1657,7 @@ def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_clas
 
 def render_avatar_drag_editor(avatar_url, source):
     adjust = avatar_adjustment(source)
-    scale = adjust['zoom'] / 100
+    zoom = adjust['zoom']
     x = adjust['position_x']
     y = adjust['position_y']
     editor_id = f"avatar-editor-{random.randint(100000, 999999)}"
@@ -1406,7 +1665,7 @@ def render_avatar_drag_editor(avatar_url, source):
     ui.html(
         f'''
         <div id="{editor_id}" class="wa-avatar-editor border shadow bg-white">
-          <img src="{src}" style="object-position:{x}% {y}%;transform:scale({scale});transform-origin:{x}% {y}%;">
+          <img src="{src}" style="width:{zoom}%;height:{zoom}%;object-position:{x}% {y}%;transform:translate(-50%, -50%);">
           <div class="wa-avatar-target" style="left:{x}%;top:{y}%;"></div>
         </div>
         ''',
@@ -1421,15 +1680,20 @@ def render_avatar_drag_editor(avatar_url, source):
       const target = frame.querySelector('.wa-avatar-target');
       let x = {x};
       let y = {y};
-      const zoom = {adjust['zoom']};
+      const zoom = {zoom};
       let dragging = false;
       const clamp = value => Math.max(0, Math.min(100, value));
+      const applyToImage = img => {{
+        img.style.width = `${{zoom}}%`;
+        img.style.height = `${{zoom}}%`;
+        img.style.objectPosition = `${{x}}% ${{y}}%`;
+        img.style.transform = 'translate(-50%, -50%)';
+      }};
       const apply = () => {{
-        image.style.objectPosition = `${{x}}% ${{y}}%`;
-        image.style.transformOrigin = `${{x}}% ${{y}}%`;
-        image.style.transform = `scale(${{zoom / 100}})`;
+        applyToImage(image);
         target.style.left = `${{x}}%`;
         target.style.top = `${{y}}%`;
+        document.querySelectorAll('[data-wa-avatar-live="current"]').forEach(applyToImage);
       }};
       const setFromPointer = event => {{
         const rect = frame.getBoundingClientRect();
@@ -1528,6 +1792,7 @@ def public_user_profiles():
             'answered': stats.get('answered', 0),
             'correct': stats.get('correct', 0),
             'best_streak': stats.get('best_streak', 0),
+            'battle_wins': record.get('battle_wins', 0),
             'last_viewed': format_timestamp(latest_history.get('timestamp')),
         })
     return profiles
@@ -2211,6 +2476,247 @@ def set_quiz_category(category):
     state.quiz_category = category
     start_quiz()
 
+def crown_marks(count):
+    try:
+        count = int(count)
+    except (TypeError, ValueError):
+        count = 0
+    return '👑' * max(0, count)
+
+def raw_profile_value(country, field):
+    value = (country.get('profile') or {}).get(field)
+    if isinstance(value, dict):
+        return value.get('en') or value.get('ja') or next((v for v in value.values() if v), '')
+    return value or ''
+
+def parse_profile_number(value):
+    text = str(value or '')
+    match = re.search(r'\d+(?:[,.]\d+)*', text)
+    if not match:
+        return 1
+    number = float(match.group(0).replace(',', ''))
+    lower = text.lower()
+    if 'billion' in lower:
+        number *= 1_000_000_000
+    elif 'million' in lower:
+        number *= 1_000_000
+    elif 'thousand' in lower:
+        number *= 1_000
+    elif '億' in text or '亿' in text:
+        number *= 100_000_000
+    elif '万' in text:
+        number *= 10_000
+    return max(1, number)
+
+def country_battle_power(country):
+    area = parse_profile_number(raw_profile_value(country, 'area'))
+    population = parse_profile_number(raw_profile_value(country, 'population'))
+    power = int(area * population)
+    while power > 9999:
+        power //= 10
+    return max(1, power)
+
+def battle_country_keys(data=None):
+    return [country_key(country) for country in public_country_list(data)]
+
+def battle_country_lookup(data=None):
+    return public_countries_by_key(data)
+
+def battle_is_user_eligible(username=None, user=None):
+    username = username or state.current_user
+    if not username or username == GUEST_USERNAME:
+        return False
+    if user is None:
+        user_data = load_user_data()
+        user = get_users(user_data).get(username)
+    if not user:
+        return False
+    ensure_user_defaults(user)
+    needed = set(battle_country_keys())
+    if not needed:
+        return False
+    return needed.issubset(set(user.get('viewed_keys', [])))
+
+def deal_battle_hand():
+    keys = battle_country_keys()
+    if len(keys) <= 5:
+        return list(keys)
+    return random.sample(keys, 5)
+
+def current_battle_room():
+    username = state.current_user
+    if not username:
+        return None
+    room_id = state.battle_id or BATTLE_USER_ROOM.get(username)
+    room = BATTLE_ROOMS.get(room_id)
+    if room and username in room.get('players', []):
+        state.battle_id = room_id
+        return room
+    state.battle_id = None
+    BATTLE_USER_ROOM.pop(username, None)
+    return None
+
+def create_battle_room(player_one, player_two):
+    global BATTLE_COUNTER
+    BATTLE_COUNTER += 1
+    room_id = f'battle-{BATTLE_COUNTER}'
+    room = {
+        'id': room_id,
+        'players': [player_one, player_two],
+        'hp': {player_one: 10000, player_two: 10000},
+        'hands': {player_one: deal_battle_hand(), player_two: deal_battle_hand()},
+        'reload_after_turn': [],
+        'submitted': {},
+        'log': [],
+        'turn': 1,
+        'winner': None,
+    }
+    BATTLE_ROOMS[room_id] = room
+    BATTLE_USER_ROOM[player_one] = room_id
+    BATTLE_USER_ROOM[player_two] = room_id
+    if state.current_user in room['players']:
+        state.battle_id = room_id
+    return room
+
+def join_battle_queue():
+    username = state.current_user
+    if not battle_is_user_eligible(username):
+        ui.notify(t('battle_locked'), color='warning')
+        return
+    if current_battle_room():
+        refresh_battle_view()
+        return
+    for waiting_user in list(BATTLE_QUEUE):
+        if waiting_user == username:
+            continue
+        if not battle_is_user_eligible(waiting_user):
+            BATTLE_QUEUE.remove(waiting_user)
+            continue
+        BATTLE_QUEUE.remove(waiting_user)
+        create_battle_room(waiting_user, username)
+        ui.notify(t('battle_title'), color='positive')
+        refresh_battle_view()
+        return
+    if username not in BATTLE_QUEUE:
+        BATTLE_QUEUE.append(username)
+    refresh_battle_view()
+
+def cancel_battle_queue():
+    username = state.current_user
+    if username in BATTLE_QUEUE:
+        BATTLE_QUEUE.remove(username)
+    refresh_battle_view()
+
+def leave_finished_battle(join_again=False):
+    username = state.current_user
+    room = current_battle_room()
+    if room:
+        BATTLE_USER_ROOM.pop(username, None)
+        if not any(BATTLE_USER_ROOM.get(player) == room['id'] for player in room.get('players', [])):
+            BATTLE_ROOMS.pop(room['id'], None)
+    state.battle_id = None
+    state.battle_selected_keys = set()
+    if join_again:
+        join_battle_queue()
+    else:
+        refresh_battle_view()
+
+def add_battle_win(username):
+    user_data = load_user_data()
+    users = get_users(user_data)
+    user = users.get(username)
+    if not user:
+        return
+    ensure_user_defaults(user)
+    user['battle_wins'] = int(user.get('battle_wins', 0)) + 1
+    save_user_data(user_data)
+    if username == state.current_user:
+        sync_current_user_to_browser(user_data)
+
+def battle_power_for_keys(keys):
+    lookup = battle_country_lookup()
+    return sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
+
+def battle_country_names(keys):
+    lookup = battle_country_lookup()
+    return [get_localized_text(lookup[key]['names']) for key in keys if key in lookup]
+
+def resolve_battle_turn(room):
+    players = room.get('players', [])
+    if len(players) != 2:
+        return
+    player_one, player_two = players
+    first = room['submitted'].get(player_one, {})
+    second = room['submitted'].get(player_two, {})
+    power_one = int(first.get('power', 0))
+    power_two = int(second.get('power', 0))
+    if power_one > power_two:
+        damage = power_one - power_two
+        room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
+        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_two} -{damage}"
+    elif power_two > power_one:
+        damage = power_two - power_one
+        room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
+        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_one} -{damage}"
+    else:
+        result_text = f"{player_one} {power_one} - {power_two} {player_two}: draw"
+
+    reload_set = set(room.get('reload_after_turn', []))
+    for player in players:
+        submitted = room['submitted'].get(player, {})
+        hand = room['hands'].setdefault(player, [])
+        if submitted.get('defenseless'):
+            room['hands'][player] = deal_battle_hand()
+            reload_set.discard(player)
+        else:
+            for key in submitted.get('keys', []):
+                if key in hand:
+                    hand.remove(key)
+            if not hand:
+                reload_set.add(player)
+    room['reload_after_turn'] = list(reload_set)
+
+    room['log'].insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
+    del room['log'][12:]
+    room['submitted'] = {}
+    room['turn'] = int(room.get('turn', 1)) + 1
+
+    if room['hp'].get(player_one, 0) <= 0 or room['hp'].get(player_two, 0) <= 0:
+        winner = player_two if room['hp'].get(player_one, 0) <= 0 else player_one
+        room['winner'] = winner
+        add_battle_win(winner)
+
+def toggle_battle_card(key, checked):
+    selected = set(state.battle_selected_keys or set())
+    if checked:
+        selected.add(key)
+    else:
+        selected.discard(key)
+    state.battle_selected_keys = selected
+
+def submit_battle_hand():
+    room = current_battle_room()
+    username = state.current_user
+    if not room or room.get('winner') or not username:
+        refresh_battle_view()
+        return
+    if username in room.get('submitted', {}):
+        ui.notify(t('battle_wait_opponent'), color='info')
+        return
+    reload_set = set(room.get('reload_after_turn', []))
+    hand = room['hands'].setdefault(username, [])
+    defenseless = username in reload_set or not hand
+    selected = [] if defenseless else [key for key in hand if key in state.battle_selected_keys]
+    room['submitted'][username] = {
+        'keys': selected,
+        'power': 0 if defenseless else battle_power_for_keys(selected),
+        'defenseless': defenseless,
+    }
+    state.battle_selected_keys = set()
+    if len(room.get('submitted', {})) >= 2:
+        resolve_battle_turn(room)
+    refresh_battle_view()
+
 # ========================================
 # 画面切り替え
 # ========================================
@@ -2273,7 +2779,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users']
+    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'battle']
     if screen_name in protected_screens and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
@@ -2301,6 +2807,7 @@ def show_screen(screen_name):
     network_screen.set_visibility(screen_name == 'network')
     account_screen.set_visibility(screen_name == 'account')
     users_screen.set_visibility(screen_name == 'users')
+    battle_screen.set_visibility(screen_name == 'battle')
     help_screen.set_visibility(screen_name == 'help')
     if screen_name == 'main':
         refresh_main_ui()
@@ -2320,6 +2827,8 @@ def show_screen(screen_name):
         refresh_account_view()
     if screen_name == 'users':
         refresh_users_view()
+    if screen_name == 'battle':
+        refresh_battle_view()
     if screen_name == 'help':
         refresh_help_view()
 
@@ -2335,6 +2844,7 @@ def switch_language(lang_code):
     if network_screen.visible: refresh_network_view()
     if account_screen.visible: refresh_account_view()
     if users_screen.visible: refresh_users_view()
+    if battle_screen.visible: refresh_battle_view()
     if help_screen.visible: refresh_help_view()
 
 def is_mobile_ui():
@@ -2367,6 +2877,8 @@ def refresh_current_screen():
         refresh_account_view()
     if users_screen.visible:
         refresh_users_view()
+    if battle_screen.visible:
+        refresh_battle_view()
     if help_screen.visible:
         refresh_help_view()
 
@@ -3472,12 +3984,15 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                                 'w-16 h-16 rounded-full border shadow bg-white flex-shrink-0',
                                 icon_size='4rem',
                                 icon_classes='text-gray-400 flex-shrink-0',
+                                live=False,
                             )
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('items-center gap-2 flex-wrap'):
                                     ui.label(profile['username']).classes('text-xl font-bold text-[#1a2332]')
                                     if profile['username'] == state.current_user:
                                         ui.badge(t('current_user_badge'), color='green')
+                                    if profile.get('battle_wins'):
+                                        ui.label(crown_marks(profile['battle_wins'])).classes('text-lg text-yellow-600')
                                 if profile.get('last_viewed'):
                                     ui.label(f"{t('last_viewed')}: {profile['last_viewed']}").classes('text-xs text-gray-500')
                         with ui.grid(columns=2).classes('w-full gap-2'):
@@ -3487,6 +4002,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             render_public_user_metric(t('collections'), profile['collection_count'])
                             render_public_user_metric(t('quiz'), f"{profile['correct']} / {profile['answered']}")
                             render_public_user_metric(t('best_streak'), profile['best_streak'])
+                            render_public_user_metric(t('battle_wins'), crown_marks(profile.get('battle_wins', 0)) or '0')
                         with ui.expansion(f"{t('public_favorites')} ({len(profile['favorites'])})", icon='star').classes('w-full'):
                             render_public_country_chips(profile['favorites'], lookup)
                         with ui.expansion(f"{t('public_collections')} ({len(profile['collections'])})", icon='folder').classes('w-full'):
@@ -3499,7 +4015,127 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             render_users_pagination(total_pages)
 
 # ========================================
-# 10. アカウントページ
+# 10. 国力対戦ページ
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
+    header_container_battle = ui.column().classes('w-full p-0 m-0')
+    battle_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def render_hp_bar(label, hp):
+        with ui.column().classes('w-full gap-1'):
+            ui.label(f'{label}: {t("battle_hp")} {hp} / 10000').classes('text-sm font-bold text-gray-700')
+            ui.linear_progress(value=max(0, min(1, hp / 10000))).props('color=red')
+
+    def render_battle_card(key, lookup):
+        country = lookup.get(key)
+        if not country:
+            return
+        power = country_battle_power(country)
+        selected = key in state.battle_selected_keys
+        with ui.column().classes('gap-2 rounded border border-gray-200 bg-white p-3'):
+            with ui.row().classes('w-full items-center gap-2 no-wrap'):
+                ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
+                ui.label(get_localized_text(country['names'])).classes('font-bold text-[#1a2332] text-sm')
+            render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
+            ui.label(f'{t("battle_power")}: {power}').classes('text-xs font-bold text-red-700')
+
+    def render_battle_room(room):
+        players = room.get('players', [])
+        if len(players) != 2:
+            return
+        username = state.current_user
+        opponent = players[0] if players[1] == username else players[1]
+        lookup = battle_country_lookup()
+        winner = room.get('winner')
+
+        with ui.card().classes('w-full p-5 gap-4'):
+            with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                ui.label(f'{t("battle_turn")} {room.get("turn", 1)}').classes('text-xl font-bold text-[#1a2332]')
+                ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                render_hp_bar(username, room['hp'].get(username, 10000))
+                render_hp_bar(opponent, room['hp'].get(opponent, 10000))
+
+            if winner:
+                is_winner = winner == username
+                ui.label(t('battle_win') if is_winner else t('battle_lose')) \
+                    .classes('text-2xl font-bold text-green-700' if is_winner else 'text-2xl font-bold text-red-700')
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
+                    ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
+                return
+
+            hand = room['hands'].setdefault(username, [])
+            waiting_for_player = username in room.get('submitted', {})
+            defenseless = username in set(room.get('reload_after_turn', [])) or not hand
+            if waiting_for_player:
+                ui.label(t('battle_wait_opponent')).classes('text-sm font-bold text-blue-700')
+            elif defenseless:
+                ui.label(t('battle_defenseless')).classes('text-sm font-bold text-red-700')
+                ui.button(t('battle_submit'), icon='shield', on_click=submit_battle_hand).props('color=red')
+            else:
+                with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                    ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
+                    ui.label(f'{t("battle_power")}: {battle_power_for_keys(state.battle_selected_keys)}').classes('text-sm font-bold text-red-700')
+                with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
+                    for key in hand:
+                        render_battle_card(key, lookup)
+                ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
+
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('battle_log')).classes('text-xl font-bold text-[#1a2332]')
+            if not room.get('log'):
+                ui.label('-').classes('text-gray-500')
+            for entry in room.get('log', []):
+                ui.label(entry).classes('text-sm text-gray-700')
+
+    def refresh_battle_view():
+        render_header(header_container_battle)
+        update_mode_classes(
+            battle_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        battle_content.clear()
+        with battle_content:
+            ui.label(t('battle_title')).classes('text-3xl font-bold text-[#1a2332]')
+            user = get_current_user_record()
+            if user:
+                wins = int(user.get('battle_wins', 0))
+                ui.label(f'{t("battle_wins")}: {crown_marks(wins) or "0"}').classes('text-lg font-bold text-yellow-700')
+            if not battle_is_user_eligible(user=user):
+                total = len(battle_country_keys())
+                viewed = len(set((user or {}).get('viewed_keys', [])) & set(battle_country_keys())) if user else 0
+                with ui.card().classes('w-full p-5 gap-2'):
+                    ui.label(t('battle_locked')).classes('font-bold text-gray-700')
+                    ui.label(f'{viewed} / {total}').classes('text-sm text-gray-500')
+                return
+
+            room = current_battle_room()
+            if room:
+                render_battle_room(room)
+                return
+
+            with ui.card().classes('w-full p-5 gap-4'):
+                if state.current_user in BATTLE_QUEUE:
+                    ui.label(t('battle_waiting')).classes('text-lg font-bold text-blue-700')
+                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                        ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
+                        ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary')
+                else:
+                    ui.button(t('battle_join'), icon='sports_esports', on_click=join_battle_queue).props('color=primary')
+
+    def auto_refresh_battle():
+        if not battle_screen.visible:
+            return
+        room = current_battle_room()
+        if state.current_user in BATTLE_QUEUE or (room and (state.current_user in room.get('submitted', {}) or room.get('winner'))):
+            refresh_battle_view()
+
+    ui.timer(2.5, auto_refresh_battle)
+
+# ========================================
+# 11. アカウントページ
 # ========================================
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_screen:
     header_container_account = ui.column().classes('w-full p-0 m-0')
@@ -3578,11 +4214,54 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                                 ui.label(t('avatar_zoom')).classes('text-xs font-bold text-gray-500')
                                 ui.slider(min=100, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
                                     .props('label-always')
-            with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-4'):
+            with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
                 render_stat_card(t('favorite_count'), str(len(favorites)))
                 render_stat_card(t('review_count'), str(len(review)))
                 render_stat_card(t('quiz'), f"{stats.get('correct', 0)} / {stats.get('answered', 0)}", f"{t('quiz_stats').format(correct=stats.get('correct', 0), answered=stats.get('answered', 0), streak=stats.get('streak', 0), best=stats.get('best_streak', 0))}")
+                render_stat_card(t('battle_wins'), crown_marks(user.get('battle_wins', 0)) or '0')
+
+            with ui.card().classes('w-full p-5 gap-4'):
+                ui.label(t('account_settings')).classes('text-xl font-bold text-[#1a2332]')
+                if state.current_user == GUEST_USERNAME:
+                    ui.label(t('cannot_manage_guest')).classes('text-sm text-gray-500')
+                else:
+                    with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                        with ui.column().classes('w-full gap-2'):
+                            ui.label(t('change_username')).classes('text-sm font-bold text-gray-700')
+                            new_username_input = ui.input(label=t('new_username'), value=state.current_user).props('outlined dense').classes('w-full')
+                            rename_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full')
+                            ui.button(
+                                t('change_username'),
+                                icon='manage_accounts',
+                                on_click=lambda name_field=new_username_input, pass_field=rename_password_input: rename_current_account(name_field.value, pass_field.value),
+                            ).props('color=primary').classes('w-full' if is_mobile_ui() else 'self-start')
+                        with ui.column().classes('w-full gap-2'):
+                            ui.label(t('change_password')).classes('text-sm font-bold text-gray-700')
+                            current_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full')
+                            new_password_input = ui.input(label=t('new_password')).props('outlined dense type=password').classes('w-full')
+                            ui.button(
+                                t('change_password'),
+                                icon='lock_reset',
+                                on_click=lambda current_field=current_password_input, new_field=new_password_input: change_current_password(current_field.value, new_field.value),
+                            ).props('color=primary').classes('w-full' if is_mobile_ui() else 'self-start')
+                    with ui.column().classes('w-full gap-2 border-t border-gray-200 pt-4'):
+                        ui.label(t('delete_account')).classes('text-sm font-bold text-red-700')
+                        ui.label(t('delete_account_warning')).classes('text-xs text-gray-500')
+                        delete_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full' if is_mobile_ui() else 'max-w-md')
+                        ui.button(
+                            t('delete_account'),
+                            icon='delete_forever',
+                            on_click=lambda pass_field=delete_password_input: delete_current_account(pass_field.value),
+                        ).props('color=red').classes('w-full' if is_mobile_ui() else 'self-start')
+
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('battle_title')).classes('text-xl font-bold text-[#1a2332]')
+                if battle_is_user_eligible(user=user):
+                    ui.label(f'{t("battle_wins")}: {crown_marks(user.get("battle_wins", 0)) or "0"}').classes('text-sm font-bold text-yellow-700')
+                    ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: show_screen('battle')).props('color=primary')
+                else:
+                    ui.label(t('battle_locked')).classes('text-sm text-gray-500')
 
             backup = backup_labels()
             with ui.card().classes('w-full p-5 gap-3'):
@@ -3614,11 +4293,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             .props('flat color=primary')
                         ui.button(icon='delete', on_click=lambda _, collection=name: (delete_collection(collection), refresh_account_view())) \
                             .props('flat round color=red')
-                    preview = [lookup[key] for key in keys[:4] if key in lookup]
+                    preview = [lookup[key] for key in keys if key in lookup]
                     if preview:
                         with ui.row().classes('w-full gap-2 flex-wrap'):
                             for country in preview:
-                                ui.chip(get_localized_text(country['names'])).props('dense outline color=primary')
+                                chip = ui.chip(get_localized_text(country['names'])).props('dense outline color=primary').classes('cursor-pointer')
+                                chip.on('click', lambda _, c=country: open_country_detail(c))
 
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
                 with ui.card().classes('w-full p-5 gap-3'):
