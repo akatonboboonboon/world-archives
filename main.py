@@ -330,6 +330,10 @@ class AppState:
     users_page = 1
     users_items_per_page = 6
     users_browser_restore_requested = False
+    public_collection_owner = None
+    public_collection_name = None
+    public_collection_keys = []
+    public_collection_kind = 'collection'
     battle_id = None
     battle_selected_keys = set()
 
@@ -673,6 +677,10 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': '最終閲覧',
         'best_streak': '最高連続正解',
         'public_collections': '公開コレクション',
+        'public_collection_page': '公開コレクション',
+        'open_collection_page': 'ページで見る',
+        'collection_owner': '作成者',
+        'back_to_users': 'ユーザー一覧へ戻る',
         'users_restore_browser': 'ブラウザ内のユーザーを再読み込み',
         'users_count': '表示ユーザー',
         'avatar_adjust': 'アイコンの表示調整',
@@ -727,6 +735,10 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': 'Last viewed',
         'best_streak': 'Best streak',
         'public_collections': 'Public collections',
+        'public_collection_page': 'Public collection',
+        'open_collection_page': 'Open page',
+        'collection_owner': 'Owner',
+        'back_to_users': 'Back to users',
         'users_restore_browser': 'Reload browser users',
         'users_count': 'Users shown',
         'avatar_adjust': 'Icon framing',
@@ -781,6 +793,10 @@ EXTRA_UI_FALLBACKS = {
         'last_viewed': '最后浏览',
         'best_streak': '最高连续答对',
         'public_collections': '公开收藏集',
+        'public_collection_page': '公开收藏集',
+        'open_collection_page': '打开页面',
+        'collection_owner': '创建者',
+        'back_to_users': '返回用户列表',
         'users_restore_browser': '重新读取浏览器用户',
         'users_count': '显示用户',
         'avatar_adjust': '头像显示调整',
@@ -2882,7 +2898,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'battle']
+    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle']
     if screen_name in protected_screens and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
@@ -2910,6 +2926,7 @@ def show_screen(screen_name):
     network_screen.set_visibility(screen_name == 'network')
     account_screen.set_visibility(screen_name == 'account')
     users_screen.set_visibility(screen_name == 'users')
+    public_collection_screen.set_visibility(screen_name == 'public_collection')
     battle_screen.set_visibility(screen_name == 'battle')
     help_screen.set_visibility(screen_name == 'help')
     if screen_name == 'main':
@@ -2930,6 +2947,8 @@ def show_screen(screen_name):
         refresh_account_view()
     if screen_name == 'users':
         refresh_users_view()
+    if screen_name == 'public_collection':
+        refresh_public_collection_view()
     if screen_name == 'battle':
         refresh_battle_view()
     if screen_name == 'help':
@@ -2947,6 +2966,7 @@ def switch_language(lang_code):
     if network_screen.visible: refresh_network_view()
     if account_screen.visible: refresh_account_view()
     if users_screen.visible: refresh_users_view()
+    if public_collection_screen.visible: refresh_public_collection_view()
     if battle_screen.visible: refresh_battle_view()
     if help_screen.visible: refresh_help_view()
 
@@ -2980,6 +3000,8 @@ def refresh_current_screen():
         refresh_account_view()
     if users_screen.visible:
         refresh_users_view()
+    if public_collection_screen.visible:
+        refresh_public_collection_view()
     if battle_screen.visible:
         refresh_battle_view()
     if help_screen.visible:
@@ -4022,6 +4044,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 chip = ui.chip(get_localized_text(country['names'])).props('dense outline color=primary').classes('cursor-pointer')
                 chip.on('click', lambda _, c=country: open_country_detail(c))
 
+    def open_public_collection_page(profile, keys, name, kind='collection'):
+        state.public_collection_owner = profile.get('username')
+        state.public_collection_name = name
+        state.public_collection_keys = list(keys or [])
+        state.public_collection_kind = kind
+        show_screen('public_collection')
+
     def restore_browser_users_for_list():
         request_browser_backup_restore()
         ui.notify(t('users_restore_browser'), color='info')
@@ -4114,18 +4143,86 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             render_public_user_metric(t('best_streak'), profile['best_streak'])
                             render_public_user_metric(t('battle_wins'), crown_marks(profile.get('battle_wins', 0)) or '0')
                         with ui.expansion(f"{t('public_favorites')} ({len(profile['favorites'])})", icon='star').classes('w-full'):
+                            ui.button(
+                                t('open_collection_page'),
+                                icon='open_in_new',
+                                on_click=lambda p=profile: open_public_collection_page(p, p['favorites'], t('public_favorites'), 'favorites'),
+                            ).props('flat color=primary dense')
                             render_public_country_chips(profile['favorites'], lookup)
                         with ui.expansion(f"{t('public_collections')} ({len(profile['collections'])})", icon='folder').classes('w-full'):
                             if not profile['collections']:
                                 ui.label(t('no_collections')).classes('text-xs text-gray-500')
                             for collection in profile['collections']:
                                 with ui.column().classes('w-full gap-2 border-t border-gray-200 py-2'):
-                                    ui.label(f"{collection['name']} ({len(collection['keys'])})").classes('text-sm font-bold text-gray-700')
+                                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                                        ui.button(
+                                            f"{collection['name']} ({len(collection['keys'])})",
+                                            icon='folder_open',
+                                            on_click=lambda _, p=profile, c=collection: open_public_collection_page(p, c['keys'], c['name'], 'collection'),
+                                        ).props('flat color=primary dense')
+                                        ui.button(
+                                            t('open_collection_page'),
+                                            icon='open_in_new',
+                                            on_click=lambda _, p=profile, c=collection: open_public_collection_page(p, c['keys'], c['name'], 'collection'),
+                                        ).props('outline color=primary dense')
                                     render_public_country_chips(collection['keys'], lookup)
             render_users_pagination(total_pages)
 
 # ========================================
-# 10. 国力対戦ページ
+# 10. 公開コレクションページ
+# ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as public_collection_screen:
+    header_container_public_collection = ui.column().classes('w-full p-0 m-0')
+    public_collection_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def render_public_collection_country_card(country):
+        with ui.card().classes('w-full p-4 cursor-pointer hover:shadow-md transition') as card:
+            card.on('click', lambda _, c=country: open_country_detail(c))
+            with ui.row().classes('w-full gap-4 items-center no-wrap'):
+                render_flag_frame(country, 'w-28 flex-shrink-0 shadow border rounded')
+                with ui.column().classes('gap-2 flex-grow'):
+                    ui.label(get_localized_text(country['names'])).classes('text-xl font-bold text-[#1a2332]')
+                    period_text = period_label(country)
+                    if period_text:
+                        ui.label(period_text).classes('text-sm font-bold text-orange-700')
+                    ui.label(first_sentence(get_localized_text(country.get('desc', {})))).classes('text-sm text-gray-500 line-clamp-2')
+                    with ui.row().classes('gap-1 flex-wrap'):
+                        for tag in country.get('tags', [])[:4]:
+                            tag_chip(tag)
+            with ui.row().classes('w-full justify-end'):
+                ui.button(t('view_detail'), icon='open_in_new', on_click=lambda _, c=country: open_country_detail(c)) \
+                    .props('flat color=primary dense')
+
+    def refresh_public_collection_view():
+        render_header(header_container_public_collection)
+        update_mode_classes(
+            public_collection_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        public_collection_content.clear()
+        lookup = public_countries_by_key()
+        owner = state.public_collection_owner or ''
+        title = state.public_collection_name or t('public_collection_page')
+        keys = state.public_collection_keys if isinstance(state.public_collection_keys, list) else []
+        countries = [lookup[key] for key in keys if key in lookup]
+        with public_collection_content:
+            ui.button(t('back_to_users'), icon='arrow_back', on_click=lambda: show_screen('users')) \
+                .props('flat color=primary') \
+                .classes('self-start')
+            with ui.card().classes('w-full p-5 gap-2'):
+                ui.label(title).classes('text-3xl font-bold text-[#1a2332]')
+                if owner:
+                    ui.label(f'{t("collection_owner")}: {owner}').classes('text-sm text-gray-500')
+                ui.label(f'{len(countries)} / {len(keys)}').classes('text-sm font-bold text-gray-600')
+            if not countries:
+                ui.label(t('no_result')).classes('text-gray-500')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                for country in countries:
+                    render_public_collection_country_card(country)
+
+# ========================================
+# 11. 国力対戦ページ
 # ========================================
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
