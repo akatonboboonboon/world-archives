@@ -44,26 +44,46 @@
       "tags": "タグ",
       "desc": "解説",
       "tag_labels": {
-        "Asia": "アジア",
-        "Europe": "ヨーロッパ",
-        "Africa": "アフリカ",
-        "Americas": "アメリカ大陸",
-        "Middle East": "中東",
-        "Oceania": "オセアニア",
-        "International": "国際組織",
-        "Empire": "帝国",
-        "Kingdom": "王国",
-        "Government": "政治体制",
-        "Ancient": "古代",
-        "Medieval": "中世",
-        "Modern History": "近現代",
-        "War & Conflict": "戦争・紛争",
-        "Trade & Economy": "交易・経済",
-        "Technology & Industry": "技術・産業",
-        "Culture": "文化",
-        "Religion": "宗教",
-        "Nature & Geography": "自然・地理",
-        "Island & Maritime": "島・海洋"
+        "UN Member": "?????",
+        "European Union": "????",
+        "G20": "G20",
+        "NATO": "NATO",
+        "Commonwealth": "???",
+        "Arab League": "?????",
+        "African Union": "??????",
+        "ASEAN": "ASEAN",
+        "Mercosur": "??????",
+        "OPEC": "OPEC",
+        "Kingdom": "??",
+        "Republic": "???",
+        "Federation": "??",
+        "Confederation": "?????",
+        "Empire": "??",
+        "Sultanate": "?????",
+        "Khanate": "???",
+        "Caliphate": "????",
+        "City-State": "????",
+        "Duchy & Principality": "?????",
+        "Colonial Empire": "?????",
+        "Socialist State": "??????",
+        "Constitutional Monarchy": "?????",
+        "Military Government": "????",
+        "Revolutionary State": "????",
+        "Maritime Power": "????",
+        "Trade Hub": "????",
+        "Nomadic Power": "????",
+        "Silk Road": "???????",
+        "Steppe Empire": "????",
+        "Island Nation": "??",
+        "Ancient Civilization": "????",
+        "Medieval Dynasty": "????",
+        "Early Modern State": "????",
+        "Modern Nation-State": "?????",
+        "Industrial Power": "???",
+        "Resource Economy": "???",
+        "Multilingual State": "?????",
+        "Religious Center": "?????",
+        "Cultural Sphere": "???"
       },
       "sort_asc": "昇順",
       "sort_desc": "降順",
@@ -256,26 +276,46 @@
       "tags": "Tags",
       "desc": "Description",
       "tag_labels": {
-        "Asia": "Asia",
-        "Europe": "Europe",
-        "Africa": "Africa",
-        "Americas": "Americas",
-        "Middle East": "Middle East",
-        "Oceania": "Oceania",
-        "International": "International",
-        "Empire": "Empire",
+        "UN Member": "UN Member",
+        "European Union": "European Union",
+        "G20": "G20",
+        "NATO": "NATO",
+        "Commonwealth": "Commonwealth",
+        "Arab League": "Arab League",
+        "African Union": "African Union",
+        "ASEAN": "ASEAN",
+        "Mercosur": "Mercosur",
+        "OPEC": "OPEC",
         "Kingdom": "Kingdom",
-        "Government": "Government",
-        "Ancient": "Ancient",
-        "Medieval": "Medieval",
-        "Modern History": "Modern History",
-        "War & Conflict": "War & Conflict",
-        "Trade & Economy": "Trade & Economy",
-        "Technology & Industry": "Technology & Industry",
-        "Culture": "Culture",
-        "Religion": "Religion",
-        "Nature & Geography": "Nature & Geography",
-        "Island & Maritime": "Island & Maritime"
+        "Republic": "Republic",
+        "Federation": "Federation",
+        "Confederation": "Confederation",
+        "Empire": "Empire",
+        "Sultanate": "Sultanate",
+        "Khanate": "Khanate",
+        "Caliphate": "Caliphate",
+        "City-State": "City-State",
+        "Duchy & Principality": "Duchy & Principality",
+        "Colonial Empire": "Colonial Empire",
+        "Socialist State": "Socialist State",
+        "Constitutional Monarchy": "Constitutional Monarchy",
+        "Military Government": "Military Government",
+        "Revolutionary State": "Revolutionary State",
+        "Maritime Power": "Maritime Power",
+        "Trade Hub": "Trade Hub",
+        "Nomadic Power": "Nomadic Power",
+        "Silk Road": "Silk Road",
+        "Steppe Empire": "Steppe Empire",
+        "Island Nation": "Island Nation",
+        "Ancient Civilization": "Ancient Civilization",
+        "Medieval Dynasty": "Medieval Dynasty",
+        "Early Modern State": "Early Modern State",
+        "Modern Nation-State": "Modern Nation-State",
+        "Industrial Power": "Industrial Power",
+        "Resource Economy": "Resource Economy",
+        "Multilingual State": "Multilingual State",
+        "Religious Center": "Religious Center",
+        "Cultural Sphere": "Cultural Sphere"
       },
       "sort_asc": "Ascending",
       "sort_desc": "Descending",
@@ -452,26 +492,46 @@
         "religions": "主要宗教"
       },
       "tag_labels": {
-        "Asia": "亚洲",
-        "Europe": "欧洲",
-        "Africa": "非洲",
-        "Americas": "美洲",
-        "Middle East": "中东",
-        "Oceania": "大洋洲",
-        "International": "国际组织",
-        "Empire": "帝国",
-        "Kingdom": "王国",
-        "Government": "政治体制",
-        "Ancient": "古代",
-        "Medieval": "中世纪",
-        "Modern History": "近现代",
-        "War & Conflict": "战争与冲突",
-        "Trade & Economy": "贸易与经济",
-        "Technology & Industry": "技术与产业",
-        "Culture": "文化",
-        "Religion": "宗教",
-        "Nature & Geography": "自然与地理",
-        "Island & Maritime": "岛屿与海洋"
+        "UN Member": "??????",
+        "European Union": "????",
+        "G20": "?????",
+        "NATO": "??",
+        "Commonwealth": "???",
+        "Arab League": "?????",
+        "African Union": "????",
+        "ASEAN": "??",
+        "Mercosur": "??????",
+        "OPEC": "???",
+        "Kingdom": "??",
+        "Republic": "???",
+        "Federation": "??",
+        "Confederation": "?????",
+        "Empire": "??",
+        "Sultanate": "???",
+        "Khanate": "??",
+        "Caliphate": "????",
+        "City-State": "??",
+        "Duchy & Principality": "?????",
+        "Colonial Empire": "????",
+        "Socialist State": "??????",
+        "Constitutional Monarchy": "?????",
+        "Military Government": "????",
+        "Revolutionary State": "????",
+        "Maritime Power": "????",
+        "Trade Hub": "????",
+        "Nomadic Power": "????",
+        "Silk Road": "?????",
+        "Steppe Empire": "????",
+        "Island Nation": "??",
+        "Ancient Civilization": "????",
+        "Medieval Dynasty": "?????",
+        "Early Modern State": "????",
+        "Modern Nation-State": "?????",
+        "Industrial Power": "???",
+        "Resource Economy": "?????",
+        "Multilingual State": "?????",
+        "Religious Center": "?????",
+        "Cultural Sphere": "???"
       },
       "sort_asc": "升序",
       "sort_desc": "降序",
@@ -637,9 +697,14 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Island & Maritime"
+        "UN Member",
+        "G20",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "東アジアに位置する島国。法的には首都と定められていないが、東京が事実上の首都。 首都は東京で、アジアに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -720,8 +785,14 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "International"
+        "UN Member",
+        "G20",
+        "Republic",
+        "Socialist State",
+        "Revolutionary State",
+        "Silk Road",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "世界最多級の人口を擁する東アジアの社会主義共和制国家。 首都は北京で、アジアに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -802,8 +873,11 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "International"
+        "UN Member",
+        "G20",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "朝鮮半島の南半分に位置する共和制国家。 首都はソウルで、アジアに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -884,11 +958,13 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
+        "UN Member",
+        "ASEAN",
         "Kingdom",
-        "Trade & Economy",
-        "Culture"
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "東南アジアの仏教国。「微笑みの国」として知られる。 首都はバンコクで、アジアに位置する。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -969,10 +1045,12 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Government",
-        "Trade & Economy"
+        "UN Member",
+        "ASEAN",
+        "Republic",
+        "Socialist State",
+        "Trade Hub",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "インドシナ半島東部に位置する社会主義共和国。 首都はハノイで、アジアに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1053,10 +1131,17 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Government",
-        "Trade & Economy"
+        "UN Member",
+        "Commonwealth",
+        "ASEAN",
+        "Republic",
+        "City-State",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "マレー半島の南端にある都市国家。アジアの金融センター。 首都はシンガポールで、アジアに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1137,9 +1222,13 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Island & Maritime"
+        "UN Member",
+        "ASEAN",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "西太平洋に位置する島国。キリスト教徒が多い。 首都はマニラで、アジアに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1220,9 +1309,14 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Religion"
+        "UN Member",
+        "Commonwealth",
+        "ASEAN",
+        "Kingdom",
+        "Federation",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "マレー半島南部とボルネオ島北部を領土とする連邦立憲君主制国家。 首都はクアラルンプールで、アジアに位置する。 また、宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1303,9 +1397,13 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Religion"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "南アジアのイスラム共和制国家。人口世界5位。 首都はイスラマバードで、アジアに位置する。 また、宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1386,10 +1484,13 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Technology & Industry",
-        "Religion"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Religious Center"
       ],
       "desc": {
         "ja": "ベンガル湾に面する人口密度の高い国。 首都はダッカで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。技術、工業、教育、都市化などの発展も見どころである。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -1470,8 +1571,13 @@
       "type": "Present",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Silk Road",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "世界最大の内陸国。中央アジアの経済的中心。 首都はアスタナで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -1552,10 +1658,16 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "UN Member",
+        "OPEC",
+        "Republic",
+        "Revolutionary State",
+        "Trade Hub",
+        "Silk Road",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "西アジア・中東の大国。古代ペルシャの継承国。 首都はテヘランで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -1636,9 +1748,14 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "Arab League",
+        "OPEC",
+        "Federation",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "7つの首長国からなる連邦国家。ドバイが有名。 首都はアブダビで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -1719,10 +1836,14 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Europe",
-        "Middle East",
-        "Technology & Industry",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "地中海東岸に位置するユダヤ人国家。 首都はエルサレムで、中東・ヨーロッパに位置する。 また、技術、工業、教育、都市化などの発展も見どころである。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -1803,8 +1924,14 @@
       "type": "Present",
       "region": "North America",
       "tags": [
-        "Americas",
-        "International"
+        "UN Member",
+        "G20",
+        "NATO",
+        "Republic",
+        "Federation",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "北アメリカ大陸に位置する連邦共和国。経済・軍事で世界への影響力が大きい。 首都はワシントンD.C.で、アメリカ大陸に位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1885,8 +2012,15 @@
       "type": "Present",
       "region": "North America",
       "tags": [
-        "Americas",
-        "International"
+        "UN Member",
+        "G20",
+        "NATO",
+        "Commonwealth",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "北アメリカ大陸北部に位置し、世界で2番目に広い国土を持つ。 首都はオタワで、アメリカ大陸に位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -1967,8 +2101,13 @@
       "type": "Present",
       "region": "North America",
       "tags": [
-        "Americas",
-        "International"
+        "UN Member",
+        "G20",
+        "Republic",
+        "Federation",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "北アメリカ南部に位置する連邦共和制国家。スペイン語圏で人口最多。 首都はメキシコシティで、アメリカ大陸に位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2049,10 +2188,11 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "世界で最も細長い国。銅の産出国。 首都はサンティアゴで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2133,10 +2273,13 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インカ帝国の中心地。マチュピチュがある。 首都はリマで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -2217,9 +2360,11 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "コーヒーとエメラルドの産地。 首都はボゴタで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -2300,9 +2445,14 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "Mercosur",
+        "OPEC",
+        "Republic",
+        "Federation",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "世界最大級の原油埋蔵量を持つ。 首都はカラカスで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2383,9 +2533,13 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Government",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Socialist State",
+        "Revolutionary State",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "カリブ海最大の島国。 首都はハバナで、アメリカ大陸に位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -2466,10 +2620,13 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "International",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "レゲエ発祥の地。陸上が強い。 首都はキングストンで、アメリカ大陸に位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2550,10 +2707,17 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
+        "UN Member",
+        "G20",
+        "NATO",
+        "Commonwealth",
         "Kingdom",
-        "Island & Maritime"
+        "Colonial Empire",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "グレートブリテン及び北アイルランド連合王国。産業革命発祥の地。 首都はロンドンで、ヨーロッパに位置する。 また、王権や君主制の伝統が政治や文化の理解に関わる。島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2634,8 +2798,15 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "G20",
+        "NATO",
+        "Republic",
+        "Federation",
+        "Colonial Empire",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "ヨーロッパ中部に位置する連邦共和国。EU最大の経済力を持つ。 首都はベルリンで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2716,8 +2887,15 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "G20",
+        "NATO",
+        "Republic",
+        "Colonial Empire",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "西ヨーロッパに位置する共和国。芸術と文化の中心地。 首都はパリで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2798,8 +2976,13 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "G20",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "南ヨーロッパに位置する共和制国家。ローマ帝国の故地。 首都はローマで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2880,8 +3063,13 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Colonial Empire",
+        "Constitutional Monarchy",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "イベリア半島の大部分を占める立憲君主制国家。 首都はマドリードで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -2962,8 +3150,12 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "中央ヨーロッパに位置する共和制国家。 首都はワルシャワで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3044,8 +3236,13 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Colonial Empire",
+        "Trade Hub",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "ユーラシア大陸最西端の国。大航海時代の先駆者。 首都はリスボンで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3126,9 +3323,15 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Colonial Empire",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "風車と運河の国。国際司法裁判所がある。 首都はアムステルダムで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3209,10 +3412,18 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Federation",
+        "Colonial Empire",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "EU本部が置かれる欧州の十字路。 首都はブリュッセルで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3293,10 +3504,15 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Federation",
+        "Confederation",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "永世中立国。アルプス山脈と金融で有名。 首都はベルンで、ヨーロッパに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -3377,8 +3593,13 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "北欧最大の国家。福祉国家として知られる。 首都はストックホルムで、ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3459,9 +3680,13 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "NATO",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "フィヨルドで有名な北欧の王国。EU非加盟。 首都はオスロで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3542,9 +3767,14 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "森と湖の国。サンタクロースの故郷とされる。 首都はヘルシンキで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3625,8 +3855,10 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "東ヨーロッパに位置する大国。肥沃な黒土を持つ。 首都はキーウ (キエフ)で、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -3707,9 +3939,12 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Ancient"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Ancient Civilization",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "西洋文明発祥の地。バルカン半島南端に位置。 首都はアテネで、ヨーロッパに位置する。 また、古代文明や初期国家の発展と結びついている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3790,8 +4025,13 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International"
+        "UN Member",
+        "G20",
+        "Mercosur",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "南アメリカ大陸最大の面積と人口を持つ連邦共和国。 首都はブラジリアで、アメリカ大陸に位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3872,8 +4112,13 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International"
+        "UN Member",
+        "G20",
+        "Mercosur",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "南アメリカ南部に位置する連邦共和国。 首都はブエノスアイレスで、アメリカ大陸に位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -3954,8 +4199,14 @@
       "type": "Present",
       "region": "Asia, Southern Asia",
       "tags": [
-        "Asia",
-        "International"
+        "UN Member",
+        "G20",
+        "Commonwealth",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "南アジアに位置し、世界最多の人口を抱える連邦共和国。 首都はニューデリーで、アジアに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4036,9 +4287,14 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Island & Maritime"
+        "UN Member",
+        "G20",
+        "ASEAN",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "東南アジア南部に位置する世界最大の島嶼国家。 首都はジャカルタで、アジアに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4119,8 +4375,16 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "International"
+        "UN Member",
+        "G20",
+        "Commonwealth",
+        "Republic",
+        "Federation",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "オセアニアに位置し、大陸全土を領有する連邦国家。 首都はキャンベラで、オセアニアに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4201,9 +4465,13 @@
       "type": "Present",
       "region": "Europe/Asia",
       "tags": [
-        "Asia",
-        "Europe",
-        "International"
+        "UN Member",
+        "G20",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "ユーラシア大陸北部に広がる世界最大の面積を持つ連邦共和国。 首都はモスクワで、アジア・ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4284,9 +4552,13 @@
       "type": "Present",
       "region": "Asia/Europe",
       "tags": [
-        "Asia",
-        "Europe",
-        "International"
+        "UN Member",
+        "G20",
+        "NATO",
+        "Republic",
+        "Silk Road",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "西アジアのアナトリア半島と東ヨーロッパのバルカン半島の一部にまたがる共和国。 首都はアンカラで、アジア・ヨーロッパに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4367,9 +4639,17 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "G20",
+        "Arab League",
+        "OPEC",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy",
+        "Religious Center"
       ],
       "desc": {
         "ja": "中東・アラビア半島の大部分を占める絶対君主制国家。 首都はリヤドで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4450,8 +4730,14 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "International"
+        "UN Member",
+        "G20",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "アフリカ大陸最南端に位置する共和制国家。 首都はプレトリアで、アフリカに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4532,9 +4818,11 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Middle East",
-        "International"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Republic",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "北東アフリカと中東にまたがる共和制国家。古代文明発祥の地。 首都はカイロで、中東・アフリカに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4615,9 +4903,16 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "OPEC",
+        "Republic",
+        "Federation",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "西アフリカに位置し、アフリカ最大の人口と経済規模を持つ。 首都はアブジャで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4698,9 +4993,13 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "International",
-        "Ancient"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Federation",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "東アフリカに位置する内陸国。アフリカ連合本部がある。 首都はアディスアベバで、アフリカに位置する。 また、古代文明や初期国家の発展と結びついている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4781,8 +5080,12 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "International"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "東アフリカに位置する共和制国家。サファリ観光で有名。 首都はナイロビで、アフリカに位置する。 また、国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -4863,9 +5166,14 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Middle East",
-        "Culture"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アフリカ北西部の王国。サハラ砂漠観光の拠点。 首都はラバトで、中東・アフリカに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -4946,9 +5254,15 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "OPEC",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "アフリカ最大の国土面積を持つ。 首都はアルジェで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -5029,8 +5343,12 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "カカオ豆の産地として有名。 首都はアクラで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -5111,10 +5429,15 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "キリマンジャロ山がある。 首都はドドマで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -5195,10 +5518,14 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "European Union",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "音楽の都ウィーンを擁する中欧の国。 首都はウィーンで、ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -5279,11 +5606,13 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "European Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ドナウの真珠と呼ばれる美しい首都を持つ。 首都はブダペストで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -5364,10 +5693,13 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Government",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中世の街並みが残る「百塔の街」。 首都はプラハで、ヨーロッパに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -5448,9 +5780,12 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ドラキュラ伝説のトランシルヴァニア地方がある。 首都はブカレストで、ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -5531,10 +5866,13 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ヨーグルトとバラの谷で有名。 首都はソフィアで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -5615,8 +5953,10 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "バルカン半島の要衝。テニスやバスケが強い。 首都はベオグラードで、ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -5697,11 +6037,15 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アドリア海の美しい海岸線を持つ観光国。 首都はザグレブで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -5782,9 +6126,15 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Ancient",
-        "Trade & Economy"
+        "UN Member",
+        "Arab League",
+        "OPEC",
+        "Republic",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "メソポタミア文明発祥の地。 首都はバグダッドで、中東に位置する。 また、古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -5865,9 +6215,12 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Ancient",
-        "Culture"
+        "UN Member",
+        "Arab League",
+        "Republic",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "世界最古級の都市ダマスカスを首都とする。 首都はダマスカスで、中東に位置する。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -5948,10 +6301,14 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Arab League",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ペトラ遺跡や死海で有名な観光国。 首都はアンマンで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -6032,9 +6389,12 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Arab League",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「中東のパリ」と呼ばれた美しい国。レバノン杉が象徴。 首都はベイルートで、中東に位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -6115,8 +6475,13 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy"
+        "UN Member",
+        "Arab League",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "天然ガス資源が豊富な富裕国。 首都はドーハで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -6197,9 +6562,12 @@
       "type": "Present",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Silk Road",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "シルクロードの要衝。サマルカンドが有名。 首都はタシュケントで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -6280,8 +6648,13 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "広大な草原と遊牧文化の国。 首都はウランバートルで、アジアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -6362,9 +6735,11 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Religion"
+        "UN Member",
+        "ASEAN",
+        "Republic",
+        "Modern Nation-State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "黄金のパゴダ（仏塔）が輝く国。 首都はネ比都 (ネピドー)で、アジアに位置する。 また、宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -6445,10 +6820,13 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Culture",
-        "Religion"
+        "UN Member",
+        "ASEAN",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アンコール・ワット遺跡群を持つ。 首都はプノンペンで、アジアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -6529,9 +6907,12 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "赤道直下の国。ガラパゴス諸島を領有。 首都はキトで、アメリカ大陸に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -6612,8 +6993,12 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Nature & Geography"
+        "UN Member",
+        "Mercosur",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ウユニ塩湖で有名な高山国。 首都はラパス / スクレで、アメリカ大陸に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -6694,10 +7079,11 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International",
-        "Government",
-        "Trade & Economy"
+        "UN Member",
+        "Mercosur",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "「南米のスイス」とも呼ばれる安定した国。 首都はモンテビデオで、アメリカ大陸に位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -6778,9 +7164,12 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International",
-        "Nature & Geography"
+        "UN Member",
+        "Mercosur",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "南米の内陸国。日系移民も多い。 首都はアスンシオンで、アメリカ大陸に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -6861,9 +7250,12 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "太平洋と大西洋を結ぶパナマ運河がある。 首都はパナマシティで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -6944,10 +7336,11 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Government",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "軍隊を持たない国。環境保護先進国。 首都はサンホセで、アメリカ大陸に位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -7028,10 +7421,12 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Government",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "カリブ海のリゾート地。野球が盛ん。 首都はサントドミンゴで、アメリカ大陸に位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -7112,9 +7507,13 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "アフリカ大陸中央部の巨大国家。鉱物資源が豊富。 首都はキンシャサで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -7195,8 +7594,12 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Culture"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "西アフリカの玄関口。パリ・ダカールラリーの終点。 首都はダカールで、アフリカに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -7277,9 +7680,14 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "固有種の宝庫。バオバブの木で有名。 首都はアンタナナリボで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -7360,8 +7768,12 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "世界三大瀑布の一つ、ヴィクトリアの滝がある。 首都はハラレで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -7442,8 +7854,13 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「アフリカの真珠」と呼ばれる。マウンテンゴリラの生息地。 首都はカンパラで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -7524,10 +7941,15 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Technology & Industry",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「エメラルドの島」。IT産業が集積。 首都はダブリンで、ヨーロッパに位置する。 また、技術、工業、教育、都市化などの発展も見どころである。言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -7608,10 +8030,14 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Technology & Industry",
-        "Culture"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "童話作家アンデルセンの故郷。デザイン大国。 首都はコペンハーゲンで、ヨーロッパに位置する。 また、技術、工業、教育、都市化などの発展も見どころである。言語、芸術、生活習慣、食文化などに独自性がある。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -7692,8 +8118,11 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "エベレストを擁するヒマラヤの国。 首都はカトマンズで、アジアに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -7774,9 +8203,14 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「インド洋の真珠」。紅茶（セイロンティー）の産地。 首都はスリジャヤワルダナプラコッテで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -7857,9 +8291,12 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Technology & Industry"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "「e-国家」として知られるIT先進国。Skype発祥の地。 首都はタリンで、ヨーロッパに位置する。 また、技術、工業、教育、都市化などの発展も見どころである。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -7940,9 +8377,13 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Island & Maritime"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "バルト三国の中央。首都リガの旧市街は世界遺産。 首都はリガで、ヨーロッパに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -8023,9 +8464,13 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Island & Maritime"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "中世には巨大な公国だった歴史を持つ。 首都はヴィリニュスで、ヨーロッパに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -8106,9 +8551,12 @@
       "type": "Present",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "「火と氷の国」。火山とオーロラ、温泉が有名。 首都はレイキャビクで、ヨーロッパに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -8189,9 +8637,15 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Kingdom",
+        "Duchy & Principality",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "世界有数の富裕国。金融センター。 首都はルクセンブルクで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -8272,11 +8726,12 @@
       "type": "Present",
       "region": "Asia/Europe",
       "tags": [
-        "Asia",
-        "Europe",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ワイン発祥の地とされる。親日国。 首都はトビリシで、アジア・ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -8357,10 +8812,11 @@
       "type": "Present",
       "region": "Asia/Europe",
       "tags": [
-        "Asia",
-        "Europe",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "「火の国」。カスピ海沿岸の産油国。 首都はバクーで、アジア・ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -8441,10 +8897,11 @@
       "type": "Present",
       "region": "Asia/Europe",
       "tags": [
-        "Asia",
-        "Europe",
-        "Religion",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Religious Center"
       ],
       "desc": {
         "ja": "世界で初めてキリスト教を国教化した国。 首都はエレバンで、アジア・ヨーロッパに位置する。 また、宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -8525,8 +8982,11 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Technology & Industry"
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "半導体産業の世界的な中心地。美食の宝庫。 首都は台北で、アジアに位置する。 また、技術、工業、教育、都市化などの発展も見どころである。",
@@ -8607,10 +9067,13 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "ASEAN",
+        "Republic",
+        "Socialist State",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "東南アジア唯一の内陸国。メコン川が流れる。 首都はビエンチャンで、アジアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -8691,9 +9154,14 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "800以上の言語が話される多様性の国。 首都はポートモレスビーで、オセアニアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -8774,10 +9242,15 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "南太平洋の楽園。ラグビー強豪国。 首都はスバで、オセアニアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -8858,10 +9331,13 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "マヤ文明の遺跡が多く残る。コーヒー産地。 首都はグアテマラシティで、アメリカ大陸に位置する。 また、古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -8942,10 +9418,13 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "カリブ海に面した中米の国。コパン遺跡がある。 首都はテグシガルパで、アメリカ大陸に位置する。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -9026,11 +9505,14 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Government",
-        "Modern History",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Revolutionary State",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "世界初の黒人共和国として独立。 首都はポルトープランスで、アメリカ大陸に位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -9111,9 +9593,14 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ナイル川が合流する地。エジプトより多くのピラミッドがある。 首都はハルツームで、アフリカに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -9194,8 +9681,12 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "アフリカ有数の産油国かつダイヤモンド産出国。 首都はルアンダで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -9276,10 +9767,12 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Modern History",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「象牙海岸」。カカオ生産世界一。 首都はヤムスクロで、アフリカに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -9360,9 +9853,13 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Ancient",
-        "Trade & Economy"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "古代カルタゴの遺跡がある。地中海リゾート地。 首都はチュニスで、アフリカに位置する。 また、古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -9443,11 +9940,14 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Medieval",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中欧の山岳国。かつてチェコと同じ国だった。 首都はブラチスラヴァで、ヨーロッパに位置する。 また、中世の交易、宗教、軍事、都市形成と深く関係する。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -9528,9 +10028,12 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Nature & Geography"
+        "UN Member",
+        "European Union",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "アルプスと地中海が出会う国。自然豊か。 首都はリュブリャナで、ヨーロッパに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -9611,8 +10114,12 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Federation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "東洋と西洋の文化が交差する国。 首都はサラエボで、ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -9693,8 +10200,11 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Culture"
+        "UN Member",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「鷲の国」と呼ばれるバルカン半島の国。 首都はティラナで、ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -9775,9 +10285,11 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Modern History",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「森と湖の国」。東欧の内陸国。 首都はミンスクで、ヨーロッパに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -9858,10 +10370,11 @@
       "type": "Present",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Modern History",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ワイン産業が盛んな東欧の国。 首都はキシナウで、ヨーロッパに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -9942,11 +10455,14 @@
       "type": "Present",
       "region": "Europe/Middle East",
       "tags": [
-        "Europe",
-        "Middle East",
-        "International",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "European Union",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "地中海の島国。愛の女神アフロディーテ生誕の地。 首都はニコシアで、中東・ヨーロッパに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -10027,11 +10543,15 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "International",
-        "Medieval",
-        "War & Conflict",
-        "Island & Maritime"
+        "UN Member",
+        "European Union",
+        "Republic",
+        "Military Government",
+        "Maritime Power",
+        "Island Nation",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "地中海の要衝。騎士団の歴史がある。 首都はバレッタで、ヨーロッパに位置する。 また、中世の交易、宗教、軍事、都市形成と深く関係する。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10112,10 +10632,13 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "国民総幸福量(GNH)を重視するヒマラヤの王国。 首都はティンプーで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -10196,10 +10719,13 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インド洋の美しい珊瑚礁の島国。 首都はマレで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10280,9 +10806,15 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Arab League",
+        "Kingdom",
+        "Sultanate",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "アラビア半島の海洋国家。シンドバッド伝説。 首都はマスカットで、中東に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10363,9 +10895,16 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy",
-        "Island & Maritime"
+        "UN Member",
+        "Arab League",
+        "OPEC",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "ペルシャ湾岸の産油国。 首都はクウェートシティで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10446,9 +10985,15 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Trade & Economy",
-        "Island & Maritime"
+        "UN Member",
+        "Arab League",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "中東の金融センターである島国。 首都はマナーマで、中東に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10529,9 +11074,13 @@
       "type": "Present",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Silk Road",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「中央アジアのスイス」と呼ばれる山岳国。 首都はビシュケクで、アジアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -10612,8 +11161,11 @@
       "type": "Present",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Silk Road",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "パミール高原を擁する山岳国。 首都はドゥシャンベで、アジアに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -10694,9 +11246,12 @@
       "type": "Present",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Silk Road",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "天然ガスが豊富。白亜の首都を持つ。 首都はアシガバートで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -10777,9 +11332,12 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "Modern History",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "21世紀最初の独立国。 首都はディリで、アジアに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -10860,9 +11418,15 @@
       "type": "Present",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "International",
-        "Trade & Economy"
+        "UN Member",
+        "ASEAN",
+        "Kingdom",
+        "Sultanate",
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "ボルネオ島北部の豊かな王国。 首都はバンダルスリブガワンで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -10943,9 +11507,14 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Technology & Industry"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「千の丘の国」。IT産業振興と清潔さで有名。 首都はキガリで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。技術、工業、教育、都市化などの発展も見どころである。",
@@ -11026,10 +11595,15 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ダイヤモンド産出で潤う安定した国。 首都はハボローネで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -11110,8 +11684,12 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "世界最古のナミブ砂漠がある。 首都はウィントフックで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -11192,9 +11770,14 @@
       "type": "Present",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "銅の産出国。ヴィクトリアの滝への玄関口。 首都はルサカで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -11275,8 +11858,13 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Culture"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「アフリカの縮図」と呼ばれる多様性を持つ。 首都はヤウンデで、アフリカに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -11357,12 +11945,10 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "Kingdom",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Military Government",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ハプスブルク家が統治した多民族国家。第一次世界大戦で崩壊。 中心地はウィーン / ブダペストで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。王権や君主制の伝統が政治や文化の理解に関わる。政治体制や国家制度の変化が歴史を理解する手がかりになる。",
@@ -11443,11 +12029,11 @@
       "type": "Past",
       "region": "Middle East / Europe / Africa",
       "tags": [
-        "Europe",
-        "Africa",
-        "Middle East",
         "Empire",
-        "Religion"
+        "Silk Road",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "地中海世界を支配したイスラム王朝。600年以上続いた。 中心地はコンスタンティノープルで、中東・ヨーロッパ・アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -11528,11 +12114,10 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "Kingdom",
-        "Modern History"
+        "Early Modern State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ロマノフ朝が支配した巨大帝国。ロシア革命で滅亡。 中心地はサンクトペテルブルクで、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。王権や君主制の伝統が政治や文化の理解に関わる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -11613,12 +12198,12 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "Modern History",
-        "War & Conflict",
-        "Trade & Economy",
-        "Technology & Industry"
+        "Colonial Empire",
+        "Military Government",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power"
       ],
       "desc": {
         "ja": "プロイセンを中心に統一されたドイツ人国家。第一次世界大戦で敗北。 中心地はベルリンで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -11699,12 +12284,11 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
-        "International",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Socialist State",
+        "Military Government",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "世界初の社会主義国家。アメリカと冷戦を繰り広げた。 中心地はモスクワで、アジア・ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -11785,8 +12369,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Empire"
+        "Empire",
+        "Medieval Dynasty",
+        "Early Modern State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "中国最後の統一王朝。満洲族による支配。 中心地は北京で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。",
@@ -11867,11 +12453,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Modern History",
-        "War & Conflict",
-        "Technology & Industry"
+        "Military Government",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "明治維新から第二次世界大戦終結までの日本。 中心地は東京で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -11952,9 +12538,9 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Modern History",
-        "War & Conflict"
+        "Military Government",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "中国東北部に存在した国家。事実上の日本の傀儡国家とされる。 中心地は新京 (長春)で、アジアに展開した歴史上の国家である。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12035,10 +12621,10 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Republic",
+        "Socialist State",
+        "Military Government",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "ドイツ民主共和国。ベルリンの壁崩壊まで存在した社会主義国。 中心地は東ベルリンで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12119,8 +12705,9 @@
       "type": "Past",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Government"
+        "Socialist State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "バルカン半島に存在した連邦国家。 中心地はベオグラードで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。",
@@ -12201,8 +12788,9 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Government"
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "中欧に位置した国家。1993年にチェコとスロバキアに平和的に分離。 中心地はプラハで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。",
@@ -12283,9 +12871,10 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "Modern History",
-        "War & Conflict"
+        "Republic",
+        "Socialist State",
+        "Military Government",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "ベトナム共和国。ベトナム戦争の舞台となり、1975年に消滅。 中心地はサイゴンで、アジアに展開した歴史上の国家である。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12366,9 +12955,10 @@
       "type": "Past",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "Religion",
-        "Nature & Geography"
+        "Modern Nation-State",
+        "Resource Economy",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ヒマラヤ山脈北側に位置する地域。 中心地はラサで、アジアに展開した歴史上の国家である。 また、宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -12449,9 +13039,9 @@
       "type": "Past",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Government",
-        "Modern History"
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "英雄シモン・ボリバルが夢見た南米の統一共和国。 中心地はボゴタで、アメリカ大陸に展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -12532,10 +13122,11 @@
       "type": "Past",
       "region": "North America",
       "tags": [
-        "Americas",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Republic",
+        "Confederation",
+        "Military Government",
+        "Revolutionary State",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "南北戦争時にアメリカ合衆国から分離独立を宣言した南部諸州。 中心地はリッチモンドで、アメリカ大陸に展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12616,9 +13207,10 @@
       "type": "Past",
       "region": "Oceania / Pacific",
       "tags": [
-        "Oceania",
         "Kingdom",
-        "Island & Maritime"
+        "Maritime Power",
+        "Early Modern State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "カメハメハ大王が建国。1898年にアメリカに併合され消滅。 中心地はホノルルで、オセアニアに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -12699,9 +13291,9 @@
       "type": "Past",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Modern History",
-        "War & Conflict"
+        "Military Government",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "モブツ独裁政権下のコンゴ民主共和国の旧称(1971-1997)。 中心地はキンシャサで、アフリカに展開した歴史上の国家である。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12782,10 +13374,10 @@
       "type": "Past",
       "region": "Middle East / Africa",
       "tags": [
-        "Africa",
-        "Middle East",
-        "Government",
-        "Culture"
+        "Republic",
+        "Confederation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "エジプトとシリアが合邦して成立した汎アラブ国家。 中心地はカイロで、中東・アフリカに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -12866,10 +13458,9 @@
       "type": "Past",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Military Government",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "現在のジンバブエ。白人少数支配の国家として孤立した。 中心地はソールズベリーで、アフリカに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -12950,11 +13541,14 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "Medieval",
-        "Culture"
+        "Khanate",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "人類史上最大の連続した領土を持った帝国。 中心地はカラコルムで、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -13035,9 +13629,9 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "Medieval"
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "中世から近世にかけて中欧に存在した国家連合。 中心地はなし (巡回)で、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。",
@@ -13118,11 +13712,12 @@
       "type": "Past",
       "region": "Europe / Asia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "Medieval",
-        "Religion"
+        "Silk Road",
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "ローマ帝国の東側継承国家。1000年以上存続した。 中心地はコンスタンティノープルで、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -13203,9 +13798,12 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Americas",
         "Empire",
-        "Ancient"
+        "City-State",
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "メキシコ中央高原に栄えた文明。現在のメキシコシティの基礎。 中心地はテノチティトランで、アメリカ大陸に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。",
@@ -13286,10 +13884,12 @@
       "type": "Past",
       "region": "South America (Andes)",
       "tags": [
-        "Americas",
         "Empire",
-        "Ancient",
-        "Nature & Geography"
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アンデス山脈に栄えた南米最大の帝国。 中心地はクスコで、アメリカ大陸に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -13370,10 +13970,11 @@
       "type": "Past",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Culture",
-        "Religion"
+        "Early Modern State",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インド亜大陸の大部分を支配したイスラム王朝。 中心地はアグラ / デリーで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -13454,9 +14055,10 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Empire",
-        "Ancient"
+        "Silk Road",
+        "Ancient Civilization",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "古代オリエントを統一した最初の世界帝国。 中心地はペルセポリスで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。",
@@ -13537,11 +14139,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Medieval",
-        "Culture",
-        "Religion"
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "現在のカンボジアを中心に栄えた王朝。アンコール・ワットを建設。 中心地はアンコールで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -13622,10 +14224,10 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
         "Empire",
-        "Medieval",
-        "Trade & Economy"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "西アフリカのイスラム国家。マンサ・ムーサ王の黄金巡礼で知られる。 中心地はニアニで、アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -13706,9 +14308,11 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Religion"
+        "UN Member",
+        "City-State",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "世界最小の独立国。カトリック教会の総本山。 首都はバチカンで、ヨーロッパに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -13789,9 +14393,14 @@
       "type": "Present",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy",
-        "Culture"
+        "UN Member",
+        "Kingdom",
+        "City-State",
+        "Duchy & Principality",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "世界で2番目に小さい国。F1とカジノで有名。 首都はモナコで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -13872,8 +14481,10 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "Government"
+        "UN Member",
+        "Republic",
+        "City-State",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "現存する世界最古の共和国。イタリアに囲まれている。 首都はサンマリノで、ヨーロッパに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。",
@@ -13954,9 +14565,13 @@
       "type": "Present",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Kingdom",
+        "Duchy & Principality",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "スイスとオーストリアに挟まれた公国。 首都はファドゥーツで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14037,10 +14652,14 @@
       "type": "Present",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Kingdom",
+        "Duchy & Principality",
+        "Constitutional Monarchy",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "フランスとスペインの国境、ピレネー山脈にある。 首都はアンドララベリャで、ヨーロッパに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14121,10 +14740,13 @@
       "type": "Present",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「文明の十字路」。山岳地帯が多い。 首都はカブールで、アジアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14205,8 +14827,11 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Culture"
+        "UN Member",
+        "Arab League",
+        "Republic",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アラビア半島南端の国。古い摩天楼建築がある。 首都はサナアで、中東に位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -14287,10 +14912,12 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Technology & Industry",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "「火山の国」。ビットコインを法定通貨にした。 首都はサンサルバドルで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。技術、工業、教育、都市化などの発展も見どころである。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14371,8 +14998,10 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "中米最大の面積を持つ。湖と火山が多い。 首都はマナグアで、アメリカ大陸に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14453,11 +15082,14 @@
       "type": "Present",
       "region": "Central America",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "美しいサンゴ礁「ブルーホール」がある。 首都はベルモパンで、アメリカ大陸に位置する。 また、古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -14538,10 +15170,14 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "700以上の島々からなるリゾート地。 首都はナッソーで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -14622,10 +15258,14 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "カリブ海南端の産油国。スチールドラム発祥。 首都はポートオブスペインで、アメリカ大陸に位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -14706,9 +15346,13 @@
       "type": "Present",
       "region": "Caribbean",
       "tags": [
-        "Americas",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "カリブ海の東端。リアーナの出身地。 首都はブリッジタウンで、アメリカ大陸に位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -14789,9 +15433,14 @@
       "type": "Present",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "OPEC",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "北アフリカの産油国。ローマ遺跡レプティス・マグナがある。 首都はトリポリで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14872,9 +15521,13 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "かつて黄金の都トンブクトゥが栄えた地。 首都はバマコで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -14955,8 +15608,12 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "サハラ砂漠南部の内陸国。 首都はンジャメナで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -15037,9 +15694,15 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "War & Conflict",
-        "Island & Maritime"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Republic",
+        "Military Government",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「アフリカの角」に位置する。 首都はモガディシュで、アフリカに位置する。 また、戦争や紛争の経験が領土、政治、社会に影響を与えてきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -15120,8 +15783,13 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Island & Maritime"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "紅海に面した国。首都アスマラは世界遺産。 首都はアスマラで、アフリカに位置する。 また、島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -15202,9 +15870,14 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ポリネシアの伝統文化が残る島国。 首都はアピアで、オセアニアに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -15285,9 +15958,14 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
+        "UN Member",
+        "Commonwealth",
         "Kingdom",
-        "Island & Maritime"
+        "Constitutional Monarchy",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ポリネシア唯一の王国。 首都はヌクアロファで、オセアニアに位置する。 また、王権や君主制の伝統が政治や文化の理解に関わる。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -15368,11 +16046,15 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "世界遺産のロックアイランドを持つ親日国。 首都はマルキョクで、オセアニアに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -15453,9 +16135,10 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "International",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "南米唯一の英語圏。カイエトゥール滝がある。 首都はジョージタウンで、アメリカ大陸に位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。国際組織や広域的な枠組みとの関係があり、外交や地域協力の面でも注目される。",
@@ -15536,10 +16219,11 @@
       "type": "Present",
       "region": "South America",
       "tags": [
-        "Americas",
-        "Modern History",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "南米唯一のオランダ語圏。自然保護区が世界遺産。 首都はパラマリボで、アメリカ大陸に位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -15620,8 +16304,9 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Modern History"
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "2008年に独立宣言。欧州で一番新しい国の一つ。 首都はプリシュティナで、ヨーロッパに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -15702,9 +16387,13 @@
       "type": "Present",
       "region": "Europe, Balkans",
       "tags": [
-        "Europe",
-        "Ancient",
-        "Culture"
+        "UN Member",
+        "NATO",
+        "Republic",
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アレクサンドロス大王のゆかりの地。マザー・テレサの故郷。 首都はスコピエで、ヨーロッパに位置する。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -15785,9 +16474,13 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "サハラ砂漠の民とニジェール川の国。 首都はニアメで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -15868,8 +16561,12 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Culture"
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「高潔な人々の国」。アフリカ映画祭が有名。 首都はワガドゥグーで、アフリカに位置する。 また、言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -15950,10 +16647,14 @@
       "type": "Present",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "War & Conflict",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "Arab League",
+        "African Union",
+        "Republic",
+        "Military Government",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "国土の大部分が砂漠。「砂漠の眼」がある。 首都はヌアクショットで、アフリカに位置する。 また、戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -16034,9 +16735,13 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "OPEC",
+        "Republic",
+        "Trade Hub",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "「シュバイツァー博士」の病院がある。森林豊かな国。 首都はリーブルヴィルで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -16117,9 +16822,12 @@
       "type": "Present",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
-        "Government",
-        "Nature & Geography"
+        "UN Member",
+        "African Union",
+        "OPEC",
+        "Republic",
+        "Modern Nation-State",
+        "Resource Economy"
       ],
       "desc": {
         "ja": "コンゴ川の対岸にキンシャサを望む。 首都はブラザヴィルで、アフリカに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -16200,10 +16908,16 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Maritime Power",
+        "Trade Hub",
+        "Island Nation",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インド洋の楽園。巨大なリクガメが生息。 首都はビクトリアで、アフリカに位置する。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -16284,9 +16998,15 @@
       "type": "Present",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "African Union",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「トム・ソーヤー」の作家トウェインが天国と讃えた島。ドードー鳥の故郷。 首都はポートルイスで、アフリカに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -16367,10 +17087,13 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Modern History",
-        "War & Conflict",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Military Government",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "ガダルカナル島がある。ダイビングの名所。 首都はホニアラで、オセアニアに位置する。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -16451,9 +17174,14 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "バンジージャンプ発祥の地とされる。 首都はポートビラで、オセアニアに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -16534,9 +17262,14 @@
       "type": "Present",
       "region": "Oceania",
       "tags": [
-        "Oceania",
-        "Nature & Geography",
-        "Island & Maritime"
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Maritime Power",
+        "Island Nation",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "世界で一番早く日付が変わる国。 首都はタラワで、オセアニアに位置する。 また、地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -16617,9 +17350,11 @@
       "type": "Present",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "War & Conflict",
-        "Culture"
+        "Arab League",
+        "Military Government",
+        "Modern Nation-State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "歴史的・宗教的に重要な地域。 首都はラマッラ / 東エルサレムで、中東に位置する。 また、戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -16700,8 +17435,11 @@
       "type": "Present",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Government"
+        "UN Member",
+        "Republic",
+        "Socialist State",
+        "Military Government",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "朝鮮半島北部の社会主義国家。 首都は平壌で、アジアに位置する。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。",
@@ -16782,10 +17520,9 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Ancient",
-        "Culture",
-        "Nature & Geography"
+        "Ancient Civilization",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ナイル川流域に栄えた文明。ピラミッドやヒエログリフで知られる。 中心地はメンフィス / テーベで、アフリカに展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。地形、気候、河川、山地などの自然条件が暮らしと歴史を形づくってきた。",
@@ -16866,10 +17603,12 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
-        "Ancient",
-        "War & Conflict",
-        "Trade & Economy"
+        "City-State",
+        "Military Government",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "地中海の覇権をローマと争ったフェニキア人の都市国家。ハンニバル将軍が有名。 中心地はカルタゴで、アフリカに展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -16950,8 +17689,9 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Ancient"
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "メソポタミア南部の古代文明。「目には目を」のハンムラビ法典で有名。 中心地はバビロンで、中東に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。",
@@ -17032,10 +17772,10 @@
       "type": "Past",
       "region": "Europe, Greece",
       "tags": [
-        "Europe",
-        "Ancient",
-        "War & Conflict",
-        "Culture"
+        "City-State",
+        "Military Government",
+        "Ancient Civilization",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "古代ギリシャの都市国家。極めて厳格な軍事教育制度で知られる。 中心地はスパルタで、ヨーロッパに展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -17116,12 +17856,14 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Europe",
-        "Government",
-        "Modern History",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "Republic",
+        "City-State",
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「アドリア海の女王」と呼ばれた海洋国家。1000年以上続いた商業共和国。 中心地はヴェネツィアで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -17202,11 +17944,11 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "International",
+        "Confederation",
         "Empire",
-        "Government",
-        "War & Conflict"
+        "Military Government",
+        "Early Modern State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "当時の欧州最大級の領土を誇った連合国家。貴族民主主義と「有翼重騎兵」で有名。 中心地はクラクフ / ワルシャワで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。政治体制や国家制度の変化が歴史を理解する手がかりになる。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -17287,9 +18029,9 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "War & Conflict",
-        "Culture"
+        "Military Government",
+        "Medieval Dynasty",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "サムライや将軍が割拠した時代。マルコ・ポーロによって欧州に伝えられた。 中心地は京都で、アジアに展開した歴史上の国家である。 また、戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -17370,10 +18112,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Trade & Economy",
-        "Culture"
+        "Trade Hub",
+        "Silk Road",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中国史上の黄金時代。シルクロードを通じた国際色豊かな文化が花開いた。 中心地は長安で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -17454,10 +18198,9 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Kingdom",
-        "Culture",
-        "Religion"
+        "Medieval Dynasty",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "朝鮮半島を500年以上統治した王朝。ハングル文字が制定された。 中心地は漢城 (ソウル)で、アジアに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -17538,10 +18281,11 @@
       "type": "Past",
       "region": "North America",
       "tags": [
-        "Americas",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Republic",
+        "Military Government",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "メキシコから独立し、後にアメリカ合衆国に併合された「ローンスター」共和国。 中心地はオースティン等で、アメリカ大陸に展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -17622,9 +18366,10 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Europe",
-        "Culture",
-        "Religion"
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ローマ教皇が世俗の君主として統治した領土。イタリア統一まで存在した。 中心地はローマで、ヨーロッパに展開した歴史上の国家である。 また、言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -17705,10 +18450,10 @@
       "type": "Past",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
-        "Empire",
         "Kingdom",
-        "War & Conflict"
+        "Empire",
+        "Military Government",
+        "Modern Nation-State"
       ],
       "desc": {
         "ja": "19世紀の南アフリカに強大な軍事力を誇った王国。シャカ王が有名。 中心地はウルンディで、アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。王権や君主制の伝統が政治や文化の理解に関わる。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -17789,11 +18534,10 @@
       "type": "Past",
       "region": "North America (Central America)",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Technology & Industry",
-        "Culture",
-        "Nature & Geography"
+        "Ancient Civilization",
+        "Industrial Power",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中米の密林に栄えた文明。高度な天文学と数学、精密な暦を持っていた。 中心地はティカル / チチェン・イッツァで、アメリカ大陸に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。技術、工業、教育、都市化などの発展も見どころである。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -17874,9 +18618,8 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Culture"
+        "Ancient Civilization",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "メキシコ湾岸の古代文明。巨大な石人頭像で有名。中米の「母なる文明」。 中心地はラ・ベンタで、アメリカ大陸に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -17957,9 +18700,8 @@
       "type": "Past",
       "region": "North America",
       "tags": [
-        "Americas",
-        "Government",
-        "Culture"
+        "Medieval Dynasty",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "北米先住民の強力な部族連合。「大いなる平和の法」はアメリカ憲法にも影響を与えたとされる。 中心地はオノンダガで、アメリカ大陸に展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -18040,11 +18782,13 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Empire",
-        "Technology & Industry",
-        "Culture",
-        "Religion"
+        "Caliphate",
+        "Medieval Dynasty",
+        "Industrial Power",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イスラム黄金時代を築いた王朝。『千夜一夜物語』の舞台。 中心地はバグダッドで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。技術、工業、教育、都市化などの発展も見どころである。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -18125,12 +18869,12 @@
       "type": "Past",
       "region": "Middle East / Africa / Europe",
       "tags": [
-        "Europe",
-        "Africa",
-        "Middle East",
         "Empire",
-        "War & Conflict",
-        "Religion"
+        "Caliphate",
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "イスラム史上最大の領土を持った世襲王朝。イベリア半島まで支配した。 中心地はダマスカスで、中東・ヨーロッパ・アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -18211,11 +18955,13 @@
       "type": "Past",
       "region": "Europe (Spain)",
       "tags": [
-        "Europe",
         "Empire",
-        "Culture",
-        "Religion",
-        "Island & Maritime"
+        "Caliphate",
+        "Maritime Power",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イベリア半島（現在のスペイン）に栄えたイスラム王朝。高度な文化を誇った。 中心地はコルドバで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -18296,11 +19042,11 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Kingdom",
-        "Medieval",
-        "War & Conflict",
-        "Religion"
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "十字軍によって聖地に建国されたキリスト教国家。 中心地はエルサレムで、中東に展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。中世の交易、宗教、軍事、都市形成と深く関係する。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -18381,12 +19127,14 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "Military Government",
+        "Maritime Power",
+        "Trade Hub",
+        "Silk Road",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "漢民族による最後の統一王朝。鄭和の大航海や万里の長城の増築で知られる。 中心地は南京 / 北京で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -18467,12 +19215,14 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Ancient",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "Trade Hub",
+        "Silk Road",
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "古代中国の黄金時代。「漢字」「漢民族」の語源となった。 中心地は長安 / 洛陽で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -18553,11 +19303,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Government",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture"
+        "Military Government",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Early Modern State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "徳川家康が開いた武家政権。260年以上の平和な時代（パクス・トクガワ）が続いた。 中心地は江戸 (東京)で、アジアに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -18638,11 +19388,12 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Kingdom",
-        "Trade & Economy",
-        "Culture",
-        "Island & Maritime"
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "沖縄に存在した海洋王国。日本、中国、東南アジアとの中継貿易で栄えた。 中心地は首里で、アジアに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -18723,10 +19474,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Trade & Economy",
-        "Island & Maritime"
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "現在のインドネシアを中心に栄えた海洋帝国。香辛料貿易を支配した。 中心地はトロウランで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -18807,11 +19559,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Kingdom",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "タイに存在した交易国家。国際色豊かな都市を築いた。 中心地はアユタヤで、アジアに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -18892,10 +19644,12 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Religion",
-        "Island & Maritime"
+        "City-State",
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "マラッカ海峡を支配し、東西貿易の中継地として栄えた仏教国。 中心地はパレンバンで、アジアに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -18976,11 +19730,11 @@
       "type": "Past",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
         "Kingdom",
-        "Ancient",
-        "Trade & Economy",
-        "Religion"
+        "Trade Hub",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "古代エチオピアの強国。ローマやインドと交易を行った。 中心地はアクスムで、アフリカに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -19061,12 +19815,12 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Africa",
         "Kingdom",
-        "Ancient",
-        "War & Conflict",
-        "Trade & Economy",
-        "Nature & Geography"
+        "Military Government",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Resource Economy",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ナイル川上流（現在のスーダン）の王国。「黒いファラオ」としてエジプトを支配した時期もある。 中心地はメロエで、アフリカに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -19147,11 +19901,12 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
         "Empire",
-        "Trade & Economy",
-        "Religion",
-        "Nature & Geography"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Resource Economy",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "西アフリカ史上最大の帝国。トンブクトゥが学問の中心として栄えた。 中心地はガオで、アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -19232,11 +19987,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
         "Kingdom",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Resource Economy",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "現在のナイジェリア南部にあった王国。精巧な青銅器（ベニン・ブロンズ）で有名。 中心地はベニンシティで、アフリカに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -19317,9 +20072,10 @@
       "type": "Past",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy",
-        "Island & Maritime"
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "地中海西部に広大な領土を持った連合王国。スペイン統一の母体の一つ。 中心地はサラゴサ / バルセロナで、ヨーロッパに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -19400,12 +20156,12 @@
       "type": "Past",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
         "Kingdom",
-        "Medieval",
-        "War & Conflict",
-        "Culture",
-        "Religion"
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イベリア半島中央部の強国。アラゴンと統合してスペイン王国となった。 中心地はトレドで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。中世の交易、宗教、軍事、都市形成と深く関係する。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -19486,11 +20242,12 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "Medieval",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture"
+        "Duchy & Principality",
+        "Military Government",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中世後期にフランスとドイツの間で繁栄し、独自の文化を誇った公国。 中心地はディジョンで、ヨーロッパに展開した歴史上の国家である。 また、中世の交易、宗教、軍事、都市形成と深く関係する。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -19571,9 +20328,10 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
         "Kingdom",
-        "War & Conflict"
+        "Military Government",
+        "Early Modern State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "強力な軍隊を持ち、ドイツ統一の中心となった王国。 中心地はベルリン / ケーニヒスベルクで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -19654,9 +20412,10 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Trade & Economy",
-        "Religion"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "東スラブ人の最初の国家。ロシア、ウクライナ、ベラルーシのルーツ。 中心地はキエフで、ヨーロッパに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -19737,9 +20496,9 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Trade & Economy"
+        "Republic",
+        "Trade Hub",
+        "Medieval Dynasty"
       ],
       "desc": {
         "ja": "北ロシアの商業共和国。ハンザ同盟と交易し、独特の民主制を持っていた。 中心地はノヴゴロドで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -19820,10 +20579,10 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Medieval",
-        "Island & Maritime"
+        "Confederation",
+        "Maritime Power",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "デンマーク、スウェーデン、ノルウェーの北欧三国の同君連合。 中心地はコペンハーゲン等で、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。中世の交易、宗教、軍事、都市形成と深く関係する。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -19904,11 +20663,15 @@
       "type": "Past",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture"
+        "Military Government",
+        "Trade Hub",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中央アジアに興ったモンゴルの継承国家。壮麗なイスラム建築を残した。 中心地はサマルカンドで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -19989,10 +20752,12 @@
       "type": "Past",
       "region": "Middle East (Iran)",
       "tags": [
-        "Middle East",
         "Empire",
-        "Culture",
-        "Religion"
+        "Silk Road",
+        "Early Modern State",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イランのシーア派王朝。「世界の半分」と称されたイスファハーンを建設。 中心地はイスファハーンで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -20073,11 +20838,14 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "War & Conflict",
-        "Culture"
+        "Khanate",
+        "Military Government",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アッティラ王の下でローマ帝国を恐怖に陥れた騎馬遊牧民の帝国。 中心地は不明 (パンノニア)で、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -20158,10 +20926,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Ancient",
-        "War & Conflict",
-        "Culture"
+        "Military Government",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "朝鮮半島北部から満州にかけて存在した古代国家。広開土王の石碑で有名。 中心地は平壌 / 国内城で、アジアに展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -20242,10 +21010,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "Trade Hub",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "朝鮮半島を初めて統一した国家。「黄金の国」とも呼ばれた。 中心地は慶州で、アジアに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -20326,11 +21095,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Culture",
-        "Religion"
+        "Military Government",
+        "Medieval Dynasty",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "源頼朝が開いた日本初の武家政権。元寇を撃退したことでも知られる。 中心地は鎌倉で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -20411,11 +21180,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Government",
-        "Modern History",
-        "Culture"
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中国の支配から独立し、長期にわたり繁栄したベトナムの王朝。 中心地はハノイで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -20496,11 +21265,15 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "Modern History",
-        "Culture"
+        "Khanate",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "モンゴル帝国の分裂後にロシア方面を支配したハン国。 中心地はサライで、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -20581,10 +21354,12 @@
       "type": "Past",
       "region": "Global (Europe)",
       "tags": [
-        "Europe",
         "Empire",
-        "Trade & Economy",
-        "Island & Maritime"
+        "Colonial Empire",
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "大航海時代の先駆けとなり、世界中に植民地を持った海洋帝国。 中心地はリスボンで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -20665,10 +21440,11 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
-        "Government",
-        "Modern History",
-        "War & Conflict"
+        "Republic",
+        "Military Government",
+        "Revolutionary State",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ナイジェリアから分離独立を宣言し、悲劇的な内戦の末に消滅した国家。 中心地はエヌグで、アフリカに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -20749,10 +21525,11 @@
       "type": "Past",
       "region": "Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "Modern History",
-        "War & Conflict"
+        "Colonial Empire",
+        "Military Government",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ナポレオン・ボナパルトが築いた帝国。一時、ヨーロッパの大半を支配した。 中心地はパリで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -20833,10 +21610,10 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
         "Kingdom",
-        "Medieval",
-        "War & Conflict"
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "グレートブリテン島南部の王国。1707年にスコットランドと合同した。 中心地はロンドンで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。中世の交易、宗教、軍事、都市形成と深く関係する。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -20917,12 +21694,12 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
         "Kingdom",
-        "Government",
-        "Modern History",
-        "Culture",
-        "Nature & Geography"
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "グレートブリテン島北部の王国。独自の文化と法体系を持つ。 中心地はエディンバラで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -21003,10 +21780,15 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Trade & Economy",
-        "Culture"
+        "Khanate",
+        "Trade Hub",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "モンゴル帝国の一部で、クビライ・ハンが中国に樹立した王朝。 中心地は大都 (北京)で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -21087,12 +21869,13 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Trade & Economy",
-        "Technology & Industry",
-        "Culture"
+        "Military Government",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Industrial Power",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "経済・文化・技術（火薬・羅針盤）が著しく発展した中国の王朝。 中心地は開封 / 臨安で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -21173,11 +21956,13 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Empire",
-        "War & Conflict",
-        "Culture",
-        "Religion"
+        "Military Government",
+        "Silk Road",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イスラム教以前の最後のペルシャ帝国。ローマ帝国と激しく争った。 中心地はクテシフォンで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -21258,9 +22043,9 @@
       "type": "Past",
       "region": "South America",
       "tags": [
-        "Americas",
         "Empire",
-        "Kingdom"
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "19世紀のブラジルに存在した立憲君主制国家。政治的に安定していた。 中心地はリオデジャネイロで、アメリカ大陸に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。王権や君主制の伝統が政治や文化の理解に関わる。",
@@ -21341,10 +22126,11 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Europe",
         "Kingdom",
-        "Culture",
-        "Island & Maritime"
+        "Maritime Power",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "イタリア統一前に南イタリアとシチリア島を支配した王国。 中心地はナポリで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。言語、芸術、生活習慣、食文化などに独自性がある。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -21425,10 +22211,12 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Europe",
-        "Government",
-        "Trade & Economy",
-        "Island & Maritime"
+        "Republic",
+        "City-State",
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ヴェネツィアと地中海の覇権を争った海洋商業国家。 中心地はジェノヴァで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。交易、資源、産業、金融などの経済的役割が特徴になっている。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -21509,9 +22297,10 @@
       "type": "Past",
       "region": "Africa, West Africa",
       "tags": [
-        "Africa",
         "Empire",
-        "Trade & Economy"
+        "Trade Hub",
+        "Ancient Civilization",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「黄金の国」と呼ばれた西アフリカ最初の黒人王国。 中心地はクンビ・サレーで、アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -21592,10 +22381,10 @@
       "type": "Past",
       "region": "Africa, Central Africa",
       "tags": [
-        "Africa",
         "Kingdom",
-        "Trade & Economy",
-        "Religion"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Religious Center"
       ],
       "desc": {
         "ja": "コンゴ川流域の王国。早くからポルトガルと接触しキリスト教を受容した。 中心地はンバンザ・コンゴで、アフリカに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -21676,11 +22465,12 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Americas",
         "Empire",
-        "Ancient",
-        "War & Conflict",
-        "Culture"
+        "Military Government",
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アステカに先駆けてメキシコ中央高原を支配した軍事国家。 中心地はトゥーラで、アメリカ大陸に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -21761,11 +22551,12 @@
       "type": "Past",
       "region": "South America (Peru)",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Trade & Economy",
-        "Culture",
-        "Nature & Geography"
+        "Trade Hub",
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インカ帝国に征服されるまでペルー北岸を支配した王国。巨大な泥の都を作った。 中心地はチャンチャンで、アメリカ大陸に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -21846,9 +22637,13 @@
       "type": "Past",
       "region": "Asia, Central Asia",
       "tags": [
-        "Asia",
-        "War & Conflict",
-        "Culture"
+        "Khanate",
+        "Military Government",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "モンゴル高原を統一した最初の騎馬遊牧国家。漢帝国を脅かした。 中心地は統萬城などで、アジアに展開した歴史上の国家である。 また、戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -21929,10 +22724,15 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Empire",
-        "Culture",
-        "Religion"
+        "Khanate",
+        "Nomadic Power",
+        "Silk Road",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "モンゴル帝国の西南部（ペルシャ方面）を支配した政権。 中心地はタブリーズで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -22013,10 +22813,12 @@
       "type": "Past",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Culture",
-        "Religion"
+        "Sultanate",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "北インドを支配した5つのイスラム王朝の総称。 中心地はデリーで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -22097,11 +22899,12 @@
       "type": "Past",
       "region": "Asia, South Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Culture",
-        "Religion"
+        "Military Government",
+        "Early Modern State",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "19世紀パンジャーブ地方に栄えたシク教徒の王国。「パンジャーブの獅子」ランジート・シングが建国。 中心地はラホールで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -22182,11 +22985,14 @@
       "type": "Past",
       "region": "Eurasia",
       "tags": [
-        "Asia",
-        "Europe",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "Khanate",
+        "Trade Hub",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "カスピ海北岸の遊牧国家。支配層がユダヤ教に改宗したことで有名。 中心地はイティルで、アジア・ヨーロッパに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -22267,9 +23073,9 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
-        "Ancient",
-        "War & Conflict"
+        "Military Government",
+        "Ancient Civilization",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "強力な軍事力で全オリエントを初めて統一した帝国。 中心地はニネヴェで、中東に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -22350,11 +23156,11 @@
       "type": "Past",
       "region": "Middle East (Anatolia)",
       "tags": [
-        "Middle East",
         "Empire",
-        "Ancient",
-        "War & Conflict",
-        "Trade & Economy"
+        "Military Government",
+        "Trade Hub",
+        "Ancient Civilization",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "アナトリア（トルコ）の帝国。世界で初めて鉄製武器を実用化した。 中心地はハットゥシャで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -22435,13 +23241,14 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
-        "Government",
-        "Modern History",
-        "Trade & Economy",
-        "Technology & Industry",
-        "Culture",
-        "Island & Maritime"
+        "Republic",
+        "Colonial Empire",
+        "Maritime Power",
+        "Trade Hub",
+        "Early Modern State",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "17世紀に「黄金時代」を迎えたオランダ。東インド会社を通じた貿易で世界をリードした。 中心地はアムステルダム / ハーグで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -22522,10 +23329,12 @@
       "type": "Past",
       "region": "Europe, Northern Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "War & Conflict",
-        "Island & Maritime"
+        "Colonial Empire",
+        "Military Government",
+        "Maritime Power",
+        "Early Modern State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "「バルト海はスウェーデンの湖」と言わしめた北欧の軍事大国。 中心地はストックホルムで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -22606,10 +23415,12 @@
       "type": "Past",
       "region": "Europe, Italy",
       "tags": [
-        "Europe",
-        "Government",
-        "Modern History",
-        "Culture"
+        "Republic",
+        "City-State",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ルネサンスの中心地。メディチ家が支配し、ダ・ヴィンチやミケランジェロが活躍した。 中心地はフィレンツェで、ヨーロッパに展開した歴史上の国家である。 また、政治体制や国家制度の変化が歴史を理解する手がかりになる。近現代の独立、改革、国際関係の変化が大きな意味を持つ。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -22690,10 +23501,11 @@
       "type": "Past",
       "region": "Europe, Western Europe",
       "tags": [
-        "Europe",
         "Empire",
-        "Medieval",
-        "Religion"
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "西ローマ帝国滅亡後の西欧を統一したゲルマン人の王国。シャルルマーニュ大帝が有名。 中心地はアーヘン等で、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。中世の交易、宗教、軍事、都市形成と深く関係する。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -22774,10 +23586,10 @@
       "type": "Past",
       "region": "Europe, Southern Europe",
       "tags": [
-        "Europe",
         "Kingdom",
-        "Ancient",
-        "Medieval"
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "ローマ帝国末期にイベリア半島を支配したゲルマン系国家。 中心地はトゥールーズ / トレドで、ヨーロッパに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。古代文明や初期国家の発展と結びついている。中世の交易、宗教、軍事、都市形成と深く関係する。",
@@ -22858,10 +23670,11 @@
       "type": "Past",
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Empire",
         "Kingdom",
-        "Medieval"
+        "Republic",
+        "Empire",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "神聖ローマ帝国の選帝侯国の一つ。現在のチェコの前身。 中心地はプラハで、ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。王権や君主制の伝統が政治や文化の理解に関わる。中世の交易、宗教、軍事、都市形成と深く関係する。",
@@ -22942,11 +23755,12 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "Trade & Economy",
-        "Religion",
-        "Island & Maritime"
+        "Sultanate",
+        "Maritime Power",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Religious Center"
       ],
       "desc": {
         "ja": "東西貿易の要衝マラッカ海峡を支配したイスラム教国。 中心地はマラッカで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。交易、資源、産業、金融などの経済的役割が特徴になっている。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -23027,10 +23841,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Kingdom",
-        "Culture",
-        "Religion"
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ビルマ（ミャンマー）最初の統一王朝。数千の仏塔が立ち並ぶ遺跡で有名。 中心地はパガンで、アジアに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -23111,10 +23926,11 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
-        "Culture",
-        "Religion",
-        "Island & Maritime"
+        "Maritime Power",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ベトナム中部・南部に栄えた海洋国家。ヒンドゥー文化の影響を受けた。 中心地はヴィジャヤ等で、アジアに展開した歴史上の国家である。 また、言語、芸術、生活習慣、食文化などに独自性がある。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -23195,10 +24011,12 @@
       "type": "Past",
       "region": "Asia, Southeast Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Culture"
+        "Military Government",
+        "Medieval Dynasty",
+        "Early Modern State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "東南アジア史上最大の版図を誇ったビルマの王朝。 中心地はペグーで、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23279,9 +24097,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Technology & Industry",
-        "Culture"
+        "Military Government",
+        "Medieval Dynasty",
+        "Industrial Power",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "「Korea」の語源となった王朝。世界最古の金属活字や高麗青磁で知られる。 中心地は開城で、アジアに展開した歴史上の国家である。 また、技術、工業、教育、都市化などの発展も見どころである。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23362,9 +24182,10 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
-        "Trade & Economy",
-        "Culture"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "シルクロードの要衝を支配したタングート族の国家。独自の西夏文字を持っていた。 中心地は興慶府 (銀川)で、アジアに展開した歴史上の国家である。 また、交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23445,10 +24266,11 @@
       "type": "Past",
       "region": "Asia, East Asia",
       "tags": [
-        "Asia",
         "Empire",
-        "War & Conflict",
-        "Culture"
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "女真族が建てた王朝。宋を南へ追いやり、中国北部を支配した。 中心地は中都 (北京)で、アジアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23529,12 +24351,13 @@
       "type": "Past",
       "region": "Middle East / Africa",
       "tags": [
-        "Africa",
-        "Middle East",
         "Empire",
-        "War & Conflict",
-        "Culture",
-        "Religion"
+        "Sultanate",
+        "Military Government",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "エジプトのイスラム王朝。モンゴル軍の進撃を食い止めたことで有名。 中心地はカイロで、中東・アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23615,11 +24438,11 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Middle East",
         "Empire",
-        "Ancient",
-        "Modern History",
-        "Culture"
+        "Ancient Civilization",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "アレクサンドロス大王の死後、広大なアジア領土を継承したヘレニズム国家。 中心地はアンティオキアで、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。近現代の独立、改革、国際関係の変化が大きな意味を持つ。",
@@ -23700,13 +24523,13 @@
       "type": "Past",
       "region": "Middle East",
       "tags": [
-        "Europe",
-        "Middle East",
         "Empire",
-        "Ancient",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture"
+        "Military Government",
+        "Trade Hub",
+        "Silk Road",
+        "Ancient Civilization",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "ローマ帝国の強力なライバルだったイラン系の騎馬帝国（安息）。 中心地はクテシフォンで、中東・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -23787,10 +24610,10 @@
       "type": "Past",
       "region": "Africa, Southern Africa",
       "tags": [
-        "Africa",
         "Kingdom",
-        "Trade & Economy",
-        "Culture"
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "巨大な石造建築群「グレート・ジンバブエ」を残した王国。 中心地はグレート・ジンバブエで、アフリカに展開した歴史上の国家である。 また、王権や君主制の伝統が政治や文化の理解に関わる。交易、資源、産業、金融などの経済的役割が特徴になっている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -23871,10 +24694,9 @@
       "type": "Past",
       "region": "Africa, North Africa",
       "tags": [
-        "Europe",
-        "Africa",
-        "Ancient",
-        "War & Conflict"
+        "Military Government",
+        "Ancient Civilization",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "古代北アフリカのベルベル人国家。優秀な騎兵で知られた。 中心地はシルタで、ヨーロッパ・アフリカに展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -23955,12 +24777,14 @@
       "type": "Past",
       "region": "Africa, East Africa",
       "tags": [
-        "Africa",
         "Empire",
-        "War & Conflict",
-        "Trade & Economy",
-        "Culture",
-        "Religion"
+        "Sultanate",
+        "Military Government",
+        "Trade Hub",
+        "Medieval Dynasty",
+        "Multilingual State",
+        "Religious Center",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "中世ソマリアの強力な帝国。水利システムや城塞建築に優れていた。 中心地はメルカで、アフリカに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。交易、資源、産業、金融などの経済的役割が特徴になっている。",
@@ -24041,9 +24865,8 @@
       "type": "Past",
       "region": "North America (Mexico)",
       "tags": [
-        "Americas",
-        "Ancient",
-        "Culture"
+        "Ancient Civilization",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "メキシコ盆地に巨大な「太陽のピラミッド」を築いた謎多き古代都市国家。 中心地はテオティワカンで、アメリカ大陸に展開した歴史上の国家である。 また、古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -24124,11 +24947,12 @@
       "type": "Past",
       "region": "South America (Bolivia)",
       "tags": [
-        "Americas",
         "Empire",
-        "Ancient",
-        "Culture",
-        "Nature & Geography"
+        "Ancient Civilization",
+        "Medieval Dynasty",
+        "Resource Economy",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "desc": {
         "ja": "インカ帝国以前にアンデス高地で栄えた文明。巨石建築が特徴。 中心地はティワナクで、アメリカ大陸に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。古代文明や初期国家の発展と結びついている。言語、芸術、生活習慣、食文化などに独自性がある。",
@@ -24209,10 +25033,11 @@
       "type": "Past",
       "region": "Oceania / Pacific",
       "tags": [
-        "Oceania",
         "Empire",
-        "War & Conflict",
-        "Island & Maritime"
+        "Military Government",
+        "Maritime Power",
+        "Medieval Dynasty",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "南太平洋の広範囲に影響力を持った海洋帝国。 中心地はムアで、オセアニアに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。島嶼性や海上交通が交流、交易、防衛に影響してきた。",
@@ -24293,11 +25118,12 @@
       "type": "Past",
       "region": "Middle East (Anatolia)",
       "tags": [
-        "Middle East",
         "Empire",
-        "Modern History",
-        "Religion",
-        "Island & Maritime"
+        "Maritime Power",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "ビザンツ帝国の滅亡後も黒海沿岸で存続した継承国家。 中心地はトレビゾンド (トラブゾン)で、中東に展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。宗教的伝統や信仰の多様性が社会や歴史に大きく関わる。",
@@ -24378,9 +25204,11 @@
       "type": "Past",
       "region": "Europe, Eastern Europe",
       "tags": [
-        "Europe",
-        "Modern History",
-        "War & Conflict"
+        "Duchy & Principality",
+        "Military Government",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State"
       ],
       "desc": {
         "ja": "モンゴルの支配を脱し、後のロシア帝国の基礎となった国。 中心地はモスクワで、ヨーロッパに展開した歴史上の国家である。 また、近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -24461,12 +25289,12 @@
       "type": "Past",
       "region": "Europe / Asia",
       "tags": [
-        "Asia",
-        "Europe",
         "Empire",
-        "Modern History",
-        "War & Conflict",
-        "Religion"
+        "Military Government",
+        "Medieval Dynasty",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Religious Center"
       ],
       "desc": {
         "ja": "第4回十字軍がコンスタンティノープルを占領して建てたカトリック国家。 中心地はコンスタンティノープルで、アジア・ヨーロッパに展開した歴史上の国家である。 また、広い領域や多様な民族を統治した帝国的な性格が重要である。近現代の独立、改革、国際関係の変化が大きな意味を持つ。戦争や紛争の経験が領土、政治、社会に影響を与えてきた。",
@@ -24547,10 +25375,12 @@
       },
       "region": "Europe, Central Europe",
       "tags": [
-        "Europe",
-        "Modern History",
-        "War & Conflict",
-        "Culture"
+        "Federation",
+        "Confederation",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Multilingual State",
+        "Cultural Sphere"
       ],
       "period": {
         "start": 1989,

@@ -135,6 +135,7 @@ USER_RECORD_KEYS = {
     'review_keys',
     'quiz_stats',
     'avatar',
+    'name_color',
     'battle_wins',
 }
 
@@ -338,6 +339,17 @@ BATTLE_QUEUE = []
 BATTLE_ROOMS = {}
 BATTLE_USER_ROOM = {}
 BATTLE_COUNTER = 0
+DEFAULT_NAME_COLOR = '#1a2332'
+NAME_COLOR_OPTIONS = [
+    '#1a2332',
+    '#2563eb',
+    '#059669',
+    '#dc2626',
+    '#7c3aed',
+    '#ca8a04',
+    '#0891b2',
+    '#db2777',
+]
 
 UI_FALLBACKS = {
     'ja': {
@@ -676,6 +688,9 @@ EXTRA_UI_FALLBACKS = {
         'new_username': '新しいアカウント名',
         'current_password': '現在のパスワード',
         'new_password': '新しいパスワード',
+        'name_color': '名前の色',
+        'save_name_color': '名前の色を保存',
+        'name_color_saved': '名前の色を更新しました。',
         'account_updated': 'アカウント情報を更新しました。',
         'password_changed': 'パスワードを変更しました。',
         'account_deleted': 'アカウントを削除しました。',
@@ -692,6 +707,7 @@ EXTRA_UI_FALLBACKS = {
         'battle_hp': 'HP',
         'battle_hand': '手札',
         'battle_power': '国力',
+        'battle_tag_bonus': 'タグ一致ボーナス',
         'battle_submit': 'この手で勝負',
         'battle_wait_opponent': '相手の選択を待っています。',
         'battle_defenseless': '手札切れのため、このターンは無防備です。',
@@ -725,6 +741,9 @@ EXTRA_UI_FALLBACKS = {
         'new_username': 'New username',
         'current_password': 'Current password',
         'new_password': 'New password',
+        'name_color': 'Name color',
+        'save_name_color': 'Save name color',
+        'name_color_saved': 'Name color updated.',
         'account_updated': 'Account updated.',
         'password_changed': 'Password changed.',
         'account_deleted': 'Account deleted.',
@@ -741,6 +760,7 @@ EXTRA_UI_FALLBACKS = {
         'battle_hp': 'HP',
         'battle_hand': 'Hand',
         'battle_power': 'Power',
+        'battle_tag_bonus': 'Tag match bonus',
         'battle_submit': 'Play this hand',
         'battle_wait_opponent': 'Waiting for the opponent.',
         'battle_defenseless': 'Your hand is empty, so you are defenseless this turn.',
@@ -774,6 +794,9 @@ EXTRA_UI_FALLBACKS = {
         'new_username': '新用户名',
         'current_password': '当前密码',
         'new_password': '新密码',
+        'name_color': '名字颜色',
+        'save_name_color': '保存名字颜色',
+        'name_color_saved': '名字颜色已更新。',
         'account_updated': '账户信息已更新。',
         'password_changed': '密码已更改。',
         'account_deleted': '账户已删除。',
@@ -790,6 +813,7 @@ EXTRA_UI_FALLBACKS = {
         'battle_hp': 'HP',
         'battle_hand': '手牌',
         'battle_power': '国力',
+        'battle_tag_bonus': '标签一致加成',
         'battle_submit': '用这手牌对战',
         'battle_wait_opponent': '等待对手选择。',
         'battle_defenseless': '手牌已空，本回合处于无防备状态。',
@@ -826,26 +850,46 @@ def tag_search_text(tag):
     return ' '.join(values)
 
 TAG_COLOR_STYLES = {
-    'Asia': ('#fff1f2', '#7f1d1d', '#fecdd3'),
-    'Europe': ('#eff6ff', '#1e3a8a', '#bfdbfe'),
-    'Africa': ('#ecfdf5', '#064e3b', '#a7f3d0'),
-    'Americas': ('#eef2ff', '#312e81', '#c7d2fe'),
-    'Oceania': ('#ecfeff', '#155e75', '#a5f3fc'),
-    'Ancient': ('#fffbeb', '#78350f', '#fde68a'),
-    'Medieval': ('#f5f5f4', '#292524', '#d6d3d1'),
-    'Modern History': ('#f0f9ff', '#075985', '#bae6fd'),
-    'Empire': ('#faf5ff', '#581c87', '#e9d5ff'),
-    'Kingdom': ('#fefce8', '#713f12', '#fde68a'),
-    'Republic': ('#f7fee7', '#365314', '#d9f99d'),
-    'Government': ('#f8fafc', '#0f172a', '#cbd5e1'),
-    'War & Conflict': ('#fff1f2', '#881337', '#fecdd3'),
-    'Trade & Economy': ('#fff7ed', '#7c2d12', '#fed7aa'),
-    'Culture': ('#fdf2f8', '#831843', '#fbcfe8'),
-    'Religion': ('#f5f3ff', '#4c1d95', '#ddd6fe'),
-    'International': ('#f0fdfa', '#134e4a', '#99f6e4'),
-    'Island & Maritime': ('#ecfeff', '#164e63', '#a5f3fc'),
-    'Nature & Geography': ('#f0fdf4', '#14532d', '#bbf7d0'),
-    'Technology & Industry': ('#fdf4ff', '#701a75', '#f5d0fe'),
+    'UN Member': ('#eff6ff', '#1e3a8a', '#bfdbfe'),
+    'European Union': ('#eef2ff', '#3730a3', '#c7d2fe'),
+    'G20': ('#f0f9ff', '#075985', '#bae6fd'),
+    'NATO': ('#f8fafc', '#0f172a', '#cbd5e1'),
+    'Commonwealth': ('#ecfdf5', '#065f46', '#a7f3d0'),
+    'Arab League': ('#fff7ed', '#9a3412', '#fed7aa'),
+    'African Union': ('#f0fdf4', '#166534', '#bbf7d0'),
+    'ASEAN': ('#fefce8', '#854d0e', '#fef08a'),
+    'Mercosur': ('#ecfeff', '#155e75', '#a5f3fc'),
+    'OPEC': ('#fff1f2', '#9f1239', '#fecdd3'),
+    'Kingdom': ('#fef3c7', '#92400e', '#fde68a'),
+    'Republic': ('#dcfce7', '#166534', '#bbf7d0'),
+    'Federation': ('#dbeafe', '#1d4ed8', '#bfdbfe'),
+    'Confederation': ('#fae8ff', '#86198f', '#f5d0fe'),
+    'Empire': ('#ede9fe', '#5b21b6', '#ddd6fe'),
+    'Sultanate': ('#ffedd5', '#9a3412', '#fed7aa'),
+    'Khanate': ('#fef9c3', '#713f12', '#fde68a'),
+    'Caliphate': ('#ccfbf1', '#115e59', '#99f6e4'),
+    'City-State': ('#e0f2fe', '#0369a1', '#bae6fd'),
+    'Duchy & Principality': ('#fce7f3', '#9d174d', '#fbcfe8'),
+    'Colonial Empire': ('#fee2e2', '#991b1b', '#fecaca'),
+    'Socialist State': ('#ffe4e6', '#be123c', '#fecdd3'),
+    'Constitutional Monarchy': ('#ecfccb', '#3f6212', '#d9f99d'),
+    'Military Government': ('#e5e7eb', '#1f2937', '#d1d5db'),
+    'Revolutionary State': ('#ffedd5', '#c2410c', '#fed7aa'),
+    'Maritime Power': ('#cffafe', '#0e7490', '#a5f3fc'),
+    'Trade Hub': ('#fef3c7', '#a16207', '#fde68a'),
+    'Nomadic Power': ('#f5f5f4', '#44403c', '#d6d3d1'),
+    'Silk Road': ('#fef9c3', '#854d0e', '#fde68a'),
+    'Steppe Empire': ('#f4f4f5', '#3f3f46', '#d4d4d8'),
+    'Island Nation': ('#dffafe', '#155e75', '#a5f3fc'),
+    'Ancient Civilization': ('#fefce8', '#713f12', '#fde68a'),
+    'Medieval Dynasty': ('#f3e8ff', '#6b21a8', '#e9d5ff'),
+    'Early Modern State': ('#f0f9ff', '#0c4a6e', '#bae6fd'),
+    'Modern Nation-State': ('#f8fafc', '#334155', '#cbd5e1'),
+    'Industrial Power': ('#f1f5f9', '#0f172a', '#cbd5e1'),
+    'Resource Economy': ('#ecfdf5', '#047857', '#a7f3d0'),
+    'Multilingual State': ('#faf5ff', '#7e22ce', '#e9d5ff'),
+    'Religious Center': ('#f5f3ff', '#4c1d95', '#ddd6fe'),
+    'Cultural Sphere': ('#fdf2f8', '#831843', '#fbcfe8'),
 }
 
 def tag_chip(tag, dense=True):
@@ -996,6 +1040,19 @@ def clamp_number(value, min_value, max_value, default):
 def default_avatar_adjustment():
     return {'zoom': 100, 'position_x': 50, 'position_y': 50}
 
+def normalize_name_color(value):
+    color = str(value or '').strip()
+    if re.fullmatch(r'#[0-9a-fA-F]{6}', color):
+        return color.lower()
+    return DEFAULT_NAME_COLOR
+
+def user_name_color(user=None):
+    if user is None:
+        user = get_current_user_record()
+    if isinstance(user, dict):
+        return normalize_name_color(user.get('name_color'))
+    return DEFAULT_NAME_COLOR
+
 def normalize_avatar_adjustment(avatar):
     if not isinstance(avatar, dict):
         return {'mode': 'default', **default_avatar_adjustment()}
@@ -1020,6 +1077,7 @@ def ensure_user_defaults(user):
     if not isinstance(user.get('avatar'), dict):
         user['avatar'] = {'mode': 'default'}
     normalize_avatar_adjustment(user['avatar'])
+    user['name_color'] = normalize_name_color(user.get('name_color'))
     if not isinstance(user.get('battle_wins'), int):
         user['battle_wins'] = 0
     return user
@@ -1487,6 +1545,18 @@ def delete_current_account(current_password):
     show_screen('top')
     return True
 
+def set_current_name_color(color_value):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    user['name_color'] = normalize_name_color(color_value)
+    persist_current_user_data(user_data)
+    ui.notify(t('name_color_saved'), color='positive')
+    refresh_current_screen()
+    return True
+
 def favorite_keys(data=None):
     user = get_current_user_record()
     if not user:
@@ -1782,6 +1852,7 @@ def public_user_profiles():
         latest_history = history[0] if history and isinstance(history[0], dict) else {}
         profiles.append({
             'username': username,
+            'name_color': user_name_color(record),
             'avatar_url': current_user_avatar_url(record),
             'avatar': record.get('avatar', {}),
             'favorites': favorites,
@@ -2516,11 +2587,18 @@ def country_battle_power(country):
         power //= 10
     return max(1, power)
 
+def battle_country_list(data=None):
+    data = data or get_data()
+    return list(data.get('countries', []))
+
 def battle_country_keys(data=None):
+    return [country_key(country) for country in battle_country_list(data)]
+
+def battle_unlock_country_keys(data=None):
     return [country_key(country) for country in public_country_list(data)]
 
 def battle_country_lookup(data=None):
-    return public_countries_by_key(data)
+    return {country_key(country): country for country in battle_country_list(data)}
 
 def battle_is_user_eligible(username=None, user=None):
     username = username or state.current_user
@@ -2532,7 +2610,7 @@ def battle_is_user_eligible(username=None, user=None):
     if not user:
         return False
     ensure_user_defaults(user)
-    needed = set(battle_country_keys())
+    needed = set(battle_unlock_country_keys())
     if not needed:
         return False
     return needed.issubset(set(user.get('viewed_keys', [])))
@@ -2637,9 +2715,18 @@ def battle_power_for_keys(keys):
     lookup = battle_country_lookup()
     return sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
 
-def battle_country_names(keys):
+def battle_tags_for_keys(keys):
     lookup = battle_country_lookup()
-    return [get_localized_text(lookup[key]['names']) for key in keys if key in lookup]
+    tags = set()
+    for key in keys:
+        country = lookup.get(key)
+        if country:
+            tags.update(country.get('tags', []))
+    return tags
+
+def shared_battle_tag_labels(first_keys, second_keys):
+    shared_tags = sorted(battle_tags_for_keys(first_keys) & battle_tags_for_keys(second_keys), key=lambda tag: tag_label(tag).lower())
+    return [tag_label(tag) for tag in shared_tags]
 
 def resolve_battle_turn(room):
     players = room.get('players', [])
@@ -2650,14 +2737,17 @@ def resolve_battle_turn(room):
     second = room['submitted'].get(player_two, {})
     power_one = int(first.get('power', 0))
     power_two = int(second.get('power', 0))
+    shared_labels = shared_battle_tag_labels(first.get('keys', []), second.get('keys', []))
+    bonus_multiplier = 1.5 if shared_labels else 1
+    bonus_text = f" / {t('battle_tag_bonus')} x1.5: {', '.join(shared_labels[:3])}" if shared_labels else ''
     if power_one > power_two:
-        damage = power_one - power_two
+        damage = int((power_one - power_two) * bonus_multiplier)
         room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
-        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_two} -{damage}"
+        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_two} -{damage}{bonus_text}"
     elif power_two > power_one:
-        damage = power_two - power_one
+        damage = int((power_two - power_one) * bonus_multiplier)
         room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
-        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_one} -{damage}"
+        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_one} -{damage}{bonus_text}"
     else:
         result_text = f"{player_one} {power_one} - {power_two} {player_two}: draw"
 
@@ -2968,7 +3058,9 @@ def render_header(container):
                         icon_size='2rem',
                         icon_classes='text-white',
                     )
-                    ui.label(current_user_label()).classes('text-white text-sm font-bold px-2')
+                    ui.label(current_user_label()) \
+                        .classes('text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
+                        .style(f'color: {user_name_color(header_user)};')
                 def open_history():
                     refresh_history_content()
                     history_drawer.toggle()
@@ -3009,7 +3101,10 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .props('outline color=primary') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
-                ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+                top_user = get_current_user_record()
+                ui.label(t('logged_in_as').format(user=current_user_label())) \
+                    .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
+                    .style(f'color: {user_name_color(top_user)};')
                 daily = today_country()
                 if daily:
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
@@ -3988,7 +4083,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             )
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('items-center gap-2 flex-wrap'):
-                                    ui.label(profile['username']).classes('text-xl font-bold text-[#1a2332]')
+                                    ui.label(profile['username']) \
+                                        .classes('text-xl font-bold') \
+                                        .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
                                     if profile['username'] == state.current_user:
                                         ui.badge(t('current_user_badge'), color='green')
                                     if profile.get('battle_wins'):
@@ -4104,8 +4201,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 wins = int(user.get('battle_wins', 0))
                 ui.label(f'{t("battle_wins")}: {crown_marks(wins) or "0"}').classes('text-lg font-bold text-yellow-700')
             if not battle_is_user_eligible(user=user):
-                total = len(battle_country_keys())
-                viewed = len(set((user or {}).get('viewed_keys', [])) & set(battle_country_keys())) if user else 0
+                unlock_keys = set(battle_unlock_country_keys())
+                total = len(unlock_keys)
+                viewed = len(set((user or {}).get('viewed_keys', [])) & unlock_keys) if user else 0
                 with ui.card().classes('w-full p-5 gap-2'):
                     ui.label(t('battle_locked')).classes('font-bold text-gray-700')
                     ui.label(f'{viewed} / {total}').classes('text-sm text-gray-500')
@@ -4170,7 +4268,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         with account_content:
             ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
             with ui.row().classes('w-full items-center gap-2 flex-wrap'):
-                ui.badge(t('logged_in_as').format(user=current_user_label()), color='green').classes('px-3 py-2')
+                ui.label(t('logged_in_as').format(user=current_user_label())) \
+                    .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
+                    .style(f'color: {user_name_color(user)};')
                 ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
                     .props('outline color=primary dense')
             with ui.card().classes('w-full p-5 gap-4'):
@@ -4223,6 +4323,21 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 
             with ui.card().classes('w-full p-5 gap-4'):
                 ui.label(t('account_settings')).classes('text-xl font-bold text-[#1a2332]')
+                with ui.column().classes('w-full gap-2'):
+                    ui.label(t('name_color')).classes('text-sm font-bold text-gray-700')
+                    with ui.row().classes('w-full gap-2 items-end flex-wrap'):
+                        name_color_input = ui.input(label=t('name_color'), value=user_name_color(user)).props('outlined dense type=color').classes('w-28')
+                        ui.button(
+                            t('save_name_color'),
+                            icon='palette',
+                            on_click=lambda field=name_color_input: set_current_name_color(field.value),
+                        ).props('color=primary').classes('w-full' if is_mobile_ui() else '')
+                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                        for color_option in NAME_COLOR_OPTIONS:
+                            ui.button(
+                                icon='circle',
+                                on_click=lambda value=color_option: set_current_name_color(value),
+                            ).props('flat round dense').style(f'color: {color_option};')
                 if state.current_user == GUEST_USERNAME:
                     ui.label(t('cannot_manage_guest')).classes('text-sm text-gray-500')
                 else:
