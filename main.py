@@ -209,6 +209,7 @@ class AppState:
     quiz = None
     quiz_difficulty = 'medium'
     quiz_mode = 'normal'
+    quiz_category = 'all'
     compare_left_key = None
     compare_right_key = None
     map_country_key = None
@@ -236,6 +237,14 @@ UI_FALLBACKS = {
         'quiz_capital': '首都または中心地が「{capital}」なのはどれ？',
         'quiz_desc': 'この説明に当てはまるのはどれ？',
         'quiz_flag': 'この旗の国・地域はどれ？',
+        'quiz_category': '分野',
+        'quiz_category_all': '総合',
+        'quiz_category_flag': '国旗',
+        'quiz_category_period': '年号',
+        'quiz_category_capital': '首都',
+        'quiz_category_desc': '説明',
+        'quiz_category_profile': '基本データ',
+        'quiz_category_detail': '詳細データ',
         'ui_mobile': 'スマホUI',
         'ui_pc': 'パソコンUI',
         'switch_to_mobile': 'スマホ表示に切替',
@@ -323,6 +332,14 @@ UI_FALLBACKS = {
         'quiz_capital': 'Which one has “{capital}” as its capital or main center?',
         'quiz_desc': 'Which entry matches this description?',
         'quiz_flag': 'Which country or historical state uses this flag?',
+        'quiz_category': 'Category',
+        'quiz_category_all': 'Mixed',
+        'quiz_category_flag': 'Flags',
+        'quiz_category_period': 'Years',
+        'quiz_category_capital': 'Capitals',
+        'quiz_category_desc': 'Descriptions',
+        'quiz_category_profile': 'Basic Data',
+        'quiz_category_detail': 'Details',
         'ui_mobile': 'Mobile UI',
         'ui_pc': 'Desktop UI',
         'switch_to_mobile': 'Switch to Mobile UI',
@@ -410,6 +427,14 @@ UI_FALLBACKS = {
         'quiz_capital': '首都或中心地是“{capital}”的是哪一个？',
         'quiz_desc': '以下说明对应哪一个？',
         'quiz_flag': '这面旗帜对应哪个国家或历史国家？',
+        'quiz_category': '领域',
+        'quiz_category_all': '综合',
+        'quiz_category_flag': '旗帜',
+        'quiz_category_period': '年代',
+        'quiz_category_capital': '首都',
+        'quiz_category_desc': '说明',
+        'quiz_category_profile': '基本数据',
+        'quiz_category_detail': '详细资料',
         'ui_mobile': '手机界面',
         'ui_pc': '电脑界面',
         'switch_to_mobile': '切换到手机界面',
@@ -1454,6 +1479,122 @@ def timeline_period(country):
 def quiz_option_count():
     return {'easy': 3, 'medium': 4, 'hard': 5}.get(state.quiz_difficulty, 4)
 
+QUIZ_CATEGORY_OPTIONS = [
+    ('all', 'quiz_category_all'),
+    ('flag', 'quiz_category_flag'),
+    ('period', 'quiz_category_period'),
+    ('capital', 'quiz_category_capital'),
+    ('desc', 'quiz_category_desc'),
+    ('profile', 'quiz_category_profile'),
+    ('detail', 'quiz_category_detail'),
+]
+
+def quiz_question_matches_category(question_type):
+    category = getattr(state, 'quiz_category', 'all')
+    if category == 'all':
+        return True
+    if category in ['flag', 'period', 'capital', 'desc']:
+        return question_type == category
+    if category == 'profile':
+        return question_type.startswith('profile_')
+    if category == 'detail':
+        return question_type.startswith('detail_')
+    return True
+
+def has_quiz_flag(country):
+    code = country.get('flag_code')
+    return bool(code) and code != 'xx'
+
+def normalized_text(value):
+    return str(value or '').strip().casefold()
+
+def country_name_set(country):
+    names = country.get('names', {})
+    if not isinstance(names, dict):
+        return {normalized_text(names)}
+    return {normalized_text(value) for value in names.values() if normalized_text(value)}
+
+def normalized_flag_identity(country):
+    code = str(country.get('flag_code') or '').strip()
+    lower = code.lower()
+    equivalences = [
+        ('flag-japan', ['jp', 'flag_of_japan.svg']),
+        ('flag-france', ['fr', 'flag_of_france.svg']),
+        ('flag-sweden', ['se', 'flag_of_sweden.svg']),
+        ('flag-tonga', ['to', 'flag_of_tonga.svg']),
+    ]
+    for identity, tokens in equivalences:
+        if lower in tokens or any(token in lower for token in tokens):
+            return identity
+    return lower
+
+def quiz_question_value(country, question_type):
+    if question_type == 'capital':
+        return normalized_text(get_localized_text(country.get('capital', {})))
+    if question_type == 'flag':
+        return normalized_flag_identity(country)
+    if question_type == 'period':
+        return normalized_text(period_label(country))
+    if question_type == 'desc':
+        return normalized_text(first_sentence(get_localized_text(country.get('desc', {}))))
+    if question_type.startswith('profile_'):
+        field = question_type.replace('profile_', '', 1)
+        return normalized_text(profile_value(country, field))
+    if question_type.startswith('detail_'):
+        field = question_type.replace('detail_', '', 1)
+        return normalized_text(first_sentence(detail_value(country, field)))
+    return ''
+
+def quiz_candidates_for_type(countries, question_type):
+    if question_type == 'desc':
+        return [c for c in countries if quiz_question_value(c, question_type)]
+    if question_type == 'capital':
+        return [c for c in countries if quiz_question_value(c, question_type) not in ['', '-']]
+    if question_type == 'flag':
+        return [c for c in countries if has_quiz_flag(c)]
+    if question_type == 'period':
+        return [c for c in countries if quiz_question_value(c, question_type)]
+    if question_type.startswith('profile_'):
+        return [c for c in countries if quiz_question_value(c, question_type)]
+    if question_type.startswith('detail_'):
+        return [c for c in countries if quiz_question_value(c, question_type)]
+    return []
+
+def build_quiz_options(answer, question_type, countries):
+    desired_count = quiz_option_count()
+    answer_key = country_key(answer)
+    answer_names = country_name_set(answer)
+    answer_value = quiz_question_value(answer, question_type)
+    selected = [answer]
+    used_keys = {answer_key}
+    used_names = set(answer_names)
+    used_values = {answer_value} if answer_value else set()
+
+    candidates = quiz_candidates_for_type(countries, question_type)
+    random.shuffle(candidates)
+    for candidate in candidates:
+        key = country_key(candidate)
+        if key in used_keys:
+            continue
+        candidate_names = country_name_set(candidate)
+        if used_names.intersection(candidate_names):
+            continue
+        candidate_value = quiz_question_value(candidate, question_type)
+        if candidate_value and candidate_value in used_values:
+            continue
+        selected.append(candidate)
+        used_keys.add(key)
+        used_names.update(candidate_names)
+        if candidate_value:
+            used_values.add(candidate_value)
+        if len(selected) >= desired_count:
+            break
+
+    if len(selected) < 2:
+        return []
+    random.shuffle(selected)
+    return selected
+
 def build_quiz():
     data = get_data()
     countries = public_country_list(data)
@@ -1467,50 +1608,34 @@ def build_quiz():
             return None
         answer_source = review_source
 
+    question_types = ['desc', 'capital', 'flag', 'period']
+    question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
+    question_types.extend(f'detail_{field}' for field in DETAIL_QUIZ_FIELDS)
+
     question_pools = []
-    desc_candidates = [c for c in answer_source if first_sentence(get_localized_text(c.get('desc', {})))]
-    capital_candidates = [
-        c for c in answer_source
-        if get_localized_text(c.get('capital', {})).strip() not in ['', '-']
-    ]
-    flag_candidates = [
-        c for c in answer_source
-        if c.get('flag_code') and c.get('flag_code') != 'xx'
-    ]
-    period_candidates = [c for c in answer_source if period_label(c)]
-    if desc_candidates:
-        question_pools.append(('desc', desc_candidates))
-    if capital_candidates:
-        question_pools.append(('capital', capital_candidates))
-    if flag_candidates:
-        question_pools.append(('flag', flag_candidates))
-    if period_candidates:
-        question_pools.append(('period', period_candidates))
-    for field in PROFILE_FIELDS:
-        profile_candidates = [c for c in answer_source if profile_value(c, field)]
-        if profile_candidates:
-            question_pools.append((f'profile_{field}', profile_candidates))
-    for field in DETAIL_QUIZ_FIELDS:
-        detail_candidates = [c for c in answer_source if detail_value(c, field)]
-        if detail_candidates:
-            question_pools.append((f'detail_{field}', detail_candidates))
+    for question_type in question_types:
+        if not quiz_question_matches_category(question_type):
+            continue
+        candidates = quiz_candidates_for_type(answer_source, question_type)
+        if candidates:
+            question_pools.append((question_type, candidates))
     if not question_pools:
         return None
 
-    question_type, candidates = random.choice(question_pools)
-    answer = random.choice(candidates)
-    distractor_count = min(quiz_option_count() - 1, len(countries) - 1)
-    options = random.sample([c for c in countries if country_key(c) != country_key(answer)], distractor_count)
-    options.append(answer)
-    random.shuffle(options)
+    for _ in range(80):
+        question_type, candidates = random.choice(question_pools)
+        answer = random.choice(candidates)
+        options = build_quiz_options(answer, question_type, countries)
+        if options:
+            return {
+                'type': question_type,
+                'answer_key': country_key(answer),
+                'options': [country_key(option) for option in options],
+                'selected_key': None,
+                'answered': False,
+            }
 
-    return {
-        'type': question_type,
-        'answer_key': country_key(answer),
-        'options': [country_key(option) for option in options],
-        'selected_key': None,
-        'answered': False,
-    }
+    return None
 
 def quiz_view_parts(quiz, answer):
     question_type = quiz.get('type')
@@ -1556,6 +1681,10 @@ def start_quiz(mode=None):
 
 def set_quiz_difficulty(difficulty):
     state.quiz_difficulty = difficulty
+    start_quiz()
+
+def set_quiz_category(category):
+    state.quiz_category = category
     start_quiz()
 
 # ========================================
@@ -2395,6 +2524,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                 for key in ['easy', 'medium', 'hard']:
                     color = 'primary' if state.quiz_difficulty == key else 'grey'
                     ui.button(t(f'difficulty_{key}'), on_click=lambda _, d=key: set_quiz_difficulty(d)) \
+                        .props(f'outline color={color} dense')
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                ui.label(t('quiz_category')).classes('text-sm font-bold text-gray-500')
+                for key, label_key in QUIZ_CATEGORY_OPTIONS:
+                    color = 'primary' if state.quiz_category == key else 'grey'
+                    ui.button(t(label_key), on_click=lambda _, c=key: set_quiz_category(c)) \
                         .props(f'outline color={color} dense')
 
             with ui.card().classes('w-full p-4 gap-4' if is_mobile_ui() else 'w-full p-6 gap-4'):
