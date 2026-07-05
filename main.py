@@ -343,6 +343,8 @@ BATTLE_QUEUE = []
 BATTLE_ROOMS = {}
 BATTLE_USER_ROOM = {}
 BATTLE_COUNTER = 0
+ADMIN_SEARCH_CHEAT_CODE = '上上下下左右左右BA'
+SECRET_HIDDEN_COUNTRY_SEARCH_TERMS = {'ケッテン連邦'}
 DEFAULT_NAME_COLOR = '#1a2332'
 NAME_COLOR_OPTIONS = [
     '#1a2332',
@@ -708,7 +710,9 @@ EXTRA_UI_FALLBACKS = {
         'delete_account_warning': '削除すると、このアカウントの学習データは戻せません。',
         'battle': '国力対戦',
         'battle_title': '国力対戦',
-        'battle_locked': 'すべての国を閲覧すると、国力対戦が解放されます。',
+        'battle_locked': 'ロックされた機能',
+        'unlock_condition_not_met': '解放条件が満たされていません。',
+        'admin_search_cheat_applied': '管理者コードを適用しました。すべての公開国を閲覧済みにしました。',
         'battle_join': 'マッチング開始',
         'battle_waiting': '対戦相手を待っています。',
         'battle_cancel': '待機をやめる',
@@ -766,7 +770,9 @@ EXTRA_UI_FALLBACKS = {
         'delete_account_warning': 'Deleting this account permanently removes its learning data.',
         'battle': 'Power Battle',
         'battle_title': 'Power Battle',
-        'battle_locked': 'View every country to unlock Power Battle.',
+        'battle_locked': 'Locked feature',
+        'unlock_condition_not_met': 'Unlock condition is not met.',
+        'admin_search_cheat_applied': 'Admin code applied. All public countries are now marked as viewed.',
         'battle_join': 'Start matching',
         'battle_waiting': 'Waiting for an opponent.',
         'battle_cancel': 'Leave queue',
@@ -824,7 +830,9 @@ EXTRA_UI_FALLBACKS = {
         'delete_account_warning': '删除后，该账户的学习数据无法恢复。',
         'battle': '国力对战',
         'battle_title': '国力对战',
-        'battle_locked': '浏览所有国家后即可解锁国力对战。',
+        'battle_locked': '已锁定功能',
+        'unlock_condition_not_met': '尚未满足解锁条件。',
+        'admin_search_cheat_applied': '管理员代码已应用。所有公开国家已标记为已浏览。',
         'battle_join': '开始匹配',
         'battle_waiting': '正在等待对手。',
         'battle_cancel': '取消等待',
@@ -950,6 +958,14 @@ def get_localized_text(data_dict):
 # hidden=True の国はサプライズ用です。検索で名前を入れた時だけ表示します。
 def is_hidden_country(country):
     return bool(country.get('hidden'))
+
+def can_show_hidden_country(country, keyword):
+    if not is_hidden_country(country):
+        return True
+    term = str(keyword or '').strip().casefold()
+    if not term:
+        return False
+    return any(term == allowed.casefold() for allowed in SECRET_HIDDEN_COUNTRY_SEARCH_TERMS)
 
 def public_country_list(data=None):
     data = data or get_data()
@@ -2644,6 +2660,27 @@ def battle_is_user_eligible(username=None, user=None):
         return False
     return needed.issubset(set(user.get('viewed_keys', [])))
 
+def apply_admin_search_cheat(keyword):
+    if str(keyword or '').strip() != ADMIN_SEARCH_CHEAT_CODE:
+        return False
+    if not state.current_user or state.current_user == GUEST_USERNAME:
+        ui.notify(t('login_required'), color='warning')
+        return True
+
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return True
+
+    viewed = user.setdefault('viewed_keys', [])
+    for key in battle_unlock_country_keys():
+        if key not in viewed:
+            viewed.append(key)
+    persist_current_user_data(user_data)
+    ui.notify(t('admin_search_cheat_applied'), color='positive')
+    return True
+
 def deal_battle_hand():
     keys = battle_country_keys()
     if len(keys) <= 5:
@@ -2688,7 +2725,7 @@ def create_battle_room(player_one, player_two):
 def join_battle_queue():
     username = state.current_user
     if not battle_is_user_eligible(username):
-        ui.notify(t('battle_locked'), color='warning')
+        ui.notify(t('unlock_condition_not_met'), color='warning')
         return
     if current_battle_room():
         refresh_battle_view()
@@ -3241,8 +3278,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
         region_options, tag_options = get_filter_options()
 
         def update_keyword(e):
-            state.search_keyword = e.value
             state.page = 1
+            if apply_admin_search_cheat(e.value):
+                state.search_keyword = ''
+                refresh_main_ui()
+                return
+            state.search_keyword = e.value
             refresh_search_list()
 
         def pick_random():
@@ -3386,12 +3427,15 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             data = get_data()
             favorites = favorite_keys(data)
             selected_collection = set(get_collections().get(state.collection_filter, [])) if state.collection_filter else set()
-            keyword = state.search_keyword.lower() if state.search_keyword else ""
+            raw_keyword = str(state.search_keyword or '').strip()
+            keyword = raw_keyword.lower()
             countries = data.get('countries', [])
             filtered = []
             for c in countries:
-                # サプライズ用の国は、検索語がある時だけ候補に入れます。
-                if is_hidden_country(c) and not keyword:
+                # サプライズ用の国は、専用の合言葉が完全一致した時だけ一覧に入れます。
+                if is_hidden_country(c):
+                    if can_show_hidden_country(c, raw_keyword):
+                        filtered.append(c)
                     continue
                 if state.filter_type != 'All' and c['type'] != state.filter_type:
                     continue
@@ -4305,18 +4349,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         )
         battle_content.clear()
         with battle_content:
-            ui.label(t('battle_title')).classes('text-3xl font-bold text-[#1a2332]')
             user = get_current_user_record()
+            eligible = battle_is_user_eligible(user=user)
+            ui.label(t('battle_title') if eligible else t('battle_locked')).classes('text-3xl font-bold text-[#1a2332]')
             if user:
                 wins = int(user.get('battle_wins', 0))
                 ui.label(f'{t("battle_wins")}: {crown_marks(wins) or "0"}').classes('text-lg font-bold text-yellow-700')
-            if not battle_is_user_eligible(user=user):
-                unlock_keys = set(battle_unlock_country_keys())
-                total = len(unlock_keys)
-                viewed = len(set((user or {}).get('viewed_keys', [])) & unlock_keys) if user else 0
+            if not eligible:
                 with ui.card().classes('w-full p-5 gap-2'):
                     ui.label(t('battle_locked')).classes('font-bold text-gray-700')
-                    ui.label(f'{viewed} / {total}').classes('text-sm text-gray-500')
+                    ui.label(t('unlock_condition_not_met')).classes('text-sm text-gray-500')
                 return
 
             room = current_battle_room()
@@ -4484,12 +4526,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         ).props('color=red').classes('w-full' if is_mobile_ui() else 'self-start')
 
             with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('battle_title')).classes('text-xl font-bold text-[#1a2332]')
-                if battle_is_user_eligible(user=user):
+                eligible = battle_is_user_eligible(user=user)
+                ui.label(t('battle_title') if eligible else t('battle_locked')).classes('text-xl font-bold text-[#1a2332]')
+                if eligible:
                     ui.label(f'{t("battle_wins")}: {crown_marks(user.get("battle_wins", 0)) or "0"}').classes('text-sm font-bold text-yellow-700')
                     ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: show_screen('battle')).props('color=primary')
                 else:
-                    ui.label(t('battle_locked')).classes('text-sm text-gray-500')
+                    ui.label(t('unlock_condition_not_met')).classes('text-sm text-gray-500')
 
             backup = backup_labels()
             with ui.card().classes('w-full p-5 gap-3'):
