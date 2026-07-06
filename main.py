@@ -108,6 +108,16 @@ def app_now():
 def current_timestamp():
     return datetime.now(timezone.utc).isoformat(timespec='seconds')
 
+def parse_timestamp_utc(value):
+    try:
+        raw = str(value or '').strip().replace('Z', '+00:00')
+        dt = datetime.fromisoformat(raw)
+    except ValueError:
+        return datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
 def format_timestamp(value):
     if not value:
         return ''
@@ -507,7 +517,8 @@ BATTLE_ROOMS = {}
 BATTLE_USER_ROOM = {}
 BATTLE_COUNTER = 0
 BOT_USERNAME = 'BOT'
-BATTLE_MAX_HP = 200_000_000_000_000
+BATTLE_MAX_HP = 100_000_000_000_000
+BATTLE_TURN_TIMEOUT_SECONDS = 60
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
@@ -1080,6 +1091,11 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_team': 'チーム',
     'battle_auto_notice': '画面は自動で更新されます。',
     'battle_damage_each': '各',
+    'battle_surrender': '降参',
+    'battle_surrender_log': '{player}が降参しました。',
+    'battle_timeout_surrender_log': '{player}が長考により強制降参になりました。',
+    'battle_time_left': '残り{seconds}秒',
+    'battle_eliminated': '降参済みです。残りの対戦を観戦できます。',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
     'favorites_except': 'Not favorites',
@@ -1102,6 +1118,11 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_team': 'Team',
     'battle_auto_notice': 'This screen updates automatically.',
     'battle_damage_each': 'each',
+    'battle_surrender': 'Surrender',
+    'battle_surrender_log': '{player} surrendered.',
+    'battle_timeout_surrender_log': '{player} was forced to surrender after thinking too long.',
+    'battle_time_left': '{seconds}s left',
+    'battle_eliminated': 'You have surrendered. You can keep watching the battle.',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
     'favorites_except': '非收藏',
@@ -1124,6 +1145,11 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_team': '队伍',
     'battle_auto_notice': '画面会自动更新。',
     'battle_damage_each': '各',
+    'battle_surrender': '投降',
+    'battle_surrender_log': '{player}已投降。',
+    'battle_timeout_surrender_log': '{player}思考过久，被强制投降。',
+    'battle_time_left': '剩余{seconds}秒',
+    'battle_eliminated': '你已投降，可以继续观战。',
 })
 
 UI_FALLBACKS.setdefault('ja', {}).update({
@@ -4233,15 +4259,16 @@ def battle_help_labels():
                         '\u4e00\u5ea6\u306b\u51fa\u3059\u679a\u6570\u306f\u81ea\u7531\u3067\u3059\u3002\u624b\u672d\u304c\u5207\u308c\u308b\u307e\u3067\u65b0\u3057\u3044\u30ab\u30fc\u30c9\u306f\u88dc\u5145\u3055\u308c\u307e\u305b\u3093\u3002',
                         '\u624b\u672d\u304c\u7a7a\u306e\u5834\u5408\u306f1\u30bf\u30fc\u30f3\u7121\u9632\u5099\u306b\u306a\u308a\u3001\u6b21\u306e\u30bf\u30fc\u30f3\u306b\u65b0\u3057\u30445\u679a\u304c\u914d\u3089\u308c\u307e\u3059\u3002',
                         '\u54041\u30bf\u30fc\u30f3\u306b1\u56de\u3060\u3051\u3001\u73fe\u5728\u306e\u624b\u672d\u3092\u3059\u3079\u3066\u6368\u3066\u3066\u540c\u3058\u679a\u6570\u3092\u5f15\u304d\u76f4\u305b\u307e\u3059\u3002',
+                        '1\u5206\u4ee5\u5185\u306b\u884c\u52d5\u3057\u306a\u3044\u3068\u5f37\u5236\u964d\u53c2\u306b\u306a\u308a\u307e\u3059\u3002\u52dd\u3066\u306a\u3044\u3068\u5224\u65ad\u3057\u305f\u3089\u3001\u964d\u53c2\u30dc\u30bf\u30f3\u3067\u8a66\u5408\u304b\u3089\u629c\u3051\u3089\u308c\u307e\u3059\u3002',
                     ],
                 ),
                 (
                     '\u6226\u95d8\u529b',
                     [
-                        '\u5404\u56fd\u306e\u6226\u95d8\u529b\u306f\u300c\uff08\u9762\u7a4d \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3067\u8a08\u7b97\u3057\u307e\u3059\u3002',
-                        '\u5c0f\u6570\u70b9\u4ee5\u4e0b\u306f\u5207\u308a\u6368\u3066\u3001\u6700\u4f4e\u5024\u306f1\u306b\u3057\u307e\u3059\u3002\u6bd4\u7387\u30b9\u30b1\u30fc\u30eb\u3084\u500b\u5225\u30ab\u30fc\u30c9\u306e1000\u4e0a\u9650\u306f\u4f7f\u3044\u307e\u305b\u3093\u3002',
-                        '\u8907\u6570\u679a\u3092\u51fa\u3057\u305f\u5834\u5408\u306f\u3001\u9078\u3093\u3060\u56fd\u306e\u6226\u95d8\u529b\u3092\u5408\u8a08\u3057\u307e\u3059\u3002\u624b\u306e\u5408\u8a08\u6226\u95d8\u529b\u306b\u4e0a\u9650\u306f\u3042\u308a\u307e\u305b\u3093\u3002',
-                        '\u624b\u672d\u9078\u629e\u4e2d\u306e\u6226\u95d8\u529b\u306f\u975e\u8868\u793a\u3067\u3059\u3002\u56fd\u306e\u30c7\u30fc\u30bf\u3092\u899a\u3048\u3066\u3044\u308b\u304b\u304c\u52dd\u8ca0\u306e\u30dd\u30a4\u30f3\u30c8\u3067\u3059\u3002',
+                        '\u6226\u95d8\u529b\u306f\u56fd\u306e\u9762\u7a4d\u3068\u4eba\u53e3\u304b\u3089\u6c7a\u307e\u308a\u307e\u3059\u3002\u5e83\u304f\u3066\u4eba\u53e3\u306e\u591a\u3044\u56fd\u307b\u3069\u5927\u304d\u306a\u30c0\u30e1\u30fc\u30b8\u3092\u51fa\u3057\u3084\u3059\u304f\u306a\u308a\u307e\u3059\u3002',
+                        '\u8a08\u7b97\u306f\u300c\uff08\u9762\u7a4d \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3067\u3059\u3002\u5c0f\u3055\u3044\u56fd\u3067\u3082\u6700\u4f4e1\u306e\u6226\u95d8\u529b\u306f\u3042\u308a\u307e\u3059\u3002',
+                        '\u8907\u6570\u679a\u51fa\u3059\u3068\u3001\u305d\u306e\u30ab\u30fc\u30c9\u305f\u3061\u306e\u6226\u95d8\u529b\u3092\u5408\u8a08\u3057\u3066\u653b\u6483\u3057\u307e\u3059\u3002\u5927\u304d\u306a\u56fd\u3092\u4e00\u6c17\u306b\u51fa\u3059\u304b\u3001\u624b\u672d\u3092\u6e29\u5b58\u3059\u308b\u304b\u304c\u99c6\u3051\u5f15\u304d\u3067\u3059\u3002',
+                        '\u624b\u672d\u9078\u629e\u4e2d\u306e\u6226\u95d8\u529b\u306f\u975e\u8868\u793a\u3067\u3059\u3002\u56fd\u306e\u57fa\u672c\u30c7\u30fc\u30bf\u3092\u899a\u3048\u3066\u3044\u308b\u307b\u3069\u6709\u5229\u306b\u306a\u308a\u307e\u3059\u3002',
                     ],
                 ),
                 (
@@ -4265,8 +4292,8 @@ def battle_help_labels():
         'en': {
             'title': 'How to Play and Power Rules',
             'sections': [
-                ('Basic Rules', [f'Each player starts with {format_battle_number(BATTLE_MAX_HP)} HP and receives five random country cards.', 'You may play any number of cards, but cards are not refilled until your hand is empty.', 'An empty hand makes you defenseless for one turn, then you draw five new cards.', 'Once per turn, you may discard your current hand and redraw the same number of cards.']),
-                ('Power', ['Each country power is area x population divided by 1000.', 'Decimal parts are discarded and the minimum value is 1. No proportional scale or 1000 card cap is used.', 'Played cards are summed with no hand power cap.', 'Power is hidden while choosing cards, so remembering country data matters.']),
+                ('Basic Rules', [f'Each player starts with {format_battle_number(BATTLE_MAX_HP)} HP and receives five random country cards.', 'You may play any number of cards, but cards are not refilled until your hand is empty.', 'An empty hand makes you defenseless for one turn, then you draw five new cards.', 'Once per turn, you may discard your current hand and redraw the same number of cards.', 'If you do not act within one minute, you surrender automatically. You can also surrender manually when the match looks hopeless.']),
+                ('Power', ['Power comes from each country area and population. Large, populous countries tend to hit harder.', 'The formula is area x population divided by 1000. Even small countries have at least 1 power.', 'Playing multiple cards adds their power together, so deciding when to spend a strong hand matters.', 'Power is hidden while choosing cards, so remembering country data gives you an advantage.']),
                 ('Damage and Victory', ['The higher hand power wins the turn.', 'Base damage is winner power minus loser power.', 'When you win, you steal one remaining card from the loser. Bot wins are not counted in rankings.']),
                 ('Match Bonus', ['The match bonus only checks cards you played this turn, not the opponent cards.', 'A single card never triggers it. With two or more cards, repeated tags or regions trigger it.', 'Each repeated tag or region adds +0.5 to the damage multiplier, with no upper limit.']),
             ],
@@ -4274,8 +4301,8 @@ def battle_help_labels():
         'zh': {
             'title': '\u73a9\u6cd5\u4e0e\u6218\u529b\u8bf4\u660e',
             'sections': [
-                ('\u57fa\u672c\u89c4\u5219', [f'\u6bcf\u4f4d\u73a9\u5bb6HP\u4e3a{format_battle_number(BATTLE_MAX_HP)}\uff0c\u968f\u673a\u83b7\u5f975\u5f20\u56fd\u5bb6\u5361\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u6253\u51fa\u4efb\u610f\u5f20\u6570\uff0c\u624b\u724c\u7528\u5b8c\u524d\u4e0d\u4f1a\u8865\u5145\u3002', '\u624b\u724c\u4e3a\u7a7a\u65f6\u4e0b\u4e00\u56de\u5408\u65e0\u9632\u5907\uff0c\u518d\u4e0b\u4e00\u56de\u5408\u91cd\u65b0\u62bd5\u5f20\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u5c06\u5f53\u524d\u624b\u724c\u5168\u90e8\u5f03\u6389\u5e76\u91cd\u62bd\u540c\u6837\u5f20\u6570\u4e00\u6b21\u3002']),
-                ('\u6218\u529b', ['\u5404\u56fd\u6218\u529b\u4e3a\u300c\uff08\u9762\u79ef \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3002', '\u5c0f\u6570\u90e8\u5206\u4f1a\u5207\u6368\uff0c\u6700\u5c0f\u503c\u4e3a1\u3002\u4e0d\u4f7f\u7528\u6bd4\u4f8b\u6362\u7b97\u62161000\u4e0a\u9650\u3002', '\u6253\u51fa\u591a\u5f20\u65f6\u4f1a\u5408\u8ba1\u6218\u529b\uff0c\u624b\u724c\u603b\u6218\u529b\u6ca1\u6709\u4e0a\u9650\u3002', '\u9009\u724c\u65f6\u6218\u529b\u4e0d\u663e\u793a\uff0c\u9700\u8981\u4f9d\u9760\u5bf9\u56fd\u5bb6\u6570\u636e\u7684\u8bb0\u5fc6\u3002']),
+                ('\u57fa\u672c\u89c4\u5219', [f'\u6bcf\u4f4d\u73a9\u5bb6HP\u4e3a{format_battle_number(BATTLE_MAX_HP)}\uff0c\u968f\u673a\u83b7\u5f975\u5f20\u56fd\u5bb6\u5361\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u6253\u51fa\u4efb\u610f\u5f20\u6570\uff0c\u624b\u724c\u7528\u5b8c\u524d\u4e0d\u4f1a\u8865\u5145\u3002', '\u624b\u724c\u4e3a\u7a7a\u65f6\u4e0b\u4e00\u56de\u5408\u65e0\u9632\u5907\uff0c\u518d\u4e0b\u4e00\u56de\u5408\u91cd\u65b0\u62bd5\u5f20\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u5c06\u5f53\u524d\u624b\u724c\u5168\u90e8\u5f03\u6389\u5e76\u91cd\u62bd\u540c\u6837\u5f20\u6570\u4e00\u6b21\u3002', '\u4e00\u5206\u949f\u5185\u4e0d\u884c\u52a8\u5c06\u81ea\u52a8\u6295\u964d\u3002\u5f62\u52bf\u4e0d\u5229\u65f6\u4e5f\u53ef\u4ee5\u624b\u52a8\u6295\u964d\u3002']),
+                ('\u6218\u529b', ['\u6218\u529b\u6765\u81ea\u56fd\u5bb6\u7684\u9762\u79ef\u548c\u4eba\u53e3\u3002\u9762\u79ef\u5927\u4e14\u4eba\u53e3\u591a\u7684\u56fd\u5bb6\u66f4\u5bb9\u6613\u6253\u51fa\u9ad8\u4f24\u5bb3\u3002', '\u516c\u5f0f\u4e3a\u300c\uff08\u9762\u79ef \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3002\u5c0f\u56fd\u4e5f\u81f3\u5c11\u67091\u70b9\u6218\u529b\u3002', '\u6253\u51fa\u591a\u5f20\u65f6\u4f1a\u5408\u8ba1\u6218\u529b\uff0c\u4f55\u65f6\u4f7f\u7528\u5f3a\u724c\u662f\u5173\u952e\u3002', '\u9009\u724c\u65f6\u6218\u529b\u4e0d\u663e\u793a\uff0c\u8bb0\u4f4f\u56fd\u5bb6\u57fa\u672c\u6570\u636e\u4f1a\u66f4\u6709\u5229\u3002']),
                 ('\u4f24\u5bb3\u4e0e\u80dc\u5229', ['\u6bd4\u8f83\u53cc\u65b9\u6253\u51fa\u7684\u624b\u724c\u6218\u529b\uff0c\u8f83\u9ad8\u8005\u83b7\u80dc\u3002', '\u57fa\u7840\u4f24\u5bb3\u4e3a\u80dc\u8005\u6218\u529b\u51cf\u53bb\u8d25\u8005\u6218\u529b\u3002', '\u83b7\u80dc\u65f6\u53ef\u4ee5\u4ece\u5bf9\u624b\u5269\u4f59\u624b\u724c\u4e2d\u593a\u53d61\u5f20\u3002BOT\u6218\u7684\u80dc\u573a\u4e0d\u8ba1\u5165\u6392\u884c\u3002']),
                 ('\u4e00\u81f4\u52a0\u6210', ['\u4e00\u81f4\u52a0\u6210\u53ea\u68c0\u67e5\u81ea\u5df1\u672c\u56de\u5408\u6253\u51fa\u7684\u5361\u724c\uff0c\u4e0d\u68c0\u67e5\u5bf9\u624b\u7684\u5361\u3002', '\u53ea\u6253\u51fa1\u5f20\u65f6\u4e0d\u4f1a\u53d1\u52a8\u30022\u5f20\u4ee5\u4e0a\u4e2d\u6807\u7b7e\u6216\u5730\u57df\u91cd\u590d\u65f6\u53d1\u52a8\u3002', '\u6bcf\u4e2a\u91cd\u590d\u7684\u6807\u7b7e\u6216\u5730\u57df\u90fd\u4f7f\u4f24\u5bb3\u500d\u7387+0.5\uff0c\u6ca1\u6709\u4e0a\u9650\u3002']),
             ],
@@ -4362,6 +4389,26 @@ def save_battle_state(state_data):
     with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state_data, f, ensure_ascii=False, indent=2)
 
+def normalize_battle_room(room):
+    room.setdefault('redraw_turns', {})
+    room.setdefault('reload_after_turn', [])
+    room.setdefault('submitted', {})
+    room.setdefault('log', [])
+    room.setdefault('chat', [])
+    room.setdefault('spectators', [])
+    room.setdefault('mode', DUEL_MODE)
+    room.setdefault('teams', {})
+    room.setdefault('bot', False)
+    room.setdefault('turn_started_at', current_timestamp())
+    hp = room.setdefault('hp', {})
+    for player in room.get('players', []):
+        try:
+            current_hp = int(hp.get(player, BATTLE_MAX_HP))
+        except (TypeError, ValueError):
+            current_hp = BATTLE_MAX_HP
+        hp[player] = max(0, min(current_hp, BATTLE_MAX_HP))
+    return room
+
 def battle_room_for_user(username, state_data=None):
     username = clean_username(username)
     if not username:
@@ -4370,15 +4417,7 @@ def battle_room_for_user(username, state_data=None):
     room_id = state_data.get('user_room', {}).get(username) or state_data.get('spectator_room', {}).get(username)
     room = state_data.get('rooms', {}).get(room_id)
     if room and (username in room.get('players', []) or username in room.get('spectators', [])):
-        room.setdefault('redraw_turns', {})
-        room.setdefault('reload_after_turn', [])
-        room.setdefault('submitted', {})
-        room.setdefault('log', [])
-        room.setdefault('chat', [])
-        room.setdefault('spectators', [])
-        room.setdefault('mode', DUEL_MODE)
-        room.setdefault('teams', {})
-        room.setdefault('bot', False)
+        normalize_battle_room(room)
         if username == state.current_user:
             state.battle_id = room_id
         return room
@@ -4491,7 +4530,7 @@ def deal_battle_hand():
     return draw_battle_cards(5)
 
 def current_battle_room():
-    return battle_room_for_user(state.current_user)
+    return battle_room_for_user(state.current_user, load_battle_state_with_timeouts())
 
 def battle_teams_for_players(players, mode):
     if mode != TEAM_MODE:
@@ -4523,6 +4562,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False):
         'chat': [],
         'spectators': [],
         'turn': 1,
+        'turn_started_at': current_timestamp(),
         'winner': None,
         'bot': bool(bot),
     }
@@ -4757,7 +4797,7 @@ def battle_entry_for_player(room, player):
     }
 
 def remove_submitted_cards_and_reload(room):
-    players = room.get('players', [])
+    players = active_battle_players(room)
     reload_set = set(room.get('reload_after_turn', []))
     defenseless_players = set()
     for player in players:
@@ -4796,6 +4836,8 @@ def finish_battle_turn(room, reload_set, defenseless_players):
     for player in defenseless_players:
         room.setdefault('hands', {})[player] = deal_battle_hand()
     for player in room.get('players', []):
+        if room.setdefault('hp', {}).get(player, 0) <= 0:
+            continue
         if not room.setdefault('hands', {}).setdefault(player, []):
             reload_set.add(player)
         else:
@@ -4803,12 +4845,33 @@ def finish_battle_turn(room, reload_set, defenseless_players):
     room['reload_after_turn'] = list(reload_set)
     room['submitted'] = {}
     room['turn'] = int(room.get('turn', 1)) + 1
+    room['turn_started_at'] = current_timestamp()
+
+def append_battle_log(room, text):
+    if not text:
+        return
+    room.setdefault('log', []).insert(0, text)
+    del room['log'][12:]
+
+def active_battle_players(room):
+    hp = room.setdefault('hp', {})
+    return [player for player in room.get('players', []) if hp.get(player, BATTLE_MAX_HP) > 0]
+
+def battle_turn_elapsed_seconds(room):
+    started_at = parse_timestamp_utc(room.get('turn_started_at'))
+    return max(0, int((datetime.now(timezone.utc) - started_at).total_seconds()))
+
+def battle_turn_time_left(room):
+    return max(0, BATTLE_TURN_TIMEOUT_SECONDS - battle_turn_elapsed_seconds(room))
 
 def set_battle_winner_if_finished(room):
     players = room.get('players', [])
     alive = [player for player in players if room.setdefault('hp', {}).get(player, 0) > 0]
     mode = room.get('mode', DUEL_MODE)
     count_wins = not room.get('bot')
+    if not alive:
+        room['winner'] = 'draw'
+        return True
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
         alive_teams = {teams.get(player) for player in alive if teams.get(player)}
@@ -4829,9 +4892,23 @@ def set_battle_winner_if_finished(room):
         return True
     return False
 
+def apply_battle_surrender(room, player, timeout=False):
+    player = clean_username(player)
+    if not player or room.get('winner') or player not in room.get('players', []):
+        return False
+    if room.setdefault('hp', {}).get(player, BATTLE_MAX_HP) <= 0:
+        return False
+    room['hp'][player] = 0
+    room.setdefault('submitted', {}).pop(player, None)
+    surrender_key = 'battle_timeout_surrender_log' if timeout else 'battle_surrender_log'
+    append_battle_log(room, t(surrender_key).format(player=player))
+    set_battle_winner_if_finished(room)
+    return True
+
 def resolve_battle_turn(room):
-    players = room.get('players', [])
+    players = active_battle_players(room)
     if len(players) < 2:
+        set_battle_winner_if_finished(room)
         return
     entries = {player: battle_entry_for_player(room, player) for player in players}
     reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
@@ -4923,6 +5000,8 @@ def choose_bot_battle_cards(hand):
 
 def submit_bot_players(room):
     for player in room.get('players', []):
+        if room.setdefault('hp', {}).get(player, 0) <= 0:
+            continue
         if not is_battle_bot(player) or player in room.setdefault('submitted', {}):
             continue
         reload_set = set(room.get('reload_after_turn', []))
@@ -4937,11 +5016,46 @@ def submit_bot_players(room):
 
 def battle_all_players_submitted(room):
     submitted = room.get('submitted', {})
-    return all(player in submitted for player in room.get('players', []))
+    return all(player in submitted for player in active_battle_players(room))
+
+def process_battle_timeouts(state_data):
+    changed = False
+    for room in state_data.setdefault('rooms', {}).values():
+        if not isinstance(room, dict):
+            continue
+        normalize_battle_room(room)
+        if room.get('winner'):
+            continue
+        before_bot = json.dumps(room.get('submitted', {}), ensure_ascii=False, sort_keys=True)
+        submit_bot_players(room)
+        if json.dumps(room.get('submitted', {}), ensure_ascii=False, sort_keys=True) != before_bot:
+            changed = True
+        if battle_all_players_submitted(room):
+            resolve_battle_turn(room)
+            changed = True
+            continue
+        if battle_turn_elapsed_seconds(room) < BATTLE_TURN_TIMEOUT_SECONDS:
+            continue
+        timed_out_players = [
+            player for player in active_battle_players(room)
+            if player not in room.get('submitted', {}) and not is_battle_bot(player)
+        ]
+        for player in timed_out_players:
+            changed = apply_battle_surrender(room, player, timeout=True) or changed
+        if not room.get('winner') and battle_all_players_submitted(room):
+            resolve_battle_turn(room)
+            changed = True
+    return changed
+
+def load_battle_state_with_timeouts():
+    state_data = load_battle_state()
+    if process_battle_timeouts(state_data):
+        save_battle_state(state_data)
+    return state_data
 
 def submit_battle_hand():
     username = state.current_user
-    state_data = load_battle_state()
+    state_data = load_battle_state_with_timeouts()
     room = battle_room_for_user(username, state_data)
     if not room or room.get('winner') or not username or username not in room.get('players', []):
         refresh_battle_view()
@@ -4965,9 +5079,23 @@ def submit_battle_hand():
     save_battle_state(state_data)
     refresh_battle_view()
 
-def redraw_battle_hand():
+def surrender_battle():
     username = state.current_user
     state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
+    if not room or room.get('winner') or not username or username not in room.get('players', []):
+        refresh_battle_view()
+        return
+    if apply_battle_surrender(room, username):
+        state.battle_selected_keys = set()
+        if not room.get('winner') and battle_all_players_submitted(room):
+            resolve_battle_turn(room)
+        save_battle_state(state_data)
+    refresh_battle_view()
+
+def redraw_battle_hand():
+    username = state.current_user
+    state_data = load_battle_state_with_timeouts()
     room = battle_room_for_user(username, state_data)
     if not room or room.get('winner') or not username or username not in room.get('players', []):
         refresh_battle_view()
@@ -4997,7 +5125,7 @@ def redraw_battle_hand():
     refresh_battle_view()
 
 def active_battle_rooms():
-    state_data = load_battle_state()
+    state_data = load_battle_state_with_timeouts()
     rooms = []
     for room in state_data.get('rooms', {}).values():
         if not isinstance(room, dict) or room.get('winner'):
@@ -5060,12 +5188,13 @@ def send_battle_chat(message):
     refresh_battle_view()
 
 def battle_screen_signature():
-    state_data = load_battle_state()
+    state_data = load_battle_state_with_timeouts()
     room = battle_room_for_user(state.current_user, state_data)
     if room:
         payload = {
             'room': room.get('id'),
             'turn': room.get('turn'),
+            'time_left': battle_turn_time_left(room),
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
             'submitted': sorted(room.get('submitted', {}).keys()),
@@ -6916,6 +7045,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.label(f'{battle_mode_label(mode)} / {t("battle_turn")} {room.get("turn", 1)}').classes('text-xl font-bold text-[#1a2332]')
                 ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
             ui.label(t('battle_auto_notice')).classes('text-xs text-gray-500')
+            if not winner:
+                ui.label(t('battle_time_left').format(seconds=battle_turn_time_left(room))).classes('text-sm font-bold text-orange-700')
             with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
                 for player in players:
                     label = player
@@ -6951,11 +7082,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 hand = room['hands'].setdefault(username, [])
                 waiting_for_player = username in room.get('submitted', {})
                 defenseless = username in set(room.get('reload_after_turn', [])) or not hand
-                if waiting_for_player:
+                if room.setdefault('hp', {}).get(username, BATTLE_MAX_HP) <= 0:
+                    ui.label(t('battle_eliminated')).classes('text-sm font-bold text-gray-600')
+                elif waiting_for_player:
                     ui.label(t('battle_wait_opponent')).classes('text-sm font-bold text-blue-700')
+                    ui.button(t('battle_surrender'), icon='flag', on_click=surrender_battle).props('outline color=negative dense')
                 elif defenseless:
                     ui.label(t('battle_defenseless')).classes('text-sm font-bold text-red-700')
-                    ui.button(t('battle_submit'), icon='shield', on_click=submit_battle_hand).props('color=red')
+                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                        ui.button(t('battle_surrender'), icon='flag', on_click=surrender_battle).props('outline color=negative')
+                        ui.button(t('battle_submit'), icon='shield', on_click=submit_battle_hand).props('color=red')
                 else:
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                         ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
@@ -6970,7 +7106,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
                         for key in hand:
                             render_battle_card(key, lookup)
-                    ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
+                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                        ui.button(t('battle_surrender'), icon='flag', on_click=surrender_battle).props('outline color=negative')
+                        ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
 
         render_battle_chat(room)
         with ui.card().classes('w-full p-5 gap-3'):
