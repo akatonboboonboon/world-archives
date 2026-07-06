@@ -48,6 +48,7 @@ GUEST_USERNAME = '__guest__'
 KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
 APP_TIMEZONE = timezone(timedelta(hours=9), 'JST')
 USER_ASSETS_DIR = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'user_assets')
+BATTLE_STATE_FILE = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'battle_state.json')
 os.makedirs(USER_ASSETS_DIR, exist_ok=True)
 app.add_static_files('/user-assets', USER_ASSETS_DIR)
 ui.add_head_html("""
@@ -138,23 +139,53 @@ USER_RECORD_KEYS = {
     'avatar',
     'name_color',
     'battle_wins',
+    'battle_unlocked_notified',
 }
 
 def looks_like_user_record(value):
     return isinstance(value, dict) and bool(USER_RECORD_KEYS.intersection(value.keys()))
 
+def user_record_from_candidate(value):
+    if not isinstance(value, dict):
+        return None
+    if looks_like_user_record(value):
+        return value
+    record = value.get('record')
+    if looks_like_user_record(record):
+        return record
+    return None
+
 def normalize_user_data_file(data):
     if not isinstance(data, dict):
         return default_user_data()
-    users = data.get('users') if isinstance(data.get('users'), dict) else {}
+    raw_users = data.get('users')
+    users = {}
+    if isinstance(raw_users, dict):
+        for username, record in raw_users.items():
+            normalized_record = user_record_from_candidate(record)
+            if normalized_record:
+                clean_name = str(username or '').strip()
+                if clean_name:
+                    users[clean_name] = normalized_record
+    elif isinstance(raw_users, list):
+        for item in raw_users:
+            if not isinstance(item, dict):
+                continue
+            username = str(item.get('username') or item.get('name') or item.get('id') or '').strip()
+            record = user_record_from_candidate(item)
+            if username and record:
+                users[username] = record
     backup_username = str(data.get('username') or '').strip()
     if backup_username and looks_like_user_record(data.get('record')) and backup_username not in users:
         users[backup_username] = data['record']
     for key, value in list(data.items()):
         if key == 'users':
             continue
-        if looks_like_user_record(value) and key not in users:
-            users[key] = value
+        record = user_record_from_candidate(value)
+        username = str(value.get('username') or '').strip() if isinstance(value, dict) else ''
+        username = username or str(key or '').strip()
+        if record and username and username not in users:
+            users[username] = record
     data['users'] = users
     return data
 
@@ -733,6 +764,8 @@ EXTRA_UI_FALLBACKS = {
         'battle_win': '勝利',
         'battle_lose': '敗北',
         'battle_wins': '対戦勝利',
+        'battle_unlocked_notice': '対戦モードが解禁されました。',
+        'battle_matched': '対戦相手が見つかりました。',
     },
     'en': {
         'users': 'Users',
@@ -796,6 +829,8 @@ EXTRA_UI_FALLBACKS = {
         'battle_win': 'Win',
         'battle_lose': 'Loss',
         'battle_wins': 'Battle wins',
+        'battle_unlocked_notice': 'Power Battle is now unlocked.',
+        'battle_matched': 'Opponent found.',
     },
     'zh': {
         'users': '用户',
@@ -859,6 +894,8 @@ EXTRA_UI_FALLBACKS = {
         'battle_win': '胜利',
         'battle_lose': '失败',
         'battle_wins': '对战胜利',
+        'battle_unlocked_notice': '国力对战已解锁。',
+        'battle_matched': '已找到对手。',
     },
 }
 
@@ -1075,6 +1112,16 @@ def get_current_user_record(user_data=None):
         ensure_user_defaults(user)
     return user
 
+def get_named_user_record(username, user_data=None):
+    username = clean_username(username)
+    if not username:
+        return None
+    users = get_users(user_data)
+    user = users.get(username)
+    if user:
+        ensure_user_defaults(user)
+    return user
+
 def clamp_number(value, min_value, max_value, default):
     try:
         number = float(value)
@@ -1125,6 +1172,8 @@ def ensure_user_defaults(user):
     user['name_color'] = normalize_name_color(user.get('name_color'))
     if not isinstance(user.get('battle_wins'), int):
         user['battle_wins'] = 0
+    if not isinstance(user.get('battle_unlocked_notified'), bool):
+        user['battle_unlocked_notified'] = False
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
@@ -1196,8 +1245,12 @@ def request_browser_backup_restore():
     (async () => {{
       const backupKey = '{BROWSER_BACKUP_KEY}';
       const collected = {{}};
+      const userFields = ['password_hash', 'favorites', 'history', 'viewed_keys', 'collections', 'quiz_stats', 'avatar', 'battle_wins'];
+      const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
+        const record = looksLikeRecord(value) ? value : (looksLikeRecord(value.record) ? value.record : null);
+        if (!record) return;
         collected[String(username)] = value;
       }};
       const collectPayload = value => {{
@@ -1212,7 +1265,11 @@ def request_browser_backup_restore():
         }}
         if (!parsed || typeof parsed !== 'object') return;
         if (parsed.users && typeof parsed.users === 'object') {{
-          Object.entries(parsed.users).forEach(([username, record]) => mergeRecord(username, {{record}}));
+          if (Array.isArray(parsed.users)) {{
+            parsed.users.forEach(record => mergeRecord(record && (record.username || record.name || record.id), record));
+          }} else {{
+            Object.entries(parsed.users).forEach(([username, record]) => mergeRecord(username, {{record}}));
+          }}
           return;
         }}
         if (parsed.username) {{
@@ -1229,7 +1286,8 @@ def request_browser_backup_restore():
       for (let i = 0; i < localStorage.length; i += 1) {{
         const key = localStorage.key(i) || '';
         if (key === backupKey) continue;
-        if (key.includes('world_archive') || key.includes('world-archive')) {{
+        const lowerKey = key.toLowerCase();
+        if (lowerKey.includes('world') || lowerKey.includes('archive') || lowerKey.includes('user')) {{
           collectPayload(localStorage.getItem(key));
         }}
       }}
@@ -1387,16 +1445,36 @@ def normalize_backup_payload(payload):
     if not isinstance(payload, dict):
         return {}
     if isinstance(payload.get('users'), dict):
-        return {username: {'record': record} for username, record in payload['users'].items()}
+        return {
+            username: {'record': user_record_from_candidate(record)}
+            for username, record in payload['users'].items()
+            if user_record_from_candidate(record)
+        }
+    if isinstance(payload.get('users'), list):
+        restored = {}
+        for item in payload['users']:
+            if not isinstance(item, dict):
+                continue
+            username = clean_username(item.get('username') or item.get('name') or item.get('id'))
+            record = user_record_from_candidate(item)
+            if username and record:
+                restored[username] = {'record': record}
+        return restored
     if payload.get('username') and isinstance(payload.get('record'), dict):
-        return {payload['username']: payload}
+        record = user_record_from_candidate(payload.get('record'))
+        return {payload['username']: {'record': record}} if record else {}
     if payload.get('username') and looks_like_user_record(payload):
         username = payload.get('username')
         record = dict(payload)
         record.pop('username', None)
         record.pop('updated_at', None)
         return {username: {'record': record}}
-    return payload
+    restored = {}
+    for username, value in payload.items():
+        record = user_record_from_candidate(value)
+        if record:
+            restored[username] = {'record': record}
+    return restored
 
 def restore_user_backup_payload(payload):
     backups = normalize_backup_payload(payload)
@@ -1409,8 +1487,8 @@ def restore_user_backup_payload(payload):
         username = clean_username(raw_username)
         if not username or not isinstance(backup, dict):
             continue
-        record = backup.get('record', backup)
-        if not isinstance(record, dict):
+        record = user_record_from_candidate(backup)
+        if not record:
             continue
         users[username] = merge_user_record(users.get(username, {}), record)
         ensure_user_defaults(users[username])
@@ -1462,8 +1540,11 @@ def login_user(username, password):
     state.current_user = username
     state.users_browser_restore_requested = False
     ensure_user_defaults(user)
+    unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
     ui.notify(t('login_success'), color='positive')
+    if unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
     show_screen('top')
     return True
 
@@ -1571,9 +1652,7 @@ def rename_current_account(new_username, current_password):
     if new_username == old_username:
         ui.notify(t('account_updated'), color='info')
         return True
-    if old_username in BATTLE_QUEUE:
-        BATTLE_QUEUE.remove(old_username)
-    BATTLE_USER_ROOM.pop(old_username, None)
+    remove_user_from_battle_state(old_username)
     record = users.pop(old_username)
     ensure_user_defaults(record)
     record['password_hash'] = password_hash(new_username, current_password)
@@ -1625,9 +1704,7 @@ def delete_current_account(current_password):
     if not user or not current_password_is_valid(user, current_password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
-    if username in BATTLE_QUEUE:
-        BATTLE_QUEUE.remove(username)
-    BATTLE_USER_ROOM.pop(username, None)
+    remove_user_from_battle_state(username)
     users.pop(username, None)
     save_user_data(user_data)
     remove_browser_backup(username)
@@ -1844,6 +1921,7 @@ def render_avatar_drag_editor(avatar_url, source):
     editor_id = f"avatar-editor-{random.randint(100000, 999999)}"
     save_id = f"{editor_id}-save"
     status_id = f"{editor_id}-status"
+    username = state.current_user or ''
     src = html_escape(str(avatar_url), quote=True)
     save_text = html_escape(t('avatar_save_adjust'), quote=True)
     ui.html(
@@ -1907,6 +1985,7 @@ def render_avatar_drag_editor(avatar_url, source):
             method: 'POST',
             headers: {{'Content-Type': 'application/json'}},
             body: JSON.stringify({{
+              username: {json.dumps(username)},
               position_x: Math.round(x),
               position_y: Math.round(y),
             }}),
@@ -2045,7 +2124,8 @@ def update_avatar_adjustment(field, value):
 
 def save_avatar_adjustment_values(values):
     user_data = load_user_data()
-    user = get_current_user_record(user_data)
+    username = clean_username((values or {}).get('username')) or state.current_user
+    user = get_named_user_record(username, user_data)
     if not user:
         return False
     avatar = user.setdefault('avatar', {'mode': 'default'})
@@ -2070,7 +2150,7 @@ def reset_avatar():
     ui.notify(t('avatar_saved'), color='positive')
     refresh_current_screen()
 
-def save_avatar_image_content(filename, content):
+def save_avatar_image_content(filename, content, username=None):
     allowed_extensions = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
     ext = os.path.splitext(filename or '')[1].lower()
     if ext not in allowed_extensions:
@@ -2082,10 +2162,11 @@ def save_avatar_image_content(filename, content):
     if not content or len(content) > 8 * 1024 * 1024:
         raise ValueError('invalid image size')
     user_data = load_user_data()
-    user = get_current_user_record(user_data)
+    username = clean_username(username) or state.current_user
+    user = get_named_user_record(username, user_data)
     if not user:
         raise PermissionError('login required')
-    folder = avatar_user_dir(state.current_user)
+    folder = avatar_user_dir(username)
     for name in os.listdir(folder):
         if name.startswith('avatar.'):
             try:
@@ -2115,7 +2196,7 @@ def upload_avatar_image(event):
             except Exception:
                 pass
         content = content_source.read() if hasattr(content_source, 'read') else content_source
-        save_avatar_image_content(event.name, content)
+        save_avatar_image_content(event.name, content, state.current_user)
         ui.notify(t('avatar_saved'), color='positive')
         refresh_current_screen()
     except Exception as e:
@@ -2126,6 +2207,7 @@ def render_avatar_upload_control():
     upload_id = f"avatar-upload-{random.randint(100000, 999999)}"
     status_id = f"{upload_id}-status"
     button_text = html_escape(t('avatar_choose_file'))
+    username = state.current_user or ''
     ui.html(
         f'''
         <div class="w-full flex flex-col gap-2">
@@ -2163,6 +2245,7 @@ def render_avatar_upload_control():
               headers: {{'Content-Type': 'application/json'}},
               body: JSON.stringify({{
                 name: file.name,
+                username: {json.dumps(username)},
                 content: reader.result,
               }}),
             }});
@@ -2815,6 +2898,93 @@ def battle_unlock_country_keys(data=None):
 def battle_country_lookup(data=None):
     return {country_key(country): country for country in battle_country_list(data)}
 
+def default_battle_state():
+    return {
+        'queue': [],
+        'rooms': {},
+        'user_room': {},
+        'counter': 0,
+    }
+
+def normalize_battle_state(value):
+    if not isinstance(value, dict):
+        return default_battle_state()
+    state_data = default_battle_state()
+    if isinstance(value.get('queue'), list):
+        state_data['queue'] = [clean_username(username) for username in value['queue'] if clean_username(username)]
+    if isinstance(value.get('rooms'), dict):
+        state_data['rooms'] = value['rooms']
+    if isinstance(value.get('user_room'), dict):
+        state_data['user_room'] = {
+            clean_username(username): str(room_id)
+            for username, room_id in value['user_room'].items()
+            if clean_username(username) and room_id
+        }
+    try:
+        state_data['counter'] = int(value.get('counter', 0))
+    except (TypeError, ValueError):
+        state_data['counter'] = 0
+    return state_data
+
+def load_battle_state():
+    if not os.path.exists(BATTLE_STATE_FILE):
+        return default_battle_state()
+    try:
+        with open(BATTLE_STATE_FILE, 'r', encoding='utf-8') as f:
+            return normalize_battle_state(json.load(f))
+    except Exception as e:
+        print(f'Error loading battle state: {e}', flush=True)
+        return default_battle_state()
+
+def save_battle_state(state_data):
+    state_data = normalize_battle_state(state_data)
+    battle_dir = os.path.dirname(BATTLE_STATE_FILE)
+    if battle_dir:
+        os.makedirs(battle_dir, exist_ok=True)
+    with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(state_data, f, ensure_ascii=False, indent=2)
+
+def battle_room_for_user(username, state_data=None):
+    username = clean_username(username)
+    if not username:
+        return None
+    state_data = state_data or load_battle_state()
+    room_id = state_data.get('user_room', {}).get(username)
+    room = state_data.get('rooms', {}).get(room_id)
+    if room and username in room.get('players', []):
+        if username == state.current_user:
+            state.battle_id = room_id
+        return room
+    if room_id:
+        state_data.get('user_room', {}).pop(username, None)
+        save_battle_state(state_data)
+    if username == state.current_user:
+        state.battle_id = None
+    return None
+
+def battle_waiting_users(state_data=None):
+    state_data = state_data or load_battle_state()
+    return list(state_data.get('queue', []))
+
+def is_current_user_waiting_for_battle():
+    return state.current_user in battle_waiting_users()
+
+def remove_user_from_battle_state(username):
+    username = clean_username(username)
+    if not username:
+        return
+    state_data = load_battle_state()
+    queue = state_data.setdefault('queue', [])
+    state_data['queue'] = [queued for queued in queue if queued != username]
+    room_id = state_data.setdefault('user_room', {}).pop(username, None)
+    room = state_data.setdefault('rooms', {}).get(room_id)
+    if room:
+        for player in room.get('players', []):
+            if player != username:
+                state_data['user_room'].pop(player, None)
+        state_data['rooms'].pop(room_id, None)
+    save_battle_state(state_data)
+
 def battle_is_user_eligible(username=None, user=None):
     username = username or state.current_user
     if not username or username == GUEST_USERNAME:
@@ -2829,6 +2999,17 @@ def battle_is_user_eligible(username=None, user=None):
     if not needed:
         return False
     return needed.issubset(set(user.get('viewed_keys', [])))
+
+def mark_battle_unlock_if_ready(user):
+    if not state.current_user or state.current_user == GUEST_USERNAME or not user:
+        return False
+    ensure_user_defaults(user)
+    if user.get('battle_unlocked_notified'):
+        return False
+    if not battle_is_user_eligible(user=user):
+        return False
+    user['battle_unlocked_notified'] = True
+    return True
 
 def apply_admin_search_cheat(keyword):
     if str(keyword or '').strip() != ADMIN_SEARCH_CHEAT_CODE:
@@ -2847,8 +3028,11 @@ def apply_admin_search_cheat(keyword):
     for key in battle_unlock_country_keys():
         if key not in viewed:
             viewed.append(key)
+    unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
     ui.notify(t('admin_search_cheat_applied'), color='positive')
+    if unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
     return True
 
 def deal_battle_hand():
@@ -2858,22 +3042,12 @@ def deal_battle_hand():
     return random.sample(keys, 5)
 
 def current_battle_room():
-    username = state.current_user
-    if not username:
-        return None
-    room_id = state.battle_id or BATTLE_USER_ROOM.get(username)
-    room = BATTLE_ROOMS.get(room_id)
-    if room and username in room.get('players', []):
-        state.battle_id = room_id
-        return room
-    state.battle_id = None
-    BATTLE_USER_ROOM.pop(username, None)
-    return None
+    return battle_room_for_user(state.current_user)
 
-def create_battle_room(player_one, player_two):
-    global BATTLE_COUNTER
-    BATTLE_COUNTER += 1
-    room_id = f'battle-{BATTLE_COUNTER}'
+def create_battle_room(player_one, player_two, state_data=None):
+    state_data = state_data or load_battle_state()
+    state_data['counter'] = int(state_data.get('counter', 0)) + 1
+    room_id = f"battle-{state_data['counter']}"
     room = {
         'id': room_id,
         'players': [player_one, player_two],
@@ -2885,9 +3059,10 @@ def create_battle_room(player_one, player_two):
         'turn': 1,
         'winner': None,
     }
-    BATTLE_ROOMS[room_id] = room
-    BATTLE_USER_ROOM[player_one] = room_id
-    BATTLE_USER_ROOM[player_two] = room_id
+    state_data.setdefault('rooms', {})[room_id] = room
+    state_data.setdefault('user_room', {})[player_one] = room_id
+    state_data.setdefault('user_room', {})[player_two] = room_id
+    save_battle_state(state_data)
     if state.current_user in room['players']:
         state.battle_id = room_id
     return room
@@ -2897,37 +3072,45 @@ def join_battle_queue():
     if not battle_is_user_eligible(username):
         ui.notify(t('unlock_condition_not_met'), color='warning')
         return
-    if current_battle_room():
+    state_data = load_battle_state()
+    if battle_room_for_user(username, state_data):
         refresh_battle_view()
         return
-    for waiting_user in list(BATTLE_QUEUE):
+    queue = state_data.setdefault('queue', [])
+    for waiting_user in list(queue):
         if waiting_user == username:
             continue
         if not battle_is_user_eligible(waiting_user):
-            BATTLE_QUEUE.remove(waiting_user)
+            queue.remove(waiting_user)
             continue
-        BATTLE_QUEUE.remove(waiting_user)
-        create_battle_room(waiting_user, username)
-        ui.notify(t('battle_title'), color='positive')
+        queue.remove(waiting_user)
+        create_battle_room(waiting_user, username, state_data)
+        ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
         return
-    if username not in BATTLE_QUEUE:
-        BATTLE_QUEUE.append(username)
+    if username not in queue:
+        queue.append(username)
+        save_battle_state(state_data)
     refresh_battle_view()
 
 def cancel_battle_queue():
     username = state.current_user
-    if username in BATTLE_QUEUE:
-        BATTLE_QUEUE.remove(username)
+    state_data = load_battle_state()
+    queue = state_data.setdefault('queue', [])
+    if username in queue:
+        queue.remove(username)
+        save_battle_state(state_data)
     refresh_battle_view()
 
 def leave_finished_battle(join_again=False):
     username = state.current_user
-    room = current_battle_room()
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
     if room:
-        BATTLE_USER_ROOM.pop(username, None)
-        if not any(BATTLE_USER_ROOM.get(player) == room['id'] for player in room.get('players', [])):
-            BATTLE_ROOMS.pop(room['id'], None)
+        state_data.setdefault('user_room', {}).pop(username, None)
+        if not any(state_data.get('user_room', {}).get(player) == room['id'] for player in room.get('players', [])):
+            state_data.setdefault('rooms', {}).pop(room['id'], None)
+        save_battle_state(state_data)
     state.battle_id = None
     state.battle_selected_keys = set()
     if join_again:
@@ -3021,8 +3204,9 @@ def toggle_battle_card(key, checked):
     state.battle_selected_keys = selected
 
 def submit_battle_hand():
-    room = current_battle_room()
     username = state.current_user
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
     if not room or room.get('winner') or not username:
         refresh_battle_view()
         return
@@ -3041,6 +3225,7 @@ def submit_battle_hand():
     state.battle_selected_keys = set()
     if len(room.get('submitted', {})) >= 2:
         resolve_battle_turn(room)
+    save_battle_state(state_data)
     refresh_battle_view()
 
 # ========================================
@@ -3070,7 +3255,7 @@ async def upload_avatar_from_browser(payload: dict):
         if isinstance(raw_content, str) and raw_content.startswith('data:'):
             raw_content = raw_content.split(',', 1)[1]
         content = base64.b64decode(raw_content)
-        save_avatar_image_content(payload.get('name', ''), content)
+        save_avatar_image_content(payload.get('name', ''), content, payload.get('username'))
         return {'ok': True}
     except Exception as e:
         print(f'Avatar browser upload failed: {e}', flush=True)
@@ -3105,7 +3290,10 @@ def add_history(country_data):
     history = user.setdefault('history', [])
     history.insert(0, new_record)
     del history[50:]
+    unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
+    if unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
 
 def clear_history():
     user_data = load_user_data()
@@ -4553,7 +4741,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 return
 
             with ui.card().classes('w-full p-5 gap-4'):
-                if state.current_user in BATTLE_QUEUE:
+                if is_current_user_waiting_for_battle():
                     ui.label(t('battle_waiting')).classes('text-lg font-bold text-blue-700')
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
@@ -4565,7 +4753,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         if not battle_screen.visible:
             return
         room = current_battle_room()
-        if state.current_user in BATTLE_QUEUE or (room and (state.current_user in room.get('submitted', {}) or room.get('winner'))):
+        if is_current_user_waiting_for_battle() or (room and (state.current_user in room.get('submitted', {}) or room.get('winner'))):
             refresh_battle_view()
 
     ui.timer(2.5, auto_refresh_battle)
