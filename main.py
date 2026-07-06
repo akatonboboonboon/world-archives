@@ -124,7 +124,89 @@ def format_timestamp(value):
     return dt.astimezone(APP_TIMEZONE).strftime('%Y-%m-%d %H:%M')
 
 def default_user_data():
-    return {'users': {}, 'known_users': []}
+    return {'users': {}, 'known_users': [], 'friend_requests': [], 'chats': {}}
+
+def clean_stored_username(username):
+    return str(username or '').strip()
+
+def is_stored_guest_username(username):
+    username = clean_stored_username(username)
+    return username == GUEST_USERNAME or username.startswith(f'{GUEST_USERNAME}:')
+
+def social_chat_id(members, chat_type='direct'):
+    clean_members = sorted({
+        clean_stored_username(member)
+        for member in members
+        if clean_stored_username(member)
+    })
+    digest = hashlib.sha1('|'.join(clean_members).encode('utf-8')).hexdigest()[:16]
+    if chat_type == 'group':
+        return f"group:{digest}:{app_now().strftime('%Y%m%d%H%M%S')}"
+    return f"direct:{digest}"
+
+def normalize_friend_requests(value):
+    requests = []
+    seen = set()
+    if not isinstance(value, list):
+        return requests
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        sender = clean_stored_username(item.get('from'))
+        receiver = clean_stored_username(item.get('to'))
+        if not sender or not receiver or sender == receiver:
+            continue
+        if is_stored_guest_username(sender) or is_stored_guest_username(receiver):
+            continue
+        marker = (sender, receiver)
+        if marker in seen:
+            continue
+        requests.append({
+            'from': sender,
+            'to': receiver,
+            'timestamp': str(item.get('timestamp') or current_timestamp()),
+        })
+        seen.add(marker)
+    return requests
+
+def normalize_social_chats(value):
+    chats = {}
+    if not isinstance(value, dict):
+        return chats
+    for chat_id, chat in value.items():
+        if not isinstance(chat, dict):
+            continue
+        members = []
+        for member in chat.get('members', []):
+            member = clean_stored_username(member)
+            if member and not is_stored_guest_username(member) and member not in members:
+                members.append(member)
+        if len(members) < 2:
+            continue
+        messages = []
+        for message in chat.get('messages', []):
+            if not isinstance(message, dict):
+                continue
+            sender = clean_stored_username(message.get('user'))
+            text = str(message.get('text') or '').strip()
+            if not sender or sender not in members or not text:
+                continue
+            messages.append({
+                'user': sender,
+                'text': text[:500],
+                'timestamp': str(message.get('timestamp') or current_timestamp()),
+            })
+        chat_type = 'group' if chat.get('type') == 'group' else 'direct'
+        clean_id = str(chat_id or '').strip() or social_chat_id(members, chat_type)
+        chats[clean_id] = {
+            'id': clean_id,
+            'type': chat_type,
+            'name': str(chat.get('name') or '').strip(),
+            'members': members,
+            'messages': messages[-120:],
+            'created_at': str(chat.get('created_at') or current_timestamp()),
+        }
+    return chats
 
 USER_RECORD_KEYS = {
     'password_hash',
@@ -140,6 +222,7 @@ USER_RECORD_KEYS = {
     'name_color',
     'battle_wins',
     'battle_unlocked_notified',
+    'friends',
 }
 
 def looks_like_user_record(value):
@@ -195,6 +278,8 @@ def normalize_user_data_file(data):
         username for username in known_users
         if username and username != GUEST_USERNAME and not username.startswith(f'{GUEST_USERNAME}:')
     }, key=lambda value: value.lower())
+    data['friend_requests'] = normalize_friend_requests(data.get('friend_requests'))
+    data['chats'] = normalize_social_chats(data.get('chats'))
     return data
 
 def load_user_data():
@@ -213,6 +298,8 @@ def save_user_data(data):
     data = {
         'users': data.get('users', {}),
         'known_users': data.get('known_users', []),
+        'friend_requests': data.get('friend_requests', []),
+        'chats': data.get('chats', {}),
     }
     user_dir = os.path.dirname(USER_DATA_FILE)
     if user_dir:
@@ -236,7 +323,7 @@ def merge_user_record(current, incoming):
     if not isinstance(incoming, dict):
         return current
     for key, value in incoming.items():
-        if key in ['favorites', 'review_keys']:
+        if key in ['favorites', 'review_keys', 'friends']:
             current[key] = merge_unique_list(current.get(key, []), value)
         elif key == 'history':
             current[key] = merge_unique_list(current.get(key, []), value, 50)
@@ -393,6 +480,7 @@ class AppState:
     battle_id = None
     battle_selected_keys = set()
     battle_last_signature = ''
+    social_selected_chat_id = None
 
 state = AppState()
 
@@ -1019,6 +1107,127 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_damage_each': '各',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'rankings': 'ランキング',
+    'rankings_title': 'ランキング',
+    'quiz_ranking': 'クイズ正解数ランキング',
+    'battle_win_ranking': '勝利数ランキング',
+    'ranking_locked': 'ロックされたランキング',
+    'ranking_locked_hint': '勝利数ランキングは、全国家を閲覧したユーザーだけが見られます。',
+    'rank_number': '順位',
+    'correct_count': '正解数',
+    'answered_count': '解答数',
+    'win_count': '勝利数',
+    'friends': 'フレンド',
+    'friends_title': 'フレンド・チャット',
+    'friend_requests': 'フレンド申請',
+    'friend_request_send': 'フレンド申請',
+    'friend_request_sent': '申請中',
+    'friend_request_received': '申請が届いています',
+    'friend_accept': '承認',
+    'friend_reject': '拒否',
+    'friend_remove': 'フレンド解除',
+    'friend_chat': '個人チャット',
+    'friend_request_sent_notice': 'フレンド申請を送りました。',
+    'friend_request_accepted_notice': 'フレンドになりました。',
+    'friend_request_rejected_notice': 'フレンド申請を削除しました。',
+    'no_friends': 'フレンドはまだいません。',
+    'no_friend_requests': '届いている申請はありません。',
+    'direct_chat': '個人チャット',
+    'group_chat': 'グループチャット',
+    'create_group_chat': 'グループを作成',
+    'group_name': 'グループ名',
+    'group_members': 'メンバー',
+    'group_members_hint': 'フレンドの名前をカンマ区切りで入力します。',
+    'chat_message': 'メッセージ',
+    'chat_send': '送信',
+    'chat_empty': 'まだメッセージはありません。',
+    'chat_select': 'チャットを選択してください。',
+    'chat_created': 'チャットを作成しました。',
+    'chat_not_allowed': 'フレンド同士でのみチャットできます。',
+    'friends_count': 'フレンド数',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'rankings': 'Rankings',
+    'rankings_title': 'Rankings',
+    'quiz_ranking': 'Quiz Correct Ranking',
+    'battle_win_ranking': 'Battle Win Ranking',
+    'ranking_locked': 'Locked ranking',
+    'ranking_locked_hint': 'Only users who have viewed every country can see the battle win ranking.',
+    'rank_number': 'Rank',
+    'correct_count': 'Correct',
+    'answered_count': 'Answered',
+    'win_count': 'Wins',
+    'friends': 'Friends',
+    'friends_title': 'Friends & Chat',
+    'friend_requests': 'Friend Requests',
+    'friend_request_send': 'Send request',
+    'friend_request_sent': 'Request sent',
+    'friend_request_received': 'Request received',
+    'friend_accept': 'Accept',
+    'friend_reject': 'Decline',
+    'friend_remove': 'Remove friend',
+    'friend_chat': 'Direct chat',
+    'friend_request_sent_notice': 'Friend request sent.',
+    'friend_request_accepted_notice': 'You are now friends.',
+    'friend_request_rejected_notice': 'Friend request removed.',
+    'no_friends': 'No friends yet.',
+    'no_friend_requests': 'No incoming requests.',
+    'direct_chat': 'Direct chat',
+    'group_chat': 'Group chat',
+    'create_group_chat': 'Create group',
+    'group_name': 'Group name',
+    'group_members': 'Members',
+    'group_members_hint': 'Enter friend names separated by commas.',
+    'chat_message': 'Message',
+    'chat_send': 'Send',
+    'chat_empty': 'No messages yet.',
+    'chat_select': 'Select a chat.',
+    'chat_created': 'Chat created.',
+    'chat_not_allowed': 'Chat is available between friends only.',
+    'friends_count': 'Friends',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'rankings': '排行榜',
+    'rankings_title': '排行榜',
+    'quiz_ranking': '测验正确数排行',
+    'battle_win_ranking': '胜利数排行',
+    'ranking_locked': '已锁定排行',
+    'ranking_locked_hint': '胜利数排行仅限已浏览全部国家的用户查看。',
+    'rank_number': '排名',
+    'correct_count': '正确数',
+    'answered_count': '回答数',
+    'win_count': '胜利数',
+    'friends': '好友',
+    'friends_title': '好友与聊天',
+    'friend_requests': '好友申请',
+    'friend_request_send': '发送申请',
+    'friend_request_sent': '已申请',
+    'friend_request_received': '收到申请',
+    'friend_accept': '同意',
+    'friend_reject': '拒绝',
+    'friend_remove': '解除好友',
+    'friend_chat': '私聊',
+    'friend_request_sent_notice': '已发送好友申请。',
+    'friend_request_accepted_notice': '已成为好友。',
+    'friend_request_rejected_notice': '已删除好友申请。',
+    'no_friends': '还没有好友。',
+    'no_friend_requests': '没有收到申请。',
+    'direct_chat': '私聊',
+    'group_chat': '群聊',
+    'create_group_chat': '创建群聊',
+    'group_name': '群名',
+    'group_members': '成员',
+    'group_members_hint': '请输入好友名，用逗号分隔。',
+    'chat_message': '消息',
+    'chat_send': '发送',
+    'chat_empty': '还没有消息。',
+    'chat_select': '请选择聊天。',
+    'chat_created': '聊天已创建。',
+    'chat_not_allowed': '只有好友之间可以聊天。',
+    'friends_count': '好友数',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -1271,7 +1480,7 @@ def normalize_avatar_adjustment(avatar):
     return avatar
 
 def ensure_user_defaults(user):
-    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history']:
+    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends']:
         if not isinstance(user.get(key), list):
             user[key] = []
     for key in ['notes', 'collections']:
@@ -1397,7 +1606,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified', 'friends'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -1510,6 +1719,10 @@ def public_user_backup_payload():
             'name_color': user_name_color(record),
             'battle_wins': int(record.get('battle_wins', 0) or 0),
             'battle_unlocked_notified': bool(record.get('battle_unlocked_notified')),
+            'friends': [
+                friend for friend in record.get('friends', [])
+                if clean_stored_username(friend) and not is_stored_guest_username(friend)
+            ],
         }
     return {
         'users': public_users,
@@ -1900,6 +2113,8 @@ def rename_current_account(new_username, current_password):
     ensure_user_defaults(record)
     record['password_hash'] = password_hash(new_username, current_password)
     users[new_username] = record
+    rename_user_references(user_data, old_username, new_username)
+    remember_known_user(new_username, user_data)
     state.current_user = new_username
     state.battle_id = None
     state.battle_selected_keys = set()
@@ -1949,6 +2164,7 @@ def delete_current_account(current_password):
         return False
     remove_user_from_battle_state(username)
     users.pop(username, None)
+    remove_user_references(user_data, username)
     save_user_data(user_data)
     remove_browser_backup(username)
     state.current_user = None
@@ -1970,6 +2186,298 @@ def set_current_name_color(color_value):
     ui.notify(t('name_color_saved'), color='positive')
     refresh_current_screen()
     return True
+
+def non_guest_usernames(user_data=None):
+    user_data = user_data or load_user_data()
+    users = get_users(user_data)
+    return [
+        username for username in users
+        if username and not is_guest_record(username, users.get(username))
+    ]
+
+def ensure_friend_list(user):
+    ensure_user_defaults(user)
+    clean_friends = []
+    for friend in user.get('friends', []):
+        friend = clean_username(friend)
+        if friend and not is_guest_record(friend) and friend not in clean_friends:
+            clean_friends.append(friend)
+    user['friends'] = clean_friends
+    return clean_friends
+
+def sync_friendship(user_data, first, second, add=True):
+    users = get_users(user_data)
+    first_user = users.get(first)
+    second_user = users.get(second)
+    if not first_user or not second_user:
+        return False
+    first_friends = ensure_friend_list(first_user)
+    second_friends = ensure_friend_list(second_user)
+    if add:
+        if second not in first_friends:
+            first_friends.append(second)
+        if first not in second_friends:
+            second_friends.append(first)
+    else:
+        if second in first_friends:
+            first_friends.remove(second)
+        if first in second_friends:
+            second_friends.remove(first)
+    return True
+
+def friend_request_between(user_data, sender, receiver):
+    for request in user_data.setdefault('friend_requests', []):
+        if request.get('from') == sender and request.get('to') == receiver:
+            return request
+    return None
+
+def remove_friend_request_between(user_data, first, second):
+    user_data['friend_requests'] = [
+        request for request in user_data.setdefault('friend_requests', [])
+        if not (
+            (request.get('from') == first and request.get('to') == second)
+            or (request.get('from') == second and request.get('to') == first)
+        )
+    ]
+
+def friend_status(target_username, user_data=None):
+    current = state.current_user
+    target = clean_username(target_username)
+    if not current or not target or current == target:
+        return 'self'
+    user_data = user_data or load_user_data()
+    current_user = get_users(user_data).get(current)
+    if not current_user:
+        return 'none'
+    if target in ensure_friend_list(current_user):
+        return 'friends'
+    if friend_request_between(user_data, current, target):
+        return 'sent'
+    if friend_request_between(user_data, target, current):
+        return 'received'
+    return 'none'
+
+def send_friend_request(target_username):
+    current = state.current_user
+    target = clean_username(target_username)
+    if not current or current == GUEST_USERNAME:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    if not target or target == current:
+        return False
+    user_data = load_user_data()
+    users = get_users(user_data)
+    if target not in users or is_guest_record(target, users.get(target)):
+        ui.notify(t('chat_not_allowed'), color='warning')
+        return False
+    status = friend_status(target, user_data)
+    if status == 'friends':
+        open_direct_chat(target)
+        return True
+    if status == 'received':
+        return accept_friend_request(target)
+    if status != 'sent':
+        user_data.setdefault('friend_requests', []).append({
+            'from': current,
+            'to': target,
+            'timestamp': current_timestamp(),
+        })
+    persist_current_user_data(user_data)
+    ui.notify(t('friend_request_sent_notice'), color='positive')
+    refresh_current_screen()
+    return True
+
+def accept_friend_request(sender_username):
+    current = state.current_user
+    sender = clean_username(sender_username)
+    if not current or not sender:
+        return False
+    user_data = load_user_data()
+    if not friend_request_between(user_data, sender, current):
+        return False
+    sync_friendship(user_data, current, sender, add=True)
+    remove_friend_request_between(user_data, current, sender)
+    ensure_direct_chat_record(user_data, current, sender)
+    persist_current_user_data(user_data)
+    ui.notify(t('friend_request_accepted_notice'), color='positive')
+    refresh_current_screen()
+    return True
+
+def reject_friend_request(other_username):
+    current = state.current_user
+    other = clean_username(other_username)
+    if not current or not other:
+        return False
+    user_data = load_user_data()
+    remove_friend_request_between(user_data, current, other)
+    persist_current_user_data(user_data)
+    ui.notify(t('friend_request_rejected_notice'), color='info')
+    refresh_current_screen()
+    return True
+
+def remove_friend(other_username):
+    current = state.current_user
+    other = clean_username(other_username)
+    if not current or not other:
+        return False
+    user_data = load_user_data()
+    sync_friendship(user_data, current, other, add=False)
+    remove_friend_request_between(user_data, current, other)
+    persist_current_user_data(user_data)
+    refresh_current_screen()
+    return True
+
+def ensure_direct_chat_record(user_data, first, second):
+    chat_id = social_chat_id([first, second], 'direct')
+    chats = user_data.setdefault('chats', {})
+    if chat_id not in chats:
+        chats[chat_id] = {
+            'id': chat_id,
+            'type': 'direct',
+            'name': '',
+            'members': sorted([first, second], key=lambda value: value.lower()),
+            'messages': [],
+            'created_at': current_timestamp(),
+        }
+    return chat_id
+
+def open_direct_chat(target_username):
+    current = state.current_user
+    target = clean_username(target_username)
+    if not current or not target:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    user_data = load_user_data()
+    if friend_status(target, user_data) != 'friends':
+        ui.notify(t('chat_not_allowed'), color='warning')
+        return False
+    state.social_selected_chat_id = ensure_direct_chat_record(user_data, current, target)
+    persist_current_user_data(user_data)
+    show_screen('social')
+    return True
+
+def parse_group_members(text):
+    raw_items = re.split(r'[,、\s]+', str(text or ''))
+    members = []
+    for item in raw_items:
+        username = clean_username(item)
+        if username and username not in members:
+            members.append(username)
+    return members
+
+def create_group_chat(group_name, member_text):
+    current = state.current_user
+    if not current or current == GUEST_USERNAME:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    user_data = load_user_data()
+    current_user = get_current_user_record(user_data)
+    friend_set = set(ensure_friend_list(current_user)) if current_user else set()
+    requested = parse_group_members(member_text)
+    members = [current]
+    for member in requested:
+        if member in friend_set and member not in members:
+            members.append(member)
+    if len(members) < 2:
+        ui.notify(t('chat_not_allowed'), color='warning')
+        return False
+    chats = user_data.setdefault('chats', {})
+    chat_id = social_chat_id(members, 'group')
+    while chat_id in chats:
+        chat_id = f"{social_chat_id(members, 'group')}:{random.randint(1000, 9999)}"
+    chats[chat_id] = {
+        'id': chat_id,
+        'type': 'group',
+        'name': str(group_name or '').strip() or t('group_chat'),
+        'members': members,
+        'messages': [],
+        'created_at': current_timestamp(),
+    }
+    state.social_selected_chat_id = chat_id
+    persist_current_user_data(user_data)
+    ui.notify(t('chat_created'), color='positive')
+    refresh_current_screen()
+    return True
+
+def current_user_chats(user_data=None):
+    current = state.current_user
+    if not current:
+        return []
+    user_data = user_data or load_user_data()
+    chats = normalize_social_chats(user_data.get('chats'))
+    items = [
+        chat for chat in chats.values()
+        if current in chat.get('members', [])
+    ]
+    return sorted(
+        items,
+        key=lambda chat: chat.get('messages', [{}])[-1].get('timestamp') if chat.get('messages') else chat.get('created_at', ''),
+        reverse=True,
+    )
+
+def social_chat_title(chat):
+    if chat.get('type') == 'group':
+        return chat.get('name') or t('group_chat')
+    other_members = [member for member in chat.get('members', []) if member != state.current_user]
+    return other_members[0] if other_members else t('direct_chat')
+
+def send_social_chat_message(chat_id, text):
+    current = state.current_user
+    message = str(text or '').strip()
+    if not current or not message:
+        return False
+    user_data = load_user_data()
+    chats = user_data.setdefault('chats', {})
+    chat = chats.get(str(chat_id))
+    if not chat or current not in chat.get('members', []):
+        ui.notify(t('chat_not_allowed'), color='warning')
+        return False
+    chat.setdefault('messages', []).append({
+        'user': current,
+        'text': message[:500],
+        'timestamp': current_timestamp(),
+    })
+    del chat['messages'][:-120]
+    state.social_selected_chat_id = str(chat_id)
+    persist_current_user_data(user_data)
+    refresh_current_screen()
+    return True
+
+def rename_user_references(user_data, old_username, new_username):
+    for record in get_users(user_data).values():
+        if isinstance(record, dict):
+            friends = ensure_friend_list(record)
+            record['friends'] = [new_username if friend == old_username else friend for friend in friends]
+    for request in user_data.setdefault('friend_requests', []):
+        if request.get('from') == old_username:
+            request['from'] = new_username
+        if request.get('to') == old_username:
+            request['to'] = new_username
+    for chat in user_data.setdefault('chats', {}).values():
+        if not isinstance(chat, dict):
+            continue
+        chat['members'] = [new_username if member == old_username else member for member in chat.get('members', [])]
+        for message in chat.get('messages', []):
+            if isinstance(message, dict) and message.get('user') == old_username:
+                message['user'] = new_username
+
+def remove_user_references(user_data, username):
+    for record in get_users(user_data).values():
+        if isinstance(record, dict):
+            friends = ensure_friend_list(record)
+            if username in friends:
+                friends.remove(username)
+    user_data['friend_requests'] = [
+        request for request in user_data.setdefault('friend_requests', [])
+        if request.get('from') != username and request.get('to') != username
+    ]
+    for chat_id, chat in list(user_data.setdefault('chats', {}).items()):
+        if not isinstance(chat, dict):
+            continue
+        if username in chat.get('members', []):
+            chat['members'] = [member for member in chat.get('members', []) if member != username]
+        if len(chat.get('members', [])) < 2:
+            user_data['chats'].pop(chat_id, None)
 
 def favorite_keys(data=None):
     user = get_current_user_record()
@@ -2390,11 +2898,16 @@ def public_user_profiles():
         stats = record.get('quiz_stats', {}) if isinstance(record.get('quiz_stats'), dict) else {}
         history = record.get('history', []) if isinstance(record.get('history'), list) else []
         latest_history = history[0] if history and isinstance(history[0], dict) else {}
+        friends = [
+            friend for friend in record.get('friends', [])
+            if clean_stored_username(friend) and not is_stored_guest_username(friend)
+        ]
         profiles.append({
             'username': username,
             'name_color': user_name_color(record),
             'avatar_url': current_user_avatar_url(record),
             'avatar': record.get('avatar', {}),
+            'friends': friends,
             'favorites': favorites,
             'viewed_count': len(viewed),
             'review_count': len(review),
@@ -2404,6 +2917,7 @@ def public_user_profiles():
             'correct': stats.get('correct', 0),
             'best_streak': stats.get('best_streak', 0),
             'battle_wins': record.get('battle_wins', 0),
+            'all_viewed': set(battle_unlock_country_keys()).issubset(set(viewed)),
             'last_viewed': format_timestamp(latest_history.get('timestamp')),
         })
     return profiles
@@ -3760,6 +4274,7 @@ def set_battle_winner_if_finished(room):
     players = room.get('players', [])
     alive = [player for player in players if room.setdefault('hp', {}).get(player, 0) > 0]
     mode = room.get('mode', DUEL_MODE)
+    count_wins = not room.get('bot')
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
         alive_teams = {teams.get(player) for player in alive if teams.get(player)}
@@ -3767,13 +4282,16 @@ def set_battle_winner_if_finished(room):
             winning_team = next(iter(alive_teams))
             winners = [player for player in players if teams.get(player) == winning_team and room['hp'].get(player, 0) > 0]
             room['winner'] = f"team:{winning_team}"
-            for winner in winners:
-                add_battle_win(winner)
+            if count_wins:
+                for winner in winners:
+                    if not is_battle_bot(winner):
+                        add_battle_win(winner)
             return True
         return False
     if len(alive) == 1:
         room['winner'] = alive[0]
-        add_battle_win(alive[0])
+        if count_wins and not is_battle_bot(alive[0]):
+            add_battle_win(alive[0])
         return True
     return False
 
@@ -4117,7 +4635,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 def show_screen(screen_name):
-    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle']
+    protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
     if screen_name in protected_screens and not state.current_user:
         ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
@@ -4148,6 +4666,8 @@ def show_screen(screen_name):
     users_screen.set_visibility(screen_name == 'users')
     public_collection_screen.set_visibility(screen_name == 'public_collection')
     battle_screen.set_visibility(screen_name == 'battle')
+    rankings_screen.set_visibility(screen_name == 'rankings')
+    social_screen.set_visibility(screen_name == 'social')
     help_screen.set_visibility(screen_name == 'help')
     if screen_name == 'main':
         refresh_main_ui()
@@ -4171,6 +4691,10 @@ def show_screen(screen_name):
         refresh_public_collection_view()
     if screen_name == 'battle':
         refresh_battle_view()
+    if screen_name == 'rankings':
+        refresh_rankings_view()
+    if screen_name == 'social':
+        refresh_social_view()
     if screen_name == 'help':
         refresh_help_view()
 
@@ -4188,6 +4712,8 @@ def switch_language(lang_code):
     if users_screen.visible: refresh_users_view()
     if public_collection_screen.visible: refresh_public_collection_view()
     if battle_screen.visible: refresh_battle_view()
+    if rankings_screen.visible: refresh_rankings_view()
+    if social_screen.visible: refresh_social_view()
     if help_screen.visible: refresh_help_view()
 
 def is_mobile_ui():
@@ -4224,6 +4750,10 @@ def refresh_current_screen():
         refresh_public_collection_view()
     if battle_screen.visible:
         refresh_battle_view()
+    if rankings_screen.visible:
+        refresh_rankings_view()
+    if social_screen.visible:
+        refresh_social_view()
     if help_screen.visible:
         refresh_help_view()
 
@@ -4329,6 +4859,8 @@ def render_header(container):
                     ui.item(t('compare'), on_click=lambda: show_screen('compare'))
                     ui.item(t('timeline'), on_click=lambda: show_screen('timeline'))
                     ui.item(t('users'), on_click=lambda: show_screen('users'))
+                    ui.item(t('rankings'), on_click=lambda: show_screen('rankings'))
+                    ui.item(t('friends'), on_click=lambda: show_screen('social'))
                     ui.item(t('account'), on_click=lambda: show_screen('account'))
                     ui.separator()
                     ui.item(t('history'), on_click=open_history)
@@ -5281,6 +5813,30 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
         state.public_collection_kind = kind
         show_screen('public_collection')
 
+    def render_user_friend_controls(profile):
+        username = profile.get('username')
+        if not username or username == state.current_user:
+            return
+        status = friend_status(username)
+        with ui.row().classes('w-full gap-2 flex-wrap'):
+            if status == 'friends':
+                ui.button(t('friend_chat'), icon='chat', on_click=lambda _, name=username: open_direct_chat(name)) \
+                    .props('outline color=primary dense')
+                ui.button(t('friend_remove'), icon='person_remove', on_click=lambda _, name=username: remove_friend(name)) \
+                    .props('flat color=negative dense')
+            elif status == 'received':
+                ui.badge(t('friend_request_received'), color='orange')
+                ui.button(t('friend_accept'), icon='person_add', on_click=lambda _, name=username: accept_friend_request(name)) \
+                    .props('color=positive dense')
+                ui.button(t('friend_reject'), icon='close', on_click=lambda _, name=username: reject_friend_request(name)) \
+                    .props('outline color=negative dense')
+            elif status == 'sent':
+                button = ui.button(t('friend_request_sent'), icon='hourglass_empty').props('outline color=grey dense')
+                button.disable()
+            else:
+                ui.button(t('friend_request_send'), icon='person_add', on_click=lambda _, name=username: send_friend_request(name)) \
+                    .props('outline color=primary dense')
+
     def restore_browser_users_for_list():
         request_browser_backup_restore()
         ui.notify(t('users_restore_browser'), color='info')
@@ -5379,6 +5935,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             render_public_user_metric(t('quiz'), f"{profile['correct']} / {profile['answered']}")
                             render_public_user_metric(t('best_streak'), profile['best_streak'])
                             render_public_user_metric(t('battle_wins'), crown_marks(profile.get('battle_wins', 0)) or '0')
+                            render_public_user_metric(t('friends_count'), len(profile.get('friends', [])))
+                        render_user_friend_controls(profile)
                         with ui.expansion(f"{t('public_favorites')} ({len(profile['favorites'])})", icon='star').classes('w-full'):
                             ui.button(
                                 t('open_collection_page'),
@@ -5461,6 +6019,192 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as public_colle
 # ========================================
 # 11. 国力対戦ページ
 # ========================================
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as rankings_screen:
+    header_container_rankings = ui.column().classes('w-full p-0 m-0')
+    rankings_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def render_ranking_row(rank, profile, value, detail):
+        with ui.card().classes('w-full p-4 gap-3'):
+            with ui.row().classes('w-full items-center gap-3 no-wrap'):
+                ui.label(f'{rank}').classes('w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center')
+                render_avatar_image(
+                    profile.get('avatar_url'),
+                    profile.get('avatar', {}),
+                    'w-12 h-12 rounded-full border shadow bg-white flex-shrink-0',
+                    icon_size='3rem',
+                    icon_classes='text-gray-400 flex-shrink-0',
+                    live=False,
+                )
+                with ui.column().classes('gap-1 flex-grow'):
+                    ui.label(profile['username']) \
+                        .classes('text-lg font-bold') \
+                        .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
+                    ui.label(detail).classes('text-xs text-gray-500')
+                ui.label(str(value)).classes('text-2xl font-bold text-[#1a2332]')
+
+    def refresh_rankings_view():
+        render_header(header_container_rankings)
+        update_mode_classes(
+            rankings_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        rankings_content.clear()
+        profiles = public_user_profiles()
+        quiz_profiles = sorted(
+            profiles,
+            key=lambda profile: (-int(profile.get('correct', 0) or 0), int(profile.get('answered', 0) or 0), profile.get('username', '').lower()),
+        )
+        current_user = get_current_user_record()
+        can_view_wins = battle_is_user_eligible(user=current_user)
+        with rankings_content:
+            ui.label(t('rankings_title')).classes('text-3xl font-bold text-[#1a2332]')
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('quiz_ranking')).classes('text-xl font-bold text-[#1a2332]')
+                if not quiz_profiles:
+                    ui.label(t('no_users')).classes('text-gray-500')
+                for rank, profile in enumerate(quiz_profiles[:20], start=1):
+                    render_ranking_row(
+                        rank,
+                        profile,
+                        profile.get('correct', 0),
+                        f"{t('answered_count')}: {profile.get('answered', 0)} / {t('best_streak')}: {profile.get('best_streak', 0)}",
+                    )
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('battle_win_ranking')).classes('text-xl font-bold text-[#1a2332]')
+                if not can_view_wins:
+                    ui.label(t('ranking_locked')).classes('font-bold text-gray-700')
+                    ui.label(t('ranking_locked_hint')).classes('text-sm text-gray-500')
+                    return
+                win_profiles = sorted(
+                    [profile for profile in profiles if profile.get('all_viewed')],
+                    key=lambda profile: (-int(profile.get('battle_wins', 0) or 0), profile.get('username', '').lower()),
+                )
+                if not win_profiles:
+                    ui.label(t('no_users')).classes('text-gray-500')
+                for rank, profile in enumerate(win_profiles[:20], start=1):
+                    render_ranking_row(
+                        rank,
+                        profile,
+                        crown_marks(profile.get('battle_wins', 0)) or '0',
+                        f"{t('viewed_count')}: {profile.get('viewed_count', 0)}",
+                    )
+
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as social_screen:
+    header_container_social = ui.column().classes('w-full p-0 m-0')
+    social_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+
+    def select_social_chat(chat_id):
+        state.social_selected_chat_id = chat_id
+        refresh_social_view()
+
+    def render_request_list(user_data):
+        current = state.current_user
+        incoming = [
+            request for request in user_data.setdefault('friend_requests', [])
+            if request.get('to') == current
+        ]
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('friend_requests')).classes('text-xl font-bold text-[#1a2332]')
+            if not incoming:
+                ui.label(t('no_friend_requests')).classes('text-gray-500')
+            for request in incoming:
+                sender = request.get('from')
+                with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                    ui.label(sender).classes('font-bold text-gray-800')
+                    with ui.row().classes('gap-2'):
+                        ui.button(t('friend_accept'), icon='person_add', on_click=lambda _, name=sender: accept_friend_request(name)) \
+                            .props('color=positive dense')
+                        ui.button(t('friend_reject'), icon='close', on_click=lambda _, name=sender: reject_friend_request(name)) \
+                            .props('outline color=negative dense')
+
+    def render_friend_list(user_data):
+        user = get_current_user_record(user_data)
+        friends = ensure_friend_list(user) if user else []
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('friends')).classes('text-xl font-bold text-[#1a2332]')
+            if not friends:
+                ui.label(t('no_friends')).classes('text-gray-500')
+            for friend in friends:
+                with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                    ui.label(friend).classes('font-bold text-gray-800')
+                    with ui.row().classes('gap-2'):
+                        ui.button(t('friend_chat'), icon='chat', on_click=lambda _, name=friend: open_direct_chat(name)) \
+                            .props('outline color=primary dense')
+                        ui.button(t('friend_remove'), icon='person_remove', on_click=lambda _, name=friend: remove_friend(name)) \
+                            .props('flat color=negative dense')
+
+    def render_group_creator():
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('group_chat')).classes('text-xl font-bold text-[#1a2332]')
+            group_name_input = ui.input(label=t('group_name')).props('outlined dense').classes('w-full')
+            group_members_input = ui.input(label=t('group_members'), placeholder=t('group_members_hint')).props('outlined dense').classes('w-full')
+            ui.button(
+                t('create_group_chat'),
+                icon='group_add',
+                on_click=lambda: create_group_chat(group_name_input.value, group_members_input.value),
+            ).props('color=primary')
+
+    def render_chat_list(chats):
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('direct_chat')).classes('text-xl font-bold text-[#1a2332]')
+            if not chats:
+                ui.label(t('chat_select')).classes('text-gray-500')
+            for chat in chats:
+                selected = chat.get('id') == state.social_selected_chat_id
+                color = 'primary' if selected else 'grey'
+                ui.button(
+                    social_chat_title(chat),
+                    icon='forum' if chat.get('type') == 'group' else 'chat',
+                    on_click=lambda _, chat_id=chat.get('id'): select_social_chat(chat_id),
+                ).props(f'outline color={color}').classes('w-full justify-start')
+
+    def render_selected_chat(chats):
+        chat = next((item for item in chats if item.get('id') == state.social_selected_chat_id), None)
+        if not chat and chats:
+            chat = chats[0]
+            state.social_selected_chat_id = chat.get('id')
+        with ui.card().classes('w-full p-5 gap-4'):
+            if not chat:
+                ui.label(t('chat_select')).classes('text-gray-500')
+                return
+            ui.label(social_chat_title(chat)).classes('text-2xl font-bold text-[#1a2332]')
+            ui.label(', '.join(chat.get('members', []))).classes('text-xs text-gray-500')
+            messages = chat.get('messages', [])[-40:]
+            if not messages:
+                ui.label(t('chat_empty')).classes('text-gray-500')
+            with ui.column().classes('w-full gap-2 max-h-96 overflow-y-auto'):
+                for message in messages:
+                    mine = message.get('user') == state.current_user
+                    align = 'items-end' if mine else 'items-start'
+                    bubble = 'bg-blue-50 border-blue-200' if mine else 'bg-gray-50 border-gray-200'
+                    with ui.column().classes(f'w-full {align} gap-1'):
+                        ui.label(f"{message.get('user')} / {format_timestamp(message.get('timestamp'))}").classes('text-xs text-gray-400')
+                        ui.label(message.get('text', '')).classes(f'max-w-full rounded border px-3 py-2 text-sm {bubble}')
+            chat_input = ui.input(label=t('chat_message')).props('outlined dense').classes('w-full')
+            ui.button(t('chat_send'), icon='send', on_click=lambda: send_social_chat_message(chat.get('id'), chat_input.value)) \
+                .props('color=primary')
+
+    def refresh_social_view():
+        render_header(header_container_social)
+        update_mode_classes(
+            social_content,
+            'w-full max-w-5xl p-6 gap-6 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        social_content.clear()
+        user_data = load_user_data()
+        chats = current_user_chats(user_data)
+        with social_content:
+            ui.label(t('friends_title')).classes('text-3xl font-bold text-[#1a2332]')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                with ui.column().classes('w-full gap-4'):
+                    render_request_list(user_data)
+                    render_friend_list(user_data)
+                    render_group_creator()
+                    render_chat_list(chats)
+                render_selected_chat(chats)
+
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
     battle_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
@@ -5680,6 +6424,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(user)};')
                 ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
+                    .props('outline color=primary dense')
+                ui.button(t('rankings'), icon='leaderboard', on_click=lambda: show_screen('rankings')) \
+                    .props('outline color=primary dense')
+                ui.button(t('friends'), icon='forum', on_click=lambda: show_screen('social')) \
                     .props('outline color=primary dense')
             with ui.card().classes('w-full p-5 gap-4'):
                 ui.label(t('avatar')).classes('text-xl font-bold text-[#1a2332]')
