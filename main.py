@@ -519,6 +519,8 @@ BATTLE_COUNTER = 0
 BOT_USERNAME = 'BOT'
 BATTLE_MAX_HP = 100_000_000_000_000
 BATTLE_TURN_TIMEOUT_SECONDS = 60
+BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
+BATTLE_DEFENSE_PERCENT = 50
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
@@ -1073,7 +1075,7 @@ for lang_code, labels in EXTRA_UI_FALLBACKS.items():
 UI_FALLBACKS.setdefault('ja', {}).update({
     'favorites_except': 'お気に入り以外',
     'favorites_all': 'お気に入り条件なし',
-    'battle_power_hidden_hint': '攻撃力は非表示です。すべての国を見たんだから当然、データ覚えてるよネ！',
+    'battle_power_hidden_hint': '攻撃力と防御力は非表示です。すべての国を見たんだから当然、データ覚えてるよネ！',
     'battle_mode_duel': '1対1',
     'battle_mode_free_for_all': '乱戦',
     'battle_mode_team': 'チーム戦',
@@ -1091,6 +1093,8 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_team': 'チーム',
     'battle_auto_notice': '画面は自動で更新されます。',
     'battle_damage_each': '各',
+    'battle_defense': '防御',
+    'battle_select_card_required': 'カードを1枚以上選んでください。',
     'battle_surrender': '降参',
     'battle_surrender_log': '{player}が降参しました。',
     'battle_timeout_surrender_log': '{player}が長考により強制降参になりました。',
@@ -1100,7 +1104,7 @@ UI_FALLBACKS.setdefault('ja', {}).update({
 UI_FALLBACKS.setdefault('en', {}).update({
     'favorites_except': 'Not favorites',
     'favorites_all': 'No favorite filter',
-    'battle_power_hidden_hint': 'Power is hidden. You have seen every country, so of course you remember the data.',
+    'battle_power_hidden_hint': 'Power and defense are hidden. You have seen every country, so of course you remember the data.',
     'battle_mode_duel': '1v1',
     'battle_mode_free_for_all': 'Free-for-all',
     'battle_mode_team': 'Team battle',
@@ -1118,6 +1122,8 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_team': 'Team',
     'battle_auto_notice': 'This screen updates automatically.',
     'battle_damage_each': 'each',
+    'battle_defense': 'defense',
+    'battle_select_card_required': 'Choose at least one card.',
     'battle_surrender': 'Surrender',
     'battle_surrender_log': '{player} surrendered.',
     'battle_timeout_surrender_log': '{player} was forced to surrender after thinking too long.',
@@ -1127,7 +1133,7 @@ UI_FALLBACKS.setdefault('en', {}).update({
 UI_FALLBACKS.setdefault('zh', {}).update({
     'favorites_except': '非收藏',
     'favorites_all': '不筛选收藏',
-    'battle_power_hidden_hint': '攻击力已隐藏。既然已经看过所有国家，当然记得数据吧！',
+    'battle_power_hidden_hint': '攻击力和防御力已隐藏。既然已经看过所有国家，当然记得数据吧！',
     'battle_mode_duel': '1对1',
     'battle_mode_free_for_all': '混战',
     'battle_mode_team': '团队战',
@@ -1145,6 +1151,8 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_team': '队伍',
     'battle_auto_notice': '画面会自动更新。',
     'battle_damage_each': '各',
+    'battle_defense': '防御',
+    'battle_select_card_required': '请至少选择一张牌。',
     'battle_surrender': '投降',
     'battle_surrender_log': '{player}已投降。',
     'battle_timeout_surrender_log': '{player}思考过久，被强制投降。',
@@ -4250,41 +4258,42 @@ def battle_mode_label(mode):
 def battle_help_labels():
     labels = {
         'ja': {
-            'title': '\u904a\u3073\u65b9\u3068\u6226\u95d8\u529b\u306e\u89e3\u8aac',
+            'title': '遊び方と戦闘力の解説',
             'sections': [
                 (
-                    '\u57fa\u672c\u30eb\u30fc\u30eb',
+                    '基本ルール',
                     [
-                        f'\u5404\u30d7\u30ec\u30a4\u30e4\u30fc\u306eHP\u306f{format_battle_number(BATTLE_MAX_HP)}\u3067\u3059\u3002\u30e9\u30f3\u30c0\u30e0\u306b\u914d\u3089\u308c\u305f5\u679a\u306e\u56fd\u30ab\u30fc\u30c9\u304b\u3089\u30011\u679a\u4ee5\u4e0a\u3092\u9078\u3093\u3067\u52dd\u8ca0\u3057\u307e\u3059\u3002',
-                        '\u4e00\u5ea6\u306b\u51fa\u3059\u679a\u6570\u306f\u81ea\u7531\u3067\u3059\u3002\u624b\u672d\u304c\u5207\u308c\u308b\u307e\u3067\u65b0\u3057\u3044\u30ab\u30fc\u30c9\u306f\u88dc\u5145\u3055\u308c\u307e\u305b\u3093\u3002',
-                        '\u624b\u672d\u304c\u7a7a\u306e\u5834\u5408\u306f1\u30bf\u30fc\u30f3\u7121\u9632\u5099\u306b\u306a\u308a\u3001\u6b21\u306e\u30bf\u30fc\u30f3\u306b\u65b0\u3057\u30445\u679a\u304c\u914d\u3089\u308c\u307e\u3059\u3002',
-                        '\u54041\u30bf\u30fc\u30f3\u306b1\u56de\u3060\u3051\u3001\u73fe\u5728\u306e\u624b\u672d\u3092\u3059\u3079\u3066\u6368\u3066\u3066\u540c\u3058\u679a\u6570\u3092\u5f15\u304d\u76f4\u305b\u307e\u3059\u3002',
-                        '1\u5206\u4ee5\u5185\u306b\u884c\u52d5\u3057\u306a\u3044\u3068\u5f37\u5236\u964d\u53c2\u306b\u306a\u308a\u307e\u3059\u3002\u52dd\u3066\u306a\u3044\u3068\u5224\u65ad\u3057\u305f\u3089\u3001\u964d\u53c2\u30dc\u30bf\u30f3\u3067\u8a66\u5408\u304b\u3089\u629c\u3051\u3089\u308c\u307e\u3059\u3002',
+                        f'各プレイヤーのHPは{format_battle_number(BATTLE_MAX_HP)}です。ランダムに配られた5枚の国カードから、1枚以上を選んで勝負します。',
+                        '一度に出す枚数は自由です。手札が切れるまで新しいカードは補充されません。',
+                        '手札が空の場合は1ターン無防備になり、次のターンに新しい5枚が配られます。',
+                        '各1ターンに1回だけ、現在の手札をすべて捨てて同じ枚数を引き直せます。',
+                        '1分以内に行動しないと強制降参になります。勝てないと判断したら、降参ボタンで試合から抜けられます。',
                     ],
                 ),
                 (
-                    '\u6226\u95d8\u529b',
+                    '戦闘力',
                     [
-                        '\u6226\u95d8\u529b\u306f\u56fd\u306e\u9762\u7a4d\u3068\u4eba\u53e3\u304b\u3089\u6c7a\u307e\u308a\u307e\u3059\u3002\u5e83\u304f\u3066\u4eba\u53e3\u306e\u591a\u3044\u56fd\u307b\u3069\u5927\u304d\u306a\u30c0\u30e1\u30fc\u30b8\u3092\u51fa\u3057\u3084\u3059\u304f\u306a\u308a\u307e\u3059\u3002',
-                        '\u8a08\u7b97\u306f\u300c\uff08\u9762\u7a4d \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3067\u3059\u3002\u5c0f\u3055\u3044\u56fd\u3067\u3082\u6700\u4f4e1\u306e\u6226\u95d8\u529b\u306f\u3042\u308a\u307e\u3059\u3002',
-                        '\u8907\u6570\u679a\u51fa\u3059\u3068\u3001\u305d\u306e\u30ab\u30fc\u30c9\u305f\u3061\u306e\u6226\u95d8\u529b\u3092\u5408\u8a08\u3057\u3066\u653b\u6483\u3057\u307e\u3059\u3002\u5927\u304d\u306a\u56fd\u3092\u4e00\u6c17\u306b\u51fa\u3059\u304b\u3001\u624b\u672d\u3092\u6e29\u5b58\u3059\u308b\u304b\u304c\u99c6\u3051\u5f15\u304d\u3067\u3059\u3002',
-                        '\u624b\u672d\u9078\u629e\u4e2d\u306e\u6226\u95d8\u529b\u306f\u975e\u8868\u793a\u3067\u3059\u3002\u56fd\u306e\u57fa\u672c\u30c7\u30fc\u30bf\u3092\u899a\u3048\u3066\u3044\u308b\u307b\u3069\u6709\u5229\u306b\u306a\u308a\u307e\u3059\u3002',
+                        '戦闘力は国の面積と人口から決まります。広くて人口の多い国ほど大きなダメージを出しやすくなります。',
+                        '計算は「(面積 x 人口) ÷ 1000」です。小さい国でも最低1の戦闘力はあります。',
+                        '複数枚出すと、強いカードから順に100%、90%、80%、70%、60%の戦闘力で合計します。5枚出しは強いですが、単純合計ほど一方的ではありません。',
+                        '出さなかったカードは防御に回り、そのカード群を攻撃に使った場合の50%を防御力にします。残したカード同士でタグや地域が一致すると、防御側にも一致ボーナスが乗ります。',
+                        '手札選択中の戦闘力は非表示です。国の基本データを覚えているほど有利になります。',
                     ],
                 ),
                 (
-                    '\u30c0\u30e1\u30fc\u30b8\u3068\u52dd\u5229',
+                    'ダメージと勝利',
                     [
-                        '\u4e92\u3044\u306b\u51fa\u3057\u305f\u624b\u306e\u6226\u95d8\u529b\u3092\u6bd4\u3079\u3001\u9ad8\u3044\u5074\u304c\u52dd\u3061\u307e\u3059\u3002',
-                        '\u57fa\u672c\u30c0\u30e1\u30fc\u30b8\u306f\u300c\u52dd\u3063\u305f\u5074\u306e\u6226\u95d8\u529b - \u8ca0\u3051\u305f\u5074\u306e\u6226\u95d8\u529b\u300d\u3067\u3059\u3002',
-                        '\u52dd\u5229\u6642\u306f\u3001\u76f8\u624b\u306e\u624b\u5143\u306b\u6b8b\u3063\u3066\u3044\u308b\u30ab\u30fc\u30c9\u304b\u30891\u679a\u596a\u3048\u307e\u3059\u3002BOT\u6226\u306e\u52dd\u5229\u6570\u306f\u30e9\u30f3\u30ad\u30f3\u30b0\u306b\u542b\u307e\u308c\u307e\u305b\u3093\u3002',
+                        '互いに出した手の戦闘力を比べ、高い側が勝ちます。',
+                        '基本ダメージは攻撃差に一致ボーナスを乗せ、そこから防御力を引いた値です。防御で受け止めきればダメージは0になります。',
+                        'ダメージを与えた時は、相手の手元に残っているカードから1枚奪えます。BOT戦の勝利数はランキングに含まれません。',
                     ],
                 ),
                 (
-                    '\u4e00\u81f4\u30dc\u30fc\u30ca\u30b9',
+                    '一致ボーナス',
                     [
-                        '\u4e00\u81f4\u30dc\u30fc\u30ca\u30b9\u306f\u3001\u81ea\u5206\u304c\u305d\u306e\u30bf\u30fc\u30f3\u306b\u51fa\u3057\u305f\u30ab\u30fc\u30c9\u540c\u58eb\u3060\u3051\u3092\u898b\u3066\u5224\u5b9a\u3057\u307e\u3059\u3002\u76f8\u624b\u306e\u30ab\u30fc\u30c9\u3068\u306e\u4e00\u81f4\u306f\u898b\u307e\u305b\u3093\u3002',
-                        '1\u679a\u51fa\u3057\u3067\u306f\u767a\u52d5\u3057\u307e\u305b\u3093\u30022\u679a\u4ee5\u4e0a\u51fa\u3057\u305f\u6642\u3001\u30bf\u30b0\u307e\u305f\u306f\u5730\u57df\u304c\u91cd\u306a\u308b\u3068\u767a\u52d5\u3057\u307e\u3059\u3002',
-                        '\u4e00\u81f4\u3057\u305f\u30bf\u30b0\u3084\u5730\u57df\u304c1\u7a2e\u985e\u5897\u3048\u308b\u3054\u3068\u306b\u3001\u30c0\u30e1\u30fc\u30b8\u500d\u7387\u304c+0.5\u3055\u308c\u307e\u3059\u3002\u3053\u306e\u500d\u7387\u306b\u4e0a\u9650\u306f\u3042\u308a\u307e\u305b\u3093\u3002',
+                        '一致ボーナスは、自分がそのターンに出したカード同士、または防御に残したカード同士だけを見て判定します。相手のカードとは混ざりません。',
+                        '1枚だけでは発動しません。2枚以上の攻撃カード、または2枚以上の防御カードで、タグや地域が重なると発動します。',
+                        '一致したタグや地域が1種類増えるごとに、ダメージまたは防御の倍率が+0.5されます。この倍率に上限はありません。',
                     ],
                 ),
             ],
@@ -4292,19 +4301,59 @@ def battle_help_labels():
         'en': {
             'title': 'How to Play and Power Rules',
             'sections': [
-                ('Basic Rules', [f'Each player starts with {format_battle_number(BATTLE_MAX_HP)} HP and receives five random country cards.', 'You may play any number of cards, but cards are not refilled until your hand is empty.', 'An empty hand makes you defenseless for one turn, then you draw five new cards.', 'Once per turn, you may discard your current hand and redraw the same number of cards.', 'If you do not act within one minute, you surrender automatically. You can also surrender manually when the match looks hopeless.']),
-                ('Power', ['Power comes from each country area and population. Large, populous countries tend to hit harder.', 'The formula is area x population divided by 1000. Even small countries have at least 1 power.', 'Playing multiple cards adds their power together, so deciding when to spend a strong hand matters.', 'Power is hidden while choosing cards, so remembering country data gives you an advantage.']),
-                ('Damage and Victory', ['The higher hand power wins the turn.', 'Base damage is winner power minus loser power.', 'When you win, you steal one remaining card from the loser. Bot wins are not counted in rankings.']),
-                ('Match Bonus', ['The match bonus only checks cards you played this turn, not the opponent cards.', 'A single card never triggers it. With two or more cards, repeated tags or regions trigger it.', 'Each repeated tag or region adds +0.5 to the damage multiplier, with no upper limit.']),
+                ('Basic Rules', [
+                    f'Each player starts with {format_battle_number(BATTLE_MAX_HP)} HP and receives five random country cards.',
+                    'You may play any number of cards, but cards are not refilled until your hand is empty.',
+                    'An empty hand makes you defenseless for one turn, then you draw five new cards.',
+                    'Once per turn, you may discard your current hand and redraw the same number of cards.',
+                    'If you do not act within one minute, you surrender automatically. You can also surrender manually when the match looks hopeless.',
+                ]),
+                ('Power', [
+                    'Power comes from each country area and population. Large, populous countries tend to hit harder.',
+                    'The formula is area x population divided by 1000. Even small countries have at least 1 power.',
+                    'When playing multiple cards, the strongest cards count as 100%, 90%, 80%, 70%, then 60%. A full hand is still strong, but not a simple total.',
+                    'Unplayed cards become defense worth 50% of their attack value. Repeated tags or regions among saved cards also trigger a defensive match bonus.',
+                    'Power is hidden while choosing cards, so remembering country data gives you an advantage.',
+                ]),
+                ('Damage and Victory', [
+                    'The higher hand power wins the turn.',
+                    'Damage is the attack gap with offensive match bonuses applied, then reduced by the defender defense. If defense absorbs it all, damage is 0.',
+                    'When you deal damage, you steal one remaining card from the loser. Bot wins are not counted in rankings.',
+                ]),
+                ('Match Bonus', [
+                    'The match bonus checks cards you played this turn, or cards you saved for defense. It does not mix with opponent cards.',
+                    'A single card never triggers it. With two or more attack cards or defense cards, repeated tags or regions trigger it.',
+                    'Each repeated tag or region adds +0.5 to the damage or defense multiplier, with no upper limit.',
+                ]),
             ],
         },
         'zh': {
-            'title': '\u73a9\u6cd5\u4e0e\u6218\u529b\u8bf4\u660e',
+            'title': '玩法与战力说明',
             'sections': [
-                ('\u57fa\u672c\u89c4\u5219', [f'\u6bcf\u4f4d\u73a9\u5bb6HP\u4e3a{format_battle_number(BATTLE_MAX_HP)}\uff0c\u968f\u673a\u83b7\u5f975\u5f20\u56fd\u5bb6\u5361\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u6253\u51fa\u4efb\u610f\u5f20\u6570\uff0c\u624b\u724c\u7528\u5b8c\u524d\u4e0d\u4f1a\u8865\u5145\u3002', '\u624b\u724c\u4e3a\u7a7a\u65f6\u4e0b\u4e00\u56de\u5408\u65e0\u9632\u5907\uff0c\u518d\u4e0b\u4e00\u56de\u5408\u91cd\u65b0\u62bd5\u5f20\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u5c06\u5f53\u524d\u624b\u724c\u5168\u90e8\u5f03\u6389\u5e76\u91cd\u62bd\u540c\u6837\u5f20\u6570\u4e00\u6b21\u3002', '\u4e00\u5206\u949f\u5185\u4e0d\u884c\u52a8\u5c06\u81ea\u52a8\u6295\u964d\u3002\u5f62\u52bf\u4e0d\u5229\u65f6\u4e5f\u53ef\u4ee5\u624b\u52a8\u6295\u964d\u3002']),
-                ('\u6218\u529b', ['\u6218\u529b\u6765\u81ea\u56fd\u5bb6\u7684\u9762\u79ef\u548c\u4eba\u53e3\u3002\u9762\u79ef\u5927\u4e14\u4eba\u53e3\u591a\u7684\u56fd\u5bb6\u66f4\u5bb9\u6613\u6253\u51fa\u9ad8\u4f24\u5bb3\u3002', '\u516c\u5f0f\u4e3a\u300c\uff08\u9762\u79ef \u00d7 \u4eba\u53e3\uff09\u00f71000\u300d\u3002\u5c0f\u56fd\u4e5f\u81f3\u5c11\u67091\u70b9\u6218\u529b\u3002', '\u6253\u51fa\u591a\u5f20\u65f6\u4f1a\u5408\u8ba1\u6218\u529b\uff0c\u4f55\u65f6\u4f7f\u7528\u5f3a\u724c\u662f\u5173\u952e\u3002', '\u9009\u724c\u65f6\u6218\u529b\u4e0d\u663e\u793a\uff0c\u8bb0\u4f4f\u56fd\u5bb6\u57fa\u672c\u6570\u636e\u4f1a\u66f4\u6709\u5229\u3002']),
-                ('\u4f24\u5bb3\u4e0e\u80dc\u5229', ['\u6bd4\u8f83\u53cc\u65b9\u6253\u51fa\u7684\u624b\u724c\u6218\u529b\uff0c\u8f83\u9ad8\u8005\u83b7\u80dc\u3002', '\u57fa\u7840\u4f24\u5bb3\u4e3a\u80dc\u8005\u6218\u529b\u51cf\u53bb\u8d25\u8005\u6218\u529b\u3002', '\u83b7\u80dc\u65f6\u53ef\u4ee5\u4ece\u5bf9\u624b\u5269\u4f59\u624b\u724c\u4e2d\u593a\u53d61\u5f20\u3002BOT\u6218\u7684\u80dc\u573a\u4e0d\u8ba1\u5165\u6392\u884c\u3002']),
-                ('\u4e00\u81f4\u52a0\u6210', ['\u4e00\u81f4\u52a0\u6210\u53ea\u68c0\u67e5\u81ea\u5df1\u672c\u56de\u5408\u6253\u51fa\u7684\u5361\u724c\uff0c\u4e0d\u68c0\u67e5\u5bf9\u624b\u7684\u5361\u3002', '\u53ea\u6253\u51fa1\u5f20\u65f6\u4e0d\u4f1a\u53d1\u52a8\u30022\u5f20\u4ee5\u4e0a\u4e2d\u6807\u7b7e\u6216\u5730\u57df\u91cd\u590d\u65f6\u53d1\u52a8\u3002', '\u6bcf\u4e2a\u91cd\u590d\u7684\u6807\u7b7e\u6216\u5730\u57df\u90fd\u4f7f\u4f24\u5bb3\u500d\u7387+0.5\uff0c\u6ca1\u6709\u4e0a\u9650\u3002']),
+                ('基本规则', [
+                    f'每位玩家HP为{format_battle_number(BATTLE_MAX_HP)}，随机获得5张国家卡。',
+                    '每回合可以打出任意张数，手牌用完前不会补充。',
+                    '手牌为空时下一回合无防备，再下一回合重新抽5张。',
+                    '每回合可以将当前手牌全部弃掉并重抽同样张数一次。',
+                    '一分钟内不行动将自动投降。形势不利时也可以手动投降。',
+                ]),
+                ('战力', [
+                    '战力来自国家的面积和人口。面积大且人口多的国家更容易打出高伤害。',
+                    '公式为「(面积 x 人口) ÷ 1000」。小国也至少有1点战力。',
+                    '打出多张时，从最强的牌开始按100%、90%、80%、70%、60%计算。全手牌攻击仍然很强，但不是单纯相加。',
+                    '未打出的牌会成为防御，防御力为这些牌攻击力的50%。留下的牌之间标签或地区重复时，也会触发防御一致加成。',
+                    '选牌时战力不显示，记住国家基本数据会更有利。',
+                ]),
+                ('伤害与胜利', [
+                    '比较双方打出的手牌战力，较高者获胜。',
+                    '伤害为攻击差加上攻击一致加成后，再减去防御力。若防御完全挡住，伤害为0。',
+                    '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
+                ]),
+                ('一致加成', [
+                    '一致加成只检查自己本回合打出的牌，或自己留下来防御的牌，不会和对手的牌混合。',
+                    '只使用1张牌时不会发动。2张以上的攻击牌或防御牌中，标签或地区重复时发动。',
+                    '每个重复的标签或地区都会使伤害或防御倍率+0.5，没有上限。',
+                ]),
             ],
         },
     }
@@ -4671,9 +4720,29 @@ def add_battle_win(username):
     if username == state.current_user:
         sync_current_user_to_browser(user_data)
 
-def battle_power_for_keys(keys):
+def battle_base_powers_for_keys(keys):
     lookup = battle_country_lookup()
-    return sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
+    return [country_battle_power(lookup[key]) for key in keys if key in lookup]
+
+def battle_power_for_keys(keys):
+    powers = sorted(battle_base_powers_for_keys(keys), reverse=True)
+    total = 0
+    for index, power in enumerate(powers):
+        percent = BATTLE_CARD_POWER_PERCENTS[min(index, len(BATTLE_CARD_POWER_PERCENTS) - 1)]
+        total += max(1, power * percent // 100)
+    return total
+
+def apply_battle_bonus_value(value, labels):
+    return max(0, int(value) * (2 + len(labels)) // 2)
+
+def battle_defense_breakdown_for_keys(keys):
+    labels = repeated_battle_bonus_labels(keys)
+    base_defense = battle_power_for_keys(keys) * BATTLE_DEFENSE_PERCENT // 100
+    return apply_battle_bonus_value(base_defense, labels), 1 + (0.5 * len(labels)), labels
+
+def battle_defense_for_keys(keys):
+    defense, _, _ = battle_defense_breakdown_for_keys(keys)
+    return defense
 
 def battle_tags_for_keys(keys):
     lookup = battle_country_lookup()
@@ -4739,6 +4808,11 @@ def battle_bonus_text(labels, multiplier):
         return ''
     return f" / {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
 
+def battle_defense_bonus_text(labels, multiplier):
+    if not labels:
+        return ''
+    return f" / {t('battle_defense')} {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
+
 def battle_log_label(labels):
     return labels.get(state.lang, labels.get('en', ''))
 
@@ -4790,11 +4864,45 @@ def battle_played_cards_log(room, entries):
 
 def battle_entry_for_player(room, player):
     submitted = room.setdefault('submitted', {}).get(player, {})
+    defense_keys = list(submitted.get('defense_keys', []))
+    defense = int(submitted.get('defense', 0) or 0)
+    defense_multiplier = 1
+    defense_bonus_labels = []
+    if defense_keys:
+        defense, defense_multiplier, defense_bonus_labels = battle_defense_breakdown_for_keys(defense_keys)
     return {
         'keys': list(submitted.get('keys', [])),
         'power': int(submitted.get('power', 0) or 0),
+        'defense': defense,
+        'defense_keys': defense_keys,
+        'defense_multiplier': defense_multiplier,
+        'defense_bonus_labels': defense_bonus_labels,
         'defenseless': bool(submitted.get('defenseless')),
     }
+
+def battle_damage_after_defense(win_power, lose_power, defense, multiplier):
+    multiplier_halves = max(0, int(round(float(multiplier) * 2)))
+    raw_damage = max(0, int(win_power) - int(lose_power)) * multiplier_halves // 2
+    return max(0, raw_damage - max(0, int(defense or 0)))
+
+def battle_defense_text(entry):
+    defense = int((entry or {}).get('defense', 0) or 0)
+    if defense <= 0:
+        return ''
+    labels = (entry or {}).get('defense_bonus_labels', [])
+    multiplier = (entry or {}).get('defense_multiplier', 1)
+    return f" / {t('battle_defense')} {format_battle_number(defense)}{battle_defense_bonus_text(labels, multiplier)}"
+
+def battle_group_defense_text(entries, players):
+    defense = sum(int(entries.get(player, {}).get('defense', 0) or 0) for player in players)
+    if defense <= 0:
+        return ''
+    labels = []
+    for player in players:
+        labels.extend(entries.get(player, {}).get('defense_bonus_labels', []))
+    unique_labels = sorted(set(labels))
+    bonus_note = f" / {t('battle_defense')} {t('battle_bonus')}: {', '.join(unique_labels[:5])}" if unique_labels else ''
+    return f" / {t('battle_defense')} {format_battle_number(defense)}{bonus_note}"
 
 def remove_submitted_cards_and_reload(room):
     players = active_battle_players(room)
@@ -4921,10 +5029,12 @@ def resolve_battle_turn(room):
         teams = room.get('teams', {})
         team_keys = {}
         team_power = {}
+        team_defense = {}
         for player, entry in entries.items():
             team = teams.get(player, 'A')
             team_keys.setdefault(team, []).extend(entry['keys'])
             team_power[team] = team_power.get(team, 0) + entry['power']
+            team_defense[team] = team_defense.get(team, 0) + entry.get('defense', 0)
         if len(team_power) >= 2:
             sorted_teams = sorted(team_power.items(), key=lambda item: item[1], reverse=True)
             if sorted_teams[0][1] == sorted_teams[1][1]:
@@ -4933,14 +5043,16 @@ def resolve_battle_turn(room):
                 winning_team, win_power = sorted_teams[0]
                 losing_team, lose_power = sorted_teams[1]
                 multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []))
-                damage = int((win_power - lose_power) * multiplier)
+                damage = battle_damage_after_defense(win_power, lose_power, team_defense.get(losing_team, 0), multiplier)
                 losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
                 split_damage = max(1, damage // max(1, len(losing_players))) if damage else 0
                 for player in losing_players:
                     room['hp'][player] = max(0, room['hp'].get(player, BATTLE_MAX_HP) - split_damage)
-                winners = [player for player in players if teams.get(player) == winning_team]
-                losers = losing_players
-                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(split_damage)} {t('battle_damage_each')}{battle_bonus_text(labels, multiplier)}")
+                if split_damage > 0:
+                    winners = [player for player in players if teams.get(player) == winning_team]
+                    losers = losing_players
+                defense_note = battle_group_defense_text(entries, losing_players)
+                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(split_damage)} {t('battle_damage_each')}{defense_note}{battle_bonus_text(labels, multiplier)}")
     elif mode == FFA_MODE:
         sorted_players = sorted(players, key=lambda player: entries[player]['power'], reverse=True)
         if len(sorted_players) >= 2 and entries[sorted_players[0]]['power'] == entries[sorted_players[1]]['power']:
@@ -4952,28 +5064,31 @@ def resolve_battle_turn(room):
                 if room['hp'].get(loser, 0) <= 0:
                     continue
                 multiplier, labels = battle_bonus_for_keys(entries[winner]['keys'])
-                damage = int((entries[winner]['power'] - entries[loser]['power']) * multiplier)
+                damage = battle_damage_after_defense(entries[winner]['power'], entries[loser]['power'], entries[loser].get('defense', 0), multiplier)
                 room['hp'][loser] = max(0, room['hp'].get(loser, BATTLE_MAX_HP) - damage)
-                losers.append(loser)
-                result_parts.append(f"{winner} vs {loser}: {loser} -{format_battle_number(damage)}{battle_bonus_text(labels, multiplier)}")
+                if damage > 0:
+                    losers.append(loser)
+                result_parts.append(f"{winner} vs {loser}: {loser} -{format_battle_number(damage)}{battle_defense_text(entries[loser])}{battle_bonus_text(labels, multiplier)}")
     else:
         player_one, player_two = players[:2]
         power_one = entries[player_one]['power']
         power_two = entries[player_two]['power']
         if power_one > power_two:
             multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'])
-            damage = int((power_one - power_two) * multiplier)
+            damage = battle_damage_after_defense(power_one, power_two, entries[player_two].get('defense', 0), multiplier)
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
-            winners = [player_one]
-            losers = [player_two]
-            result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_bonus_text(labels, multiplier)}")
+            if damage > 0:
+                winners = [player_one]
+                losers = [player_two]
+            result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
             multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
-            damage = int((power_two - power_one) * multiplier)
+            damage = battle_damage_after_defense(power_two, power_one, entries[player_one].get('defense', 0), multiplier)
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
-            winners = [player_two]
-            losers = [player_one]
-            result_parts.append(f"{player_one} vs {player_two}: {player_one} -{format_battle_number(damage)}{battle_bonus_text(labels, multiplier)}")
+            if damage > 0:
+                winners = [player_two]
+                losers = [player_one]
+            result_parts.append(f"{player_one} vs {player_two}: {player_one} -{format_battle_number(damage)}{battle_defense_text(entries[player_one])}{battle_bonus_text(labels, multiplier)}")
         else:
             result_parts.append(f"{player_one} vs {player_two}: draw")
 
@@ -5008,9 +5123,13 @@ def submit_bot_players(room):
         hand = room.setdefault('hands', {}).setdefault(player, [])
         defenseless = player in reload_set or not hand
         selected = [] if defenseless else choose_bot_battle_cards(hand)
+        selected_set = set(selected)
+        defense_keys = [] if defenseless else [key for key in hand if key not in selected_set]
         room['submitted'][player] = {
             'keys': selected,
             'power': 0 if defenseless else battle_power_for_keys(selected),
+            'defense_keys': defense_keys,
+            'defense': 0 if defenseless else battle_defense_for_keys(defense_keys),
             'defenseless': defenseless,
         }
 
@@ -5067,9 +5186,16 @@ def submit_battle_hand():
     hand = room['hands'].setdefault(username, [])
     defenseless = username in reload_set or not hand
     selected = [] if defenseless else [key for key in hand if key in state.battle_selected_keys]
+    if not defenseless and not selected:
+        ui.notify(t('battle_select_card_required'), color='warning')
+        return
+    selected_set = set(selected)
+    defense_keys = [] if defenseless else [key for key in hand if key not in selected_set]
     room['submitted'][username] = {
         'keys': selected,
         'power': 0 if defenseless else battle_power_for_keys(selected),
+        'defense_keys': defense_keys,
+        'defense': 0 if defenseless else battle_defense_for_keys(defense_keys),
         'defenseless': defenseless,
     }
     submit_bot_players(room)
