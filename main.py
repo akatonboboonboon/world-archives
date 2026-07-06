@@ -4589,13 +4589,41 @@ def battle_regions_for_keys(keys):
                 regions.add(region)
     return regions
 
-def shared_battle_bonus_labels(first_keys, second_keys):
-    shared_tags = sorted(battle_tags_for_keys(first_keys) & battle_tags_for_keys(second_keys), key=lambda tag: tag_label(tag).lower())
-    shared_regions = sorted(battle_regions_for_keys(first_keys) & battle_regions_for_keys(second_keys), key=lambda region: region_label(region).lower())
-    return [tag_label(tag) for tag in shared_tags] + [region_label(region) for region in shared_regions]
+def repeated_battle_bonus_labels(keys):
+    if len(keys) < 2:
+        return []
 
-def battle_bonus_for_keys(first_keys, second_keys):
-    labels = shared_battle_bonus_labels(first_keys, second_keys)
+    lookup = battle_country_lookup()
+    tag_counts = {}
+    region_counts = {}
+    for key in keys:
+        country = lookup.get(key)
+        if not country:
+            continue
+
+        for tag in set(country.get('tags', [])):
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1
+
+        card_regions = set()
+        for region in str(country.get('region') or '').replace('/', ',').split(','):
+            region = region.strip()
+            if region:
+                card_regions.add(region)
+        for region in card_regions:
+            region_counts[region] = region_counts.get(region, 0) + 1
+
+    repeated_tags = sorted(
+        [tag for tag, count in tag_counts.items() if count >= 2],
+        key=lambda tag: tag_label(tag).lower(),
+    )
+    repeated_regions = sorted(
+        [region for region, count in region_counts.items() if count >= 2],
+        key=lambda region: region_label(region).lower(),
+    )
+    return [tag_label(tag) for tag in repeated_tags] + [region_label(region) for region in repeated_regions]
+
+def battle_bonus_for_keys(keys):
+    labels = repeated_battle_bonus_labels(keys)
     return 1 + (0.5 * len(labels)), labels
 
 def battle_bonus_text(labels, multiplier):
@@ -4759,7 +4787,7 @@ def resolve_battle_turn(room):
             else:
                 winning_team, win_power = sorted_teams[0]
                 losing_team, lose_power = sorted_teams[1]
-                multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []), team_keys.get(losing_team, []))
+                multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []))
                 damage = int((win_power - lose_power) * multiplier)
                 losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
                 split_damage = max(1, damage // max(1, len(losing_players))) if damage else 0
@@ -4778,7 +4806,7 @@ def resolve_battle_turn(room):
             for loser in sorted_players[1:]:
                 if room['hp'].get(loser, 0) <= 0:
                     continue
-                multiplier, labels = battle_bonus_for_keys(entries[winner]['keys'], entries[loser]['keys'])
+                multiplier, labels = battle_bonus_for_keys(entries[winner]['keys'])
                 damage = int((entries[winner]['power'] - entries[loser]['power']) * multiplier)
                 room['hp'][loser] = max(0, room['hp'].get(loser, 10000) - damage)
                 losers.append(loser)
@@ -4788,14 +4816,14 @@ def resolve_battle_turn(room):
         power_one = entries[player_one]['power']
         power_two = entries[player_two]['power']
         if power_one > power_two:
-            multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'], entries[player_two]['keys'])
+            multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'])
             damage = int((power_one - power_two) * multiplier)
             room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
             winners = [player_one]
             losers = [player_two]
             result_parts.append(f"{player_one} vs {player_two}: {player_two} -{damage}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
-            multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'], entries[player_one]['keys'])
+            multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
             damage = int((power_two - power_one) * multiplier)
             room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
             winners = [player_two]
