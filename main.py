@@ -202,6 +202,7 @@ def normalize_social_chats(value):
             'id': clean_id,
             'type': chat_type,
             'name': str(chat.get('name') or '').strip(),
+            'created_by': clean_stored_username(chat.get('created_by')),
             'members': members,
             'messages': messages[-120:],
             'created_at': str(chat.get('created_at') or current_timestamp()),
@@ -481,6 +482,10 @@ class AppState:
     battle_selected_keys = set()
     battle_last_signature = ''
     social_selected_chat_id = None
+    social_last_signature = ''
+    social_notify_user = None
+    social_notify_snapshot = None
+    ranking_quiz_category = 'overall'
 
 state = AppState()
 
@@ -1146,6 +1151,13 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'chat_created': 'チャットを作成しました。',
     'chat_not_allowed': 'フレンド同士でのみチャットできます。',
     'friends_count': 'フレンド数',
+    'ranking_overall': '総合',
+    'ranking_category_title': '{category}ランキング',
+    'no_ranking_data': 'ランキングに表示できるデータはまだありません。',
+    'friend_request_incoming_notice': '{user}さんからフレンド申請が届きました。',
+    'new_direct_chat_notice': '{name}とのチャットが始まりました。',
+    'new_group_chat_notice': 'グループチャット「{name}」に追加されました。',
+    'new_chat_message_notice': '{name}に新しいメッセージがあります。',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
     'rankings': 'Rankings',
@@ -1186,6 +1198,13 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'chat_created': 'Chat created.',
     'chat_not_allowed': 'Chat is available between friends only.',
     'friends_count': 'Friends',
+    'ranking_overall': 'Overall',
+    'ranking_category_title': '{category} Ranking',
+    'no_ranking_data': 'No ranking data yet.',
+    'friend_request_incoming_notice': 'Friend request from {user}.',
+    'new_direct_chat_notice': 'A chat with {name} has started.',
+    'new_group_chat_notice': 'You were added to “{name}”.',
+    'new_chat_message_notice': 'New message in {name}.',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
     'rankings': '排行榜',
@@ -1226,6 +1245,13 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'chat_created': '聊天已创建。',
     'chat_not_allowed': '只有好友之间可以聊天。',
     'friends_count': '好友数',
+    'ranking_overall': '综合',
+    'ranking_category_title': '{category}排行榜',
+    'no_ranking_data': '还没有可显示的排行数据。',
+    'friend_request_incoming_notice': '收到来自 {user} 的好友申请。',
+    'new_direct_chat_notice': '已开始与 {name} 的聊天。',
+    'new_group_chat_notice': '你已加入群聊“{name}”。',
+    'new_chat_message_notice': '{name} 有新消息。',
 })
 
 def t(key, subkey=None):
@@ -1996,6 +2022,7 @@ def login_user(username, password):
     remember_known_user(username, user_data)
     unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
+    reset_social_notification_state(show_existing=True)
     ui.notify(t('login_success'), color='positive')
     if unlocked_now:
         ui.notify(t('battle_unlocked_notice'), color='positive')
@@ -2026,6 +2053,7 @@ def guest_login():
     state.users_browser_restore_requested = False
     ensure_user_defaults(guest)
     persist_current_user_data(user_data)
+    reset_social_notification_state()
     ui.notify(t('guest_login_success'), color='positive')
     show_screen('top')
     return True
@@ -2060,6 +2088,7 @@ def register_user(username, password):
     state.current_user = username
     state.users_browser_restore_requested = False
     persist_current_user_data(user_data)
+    reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
     return True
@@ -2076,6 +2105,10 @@ def logout_user():
     state.favorite_filter = 'all'
     state.collection_filter = None
     state.page = 1
+    state.social_notify_user = None
+    state.social_notify_snapshot = None
+    state.social_last_signature = ''
+    state.social_selected_chat_id = None
     ui.notify(t('logout_success'), color='info')
     show_screen('top')
 
@@ -2335,6 +2368,7 @@ def ensure_direct_chat_record(user_data, first, second):
             'id': chat_id,
             'type': 'direct',
             'name': '',
+            'created_by': first,
             'members': sorted([first, second], key=lambda value: value.lower()),
             'messages': [],
             'created_at': current_timestamp(),
@@ -2389,6 +2423,7 @@ def create_group_chat(group_name, member_text):
         'id': chat_id,
         'type': 'group',
         'name': str(group_name or '').strip() or t('group_chat'),
+        'created_by': current,
         'members': members,
         'messages': [],
         'created_at': current_timestamp(),
@@ -2420,6 +2455,86 @@ def social_chat_title(chat):
         return chat.get('name') or t('group_chat')
     other_members = [member for member in chat.get('members', []) if member != state.current_user]
     return other_members[0] if other_members else t('direct_chat')
+
+def social_activity_snapshot(username=None, user_data=None):
+    username = username or state.current_user
+    if not username:
+        return {'requests': [], 'chats': []}
+    user_data = user_data or load_user_data()
+    incoming = [
+        {
+            'from': request.get('from', ''),
+            'timestamp': request.get('timestamp', ''),
+        }
+        for request in user_data.setdefault('friend_requests', [])
+        if request.get('to') == username
+    ]
+    chats = []
+    for chat in current_user_chats(user_data):
+        messages = chat.get('messages', [])
+        last_message = messages[-1] if messages else {}
+        chats.append({
+            'id': chat.get('id', ''),
+            'type': chat.get('type', 'direct'),
+            'name': social_chat_title(chat),
+            'members': sorted(chat.get('members', [])),
+            'created_at': chat.get('created_at', ''),
+            'created_by': chat.get('created_by', ''),
+            'message_count': len(messages),
+            'last_user': last_message.get('user', ''),
+            'last_timestamp': last_message.get('timestamp', ''),
+        })
+    return {
+        'requests': sorted(incoming, key=lambda item: (item.get('from', ''), item.get('timestamp', ''))),
+        'chats': sorted(chats, key=lambda item: item.get('id', '')),
+    }
+
+def social_activity_signature(snapshot=None):
+    snapshot = snapshot or social_activity_snapshot()
+    return json.dumps(snapshot, ensure_ascii=False, sort_keys=True)
+
+def social_notification_messages(previous, current):
+    if not previous:
+        return []
+    messages = []
+    previous_requests = {
+        (request.get('from'), request.get('timestamp'))
+        for request in previous.get('requests', [])
+    }
+    for request in current.get('requests', []):
+        marker = (request.get('from'), request.get('timestamp'))
+        if marker not in previous_requests:
+            messages.append(t('friend_request_incoming_notice').format(user=request.get('from', '')))
+
+    previous_chats = {chat.get('id'): chat for chat in previous.get('chats', [])}
+    for chat in current.get('chats', []):
+        chat_id = chat.get('id')
+        old = previous_chats.get(chat_id)
+        if not old:
+            if chat.get('created_by') != state.current_user:
+                label_key = 'new_group_chat_notice' if chat.get('type') == 'group' else 'new_direct_chat_notice'
+                messages.append(t(label_key).format(name=chat.get('name') or t('direct_chat')))
+            continue
+        if (
+            chat.get('message_count', 0) > old.get('message_count', 0)
+            and chat.get('last_user')
+            and chat.get('last_user') != state.current_user
+        ):
+            messages.append(t('new_chat_message_notice').format(name=chat.get('name') or t('direct_chat')))
+    return messages
+
+def reset_social_notification_state(show_existing=False):
+    if not state.current_user:
+        state.social_notify_user = None
+        state.social_notify_snapshot = None
+        state.social_last_signature = ''
+        return
+    snapshot = social_activity_snapshot()
+    state.social_notify_user = state.current_user
+    state.social_notify_snapshot = snapshot
+    state.social_last_signature = social_activity_signature(snapshot)
+    if show_existing and snapshot.get('requests'):
+        ui.notify(f"{t('friend_request_received')} ({len(snapshot['requests'])})", color='info')
 
 def send_social_chat_message(chat_id, text):
     current = state.current_user
@@ -3562,6 +3677,84 @@ QUIZ_CATEGORY_OPTIONS = [
     ('profile', 'quiz_category_profile'),
     ('detail', 'quiz_category_detail'),
 ]
+
+QUIZ_RANKING_CATEGORIES = [
+    ('overall', 'ranking_overall'),
+    ('flag', 'quiz_category_flag'),
+    ('period', 'quiz_category_period'),
+    ('capital', 'quiz_category_capital'),
+    ('desc', 'quiz_category_desc'),
+    ('profile', 'quiz_category_profile'),
+    ('detail', 'quiz_category_detail'),
+]
+
+def quiz_type_group(question_type):
+    question_type = str(question_type or '')
+    if question_type in ['flag', 'period', 'capital', 'desc']:
+        return question_type
+    if question_type.startswith('profile_'):
+        return 'profile'
+    if question_type.startswith('detail_'):
+        return 'detail'
+    return 'other'
+
+def quiz_ranking_category_label(category):
+    for key, label_key in QUIZ_RANKING_CATEGORIES:
+        if key == category:
+            return t(label_key)
+    return t('ranking_overall')
+
+def quiz_stats_for_ranking(record, category):
+    ensure_user_defaults(record)
+    if category == 'overall':
+        stats = record.get('quiz_stats', {}) if isinstance(record.get('quiz_stats'), dict) else {}
+        return {
+            'answered': int(stats.get('answered', 0) or 0),
+            'correct': int(stats.get('correct', 0) or 0),
+            'best_streak': int(stats.get('best_streak', 0) or 0),
+        }
+    answered = 0
+    correct = 0
+    for entry in record.get('quiz_history', []):
+        if not isinstance(entry, dict):
+            continue
+        if quiz_type_group(entry.get('type')) != category:
+            continue
+        answered += 1
+        if entry.get('correct'):
+            correct += 1
+    return {'answered': answered, 'correct': correct, 'best_streak': 0}
+
+def quiz_ranking_profiles(category):
+    user_data = load_user_data()
+    users = get_users(user_data)
+    public_profiles = {profile['username']: profile for profile in public_user_profiles()}
+    rows = []
+    for username, record in users.items():
+        if is_guest_record(username, record) or not isinstance(record, dict):
+            continue
+        stats = quiz_stats_for_ranking(record, category)
+        if category != 'overall' and stats['answered'] <= 0:
+            continue
+        profile = public_profiles.get(username, {
+            'username': username,
+            'name_color': DEFAULT_NAME_COLOR,
+            'avatar_url': None,
+            'avatar': {'mode': 'default'},
+        })
+        row = dict(profile)
+        row['ranking_answered'] = stats['answered']
+        row['ranking_correct'] = stats['correct']
+        row['ranking_best_streak'] = stats['best_streak']
+        rows.append(row)
+    return sorted(
+        rows,
+        key=lambda profile: (
+            -int(profile.get('ranking_correct', 0) or 0),
+            int(profile.get('ranking_answered', 0) or 0),
+            profile.get('username', '').lower(),
+        ),
+    )
 
 def quiz_question_matches_category(question_type):
     category = getattr(state, 'quiz_category', 'all')
@@ -5402,6 +5595,17 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
     header_container_quiz = ui.column().classes('w-full p-0 m-0')
     quiz_content = ui.column().classes('w-full max-w-3xl p-8 gap-6 self-center')
 
+    def next_quiz_from_button():
+        if state.quiz and not state.quiz.get('answered'):
+            update_quiz_stats(
+                False,
+                state.quiz.get('answer_key'),
+                state.quiz_mode == 'review',
+                None,
+                state.quiz.get('type'),
+            )
+        start_quiz()
+
     def select_quiz_option(option_key):
         if not state.quiz:
             return
@@ -5452,7 +5656,6 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
         with quiz_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
                 ui.label(t('quiz_title')).classes('text-2xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-3xl font-bold text-[#1a2332]')
-                ui.button(t('quiz_next'), icon='refresh', on_click=start_quiz).props('outline color=primary').classes('w-full' if is_mobile_ui() else '')
 
             stats = get_quiz_stats()
             ui.label(t('quiz_stats').format(
@@ -5480,6 +5683,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                     color = 'primary' if state.quiz_category == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, c=key: set_quiz_category(c)) \
                         .props(f'outline color={color} dense')
+            ui.button(t('quiz_next'), icon='refresh', on_click=next_quiz_from_button) \
+                .props('outline color=primary') \
+                .classes('w-full' if is_mobile_ui() else 'self-start')
 
             with ui.card().classes('w-full p-4 gap-4' if is_mobile_ui() else 'w-full p-6 gap-4'):
                 ui.label(question).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
@@ -6023,6 +6229,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as rankings_scr
     header_container_rankings = ui.column().classes('w-full p-0 m-0')
     rankings_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
 
+    def set_ranking_quiz_category(category):
+        state.ranking_quiz_category = category
+        refresh_rankings_view()
+
     def render_ranking_row(rank, profile, value, detail):
         with ui.card().classes('w-full p-4 gap-3'):
             with ui.row().classes('w-full items-center gap-3 no-wrap'):
@@ -6051,24 +6261,30 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as rankings_scr
         )
         rankings_content.clear()
         profiles = public_user_profiles()
-        quiz_profiles = sorted(
-            profiles,
-            key=lambda profile: (-int(profile.get('correct', 0) or 0), int(profile.get('answered', 0) or 0), profile.get('username', '').lower()),
-        )
+        valid_categories = {key for key, _ in QUIZ_RANKING_CATEGORIES}
+        if state.ranking_quiz_category not in valid_categories:
+            state.ranking_quiz_category = 'overall'
+        quiz_profiles = quiz_ranking_profiles(state.ranking_quiz_category)
+        category_label = quiz_ranking_category_label(state.ranking_quiz_category)
         current_user = get_current_user_record()
         can_view_wins = battle_is_user_eligible(user=current_user)
         with rankings_content:
             ui.label(t('rankings_title')).classes('text-3xl font-bold text-[#1a2332]')
             with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('quiz_ranking')).classes('text-xl font-bold text-[#1a2332]')
+                ui.label(t('ranking_category_title').format(category=category_label)).classes('text-xl font-bold text-[#1a2332]')
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    for category, label_key in QUIZ_RANKING_CATEGORIES:
+                        color = 'primary' if state.ranking_quiz_category == category else 'grey'
+                        ui.button(t(label_key), on_click=lambda _, c=category: set_ranking_quiz_category(c)) \
+                            .props(f'outline color={color} dense')
                 if not quiz_profiles:
-                    ui.label(t('no_users')).classes('text-gray-500')
+                    ui.label(t('no_ranking_data')).classes('text-gray-500')
                 for rank, profile in enumerate(quiz_profiles[:20], start=1):
                     render_ranking_row(
                         rank,
                         profile,
-                        profile.get('correct', 0),
-                        f"{t('answered_count')}: {profile.get('answered', 0)} / {t('best_streak')}: {profile.get('best_streak', 0)}",
+                        profile.get('ranking_correct', 0),
+                        f"{t('answered_count')}: {profile.get('ranking_answered', 0)} / {t('best_streak')}: {profile.get('ranking_best_streak', 0)}",
                     )
             with ui.card().classes('w-full p-5 gap-3'):
                 ui.label(t('battle_win_ranking')).classes('text-xl font-bold text-[#1a2332]')
@@ -6194,6 +6410,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as social_scree
         )
         social_content.clear()
         user_data = load_user_data()
+        snapshot = social_activity_snapshot(user_data=user_data)
+        state.social_last_signature = social_activity_signature(snapshot)
         chats = current_user_chats(user_data)
         with social_content:
             ui.label(t('friends_title')).classes('text-3xl font-bold text-[#1a2332]')
@@ -6204,6 +6422,29 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as social_scree
                     render_group_creator()
                     render_chat_list(chats)
                 render_selected_chat(chats)
+
+def poll_social_updates():
+    if not state.current_user or state.current_user == GUEST_USERNAME:
+        return
+    snapshot = social_activity_snapshot()
+    signature = social_activity_signature(snapshot)
+    if state.social_notify_user != state.current_user or state.social_notify_snapshot is None:
+        state.social_notify_user = state.current_user
+        state.social_notify_snapshot = snapshot
+        state.social_last_signature = signature
+        return
+    changed = signature != state.social_last_signature
+    for message in social_notification_messages(state.social_notify_snapshot, snapshot)[:4]:
+        ui.notify(message, color='info')
+    state.social_notify_snapshot = snapshot
+    if changed and social_screen.visible:
+        refresh_social_view()
+    elif changed:
+        state.social_last_signature = signature
+    if changed and users_screen.visible:
+        refresh_users_view()
+
+ui.timer(2.0, poll_social_updates)
 
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
