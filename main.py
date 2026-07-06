@@ -29,6 +29,16 @@ except ImportError:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
 ASSETS_DIR = os.path.join(BASE_DIR, 'assets')
+DATA_CACHE = None
+DATA_CACHE_MTIME = None
+USER_DATA_CACHE = None
+USER_DATA_CACHE_MTIME = None
+
+def file_mtime(path):
+    try:
+        return os.path.getmtime(path)
+    except OSError:
+        return None
 
 # 生成した国旗など、リポジトリ内に置いた画像を /assets/... で配信します。
 if os.path.isdir(ASSETS_DIR):
@@ -295,17 +305,26 @@ def normalize_user_data_file(data):
     return data
 
 def load_user_data():
+    global USER_DATA_CACHE, USER_DATA_CACHE_MTIME
     if not os.path.exists(USER_DATA_FILE):
-        return default_user_data()
+        USER_DATA_CACHE = default_user_data()
+        USER_DATA_CACHE_MTIME = None
+        return USER_DATA_CACHE
+    mtime = file_mtime(USER_DATA_FILE)
+    if USER_DATA_CACHE is not None and USER_DATA_CACHE_MTIME == mtime:
+        return USER_DATA_CACHE
     try:
         with open(USER_DATA_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        return normalize_user_data_file(data)
+        USER_DATA_CACHE = normalize_user_data_file(data)
+        USER_DATA_CACHE_MTIME = mtime
+        return USER_DATA_CACHE
     except Exception as e:
         print(f"Error loading user data: {e}")
         return default_user_data()
 
 def save_user_data(data):
+    global USER_DATA_CACHE, USER_DATA_CACHE_MTIME
     data = normalize_user_data_file(data)
     data = {
         'users': data.get('users', {}),
@@ -318,6 +337,8 @@ def save_user_data(data):
         os.makedirs(user_dir, exist_ok=True)
     with open(USER_DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    USER_DATA_CACHE = data
+    USER_DATA_CACHE_MTIME = file_mtime(USER_DATA_FILE)
 
 def merge_unique_list(current, incoming, limit=None):
     merged = list(current) if isinstance(current, list) else []
@@ -480,6 +501,7 @@ class AppState:
     lang = 'ja'
     ui_mode = 'pc'
     current_user = None
+    current_user_browser_sync_pending = False
     search_keyword = ''
     page = 1
     items_per_page = 20
@@ -498,6 +520,7 @@ class AppState:
     users_page = 1
     users_items_per_page = 6
     users_browser_restore_requested = False
+    public_users_browser_synced = False
     public_collection_owner = None
     public_collection_name = None
     public_collection_keys = []
@@ -1807,6 +1830,20 @@ def sync_current_user_to_browser(user_data=None):
     except Exception as e:
         print(f"Browser backup skipped: {e}", flush=True)
 
+def flush_current_user_browser_sync():
+    state.current_user_browser_sync_pending = False
+    sync_current_user_to_browser()
+
+def queue_current_user_browser_sync(delay=3.0):
+    if state.current_user_browser_sync_pending:
+        return
+    state.current_user_browser_sync_pending = True
+    try:
+        ui.timer(delay, flush_current_user_browser_sync, once=True)
+    except Exception as e:
+        state.current_user_browser_sync_pending = False
+        print(f"Browser backup scheduling skipped: {e}", flush=True)
+
 def remove_browser_backup(username):
     if not username:
         return
@@ -1833,7 +1870,8 @@ def remove_browser_backup(username):
 
 def persist_current_user_data(user_data):
     save_user_data(user_data)
-    sync_current_user_to_browser(user_data)
+    state.public_users_browser_synced = False
+    queue_current_user_browser_sync()
 
 def remember_known_user(username, user_data):
     username = clean_username(username)
@@ -1975,7 +2013,9 @@ def public_user_backup_payload():
         'updated_at': current_timestamp(),
     }
 
-def sync_public_users_to_browser():
+def sync_public_users_to_browser(force=False):
+    if state.public_users_browser_synced and not force:
+        return
     payload = public_user_backup_payload()
     if not payload.get('users') and not payload.get('known_users'):
         return
@@ -1999,6 +2039,7 @@ def sync_public_users_to_browser():
     """
     try:
         ui.run_javascript(script)
+        state.public_users_browser_synced = True
     except Exception as e:
         print(f"Public browser backup skipped: {e}", flush=True)
 
@@ -6116,8 +6157,14 @@ def battle_screen_signature():
 # ========================================
 @app.get('/api/data')
 def get_data():
+    global DATA_CACHE, DATA_CACHE_MTIME
+    mtime = file_mtime(JSON_FILE)
+    if DATA_CACHE is not None and DATA_CACHE_MTIME == mtime:
+        return DATA_CACHE
     with open(JSON_FILE, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        DATA_CACHE = json.load(f)
+    DATA_CACHE_MTIME = mtime
+    return DATA_CACHE
 
 @app.post('/api/restore-user-backups')
 async def restore_user_backups(payload: dict):
@@ -6145,11 +6192,14 @@ async def upload_avatar_from_browser(payload: dict):
         return {'ok': False, 'error': str(e)}
 
 def save_data(data):
+    global DATA_CACHE, DATA_CACHE_MTIME
     data = dict(data)
     for key in ['users', 'history', 'favorites']:
         data.pop(key, None)
     with open(JSON_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    DATA_CACHE = data
+    DATA_CACHE_MTIME = file_mtime(JSON_FILE)
 
 def add_history(country_data):
     if is_hidden_country(country_data):
@@ -7562,11 +7612,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                     .props('outline color=primary dense')
 
     def restore_browser_users_for_list():
+        state.public_users_browser_synced = False
         request_browser_backup_restore()
         ui.notify(t('users_restore_browser'), color='info')
         ui.timer(0.8, refresh_users_view, once=True)
         ui.timer(1.8, refresh_users_view, once=True)
         ui.timer(3.0, refresh_users_view, once=True)
+        ui.timer(3.2, lambda: sync_public_users_to_browser(force=True), once=True)
 
     def change_users_page(page):
         state.users_page = page
@@ -7615,7 +7667,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 ui.button(t('users_restore_browser'), icon='cloud_sync', on_click=restore_browser_users_for_list) \
                     .props('outline color=primary dense')
             profiles = public_user_profiles()
-            if profiles:
+            if profiles and not state.public_users_browser_synced:
                 ui.timer(2.4 if restore_started else 0.4, sync_public_users_to_browser, once=True)
             total_count = len(profiles)
             total_pages = max(1, (total_count + state.users_items_per_page - 1) // state.users_items_per_page)
@@ -7959,8 +8011,6 @@ def poll_social_updates():
     state.social_notify_snapshot = snapshot
     if added_notifications and notification_drawer.value:
         refresh_notification_content()
-    if added_notifications:
-        refresh_current_screen()
     if changed and social_screen.visible:
         refresh_social_view()
     elif changed:
@@ -7968,7 +8018,7 @@ def poll_social_updates():
     if changed and users_screen.visible:
         refresh_users_view()
 
-ui.timer(2.0, poll_social_updates)
+ui.timer(3.0, poll_social_updates)
 
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
