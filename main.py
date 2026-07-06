@@ -224,6 +224,7 @@ USER_RECORD_KEYS = {
     'battle_wins',
     'battle_unlocked_notified',
     'friends',
+    'notifications',
 }
 
 def looks_like_user_record(value):
@@ -328,6 +329,18 @@ def merge_user_record(current, incoming):
             current[key] = merge_unique_list(current.get(key, []), value)
         elif key == 'history':
             current[key] = merge_unique_list(current.get(key, []), value, 50)
+        elif key == 'notifications' and isinstance(value, list):
+            existing = normalize_notifications(current.get('notifications'))
+            seen = {item.get('id') for item in existing}
+            for item in normalize_notifications(value):
+                if item.get('id') not in seen:
+                    existing.append(item)
+                    seen.add(item.get('id'))
+            current[key] = sorted(
+                existing,
+                key=lambda item: item.get('created_at', ''),
+                reverse=True,
+            )[:100]
         elif key == 'notes' and isinstance(value, dict):
             notes = current.setdefault('notes', {})
             for note_key, note_value in value.items():
@@ -1260,6 +1273,28 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'dismiss_notification': '关闭',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'notifications': '\u901a\u77e5',
+    'notification_empty': '\u901a\u77e5\u306f\u307e\u3060\u3042\u308a\u307e\u305b\u3093\u3002',
+    'unread_notifications': '\u672a\u8aad: {count}',
+    'mark_all_read': '\u3059\u3079\u3066\u65e2\u8aad',
+    'unread': '\u672a\u8aad',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'notifications': 'Notifications',
+    'notification_empty': 'No notifications yet.',
+    'unread_notifications': 'Unread: {count}',
+    'mark_all_read': 'Mark all read',
+    'unread': 'Unread',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'notifications': '\u901a\u77e5',
+    'notification_empty': '\u8fd8\u6ca1\u6709\u901a\u77e5\u3002',
+    'unread_notifications': '\u672a\u8bfb: {count}',
+    'mark_all_read': '\u5168\u90e8\u6807\u4e3a\u5df2\u8bfb',
+    'unread': '\u672a\u8bfb',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -1511,10 +1546,35 @@ def normalize_avatar_adjustment(avatar):
     avatar['position_y'] = int(clamp_number(avatar.get('position_y'), 0, 100, 50))
     return avatar
 
+def normalize_notifications(value):
+    if not isinstance(value, list):
+        return []
+    notifications = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        message = str(item.get('message') or '').strip()
+        if not message:
+            continue
+        created_at = str(item.get('created_at') or item.get('timestamp') or current_timestamp())
+        raw_id = str(item.get('id') or '').strip()
+        if not raw_id:
+            raw_id = hashlib.sha256(f"{message}:{created_at}:{item.get('chat_id', '')}".encode('utf-8')).hexdigest()[:16]
+        notifications.append({
+            'id': raw_id,
+            'message': message[:500],
+            'chat_id': str(item.get('chat_id') or '').strip(),
+            'kind': str(item.get('kind') or 'social').strip() or 'social',
+            'created_at': created_at,
+            'read': bool(item.get('read')),
+        })
+    return sorted(notifications, key=lambda item: item.get('created_at', ''), reverse=True)[:100]
+
 def ensure_user_defaults(user):
-    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends']:
+    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends', 'notifications']:
         if not isinstance(user.get(key), list):
             user[key] = []
+    user['notifications'] = normalize_notifications(user.get('notifications'))
     for key in ['notes', 'collections']:
         if not isinstance(user.get(key), dict):
             user[key] = {}
@@ -1638,7 +1698,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified', 'friends'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -2504,8 +2564,87 @@ def open_social_notification_target(chat_id=None):
         state.social_selected_chat_id = str(chat_id)
     show_screen('social')
 
-def show_social_action_notification(message, chat_id=None):
+def current_notifications(user=None):
+    user = user or get_current_user_record()
+    if not user:
+        return []
+    user['notifications'] = normalize_notifications(user.get('notifications'))
+    return user['notifications']
+
+def unread_notification_count(user=None):
+    return sum(1 for item in current_notifications(user) if not item.get('read'))
+
+def notification_event_id(event):
+    raw_id = str(event.get('id') or '').strip()
+    if raw_id:
+        return raw_id
+    marker = f"{event.get('kind', 'social')}:{event.get('chat_id', '')}:{event.get('created_at', '')}:{event.get('message', '')}"
+    return hashlib.sha256(marker.encode('utf-8')).hexdigest()[:16]
+
+def store_notification_events(events, username=None):
+    username = username or state.current_user
+    if not username or username == GUEST_USERNAME:
+        return []
+    user_data = load_user_data()
+    user = get_named_user_record(username, user_data)
+    if not user:
+        return []
+    notifications = current_notifications(user)
+    seen = {item.get('id') for item in notifications}
+    added = []
+    for event in events:
+        message = str(event.get('message') or '').strip()
+        if not message:
+            continue
+        item = {
+            'id': notification_event_id(event),
+            'message': message,
+            'chat_id': str(event.get('chat_id') or '').strip(),
+            'kind': str(event.get('kind') or 'social').strip() or 'social',
+            'created_at': str(event.get('created_at') or current_timestamp()),
+            'read': False,
+        }
+        if item['id'] in seen:
+            continue
+        notifications.insert(0, item)
+        seen.add(item['id'])
+        added.append(item)
+    if added:
+        user['notifications'] = normalize_notifications(notifications)
+        persist_current_user_data(user_data) if username == state.current_user else save_user_data(user_data)
+    return added
+
+def mark_notification_read(notification_id=None, mark_all=False):
+    if not state.current_user or state.current_user == GUEST_USERNAME:
+        return
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        return
+    changed = False
+    for item in current_notifications(user):
+        if mark_all or item.get('id') == notification_id:
+            if not item.get('read'):
+                item['read'] = True
+                changed = True
+    if changed:
+        persist_current_user_data(user_data)
+
+def open_notification_item(notification):
+    notification_id = notification.get('id')
+    chat_id = notification.get('chat_id') or None
+    mark_notification_read(notification_id)
+    notification_drawer.hide()
+    open_social_notification_target(chat_id)
+
+def show_social_action_notification(message, chat_id=None, notification_id=None):
     ui.notify(message, color='info')
+    def open_from_dialog():
+        if notification_id:
+            mark_notification_read(notification_id)
+        dialog.close()
+        open_social_notification_target(chat_id)
+
     with ui.dialog() as dialog, ui.card().classes('w-full max-w-md p-5 gap-4'):
         ui.label(message).classes('text-base font-bold text-[#1a2332]')
         with ui.row().classes('w-full justify-end gap-2'):
@@ -2513,7 +2652,7 @@ def show_social_action_notification(message, chat_id=None):
             ui.button(
                 t('open_notification_target'),
                 icon='open_in_new',
-                on_click=lambda: (dialog.close(), open_social_notification_target(chat_id)),
+                on_click=open_from_dialog,
             ).props('color=primary')
     dialog.open()
 
@@ -2529,8 +2668,11 @@ def social_notification_events(previous, current):
         marker = (request.get('from'), request.get('timestamp'))
         if marker not in previous_requests:
             events.append({
+                'id': f"friend-request:{request.get('from', '')}:{request.get('timestamp', '')}",
+                'kind': 'friend_request',
                 'message': t('friend_request_incoming_notice').format(user=request.get('from', '')),
                 'chat_id': None,
+                'created_at': request.get('timestamp') or current_timestamp(),
             })
 
     previous_chats = {chat.get('id'): chat for chat in previous.get('chats', [])}
@@ -2541,8 +2683,11 @@ def social_notification_events(previous, current):
             if chat.get('created_by') != state.current_user:
                 label_key = 'new_group_chat_notice' if chat.get('type') == 'group' else 'new_direct_chat_notice'
                 events.append({
+                    'id': f"chat-created:{chat_id}:{chat.get('created_at', '')}",
+                    'kind': 'chat',
                     'message': t(label_key).format(name=chat.get('name') or t('direct_chat')),
                     'chat_id': chat_id,
+                    'created_at': chat.get('created_at') or current_timestamp(),
                 })
             continue
         if (
@@ -2551,8 +2696,11 @@ def social_notification_events(previous, current):
             and chat.get('last_user') != state.current_user
         ):
             events.append({
+                'id': f"chat-message:{chat_id}:{chat.get('last_user', '')}:{chat.get('last_timestamp', '')}:{chat.get('message_count', 0)}",
+                'kind': 'chat_message',
                 'message': t('new_chat_message_notice').format(name=chat.get('name') or t('direct_chat')),
                 'chat_id': chat_id,
+                'created_at': chat.get('last_timestamp') or current_timestamp(),
             })
     return events
 
@@ -2570,7 +2718,19 @@ def reset_social_notification_state(show_existing=False):
     state.social_notify_snapshot = snapshot
     state.social_last_signature = social_activity_signature(snapshot)
     if show_existing and snapshot.get('requests'):
-        show_social_action_notification(f"{t('friend_request_received')} ({len(snapshot['requests'])})")
+        existing_events = [
+            {
+                'id': f"friend-request:{request.get('from', '')}:{request.get('timestamp', '')}",
+                'kind': 'friend_request',
+                'message': t('friend_request_incoming_notice').format(user=request.get('from', '')),
+                'chat_id': None,
+                'created_at': request.get('timestamp') or current_timestamp(),
+            }
+            for request in snapshot.get('requests', [])
+        ]
+        added = store_notification_events(existing_events)
+        if added:
+            show_social_action_notification(f"{t('friend_request_received')} ({len(added)})")
 
 def send_social_chat_message(chat_id, text):
     current = state.current_user
@@ -4930,6 +5090,8 @@ def show_screen(screen_name):
         state.page = 1
         if history_drawer.value:
             history_drawer.hide()
+        if notification_drawer.value:
+            notification_drawer.hide()
         refresh_top_ui()
 
     top_screen.set_visibility(screen_name == 'top')
@@ -4992,6 +5154,7 @@ def switch_language(lang_code):
     if battle_screen.visible: refresh_battle_view()
     if rankings_screen.visible: refresh_rankings_view()
     if social_screen.visible: refresh_social_view()
+    if notification_drawer.value: refresh_notification_content()
     if help_screen.visible: refresh_help_view()
 
 def is_mobile_ui():
@@ -5051,6 +5214,9 @@ def ui_mode_icon():
 with ui.right_drawer(value=False).classes('bg-gray-100') as history_drawer:
     history_content = ui.column().classes('w-full p-4')
 
+with ui.right_drawer(value=False).classes('bg-gray-100') as notification_drawer:
+    notification_content = ui.column().classes('w-full p-4')
+
 def jump_from_history(history_item):
     data = get_data()
     hist_key = history_item.get('key')
@@ -5096,6 +5262,44 @@ def refresh_history_content():
                     ui.label(h['name']).classes('font-bold text-gray-800')
                     ui.label(format_timestamp(h.get('timestamp'))).classes('text-xs text-gray-400 mt-1')
 
+def open_notifications_box():
+    refresh_notification_content()
+    if history_drawer.value:
+        history_drawer.hide()
+    notification_drawer.toggle()
+
+def mark_all_notifications_read():
+    mark_notification_read(mark_all=True)
+    refresh_notification_content()
+    refresh_current_screen()
+
+def refresh_notification_content():
+    notification_content.clear()
+    user = get_current_user_record()
+    notifications = current_notifications(user) if user else []
+    unread_count = unread_notification_count(user)
+    with notification_content:
+        with ui.row().classes('w-full justify-between items-center mb-4'):
+            ui.label(t('notifications')).classes('text-xl font-bold text-gray-700')
+            ui.button(icon='close', on_click=lambda: notification_drawer.toggle()).props('flat round dense')
+        if notifications:
+            with ui.row().classes('w-full justify-between items-center mb-2'):
+                ui.label(t('unread_notifications').format(count=unread_count)).classes('text-sm font-bold text-gray-500')
+                ui.button(t('mark_all_read'), icon='done_all', on_click=mark_all_notifications_read).props('flat dense color=primary')
+        else:
+            ui.label(t('notification_empty')).classes('text-gray-400')
+        with ui.column().classes('w-full gap-2'):
+            for item in notifications:
+                border = 'border-orange-500' if not item.get('read') else 'border-gray-300'
+                bg = 'bg-orange-50' if not item.get('read') else 'bg-white'
+                with ui.card().classes(f'w-full p-3 text-sm border-l-4 {border} {bg} cursor-pointer hover:bg-blue-50 transition') as card:
+                    card.on('click', lambda _, notification=item: open_notification_item(notification))
+                    with ui.row().classes('w-full justify-between items-start gap-2 no-wrap'):
+                        ui.label(item.get('message', '')).classes('font-bold text-gray-800 whitespace-normal break-words')
+                        if not item.get('read'):
+                            ui.badge(t('unread'), color='orange')
+                    ui.label(format_timestamp(item.get('created_at'))).classes('text-xs text-gray-400 mt-1')
+
 def render_header(container):
     container.clear()
     with container:
@@ -5124,8 +5328,19 @@ def render_header(container):
                     ui.label(current_user_label()) \
                         .classes('text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
                         .style(f'color: {user_name_color(header_user)};')
+                    unread_count = unread_notification_count(header_user)
+                    if unread_count:
+                        ui.button(str(unread_count), icon='notifications', on_click=open_notifications_box) \
+                            .props('flat color=white dense') \
+                            .tooltip(t('notifications'))
+                    else:
+                        ui.button(icon='notifications', on_click=open_notifications_box) \
+                            .props('flat round color=white') \
+                            .tooltip(t('notifications'))
                 def open_history():
                     refresh_history_content()
+                    if notification_drawer.value:
+                        notification_drawer.hide()
                     history_drawer.toggle()
                 menu_text = {'ja': '機能', 'en': 'Features', 'zh': '功能'}.get(state.lang, 'Features')
                 with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
@@ -6519,9 +6734,15 @@ def poll_social_updates():
         state.social_last_signature = signature
         return
     changed = signature != state.social_last_signature
-    for event in social_notification_events(state.social_notify_snapshot, snapshot)[:4]:
-        show_social_action_notification(event['message'], event.get('chat_id'))
+    events = social_notification_events(state.social_notify_snapshot, snapshot)
+    added_notifications = store_notification_events(events)
+    for event in added_notifications[:4]:
+        show_social_action_notification(event['message'], event.get('chat_id'), event.get('id'))
     state.social_notify_snapshot = snapshot
+    if added_notifications and notification_drawer.value:
+        refresh_notification_content()
+    if added_notifications:
+        refresh_current_screen()
     if changed and social_screen.visible:
         refresh_social_view()
     elif changed:
