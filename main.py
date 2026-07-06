@@ -1158,6 +1158,8 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'new_direct_chat_notice': '{name}とのチャットが始まりました。',
     'new_group_chat_notice': 'グループチャット「{name}」に追加されました。',
     'new_chat_message_notice': '{name}に新しいメッセージがあります。',
+    'open_notification_target': '開く',
+    'dismiss_notification': '閉じる',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
     'rankings': 'Rankings',
@@ -1205,6 +1207,8 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'new_direct_chat_notice': 'A chat with {name} has started.',
     'new_group_chat_notice': 'You were added to “{name}”.',
     'new_chat_message_notice': 'New message in {name}.',
+    'open_notification_target': 'Open',
+    'dismiss_notification': 'Close',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
     'rankings': '排行榜',
@@ -1252,6 +1256,8 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'new_direct_chat_notice': '已开始与 {name} 的聊天。',
     'new_group_chat_notice': '你已加入群聊“{name}”。',
     'new_chat_message_notice': '{name} 有新消息。',
+    'open_notification_target': '打开',
+    'dismiss_notification': '关闭',
 })
 
 def t(key, subkey=None):
@@ -2493,10 +2499,28 @@ def social_activity_signature(snapshot=None):
     snapshot = snapshot or social_activity_snapshot()
     return json.dumps(snapshot, ensure_ascii=False, sort_keys=True)
 
-def social_notification_messages(previous, current):
+def open_social_notification_target(chat_id=None):
+    if chat_id:
+        state.social_selected_chat_id = str(chat_id)
+    show_screen('social')
+
+def show_social_action_notification(message, chat_id=None):
+    ui.notify(message, color='info')
+    with ui.dialog() as dialog, ui.card().classes('w-full max-w-md p-5 gap-4'):
+        ui.label(message).classes('text-base font-bold text-[#1a2332]')
+        with ui.row().classes('w-full justify-end gap-2'):
+            ui.button(t('dismiss_notification'), on_click=dialog.close).props('flat color=grey')
+            ui.button(
+                t('open_notification_target'),
+                icon='open_in_new',
+                on_click=lambda: (dialog.close(), open_social_notification_target(chat_id)),
+            ).props('color=primary')
+    dialog.open()
+
+def social_notification_events(previous, current):
     if not previous:
         return []
-    messages = []
+    events = []
     previous_requests = {
         (request.get('from'), request.get('timestamp'))
         for request in previous.get('requests', [])
@@ -2504,7 +2528,10 @@ def social_notification_messages(previous, current):
     for request in current.get('requests', []):
         marker = (request.get('from'), request.get('timestamp'))
         if marker not in previous_requests:
-            messages.append(t('friend_request_incoming_notice').format(user=request.get('from', '')))
+            events.append({
+                'message': t('friend_request_incoming_notice').format(user=request.get('from', '')),
+                'chat_id': None,
+            })
 
     previous_chats = {chat.get('id'): chat for chat in previous.get('chats', [])}
     for chat in current.get('chats', []):
@@ -2513,15 +2540,24 @@ def social_notification_messages(previous, current):
         if not old:
             if chat.get('created_by') != state.current_user:
                 label_key = 'new_group_chat_notice' if chat.get('type') == 'group' else 'new_direct_chat_notice'
-                messages.append(t(label_key).format(name=chat.get('name') or t('direct_chat')))
+                events.append({
+                    'message': t(label_key).format(name=chat.get('name') or t('direct_chat')),
+                    'chat_id': chat_id,
+                })
             continue
         if (
             chat.get('message_count', 0) > old.get('message_count', 0)
             and chat.get('last_user')
             and chat.get('last_user') != state.current_user
         ):
-            messages.append(t('new_chat_message_notice').format(name=chat.get('name') or t('direct_chat')))
-    return messages
+            events.append({
+                'message': t('new_chat_message_notice').format(name=chat.get('name') or t('direct_chat')),
+                'chat_id': chat_id,
+            })
+    return events
+
+def social_notification_messages(previous, current):
+    return [event['message'] for event in social_notification_events(previous, current)]
 
 def reset_social_notification_state(show_existing=False):
     if not state.current_user:
@@ -2534,7 +2570,7 @@ def reset_social_notification_state(show_existing=False):
     state.social_notify_snapshot = snapshot
     state.social_last_signature = social_activity_signature(snapshot)
     if show_existing and snapshot.get('requests'):
-        ui.notify(f"{t('friend_request_received')} ({len(snapshot['requests'])})", color='info')
+        show_social_action_notification(f"{t('friend_request_received')} ({len(snapshot['requests'])})")
 
 def send_social_chat_message(chat_id, text):
     current = state.current_user
@@ -6434,8 +6470,8 @@ def poll_social_updates():
         state.social_last_signature = signature
         return
     changed = signature != state.social_last_signature
-    for message in social_notification_messages(state.social_notify_snapshot, snapshot)[:4]:
-        ui.notify(message, color='info')
+    for event in social_notification_events(state.social_notify_snapshot, snapshot)[:4]:
+        show_social_action_notification(event['message'], event.get('chat_id'))
     state.social_notify_snapshot = snapshot
     if changed and social_screen.visible:
         refresh_social_view()
