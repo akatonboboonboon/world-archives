@@ -258,7 +258,9 @@ def merge_user_record(current, incoming):
                     stats[stat_key] = max(stats.get(stat_key, 0), stat_value)
                 else:
                     stats.setdefault(stat_key, stat_value)
-        elif key in ['viewed_keys', 'quiz_history']:
+        elif key == 'viewed_keys':
+            current[key] = merge_unique_list(current.get(key, []), value)
+        elif key == 'quiz_history':
             current[key] = merge_unique_list(current.get(key, []), value, 200)
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
@@ -777,6 +779,10 @@ EXTRA_UI_FALLBACKS = {
         'battle_wins': '対戦勝利',
         'battle_unlocked_notice': '対戦モードが解禁されました。',
         'battle_matched': '対戦相手が見つかりました。',
+        'battle_redraw': '手札を引き直す',
+        'battle_redraw_used': 'このターンは引き直し済みです。',
+        'battle_redraw_log': '{player} が手札を {count} 枚引き直しました。',
+        'battle_steal_log': '{winner} が {loser} から {country} を奪いました。',
     },
     'en': {
         'users': 'Users',
@@ -842,6 +848,10 @@ EXTRA_UI_FALLBACKS = {
         'battle_wins': 'Battle wins',
         'battle_unlocked_notice': 'Power Battle is now unlocked.',
         'battle_matched': 'Opponent found.',
+        'battle_redraw': 'Redraw hand',
+        'battle_redraw_used': 'You already redrew this turn.',
+        'battle_redraw_log': '{player} redrew {count} card(s).',
+        'battle_steal_log': '{winner} stole {country} from {loser}.',
     },
     'zh': {
         'users': '用户',
@@ -907,6 +917,10 @@ EXTRA_UI_FALLBACKS = {
         'battle_wins': '对战胜利',
         'battle_unlocked_notice': '国力对战已解锁。',
         'battle_matched': '已找到对手。',
+        'battle_redraw': '重抽手牌',
+        'battle_redraw_used': '本回合已经重抽过。',
+        'battle_redraw_log': '{player} 重抽了 {count} 张牌。',
+        'battle_steal_log': '{winner} 从 {loser} 手中夺取了 {country}。',
     },
 }
 
@@ -2930,9 +2944,9 @@ def country_battle_power(country):
     area = parse_profile_number(raw_profile_value(country, 'area'))
     population = parse_profile_number(raw_profile_value(country, 'population'))
     power = int(area * population)
-    while power > 9999:
+    while power > 1000:
         power //= 10
-    return max(1, power)
+    return max(1, min(1000, power))
 
 def battle_country_list(data=None):
     data = data or get_data()
@@ -3001,6 +3015,10 @@ def battle_room_for_user(username, state_data=None):
     room_id = state_data.get('user_room', {}).get(username)
     room = state_data.get('rooms', {}).get(room_id)
     if room and username in room.get('players', []):
+        room.setdefault('redraw_turns', {})
+        room.setdefault('reload_after_turn', [])
+        room.setdefault('submitted', {})
+        room.setdefault('log', [])
         if username == state.current_user:
             state.battle_id = room_id
         return room
@@ -3084,11 +3102,17 @@ def apply_admin_search_cheat(keyword):
         ui.notify(t('battle_unlocked_notice'), color='positive')
     return True
 
-def deal_battle_hand():
+def draw_battle_cards(count=5):
     keys = battle_country_keys()
-    if len(keys) <= 5:
+    count = max(0, int(count or 0))
+    if count <= 0:
+        return []
+    if len(keys) <= count:
         return list(keys)
-    return random.sample(keys, 5)
+    return random.sample(keys, count)
+
+def deal_battle_hand():
+    return draw_battle_cards(5)
 
 def current_battle_room():
     return battle_room_for_user(state.current_user)
@@ -3103,6 +3127,7 @@ def create_battle_room(player_one, player_two, state_data=None):
         'hp': {player_one: 10000, player_two: 10000},
         'hands': {player_one: deal_battle_hand(), player_two: deal_battle_hand()},
         'reload_after_turn': [],
+        'redraw_turns': {},
         'submitted': {},
         'log': [],
         'turn': 1,
@@ -3181,7 +3206,8 @@ def add_battle_win(username):
 
 def battle_power_for_keys(keys):
     lookup = battle_country_lookup()
-    return sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
+    power = sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
+    return max(0, min(1000, power))
 
 def battle_tags_for_keys(keys):
     lookup = battle_country_lookup()
@@ -3208,30 +3234,57 @@ def resolve_battle_turn(room):
     shared_labels = shared_battle_tag_labels(first.get('keys', []), second.get('keys', []))
     bonus_multiplier = 1.5 if shared_labels else 1
     bonus_text = f" / {t('battle_tag_bonus')} x1.5: {', '.join(shared_labels[:3])}" if shared_labels else ''
+    turn_winner = None
+    turn_loser = None
     if power_one > power_two:
         damage = int((power_one - power_two) * bonus_multiplier)
         room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
         result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_two} -{damage}{bonus_text}"
+        turn_winner = player_one
+        turn_loser = player_two
     elif power_two > power_one:
         damage = int((power_two - power_one) * bonus_multiplier)
         room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
         result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_one} -{damage}{bonus_text}"
+        turn_winner = player_two
+        turn_loser = player_one
     else:
         result_text = f"{player_one} {power_one} - {power_two} {player_two}: draw"
 
     reload_set = set(room.get('reload_after_turn', []))
+    defenseless_players = set()
     for player in players:
         submitted = room['submitted'].get(player, {})
         hand = room['hands'].setdefault(player, [])
         if submitted.get('defenseless'):
-            room['hands'][player] = deal_battle_hand()
+            defenseless_players.add(player)
             reload_set.discard(player)
         else:
             for key in submitted.get('keys', []):
                 if key in hand:
                     hand.remove(key)
-            if not hand:
-                reload_set.add(player)
+
+    if turn_winner and turn_loser and turn_loser not in defenseless_players:
+        loser_hand = room['hands'].setdefault(turn_loser, [])
+        winner_hand = room['hands'].setdefault(turn_winner, [])
+        lookup = battle_country_lookup()
+        stealable = [key for key in loser_hand if key in lookup]
+        if stealable:
+            stolen_key = random.choice(stealable)
+            loser_hand.remove(stolen_key)
+            winner_hand.append(stolen_key)
+            stolen_country = lookup.get(stolen_key)
+            stolen_name = get_localized_text(stolen_country.get('names', {})) if stolen_country else stolen_key
+            result_text += f" / {t('battle_steal_log').format(winner=turn_winner, loser=turn_loser, country=stolen_name)}"
+
+    for player in defenseless_players:
+        room['hands'][player] = deal_battle_hand()
+
+    for player in players:
+        if not room['hands'].setdefault(player, []):
+            reload_set.add(player)
+        else:
+            reload_set.discard(player)
     room['reload_after_turn'] = list(reload_set)
 
     room['log'].insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
@@ -3274,6 +3327,37 @@ def submit_battle_hand():
     state.battle_selected_keys = set()
     if len(room.get('submitted', {})) >= 2:
         resolve_battle_turn(room)
+    save_battle_state(state_data)
+    refresh_battle_view()
+
+def redraw_battle_hand():
+    username = state.current_user
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
+    if not room or room.get('winner') or not username:
+        refresh_battle_view()
+        return
+    if username in room.get('submitted', {}):
+        ui.notify(t('battle_wait_opponent'), color='info')
+        return
+    if username in set(room.get('reload_after_turn', [])):
+        ui.notify(t('battle_defenseless'), color='warning')
+        return
+    turn = int(room.get('turn', 1))
+    redraw_turns = room.setdefault('redraw_turns', {})
+    if int(redraw_turns.get(username, 0) or 0) == turn:
+        ui.notify(t('battle_redraw_used'), color='warning')
+        return
+    hand = room.setdefault('hands', {}).setdefault(username, [])
+    count = len(hand)
+    if count <= 0:
+        ui.notify(t('battle_defenseless'), color='warning')
+        return
+    room['hands'][username] = draw_battle_cards(count)
+    redraw_turns[username] = turn
+    state.battle_selected_keys = set()
+    room.setdefault('log', []).insert(0, t('battle_redraw_log').format(player=username, count=count))
+    del room['log'][12:]
     save_battle_state(state_data)
     refresh_battle_view()
 
@@ -4750,7 +4834,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             else:
                 with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                     ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
-                    ui.label(f'{t("battle_power")}: {battle_power_for_keys(state.battle_selected_keys)}').classes('text-sm font-bold text-red-700')
+                    with ui.row().classes('items-center gap-2 flex-wrap'):
+                        ui.label(f'{t("battle_power")}: {battle_power_for_keys(state.battle_selected_keys)}').classes('text-sm font-bold text-red-700')
+                        turn = int(room.get('turn', 1))
+                        redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
+                        redraw_button = ui.button(t('battle_redraw'), icon='refresh', on_click=redraw_battle_hand).props('outline color=primary dense')
+                        if redraw_used:
+                            redraw_button.disable()
+                            redraw_button.tooltip(t('battle_redraw_used'))
                 with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
                     for key in hand:
                         render_battle_card(key, lookup)
