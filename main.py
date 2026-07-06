@@ -564,14 +564,26 @@ UI_FALLBACKS = {
         'quiz_capital': '首都または中心地が「{capital}」なのはどれ？',
         'quiz_desc': 'この説明に当てはまるのはどれ？',
         'quiz_flag': 'この旗の国・地域はどれ？',
+        'quiz_period': '年代が「{period}」なのはどれ？',
+        'quiz_profile': '{label}が「{value}」なのはどれ？',
         'quiz_category': '分野',
         'quiz_category_all': '総合',
         'quiz_category_flag': '国旗',
         'quiz_category_period': '年号',
         'quiz_category_capital': '首都',
+        'quiz_category_tag': 'タグ',
         'quiz_category_desc': '説明',
         'quiz_category_profile': '基本データ',
         'quiz_category_detail': '詳細データ',
+        'quiz_tag': '「{tag}」に当てはまる国・地域はどれ？',
+        'quiz_capital_reverse': '「{country}」の首都または中心地はどれ？',
+        'quiz_desc_reverse': '「{country}」の説明はどれ？',
+        'quiz_flag_reverse': '「{country}」の国旗はどれ？',
+        'quiz_period_reverse': '「{country}」の年代はどれ？',
+        'quiz_tag_reverse': '「{country}」に当てはまるタグはどれ？',
+        'quiz_profile_reverse': '「{country}」の{label}はどれ？',
+        'quiz_detail_reverse': '「{country}」の{label}はどれ？',
+        'quiz_select_option': 'この選択肢を選ぶ',
         'ui_mobile': 'スマホUI',
         'ui_pc': 'パソコンUI',
         'switch_to_mobile': 'スマホ表示に切替',
@@ -669,14 +681,26 @@ UI_FALLBACKS = {
         'quiz_capital': 'Which one has “{capital}” as its capital or main center?',
         'quiz_desc': 'Which entry matches this description?',
         'quiz_flag': 'Which country or historical state uses this flag?',
+        'quiz_period': 'Which one belongs to “{period}”?',
+        'quiz_profile': 'Which one has {label}: “{value}”?',
         'quiz_category': 'Category',
         'quiz_category_all': 'Mixed',
         'quiz_category_flag': 'Flags',
         'quiz_category_period': 'Years',
         'quiz_category_capital': 'Capitals',
+        'quiz_category_tag': 'Tags',
         'quiz_category_desc': 'Descriptions',
         'quiz_category_profile': 'Basic Data',
         'quiz_category_detail': 'Details',
+        'quiz_tag': 'Which country or region matches “{tag}”?',
+        'quiz_capital_reverse': 'What is the capital or main center of “{country}”?',
+        'quiz_desc_reverse': 'Which description matches “{country}”?',
+        'quiz_flag_reverse': 'Which flag belongs to “{country}”?',
+        'quiz_period_reverse': 'Which period belongs to “{country}”?',
+        'quiz_tag_reverse': 'Which tag matches “{country}”?',
+        'quiz_profile_reverse': 'Which {label} matches “{country}”?',
+        'quiz_detail_reverse': 'Which {label} matches “{country}”?',
+        'quiz_select_option': 'Choose this option',
         'ui_mobile': 'Mobile UI',
         'ui_pc': 'Desktop UI',
         'switch_to_mobile': 'Switch to Mobile UI',
@@ -772,14 +796,26 @@ UI_FALLBACKS = {
         'quiz_capital': '首都或中心地是“{capital}”的是哪一个？',
         'quiz_desc': '以下说明对应哪一个？',
         'quiz_flag': '这面旗帜对应哪个国家或历史国家？',
+        'quiz_period': '年代为“{period}”的是哪一个？',
+        'quiz_profile': '{label}为“{value}”的是哪一个？',
         'quiz_category': '领域',
         'quiz_category_all': '综合',
         'quiz_category_flag': '旗帜',
         'quiz_category_period': '年代',
         'quiz_category_capital': '首都',
+        'quiz_category_tag': '标签',
         'quiz_category_desc': '说明',
         'quiz_category_profile': '基本数据',
         'quiz_category_detail': '详细资料',
+        'quiz_tag': '哪一个国家或地区符合“{tag}”？',
+        'quiz_capital_reverse': '“{country}”的首都或中心地是哪一个？',
+        'quiz_desc_reverse': '哪一段说明符合“{country}”？',
+        'quiz_flag_reverse': '“{country}”的旗帜是哪一面？',
+        'quiz_period_reverse': '“{country}”的年代是哪一个？',
+        'quiz_tag_reverse': '哪一个标签符合“{country}”？',
+        'quiz_profile_reverse': '“{country}”的{label}是哪一个？',
+        'quiz_detail_reverse': '“{country}”的{label}是哪一个？',
+        'quiz_select_option': '选择这个选项',
         'ui_mobile': '手机界面',
         'ui_pc': '电脑界面',
         'switch_to_mobile': '切换到手机界面',
@@ -3545,13 +3581,23 @@ def get_quiz_history():
         return []
     return user.setdefault('quiz_history', [])
 
+def quiz_is_reverse(question_type):
+    return str(question_type or '').endswith('_reverse')
+
+def quiz_base_type(question_type):
+    question_type = str(question_type or '')
+    return question_type[:-8] if question_type.endswith('_reverse') else question_type
+
 def quiz_category_label(question_type):
+    question_type = quiz_base_type(question_type)
     if question_type == 'capital':
         return t('labels', 'capital')
     if question_type == 'flag':
         return t('quiz_flag')
     if question_type == 'period':
         return t('period')
+    if question_type == 'tag':
+        return t('quiz_category_tag')
     if question_type == 'desc':
         return t('labels', 'desc')
     if question_type and question_type.startswith('profile_'):
@@ -3987,6 +4033,7 @@ QUIZ_CATEGORY_OPTIONS = [
     ('flag', 'quiz_category_flag'),
     ('period', 'quiz_category_period'),
     ('capital', 'quiz_category_capital'),
+    ('tag', 'quiz_category_tag'),
     ('desc', 'quiz_category_desc'),
     ('profile', 'quiz_category_profile'),
     ('detail', 'quiz_category_detail'),
@@ -3997,14 +4044,15 @@ QUIZ_RANKING_CATEGORIES = [
     ('flag', 'quiz_category_flag'),
     ('period', 'quiz_category_period'),
     ('capital', 'quiz_category_capital'),
+    ('tag', 'quiz_category_tag'),
     ('desc', 'quiz_category_desc'),
     ('profile', 'quiz_category_profile'),
     ('detail', 'quiz_category_detail'),
 ]
 
 def quiz_type_group(question_type):
-    question_type = str(question_type or '')
-    if question_type in ['flag', 'period', 'capital', 'desc']:
+    question_type = quiz_base_type(question_type)
+    if question_type in ['flag', 'period', 'capital', 'tag', 'desc']:
         return question_type
     if question_type.startswith('profile_'):
         return 'profile'
@@ -4072,9 +4120,10 @@ def quiz_ranking_profiles(category):
 
 def quiz_question_matches_category(question_type):
     category = getattr(state, 'quiz_category', 'all')
+    question_type = quiz_base_type(question_type)
     if category == 'all':
         return True
-    if category in ['flag', 'period', 'capital', 'desc']:
+    if category in ['flag', 'period', 'capital', 'tag', 'desc']:
         return question_type == category
     if category == 'profile':
         return question_type.startswith('profile_')
@@ -4094,6 +4143,54 @@ def country_name_set(country):
         return {normalized_text(names)}
     return {normalized_text(value) for value in names.values() if normalized_text(value)}
 
+def quiz_tag_counts(countries):
+    counts = {}
+    for country in countries:
+        for tag in set(country.get('tags', [])):
+            counts[tag] = counts.get(tag, 0) + 1
+    return counts
+
+def eligible_quiz_tags_for_country(country, countries):
+    tags = [tag for tag in country.get('tags', []) if tag]
+    if not tags:
+        return []
+    counts = quiz_tag_counts(countries)
+    total = len(countries)
+    return [
+        tag for tag in tags
+        if counts.get(tag, 0) >= 2 and counts.get(tag, 0) < total
+    ]
+
+def choose_quiz_tag(country, countries):
+    tags = eligible_quiz_tags_for_country(country, countries)
+    return random.choice(tags) if tags else None
+
+def quiz_display_value(country, question_type):
+    question_type = quiz_base_type(question_type)
+    if question_type == 'capital':
+        return get_localized_text(country.get('capital', {}))
+    if question_type == 'flag':
+        return ''
+    if question_type == 'period':
+        return period_label(country)
+    if question_type == 'desc':
+        return first_sentence(get_localized_text(country.get('desc', {})))
+    if question_type.startswith('profile_'):
+        field = question_type.replace('profile_', '', 1)
+        return profile_value(country, field)
+    if question_type.startswith('detail_'):
+        field = question_type.replace('detail_', '', 1)
+        return first_sentence(detail_value(country, field))
+    return ''
+
+def quiz_reverse_field_label(question_type):
+    question_type = quiz_base_type(question_type)
+    if question_type.startswith('profile_'):
+        return t('labels', question_type.replace('profile_', '', 1))
+    if question_type.startswith('detail_'):
+        return t(question_type.replace('detail_', '', 1))
+    return ''
+
 def normalized_flag_identity(country):
     code = str(country.get('flag_code') or '').strip()
     lower = code.lower()
@@ -4109,6 +4206,7 @@ def normalized_flag_identity(country):
     return lower
 
 def quiz_question_value(country, question_type):
+    question_type = quiz_base_type(question_type)
     if question_type == 'capital':
         return normalized_text(get_localized_text(country.get('capital', {})))
     if question_type == 'flag':
@@ -4126,10 +4224,13 @@ def quiz_question_value(country, question_type):
     return ''
 
 def quiz_candidates_for_type(countries, question_type):
+    question_type = quiz_base_type(question_type)
     if question_type == 'desc':
         return [c for c in countries if quiz_question_value(c, question_type)]
     if question_type == 'capital':
         return [c for c in countries if quiz_question_value(c, question_type) not in ['', '-']]
+    if question_type == 'tag':
+        return [c for c in countries if eligible_quiz_tags_for_country(c, countries)]
     if question_type == 'flag':
         return [c for c in countries if has_quiz_flag(c)]
     if question_type == 'period':
@@ -4175,6 +4276,130 @@ def build_quiz_options(answer, question_type, countries):
     random.shuffle(selected)
     return selected
 
+def build_tag_quiz_options(answer, tag, countries):
+    desired_count = quiz_option_count()
+    answer_key = country_key(answer)
+    selected = [answer]
+    used_keys = {answer_key}
+    used_names = set(country_name_set(answer))
+
+    candidates = [
+        country for country in countries
+        if tag not in country.get('tags', []) and country_key(country) != answer_key
+    ]
+    random.shuffle(candidates)
+    for candidate in candidates:
+        key = country_key(candidate)
+        if key in used_keys:
+            continue
+        candidate_names = country_name_set(candidate)
+        if used_names.intersection(candidate_names):
+            continue
+        selected.append(candidate)
+        used_keys.add(key)
+        used_names.update(candidate_names)
+        if len(selected) >= desired_count:
+            break
+
+    if len(selected) < 2:
+        return []
+    random.shuffle(selected)
+    return selected
+
+def all_quiz_tags(countries):
+    counts = quiz_tag_counts(countries)
+    total = len(countries)
+    return sorted(
+        [tag for tag, count in counts.items() if count >= 2 and count < total],
+        key=lambda tag: tag_label(tag).lower(),
+    )
+
+def reverse_quiz_answer_option(answer, question_type, countries):
+    base_type = quiz_base_type(question_type)
+    if base_type == 'tag':
+        tag = choose_quiz_tag(answer, countries)
+        if not tag:
+            return None
+        return {
+            'value': tag,
+            'label': tag_label(tag),
+            'image': None,
+            'tag': tag,
+        }
+    if base_type == 'flag':
+        value = quiz_question_value(answer, base_type)
+        if not value:
+            return None
+        return {
+            'value': value,
+            'label': t('quiz_select_option'),
+            'image': get_flag_url(answer.get('flag_code')),
+        }
+    value = quiz_question_value(answer, base_type)
+    label = quiz_display_value(answer, base_type)
+    if not value or not label or label == '-':
+        return None
+    return {'value': value, 'label': label, 'image': None}
+
+def build_reverse_quiz_options(answer, question_type, countries):
+    desired_count = quiz_option_count()
+    base_type = quiz_base_type(question_type)
+    answer_payload = reverse_quiz_answer_option(answer, question_type, countries)
+    if not answer_payload:
+        return None
+
+    answer_value = answer_payload['value']
+    options = [answer_value]
+    labels = {answer_value: answer_payload.get('label', str(answer_value))}
+    images = {}
+    if answer_payload.get('image'):
+        images[answer_value] = answer_payload['image']
+
+    if base_type == 'tag':
+        candidates = [tag for tag in all_quiz_tags(countries) if tag != answer_value and tag not in answer.get('tags', [])]
+        random.shuffle(candidates)
+        for tag in candidates:
+            options.append(tag)
+            labels[tag] = tag_label(tag)
+            if len(options) >= desired_count:
+                break
+    else:
+        candidates = quiz_candidates_for_type(countries, base_type)
+        random.shuffle(candidates)
+        for candidate in candidates:
+            if country_key(candidate) == country_key(answer):
+                continue
+            value = quiz_question_value(candidate, base_type)
+            if not value or value in options:
+                continue
+            label = quiz_display_value(candidate, base_type)
+            image = None
+            if base_type == 'flag':
+                label = t('quiz_select_option')
+                image = get_flag_url(candidate.get('flag_code'))
+            if not label and not image:
+                continue
+            options.append(value)
+            labels[value] = label
+            if image:
+                images[value] = image
+            if len(options) >= desired_count:
+                break
+
+    if len(options) < 2:
+        return None
+    random.shuffle(options)
+    payload = {
+        'options': options,
+        'answer_option': answer_value,
+        'option_labels': labels,
+        'option_images': images,
+        'option_mode': 'value',
+    }
+    if answer_payload.get('tag'):
+        payload['tag'] = answer_payload['tag']
+    return payload
+
 def build_quiz():
     data = get_data()
     countries = public_country_list(data)
@@ -4188,9 +4413,13 @@ def build_quiz():
             return None
         answer_source = review_source
 
-    question_types = ['desc', 'capital', 'flag', 'period']
-    question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
-    question_types.extend(f'detail_{field}' for field in DETAIL_QUIZ_FIELDS)
+    base_question_types = ['desc', 'capital', 'tag', 'flag', 'period']
+    base_question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
+    base_question_types.extend(f'detail_{field}' for field in DETAIL_QUIZ_FIELDS)
+    question_types = []
+    for question_type in base_question_types:
+        question_types.append(question_type)
+        question_types.append(f'{question_type}_reverse')
 
     question_pools = []
     for question_type in question_types:
@@ -4205,20 +4434,56 @@ def build_quiz():
     for _ in range(80):
         question_type, candidates = random.choice(question_pools)
         answer = random.choice(candidates)
-        options = build_quiz_options(answer, question_type, countries)
+        quiz_tag = None
+        reverse_payload = None
+        if quiz_is_reverse(question_type):
+            reverse_payload = build_reverse_quiz_options(answer, question_type, countries)
+            if not reverse_payload:
+                continue
+            options = reverse_payload['options']
+            quiz_tag = reverse_payload.get('tag')
+        elif quiz_base_type(question_type) == 'tag':
+            quiz_tag = choose_quiz_tag(answer, countries)
+            if not quiz_tag:
+                continue
+            options = build_tag_quiz_options(answer, quiz_tag, countries)
+        else:
+            options = build_quiz_options(answer, question_type, countries)
         if options:
-            return {
+            quiz = {
                 'type': question_type,
                 'answer_key': country_key(answer),
                 'options': [country_key(option) for option in options],
                 'selected_key': None,
                 'answered': False,
             }
+            if reverse_payload:
+                quiz.update(reverse_payload)
+            if quiz_tag:
+                quiz['tag'] = quiz_tag
+            return quiz
 
     return None
 
 def quiz_view_parts(quiz, answer):
-    question_type = quiz.get('type')
+    raw_question_type = quiz.get('type')
+    question_type = quiz_base_type(raw_question_type)
+    country_name = get_localized_text(answer.get('names', {}))
+    if quiz_is_reverse(raw_question_type):
+        if question_type == 'capital':
+            return t('quiz_capital_reverse').format(country=country_name), '', None
+        if question_type == 'flag':
+            return t('quiz_flag_reverse').format(country=country_name), '', None
+        if question_type == 'period':
+            return t('quiz_period_reverse').format(country=country_name), '', None
+        if question_type == 'tag':
+            return t('quiz_tag_reverse').format(country=country_name), '', None
+        if question_type == 'desc':
+            return t('quiz_desc_reverse').format(country=country_name), '', None
+        if question_type.startswith('profile_'):
+            return t('quiz_profile_reverse').format(country=country_name, label=quiz_reverse_field_label(question_type)), '', None
+        if question_type.startswith('detail_'):
+            return t('quiz_detail_reverse').format(country=country_name, label=quiz_reverse_field_label(question_type)), '', None
     if question_type == 'capital':
         capital = get_localized_text(answer.get('capital', {}))
         question = t('quiz_capital').format(capital=capital)
@@ -4229,6 +4494,9 @@ def quiz_view_parts(quiz, answer):
         return question, '', image
     elif question_type == 'period':
         question = t('quiz_period').format(period=period_label(answer))
+        return question, '', None
+    elif question_type == 'tag':
+        question = t('quiz_tag').format(tag=tag_label(quiz.get('tag')))
         return question, '', None
     elif question_type.startswith('profile_'):
         field = question_type.replace('profile_', '', 1)
@@ -4266,6 +4534,9 @@ def set_quiz_difficulty(difficulty):
 def set_quiz_category(category):
     state.quiz_category = category
     start_quiz()
+
+def quiz_answer_option(quiz):
+    return quiz.get('answer_option') or quiz.get('answer_key')
 
 def crown_marks(count):
     try:
@@ -6520,7 +6791,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
         state.quiz['selected_key'] = option_key
         state.quiz['answered'] = True
         update_quiz_stats(
-            option_key == state.quiz.get('answer_key'),
+            option_key == quiz_answer_option(state.quiz),
             state.quiz.get('answer_key'),
             state.quiz_mode == 'review',
             option_key,
@@ -6602,11 +6873,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
 
                 with ui.column().classes('w-full gap-2 mt-2'):
                     for option_key in quiz['options']:
-                        option = lookup.get(option_key)
-                        if not option:
-                            continue
+                        option = lookup.get(option_key) if quiz.get('option_mode') != 'value' else None
                         is_selected = quiz.get('selected_key') == option_key
-                        is_answer = quiz.get('answer_key') == option_key
+                        is_answer = quiz_answer_option(quiz) == option_key
                         if quiz.get('answered') and is_answer:
                             color = 'green'
                         elif quiz.get('answered') and is_selected:
@@ -6614,12 +6883,27 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                         else:
                             color = 'blue' if is_selected else 'white'
                         text_color = 'white' if color in ['green', 'red', 'blue'] else 'grey-9'
-                        ui.button(get_localized_text(option['names']), on_click=lambda _, key=option_key: select_quiz_option(key)) \
-                            .props(f'color={color} text-color={text_color}') \
-                            .classes('w-full justify-start text-left')
+                        if quiz.get('option_mode') == 'value':
+                            label = quiz.get('option_labels', {}).get(option_key, str(option_key))
+                            option_image = quiz.get('option_images', {}).get(option_key)
+                            if option_image:
+                                border_class = 'border-green-500 bg-green-50' if quiz.get('answered') and is_answer else ('border-red-500 bg-red-50' if quiz.get('answered') and is_selected else 'border-gray-200 bg-white')
+                                with ui.column().classes(f'w-full gap-2 rounded border p-3 {border_class}'):
+                                    ui.image(option_image).classes('w-full max-w-xs self-center shadow-sm border rounded bg-white')
+                                    ui.button(label or t('quiz_select_option'), on_click=lambda _, key=option_key: select_quiz_option(key)) \
+                                        .props(f'color={color} text-color={text_color}') \
+                                        .classes('w-full')
+                            else:
+                                ui.button(label, on_click=lambda _, key=option_key: select_quiz_option(key)) \
+                                    .props(f'color={color} text-color={text_color}') \
+                                    .classes('w-full justify-start text-left whitespace-normal')
+                        elif option:
+                            ui.button(get_localized_text(option['names']), on_click=lambda _, key=option_key: select_quiz_option(key)) \
+                                .props(f'color={color} text-color={text_color}') \
+                                .classes('w-full justify-start text-left')
 
                 if quiz.get('answered') and answer:
-                    correct = quiz.get('selected_key') == quiz.get('answer_key')
+                    correct = quiz.get('selected_key') == quiz_answer_option(quiz)
                     message = t('quiz_correct') if correct else t('quiz_wrong')
                     badge_color = 'green' if correct else 'red'
                     with ui.row().classes('items-center gap-3 mt-4'):
@@ -7811,12 +8095,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     for entry in history:
                         answer = lookup.get(entry.get('answer_key'))
                         selected = lookup.get(entry.get('selected_key'))
+                        selected_raw = str(entry.get('selected_key') or '-')
                         result_color = 'green' if entry.get('correct') else 'red'
                         with ui.row().classes('w-full gap-2 items-center border-b py-2 no-wrap'):
                             ui.badge('OK' if entry.get('correct') else 'NG', color=result_color)
                             with ui.column().classes('gap-0 flex-grow'):
                                 ui.label(get_localized_text(answer['names']) if answer else '-').classes('font-bold text-gray-800')
-                                selected_text = get_localized_text(selected['names']) if selected else '-'
+                                selected_text = get_localized_text(selected['names']) if selected else selected_raw[:60]
                                 ui.label(f"{quiz_category_label(entry.get('type'))} / {selected_text} / {format_timestamp(entry.get('timestamp'))}").classes('text-xs text-gray-500')
 
 # ========================================
