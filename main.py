@@ -392,6 +392,7 @@ class AppState:
     public_collection_kind = 'collection'
     battle_id = None
     battle_selected_keys = set()
+    battle_last_signature = ''
 
 state = AppState()
 
@@ -399,6 +400,16 @@ BATTLE_QUEUE = []
 BATTLE_ROOMS = {}
 BATTLE_USER_ROOM = {}
 BATTLE_COUNTER = 0
+BOT_USERNAME = 'BOT'
+DUEL_MODE = 'duel'
+FFA_MODE = 'free_for_all'
+TEAM_MODE = 'team'
+BOT_MODE = 'bot'
+MULTIPLAYER_MODES = {
+    DUEL_MODE: 2,
+    FFA_MODE: 3,
+    TEAM_MODE: 4,
+}
 ADMIN_SEARCH_CHEAT_CODE = '上上下下左右左右BA'
 SECRET_HIDDEN_COUNTRY_SEARCH_TERMS = {'ケッテン連邦'}
 DEFAULT_NAME_COLOR = '#1a2332'
@@ -945,16 +956,67 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'favorites_except': 'お気に入り以外',
     'favorites_all': 'お気に入り条件なし',
     'battle_power_hidden_hint': '攻撃力は非表示です。すべての国を見たんだから当然、データ覚えてるよネ！',
+    'battle_mode_duel': '1対1',
+    'battle_mode_free_for_all': '乱戦',
+    'battle_mode_team': 'チーム戦',
+    'battle_bot': 'BOTと戦う',
+    'battle_spectate': '観戦する',
+    'battle_spectating': '観戦中',
+    'battle_leave_spectate': '観戦をやめる',
+    'battle_active_rooms': '観戦できる対戦',
+    'battle_no_rooms': '観戦できる対戦はありません。',
+    'battle_chat': 'チャット',
+    'battle_chat_placeholder': 'メッセージ',
+    'battle_send': '送信',
+    'battle_bonus': '一致ボーナス',
+    'battle_room_players': '参加者',
+    'battle_team': 'チーム',
+    'battle_auto_notice': '画面は自動で更新されます。',
+    'battle_damage_each': '各',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
     'favorites_except': 'Not favorites',
     'favorites_all': 'No favorite filter',
     'battle_power_hidden_hint': 'Power is hidden. You have seen every country, so of course you remember the data.',
+    'battle_mode_duel': '1v1',
+    'battle_mode_free_for_all': 'Free-for-all',
+    'battle_mode_team': 'Team battle',
+    'battle_bot': 'Fight BOT',
+    'battle_spectate': 'Spectate',
+    'battle_spectating': 'Spectating',
+    'battle_leave_spectate': 'Leave spectate',
+    'battle_active_rooms': 'Battles to watch',
+    'battle_no_rooms': 'No battles are available to watch.',
+    'battle_chat': 'Chat',
+    'battle_chat_placeholder': 'Message',
+    'battle_send': 'Send',
+    'battle_bonus': 'Match bonus',
+    'battle_room_players': 'Players',
+    'battle_team': 'Team',
+    'battle_auto_notice': 'This screen updates automatically.',
+    'battle_damage_each': 'each',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
     'favorites_except': '非收藏',
     'favorites_all': '不筛选收藏',
     'battle_power_hidden_hint': '攻击力已隐藏。既然已经看过所有国家，当然记得数据吧！',
+    'battle_mode_duel': '1对1',
+    'battle_mode_free_for_all': '混战',
+    'battle_mode_team': '团队战',
+    'battle_bot': '与 BOT 对战',
+    'battle_spectate': '观战',
+    'battle_spectating': '观战中',
+    'battle_leave_spectate': '停止观战',
+    'battle_active_rooms': '可观战对战',
+    'battle_no_rooms': '当前没有可观战对战。',
+    'battle_chat': '聊天',
+    'battle_chat_placeholder': '消息',
+    'battle_send': '发送',
+    'battle_bonus': '一致加成',
+    'battle_room_players': '参加者',
+    'battle_team': '队伍',
+    'battle_auto_notice': '画面会自动更新。',
+    'battle_damage_each': '各',
 })
 
 def t(key, subkey=None):
@@ -1259,6 +1321,14 @@ def sync_current_user_to_browser(user_data=None):
         backups = {{}};
       }}
       backups[payload.username] = payload;
+      const knownKey = 'world_archives_known_usernames';
+      let known = [];
+      try {{
+        known = JSON.parse(localStorage.getItem(knownKey) || '[]');
+      }} catch (error) {{
+        known = [];
+      }}
+      if (!known.includes(payload.username)) known.push(payload.username);
       try {{
         localStorage.setItem(key, JSON.stringify(backups));
       }} catch (error) {{
@@ -1274,6 +1344,7 @@ def sync_current_user_to_browser(user_data=None):
         }});
         localStorage.setItem(key, JSON.stringify(backups));
       }}
+      localStorage.setItem(knownKey, JSON.stringify(known));
       localStorage.setItem('world_archives_last_user', payload.username);
     }})();
     """
@@ -1323,6 +1394,7 @@ def request_browser_backup_restore():
     (async () => {{
       const backupKey = '{BROWSER_BACKUP_KEY}';
       const publicBackupKey = '{PUBLIC_BROWSER_BACKUP_KEY}';
+      const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
       const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified'];
@@ -1371,6 +1443,9 @@ def request_browser_backup_restore():
       }};
       collectPayload(localStorage.getItem(backupKey));
       collectPayload(localStorage.getItem(publicBackupKey));
+      try {{
+        collectPayload({{known_users: JSON.parse(localStorage.getItem(knownKey) || '[]')}});
+      }} catch (error) {{}}
       const lastUser = localStorage.getItem('world_archives_last_user');
       if (lastUser) knownUsers.add(lastUser);
       for (let i = 0; i < localStorage.length; i += 1) {{
@@ -3153,11 +3228,40 @@ def battle_unlock_country_keys(data=None):
 def battle_country_lookup(data=None):
     return {country_key(country): country for country in battle_country_list(data)}
 
+def is_battle_bot(username):
+    return str(username or '').startswith(BOT_USERNAME)
+
+def battle_mode_label(mode):
+    if mode == FFA_MODE:
+        return t('battle_mode_free_for_all')
+    if mode == TEAM_MODE:
+        return t('battle_mode_team')
+    if mode == BOT_MODE:
+        return t('battle_bot')
+    return t('battle_mode_duel')
+
+def battle_mode_size(mode):
+    return MULTIPLAYER_MODES.get(mode, 2)
+
+def normalize_battle_queue_entry(entry):
+    if isinstance(entry, dict):
+        username = clean_username(entry.get('username'))
+        mode = str(entry.get('mode') or DUEL_MODE)
+    else:
+        username = clean_username(entry)
+        mode = DUEL_MODE
+    if mode not in MULTIPLAYER_MODES:
+        mode = DUEL_MODE
+    if not username:
+        return None
+    return {'username': username, 'mode': mode}
+
 def default_battle_state():
     return {
         'queue': [],
         'rooms': {},
         'user_room': {},
+        'spectator_room': {},
         'counter': 0,
     }
 
@@ -3166,13 +3270,29 @@ def normalize_battle_state(value):
         return default_battle_state()
     state_data = default_battle_state()
     if isinstance(value.get('queue'), list):
-        state_data['queue'] = [clean_username(username) for username in value['queue'] if clean_username(username)]
+        queue_entries = []
+        seen = set()
+        for entry in value['queue']:
+            normalized = normalize_battle_queue_entry(entry)
+            if not normalized:
+                continue
+            marker = (normalized['username'], normalized['mode'])
+            if marker not in seen:
+                queue_entries.append(normalized)
+                seen.add(marker)
+        state_data['queue'] = queue_entries
     if isinstance(value.get('rooms'), dict):
         state_data['rooms'] = value['rooms']
     if isinstance(value.get('user_room'), dict):
         state_data['user_room'] = {
             clean_username(username): str(room_id)
             for username, room_id in value['user_room'].items()
+            if clean_username(username) and room_id
+        }
+    if isinstance(value.get('spectator_room'), dict):
+        state_data['spectator_room'] = {
+            clean_username(username): str(room_id)
+            for username, room_id in value['spectator_room'].items()
             if clean_username(username) and room_id
         }
     try:
@@ -3204,18 +3324,24 @@ def battle_room_for_user(username, state_data=None):
     if not username:
         return None
     state_data = state_data or load_battle_state()
-    room_id = state_data.get('user_room', {}).get(username)
+    room_id = state_data.get('user_room', {}).get(username) or state_data.get('spectator_room', {}).get(username)
     room = state_data.get('rooms', {}).get(room_id)
-    if room and username in room.get('players', []):
+    if room and (username in room.get('players', []) or username in room.get('spectators', [])):
         room.setdefault('redraw_turns', {})
         room.setdefault('reload_after_turn', [])
         room.setdefault('submitted', {})
         room.setdefault('log', [])
+        room.setdefault('chat', [])
+        room.setdefault('spectators', [])
+        room.setdefault('mode', DUEL_MODE)
+        room.setdefault('teams', {})
+        room.setdefault('bot', False)
         if username == state.current_user:
             state.battle_id = room_id
         return room
     if room_id:
         state_data.get('user_room', {}).pop(username, None)
+        state_data.get('spectator_room', {}).pop(username, None)
         save_battle_state(state_data)
     if username == state.current_user:
         state.battle_id = None
@@ -3223,7 +3349,12 @@ def battle_room_for_user(username, state_data=None):
 
 def battle_waiting_users(state_data=None):
     state_data = state_data or load_battle_state()
-    return list(state_data.get('queue', []))
+    users = []
+    for entry in state_data.get('queue', []):
+        normalized = normalize_battle_queue_entry(entry)
+        if normalized:
+            users.append(normalized['username'])
+    return users
 
 def is_current_user_waiting_for_battle():
     return state.current_user in battle_waiting_users()
@@ -3234,13 +3365,23 @@ def remove_user_from_battle_state(username):
         return
     state_data = load_battle_state()
     queue = state_data.setdefault('queue', [])
-    state_data['queue'] = [queued for queued in queue if queued != username]
+    state_data['queue'] = [
+        entry for entry in queue
+        if not (normalize_battle_queue_entry(entry) and normalize_battle_queue_entry(entry)['username'] == username)
+    ]
     room_id = state_data.setdefault('user_room', {}).pop(username, None)
+    spectator_room_id = state_data.setdefault('spectator_room', {}).pop(username, None)
+    if spectator_room_id and spectator_room_id != room_id:
+        spectator_room = state_data.setdefault('rooms', {}).get(spectator_room_id)
+        if spectator_room:
+            spectator_room['spectators'] = [name for name in spectator_room.get('spectators', []) if name != username]
     room = state_data.setdefault('rooms', {}).get(room_id)
     if room:
         for player in room.get('players', []):
             if player != username:
                 state_data['user_room'].pop(player, None)
+        for spectator in room.get('spectators', []):
+            state_data['spectator_room'].pop(spectator, None)
         state_data['rooms'].pop(room_id, None)
     save_battle_state(state_data)
 
@@ -3309,31 +3450,49 @@ def deal_battle_hand():
 def current_battle_room():
     return battle_room_for_user(state.current_user)
 
-def create_battle_room(player_one, player_two, state_data=None):
+def battle_teams_for_players(players, mode):
+    if mode != TEAM_MODE:
+        return {}
+    return {
+        player: 'A' if index % 2 == 0 else 'B'
+        for index, player in enumerate(players)
+    }
+
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False):
     state_data = state_data or load_battle_state()
+    players = [clean_username(player) for player in players if clean_username(player)]
+    if len(players) < 2:
+        return None
     state_data['counter'] = int(state_data.get('counter', 0)) + 1
     room_id = f"battle-{state_data['counter']}"
+    teams = battle_teams_for_players(players, mode)
     room = {
         'id': room_id,
-        'players': [player_one, player_two],
-        'hp': {player_one: 10000, player_two: 10000},
-        'hands': {player_one: deal_battle_hand(), player_two: deal_battle_hand()},
+        'mode': mode,
+        'players': players,
+        'teams': teams,
+        'hp': {player: 10000 for player in players},
+        'hands': {player: deal_battle_hand() for player in players},
         'reload_after_turn': [],
         'redraw_turns': {},
         'submitted': {},
         'log': [],
+        'chat': [],
+        'spectators': [],
         'turn': 1,
         'winner': None,
+        'bot': bool(bot),
     }
     state_data.setdefault('rooms', {})[room_id] = room
-    state_data.setdefault('user_room', {})[player_one] = room_id
-    state_data.setdefault('user_room', {})[player_two] = room_id
+    for player in players:
+        if not is_battle_bot(player):
+            state_data.setdefault('user_room', {})[player] = room_id
     save_battle_state(state_data)
     if state.current_user in room['players']:
         state.battle_id = room_id
     return room
 
-def join_battle_queue():
+def create_bot_battle():
     username = state.current_user
     if not battle_is_user_eligible(username):
         ui.notify(t('unlock_condition_not_met'), color='warning')
@@ -3342,30 +3501,61 @@ def join_battle_queue():
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
         return
+    create_battle_room(username, BOT_USERNAME, state_data=state_data, mode=BOT_MODE, bot=True)
+    ui.notify(t('battle_matched'), color='positive')
+    refresh_battle_view()
+
+def join_battle_queue(mode=DUEL_MODE):
+    username = state.current_user
+    if not battle_is_user_eligible(username):
+        ui.notify(t('unlock_condition_not_met'), color='warning')
+        return
+    mode = mode if mode in MULTIPLAYER_MODES else DUEL_MODE
+    state_data = load_battle_state()
+    if battle_room_for_user(username, state_data):
+        refresh_battle_view()
+        return
     queue = state_data.setdefault('queue', [])
-    for waiting_user in list(queue):
-        if waiting_user == username:
+    waiting = []
+    normalized_queue = []
+    for entry in queue:
+        normalized = normalize_battle_queue_entry(entry)
+        if not normalized:
             continue
-        if not battle_is_user_eligible(waiting_user):
-            queue.remove(waiting_user)
+        if normalized['username'] == username:
             continue
-        queue.remove(waiting_user)
-        create_battle_room(waiting_user, username, state_data)
+        if not battle_is_user_eligible(normalized['username']):
+            continue
+        normalized_queue.append(normalized)
+    for normalized in normalized_queue:
+        waiting_user = normalized['username']
+        if normalized.get('mode') != mode:
+            continue
+        waiting.append(waiting_user)
+        if len(waiting) >= battle_mode_size(mode) - 1:
+            break
+    if len(waiting) >= battle_mode_size(mode) - 1:
+        players = waiting[:battle_mode_size(mode) - 1] + [username]
+        used = set(players)
+        state_data['queue'] = [entry for entry in normalized_queue if entry['username'] not in used]
+        create_battle_room(*players, state_data=state_data, mode=mode)
         ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
         return
-    if username not in queue:
-        queue.append(username)
-        save_battle_state(state_data)
+    normalized_queue.append({'username': username, 'mode': mode})
+    state_data['queue'] = normalized_queue
+    save_battle_state(state_data)
     refresh_battle_view()
 
 def cancel_battle_queue():
     username = state.current_user
     state_data = load_battle_state()
     queue = state_data.setdefault('queue', [])
-    if username in queue:
-        queue.remove(username)
-        save_battle_state(state_data)
+    state_data['queue'] = [
+        entry for entry in queue
+        if not (normalize_battle_queue_entry(entry) and normalize_battle_queue_entry(entry)['username'] == username)
+    ]
+    save_battle_state(state_data)
     refresh_battle_view()
 
 def leave_finished_battle(join_again=False):
@@ -3374,7 +3564,9 @@ def leave_finished_battle(join_again=False):
     room = battle_room_for_user(username, state_data)
     if room:
         state_data.setdefault('user_room', {}).pop(username, None)
-        if not any(state_data.get('user_room', {}).get(player) == room['id'] for player in room.get('players', [])):
+        state_data.setdefault('spectator_room', {}).pop(username, None)
+        room['spectators'] = [name for name in room.get('spectators', []) if name != username]
+        if not any(state_data.get('user_room', {}).get(player) == room['id'] for player in room.get('players', [])) and not room.get('spectators'):
             state_data.setdefault('rooms', {}).pop(room['id'], None)
         save_battle_state(state_data)
     state.battle_id = None
@@ -3410,44 +3602,48 @@ def battle_tags_for_keys(keys):
             tags.update(country.get('tags', []))
     return tags
 
-def shared_battle_tag_labels(first_keys, second_keys):
+def battle_regions_for_keys(keys):
+    lookup = battle_country_lookup()
+    regions = set()
+    for key in keys:
+        country = lookup.get(key)
+        if not country:
+            continue
+        for region in str(country.get('region') or '').replace('/', ',').split(','):
+            region = region.strip()
+            if region:
+                regions.add(region)
+    return regions
+
+def shared_battle_bonus_labels(first_keys, second_keys):
     shared_tags = sorted(battle_tags_for_keys(first_keys) & battle_tags_for_keys(second_keys), key=lambda tag: tag_label(tag).lower())
-    return [tag_label(tag) for tag in shared_tags]
+    shared_regions = sorted(battle_regions_for_keys(first_keys) & battle_regions_for_keys(second_keys), key=lambda region: region_label(region).lower())
+    return [tag_label(tag) for tag in shared_tags] + [region_label(region) for region in shared_regions]
 
-def resolve_battle_turn(room):
+def battle_bonus_for_keys(first_keys, second_keys):
+    labels = shared_battle_bonus_labels(first_keys, second_keys)
+    return 1 + (0.5 * len(labels)), labels
+
+def battle_bonus_text(labels, multiplier):
+    if not labels:
+        return ''
+    return f" / {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
+
+def battle_entry_for_player(room, player):
+    submitted = room.setdefault('submitted', {}).get(player, {})
+    return {
+        'keys': list(submitted.get('keys', [])),
+        'power': int(submitted.get('power', 0) or 0),
+        'defenseless': bool(submitted.get('defenseless')),
+    }
+
+def remove_submitted_cards_and_reload(room):
     players = room.get('players', [])
-    if len(players) != 2:
-        return
-    player_one, player_two = players
-    first = room['submitted'].get(player_one, {})
-    second = room['submitted'].get(player_two, {})
-    power_one = int(first.get('power', 0))
-    power_two = int(second.get('power', 0))
-    shared_labels = shared_battle_tag_labels(first.get('keys', []), second.get('keys', []))
-    bonus_multiplier = 1.5 if shared_labels else 1
-    bonus_text = f" / {t('battle_tag_bonus')} x1.5: {', '.join(shared_labels[:3])}" if shared_labels else ''
-    turn_winner = None
-    turn_loser = None
-    if power_one > power_two:
-        damage = int((power_one - power_two) * bonus_multiplier)
-        room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
-        result_text = f"{player_one} vs {player_two}: {player_two} -{damage}{bonus_text}"
-        turn_winner = player_one
-        turn_loser = player_two
-    elif power_two > power_one:
-        damage = int((power_two - power_one) * bonus_multiplier)
-        room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
-        result_text = f"{player_one} vs {player_two}: {player_one} -{damage}{bonus_text}"
-        turn_winner = player_two
-        turn_loser = player_one
-    else:
-        result_text = f"{player_one} vs {player_two}: draw"
-
     reload_set = set(room.get('reload_after_turn', []))
     defenseless_players = set()
     for player in players:
-        submitted = room['submitted'].get(player, {})
-        hand = room['hands'].setdefault(player, [])
+        submitted = battle_entry_for_player(room, player)
+        hand = room.setdefault('hands', {}).setdefault(player, [])
         if submitted.get('defenseless'):
             defenseless_players.add(player)
             reload_set.discard(player)
@@ -3455,39 +3651,138 @@ def resolve_battle_turn(room):
             for key in submitted.get('keys', []):
                 if key in hand:
                     hand.remove(key)
+    return reload_set, defenseless_players
 
-    if turn_winner and turn_loser and turn_loser not in defenseless_players:
-        loser_hand = room['hands'].setdefault(turn_loser, [])
-        winner_hand = room['hands'].setdefault(turn_winner, [])
-        lookup = battle_country_lookup()
+def steal_remaining_cards(room, winners, losers, defenseless_players, result_parts):
+    lookup = battle_country_lookup()
+    winners = [winner for winner in winners if winner in room.get('players', [])]
+    losers = [loser for loser in losers if loser in room.get('players', []) and loser not in defenseless_players]
+    if not winners or not losers:
+        return
+    for index, loser in enumerate(losers):
+        loser_hand = room.setdefault('hands', {}).setdefault(loser, [])
         stealable = [key for key in loser_hand if key in lookup]
-        if stealable:
-            stolen_key = random.choice(stealable)
-            loser_hand.remove(stolen_key)
-            winner_hand.append(stolen_key)
-            stolen_country = lookup.get(stolen_key)
-            stolen_name = get_localized_text(stolen_country.get('names', {})) if stolen_country else stolen_key
-            result_text += f" / {t('battle_steal_log').format(winner=turn_winner, loser=turn_loser, country=stolen_name)}"
+        if not stealable:
+            continue
+        winner = winners[index % len(winners)]
+        winner_hand = room.setdefault('hands', {}).setdefault(winner, [])
+        stolen_key = random.choice(stealable)
+        loser_hand.remove(stolen_key)
+        winner_hand.append(stolen_key)
+        stolen_country = lookup.get(stolen_key)
+        stolen_name = get_localized_text(stolen_country.get('names', {})) if stolen_country else stolen_key
+        result_parts.append(t('battle_steal_log').format(winner=winner, loser=loser, country=stolen_name))
 
+def finish_battle_turn(room, reload_set, defenseless_players):
     for player in defenseless_players:
-        room['hands'][player] = deal_battle_hand()
-
-    for player in players:
-        if not room['hands'].setdefault(player, []):
+        room.setdefault('hands', {})[player] = deal_battle_hand()
+    for player in room.get('players', []):
+        if not room.setdefault('hands', {}).setdefault(player, []):
             reload_set.add(player)
         else:
             reload_set.discard(player)
     room['reload_after_turn'] = list(reload_set)
-
-    room['log'].insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
-    del room['log'][12:]
     room['submitted'] = {}
     room['turn'] = int(room.get('turn', 1)) + 1
 
-    if room['hp'].get(player_one, 0) <= 0 or room['hp'].get(player_two, 0) <= 0:
-        winner = player_two if room['hp'].get(player_one, 0) <= 0 else player_one
-        room['winner'] = winner
-        add_battle_win(winner)
+def set_battle_winner_if_finished(room):
+    players = room.get('players', [])
+    alive = [player for player in players if room.setdefault('hp', {}).get(player, 0) > 0]
+    mode = room.get('mode', DUEL_MODE)
+    if mode == TEAM_MODE:
+        teams = room.get('teams', {})
+        alive_teams = {teams.get(player) for player in alive if teams.get(player)}
+        if len(alive_teams) == 1:
+            winning_team = next(iter(alive_teams))
+            winners = [player for player in players if teams.get(player) == winning_team and room['hp'].get(player, 0) > 0]
+            room['winner'] = f"team:{winning_team}"
+            for winner in winners:
+                add_battle_win(winner)
+            return True
+        return False
+    if len(alive) == 1:
+        room['winner'] = alive[0]
+        add_battle_win(alive[0])
+        return True
+    return False
+
+def resolve_battle_turn(room):
+    players = room.get('players', [])
+    if len(players) < 2:
+        return
+    entries = {player: battle_entry_for_player(room, player) for player in players}
+    reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
+    result_parts = []
+    winners = []
+    losers = []
+    mode = room.get('mode', DUEL_MODE)
+
+    if mode == TEAM_MODE:
+        teams = room.get('teams', {})
+        team_keys = {}
+        team_power = {}
+        for player, entry in entries.items():
+            team = teams.get(player, 'A')
+            team_keys.setdefault(team, []).extend(entry['keys'])
+            team_power[team] = team_power.get(team, 0) + entry['power']
+        if len(team_power) >= 2:
+            sorted_teams = sorted(team_power.items(), key=lambda item: item[1], reverse=True)
+            if sorted_teams[0][1] == sorted_teams[1][1]:
+                result_parts.append('draw')
+            else:
+                winning_team, win_power = sorted_teams[0]
+                losing_team, lose_power = sorted_teams[1]
+                multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []), team_keys.get(losing_team, []))
+                damage = int((win_power - lose_power) * multiplier)
+                losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
+                split_damage = max(1, damage // max(1, len(losing_players))) if damage else 0
+                for player in losing_players:
+                    room['hp'][player] = max(0, room['hp'].get(player, 10000) - split_damage)
+                winners = [player for player in players if teams.get(player) == winning_team]
+                losers = losing_players
+                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{split_damage} {t('battle_damage_each')}{battle_bonus_text(labels, multiplier)}")
+    elif mode == FFA_MODE:
+        sorted_players = sorted(players, key=lambda player: entries[player]['power'], reverse=True)
+        if len(sorted_players) >= 2 and entries[sorted_players[0]]['power'] == entries[sorted_players[1]]['power']:
+            result_parts.append('draw')
+        else:
+            winner = sorted_players[0]
+            winners = [winner]
+            for loser in sorted_players[1:]:
+                if room['hp'].get(loser, 0) <= 0:
+                    continue
+                multiplier, labels = battle_bonus_for_keys(entries[winner]['keys'], entries[loser]['keys'])
+                damage = int((entries[winner]['power'] - entries[loser]['power']) * multiplier)
+                room['hp'][loser] = max(0, room['hp'].get(loser, 10000) - damage)
+                losers.append(loser)
+                result_parts.append(f"{winner} vs {loser}: {loser} -{damage}{battle_bonus_text(labels, multiplier)}")
+    else:
+        player_one, player_two = players[:2]
+        power_one = entries[player_one]['power']
+        power_two = entries[player_two]['power']
+        if power_one > power_two:
+            multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'], entries[player_two]['keys'])
+            damage = int((power_one - power_two) * multiplier)
+            room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
+            winners = [player_one]
+            losers = [player_two]
+            result_parts.append(f"{player_one} vs {player_two}: {player_two} -{damage}{battle_bonus_text(labels, multiplier)}")
+        elif power_two > power_one:
+            multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'], entries[player_one]['keys'])
+            damage = int((power_two - power_one) * multiplier)
+            room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
+            winners = [player_two]
+            losers = [player_one]
+            result_parts.append(f"{player_one} vs {player_two}: {player_one} -{damage}{battle_bonus_text(labels, multiplier)}")
+        else:
+            result_parts.append(f"{player_one} vs {player_two}: draw")
+
+    steal_remaining_cards(room, winners, losers, defenseless_players, result_parts)
+    result_text = ' / '.join(result_parts) if result_parts else 'draw'
+    room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
+    del room['log'][12:]
+    finish_battle_turn(room, reload_set, defenseless_players)
+    set_battle_winner_if_finished(room)
 
 def toggle_battle_card(key, checked):
     selected = set(state.battle_selected_keys or set())
@@ -3497,11 +3792,35 @@ def toggle_battle_card(key, checked):
         selected.discard(key)
     state.battle_selected_keys = selected
 
+def choose_bot_battle_cards(hand):
+    if not hand:
+        return []
+    max_cards = min(len(hand), random.randint(1, 5))
+    return random.sample(hand, max_cards)
+
+def submit_bot_players(room):
+    for player in room.get('players', []):
+        if not is_battle_bot(player) or player in room.setdefault('submitted', {}):
+            continue
+        reload_set = set(room.get('reload_after_turn', []))
+        hand = room.setdefault('hands', {}).setdefault(player, [])
+        defenseless = player in reload_set or not hand
+        selected = [] if defenseless else choose_bot_battle_cards(hand)
+        room['submitted'][player] = {
+            'keys': selected,
+            'power': 0 if defenseless else battle_power_for_keys(selected),
+            'defenseless': defenseless,
+        }
+
+def battle_all_players_submitted(room):
+    submitted = room.get('submitted', {})
+    return all(player in submitted for player in room.get('players', []))
+
 def submit_battle_hand():
     username = state.current_user
     state_data = load_battle_state()
     room = battle_room_for_user(username, state_data)
-    if not room or room.get('winner') or not username:
+    if not room or room.get('winner') or not username or username not in room.get('players', []):
         refresh_battle_view()
         return
     if username in room.get('submitted', {}):
@@ -3516,8 +3835,9 @@ def submit_battle_hand():
         'power': 0 if defenseless else battle_power_for_keys(selected),
         'defenseless': defenseless,
     }
+    submit_bot_players(room)
     state.battle_selected_keys = set()
-    if len(room.get('submitted', {})) >= 2:
+    if battle_all_players_submitted(room):
         resolve_battle_turn(room)
     save_battle_state(state_data)
     refresh_battle_view()
@@ -3526,7 +3846,7 @@ def redraw_battle_hand():
     username = state.current_user
     state_data = load_battle_state()
     room = battle_room_for_user(username, state_data)
-    if not room or room.get('winner') or not username:
+    if not room or room.get('winner') or not username or username not in room.get('players', []):
         refresh_battle_view()
         return
     if username in room.get('submitted', {}):
@@ -3552,6 +3872,101 @@ def redraw_battle_hand():
     del room['log'][12:]
     save_battle_state(state_data)
     refresh_battle_view()
+
+def active_battle_rooms():
+    state_data = load_battle_state()
+    rooms = []
+    for room in state_data.get('rooms', {}).values():
+        if not isinstance(room, dict) or room.get('winner'):
+            continue
+        players = room.get('players', [])
+        if players:
+            rooms.append(room)
+    return sorted(rooms, key=lambda room: str(room.get('id', '')))
+
+def spectate_battle_room(room_id):
+    username = state.current_user
+    if not username:
+        ui.notify(t('login_required'), color='warning')
+        return
+    state_data = load_battle_state()
+    room = state_data.get('rooms', {}).get(str(room_id))
+    if not room or room.get('winner'):
+        refresh_battle_view()
+        return
+    if username in room.get('players', []):
+        state.battle_id = room.get('id')
+        refresh_battle_view()
+        return
+    spectators = room.setdefault('spectators', [])
+    if username not in spectators:
+        spectators.append(username)
+    state_data.setdefault('spectator_room', {})[username] = room.get('id')
+    state.battle_id = room.get('id')
+    save_battle_state(state_data)
+    refresh_battle_view()
+
+def leave_battle_spectate():
+    username = state.current_user
+    state_data = load_battle_state()
+    room_id = state_data.setdefault('spectator_room', {}).pop(username, None)
+    room = state_data.setdefault('rooms', {}).get(room_id)
+    if room:
+        room['spectators'] = [name for name in room.get('spectators', []) if name != username]
+    save_battle_state(state_data)
+    state.battle_id = None
+    refresh_battle_view()
+
+def send_battle_chat(message):
+    username = state.current_user
+    text = str(message or '').strip()
+    if not username or not text:
+        return
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
+    if not room:
+        refresh_battle_view()
+        return
+    room.setdefault('chat', []).insert(0, {
+        'user': username,
+        'text': text[:160],
+        'timestamp': current_timestamp(),
+    })
+    del room['chat'][30:]
+    save_battle_state(state_data)
+    refresh_battle_view()
+
+def battle_screen_signature():
+    state_data = load_battle_state()
+    room = battle_room_for_user(state.current_user, state_data)
+    if room:
+        payload = {
+            'room': room.get('id'),
+            'turn': room.get('turn'),
+            'winner': room.get('winner'),
+            'hp': room.get('hp', {}),
+            'submitted': sorted(room.get('submitted', {}).keys()),
+            'reload': sorted(room.get('reload_after_turn', [])),
+            'log_head': room.get('log', [])[:1],
+            'chat_head': room.get('chat', [])[:1],
+            'spectators': sorted(room.get('spectators', [])),
+        }
+    else:
+        payload = {
+            'queue': state_data.get('queue', []),
+            'rooms': [
+                {
+                    'id': room.get('id'),
+                    'mode': room.get('mode'),
+                    'players': room.get('players', []),
+                    'turn': room.get('turn'),
+                    'winner': room.get('winner'),
+                }
+                for room in state_data.get('rooms', {}).values()
+                if isinstance(room, dict) and not room.get('winner')
+            ],
+        }
+    return json.dumps(payload, ensure_ascii=False, sort_keys=True)
 
 # ========================================
 # 画面切り替え
@@ -4995,56 +5410,98 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.label(get_localized_text(country['names'])).classes('font-bold text-[#1a2332] text-sm')
             render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
 
+    def battle_winner_label(room):
+        winner = room.get('winner')
+        if isinstance(winner, str) and winner.startswith('team:'):
+            return f"{t('battle_team')} {winner.split(':', 1)[1]}"
+        return str(winner or '')
+
+    def render_battle_chat(room):
+        with ui.card().classes('w-full p-5 gap-3'):
+            ui.label(t('battle_chat')).classes('text-xl font-bold text-[#1a2332]')
+            chat_input = ui.input(placeholder=t('battle_chat_placeholder')).props('outlined dense').classes('w-full')
+            ui.button(t('battle_send'), icon='send', on_click=lambda *_: send_battle_chat(chat_input.value)).props('color=primary dense')
+            if not room.get('chat'):
+                ui.label('-').classes('text-gray-500')
+            for entry in room.get('chat', [])[:10]:
+                user = entry.get('user', '')
+                text = entry.get('text', '')
+                stamp = format_timestamp(entry.get('timestamp'))
+                ui.label(f"{user} [{stamp}]: {text}").classes('text-sm text-gray-700')
+
     def render_battle_room(room):
         players = room.get('players', [])
-        if len(players) != 2:
+        if len(players) < 2:
             return
         username = state.current_user
-        opponent = players[0] if players[1] == username else players[1]
         lookup = battle_country_lookup()
         winner = room.get('winner')
+        mode = room.get('mode', DUEL_MODE)
+        teams = room.get('teams', {})
+        is_spectator = username not in players
 
         with ui.card().classes('w-full p-5 gap-4'):
             with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
-                ui.label(f'{t("battle_turn")} {room.get("turn", 1)}').classes('text-xl font-bold text-[#1a2332]')
+                ui.label(f'{battle_mode_label(mode)} / {t("battle_turn")} {room.get("turn", 1)}').classes('text-xl font-bold text-[#1a2332]')
                 ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
-            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
-                render_hp_bar(username, room['hp'].get(username, 10000))
-                render_hp_bar(opponent, room['hp'].get(opponent, 10000))
+            ui.label(t('battle_auto_notice')).classes('text-xs text-gray-500')
+            with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
+                for player in players:
+                    label = player
+                    if mode == TEAM_MODE:
+                        label = f"{player} ({t('battle_team')} {teams.get(player, '-')})"
+                    render_hp_bar(label, room.setdefault('hp', {}).get(player, 10000))
 
             if winner:
-                is_winner = winner == username
-                ui.label(t('battle_win') if is_winner else t('battle_lose')) \
-                    .classes('text-2xl font-bold text-green-700' if is_winner else 'text-2xl font-bold text-red-700')
+                is_winner = winner == username or (
+                    isinstance(winner, str)
+                    and winner.startswith('team:')
+                    and teams.get(username) == winner.split(':', 1)[1]
+                )
+                if is_spectator:
+                    ui.label(t('battle_spectating')).classes('text-2xl font-bold text-blue-700')
+                else:
+                    ui.label(t('battle_win') if is_winner else t('battle_lose')) \
+                        .classes('text-2xl font-bold text-green-700' if is_winner else 'text-2xl font-bold text-red-700')
+                ui.label(battle_winner_label(room)).classes('text-lg font-bold text-gray-700')
                 with ui.row().classes('w-full gap-2 flex-wrap'):
-                    ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
-                    ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
+                    if not is_spectator:
+                        ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
+                        ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
+                    else:
+                        ui.button(t('battle_leave_spectate'), icon='visibility_off', on_click=leave_battle_spectate).props('outline color=primary')
+                render_battle_chat(room)
                 return
 
-            hand = room['hands'].setdefault(username, [])
-            waiting_for_player = username in room.get('submitted', {})
-            defenseless = username in set(room.get('reload_after_turn', [])) or not hand
-            if waiting_for_player:
-                ui.label(t('battle_wait_opponent')).classes('text-sm font-bold text-blue-700')
-            elif defenseless:
-                ui.label(t('battle_defenseless')).classes('text-sm font-bold text-red-700')
-                ui.button(t('battle_submit'), icon='shield', on_click=submit_battle_hand).props('color=red')
+            if is_spectator:
+                ui.label(t('battle_spectating')).classes('text-sm font-bold text-blue-700')
+                ui.button(t('battle_leave_spectate'), icon='visibility_off', on_click=leave_battle_spectate).props('outline color=primary dense')
             else:
-                with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
-                    ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
-                    with ui.row().classes('items-center gap-2 flex-wrap'):
-                        ui.label(t('battle_power_hidden_hint')).classes('text-sm font-bold text-red-700')
-                        turn = int(room.get('turn', 1))
-                        redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
-                        redraw_button = ui.button(t('battle_redraw'), icon='refresh', on_click=redraw_battle_hand).props('outline color=primary dense')
-                        if redraw_used:
-                            redraw_button.disable()
-                            redraw_button.tooltip(t('battle_redraw_used'))
-                with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
-                    for key in hand:
-                        render_battle_card(key, lookup)
-                ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
+                hand = room['hands'].setdefault(username, [])
+                waiting_for_player = username in room.get('submitted', {})
+                defenseless = username in set(room.get('reload_after_turn', [])) or not hand
+                if waiting_for_player:
+                    ui.label(t('battle_wait_opponent')).classes('text-sm font-bold text-blue-700')
+                elif defenseless:
+                    ui.label(t('battle_defenseless')).classes('text-sm font-bold text-red-700')
+                    ui.button(t('battle_submit'), icon='shield', on_click=submit_battle_hand).props('color=red')
+                else:
+                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                        ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
+                        with ui.row().classes('items-center gap-2 flex-wrap'):
+                            ui.label(t('battle_power_hidden_hint')).classes('text-sm font-bold text-red-700')
+                            turn = int(room.get('turn', 1))
+                            redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
+                            redraw_button = ui.button(t('battle_redraw'), icon='refresh', on_click=redraw_battle_hand).props('outline color=primary dense')
+                            if redraw_used:
+                                redraw_button.disable()
+                                redraw_button.tooltip(t('battle_redraw_used'))
+                    with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
+                        for key in hand:
+                            render_battle_card(key, lookup)
+                    ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
 
+        render_battle_chat(room)
         with ui.card().classes('w-full p-5 gap-3'):
             ui.label(t('battle_log')).classes('text-xl font-bold text-[#1a2332]')
             if not room.get('log'):
@@ -5053,6 +5510,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.label(entry).classes('text-sm text-gray-700')
 
     def refresh_battle_view():
+        state.battle_last_signature = battle_screen_signature()
         render_header(header_container_battle)
         update_mode_classes(
             battle_content,
@@ -5085,16 +5543,31 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
                         ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary')
                 else:
-                    ui.button(t('battle_join'), icon='sports_esports', on_click=join_battle_queue).props('color=primary')
+                    with ui.row().classes('w-full gap-2 flex-wrap'):
+                        ui.button(t('battle_mode_duel'), icon='sports_esports', on_click=lambda: join_battle_queue(DUEL_MODE)).props('color=primary')
+                        ui.button(t('battle_mode_free_for_all'), icon='groups', on_click=lambda: join_battle_queue(FFA_MODE)).props('color=primary')
+                        ui.button(t('battle_mode_team'), icon='group_work', on_click=lambda: join_battle_queue(TEAM_MODE)).props('color=primary')
+                        ui.button(t('battle_bot'), icon='smart_toy', on_click=create_bot_battle).props('outline color=primary')
+            with ui.card().classes('w-full p-5 gap-3'):
+                ui.label(t('battle_active_rooms')).classes('text-xl font-bold text-[#1a2332]')
+                rooms = active_battle_rooms()
+                if not rooms:
+                    ui.label(t('battle_no_rooms')).classes('text-gray-500')
+                for room_item in rooms:
+                    players = ', '.join(room_item.get('players', []))
+                    room_id = room_item.get('id')
+                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                        ui.label(f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players}").classes('text-sm font-bold text-gray-700')
+                        ui.button(t('battle_spectate'), icon='visibility', on_click=lambda *_, room_id=room_id: spectate_battle_room(room_id)).props('outline color=primary dense')
 
     def auto_refresh_battle():
         if not battle_screen.visible:
             return
-        room = current_battle_room()
-        if is_current_user_waiting_for_battle() or (room and (state.current_user in room.get('submitted', {}) or room.get('winner'))):
+        signature = battle_screen_signature()
+        if signature != state.battle_last_signature:
             refresh_battle_view()
 
-    ui.timer(2.5, auto_refresh_battle)
+    ui.timer(1.5, auto_refresh_battle)
 
 # ========================================
 # 11. アカウントページ
