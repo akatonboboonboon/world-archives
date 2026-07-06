@@ -471,6 +471,7 @@ class AppState:
     selected_country = None
     filter_type = 'All'
     filter_region = None
+    filter_tag_group = None
     filter_tag = None
     sort_field = 'name'
     sort_order = 'asc'
@@ -503,6 +504,7 @@ class AppState:
     public_collection_kind = 'collection'
     battle_id = None
     battle_selected_keys = set()
+    battle_attack_target = None
     battle_last_signature = ''
     social_selected_chat_id = None
     social_last_signature = ''
@@ -521,6 +523,8 @@ BATTLE_MAX_HP = 100_000_000_000_000
 BATTLE_TURN_TIMEOUT_SECONDS = 60
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
+BATTLE_BONUS_PER_MATCH_BPS = 10
+BATTLE_BONUS_DENOMINATOR = 10_000
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
@@ -1075,7 +1079,7 @@ for lang_code, labels in EXTRA_UI_FALLBACKS.items():
 UI_FALLBACKS.setdefault('ja', {}).update({
     'favorites_except': 'お気に入り以外',
     'favorites_all': 'お気に入り条件なし',
-    'battle_power_hidden_hint': '攻撃力と防御力は非表示です。すべての国を見たんだから当然、データ覚えてるよネ！',
+    'battle_power_hidden_hint': '選択中の国力は非表示です。見てきた国データを思い出して勝負しましょう。',
     'battle_mode_duel': '1対1',
     'battle_mode_free_for_all': '乱戦',
     'battle_mode_team': 'チーム戦',
@@ -1095,6 +1099,12 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_damage_each': '各',
     'battle_defense': '防御',
     'battle_select_card_required': 'カードを1枚以上選んでください。',
+    'tag_group': 'タグ分類',
+    'battle_attack_target': '攻撃対象',
+    'battle_select_target_required': '攻撃対象を選んでください。',
+    'battle_team_chat': 'チームチャット',
+    'battle_team_chat_placeholder': 'チームだけに送るメッセージ',
+    'battle_bot_replacement_log': '{player}の代わりに{bot}が参戦します。',
     'battle_surrender': '降参',
     'battle_surrender_log': '{player}が降参しました。',
     'battle_timeout_surrender_log': '{player}が長考により強制降参になりました。',
@@ -1104,7 +1114,7 @@ UI_FALLBACKS.setdefault('ja', {}).update({
 UI_FALLBACKS.setdefault('en', {}).update({
     'favorites_except': 'Not favorites',
     'favorites_all': 'No favorite filter',
-    'battle_power_hidden_hint': 'Power and defense are hidden. You have seen every country, so of course you remember the data.',
+    'battle_power_hidden_hint': 'Power is hidden while choosing. Use what you remember from the country data.',
     'battle_mode_duel': '1v1',
     'battle_mode_free_for_all': 'Free-for-all',
     'battle_mode_team': 'Team battle',
@@ -1124,6 +1134,12 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_damage_each': 'each',
     'battle_defense': 'defense',
     'battle_select_card_required': 'Choose at least one card.',
+    'tag_group': 'Tag group',
+    'battle_attack_target': 'Target',
+    'battle_select_target_required': 'Choose an attack target.',
+    'battle_team_chat': 'Team chat',
+    'battle_team_chat_placeholder': 'Message to your team',
+    'battle_bot_replacement_log': '{bot} joins in place of {player}.',
     'battle_surrender': 'Surrender',
     'battle_surrender_log': '{player} surrendered.',
     'battle_timeout_surrender_log': '{player} was forced to surrender after thinking too long.',
@@ -1133,7 +1149,7 @@ UI_FALLBACKS.setdefault('en', {}).update({
 UI_FALLBACKS.setdefault('zh', {}).update({
     'favorites_except': '非收藏',
     'favorites_all': '不筛选收藏',
-    'battle_power_hidden_hint': '攻击力和防御力已隐藏。既然已经看过所有国家，当然记得数据吧！',
+    'battle_power_hidden_hint': '选牌时国力会隐藏。请回忆国家数据来判断。',
     'battle_mode_duel': '1对1',
     'battle_mode_free_for_all': '混战',
     'battle_mode_team': '团队战',
@@ -1153,6 +1169,12 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_damage_each': '各',
     'battle_defense': '防御',
     'battle_select_card_required': '请至少选择一张牌。',
+    'tag_group': '标签分类',
+    'battle_attack_target': '攻击目标',
+    'battle_select_target_required': '请选择攻击目标。',
+    'battle_team_chat': '团队聊天',
+    'battle_team_chat_placeholder': '只发给队友的消息',
+    'battle_bot_replacement_log': '{bot}代替{player}参战。',
     'battle_surrender': '投降',
     'battle_surrender_log': '{player}已投降。',
     'battle_timeout_surrender_log': '{player}思考过久，被强制投降。',
@@ -1351,6 +1373,34 @@ def tag_search_text(tag):
             values.append(label)
     return ' '.join(values)
 
+def tag_category_label(category, lang=None):
+    lang = lang or state.lang
+    labels = TRANSLATIONS.get(lang, {}).get('tag_category_labels', {})
+    return labels.get(category, category)
+
+def selected_tag_group_label():
+    return tag_category_label(state.filter_tag_group) if state.filter_tag_group else None
+
+def tag_categories(data=None):
+    data = data or get_data()
+    categories = data.get('tag_categories', {})
+    return categories if isinstance(categories, dict) else {}
+
+def get_tag_group_options():
+    data = get_data()
+    used_tags = {tag for c in public_country_list(data) for tag in c.get('tags', [])}
+    options = []
+    for category, category_tags in tag_categories(data).items():
+        if any(tag in used_tags for tag in category_tags):
+            options.append(tag_category_label(category))
+    return options
+
+def tag_group_allowed_tags(group, data=None):
+    if not group:
+        return None
+    categories = tag_categories(data)
+    return set(categories.get(group, [])) if group in categories else None
+
 TAG_COLOR_STYLES = {
     'UN Member': ('#eff6ff', '#1e3a8a', '#bfdbfe'),
     'European Union': ('#eef2ff', '#3730a3', '#c7d2fe'),
@@ -1394,9 +1444,26 @@ TAG_COLOR_STYLES = {
     'Cultural Sphere': ('#fdf2f8', '#831843', '#fbcfe8'),
 }
 
+TAG_COLOR_PALETTE = [
+    ('#eff6ff', '#1e3a8a', '#bfdbfe'),
+    ('#ecfdf5', '#065f46', '#a7f3d0'),
+    ('#fff7ed', '#9a3412', '#fed7aa'),
+    ('#f5f3ff', '#5b21b6', '#ddd6fe'),
+    ('#fdf2f8', '#9d174d', '#fbcfe8'),
+    ('#ecfeff', '#155e75', '#a5f3fc'),
+    ('#fefce8', '#713f12', '#fde68a'),
+    ('#f8fafc', '#334155', '#cbd5e1'),
+]
+
+def tag_color_style(tag):
+    if tag in TAG_COLOR_STYLES:
+        return TAG_COLOR_STYLES[tag]
+    index = int(hashlib.sha256(str(tag).encode('utf-8')).hexdigest(), 16) % len(TAG_COLOR_PALETTE)
+    return TAG_COLOR_PALETTE[index]
+
 def tag_chip(tag, dense=True):
     props = 'dense size=xs' if dense else 'dense'
-    bg, fg, border = TAG_COLOR_STYLES.get(tag, ('#f8fafc', '#111827', '#cbd5e1'))
+    bg, fg, border = tag_color_style(tag)
     return (
         ui.chip(tag_label(tag))
         .props(props)
@@ -1467,12 +1534,14 @@ def get_filter_options():
     countries = public_country_list(data)
     regions = set()
     tags = set()
+    allowed_tags = tag_group_allowed_tags(state.filter_tag_group, data)
     for c in countries:
         if c.get('region'):
             regions.add(c['region'])
         if c.get('tags'):
             for tag in c['tags']:
-                tags.add(tag)
+                if allowed_tags is None or tag in allowed_tags:
+                    tags.add(tag)
     sorted_tags = sorted(tags, key=lambda tag: tag_label(tag).lower())
     sorted_regions = sorted(regions, key=lambda region: region_label(region).lower())
     return [region_label(region) for region in sorted_regions], [tag_label(tag) for tag in sorted_tags]
@@ -1501,6 +1570,19 @@ def normalize_tag_value(value):
         labels = [tag_label(tag, lang) for lang in TRANSLATIONS]
         if value in labels:
             return tag
+    return value
+
+def normalize_tag_group_value(value):
+    if not value:
+        return None
+    data = get_data()
+    categories = tag_categories(data)
+    if value in categories:
+        return value
+    for category in categories:
+        labels = [tag_category_label(category, lang) for lang in TRANSLATIONS]
+        if value in labels:
+            return category
     return value
 
 def country_key(country):
@@ -2200,6 +2282,7 @@ def logout_user():
     state.selected_country = None
     state.search_keyword = ''
     state.filter_region = None
+    state.filter_tag_group = None
     state.filter_tag = None
     state.sort_field = 'name'
     state.show_favorites_only = False
@@ -4258,101 +4341,110 @@ def battle_mode_label(mode):
 def battle_help_labels():
     labels = {
         'ja': {
-            'title': '遊び方と戦闘力の解説',
+            'title': '国力対戦の遊び方',
             'sections': [
                 (
-                    '基本ルール',
+                    'まず何をする？',
                     [
-                        f'各プレイヤーのHPは{format_battle_number(BATTLE_MAX_HP)}です。ランダムに配られた5枚の国カードから、1枚以上を選んで勝負します。',
-                        '一度に出す枚数は自由です。手札が切れるまで新しいカードは補充されません。',
-                        '手札が空の場合は1ターン無防備になり、次のターンに新しい5枚が配られます。',
-                        '各1ターンに1回だけ、現在の手札をすべて捨てて同じ枚数を引き直せます。',
-                        '1分以内に行動しないと強制降参になります。勝てないと判断したら、降参ボタンで試合から抜けられます。',
+                        '配られた5枚の国カードから、今回勝負に出す国を1枚以上選びます。',
+                        '出さなかった国は防御に回ります。全部出して押し切るか、守りを残すかを考えて選びましょう。',
+                        '手札がなくなるまで新しい国は補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
+                        '各ターンに1回だけ、今の手札をすべて捨てて同じ枚数を引き直せます。',
+                        '1分以内に行動しないと降参扱いになります。自分で降参した場合も、その枠はBOTが引き継ぎます。',
                     ],
                 ),
                 (
-                    '戦闘力',
+                    '勝敗とダメージ',
                     [
-                        '戦闘力は国の面積と人口から決まります。広くて人口の多い国ほど大きなダメージを出しやすくなります。',
-                        '計算は「(面積 x 人口) ÷ 1000」です。小さい国でも最低1の戦闘力はあります。',
-                        '複数枚出すと、強いカードから順に100%、90%、80%、70%、60%の戦闘力で合計します。5枚出しは強いですが、単純合計ほど一方的ではありません。',
-                        '出さなかったカードは防御に回り、そのカード群を攻撃に使った場合の50%を防御力にします。残したカード同士でタグや地域が一致すると、防御側にも一致ボーナスが乗ります。',
-                        '手札選択中の戦闘力は非表示です。国の基本データを覚えているほど有利になります。',
+                        f'HPが0になると負けです。開始時のHPは{format_battle_number(BATTLE_MAX_HP)}です。',
+                        '出した国の国力を比べ、強い側が相手にダメージを与えます。',
+                        '国力は「面積 x 人口 ÷ 1000」が基本です。広くて人口の多い国ほど強くなりやすいです。',
+                        '複数枚出すと、2枚目以降は少しずつ力が抑えられます。たくさん出すほど強い一方、手札切れの危険も増えます。',
+                        'ダメージは国力の差から相手の防御を引いて決まります。守り切られた場合、ダメージは0です。',
+                        'ダメージを与えると、相手の残り手札から1枚奪えます。BOT戦の勝利数はランキングに入りません。',
                     ],
                 ),
                 (
-                    'ダメージと勝利',
+                    'モード別ルール',
                     [
-                        '互いに出した手の戦闘力を比べ、高い側が勝ちます。',
-                        '基本ダメージは攻撃差に一致ボーナスを乗せ、そこから防御力を引いた値です。防御で受け止めきればダメージは0になります。',
-                        'ダメージを与えた時は、相手の手元に残っているカードから1枚奪えます。BOT戦の勝利数はランキングに含まれません。',
+                        '1対1では、相手と正面から国力をぶつけ合います。',
+                        '乱戦では、自分で攻撃対象を指定して攻撃します。誰を狙うかも作戦です。',
+                        'チーム戦では、チーム全員がそれぞれ手札を出します。出した国はチームの総攻撃、出さなかった国はチームの総防御になります。',
+                        f'チーム戦のHPは「{format_battle_number(BATTLE_MAX_HP)} x チーム人数」です。人数差がある場合は、多い側の人数に合わせて両チームのHPをそろえます。',
+                        'チーム戦ではチームチャットを使えます。どの国を出すか、守りを残すかを相談できます。',
                     ],
                 ),
                 (
                     '一致ボーナス',
                     [
-                        '一致ボーナスは、自分がそのターンに出したカード同士、または防御に残したカード同士だけを見て判定します。相手のカードとは混ざりません。',
-                        '1枚だけでは発動しません。2枚以上の攻撃カード、または2枚以上の防御カードで、タグや地域が重なると発動します。',
-                        '一致したタグや地域が1種類増えるごとに、ダメージまたは防御の倍率が+0.5されます。この倍率に上限はありません。',
+                        '同じターンに出した国同士、または防御に残した国同士で、タグや地域が重なると小さなボーナスが入ります。',
+                        '1枚だけでは発動しません。相手のカードとの一致も関係ありません。',
+                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+0.1%されます。大逆転用ではなく、近い勝負を少し後押しする仕組みです。',
                     ],
                 ),
             ],
         },
         'en': {
-            'title': 'How to Play and Power Rules',
+            'title': 'How to Play Power Battle',
             'sections': [
-                ('Basic Rules', [
-                    f'Each player starts with {format_battle_number(BATTLE_MAX_HP)} HP and receives five random country cards.',
-                    'You may play any number of cards, but cards are not refilled until your hand is empty.',
-                    'An empty hand makes you defenseless for one turn, then you draw five new cards.',
-                    'Once per turn, you may discard your current hand and redraw the same number of cards.',
-                    'If you do not act within one minute, you surrender automatically. You can also surrender manually when the match looks hopeless.',
+                ('What to do first', [
+                    'Choose at least one country card from the five cards in your hand.',
+                    'Cards you do not play become defense. Decide whether to attack hard or keep protection.',
+                    'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
+                    'Once per turn, you can discard your hand and redraw the same number of cards.',
+                    'If you do not act within one minute, you surrender. A bot takes over surrendered slots so the match can continue.',
                 ]),
-                ('Power', [
-                    'Power comes from each country area and population. Large, populous countries tend to hit harder.',
-                    'The formula is area x population divided by 1000. Even small countries have at least 1 power.',
-                    'When playing multiple cards, the strongest cards count as 100%, 90%, 80%, 70%, then 60%. A full hand is still strong, but not a simple total.',
-                    'Unplayed cards become defense worth 50% of their attack value. Repeated tags or regions among saved cards also trigger a defensive match bonus.',
-                    'Power is hidden while choosing cards, so remembering country data gives you an advantage.',
+                ('Damage and victory', [
+                    f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
+                    'The side with higher country power deals damage.',
+                    'Country power is based on area x population divided by 1000. Large, populous countries tend to be stronger.',
+                    'Playing several cards is powerful, but the second and later cards are slightly reduced. Going all in can leave you exposed later.',
+                    'Damage is based on the power gap after defense. If defense blocks it, damage becomes 0.',
+                    'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
-                ('Damage and Victory', [
-                    'The higher hand power wins the turn.',
-                    'Damage is the attack gap with offensive match bonuses applied, then reduced by the defender defense. If defense absorbs it all, damage is 0.',
-                    'When you deal damage, you steal one remaining card from the loser. Bot wins are not counted in rankings.',
+                ('Battle modes', [
+                    'In 1v1, you directly compare power with your opponent.',
+                    'In free-for-all, you choose which player to attack.',
+                    'In team battles, each team combines played cards into total attack and saved cards into total defense.',
+                    f'Team HP is {format_battle_number(BATTLE_MAX_HP)} times team size. If teams are uneven, both sides use the larger team size.',
+                    'Team battles include a team chat so you can coordinate attacks and defense.',
                 ]),
                 ('Match Bonus', [
-                    'The match bonus checks cards you played this turn, or cards you saved for defense. It does not mix with opponent cards.',
-                    'A single card never triggers it. With two or more attack cards or defense cards, repeated tags or regions trigger it.',
-                    'Each repeated tag or region adds +0.5 to the damage or defense multiplier, with no upper limit.',
+                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a small bonus.',
+                    'One card alone cannot trigger it. Opponent cards are not included.',
+                    'Each repeated tag or region adds +0.1% to attack or defense. It is a small edge for close turns, not an instant comeback.',
                 ]),
             ],
         },
         'zh': {
-            'title': '玩法与战力说明',
+            'title': '国力对战玩法',
             'sections': [
-                ('基本规则', [
-                    f'每位玩家HP为{format_battle_number(BATTLE_MAX_HP)}，随机获得5张国家卡。',
-                    '每回合可以打出任意张数，手牌用完前不会补充。',
-                    '手牌为空时下一回合无防备，再下一回合重新抽5张。',
-                    '每回合可以将当前手牌全部弃掉并重抽同样张数一次。',
-                    '一分钟内不行动将自动投降。形势不利时也可以手动投降。',
-                ]),
-                ('战力', [
-                    '战力来自国家的面积和人口。面积大且人口多的国家更容易打出高伤害。',
-                    '公式为「(面积 x 人口) ÷ 1000」。小国也至少有1点战力。',
-                    '打出多张时，从最强的牌开始按100%、90%、80%、70%、60%计算。全手牌攻击仍然很强，但不是单纯相加。',
-                    '未打出的牌会成为防御，防御力为这些牌攻击力的50%。留下的牌之间标签或地区重复时，也会触发防御一致加成。',
-                    '选牌时战力不显示，记住国家基本数据会更有利。',
+                ('先做什么？', [
+                    '从5张国家卡中选择至少1张作为本回合出战的国家。',
+                    '没有打出的国家会用于防御。要全力进攻还是保留防守，需要自己判断。',
+                    '手牌用完前不会补充。手牌为空的回合会处于无防备状态，之后重新抽5张。',
+                    '每回合可以弃掉当前手牌，并重抽同样张数一次。',
+                    '1分钟内不行动会自动投降。投降的位置会由BOT接替，比赛继续进行。',
                 ]),
                 ('伤害与胜利', [
-                    '比较双方打出的手牌战力，较高者获胜。',
-                    '伤害为攻击差加上攻击一致加成后，再减去防御力。若防御完全挡住，伤害为0。',
+                    f'HP变为0就会失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
+                    '比较出战国家的国力，较高的一方造成伤害。',
+                    '国力基本上由「面积 x 人口 ÷ 1000」决定。面积大且人口多的国家更容易变强。',
+                    '打出多张牌会更强，但第2张以后的力量会逐渐降低。一次打光很强，也更容易陷入手牌不足。',
+                    '伤害由国力差再扣除防御决定。若防御挡住了攻击，伤害为0。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
                 ]),
+                ('模式规则', [
+                    '1对1中，直接与对手比较国力。',
+                    '混战中，需要自己指定攻击目标。',
+                    '团队战中，队友打出的牌合计为总攻击，未打出的牌合计为总防御。',
+                    f'团队HP为{format_battle_number(BATTLE_MAX_HP)}乘以队伍人数。人数不同时，双方都按人数较多的一方计算。',
+                    '团队战可以使用团队聊天，和队友商量进攻与防御。',
+                ]),
                 ('一致加成', [
-                    '一致加成只检查自己本回合打出的牌，或自己留下来防御的牌，不会和对手的牌混合。',
-                    '只使用1张牌时不会发动。2张以上的攻击牌或防御牌中，标签或地区重复时发动。',
-                    '每个重复的标签或地区都会使伤害或防御倍率+0.5，没有上限。',
+                    '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到小幅加成。',
+                    '只用1张牌不会发动。对手的牌不会参与计算。',
+                    '每个重复的标签或地区会让攻击或防御增加+0.1%。这是接近胜负时的小优势，不是一次性逆转的按钮。',
                 ]),
             ],
         },
@@ -4438,12 +4530,39 @@ def save_battle_state(state_data):
     with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state_data, f, ensure_ascii=False, indent=2)
 
+def battle_team_hp_limit(room):
+    teams = room.get('teams', {})
+    counts = {}
+    for player in room.get('players', []):
+        team = teams.get(player)
+        if team:
+            counts[team] = counts.get(team, 0) + 1
+    return BATTLE_MAX_HP * max(counts.values(), default=1)
+
+def ensure_battle_team_hp(room):
+    if room.get('mode') != TEAM_MODE:
+        return {}
+    teams = room.setdefault('teams', {})
+    if not teams:
+        for index, player in enumerate(room.get('players', [])):
+            teams[player] = 'A' if index % 2 == 0 else 'B'
+    limit = battle_team_hp_limit(room)
+    team_hp = room.setdefault('team_hp', {})
+    for team in set(teams.values()):
+        try:
+            current_hp = int(team_hp.get(team, limit))
+        except (TypeError, ValueError):
+            current_hp = limit
+        team_hp[team] = max(0, min(current_hp, limit))
+    return team_hp
+
 def normalize_battle_room(room):
     room.setdefault('redraw_turns', {})
     room.setdefault('reload_after_turn', [])
     room.setdefault('submitted', {})
     room.setdefault('log', [])
     room.setdefault('chat', [])
+    room.setdefault('team_chat', [])
     room.setdefault('spectators', [])
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
@@ -4456,6 +4575,7 @@ def normalize_battle_room(room):
         except (TypeError, ValueError):
             current_hp = BATTLE_MAX_HP
         hp[player] = max(0, min(current_hp, BATTLE_MAX_HP))
+    ensure_battle_team_hp(room)
     return room
 
 def battle_room_for_user(username, state_data=None):
@@ -4603,18 +4723,21 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False):
         'players': players,
         'teams': teams,
         'hp': {player: BATTLE_MAX_HP for player in players},
+        'team_hp': {},
         'hands': {player: deal_battle_hand() for player in players},
         'reload_after_turn': [],
         'redraw_turns': {},
         'submitted': {},
         'log': [],
         'chat': [],
+        'team_chat': [],
         'spectators': [],
         'turn': 1,
         'turn_started_at': current_timestamp(),
         'winner': None,
         'bot': bool(bot),
     }
+    ensure_battle_team_hp(room)
     state_data.setdefault('rooms', {})[room_id] = room
     for player in players:
         if not is_battle_bot(player):
@@ -4732,13 +4855,19 @@ def battle_power_for_keys(keys):
         total += max(1, power * percent // 100)
     return total
 
+def battle_bonus_scale(labels):
+    return BATTLE_BONUS_DENOMINATOR + (BATTLE_BONUS_PER_MATCH_BPS * len(labels))
+
+def battle_bonus_multiplier(labels):
+    return battle_bonus_scale(labels) / BATTLE_BONUS_DENOMINATOR
+
 def apply_battle_bonus_value(value, labels):
-    return max(0, int(value) * (2 + len(labels)) // 2)
+    return max(0, int(value) * battle_bonus_scale(labels) // BATTLE_BONUS_DENOMINATOR)
 
 def battle_defense_breakdown_for_keys(keys):
     labels = repeated_battle_bonus_labels(keys)
     base_defense = battle_power_for_keys(keys) * BATTLE_DEFENSE_PERCENT // 100
-    return apply_battle_bonus_value(base_defense, labels), 1 + (0.5 * len(labels)), labels
+    return apply_battle_bonus_value(base_defense, labels), battle_bonus_multiplier(labels), labels
 
 def battle_defense_for_keys(keys):
     defense, _, _ = battle_defense_breakdown_for_keys(keys)
@@ -4801,17 +4930,21 @@ def repeated_battle_bonus_labels(keys):
 
 def battle_bonus_for_keys(keys):
     labels = repeated_battle_bonus_labels(keys)
-    return 1 + (0.5 * len(labels)), labels
+    return battle_bonus_multiplier(labels), labels
+
+def format_battle_multiplier(multiplier):
+    text = f'{float(multiplier):.3f}'.rstrip('0').rstrip('.')
+    return text or '1'
 
 def battle_bonus_text(labels, multiplier):
     if not labels:
         return ''
-    return f" / {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
+    return f" / {t('battle_bonus')} x{format_battle_multiplier(multiplier)}: {', '.join(labels[:5])}"
 
 def battle_defense_bonus_text(labels, multiplier):
     if not labels:
         return ''
-    return f" / {t('battle_defense')} {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
+    return f" / {t('battle_defense')} {t('battle_bonus')} x{format_battle_multiplier(multiplier)}: {', '.join(labels[:5])}"
 
 def battle_log_label(labels):
     return labels.get(state.lang, labels.get('en', ''))
@@ -4878,11 +5011,11 @@ def battle_entry_for_player(room, player):
         'defense_multiplier': defense_multiplier,
         'defense_bonus_labels': defense_bonus_labels,
         'defenseless': bool(submitted.get('defenseless')),
+        'target': clean_username(submitted.get('target')),
     }
 
-def battle_damage_after_defense(win_power, lose_power, defense, multiplier):
-    multiplier_halves = max(0, int(round(float(multiplier) * 2)))
-    raw_damage = max(0, int(win_power) - int(lose_power)) * multiplier_halves // 2
+def battle_damage_after_defense(win_power, lose_power, defense, labels):
+    raw_damage = apply_battle_bonus_value(max(0, int(win_power) - int(lose_power)), labels)
     return max(0, raw_damage - max(0, int(defense or 0)))
 
 def battle_defense_text(entry):
@@ -4963,6 +5096,13 @@ def append_battle_log(room, text):
 
 def active_battle_players(room):
     hp = room.setdefault('hp', {})
+    if room.get('mode') == TEAM_MODE:
+        teams = room.get('teams', {})
+        team_hp = ensure_battle_team_hp(room)
+        return [
+            player for player in room.get('players', [])
+            if hp.get(player, BATTLE_MAX_HP) > 0 and team_hp.get(teams.get(player), BATTLE_MAX_HP) > 0
+        ]
     return [player for player in room.get('players', []) if hp.get(player, BATTLE_MAX_HP) > 0]
 
 def battle_turn_elapsed_seconds(room):
@@ -4974,18 +5114,25 @@ def battle_turn_time_left(room):
 
 def set_battle_winner_if_finished(room):
     players = room.get('players', [])
-    alive = [player for player in players if room.setdefault('hp', {}).get(player, 0) > 0]
     mode = room.get('mode', DUEL_MODE)
     count_wins = not room.get('bot')
-    if not alive:
-        room['winner'] = 'draw'
-        return True
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
-        alive_teams = {teams.get(player) for player in alive if teams.get(player)}
+        team_hp = ensure_battle_team_hp(room)
+        alive_teams = {
+            teams.get(player)
+            for player in players
+            if teams.get(player) and room.setdefault('hp', {}).get(player, 0) > 0 and team_hp.get(teams.get(player), 0) > 0
+        }
+        if not alive_teams:
+            room['winner'] = 'draw'
+            return True
         if len(alive_teams) == 1:
             winning_team = next(iter(alive_teams))
-            winners = [player for player in players if teams.get(player) == winning_team and room['hp'].get(player, 0) > 0]
+            winners = [
+                player for player in players
+                if teams.get(player) == winning_team and room.setdefault('hp', {}).get(player, 0) > 0
+            ]
             room['winner'] = f"team:{winning_team}"
             if count_wins:
                 for winner in winners:
@@ -4993,6 +5140,10 @@ def set_battle_winner_if_finished(room):
                         add_battle_win(winner)
             return True
         return False
+    alive = [player for player in players if room.setdefault('hp', {}).get(player, 0) > 0]
+    if not alive:
+        room['winner'] = 'draw'
+        return True
     if len(alive) == 1:
         room['winner'] = alive[0]
         if count_wins and not is_battle_bot(alive[0]):
@@ -5000,16 +5151,61 @@ def set_battle_winner_if_finished(room):
         return True
     return False
 
-def apply_battle_surrender(room, player, timeout=False):
+def next_battle_bot_name(room):
+    used = set(room.get('players', []))
+    if BOT_USERNAME not in used:
+        return BOT_USERNAME
+    index = 2
+    while f'{BOT_USERNAME}{index}' in used:
+        index += 1
+    return f'{BOT_USERNAME}{index}'
+
+def replace_battle_player_with_bot(room, player, state_data=None):
+    player = clean_username(player)
+    if not player or is_battle_bot(player) or player not in room.get('players', []):
+        return None
+    bot_name = next_battle_bot_name(room)
+    players = room.setdefault('players', [])
+    players[players.index(player)] = bot_name
+    room.setdefault('hp', {})[bot_name] = max(1, int(room.setdefault('hp', {}).pop(player, BATTLE_MAX_HP) or BATTLE_MAX_HP))
+    room.setdefault('hands', {})[bot_name] = list(room.setdefault('hands', {}).pop(player, deal_battle_hand()))
+    if not room['hands'].get(bot_name):
+        room['hands'][bot_name] = deal_battle_hand()
+    if player in room.setdefault('reload_after_turn', []):
+        room['reload_after_turn'] = [bot_name if name == player else name for name in room.get('reload_after_turn', [])]
+    room.setdefault('redraw_turns', {})[bot_name] = room.setdefault('redraw_turns', {}).pop(player, 0)
+    room.setdefault('submitted', {}).pop(player, None)
+    for submitted in room.setdefault('submitted', {}).values():
+        if clean_username(submitted.get('target')) == player:
+            submitted['target'] = bot_name
+    if room.get('mode') == TEAM_MODE:
+        teams = room.setdefault('teams', {})
+        teams[bot_name] = teams.pop(player, 'A')
+        ensure_battle_team_hp(room)
+    spectators = room.setdefault('spectators', [])
+    if player not in spectators:
+        spectators.append(player)
+    if state_data is not None:
+        state_data.setdefault('user_room', {}).pop(player, None)
+        state_data.setdefault('spectator_room', {})[player] = room.get('id')
+    room['bot'] = True
+    append_battle_log(room, t('battle_bot_replacement_log').format(player=player, bot=bot_name))
+    return bot_name
+
+def apply_battle_surrender(room, player, state_data=None, timeout=False):
     player = clean_username(player)
     if not player or room.get('winner') or player not in room.get('players', []):
         return False
     if room.setdefault('hp', {}).get(player, BATTLE_MAX_HP) <= 0:
         return False
-    room['hp'][player] = 0
-    room.setdefault('submitted', {}).pop(player, None)
     surrender_key = 'battle_timeout_surrender_log' if timeout else 'battle_surrender_log'
     append_battle_log(room, t(surrender_key).format(player=player))
+    if replace_battle_player_with_bot(room, player, state_data):
+        submit_bot_players(room)
+        set_battle_winner_if_finished(room)
+        return True
+    room['hp'][player] = 0
+    room.setdefault('submitted', {}).pop(player, None)
     set_battle_winner_if_finished(room)
     return True
 
@@ -5027,6 +5223,7 @@ def resolve_battle_turn(room):
 
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
+        team_hp = ensure_battle_team_hp(room)
         team_keys = {}
         team_power = {}
         team_defense = {}
@@ -5043,39 +5240,44 @@ def resolve_battle_turn(room):
                 winning_team, win_power = sorted_teams[0]
                 losing_team, lose_power = sorted_teams[1]
                 multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []))
-                damage = battle_damage_after_defense(win_power, lose_power, team_defense.get(losing_team, 0), multiplier)
+                damage = battle_damage_after_defense(win_power, lose_power, team_defense.get(losing_team, 0), labels)
                 losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
-                split_damage = max(1, damage // max(1, len(losing_players))) if damage else 0
-                for player in losing_players:
-                    room['hp'][player] = max(0, room['hp'].get(player, BATTLE_MAX_HP) - split_damage)
-                if split_damage > 0:
+                if damage:
+                    team_hp[losing_team] = max(0, team_hp.get(losing_team, battle_team_hp_limit(room)) - damage)
+                if damage > 0:
                     winners = [player for player in players if teams.get(player) == winning_team]
                     losers = losing_players
                 defense_note = battle_group_defense_text(entries, losing_players)
-                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(split_damage)} {t('battle_damage_each')}{defense_note}{battle_bonus_text(labels, multiplier)}")
+                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(damage)}{defense_note}{battle_bonus_text(labels, multiplier)}")
     elif mode == FFA_MODE:
-        sorted_players = sorted(players, key=lambda player: entries[player]['power'], reverse=True)
-        if len(sorted_players) >= 2 and entries[sorted_players[0]]['power'] == entries[sorted_players[1]]['power']:
-            result_parts.append('draw')
-        else:
-            winner = sorted_players[0]
-            winners = [winner]
-            for loser in sorted_players[1:]:
-                if room['hp'].get(loser, 0) <= 0:
-                    continue
-                multiplier, labels = battle_bonus_for_keys(entries[winner]['keys'])
-                damage = battle_damage_after_defense(entries[winner]['power'], entries[loser]['power'], entries[loser].get('defense', 0), multiplier)
-                room['hp'][loser] = max(0, room['hp'].get(loser, BATTLE_MAX_HP) - damage)
-                if damage > 0:
-                    losers.append(loser)
-                result_parts.append(f"{winner} vs {loser}: {loser} -{format_battle_number(damage)}{battle_defense_text(entries[loser])}{battle_bonus_text(labels, multiplier)}")
+        damage_events = []
+        for attacker in players:
+            entry = entries.get(attacker, {})
+            if entry.get('defenseless'):
+                continue
+            target = clean_username(entry.get('target'))
+            if target not in players or target == attacker or room['hp'].get(target, 0) <= 0:
+                result_parts.append(f"{attacker}: {t('battle_select_target_required')}")
+                continue
+            if entry.get('power', 0) <= entries[target].get('power', 0):
+                result_parts.append(f"{attacker} -> {target}: draw")
+                continue
+            multiplier, labels = battle_bonus_for_keys(entry.get('keys', []))
+            damage = battle_damage_after_defense(entry.get('power', 0), entries[target].get('power', 0), entries[target].get('defense', 0), labels)
+            damage_events.append((attacker, target, damage, labels, multiplier))
+        for attacker, target, damage, labels, multiplier in damage_events:
+            room['hp'][target] = max(0, room['hp'].get(target, BATTLE_MAX_HP) - damage)
+            if damage > 0:
+                winners.append(attacker)
+                losers.append(target)
+            result_parts.append(f"{attacker} -> {target}: {target} -{format_battle_number(damage)}{battle_defense_text(entries[target])}{battle_bonus_text(labels, multiplier)}")
     else:
         player_one, player_two = players[:2]
         power_one = entries[player_one]['power']
         power_two = entries[player_two]['power']
         if power_one > power_two:
             multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'])
-            damage = battle_damage_after_defense(power_one, power_two, entries[player_two].get('defense', 0), multiplier)
+            damage = battle_damage_after_defense(power_one, power_two, entries[player_two].get('defense', 0), labels)
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
             if damage > 0:
                 winners = [player_one]
@@ -5083,7 +5285,7 @@ def resolve_battle_turn(room):
             result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
             multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
-            damage = battle_damage_after_defense(power_two, power_one, entries[player_one].get('defense', 0), multiplier)
+            damage = battle_damage_after_defense(power_two, power_one, entries[player_one].get('defense', 0), labels)
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
             if damage > 0:
                 winners = [player_two]
@@ -5125,12 +5327,17 @@ def submit_bot_players(room):
         selected = [] if defenseless else choose_bot_battle_cards(hand)
         selected_set = set(selected)
         defense_keys = [] if defenseless else [key for key in hand if key not in selected_set]
+        target = None
+        if room.get('mode') == FFA_MODE and not defenseless:
+            targets = [name for name in active_battle_players(room) if name != player]
+            target = random.choice(targets) if targets else None
         room['submitted'][player] = {
             'keys': selected,
             'power': 0 if defenseless else battle_power_for_keys(selected),
             'defense_keys': defense_keys,
             'defense': 0 if defenseless else battle_defense_for_keys(defense_keys),
             'defenseless': defenseless,
+            'target': target,
         }
 
 def battle_all_players_submitted(room):
@@ -5160,7 +5367,7 @@ def process_battle_timeouts(state_data):
             if player not in room.get('submitted', {}) and not is_battle_bot(player)
         ]
         for player in timed_out_players:
-            changed = apply_battle_surrender(room, player, timeout=True) or changed
+            changed = apply_battle_surrender(room, player, state_data, timeout=True) or changed
         if not room.get('winner') and battle_all_players_submitted(room):
             resolve_battle_turn(room)
             changed = True
@@ -5189,6 +5396,13 @@ def submit_battle_hand():
     if not defenseless and not selected:
         ui.notify(t('battle_select_card_required'), color='warning')
         return
+    target = None
+    if room.get('mode') == FFA_MODE and not defenseless:
+        active_targets = [player for player in active_battle_players(room) if player != username]
+        target = clean_username(state.battle_attack_target)
+        if target not in active_targets:
+            ui.notify(t('battle_select_target_required'), color='warning')
+            return
     selected_set = set(selected)
     defense_keys = [] if defenseless else [key for key in hand if key not in selected_set]
     room['submitted'][username] = {
@@ -5197,9 +5411,11 @@ def submit_battle_hand():
         'defense_keys': defense_keys,
         'defense': 0 if defenseless else battle_defense_for_keys(defense_keys),
         'defenseless': defenseless,
+        'target': target,
     }
     submit_bot_players(room)
     state.battle_selected_keys = set()
+    state.battle_attack_target = None
     if battle_all_players_submitted(room):
         resolve_battle_turn(room)
     save_battle_state(state_data)
@@ -5212,8 +5428,9 @@ def surrender_battle():
     if not room or room.get('winner') or not username or username not in room.get('players', []):
         refresh_battle_view()
         return
-    if apply_battle_surrender(room, username):
+    if apply_battle_surrender(room, username, state_data):
         state.battle_selected_keys = set()
+        state.battle_attack_target = None
         if not room.get('winner') and battle_all_players_submitted(room):
             resolve_battle_turn(room)
         save_battle_state(state_data)
@@ -5245,6 +5462,7 @@ def redraw_battle_hand():
     room['hands'][username] = draw_battle_cards(count)
     redraw_turns[username] = turn
     state.battle_selected_keys = set()
+    state.battle_attack_target = None
     room.setdefault('log', []).insert(0, t('battle_redraw_log').format(player=username, count=count))
     del room['log'][12:]
     save_battle_state(state_data)
@@ -5313,6 +5531,30 @@ def send_battle_chat(message):
     save_battle_state(state_data)
     refresh_battle_view()
 
+def send_battle_team_chat(message):
+    username = state.current_user
+    text = str(message or '').strip()
+    if not username or not text:
+        return
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
+    if not room or room.get('mode') != TEAM_MODE or username not in room.get('players', []):
+        refresh_battle_view()
+        return
+    team = room.get('teams', {}).get(username)
+    if not team:
+        refresh_battle_view()
+        return
+    room.setdefault('team_chat', []).insert(0, {
+        'team': team,
+        'user': username,
+        'text': text[:160],
+        'timestamp': current_timestamp(),
+    })
+    del room['team_chat'][40:]
+    save_battle_state(state_data)
+    refresh_battle_view()
+
 def battle_screen_signature():
     state_data = load_battle_state_with_timeouts()
     room = battle_room_for_user(state.current_user, state_data)
@@ -5322,10 +5564,12 @@ def battle_screen_signature():
             'turn': room.get('turn'),
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
+            'team_hp': room.get('team_hp', {}),
             'submitted': sorted(room.get('submitted', {}).keys()),
             'reload': sorted(room.get('reload_after_turn', [])),
             'log_head': room.get('log', [])[:1],
             'chat_head': room.get('chat', [])[:1],
+            'team_chat_head': room.get('team_chat', [])[:1],
             'spectators': sorted(room.get('spectators', [])),
         }
     else:
@@ -5431,6 +5675,7 @@ def show_screen(screen_name):
     if screen_name == 'top':
         state.search_keyword = ''
         state.filter_region = None
+        state.filter_tag_group = None
         state.filter_tag = None
         state.sort_field = 'name'
         state.sort_order = 'asc'
@@ -5883,6 +6128,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
         def refresh_main_ui():
             render_header(header_container_main)
             r_opts, t_opts = get_filter_options()
+            tag_group_opts = get_tag_group_options()
             update_mode_classes(
                 main_content,
                 'w-full max-w-5xl p-6 gap-6 self-center',
@@ -5923,6 +6169,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
                     ui.select(r_opts, value=selected_region_label(), label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
+                    ui.select(tag_group_opts, value=selected_tag_group_label(), label=t('tag_group'), on_change=lambda e: set_tag_group_filter(e.value), clearable=True) \
+                        .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.button(favorite_filter_label(), icon=favorite_filter_icon(), on_click=toggle_favorites_filter) \
@@ -5953,6 +6201,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             state.filter_region = normalize_region_value(val)
             state.page = 1
             refresh_search_list()
+
+        def set_tag_group_filter(val):
+            state.filter_tag_group = normalize_tag_group_value(val)
+            allowed_tags = tag_group_allowed_tags(state.filter_tag_group)
+            if allowed_tags is not None and state.filter_tag not in allowed_tags:
+                state.filter_tag = None
+            state.page = 1
+            refresh_main_ui()
 
         def set_tag_filter(val):
             state.filter_tag = normalize_tag_value(val)
@@ -7107,10 +7363,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
     battle_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
     battle_countdown_label = {'component': None}
 
-    def render_hp_bar(label, hp):
+    def render_hp_bar(label, hp, max_hp=BATTLE_MAX_HP):
         with ui.column().classes('w-full gap-1'):
-            ui.label(f'{label}: {t("battle_hp")} {format_battle_number(hp)} / {format_battle_number(BATTLE_MAX_HP)}').classes('text-sm font-bold text-gray-700')
-            ui.linear_progress(value=max(0, min(1, hp / BATTLE_MAX_HP))).props('color=red')
+            ui.label(f'{label}: {t("battle_hp")} {format_battle_number(hp)} / {format_battle_number(max_hp)}').classes('text-sm font-bold text-gray-700')
+            ui.linear_progress(value=max(0, min(1, hp / max_hp if max_hp else 0))).props('color=red')
 
     def render_battle_help():
         help_data = battle_help_labels()
@@ -7155,6 +7411,24 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 stamp = format_timestamp(entry.get('timestamp'))
                 ui.label(f"{user} [{stamp}]: {text}").classes('text-sm text-gray-700')
 
+    def render_battle_team_chat(room):
+        username = state.current_user
+        team = room.get('teams', {}).get(username)
+        if room.get('mode') != TEAM_MODE or not team or username not in room.get('players', []):
+            return
+        entries = [entry for entry in room.get('team_chat', []) if entry.get('team') == team]
+        with ui.card().classes('w-full p-5 gap-3 border border-blue-100 bg-blue-50'):
+            ui.label(t('battle_team_chat')).classes('text-xl font-bold text-[#1a2332]')
+            chat_input = ui.input(placeholder=t('battle_team_chat_placeholder')).props('outlined dense').classes('w-full bg-white')
+            ui.button(t('battle_send'), icon='send', on_click=lambda *_: send_battle_team_chat(chat_input.value)).props('color=primary dense')
+            if not entries:
+                ui.label('-').classes('text-gray-500')
+            for entry in entries[:10]:
+                user = entry.get('user', '')
+                text = entry.get('text', '')
+                stamp = format_timestamp(entry.get('timestamp'))
+                ui.label(f"{user} [{stamp}]: {text}").classes('text-sm text-gray-700')
+
     def render_battle_room(room):
         players = room.get('players', [])
         if len(players) < 2:
@@ -7173,12 +7447,19 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             ui.label(t('battle_auto_notice')).classes('text-xs text-gray-500')
             if not winner:
                 battle_countdown_label['component'] = ui.label(t('battle_time_left').format(seconds=battle_turn_time_left(room))).classes('text-sm font-bold text-orange-700')
-            with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
-                for player in players:
-                    label = player
-                    if mode == TEAM_MODE:
-                        label = f"{player} ({t('battle_team')} {teams.get(player, '-')})"
-                    render_hp_bar(label, room.setdefault('hp', {}).get(player, BATTLE_MAX_HP))
+            if mode == TEAM_MODE:
+                team_hp = ensure_battle_team_hp(room)
+                team_limit = battle_team_hp_limit(room)
+                with ui.grid(columns=1 if is_mobile_ui() else min(2, len(team_hp))).classes('w-full gap-4'):
+                    for team in sorted(team_hp):
+                        render_hp_bar(f"{t('battle_team')} {team}", team_hp.get(team, team_limit), team_limit)
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    for player in players:
+                        ui.badge(f"{player}: {t('battle_team')} {teams.get(player, '-')}", color='blue' if room.setdefault('hp', {}).get(player, 0) > 0 else 'grey')
+            else:
+                with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
+                    for player in players:
+                        render_hp_bar(player, room.setdefault('hp', {}).get(player, BATTLE_MAX_HP))
 
             if winner:
                 is_winner = winner == username or (
@@ -7198,6 +7479,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
                     else:
                         ui.button(t('battle_leave_spectate'), icon='visibility_off', on_click=leave_battle_spectate).props('outline color=primary')
+                render_battle_team_chat(room)
                 render_battle_chat(room)
                 return
 
@@ -7229,6 +7511,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                             if redraw_used:
                                 redraw_button.disable()
                                 redraw_button.tooltip(t('battle_redraw_used'))
+                    if mode == FFA_MODE:
+                        target_options = [player for player in active_battle_players(room) if player != username]
+                        if state.battle_attack_target not in target_options:
+                            state.battle_attack_target = None
+                        ui.select(
+                            target_options,
+                            value=state.battle_attack_target,
+                            label=t('battle_attack_target'),
+                            on_change=lambda e: setattr(state, 'battle_attack_target', e.value),
+                        ).props('outlined dense').classes('w-full bg-white')
                     with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
                         for key in hand:
                             render_battle_card(key, lookup)
@@ -7236,6 +7528,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.button(t('battle_surrender'), icon='flag', on_click=surrender_battle).props('outline color=negative')
                         ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
 
+        render_battle_team_chat(room)
         render_battle_chat(room)
         with ui.card().classes('w-full p-5 gap-3'):
             ui.label(t('battle_log')).classes('text-xl font-bold text-[#1a2332]')
