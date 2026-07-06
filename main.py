@@ -4443,6 +4443,55 @@ def battle_bonus_text(labels, multiplier):
         return ''
     return f" / {t('battle_bonus')} x{multiplier:g}: {', '.join(labels[:5])}"
 
+def battle_log_label(labels):
+    return labels.get(state.lang, labels.get('en', ''))
+
+def battle_played_cards_title():
+    return battle_log_label({
+        'ja': '\u51fa\u3057\u305f\u30ab\u30fc\u30c9',
+        'en': 'Played cards',
+        'zh': '\u6253\u51fa\u7684\u724c',
+    })
+
+def battle_no_cards_label():
+    return battle_log_label({
+        'ja': '\u306a\u3057',
+        'en': 'none',
+        'zh': '\u65e0',
+    })
+
+def battle_defenseless_log_label():
+    return battle_log_label({
+        'ja': '\u7121\u9632\u5099',
+        'en': 'defenseless',
+        'zh': '\u65e0\u9632\u5907',
+    })
+
+def battle_country_names_for_keys(keys, lookup=None):
+    lookup = lookup or battle_country_lookup()
+    names = []
+    for key in keys:
+        country = lookup.get(key)
+        if not country:
+            continue
+        names.append(get_localized_text(country.get('names', {})) or str(key))
+    return names
+
+def battle_played_cards_log(room, entries):
+    lookup = battle_country_lookup()
+    parts = []
+    for player in room.get('players', []):
+        entry = entries.get(player, {})
+        if entry.get('defenseless'):
+            card_text = battle_defenseless_log_label()
+        else:
+            names = battle_country_names_for_keys(entry.get('keys', []), lookup)
+            card_text = ', '.join(names) if names else battle_no_cards_label()
+        parts.append(f'{player}: {card_text}')
+    if not parts:
+        return ''
+    return f"{battle_played_cards_title()}: {' / '.join(parts)}"
+
 def battle_entry_for_player(room, player):
     submitted = room.setdefault('submitted', {}).get(player, {})
     return {
@@ -4530,7 +4579,7 @@ def resolve_battle_turn(room):
         return
     entries = {player: battle_entry_for_player(room, player) for player in players}
     reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
-    result_parts = []
+    result_parts = [battle_played_cards_log(room, entries)]
     winners = []
     losers = []
     mode = room.get('mode', DUEL_MODE)
@@ -6599,7 +6648,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if not room.get('log'):
                 ui.label('-').classes('text-gray-500')
             for entry in room.get('log', []):
-                ui.label(entry).classes('text-sm text-gray-700')
+                ui.label(entry).classes('text-sm text-gray-700 whitespace-normal break-words')
 
     def refresh_battle_view():
         state.battle_last_signature = battle_screen_signature()
