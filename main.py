@@ -4181,13 +4181,22 @@ def parse_profile_number(value):
         number *= 10_000
     return max(1, number)
 
-def country_battle_power(country):
+def country_battle_raw_power(country):
     area = parse_profile_number(raw_profile_value(country, 'area'))
     population = parse_profile_number(raw_profile_value(country, 'population'))
-    power = int(area * population)
-    while power > 1000:
-        power //= 10
-    return max(1, min(1000, power))
+    return max(1, int(area * population))
+
+def battle_power_scale_max(data=None):
+    raw_values = [country_battle_raw_power(country) for country in battle_country_list(data)]
+    return max(raw_values) if raw_values else 1
+
+def country_battle_power(country, scale_max=None):
+    scale_max = max(1, int(scale_max or battle_power_scale_max()))
+    raw_power = country_battle_raw_power(country)
+    if raw_power >= scale_max:
+        return 1000
+    scaled_power = int(raw_power / scale_max * 1000)
+    return max(1, min(1000, scaled_power))
 
 def battle_country_list(data=None):
     data = data or get_data()
@@ -4232,7 +4241,7 @@ def battle_help_labels():
                     '\u6226\u95d8\u529b',
                     [
                         '\u5404\u56fd\u306e\u6226\u95d8\u529b\u306f\u300c\u9762\u7a4d \u00d7 \u4eba\u53e3\u300d\u3092\u5143\u306b\u8a08\u7b97\u3057\u307e\u3059\u3002',
-                        '\u5024\u304c1000\u3092\u8d85\u3048\u308b\u5834\u5408\u306f\u30011000\u4ee5\u4e0b\u306b\u306a\u308b\u307e\u306710\u3067\u5272\u308a\u30011\u301c1000\u306e\u7bc4\u56f2\u306b\u53ce\u3081\u307e\u3059\u3002',
+                        '\u5168\u30ab\u30fc\u30c9\u306e\u4e2d\u3067\u300c\u9762\u7a4d \u00d7 \u4eba\u53e3\u300d\u304c\u6700\u5927\u306e\u56fd\u30921000\u3068\u3057\u3001\u4ed6\u306e\u56fd\u306f\u305d\u306e\u6bd4\u7387\u30671\u301c1000\u306b\u63db\u7b97\u3057\u307e\u3059\u3002',
                         '\u8907\u6570\u679a\u3092\u51fa\u3057\u305f\u5834\u5408\u306f\u3001\u9078\u3093\u3060\u56fd\u306e\u6226\u95d8\u529b\u3092\u5408\u8a08\u3057\u307e\u3059\u3002\u305f\u3060\u3057\u624b\u306e\u5408\u8a08\u6226\u95d8\u529b\u30821000\u304c\u4e0a\u9650\u3067\u3059\u3002',
                         '\u624b\u672d\u9078\u629e\u4e2d\u306e\u6226\u95d8\u529b\u306f\u975e\u8868\u793a\u3067\u3059\u3002\u56fd\u306e\u30c7\u30fc\u30bf\u3092\u899a\u3048\u3066\u3044\u308b\u304b\u304c\u52dd\u8ca0\u306e\u30dd\u30a4\u30f3\u30c8\u3067\u3059\u3002',
                     ],
@@ -4259,7 +4268,7 @@ def battle_help_labels():
             'title': 'How to Play and Power Rules',
             'sections': [
                 ('Basic Rules', ['Each player starts with 10000 HP and receives five random country cards.', 'You may play any number of cards, but cards are not refilled until your hand is empty.', 'An empty hand makes you defenseless for one turn, then you draw five new cards.', 'Once per turn, you may discard your current hand and redraw the same number of cards.']),
-                ('Power', ['Each country power is based on area x population.', 'Values over 1000 are divided by 10 until they fit within 1 to 1000.', 'Played cards are summed, but the hand power is also capped at 1000.', 'Power is hidden while choosing cards, so remembering country data matters.']),
+                ('Power', ['Each country power is based on area x population.', 'The country with the largest area x population becomes 1000, and all other countries are scaled proportionally from 1 to 1000.', 'Played cards are summed, but the hand power is also capped at 1000.', 'Power is hidden while choosing cards, so remembering country data matters.']),
                 ('Damage and Victory', ['The higher hand power wins the turn.', 'Base damage is winner power minus loser power.', 'When you win, you steal one remaining card from the loser. Bot wins are not counted in rankings.']),
                 ('Match Bonus', ['The match bonus only checks cards you played this turn, not the opponent cards.', 'A single card never triggers it. With two or more cards, repeated tags or regions trigger it.', 'Each repeated tag or region adds +0.5 to the damage multiplier, with no upper limit.']),
             ],
@@ -4268,7 +4277,7 @@ def battle_help_labels():
             'title': '\u73a9\u6cd5\u4e0e\u6218\u529b\u8bf4\u660e',
             'sections': [
                 ('\u57fa\u672c\u89c4\u5219', ['\u6bcf\u4f4d\u73a9\u5bb6HP\u4e3a10000\uff0c\u968f\u673a\u83b7\u5f975\u5f20\u56fd\u5bb6\u5361\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u6253\u51fa\u4efb\u610f\u5f20\u6570\uff0c\u624b\u724c\u7528\u5b8c\u524d\u4e0d\u4f1a\u8865\u5145\u3002', '\u624b\u724c\u4e3a\u7a7a\u65f6\u4e0b\u4e00\u56de\u5408\u65e0\u9632\u5907\uff0c\u518d\u4e0b\u4e00\u56de\u5408\u91cd\u65b0\u62bd5\u5f20\u3002', '\u6bcf\u56de\u5408\u53ef\u4ee5\u5c06\u5f53\u524d\u624b\u724c\u5168\u90e8\u5f03\u6389\u5e76\u91cd\u62bd\u540c\u6837\u5f20\u6570\u4e00\u6b21\u3002']),
-                ('\u6218\u529b', ['\u5404\u56fd\u6218\u529b\u57fa\u4e8e\u9762\u79ef \u00d7 \u4eba\u53e3\u8ba1\u7b97\u3002', '\u82e5\u6570\u503c\u8d85\u8fc71000\uff0c\u4f1a\u4e0d\u65ad\u9664\u4ee510\uff0c\u4f7f\u5176\u843d\u57281\u52301000\u4e4b\u95f4\u3002', '\u6253\u51fa\u591a\u5f20\u65f6\u4f1a\u5408\u8ba1\u6218\u529b\uff0c\u4f46\u624b\u724c\u603b\u6218\u529b\u4e5f\u4ee51000\u4e3a\u4e0a\u9650\u3002', '\u9009\u724c\u65f6\u6218\u529b\u4e0d\u663e\u793a\uff0c\u9700\u8981\u4f9d\u9760\u5bf9\u56fd\u5bb6\u6570\u636e\u7684\u8bb0\u5fc6\u3002']),
+                ('\u6218\u529b', ['\u5404\u56fd\u6218\u529b\u57fa\u4e8e\u9762\u79ef \u00d7 \u4eba\u53e3\u8ba1\u7b97\u3002', '\u5168\u90e8\u5361\u724c\u4e2d\u9762\u79ef \u00d7 \u4eba\u53e3\u6700\u5927\u7684\u56fd\u5bb6\u4e3a1000\uff0c\u5176\u4ed6\u56fd\u5bb6\u6309\u6bd4\u4f8b\u6362\u7b97\u52301\u52301000\u3002', '\u6253\u51fa\u591a\u5f20\u65f6\u4f1a\u5408\u8ba1\u6218\u529b\uff0c\u4f46\u624b\u724c\u603b\u6218\u529b\u4e5f\u4ee51000\u4e3a\u4e0a\u9650\u3002', '\u9009\u724c\u65f6\u6218\u529b\u4e0d\u663e\u793a\uff0c\u9700\u8981\u4f9d\u9760\u5bf9\u56fd\u5bb6\u6570\u636e\u7684\u8bb0\u5fc6\u3002']),
                 ('\u4f24\u5bb3\u4e0e\u80dc\u5229', ['\u6bd4\u8f83\u53cc\u65b9\u6253\u51fa\u7684\u624b\u724c\u6218\u529b\uff0c\u8f83\u9ad8\u8005\u83b7\u80dc\u3002', '\u57fa\u7840\u4f24\u5bb3\u4e3a\u80dc\u8005\u6218\u529b\u51cf\u53bb\u8d25\u8005\u6218\u529b\u3002', '\u83b7\u80dc\u65f6\u53ef\u4ee5\u4ece\u5bf9\u624b\u5269\u4f59\u624b\u724c\u4e2d\u593a\u53d61\u5f20\u3002BOT\u6218\u7684\u80dc\u573a\u4e0d\u8ba1\u5165\u6392\u884c\u3002']),
                 ('\u4e00\u81f4\u52a0\u6210', ['\u4e00\u81f4\u52a0\u6210\u53ea\u68c0\u67e5\u81ea\u5df1\u672c\u56de\u5408\u6253\u51fa\u7684\u5361\u724c\uff0c\u4e0d\u68c0\u67e5\u5bf9\u624b\u7684\u5361\u3002', '\u53ea\u6253\u51fa1\u5f20\u65f6\u4e0d\u4f1a\u53d1\u52a8\u30022\u5f20\u4ee5\u4e0a\u4e2d\u6807\u7b7e\u6216\u5730\u57df\u91cd\u590d\u65f6\u53d1\u52a8\u3002', '\u6bcf\u4e2a\u91cd\u590d\u7684\u6807\u7b7e\u6216\u5730\u57df\u90fd\u4f7f\u4f24\u5bb3\u500d\u7387+0.5\uff0c\u6ca1\u6709\u4e0a\u9650\u3002']),
             ],
@@ -4626,7 +4635,8 @@ def add_battle_win(username):
 
 def battle_power_for_keys(keys):
     lookup = battle_country_lookup()
-    power = sum(country_battle_power(lookup[key]) for key in keys if key in lookup)
+    scale_max = battle_power_scale_max()
+    power = sum(country_battle_power(lookup[key], scale_max) for key in keys if key in lookup)
     return max(0, min(1000, power))
 
 def battle_tags_for_keys(keys):
