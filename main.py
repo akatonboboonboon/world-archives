@@ -4150,19 +4150,19 @@ def quiz_tag_counts(countries):
             counts[tag] = counts.get(tag, 0) + 1
     return counts
 
-def eligible_quiz_tags_for_country(country, countries):
+def eligible_quiz_tags_for_country(country, countries, tag_counts=None, tag_total=None):
     tags = [tag for tag in country.get('tags', []) if tag]
     if not tags:
         return []
-    counts = quiz_tag_counts(countries)
-    total = len(countries)
+    counts = tag_counts or quiz_tag_counts(countries)
+    total = tag_total if tag_total is not None else len(countries)
     return [
         tag for tag in tags
         if counts.get(tag, 0) >= 2 and counts.get(tag, 0) < total
     ]
 
-def choose_quiz_tag(country, countries):
-    tags = eligible_quiz_tags_for_country(country, countries)
+def choose_quiz_tag(country, countries, tag_counts=None, tag_total=None):
+    tags = eligible_quiz_tags_for_country(country, countries, tag_counts, tag_total)
     return random.choice(tags) if tags else None
 
 def quiz_display_value(country, question_type):
@@ -4223,14 +4223,14 @@ def quiz_question_value(country, question_type):
         return normalized_text(first_sentence(detail_value(country, field)))
     return ''
 
-def quiz_candidates_for_type(countries, question_type):
+def quiz_candidates_for_type(countries, question_type, tag_counts=None, tag_total=None):
     question_type = quiz_base_type(question_type)
     if question_type == 'desc':
         return [c for c in countries if quiz_question_value(c, question_type)]
     if question_type == 'capital':
         return [c for c in countries if quiz_question_value(c, question_type) not in ['', '-']]
     if question_type == 'tag':
-        return [c for c in countries if eligible_quiz_tags_for_country(c, countries)]
+        return [c for c in countries if eligible_quiz_tags_for_country(c, countries, tag_counts, tag_total)]
     if question_type == 'flag':
         return [c for c in countries if has_quiz_flag(c)]
     if question_type == 'period':
@@ -4241,7 +4241,7 @@ def quiz_candidates_for_type(countries, question_type):
         return [c for c in countries if quiz_question_value(c, question_type)]
     return []
 
-def build_quiz_options(answer, question_type, countries):
+def build_quiz_options(answer, question_type, countries, candidates=None):
     desired_count = quiz_option_count()
     answer_key = country_key(answer)
     answer_names = country_name_set(answer)
@@ -4251,7 +4251,7 @@ def build_quiz_options(answer, question_type, countries):
     used_names = set(answer_names)
     used_values = {answer_value} if answer_value else set()
 
-    candidates = quiz_candidates_for_type(countries, question_type)
+    candidates = list(candidates) if candidates is not None else quiz_candidates_for_type(countries, question_type)
     random.shuffle(candidates)
     for candidate in candidates:
         key = country_key(candidate)
@@ -4306,18 +4306,18 @@ def build_tag_quiz_options(answer, tag, countries):
     random.shuffle(selected)
     return selected
 
-def all_quiz_tags(countries):
-    counts = quiz_tag_counts(countries)
+def all_quiz_tags(countries, tag_counts=None):
+    counts = tag_counts or quiz_tag_counts(countries)
     total = len(countries)
     return sorted(
         [tag for tag, count in counts.items() if count >= 2 and count < total],
         key=lambda tag: tag_label(tag).lower(),
     )
 
-def reverse_quiz_answer_option(answer, question_type, countries):
+def reverse_quiz_answer_option(answer, question_type, countries, tag_counts=None, tag_total=None):
     base_type = quiz_base_type(question_type)
     if base_type == 'tag':
-        tag = choose_quiz_tag(answer, countries)
+        tag = choose_quiz_tag(answer, countries, tag_counts, tag_total)
         if not tag:
             return None
         return {
@@ -4341,10 +4341,10 @@ def reverse_quiz_answer_option(answer, question_type, countries):
         return None
     return {'value': value, 'label': label, 'image': None}
 
-def build_reverse_quiz_options(answer, question_type, countries):
+def build_reverse_quiz_options(answer, question_type, countries, tag_counts=None, candidates_by_type=None, all_tags=None):
     desired_count = quiz_option_count()
     base_type = quiz_base_type(question_type)
-    answer_payload = reverse_quiz_answer_option(answer, question_type, countries)
+    answer_payload = reverse_quiz_answer_option(answer, question_type, countries, tag_counts, len(countries))
     if not answer_payload:
         return None
 
@@ -4356,7 +4356,8 @@ def build_reverse_quiz_options(answer, question_type, countries):
         images[answer_value] = answer_payload['image']
 
     if base_type == 'tag':
-        candidates = [tag for tag in all_quiz_tags(countries) if tag != answer_value and tag not in answer.get('tags', [])]
+        tag_options = all_tags if all_tags is not None else all_quiz_tags(countries, tag_counts)
+        candidates = [tag for tag in tag_options if tag != answer_value and tag not in answer.get('tags', [])]
         random.shuffle(candidates)
         for tag in candidates:
             options.append(tag)
@@ -4364,7 +4365,7 @@ def build_reverse_quiz_options(answer, question_type, countries):
             if len(options) >= desired_count:
                 break
     else:
-        candidates = quiz_candidates_for_type(countries, base_type)
+        candidates = list((candidates_by_type or {}).get(base_type) or quiz_candidates_for_type(countries, base_type, tag_counts))
         random.shuffle(candidates)
         for candidate in candidates:
             if country_key(candidate) == country_key(answer):
@@ -4406,6 +4407,8 @@ def build_quiz():
     if len(countries) < 4:
         return None
     lookup = public_countries_by_key(data)
+    tag_counts = quiz_tag_counts(countries)
+    tag_options = all_quiz_tags(countries, tag_counts)
     answer_source = countries
     if state.quiz_mode == 'review':
         review_source = [lookup[key] for key in get_review_keys() if key in lookup]
@@ -4421,11 +4424,20 @@ def build_quiz():
         question_types.append(question_type)
         question_types.append(f'{question_type}_reverse')
 
+    option_candidates = {
+        question_type: quiz_candidates_for_type(countries, question_type, tag_counts, len(countries))
+        for question_type in base_question_types
+    }
+    answer_candidates = {
+        question_type: quiz_candidates_for_type(answer_source, question_type, tag_counts, len(countries))
+        for question_type in base_question_types
+    }
+
     question_pools = []
     for question_type in question_types:
         if not quiz_question_matches_category(question_type):
             continue
-        candidates = quiz_candidates_for_type(answer_source, question_type)
+        candidates = answer_candidates.get(quiz_base_type(question_type), [])
         if candidates:
             question_pools.append((question_type, candidates))
     if not question_pools:
@@ -4437,23 +4449,39 @@ def build_quiz():
         quiz_tag = None
         reverse_payload = None
         if quiz_is_reverse(question_type):
-            reverse_payload = build_reverse_quiz_options(answer, question_type, countries)
+            reverse_payload = build_reverse_quiz_options(
+                answer,
+                question_type,
+                countries,
+                tag_counts=tag_counts,
+                candidates_by_type=option_candidates,
+                all_tags=tag_options,
+            )
             if not reverse_payload:
                 continue
             options = reverse_payload['options']
             quiz_tag = reverse_payload.get('tag')
         elif quiz_base_type(question_type) == 'tag':
-            quiz_tag = choose_quiz_tag(answer, countries)
+            quiz_tag = choose_quiz_tag(answer, countries, tag_counts, len(countries))
             if not quiz_tag:
                 continue
             options = build_tag_quiz_options(answer, quiz_tag, countries)
         else:
-            options = build_quiz_options(answer, question_type, countries)
+            options = build_quiz_options(
+                answer,
+                question_type,
+                countries,
+                candidates=option_candidates.get(quiz_base_type(question_type)),
+            )
         if options:
+            if reverse_payload:
+                option_values = list(options)
+            else:
+                option_values = [country_key(option) for option in options]
             quiz = {
                 'type': question_type,
                 'answer_key': country_key(answer),
-                'options': [country_key(option) for option in options],
+                'options': option_values,
                 'selected_key': None,
                 'answered': False,
             }
