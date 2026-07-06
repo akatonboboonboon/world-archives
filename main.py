@@ -5194,7 +5194,6 @@ def battle_screen_signature():
         payload = {
             'room': room.get('id'),
             'turn': room.get('turn'),
-            'time_left': battle_turn_time_left(room),
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
             'submitted': sorted(room.get('submitted', {}).keys()),
@@ -6980,6 +6979,7 @@ ui.timer(2.0, poll_social_updates)
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
     battle_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
+    battle_countdown_label = {'component': None}
 
     def render_hp_bar(label, hp):
         with ui.column().classes('w-full gap-1'):
@@ -7046,7 +7046,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
             ui.label(t('battle_auto_notice')).classes('text-xs text-gray-500')
             if not winner:
-                ui.label(t('battle_time_left').format(seconds=battle_turn_time_left(room))).classes('text-sm font-bold text-orange-700')
+                battle_countdown_label['component'] = ui.label(t('battle_time_left').format(seconds=battle_turn_time_left(room))).classes('text-sm font-bold text-orange-700')
             with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
                 for player in players:
                     label = player
@@ -7119,6 +7119,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.label(entry).classes('text-sm text-gray-700 whitespace-normal break-words')
 
     def refresh_battle_view():
+        battle_countdown_label['component'] = None
         state.battle_last_signature = battle_screen_signature()
         render_header(header_container_battle)
         update_mode_classes(
@@ -7173,6 +7174,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
     def auto_refresh_battle():
         if not battle_screen.visible:
             return
+        countdown_label = battle_countdown_label.get('component')
+        if countdown_label:
+            room = battle_room_for_user(state.current_user, load_battle_state())
+            if room and not room.get('winner'):
+                countdown_label.set_text(t('battle_time_left').format(seconds=battle_turn_time_left(room)))
         signature = battle_screen_signature()
         if signature != state.battle_last_signature:
             refresh_battle_view()
