@@ -2823,33 +2823,101 @@ def country_option_maps(data=None):
         key_to_label[key] = label
     return label_to_key, key_to_label
 
+MAP_QUERY_OVERRIDES = {
+    'Aztec Empire': 'Templo Mayor, Mexico City, Mexico',
+    'Ayutthaya Kingdom': 'Ayutthaya Historical Park, Thailand',
+    'Crown of Aragon': 'Zaragoza, Spain',
+    'United Arab Republic': 'Cairo, Egypt',
+    'Ancient Egypt': 'Giza Necropolis, Egypt',
+    'Byzantine Empire': 'Istanbul, Turkey',
+    'Eastern Roman Empire': 'Istanbul, Turkey',
+    'Holy Roman Empire': 'Aachen, Germany',
+    'Inca Empire': 'Cusco, Peru',
+    'Mongol Empire': 'Karakorum, Mongolia',
+    'Ottoman Empire': 'Istanbul, Turkey',
+    'Roman Empire': 'Rome, Italy',
+    'Soviet Union': 'Moscow, Russia',
+    'Umayyad Caliphate': 'Damascus, Syria',
+    'Abbasid Caliphate': 'Baghdad, Iraq',
+    'Mamluk Sultanate': 'Cairo, Egypt',
+}
+
+def map_override_query(country):
+    names = country.get('names', {})
+    return MAP_QUERY_OVERRIDES.get(names.get('en')) or MAP_QUERY_OVERRIDES.get(get_localized_text(names))
+
+def normalize_map_place(value):
+    text = str(value or '').strip()
+    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'^(the|The)\s+', '', text)
+    return text.strip(' .。')
+
+def present_day_map_place(country):
+    explicit = country.get('map_place') or country.get('map_target')
+    if isinstance(explicit, dict):
+        explicit = explicit.get('en') or get_localized_text(explicit)
+    if explicit:
+        return normalize_map_place(explicit)
+
+    successor_text = ((country.get('details') or {}).get('successors') or {}).get('en', '')
+    match = re.search(r'present-day region around ([A-Za-z][A-Za-z\s.&/-]*?)(?: and neighboring states|[.,]|$)', successor_text)
+    if match:
+        return normalize_map_place(match.group(1))
+
+    region = country.get('region', '')
+    parenthesized = re.search(r'\(([^)]+)\)', region)
+    if parenthesized:
+        return normalize_map_place(parenthesized.group(1))
+    return ''
+
+def present_country_for_map_place(place, data=None):
+    if not place:
+        return None
+    data = data or get_data()
+    normalized_place = normalize_map_place(place).casefold()
+    for candidate in public_country_list(data):
+        if candidate.get('type') != 'Present':
+            continue
+        names = candidate.get('names', {})
+        possible_names = {
+            normalize_map_place(name).casefold()
+            for name in names.values()
+            if name
+        }
+        if normalized_place in possible_names:
+            return candidate
+    return None
+
+def historical_map_center(country):
+    capital = country.get('capital', {})
+    value = capital.get('en') or get_localized_text(capital)
+    value = normalize_map_place(value)
+    if not value or value == '-':
+        return ''
+    return normalize_map_place(re.split(r'\s*/\s*|,', value)[0])
+
 def country_map_target(country, data=None):
     data = data or get_data()
     if country.get('hide_external_links'):
         return None
     if country.get('type') == 'Present':
         return country
-    code = country.get('flag_code')
-    if code and code != 'xx':
-        for candidate in public_country_list(data):
-            if candidate.get('type') == 'Present' and candidate.get('flag_code') == code:
-                return candidate
-    target_regions = {part.strip() for part in country.get('region', '').replace('/', ',').split(',') if part.strip()}
-    for candidate in public_country_list(data):
-        if candidate.get('type') != 'Present':
-            continue
-        candidate_regions = {part.strip() for part in candidate.get('region', '').replace('/', ',').split(',') if part.strip()}
-        if target_regions & candidate_regions:
-            return candidate
-    return None
+    return present_country_for_map_place(present_day_map_place(country), data)
 
 def country_map_query(country, data=None):
-    target = country_map_target(country, data)
-    if target:
-        return target.get('names', {}).get('en') or get_localized_text(target.get('names', {}))
-    capital = get_localized_text(country.get('capital', {}))
-    if capital and capital != '-':
-        return capital
+    override = map_override_query(country)
+    if override:
+        return override
+    if country.get('type') == 'Present':
+        return country.get('names', {}).get('en') or get_localized_text(country.get('names', {}))
+    place = present_day_map_place(country)
+    center = historical_map_center(country)
+    if center and place:
+        return f'{center}, {place}'
+    if place:
+        return place
+    if center:
+        return center
     return country.get('region') or get_localized_text(country.get('names', {}))
 
 def country_maps_url(country):
@@ -2876,6 +2944,9 @@ def render_map_embed(country, height=420):
 def map_target_note(country):
     target = country_map_target(country)
     if not target or country_key(target) == country_key(country):
+        place = present_day_map_place(country)
+        if country.get('type') == 'Past' and place:
+            return f"{t('map_note')} {place}"
         return ''
     return f"{t('map_note')} {get_localized_text(target.get('names', {}))}"
 
