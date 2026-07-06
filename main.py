@@ -2045,42 +2045,107 @@ def detail_tab_labels():
 def help_labels():
     labels = {
         'ja': {
-            'nav': '使い方',
-            'title': 'World Archivesの使い方',
-            'intro': '国・地域・歴史国家を探し、比較し、クイズで復習するためのページです。',
-            'sections': [
-                ('ログイン', '通常ログインをすると、お気に入り、履歴、メモ、クイズ結果が保存されます。すぐ試したい時はゲストログインも使えます。'),
-                ('検索', '国名、地域、タグ、言語、宗教、説明文などで検索できます。表示順は名前順または年代順に切り替えられます。'),
-                ('詳細ページ', '基本データ、解説、地図、メモ、関連国家をタブで切り替えて確認できます。昔の国は現在の関連地域の地図を表示します。'),
-                ('お気に入りとコレクション', '気になる国をお気に入りに入れたり、自分用のコレクションにまとめたりできます。'),
-                ('ミニクイズと復習', '国データから問題が出ます。間違えた問題は復習モードで再挑戦できます。'),
-                ('バックアップ', 'アカウントページから学習データを書き出し、別の環境で読み込めます。Renderの更新前にも保存しておくと安心です。'),
+            'nav': 'かんたんガイド',
+            'detail_nav': '詳しい説明',
+            'title': 'World Archives かんたんガイド',
+            'intro': 'まずはこの順番で触ると迷いにくいです。画面の形に合わせて、押す場所だけ先に覚えましょう。',
+            'steps': [
+                ('login', 'ログイン', '学習記録を残すなら通常ログイン。試すだけならゲストログインで入れます。'),
+                ('search', '探す', '検索欄に国名やタグを入れ、地域・タグ分類・年代順で絞り込みます。'),
+                ('open_in_new', '読む', '国カードを開くと、基本データ、解説、地図、メモ、関連国家を確認できます。'),
+                ('quiz', '覚える', 'ミニクイズは総合と分野別を選べます。間違えた国は復習モードに入ります。'),
+            ],
+            'mock_title': '画面で見る操作',
+            'mocks': [
+                ('検索画面', '検索欄・並び替え・地域・タグ分類を使って、見たい国だけに絞ります。'),
+                ('詳細画面', '基本データ、解説、地図、メモ、関連国家をタブで切り替えます。'),
+                ('クイズ画面', '分野を選び、問題に答えます。答えた後は詳細画面へ戻れます。'),
             ],
         },
         'en': {
-            'nav': 'Help',
-            'title': 'How to Use World Archives',
-            'intro': 'Search countries, compare them, and review them with quizzes.',
-            'sections': [
-                ('Login', 'A normal account saves favorites, history, notes, and quiz results. Guest login is available for quick use.'),
-                ('Search', 'Search by name, region, tag, language, religion, or description. Sort by name or historical period.'),
-                ('Details', 'Use tabs for basic data, descriptions, maps, personal notes, and related countries. Historical states show related present-day map locations.'),
-                ('Favorites and collections', 'Save interesting countries as favorites or group them into personal collections.'),
-                ('Mini quiz and review', 'Quiz questions are generated from country data. Missed questions can be retried in review mode.'),
-                ('Backup', 'Export your learning data from the account page and import it on another environment. This is useful before redeploying.'),
+            'nav': 'Quick Guide',
+            'detail_nav': 'Detailed Guide',
+            'title': 'World Archives Quick Guide',
+            'intro': 'Start here. This guide shows the main actions in the same shape as the app screens.',
+            'steps': [
+                ('login', 'Log in', 'Use a normal account to save progress, or guest login for a quick trial.'),
+                ('search', 'Search', 'Use keywords, regions, tag groups, and period sorting to narrow the list.'),
+                ('open_in_new', 'Read', 'Open a country card to view basic data, details, maps, notes, and related countries.'),
+                ('quiz', 'Review', 'Choose mixed or category quizzes. Missed countries go into review mode.'),
+            ],
+            'mock_title': 'Screen-Based Guide',
+            'mocks': [
+                ('Search Screen', 'Filter countries with the search box, sorting, regions, and tag groups.'),
+                ('Detail Screen', 'Switch between basic data, details, map, notes, and related countries.'),
+                ('Quiz Screen', 'Choose a category, answer, then open the detail page from the result.'),
             ],
         },
         'zh': {
-            'nav': '使用说明',
-            'title': 'World Archives使用说明',
-            'intro': '用于搜索国家、比较资料，并通过小测验复习。',
+            'nav': '简易指南',
+            'detail_nav': '详细说明',
+            'title': 'World Archives简易指南',
+            'intro': '先看这里。这个页面按照实际画面的形状说明主要操作。',
+            'steps': [
+                ('login', '登录', '普通账号会保存进度；只想试用时可以用访客登录。'),
+                ('search', '搜索', '用关键词、地区、标签分类和年代排序缩小列表。'),
+                ('open_in_new', '阅读', '打开国家卡片后，可以查看基本资料、说明、地图、笔记和相关国家。'),
+                ('quiz', '复习', '小测验可以选择综合或分领域，答错的国家会进入复习模式。'),
+            ],
+            'mock_title': '按画面理解操作',
+            'mocks': [
+                ('搜索画面', '使用搜索框、排序、地区和标签分类筛选国家。'),
+                ('详情画面', '在基本资料、说明、地图、笔记和相关国家之间切换。'),
+                ('测验画面', '选择领域并答题，答题后可以打开该国家详情。'),
+            ],
+        },
+    }
+    return labels.get(state.lang, labels['en'])
+
+def detailed_help_labels():
+    labels = {
+        'ja': {
+            'title': 'World Archives 詳しい説明',
+            'intro': '機能ごとの目的と使い分けをまとめています。操作に慣れてから、困った時に読むページです。',
             'sections': [
-                ('登录', '普通账号会保存收藏、浏览记录、笔记和测验结果。也可以使用访客登录快速体验。'),
-                ('搜索', '可以按国名、地区、标签、语言、宗教或说明文字搜索，并按名称或年代排序。'),
-                ('详情页', '通过标签页查看基本资料、说明、地图、笔记和相关国家。历史国家会显示相关的现代地区地图。'),
-                ('收藏与收藏集', '可以把感兴趣的国家加入收藏，或整理到自己的收藏集中。'),
-                ('小测验与复习', '题目会从国家数据中生成，答错的内容可以在复习模式中再次练习。'),
-                ('备份', '在账户页导出学习数据，并在其他环境中导入。重新部署前建议先备份。'),
+                ('ログインと保存', '通常ログインでは、お気に入り、閲覧履歴、メモ、コレクション、クイズ結果、対戦成績が保存されます。ゲストログインはすぐ試すための入口です。'),
+                ('検索と絞り込み', '国名だけでなく、地域、タグ、言語、宗教、説明文、基本データから検索できます。タグ分類を先に選ぶと、タグの候補を絞れます。'),
+                ('詳細ページ', '基本データでは首都、成立年、人口、面積、言語、宗教などを確認できます。解説、地図、メモ、関連国家はタブで切り替えます。'),
+                ('ミニクイズ', '総合、国旗、年号、首都、タグ、説明、基本データ、詳細データに分かれています。情報から国を選ぶ問題と、国から情報を選ぶ問題の両方が出ます。'),
+                ('復習モード', '間違えた国は復習リストに入ります。復習モードで正解すると、復習リストから外れます。'),
+                ('比較・年表・地図・ネットワーク', '比較は2つの国を並べ、年表は時代順に整理し、地図は場所を確認し、ネットワークは関連国家をたどるために使います。'),
+                ('アカウントと共有', 'アカウントページではアイコン、名前色、バックアップ、公開お気に入り、公開コレクションを管理できます。パスワードと個人メモは他人に表示されません。'),
+                ('国力対戦', '全国家を閲覧すると解禁される対戦機能です。国の面積と人口をもとにした国力で勝負し、タグや地域の一致で小さなボーナスが入ります。'),
+                ('データの保護', 'Render更新や環境変更の前には、アカウントページからバックアップを書き出しておくと安心です。'),
+            ],
+        },
+        'en': {
+            'title': 'World Archives Detailed Guide',
+            'intro': 'This page explains what each feature is for. Use it after the quick guide when you want more detail.',
+            'sections': [
+                ('Login and Saving', 'Normal accounts save favorites, history, notes, collections, quiz results, and battle records. Guest login is for quick trials.'),
+                ('Search and Filters', 'Search by name, region, tags, language, religion, descriptions, and basic data. Choose a tag group first to reduce tag choices.'),
+                ('Detail Pages', 'Basic data includes capital, founding period, population, area, languages, and religions. Details, maps, notes, and related countries are organized by tabs.'),
+                ('Mini Quiz', 'Categories include mixed, flags, years, capitals, tags, descriptions, basic data, and details. Questions appear in both directions.'),
+                ('Review Mode', 'Missed countries enter the review list. Correct answers in review mode remove them from that list.'),
+                ('Compare, Timeline, Map, Network', 'Compare places two countries side by side. Timeline sorts history, Map checks location, and Network follows related countries.'),
+                ('Account and Sharing', 'The account page manages avatar, name color, backups, public favorites, and public collections. Passwords and personal notes are hidden from others.'),
+                ('Power Battle', 'Unlocked after viewing every country. It uses area and population for power, with small bonuses from matching tags and regions.'),
+                ('Data Protection', 'Export a backup from the account page before redeploying or changing environments.'),
+            ],
+        },
+        'zh': {
+            'title': 'World Archives详细说明',
+            'intro': '这里按功能说明用途。看完简易指南后，想了解细节时使用这一页。',
+            'sections': [
+                ('登录与保存', '普通账号会保存收藏、浏览记录、笔记、收藏集、测验结果和对战记录。访客登录用于快速试用。'),
+                ('搜索与筛选', '可以按名称、地区、标签、语言、宗教、说明和基本数据搜索。先选标签分类可以减少标签候选。'),
+                ('详情页', '基本资料包含首都、成立年代、人口、面积、语言和宗教。说明、地图、笔记和相关国家用标签页切换。'),
+                ('小测验', '包括综合、旗帜、年代、首都、标签、说明、基本数据和详细资料。题目会同时出现正向和反向形式。'),
+                ('复习模式', '答错的国家会进入复习列表。在复习模式答对后，会从列表中移除。'),
+                ('比较、年表、地图、网络', '比较用于并排查看两个国家，年表按时代整理，地图确认位置，网络查看相关国家。'),
+                ('账号与共享', '账号页可以管理头像、名字颜色、备份、公开收藏和公开收藏集。密码和个人笔记不会公开。'),
+                ('国力对战', '浏览所有国家后解锁。根据面积和人口计算国力，标签或地区一致会得到小幅加成。'),
+                ('数据保护', '重新部署或更换环境前，建议从账号页导出备份。'),
             ],
         },
     }
@@ -4637,7 +4702,7 @@ def battle_mode_label(mode):
         return t('battle_bot')
     return t('battle_mode_duel')
 
-def battle_help_labels():
+def _legacy_battle_help_labels():
     labels = {
         'ja': {
             'title': '国力対戦の遊び方',
@@ -4744,6 +4809,164 @@ def battle_help_labels():
                     '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到小幅加成。',
                     '只用1张牌不会发动。对手的牌不会参与计算。',
                     '每个重复的标签或地区会让攻击或防御增加+0.1%。这是接近胜负时的小优势，不是一次性逆转的按钮。',
+                ]),
+            ],
+        },
+    }
+    return labels.get(state.lang, labels['en'])
+
+def battle_help_labels():
+    labels = {
+        'ja': {
+            'title': '国力対戦の遊び方',
+            'quick_title': 'まずは画面の流れだけ覚えましょう',
+            'quick_intro': '難しい計算は後回しで大丈夫です。手札を選び、相手を決め、勝負ボタンを押すのが基本です。',
+            'quick_steps': [
+                ('style', '手札を見る', '配られた5枚の国カードから、勝負に出す国を選びます。'),
+                ('shield', '残すカードを決める', '選ばなかった国は守りに回ります。全部出すと攻撃は強いですが、守りが薄くなります。'),
+                ('my_location', '相手を選ぶ', '乱戦では攻撃対象を選びます。1対1とチーム戦では相手は自動で決まります。'),
+                ('sports_martial_arts', '勝負する', '「この手で勝負」を押すとターンが進み、ダメージとログが表示されます。'),
+            ],
+            'mock': {
+                'hand': '手札',
+                'attack': '攻撃に出す',
+                'defense': '守りに残す',
+                'target': '攻撃対象',
+                'submit': 'この手で勝負',
+                'surrender': '降参',
+                'redraw': '引き直し',
+            },
+            'detail_title': '詳しいルール',
+            'detail_intro': '勝敗の決まり方やボーナスを確認したい時はこちらを見ます。',
+            'sections': [
+                ('ターンの進め方', [
+                    '手札5枚の中から1枚以上を選んで出します。',
+                    '出さなかったカードは防御に回ります。攻撃と防御のバランスを考えるのが大事です。',
+                    '手札が空になるまで新しいカードは補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
+                    '各ターンに1回だけ、現在の手札をすべて捨てて同じ枚数を引き直せます。',
+                    '1分以内に行動しないと降参扱いになります。降参した枠はBOTが引き継ぐので、試合は続きます。',
+                ]),
+                ('国力とダメージ', [
+                    f'HPが0になると負けです。開始時のHPは{format_battle_number(BATTLE_MAX_HP)}です。',
+                    '国力は、国の面積と人口をもとに計算されます。広く、人口の多い国ほど強くなりやすいです。',
+                    '基本の国力は「面積 x 人口 ÷ 1000」です。',
+                    '複数枚を出すと総攻撃は上がりますが、2枚目以降は少しずつ力が抑えられます。',
+                    '相手の防御を上回った分がダメージになります。防御で受け止められた場合、ダメージは0です。',
+                    'ダメージを与えると、相手の残り手札から1枚を奪えます。BOT戦の勝利数はランキングには入りません。',
+                ]),
+                ('対戦モード', [
+                    '1対1では、相手と正面から国力を比べます。',
+                    '乱戦では、攻撃したい相手を自分で選びます。',
+                    'チーム戦では、チーム全員が出したカードを総攻撃力、残したカードを総防御力として合計します。',
+                    f'チーム戦のHPは「{format_battle_number(BATTLE_MAX_HP)} x チーム人数」です。人数差がある時は、多い側の人数に合わせます。',
+                    'チーム戦ではチーム内チャットで相談できます。',
+                ]),
+                ('一致ボーナス', [
+                    '同じターンに自分が出したカード同士、または防御に残したカード同士でタグや地域が重なると小さなボーナスが入ります。',
+                    '1枚だけでは発動しません。相手のカードとの一致も判定しません。',
+                    '重なったタグや地域が増えるごとに、攻撃または防御が少し上がります。大逆転用ではなく、接戦を少し有利にする仕組みです。',
+                ]),
+            ],
+        },
+        'en': {
+            'title': 'How to Play Power Battle',
+            'quick_title': 'Learn the screen flow first',
+            'quick_intro': 'You can ignore the deeper math at first. Pick cards, choose a target, and submit your hand.',
+            'quick_steps': [
+                ('style', 'Check Your Hand', 'Choose at least one country from the five cards in your hand.'),
+                ('shield', 'Keep Defense', 'Unplayed cards become defense. Going all in gives power but leaves you open.'),
+                ('my_location', 'Choose Target', 'In free-for-all, choose who to attack. Duel and team modes decide this automatically.'),
+                ('sports_martial_arts', 'Submit', 'Press the submit button to resolve the turn and show damage in the log.'),
+            ],
+            'mock': {
+                'hand': 'Hand',
+                'attack': 'Attack',
+                'defense': 'Defense',
+                'target': 'Target',
+                'submit': 'Submit Hand',
+                'surrender': 'Surrender',
+                'redraw': 'Redraw',
+            },
+            'detail_title': 'Detailed Rules',
+            'detail_intro': 'Open this when you want to check damage, bonuses, and each battle mode.',
+            'sections': [
+                ('Turn Flow', [
+                    'Choose at least one country card from the five cards in your hand.',
+                    'Cards you do not play become defense, so balance attack and protection.',
+                    'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
+                    'Once per turn, you can discard your hand and redraw the same number of cards.',
+                    'If you do not act within one minute, you surrender. A bot takes over surrendered slots so the match can continue.',
+                ]),
+                ('Power and Damage', [
+                    f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
+                    'Country power is based on area and population. Larger, more populous countries tend to be stronger.',
+                    'Base power is area x population divided by 1000.',
+                    'Playing several cards raises total attack, but the second and later cards are slightly reduced.',
+                    'Damage is the power gap after defense. If defense blocks it, damage becomes 0.',
+                    'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
+                ]),
+                ('Battle Modes', [
+                    'In 1v1, you directly compare power with your opponent.',
+                    'In free-for-all, you choose which player to attack.',
+                    'In team battles, each team combines played cards into total attack and saved cards into total defense.',
+                    f'Team HP is {format_battle_number(BATTLE_MAX_HP)} times team size. If teams are uneven, both sides use the larger team size.',
+                    'Team battles include a team chat so you can coordinate attacks and defense.',
+                ]),
+                ('Match Bonus', [
+                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a small bonus.',
+                    'One card alone cannot trigger it. Opponent cards are not included.',
+                    'Each repeated tag or region adds a small bonus to attack or defense. It is for close turns, not instant comebacks.',
+                ]),
+            ],
+        },
+        'zh': {
+            'title': '国力对战玩法',
+            'quick_title': '先记住画面流程',
+            'quick_intro': '一开始不用记复杂计算。选择手牌、决定目标、按下出牌按钮即可。',
+            'quick_steps': [
+                ('style', '查看手牌', '从5张国家卡中选择至少1张作为本回合出牌。'),
+                ('shield', '保留防御', '没有出的牌会变成防御。全力攻击很强，但防御会变薄。'),
+                ('my_location', '选择目标', '乱战需要自己选择攻击目标。1对1和团队战会自动决定。'),
+                ('sports_martial_arts', '确认出牌', '按下出牌按钮后，本回合结算，并在日志中显示伤害。'),
+            ],
+            'mock': {
+                'hand': '手牌',
+                'attack': '攻击',
+                'defense': '防御',
+                'target': '目标',
+                'submit': '确认出牌',
+                'surrender': '投降',
+                'redraw': '重抽',
+            },
+            'detail_title': '详细规则',
+            'detail_intro': '想确认伤害、加成和模式规则时，请查看这里。',
+            'sections': [
+                ('回合流程', [
+                    '从5张手牌中选择至少1张国家卡出牌。',
+                    '没有出的牌会用于防御，所以要考虑攻击和防御的平衡。',
+                    '手牌用完前不会补牌。手牌为空后的下一回合会变成无防备状态，之后重新抽5张。',
+                    '每回合可以将当前手牌全部弃掉，并重抽相同张数。',
+                    '1分钟内没有行动会被视为投降。投降的位置会由BOT接手，比赛继续进行。',
+                ]),
+                ('国力与伤害', [
+                    f'HP变成0就失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
+                    '国力根据面积和人口计算。面积大、人口多的国家通常更强。',
+                    '基本国力为“面积 x 人口 ÷ 1000”。',
+                    '同时出多张牌会提高总攻击，但第2张以后会稍微降低效果。',
+                    '伤害由扣除防御后的国力差决定。被防住时伤害为0。',
+                    '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战胜利不会计入排行榜。',
+                ]),
+                ('对战模式', [
+                    '1对1会直接和对手比较国力。',
+                    '乱战中可以自己选择攻击目标。',
+                    '团队战中，全队出的牌合计为总攻击力，没出的牌合计为总防御力。',
+                    f'团队战HP为“{format_battle_number(BATTLE_MAX_HP)} x 团队人数”。人数不同时，会按人数较多的一方计算双方HP。',
+                    '团队战可以使用队伍聊天来商量攻击和防御。',
+                ]),
+                ('一致加成', [
+                    '同一回合中，自己出的牌之间，或保留防御的牌之间，如果标签或地区重复，会获得小幅加成。',
+                    '只有1张牌时不会发动。也不会和对手的牌进行比较。',
+                    '重复的标签或地区越多，攻击或防御会稍微提高。这是帮助接近胜负的机制，不是一次性逆转用的效果。',
                 ]),
             ],
         },
@@ -6003,6 +6226,7 @@ def show_screen(screen_name):
     rankings_screen.set_visibility(screen_name == 'rankings')
     social_screen.set_visibility(screen_name == 'social')
     help_screen.set_visibility(screen_name == 'help')
+    help_detail_screen.set_visibility(screen_name == 'help_detail')
     if screen_name == 'main':
         refresh_main_ui()
     if screen_name == 'result':
@@ -6031,6 +6255,8 @@ def show_screen(screen_name):
         refresh_social_view()
     if screen_name == 'help':
         refresh_help_view()
+    if screen_name == 'help_detail':
+        refresh_help_detail_view()
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -6050,6 +6276,7 @@ def switch_language(lang_code):
     if social_screen.visible: refresh_social_view()
     if notification_drawer.value: refresh_notification_content()
     if help_screen.visible: refresh_help_view()
+    if help_detail_screen.visible: refresh_help_detail_view()
 
 def is_mobile_ui():
     return state.ui_mode == 'mobile'
@@ -6091,6 +6318,8 @@ def refresh_current_screen():
         refresh_social_view()
     if help_screen.visible:
         refresh_help_view()
+    if help_detail_screen.visible:
+        refresh_help_detail_view()
 
 def toggle_ui_mode():
     state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
@@ -6239,6 +6468,7 @@ def render_header(container):
                 menu_text = {'ja': '機能', 'en': 'Features', 'zh': '功能'}.get(state.lang, 'Features')
                 with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
                     ui.item(help_labels()['nav'], on_click=lambda: show_screen('help'))
+                    ui.item(help_labels()['detail_nav'], on_click=lambda: show_screen('help_detail'))
                     ui.separator()
                     ui.item(t('quiz'), on_click=lambda: start_quiz('normal'))
                     ui.item(t('map'), on_click=lambda: show_screen('map'))
@@ -6273,6 +6503,9 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             ui.button(help_labels()['nav'], icon='help', on_click=lambda: show_screen('help')) \
                 .props('outline color=primary') \
+                .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
+            ui.button(help_labels()['detail_nav'], icon='menu_book', on_click=lambda: show_screen('help_detail')) \
+                .props('outline color=grey') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
                 top_user = get_current_user_record()
@@ -6342,26 +6575,93 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
 # ========================================
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_screen:
     header_container_help = ui.column().classes('w-full p-0 m-0')
-    help_content = ui.column().classes('w-full max-w-4xl p-8 gap-5 self-center')
+    help_content = ui.column().classes('w-full max-w-5xl p-8 gap-5 self-center')
+
+    def render_help_mock(index, title, body):
+        with ui.column().classes('w-full p-4 gap-3 bg-white border border-gray-200 rounded shadow-sm'):
+            with ui.row().classes('w-full items-center gap-2'):
+                ui.badge(str(index), color='primary')
+                ui.label(title).classes('text-lg font-bold text-[#1a2332]')
+            ui.label(body).classes('text-sm text-gray-600 leading-relaxed')
+            if index == 1:
+                ui.input(value='', placeholder=t('search_ph')).props('outlined dense readonly prepend-inner-icon=search').classes('w-full')
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    ui.button(t('sort_name'), icon='sort_by_alpha').props('outline color=primary dense')
+                    ui.button(t('sort_period'), icon='event').props('outline color=primary dense')
+                    ui.button(t('labels', 'region')).props('outline color=grey dense')
+                    ui.button(t('tag_group'), icon='sell').props('outline color=grey dense')
+            elif index == 2:
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    ui.button(t('labels', 'capital'), icon='info').props('outline color=primary dense')
+                    ui.button(t('labels', 'desc'), icon='article').props('outline color=primary dense')
+                    ui.button(t('map'), icon='map').props('outline color=primary dense')
+                    ui.button(t('notes'), icon='edit_note').props('outline color=primary dense')
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    for tag in ['UN Member', 'Republic', 'Maritime Power']:
+                        tag_chip(tag)
+            else:
+                with ui.row().classes('w-full gap-2 flex-wrap'):
+                    for key, label_key in QUIZ_CATEGORY_OPTIONS[:5]:
+                        ui.button(t(label_key)).props('outline color=primary dense')
+                ui.button(t('quiz_next'), icon='refresh').props('outline color=primary dense').classes('self-start')
 
     def refresh_help_view():
         render_header(header_container_help)
         update_mode_classes(
             help_content,
-            'w-full max-w-4xl p-8 gap-5 self-center',
+            'w-full max-w-5xl p-8 gap-5 self-center',
             'w-full max-w-md p-4 gap-4 self-center',
         )
         help_content.clear()
         labels = help_labels()
         with help_content:
             ui.label(labels['title']).classes('text-3xl font-bold text-[#1a2332]')
-            ui.markdown(labels['intro']).classes('text-gray-600 text-lg')
-            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
-                for title, body in labels['sections']:
-                    with ui.card().classes('w-full p-5 gap-2'):
-                        ui.label(title).classes('text-xl font-bold text-[#1a2332]')
-                        ui.markdown(body).classes('text-gray-700 leading-relaxed')
+            ui.label(labels['intro']).classes('text-gray-600 text-lg leading-relaxed')
+            with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-3'):
+                for icon, title, body in labels['steps']:
+                    with ui.column().classes('w-full p-4 gap-2 bg-white border border-blue-100 rounded shadow-sm'):
+                        ui.icon(icon, size='2rem').classes('text-blue-600')
+                        ui.label(title).classes('text-lg font-bold text-[#1a2332]')
+                        ui.label(body).classes('text-sm text-gray-600 leading-relaxed')
+            ui.label(labels['mock_title']).classes('text-2xl font-bold text-[#1a2332] mt-2')
+            with ui.grid(columns=1 if is_mobile_ui() else 3).classes('w-full gap-4'):
+                for index, (title, body) in enumerate(labels['mocks'], start=1):
+                    render_help_mock(index, title, body)
             with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-3'):
+                ui.button('ENTER', icon='search', on_click=lambda: show_screen('main')) \
+                    .props('color=primary') \
+                    .classes('w-full' if is_mobile_ui() else '')
+                ui.button(labels['detail_nav'], icon='menu_book', on_click=lambda: show_screen('help_detail')) \
+                    .props('outline color=primary') \
+                    .classes('w-full' if is_mobile_ui() else '')
+                ui.button(t('back_home'), icon='home', on_click=lambda: show_screen('top')) \
+                    .props('outline color=grey') \
+                    .classes('w-full' if is_mobile_ui() else '')
+
+with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_detail_screen:
+    header_container_help_detail = ui.column().classes('w-full p-0 m-0')
+    help_detail_content = ui.column().classes('w-full max-w-4xl p-8 gap-5 self-center')
+
+    def refresh_help_detail_view():
+        render_header(header_container_help_detail)
+        update_mode_classes(
+            help_detail_content,
+            'w-full max-w-4xl p-8 gap-5 self-center',
+            'w-full max-w-md p-4 gap-4 self-center',
+        )
+        help_detail_content.clear()
+        labels = detailed_help_labels()
+        with help_detail_content:
+            ui.label(labels['title']).classes('text-3xl font-bold text-[#1a2332]')
+            ui.label(labels['intro']).classes('text-gray-600 text-lg leading-relaxed')
+            with ui.column().classes('w-full gap-3'):
+                for title, body in labels['sections']:
+                    with ui.expansion(title, icon='menu_book').classes('w-full bg-white border border-gray-200 rounded shadow-sm'):
+                        ui.markdown(body).classes('text-gray-700 leading-relaxed p-4')
+            with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-3'):
+                ui.button(help_labels()['nav'], icon='help', on_click=lambda: show_screen('help')) \
+                    .props('outline color=primary') \
+                    .classes('w-full' if is_mobile_ui() else '')
                 ui.button('ENTER', icon='search', on_click=lambda: show_screen('main')) \
                     .props('color=primary') \
                     .classes('w-full' if is_mobile_ui() else '')
@@ -7684,15 +7984,45 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         help_data = battle_help_labels()
         with ui.card().classes('w-full p-0 overflow-hidden'):
             with ui.expansion(help_data['title'], icon='help_outline').classes('w-full p-2'):
-                with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4 p-3'):
-                    for section_title, items in help_data['sections']:
-                        with ui.column().classes('w-full gap-2 rounded border border-blue-100 bg-blue-50 p-4'):
-                            ui.label(section_title).classes('text-base font-bold text-[#1a2332]')
-                            for item in items:
-                                with ui.row().classes('w-full items-start gap-2 no-wrap'):
-                                    ui.icon('circle', size='0.45rem').classes('text-blue-500 mt-2 flex-shrink-0')
-                                    ui.label(item).classes('text-sm text-gray-700 leading-relaxed whitespace-normal')
-
+                ui.label(help_data['quick_title']).classes('text-xl font-bold text-[#1a2332] px-3 pt-3')
+                ui.label(help_data['quick_intro']).classes('text-sm text-gray-600 px-3')
+                with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-3 p-3'):
+                    for icon, title, body in help_data['quick_steps']:
+                        with ui.column().classes('w-full gap-2 rounded border border-blue-100 bg-blue-50 p-3'):
+                            ui.icon(icon, size='1.7rem').classes('text-blue-600')
+                            ui.label(title).classes('text-sm font-bold text-[#1a2332]')
+                            ui.label(body).classes('text-xs text-gray-700 leading-relaxed')
+                mock = help_data['mock']
+                with ui.column().classes('w-full gap-3 rounded border border-gray-200 bg-white p-4 mx-3 mb-3'):
+                    ui.label(mock['hand']).classes('text-base font-bold text-[#1a2332]')
+                    ui.select(['Player A', 'Player B', 'Player C'], value='Player B', label=mock['target']).props('outlined dense readonly').classes('w-full max-w-sm')
+                    with ui.grid(columns=1 if is_mobile_ui() else 3).classes('w-full gap-3'):
+                        with ui.column().classes('gap-2 rounded border-2 border-blue-500 bg-blue-50 p-3'):
+                            ui.checkbox(value=True).props('dense')
+                            ui.label(mock['attack']).classes('text-xs font-bold text-blue-700')
+                            ui.label('Country Card').classes('font-bold text-[#1a2332]')
+                        with ui.column().classes('gap-2 rounded border border-gray-200 bg-gray-50 p-3'):
+                            ui.checkbox(value=False).props('dense')
+                            ui.label(mock['defense']).classes('text-xs font-bold text-gray-600')
+                            ui.label('Country Card').classes('font-bold text-[#1a2332]')
+                        with ui.column().classes('gap-2 rounded border border-gray-200 bg-gray-50 p-3'):
+                            ui.checkbox(value=False).props('dense')
+                            ui.label(mock['defense']).classes('text-xs font-bold text-gray-600')
+                            ui.label('Country Card').classes('font-bold text-[#1a2332]')
+                    with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                        ui.button(mock['surrender'], icon='flag').props('outline color=negative dense')
+                        ui.button(mock['redraw'], icon='refresh').props('outline color=primary dense')
+                        ui.button(mock['submit'], icon='sports_martial_arts').props('color=primary dense')
+                with ui.expansion(help_data['detail_title'], icon='menu_book').classes('w-full px-3 pb-3'):
+                    ui.label(help_data['detail_intro']).classes('text-sm text-gray-600 pb-2')
+                    with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
+                        for section_title, items in help_data['sections']:
+                            with ui.column().classes('w-full gap-2 rounded border border-gray-200 bg-white p-4'):
+                                ui.label(section_title).classes('text-base font-bold text-[#1a2332]')
+                                for item in items:
+                                    with ui.row().classes('w-full items-start gap-2 no-wrap'):
+                                        ui.icon('circle', size='0.45rem').classes('text-blue-500 mt-2 flex-shrink-0')
+                                        ui.label(item).classes('text-sm text-gray-700 leading-relaxed whitespace-normal')
     def render_battle_card(key, lookup):
         country = lookup.get(key)
         if not country:
