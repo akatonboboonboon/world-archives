@@ -124,7 +124,7 @@ def format_timestamp(value):
     return dt.astimezone(APP_TIMEZONE).strftime('%Y-%m-%d %H:%M')
 
 def default_user_data():
-    return {'users': {}}
+    return {'users': {}, 'known_users': []}
 
 USER_RECORD_KEYS = {
     'password_hash',
@@ -187,6 +187,14 @@ def normalize_user_data_file(data):
         if record and username and username not in users:
             users[username] = record
     data['users'] = users
+    known_users = []
+    if isinstance(data.get('known_users'), list):
+        known_users.extend(str(username or '').strip() for username in data['known_users'])
+    known_users.extend(users.keys())
+    data['known_users'] = sorted({
+        username for username in known_users
+        if username and username != GUEST_USERNAME and not username.startswith(f'{GUEST_USERNAME}:')
+    }, key=lambda value: value.lower())
     return data
 
 def load_user_data():
@@ -202,7 +210,10 @@ def load_user_data():
 
 def save_user_data(data):
     data = normalize_user_data_file(data)
-    data = {'users': data.get('users', {})}
+    data = {
+        'users': data.get('users', {}),
+        'known_users': data.get('known_users', []),
+    }
     user_dir = os.path.dirname(USER_DATA_FILE)
     if user_dir:
         os.makedirs(user_dir, exist_ok=True)
@@ -1148,7 +1159,7 @@ def user_name_color(user=None):
 def normalize_avatar_adjustment(avatar):
     if not isinstance(avatar, dict):
         return {'mode': 'default', **default_avatar_adjustment()}
-    avatar['zoom'] = int(clamp_number(avatar.get('zoom'), 50, 250, 100))
+    avatar['zoom'] = int(clamp_number(avatar.get('zoom'), 20, 300, 100))
     avatar['position_x'] = int(clamp_number(avatar.get('position_x'), 0, 100, 50))
     avatar['position_y'] = int(clamp_number(avatar.get('position_y'), 0, 100, 50))
     return avatar
@@ -1240,15 +1251,25 @@ def persist_current_user_data(user_data):
     save_user_data(user_data)
     sync_current_user_to_browser(user_data)
 
+def remember_known_user(username, user_data):
+    username = clean_username(username)
+    if not username or is_guest_record(username):
+        return
+    known_users = user_data.setdefault('known_users', [])
+    if username not in known_users:
+        known_users.append(username)
+
 def request_browser_backup_restore():
     script = f"""
     (async () => {{
       const backupKey = '{BROWSER_BACKUP_KEY}';
       const collected = {{}};
+      const knownUsers = new Set();
       const userFields = ['password_hash', 'favorites', 'history', 'viewed_keys', 'collections', 'quiz_stats', 'avatar', 'battle_wins'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
+        knownUsers.add(String(username));
         const record = looksLikeRecord(value) ? value : (looksLikeRecord(value.record) ? value.record : null);
         if (!record) return;
         collected[String(username)] = value;
@@ -1273,6 +1294,7 @@ def request_browser_backup_restore():
           return;
         }}
         if (parsed.username) {{
+          knownUsers.add(String(parsed.username));
           mergeRecord(parsed.username, parsed.record ? parsed : {{record: parsed}});
           return;
         }}
@@ -1283,6 +1305,8 @@ def request_browser_backup_restore():
         }});
       }};
       collectPayload(localStorage.getItem(backupKey));
+      const lastUser = localStorage.getItem('world_archives_last_user');
+      if (lastUser) knownUsers.add(lastUser);
       for (let i = 0; i < localStorage.length; i += 1) {{
         const key = localStorage.key(i) || '';
         if (key === backupKey) continue;
@@ -1291,12 +1315,15 @@ def request_browser_backup_restore():
           collectPayload(localStorage.getItem(key));
         }}
       }}
-      if (!Object.keys(collected).length) return;
+      if (!Object.keys(collected).length && !knownUsers.size) return;
       try {{
         await fetch('/api/restore-user-backups', {{
           method: 'POST',
           headers: {{'Content-Type': 'application/json'}},
-          body: JSON.stringify(collected),
+          body: JSON.stringify({{
+            users: collected,
+            known_users: Array.from(knownUsers),
+          }}),
         }});
       }} catch (error) {{
         console.warn('World Archives backup restore failed', error);
@@ -1477,11 +1504,14 @@ def normalize_backup_payload(payload):
     return restored
 
 def restore_user_backup_payload(payload):
+    known_from_payload = []
+    if isinstance(payload, dict) and isinstance(payload.get('known_users'), list):
+        known_from_payload = [clean_username(username) for username in payload['known_users']]
     backups = normalize_backup_payload(payload)
-    if not backups:
-        return 0
     user_data = load_user_data()
     users = user_data.setdefault('users', {})
+    for username in known_from_payload:
+        remember_known_user(username, user_data)
     restored = 0
     for raw_username, backup in backups.items():
         username = clean_username(raw_username)
@@ -1490,10 +1520,11 @@ def restore_user_backup_payload(payload):
         record = user_record_from_candidate(backup)
         if not record:
             continue
+        remember_known_user(username, user_data)
         users[username] = merge_user_record(users.get(username, {}), record)
         ensure_user_defaults(users[username])
         restored += 1
-    if restored:
+    if restored or known_from_payload:
         save_user_data(user_data)
         if state.current_user in users:
             sync_current_user_to_browser(user_data)
@@ -1540,6 +1571,7 @@ def login_user(username, password):
     state.current_user = username
     state.users_browser_restore_requested = False
     ensure_user_defaults(user)
+    remember_known_user(username, user_data)
     unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
     ui.notify(t('login_success'), color='positive')
@@ -1602,6 +1634,7 @@ def register_user(username, password):
             'best_streak': 0,
         },
     }
+    remember_known_user(username, user_data)
     state.current_user = username
     state.users_browser_restore_requested = False
     persist_current_user_data(user_data)
@@ -1852,7 +1885,8 @@ def user_asset_url(relative_path, version=None):
     return url
 
 def current_user_avatar_url(user=None):
-    user = user or get_current_user_record()
+    if user is None:
+        user = get_current_user_record()
     if not user:
         return None
     avatar = user.get('avatar') if isinstance(user.get('avatar'), dict) else {}
@@ -1878,15 +1912,15 @@ def avatar_adjustment(source=None):
     }
 
 def avatar_crop_geometry(zoom, x, y):
-    zoom = int(clamp_number(zoom, 30, 300, 100))
+    zoom = int(clamp_number(zoom, 20, 300, 100))
     x = int(clamp_number(x, 0, 100, 50))
     y = int(clamp_number(y, 0, 100, 50))
     return {
         'zoom': zoom,
         'x': x,
         'y': y,
-        'left': 50 - (x * zoom / 100),
-        'top': 50 - (y * zoom / 100),
+        'left': x,
+        'top': y,
     }
 
 def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_classes='text-gray-400', live=True):
@@ -1904,9 +1938,9 @@ def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_clas
             ui.html(
                 f'<img class="wa-avatar-crop-image" {live_attr} src="{src}" '
                 f'data-wa-zoom="{zoom}" data-wa-x="{x}" data-wa-y="{y}" '
-                f'style="position:absolute;left:{left:.4f}%;top:{top:.4f}%;width:{zoom}%;height:{zoom}%;'
-                f'object-fit:cover;object-position:center center;'
-                f'transform:none;display:block;">',
+                f'style="position:absolute;left:{left:.4f}%;top:{top:.4f}%;width:{zoom}%;height:auto;'
+                f'max-width:none;max-height:none;object-fit:contain;object-position:center center;'
+                f'transform:translate(-50%, -50%);display:block;">',
                 sanitize=False,
             )
     else:
@@ -1928,7 +1962,7 @@ def render_avatar_drag_editor(avatar_url, source):
         f'''
         <div class="flex flex-col gap-2 items-center">
           <div id="{editor_id}" class="wa-avatar-editor border shadow bg-white">
-            <img src="{src}" style="width:{zoom}%;height:{zoom}%;object-fit:cover;object-position:center center;">
+            <img src="{src}" style="left:{x}%;top:{y}%;width:{zoom}%;height:auto;max-width:none;max-height:none;object-fit:contain;object-position:center center;transform:translate(-50%, -50%);">
             <div class="wa-avatar-target" style="left:{x}%;top:{y}%;"></div>
           </div>
           <button id="{save_id}" type="button" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--dense px-3 py-1">
@@ -1954,15 +1988,15 @@ def render_avatar_drag_editor(avatar_url, source):
       let dragging = false;
       const clamp = value => Math.max(0, Math.min(100, value));
       const applyToImage = img => {{
-        const left = 50 - (x * zoom / 100);
-        const top = 50 - (y * zoom / 100);
         img.style.width = `${{zoom}}%`;
-        img.style.height = `${{zoom}}%`;
-        img.style.left = `${{left}}%`;
-        img.style.top = `${{top}}%`;
-        img.style.objectFit = 'cover';
+        img.style.height = 'auto';
+        img.style.maxWidth = 'none';
+        img.style.maxHeight = 'none';
+        img.style.left = `${{x}}%`;
+        img.style.top = `${{y}}%`;
+        img.style.objectFit = 'contain';
         img.style.objectPosition = 'center center';
-        img.style.transform = 'none';
+        img.style.transform = 'translate(-50%, -50%)';
         img.dataset.waZoom = String(zoom);
         img.dataset.waX = String(Math.round(x));
         img.dataset.waY = String(Math.round(y));
@@ -2051,11 +2085,18 @@ def current_avatar_country_label(user=None):
 
 def public_user_profiles():
     user_data = load_user_data()
+    users = get_users(user_data)
+    known_usernames = set(users.keys())
+    if isinstance(user_data.get('known_users'), list):
+        known_usernames.update(clean_username(username) for username in user_data['known_users'])
     lookup = public_countries_by_key()
     profiles = []
-    for username, record in sorted(get_users(user_data).items(), key=lambda item: item[0].lower()):
-        if is_guest_record(username, record) or not isinstance(record, dict):
+    for username in sorted((name for name in known_usernames if name), key=lambda item: item.lower()):
+        record = users.get(username, {})
+        if is_guest_record(username, record):
             continue
+        if not isinstance(record, dict):
+            record = {}
         ensure_user_defaults(record)
         favorites = [key for key in record.get('favorites', []) if key in lookup]
         viewed = [key for key in record.get('viewed_keys', []) if key in lookup]
@@ -2104,7 +2145,7 @@ def set_avatar_country(label):
 
 def update_avatar_adjustment(field, value):
     allowed_fields = {
-        'zoom': (50, 250, 100),
+        'zoom': (20, 300, 100),
         'position_x': (0, 100, 50),
         'position_y': (0, 100, 50),
     }
@@ -2132,7 +2173,7 @@ def save_avatar_adjustment_values(values):
     if avatar.get('mode') not in ['flag', 'upload']:
         return False
     if 'zoom' in values:
-        avatar['zoom'] = int(clamp_number(values.get('zoom'), 50, 250, avatar.get('zoom', 100)))
+        avatar['zoom'] = int(clamp_number(values.get('zoom'), 20, 300, avatar.get('zoom', 100)))
     if 'position_x' in values:
         avatar['position_x'] = int(clamp_number(values.get('position_x'), 0, 100, avatar.get('position_x', 50)))
     if 'position_y' in values:
@@ -2205,6 +2246,7 @@ def upload_avatar_image(event):
 
 def render_avatar_upload_control():
     upload_id = f"avatar-upload-{random.randint(100000, 999999)}"
+    button_id = f"{upload_id}-button"
     status_id = f"{upload_id}-status"
     button_text = html_escape(t('avatar_choose_file'))
     username = state.current_user or ''
@@ -2212,7 +2254,7 @@ def render_avatar_upload_control():
         f'''
         <div class="w-full flex flex-col gap-2">
           <input id="{upload_id}" type="file" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none;">
-          <button type="button" class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable q-btn--dense px-4 py-2" onclick="document.getElementById('{upload_id}').click()">
+          <button id="{button_id}" type="button" class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable q-btn--dense px-4 py-2">
             {button_text}
           </button>
           <div id="{status_id}" class="text-xs text-gray-500"></div>
@@ -2223,9 +2265,16 @@ def render_avatar_upload_control():
     script = f"""
     (() => {{
       const input = document.getElementById({json.dumps(upload_id)});
+      const button = document.getElementById({json.dumps(button_id)});
       const status = document.getElementById({json.dumps(status_id)});
       if (!input || input.dataset.ready === '1') return;
       input.dataset.ready = '1';
+      if (button) {{
+        button.addEventListener('click', event => {{
+          event.preventDefault();
+          input.click();
+        }});
+      }}
       input.addEventListener('change', async () => {{
         const file = input.files && input.files[0];
         if (!file) return;
@@ -4836,7 +4885,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             render_avatar_drag_editor(avatar_url, user)
                             with ui.column().classes('w-full gap-1'):
                                 ui.label(t('avatar_zoom')).classes('text-xs font-bold text-gray-500')
-                                ui.slider(min=50, max=250, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
+                                ui.slider(min=20, max=300, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
                                     .props('label-always')
             with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-4'):
                 render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
