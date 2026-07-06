@@ -262,8 +262,18 @@ def merge_user_record(current, incoming):
             current[key] = merge_unique_list(current.get(key, []), value)
         elif key == 'quiz_history':
             current[key] = merge_unique_list(current.get(key, []), value, 200)
+        elif key == 'avatar' and isinstance(value, dict):
+            current_avatar = current.get('avatar') if isinstance(current.get('avatar'), dict) else {}
+            incoming_mode = value.get('mode')
+            current_mode = current_avatar.get('mode')
+            if incoming_mode in ['flag', 'upload'] or current_mode not in ['flag', 'upload']:
+                current[key] = dict(value)
+        elif key == 'name_color':
+            current[key] = value
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
+        elif key == 'battle_unlocked_notified' and isinstance(value, bool):
+            current[key] = bool(current.get(key, False) or value)
         else:
             current.setdefault(key, value)
     return current
@@ -354,6 +364,7 @@ class AppState:
     sort_field = 'name'
     sort_order = 'asc'
     show_favorites_only = False
+    favorite_filter = 'all'
     lang = 'ja'
     ui_mode = 'pc'
     current_user = None
@@ -510,6 +521,8 @@ UI_FALLBACKS = {
         'sort_asc': 'Ascending',
         'sort_desc': 'Descending',
         'favorites_only': 'Favorites only',
+        'favorites_except': 'Not favorites',
+        'favorites_all': 'No favorite filter',
         'favorite_add': 'Add favorite',
         'favorite_remove': 'Remove favorite',
         'quiz': 'Mini Quiz',
@@ -837,6 +850,7 @@ EXTRA_UI_FALLBACKS = {
         'battle_hp': 'HP',
         'battle_hand': 'Hand',
         'battle_power': 'Power',
+        'battle_power_hidden_hint': 'Power is hidden. You have seen every country, so of course you remember the data.',
         'battle_tag_bonus': 'Tag match bonus',
         'battle_submit': 'Play this hand',
         'battle_wait_opponent': 'Waiting for the opponent.',
@@ -926,6 +940,22 @@ EXTRA_UI_FALLBACKS = {
 
 for lang_code, labels in EXTRA_UI_FALLBACKS.items():
     UI_FALLBACKS.setdefault(lang_code, {}).update(labels)
+
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'favorites_except': 'お気に入り以外',
+    'favorites_all': 'お気に入り条件なし',
+    'battle_power_hidden_hint': '攻撃力は非表示です。すべての国を見たんだから当然、データ覚えてるよネ！',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'favorites_except': 'Not favorites',
+    'favorites_all': 'No favorite filter',
+    'battle_power_hidden_hint': 'Power is hidden. You have seen every country, so of course you remember the data.',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'favorites_except': '非收藏',
+    'favorites_all': '不筛选收藏',
+    'battle_power_hidden_hint': '攻击力已隐藏。既然已经看过所有国家，当然记得数据吧！',
+})
 
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
@@ -1202,6 +1232,7 @@ def ensure_user_defaults(user):
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
+PUBLIC_BROWSER_BACKUP_KEY = 'world_archives_public_user_backups'
 
 def sync_current_user_to_browser(user_data=None):
     if not state.current_user:
@@ -1228,7 +1259,21 @@ def sync_current_user_to_browser(user_data=None):
         backups = {{}};
       }}
       backups[payload.username] = payload;
-      localStorage.setItem(key, JSON.stringify(backups));
+      try {{
+        localStorage.setItem(key, JSON.stringify(backups));
+      }} catch (error) {{
+        const compactPayload = JSON.parse(JSON.stringify(payload));
+        if (compactPayload.record && compactPayload.record.avatar) {{
+          delete compactPayload.record.avatar.data_url;
+        }}
+        backups[payload.username] = compactPayload;
+        Object.values(backups).forEach(item => {{
+          if (item && item.record && item.record.avatar) {{
+            delete item.record.avatar.data_url;
+          }}
+        }});
+        localStorage.setItem(key, JSON.stringify(backups));
+      }}
       localStorage.setItem('world_archives_last_user', payload.username);
     }})();
     """
@@ -1277,9 +1322,10 @@ def request_browser_backup_restore():
     script = f"""
     (async () => {{
       const backupKey = '{BROWSER_BACKUP_KEY}';
+      const publicBackupKey = '{PUBLIC_BROWSER_BACKUP_KEY}';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'viewed_keys', 'collections', 'quiz_stats', 'avatar', 'battle_wins'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -1299,6 +1345,11 @@ def request_browser_backup_restore():
           }}
         }}
         if (!parsed || typeof parsed !== 'object') return;
+        if (Array.isArray(parsed.known_users)) {{
+          parsed.known_users.forEach(username => {{
+            if (username) knownUsers.add(String(username));
+          }});
+        }}
         if (parsed.users && typeof parsed.users === 'object') {{
           if (Array.isArray(parsed.users)) {{
             parsed.users.forEach(record => mergeRecord(record && (record.username || record.name || record.id), record));
@@ -1319,11 +1370,12 @@ def request_browser_backup_restore():
         }});
       }};
       collectPayload(localStorage.getItem(backupKey));
+      collectPayload(localStorage.getItem(publicBackupKey));
       const lastUser = localStorage.getItem('world_archives_last_user');
       if (lastUser) knownUsers.add(lastUser);
       for (let i = 0; i < localStorage.length; i += 1) {{
         const key = localStorage.key(i) || '';
-        if (key === backupKey) continue;
+        if (key === backupKey || key === publicBackupKey) continue;
         const lowerKey = key.toLowerCase();
         if (lowerKey.includes('world') || lowerKey.includes('archive') || lowerKey.includes('user')) {{
           collectPayload(localStorage.getItem(key));
@@ -1348,6 +1400,74 @@ def request_browser_backup_restore():
         ui.run_javascript(script)
     except Exception as e:
         print(f"Browser restore skipped: {e}", flush=True)
+
+def public_user_backup_payload():
+    user_data = load_user_data()
+    users = get_users(user_data)
+    lookup = public_countries_by_key()
+    known_users = [
+        username for username in user_data.get('known_users', [])
+        if username and not is_guest_record(username)
+    ]
+    public_users = {}
+    for username, record in users.items():
+        if is_guest_record(username, record) or not isinstance(record, dict):
+            continue
+        ensure_user_defaults(record)
+        avatar = dict(record.get('avatar', {})) if isinstance(record.get('avatar'), dict) else {'mode': 'default'}
+        if avatar.get('mode') == 'upload' and not avatar.get('data_url'):
+            data_url = avatar_data_url_from_file(avatar)
+            if data_url:
+                avatar['data_url'] = data_url
+        collections = record.get('collections', {}) if isinstance(record.get('collections'), dict) else {}
+        public_users[username] = {
+            'favorites': [key for key in record.get('favorites', []) if key in lookup],
+            'history': record.get('history', [])[:50] if isinstance(record.get('history'), list) else [],
+            'viewed_keys': [key for key in record.get('viewed_keys', []) if key in lookup],
+            'collections': {
+                name: [key for key in keys if key in lookup]
+                for name, keys in collections.items()
+                if isinstance(keys, list)
+            },
+            'quiz_stats': record.get('quiz_stats', {}) if isinstance(record.get('quiz_stats'), dict) else {},
+            'review_keys': [key for key in record.get('review_keys', []) if key in lookup],
+            'avatar': avatar,
+            'name_color': user_name_color(record),
+            'battle_wins': int(record.get('battle_wins', 0) or 0),
+            'battle_unlocked_notified': bool(record.get('battle_unlocked_notified')),
+        }
+    return {
+        'users': public_users,
+        'known_users': known_users,
+        'updated_at': current_timestamp(),
+    }
+
+def sync_public_users_to_browser():
+    payload = public_user_backup_payload()
+    if not payload.get('users') and not payload.get('known_users'):
+        return
+    payload_json = json.dumps(payload, ensure_ascii=False)
+    script = f"""
+    (() => {{
+      const key = '{PUBLIC_BROWSER_BACKUP_KEY}';
+      const payload = {payload_json};
+      try {{
+        localStorage.setItem(key, JSON.stringify(payload));
+      }} catch (error) {{
+        Object.values(payload.users || {{}}).forEach(item => {{
+          const record = item && item.record ? item.record : item;
+          if (record && record.avatar) {{
+            delete record.avatar.data_url;
+          }}
+        }});
+        localStorage.setItem(key, JSON.stringify(payload));
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Public browser backup skipped: {e}", flush=True)
 
 def backup_labels():
     labels = {
@@ -1665,6 +1785,7 @@ def logout_user():
     state.filter_tag = None
     state.sort_field = 'name'
     state.show_favorites_only = False
+    state.favorite_filter = 'all'
     state.collection_filter = None
     state.page = 1
     ui.notify(t('logout_success'), color='info')
@@ -1780,6 +1901,46 @@ def favorite_keys(data=None):
     if not user:
         return set()
     return set(user.setdefault('favorites', []))
+
+def current_favorite_filter():
+    value = getattr(state, 'favorite_filter', None)
+    if value in ['all', 'only', 'except']:
+        return value
+    return 'only' if getattr(state, 'show_favorites_only', False) else 'all'
+
+def set_favorite_filter(value):
+    value = value if value in ['all', 'only', 'except'] else 'all'
+    state.favorite_filter = value
+    state.show_favorites_only = value == 'only'
+
+def next_favorite_filter():
+    order = ['all', 'only', 'except']
+    current = current_favorite_filter()
+    return order[(order.index(current) + 1) % len(order)]
+
+def favorite_filter_label():
+    current = current_favorite_filter()
+    if current == 'only':
+        return t('favorites_only')
+    if current == 'except':
+        return t('favorites_except')
+    return t('favorites_all')
+
+def favorite_filter_icon():
+    current = current_favorite_filter()
+    if current == 'only':
+        return 'star'
+    if current == 'except':
+        return 'star_border'
+    return 'stars'
+
+def favorite_filter_color():
+    current = current_favorite_filter()
+    if current == 'only':
+        return 'amber'
+    if current == 'except':
+        return 'blue-grey'
+    return 'grey'
 
 def is_favorite(country, data=None):
     return country_key(country) in favorite_keys(data)
@@ -1898,6 +2059,34 @@ def user_asset_url(relative_path, version=None):
         url += f"?v={version}"
     return url
 
+def avatar_mime_from_extension(ext):
+    return {
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.webp': 'image/webp',
+        '.gif': 'image/gif',
+    }.get(str(ext or '').lower(), 'image/png')
+
+def avatar_data_url_from_content(ext, content):
+    if not isinstance(content, (bytes, bytearray)):
+        return ''
+    encoded = base64.b64encode(content).decode('ascii')
+    return f'data:{avatar_mime_from_extension(ext)};base64,{encoded}'
+
+def avatar_data_url_from_file(avatar):
+    if not isinstance(avatar, dict) or avatar.get('mode') != 'upload' or not avatar.get('file'):
+        return ''
+    file_path = os.path.join(USER_ASSETS_DIR, avatar['file'])
+    if not os.path.exists(file_path) or os.path.getsize(file_path) > 8 * 1024 * 1024:
+        return ''
+    ext = os.path.splitext(file_path)[1].lower()
+    try:
+        with open(file_path, 'rb') as f:
+            return avatar_data_url_from_content(ext, f.read())
+    except OSError:
+        return ''
+
 def current_user_avatar_url(user=None):
     if user is None:
         user = get_current_user_record()
@@ -1908,6 +2097,8 @@ def current_user_avatar_url(user=None):
         file_path = os.path.join(USER_ASSETS_DIR, avatar['file'])
         if os.path.exists(file_path):
             return user_asset_url(avatar['file'], avatar.get('version'))
+        if isinstance(avatar.get('data_url'), str) and avatar['data_url'].startswith('data:image/'):
+            return avatar['data_url']
     if avatar.get('mode') == 'flag' and avatar.get('country_key'):
         country = public_countries_by_key().get(avatar['country_key'])
         if country and displayable_flag_code(country.get('flag_code')):
@@ -2237,6 +2428,7 @@ def save_avatar_image_content(filename, content, username=None):
         'mode': 'upload',
         'file': relative_file.replace(os.sep, '/'),
         'version': app_now().strftime('%Y%m%d%H%M%S'),
+        'data_url': avatar_data_url_from_content(ext, bytes(content)),
         **default_avatar_adjustment(),
     }
     persist_current_user_data(user_data)
@@ -3239,17 +3431,17 @@ def resolve_battle_turn(room):
     if power_one > power_two:
         damage = int((power_one - power_two) * bonus_multiplier)
         room['hp'][player_two] = max(0, room['hp'].get(player_two, 10000) - damage)
-        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_two} -{damage}{bonus_text}"
+        result_text = f"{player_one} vs {player_two}: {player_two} -{damage}{bonus_text}"
         turn_winner = player_one
         turn_loser = player_two
     elif power_two > power_one:
         damage = int((power_two - power_one) * bonus_multiplier)
         room['hp'][player_one] = max(0, room['hp'].get(player_one, 10000) - damage)
-        result_text = f"{player_one} {power_one} - {power_two} {player_two}: {player_one} -{damage}{bonus_text}"
+        result_text = f"{player_one} vs {player_two}: {player_one} -{damage}{bonus_text}"
         turn_winner = player_two
         turn_loser = player_one
     else:
-        result_text = f"{player_one} {power_one} - {power_two} {player_two}: draw"
+        result_text = f"{player_one} vs {player_two}: draw"
 
     reload_set = set(room.get('reload_after_turn', []))
     defenseless_players = set()
@@ -3451,6 +3643,7 @@ def show_screen(screen_name):
         state.sort_field = 'name'
         state.sort_order = 'asc'
         state.show_favorites_only = False
+        state.favorite_filter = 'all'
         state.collection_filter = None
         state.page = 1
         if history_drawer.value:
@@ -3809,7 +4002,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             refresh_main_ui()
 
         def toggle_favorites_filter():
-            state.show_favorites_only = not state.show_favorites_only
+            set_favorite_filter(next_favorite_filter())
             state.page = 1
             refresh_main_ui()
 
@@ -3871,9 +4064,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
-                    fav_color = 'amber' if state.show_favorites_only else 'grey'
-                    ui.button(t('favorites_only'), icon='star', on_click=toggle_favorites_filter) \
-                        .props(f'color={fav_color}') \
+                    ui.button(favorite_filter_label(), icon=favorite_filter_icon(), on_click=toggle_favorites_filter) \
+                        .props(f'color={favorite_filter_color()}') \
                         .classes('w-full px-4 py-2 shadow-md' if is_mobile_ui() else 'px-4 py-2 shadow-md')
                     collection_names = list(get_collections().keys())
                     if collection_names:
@@ -3947,9 +4139,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                     continue
                 if state.filter_tag and state.filter_tag not in c.get('tags', []):
                     continue
-                if state.show_favorites_only and country_key(c) not in favorites:
+                favorite_filter = current_favorite_filter()
+                key = country_key(c)
+                if favorite_filter == 'only' and key not in favorites:
                     continue
-                if state.collection_filter and country_key(c) not in selected_collection:
+                if favorite_filter == 'except' and key in favorites:
+                    continue
+                if state.collection_filter and key not in selected_collection:
                     continue
 
                 name_local = get_localized_text(c['names'])
@@ -4631,8 +4827,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             render_users_page_button('last_page', 'last_page', total_pages, next_disabled)
 
     def refresh_users_view():
+        restore_started = False
         if not state.users_browser_restore_requested:
             state.users_browser_restore_requested = True
+            restore_started = True
             request_browser_backup_restore()
             ui.timer(0.8, refresh_users_view, once=True)
             ui.timer(1.8, refresh_users_view, once=True)
@@ -4651,6 +4849,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 ui.button(t('users_restore_browser'), icon='cloud_sync', on_click=restore_browser_users_for_list) \
                     .props('outline color=primary dense')
             profiles = public_user_profiles()
+            if profiles:
+                ui.timer(2.4 if restore_started else 0.4, sync_public_users_to_browser, once=True)
             total_count = len(profiles)
             total_pages = max(1, (total_count + state.users_items_per_page - 1) // state.users_items_per_page)
             state.users_page = max(1, min(state.users_page, total_pages))
@@ -4788,14 +4988,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         country = lookup.get(key)
         if not country:
             return
-        power = country_battle_power(country)
         selected = key in state.battle_selected_keys
         with ui.column().classes('gap-2 rounded border border-gray-200 bg-white p-3'):
             with ui.row().classes('w-full items-center gap-2 no-wrap'):
                 ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
                 ui.label(get_localized_text(country['names'])).classes('font-bold text-[#1a2332] text-sm')
             render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
-            ui.label(f'{t("battle_power")}: {power}').classes('text-xs font-bold text-red-700')
 
     def render_battle_room(room):
         players = room.get('players', [])
@@ -4835,7 +5033,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                     ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
                     with ui.row().classes('items-center gap-2 flex-wrap'):
-                        ui.label(f'{t("battle_power")}: {battle_power_for_keys(state.battle_selected_keys)}').classes('text-sm font-bold text-red-700')
+                        ui.label(t('battle_power_hidden_hint')).classes('text-sm font-bold text-red-700')
                         turn = int(room.get('turn', 1))
                         redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
                         redraw_button = ui.button(t('battle_redraw'), icon='refresh', on_click=redraw_battle_hand).props('outline color=primary dense')
