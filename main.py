@@ -6,6 +6,7 @@ World Archives.
 Render Disk上のUSER_DATA_FILEに保存します。
 """
 from nicegui import ui, app
+import base64
 import hashlib
 import json
 import os
@@ -690,6 +691,9 @@ EXTRA_UI_FALLBACKS = {
         'avatar_zoom': '拡大率',
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
+        'avatar_save_adjust': '表示位置を保存',
+        'avatar_adjust_saved': '表示位置を保存しました。',
+        'avatar_choose_file': '画像を選んでアップロード',
         'no_users': '表示できるユーザーはまだいません。',
         'account_settings': 'アカウント設定',
         'change_username': 'アカウント名を変更',
@@ -750,6 +754,9 @@ EXTRA_UI_FALLBACKS = {
         'avatar_zoom': 'Zoom',
         'avatar_position_x': 'Center position X',
         'avatar_position_y': 'Center position Y',
+        'avatar_save_adjust': 'Save framing',
+        'avatar_adjust_saved': 'Icon framing saved.',
+        'avatar_choose_file': 'Choose and upload image',
         'no_users': 'No users to show yet.',
         'account_settings': 'Account settings',
         'change_username': 'Change username',
@@ -810,6 +817,9 @@ EXTRA_UI_FALLBACKS = {
         'avatar_zoom': '缩放',
         'avatar_position_x': '中心位置（左右）',
         'avatar_position_y': '中心位置（上下）',
+        'avatar_save_adjust': '保存显示位置',
+        'avatar_adjust_saved': '显示位置已保存。',
+        'avatar_choose_file': '选择并上传图片',
         'no_users': '还没有可显示的用户。',
         'account_settings': '账户设置',
         'change_username': '更改用户名',
@@ -1184,13 +1194,51 @@ def persist_current_user_data(user_data):
 def request_browser_backup_restore():
     script = f"""
     (async () => {{
-      const raw = localStorage.getItem('{BROWSER_BACKUP_KEY}');
-      if (!raw) return;
+      const backupKey = '{BROWSER_BACKUP_KEY}';
+      const collected = {{}};
+      const mergeRecord = (username, value) => {{
+        if (!username || !value || typeof value !== 'object') return;
+        collected[String(username)] = value;
+      }};
+      const collectPayload = value => {{
+        if (!value) return;
+        let parsed = value;
+        if (typeof parsed === 'string') {{
+          try {{
+            parsed = JSON.parse(parsed);
+          }} catch (error) {{
+            return;
+          }}
+        }}
+        if (!parsed || typeof parsed !== 'object') return;
+        if (parsed.users && typeof parsed.users === 'object') {{
+          Object.entries(parsed.users).forEach(([username, record]) => mergeRecord(username, {{record}}));
+          return;
+        }}
+        if (parsed.username) {{
+          mergeRecord(parsed.username, parsed.record ? parsed : {{record: parsed}});
+          return;
+        }}
+        Object.entries(parsed).forEach(([username, record]) => {{
+          if (record && typeof record === 'object') {{
+            mergeRecord(record.username || username, record);
+          }}
+        }});
+      }};
+      collectPayload(localStorage.getItem(backupKey));
+      for (let i = 0; i < localStorage.length; i += 1) {{
+        const key = localStorage.key(i) || '';
+        if (key === backupKey) continue;
+        if (key.includes('world_archive') || key.includes('world-archive')) {{
+          collectPayload(localStorage.getItem(key));
+        }}
+      }}
+      if (!Object.keys(collected).length) return;
       try {{
         await fetch('/api/restore-user-backups', {{
           method: 'POST',
           headers: {{'Content-Type': 'application/json'}},
-          body: raw,
+          body: JSON.stringify(collected),
         }});
       }} catch (error) {{
         console.warn('World Archives backup restore failed', error);
@@ -1331,12 +1379,23 @@ def export_current_user_backup():
     ui.notify(labels['exported'], color='positive')
 
 def normalize_backup_payload(payload):
+    if isinstance(payload, str):
+        try:
+            payload = json.loads(payload)
+        except json.JSONDecodeError:
+            return {}
     if not isinstance(payload, dict):
         return {}
     if isinstance(payload.get('users'), dict):
         return {username: {'record': record} for username, record in payload['users'].items()}
     if payload.get('username') and isinstance(payload.get('record'), dict):
         return {payload['username']: payload}
+    if payload.get('username') and looks_like_user_record(payload):
+        username = payload.get('username')
+        record = dict(payload)
+        record.pop('username', None)
+        record.pop('updated_at', None)
+        return {username: {'record': record}}
     return payload
 
 def restore_user_backup_payload(payload):
@@ -1741,20 +1800,36 @@ def avatar_adjustment(source=None):
         'position_y': avatar.get('position_y', 50),
     }
 
+def avatar_crop_geometry(zoom, x, y):
+    zoom = int(clamp_number(zoom, 30, 300, 100))
+    x = int(clamp_number(x, 0, 100, 50))
+    y = int(clamp_number(y, 0, 100, 50))
+    return {
+        'zoom': zoom,
+        'x': x,
+        'y': y,
+        'left': 50 - (x * zoom / 100),
+        'top': 50 - (y * zoom / 100),
+    }
+
 def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_classes='text-gray-400', live=True):
     if avatar_url:
         adjust = avatar_adjustment(source)
-        zoom = adjust['zoom']
-        x = adjust['position_x']
-        y = adjust['position_y']
+        crop = avatar_crop_geometry(adjust['zoom'], adjust['position_x'], adjust['position_y'])
+        zoom = crop['zoom']
+        x = crop['x']
+        y = crop['y']
+        left = crop['left']
+        top = crop['top']
         src = html_escape(str(avatar_url), quote=True)
         live_attr = 'data-wa-avatar-live="current"' if live else ''
         with ui.element('div').classes(f'{classes} overflow-hidden relative'):
             ui.html(
                 f'<img class="wa-avatar-crop-image" {live_attr} src="{src}" '
-                f'style="position:absolute;left:50%;top:50%;width:{zoom}%;height:{zoom}%;'
-                f'object-fit:cover;object-position:{x}% {y}%;'
-                f'transform:translate(-50%, -50%);display:block;">',
+                f'data-wa-zoom="{zoom}" data-wa-x="{x}" data-wa-y="{y}" '
+                f'style="position:absolute;left:{left:.4f}%;top:{top:.4f}%;width:{zoom}%;height:{zoom}%;'
+                f'object-fit:cover;object-position:center center;'
+                f'transform:none;display:block;">',
                 sanitize=False,
             )
     else:
@@ -1762,16 +1837,26 @@ def render_avatar_image(avatar_url, source, classes, icon_size='4rem', icon_clas
 
 def render_avatar_drag_editor(avatar_url, source):
     adjust = avatar_adjustment(source)
-    zoom = adjust['zoom']
-    x = adjust['position_x']
-    y = adjust['position_y']
+    crop = avatar_crop_geometry(adjust['zoom'], adjust['position_x'], adjust['position_y'])
+    zoom = crop['zoom']
+    x = crop['x']
+    y = crop['y']
     editor_id = f"avatar-editor-{random.randint(100000, 999999)}"
+    save_id = f"{editor_id}-save"
+    status_id = f"{editor_id}-status"
     src = html_escape(str(avatar_url), quote=True)
+    save_text = html_escape(t('avatar_save_adjust'), quote=True)
     ui.html(
         f'''
-        <div id="{editor_id}" class="wa-avatar-editor border shadow bg-white">
-          <img src="{src}" style="width:{zoom}%;height:{zoom}%;object-position:{x}% {y}%;transform:translate(-50%, -50%);">
-          <div class="wa-avatar-target" style="left:{x}%;top:{y}%;"></div>
+        <div class="flex flex-col gap-2 items-center">
+          <div id="{editor_id}" class="wa-avatar-editor border shadow bg-white">
+            <img src="{src}" style="width:{zoom}%;height:{zoom}%;object-fit:cover;object-position:center center;">
+            <div class="wa-avatar-target" style="left:{x}%;top:{y}%;"></div>
+          </div>
+          <button id="{save_id}" type="button" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--dense px-3 py-1">
+            {save_text}
+          </button>
+          <div id="{status_id}" class="text-xs text-gray-500"></div>
         </div>
         ''',
         sanitize=False,
@@ -1783,16 +1868,26 @@ def render_avatar_drag_editor(avatar_url, source):
       frame.dataset.ready = '1';
       const image = frame.querySelector('img');
       const target = frame.querySelector('.wa-avatar-target');
+      const saveButton = document.getElementById({json.dumps(save_id)});
+      const status = document.getElementById({json.dumps(status_id)});
       let x = {x};
       let y = {y};
       const zoom = {zoom};
       let dragging = false;
       const clamp = value => Math.max(0, Math.min(100, value));
       const applyToImage = img => {{
+        const left = 50 - (x * zoom / 100);
+        const top = 50 - (y * zoom / 100);
         img.style.width = `${{zoom}}%`;
         img.style.height = `${{zoom}}%`;
-        img.style.objectPosition = `${{x}}% ${{y}}%`;
-        img.style.transform = 'translate(-50%, -50%)';
+        img.style.left = `${{left}}%`;
+        img.style.top = `${{top}}%`;
+        img.style.objectFit = 'cover';
+        img.style.objectPosition = 'center center';
+        img.style.transform = 'none';
+        img.dataset.waZoom = String(zoom);
+        img.dataset.waX = String(Math.round(x));
+        img.dataset.waY = String(Math.round(y));
       }};
       const apply = () => {{
         applyToImage(image);
@@ -1816,10 +1911,20 @@ def render_avatar_drag_editor(avatar_url, source):
               position_y: Math.round(y),
             }}),
           }});
+          if (status) status.textContent = {json.dumps(t('avatar_adjust_saved'))};
+          return true;
         }} catch (error) {{
           console.warn('Avatar position save failed', error);
+          if (status) status.textContent = {json.dumps(t('avatar_upload_failed'))};
+          return false;
         }}
       }};
+      if (saveButton) {{
+        saveButton.addEventListener('click', event => {{
+          event.preventDefault();
+          save();
+        }});
+      }}
       frame.addEventListener('pointerdown', event => {{
         event.preventDefault();
         dragging = true;
@@ -1965,12 +2070,44 @@ def reset_avatar():
     ui.notify(t('avatar_saved'), color='positive')
     refresh_current_screen()
 
-def upload_avatar_image(event):
+def save_avatar_image_content(filename, content):
     allowed_extensions = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
+    ext = os.path.splitext(filename or '')[1].lower()
+    if ext not in allowed_extensions:
+        raise ValueError('unsupported image extension')
+    if isinstance(content, str):
+        content = content.encode('utf-8')
+    if not isinstance(content, (bytes, bytearray)):
+        raise ValueError('invalid image content')
+    if not content or len(content) > 8 * 1024 * 1024:
+        raise ValueError('invalid image size')
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        raise PermissionError('login required')
+    folder = avatar_user_dir(state.current_user)
+    for name in os.listdir(folder):
+        if name.startswith('avatar.'):
+            try:
+                os.remove(os.path.join(folder, name))
+            except OSError:
+                pass
+    saved_filename = f'avatar{ext}'
+    saved_path = os.path.join(folder, saved_filename)
+    with open(saved_path, 'wb') as f:
+        f.write(content)
+    relative_file = os.path.relpath(saved_path, USER_ASSETS_DIR)
+    user['avatar'] = {
+        'mode': 'upload',
+        'file': relative_file.replace(os.sep, '/'),
+        'version': app_now().strftime('%Y%m%d%H%M%S'),
+        **default_avatar_adjustment(),
+    }
+    persist_current_user_data(user_data)
+    return True
+
+def upload_avatar_image(event):
     try:
-        ext = os.path.splitext(event.name or '')[1].lower()
-        if ext not in allowed_extensions:
-            raise ValueError('unsupported image extension')
         content_source = event.content
         if hasattr(content_source, 'seek'):
             try:
@@ -1978,40 +2115,73 @@ def upload_avatar_image(event):
             except Exception:
                 pass
         content = content_source.read() if hasattr(content_source, 'read') else content_source
-        if isinstance(content, str):
-            content = content.encode('utf-8')
-        if not isinstance(content, (bytes, bytearray)):
-            raise ValueError('invalid image content')
-        if not content or len(content) > 8 * 1024 * 1024:
-            raise ValueError('invalid image size')
-        user_data = load_user_data()
-        user = get_current_user_record(user_data)
-        if not user:
-            ui.notify(t('login_required'), color='warning')
-            return
-        folder = avatar_user_dir(state.current_user)
-        for name in os.listdir(folder):
-            if name.startswith('avatar.'):
-                try:
-                    os.remove(os.path.join(folder, name))
-                except OSError:
-                    pass
-        filename = f'avatar{ext}'
-        with open(os.path.join(folder, filename), 'wb') as f:
-            f.write(content)
-        relative_file = os.path.relpath(os.path.join(folder, filename), USER_ASSETS_DIR)
-        user['avatar'] = {
-            'mode': 'upload',
-            'file': relative_file.replace(os.sep, '/'),
-            'version': app_now().strftime('%Y%m%d%H%M%S'),
-            **default_avatar_adjustment(),
-        }
-        persist_current_user_data(user_data)
+        save_avatar_image_content(event.name, content)
         ui.notify(t('avatar_saved'), color='positive')
         refresh_current_screen()
     except Exception as e:
         print(f'Avatar upload failed: {e}', flush=True)
         ui.notify(t('avatar_upload_failed'), color='negative')
+
+def render_avatar_upload_control():
+    upload_id = f"avatar-upload-{random.randint(100000, 999999)}"
+    status_id = f"{upload_id}-status"
+    button_text = html_escape(t('avatar_choose_file'))
+    ui.html(
+        f'''
+        <div class="w-full flex flex-col gap-2">
+          <input id="{upload_id}" type="file" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none;">
+          <button type="button" class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable q-btn--dense px-4 py-2" onclick="document.getElementById('{upload_id}').click()">
+            {button_text}
+          </button>
+          <div id="{status_id}" class="text-xs text-gray-500"></div>
+        </div>
+        ''',
+        sanitize=False,
+    )
+    script = f"""
+    (() => {{
+      const input = document.getElementById({json.dumps(upload_id)});
+      const status = document.getElementById({json.dumps(status_id)});
+      if (!input || input.dataset.ready === '1') return;
+      input.dataset.ready = '1';
+      input.addEventListener('change', async () => {{
+        const file = input.files && input.files[0];
+        if (!file) return;
+        if (file.size > 8 * 1024 * 1024) {{
+          if (status) status.textContent = {json.dumps(t('avatar_upload_failed'))};
+          input.value = '';
+          return;
+        }}
+        const reader = new FileReader();
+        reader.onerror = () => {{
+          if (status) status.textContent = {json.dumps(t('avatar_upload_failed'))};
+        }};
+        reader.onload = async () => {{
+          try {{
+            const response = await fetch('/api/avatar-upload', {{
+              method: 'POST',
+              headers: {{'Content-Type': 'application/json'}},
+              body: JSON.stringify({{
+                name: file.name,
+                content: reader.result,
+              }}),
+            }});
+            const result = await response.json();
+            if (!response.ok || !result.ok) throw new Error(result.error || 'upload failed');
+            if (status) status.textContent = {json.dumps(t('avatar_saved'))};
+            window.location.reload();
+          }} catch (error) {{
+            console.warn('Avatar upload failed', error);
+            if (status) status.textContent = {json.dumps(t('avatar_upload_failed'))};
+          }} finally {{
+            input.value = '';
+          }}
+        }};
+        reader.readAsDataURL(file);
+      }});
+    }})();
+    """
+    ui.timer(0.1, lambda script=script: ui.run_javascript(script), once=True)
 
 def get_quiz_history():
     user = get_current_user_record()
@@ -2892,6 +3062,19 @@ async def restore_user_backups(payload: dict):
 async def save_avatar_adjustment(payload: dict):
     ok = save_avatar_adjustment_values(payload)
     return {'ok': ok}
+
+@app.post('/api/avatar-upload')
+async def upload_avatar_from_browser(payload: dict):
+    try:
+        raw_content = payload.get('content', '')
+        if isinstance(raw_content, str) and raw_content.startswith('data:'):
+            raw_content = raw_content.split(',', 1)[1]
+        content = base64.b64decode(raw_content)
+        save_avatar_image_content(payload.get('name', ''), content)
+        return {'ok': True}
+    except Exception as e:
+        print(f'Avatar browser upload failed: {e}', flush=True)
+        return {'ok': False, 'error': str(e)}
 
 def save_data(data):
     data = dict(data)
@@ -4099,6 +4282,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
         request_browser_backup_restore()
         ui.notify(t('users_restore_browser'), color='info')
         ui.timer(0.8, refresh_users_view, once=True)
+        ui.timer(1.8, refresh_users_view, once=True)
+        ui.timer(3.0, refresh_users_view, once=True)
 
     def change_users_page(page):
         state.users_page = page
@@ -4129,6 +4314,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             state.users_browser_restore_requested = True
             request_browser_backup_restore()
             ui.timer(0.8, refresh_users_view, once=True)
+            ui.timer(1.8, refresh_users_view, once=True)
         render_header(header_container_users)
         update_mode_classes(
             users_content,
@@ -4449,9 +4635,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         ).props('outlined dense').classes('w-full')
                         ui.label(t('avatar_upload')).classes('text-sm font-bold text-gray-500')
                         ui.label(t('avatar_file_hint')).classes('text-xs text-gray-500')
-                        ui.upload(on_upload=upload_avatar_image, auto_upload=True) \
-                            .props('accept=image/png,image/jpeg,image/webp,image/gif max-files=1 max-file-size=8388608') \
-                            .classes('w-full')
+                        render_avatar_upload_control()
                         ui.button(t('avatar_reset'), icon='restart_alt', on_click=reset_avatar) \
                             .props('outline color=grey') \
                             .classes('w-full' if is_mobile_ui() else 'self-start')
