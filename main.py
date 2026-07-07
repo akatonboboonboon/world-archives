@@ -33,6 +33,7 @@ DATA_CACHE = None
 DATA_CACHE_MTIME = None
 USER_DATA_CACHE = None
 USER_DATA_CACHE_MTIME = None
+QUIZ_POOL_CACHE = {'key': None, 'value': None}
 
 def file_mtime(path):
     try:
@@ -598,6 +599,10 @@ BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
 BATTLE_BONUS_PER_MATCH_BPS = 10
 BATTLE_BONUS_DENOMINATOR = 10_000
+BATTLE_MIN_DAMAGE_PERCENT = 4
+BATTLE_PRESSURE_START_TURN = 10
+BATTLE_PRESSURE_PER_TURN_BPS = 500
+BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
@@ -3848,7 +3853,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
     })
     del history[200:]
     normalize_quiz_stats(user)
-    persist_current_user_data(user_data, immediate_browser=True)
+    persist_current_user_data(user_data)
 
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
@@ -4322,6 +4327,42 @@ def quiz_question_matches_category(question_type):
         return question_type.startswith('detail_')
     return True
 
+def quiz_base_question_types():
+    question_types = ['desc', 'capital', 'tag', 'flag', 'period']
+    question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
+    question_types.extend(f'detail_{field}' for field in DETAIL_QUIZ_FIELDS)
+    return question_types
+
+def quiz_pool_cache_key(countries):
+    return (
+        DATA_CACHE_MTIME,
+        state.lang,
+        len(countries),
+        tuple(country_key(country) for country in countries),
+    )
+
+def quiz_pool_data(countries):
+    cache_key = quiz_pool_cache_key(countries)
+    if QUIZ_POOL_CACHE.get('key') == cache_key and QUIZ_POOL_CACHE.get('value'):
+        return QUIZ_POOL_CACHE['value']
+
+    tag_counts = quiz_tag_counts(countries)
+    tag_options = all_quiz_tags(countries, tag_counts)
+    base_question_types = quiz_base_question_types()
+    option_candidates = {
+        question_type: quiz_candidates_for_type(countries, question_type, tag_counts, len(countries))
+        for question_type in base_question_types
+    }
+    pool = {
+        'tag_counts': tag_counts,
+        'tag_options': tag_options,
+        'base_question_types': base_question_types,
+        'option_candidates': option_candidates,
+    }
+    QUIZ_POOL_CACHE['key'] = cache_key
+    QUIZ_POOL_CACHE['value'] = pool
+    return pool
+
 def has_quiz_flag(country):
     return displayable_flag_code(country.get('flag_code'))
 
@@ -4598,37 +4639,30 @@ def build_quiz():
     if len(countries) < 4:
         return None
     lookup = public_countries_by_key(data)
-    tag_counts = quiz_tag_counts(countries)
-    tag_options = all_quiz_tags(countries, tag_counts)
-    answer_source = countries
+    pool = quiz_pool_data(countries)
+    tag_counts = pool['tag_counts']
+    tag_options = pool['tag_options']
+    option_candidates = pool['option_candidates']
+    answer_source_keys = None
     if state.quiz_mode == 'review':
         review_source = [lookup[key] for key in get_review_keys() if key in lookup]
         if not review_source:
             return None
-        answer_source = review_source
+        answer_source_keys = {country_key(country) for country in review_source}
 
-    base_question_types = ['desc', 'capital', 'tag', 'flag', 'period']
-    base_question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
-    base_question_types.extend(f'detail_{field}' for field in DETAIL_QUIZ_FIELDS)
+    base_question_types = pool['base_question_types']
     question_types = []
     for question_type in base_question_types:
         question_types.append(question_type)
         question_types.append(f'{question_type}_reverse')
 
-    option_candidates = {
-        question_type: quiz_candidates_for_type(countries, question_type, tag_counts, len(countries))
-        for question_type in base_question_types
-    }
-    answer_candidates = {
-        question_type: quiz_candidates_for_type(answer_source, question_type, tag_counts, len(countries))
-        for question_type in base_question_types
-    }
-
     question_pools = []
     for question_type in question_types:
         if not quiz_question_matches_category(question_type):
             continue
-        candidates = answer_candidates.get(quiz_base_type(question_type), [])
+        candidates = option_candidates.get(quiz_base_type(question_type), [])
+        if answer_source_keys is not None:
+            candidates = [country for country in candidates if country_key(country) in answer_source_keys]
         if candidates:
             question_pools.append((question_type, candidates))
     if not question_pools:
@@ -4887,7 +4921,8 @@ def _legacy_battle_help_labels():
                         '出した国の国力を比べ、強い側が相手にダメージを与えます。',
                         '国力は「面積 x 人口 ÷ 1000」が基本です。広くて人口の多い国ほど強くなりやすいです。',
                         '複数枚出すと、2枚目以降は少しずつ力が抑えられます。たくさん出すほど強い一方、手札切れの危険も増えます。',
-                        'ダメージは国力の差から相手の防御を引いて決まります。守り切られた場合、ダメージは0です。',
+                        'ダメージは国力の差から相手の防御を引いて決まります。防御は受けるダメージを減らします。',
+                        '攻撃側が勝ったターンは最低限のダメージが入り、長引くほど少しずつ決着しやすくなります。',
                         'ダメージを与えると、相手の残り手札から1枚奪えます。BOT戦の勝利数はランキングに入りません。',
                     ],
                 ),
@@ -4926,7 +4961,8 @@ def _legacy_battle_help_labels():
                     'The side with higher country power deals damage.',
                     'Country power is based on area x population divided by 1000. Large, populous countries tend to be stronger.',
                     'Playing several cards is powerful, but the second and later cards are slightly reduced. Going all in can leave you exposed later.',
-                    'Damage is based on the power gap after defense. If defense blocks it, damage becomes 0.',
+                    'Damage is based on the power gap after defense. Defense reduces incoming damage.',
+                    'When the attacker wins a turn, a minimum amount of damage is dealt, and long battles become easier to finish over time.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
                 ('Battle modes', [
@@ -4958,7 +4994,8 @@ def _legacy_battle_help_labels():
                     '比较出战国家的国力，较高的一方造成伤害。',
                     '国力基本上由「面积 x 人口 ÷ 1000」决定。面积大且人口多的国家更容易变强。',
                     '打出多张牌会更强，但第2张以后的力量会逐渐降低。一次打光很强，也更容易陷入手牌不足。',
-                    '伤害由国力差再扣除防御决定。若防御挡住了攻击，伤害为0。',
+                    '伤害由国力差再扣除防御决定。防御会减少受到的伤害。',
+                    '攻击方赢下回合时会造成最低伤害，战斗拖得越久，越容易分出胜负。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
                 ]),
                 ('模式规则', [
@@ -5014,7 +5051,8 @@ def battle_help_labels():
                     '国力は、国の面積と人口をもとに計算されます。広く、人口の多い国ほど強くなりやすいです。',
                     '基本の国力は「面積 x 人口 ÷ 1000」です。',
                     '複数枚を出すと総攻撃は上がりますが、2枚目以降は少しずつ力が抑えられます。',
-                    '相手の防御を上回った分がダメージになります。防御で受け止められた場合、ダメージは0です。',
+                    '相手の防御を上回った分がダメージになります。防御は受けるダメージを減らします。',
+                    '攻撃側が勝ったターンは最低限のダメージが入り、長引くほど少しずつ決着しやすくなります。',
                     'ダメージを与えると、相手の残り手札から1枚を奪えます。BOT戦の勝利数はランキングには入りません。',
                 ]),
                 ('対戦モード', [
@@ -5065,7 +5103,8 @@ def battle_help_labels():
                     'Country power is based on area and population. Larger, more populous countries tend to be stronger.',
                     'Base power is area x population divided by 1000.',
                     'Playing several cards raises total attack, but the second and later cards are slightly reduced.',
-                    'Damage is the power gap after defense. If defense blocks it, damage becomes 0.',
+                    'Damage is the power gap after defense. Defense reduces incoming damage.',
+                    'When the attacker wins a turn, a minimum amount of damage is dealt, and long battles become easier to finish over time.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
                 ('Battle Modes', [
@@ -5116,7 +5155,8 @@ def battle_help_labels():
                     '国力根据面积和人口计算。面积大、人口多的国家通常更强。',
                     '基本国力为“面积 x 人口 ÷ 1000”。',
                     '同时出多张牌会提高总攻击，但第2张以后会稍微降低效果。',
-                    '伤害由扣除防御后的国力差决定。被防住时伤害为0。',
+                    '伤害由扣除防御后的国力差决定。防御会减少受到的伤害。',
+                    '攻击方赢下回合时会造成最低伤害，战斗拖得越久，越容易分出胜负。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战胜利不会计入排行榜。',
                 ]),
                 ('对战模式', [
@@ -5699,9 +5739,34 @@ def battle_entry_for_player(room, player):
         'target': clean_username(submitted.get('target')),
     }
 
-def battle_damage_after_defense(win_power, lose_power, defense, labels):
-    raw_damage = apply_battle_bonus_value(max(0, int(win_power) - int(lose_power)), labels)
-    return max(0, raw_damage - max(0, int(defense or 0)))
+def battle_turn_pressure_scale(turn):
+    try:
+        turn = int(turn)
+    except (TypeError, ValueError):
+        turn = 1
+    extra_turns = max(0, turn - BATTLE_PRESSURE_START_TURN)
+    extra_bps = min(BATTLE_PRESSURE_MAX_EXTRA_BPS, extra_turns * BATTLE_PRESSURE_PER_TURN_BPS)
+    return BATTLE_BONUS_DENOMINATOR + extra_bps
+
+def apply_battle_turn_pressure(value, turn):
+    return max(0, int(value) * battle_turn_pressure_scale(turn) // BATTLE_BONUS_DENOMINATOR)
+
+def battle_min_decisive_damage(hp_limit, turn):
+    try:
+        hp_limit = int(hp_limit)
+    except (TypeError, ValueError):
+        hp_limit = BATTLE_MAX_HP
+    floor = max(1, hp_limit * BATTLE_MIN_DAMAGE_PERCENT // 100)
+    return apply_battle_turn_pressure(floor, turn)
+
+def battle_damage_after_defense(win_power, lose_power, defense, labels, hp_limit=None, turn=1):
+    power_gap = max(0, int(win_power) - int(lose_power))
+    if power_gap <= 0:
+        return 0
+    raw_damage = apply_battle_bonus_value(power_gap, labels)
+    blocked_damage = max(0, raw_damage - max(0, int(defense or 0)))
+    pressured_damage = apply_battle_turn_pressure(blocked_damage, turn)
+    return max(pressured_damage, battle_min_decisive_damage(hp_limit or BATTLE_MAX_HP, turn))
 
 def battle_defense_text(entry):
     defense = int((entry or {}).get('defense', 0) or 0)
@@ -5925,7 +5990,14 @@ def resolve_battle_turn(room):
                 winning_team, win_power = sorted_teams[0]
                 losing_team, lose_power = sorted_teams[1]
                 multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []))
-                damage = battle_damage_after_defense(win_power, lose_power, team_defense.get(losing_team, 0), labels)
+                damage = battle_damage_after_defense(
+                    win_power,
+                    lose_power,
+                    team_defense.get(losing_team, 0),
+                    labels,
+                    battle_team_hp_limit(room),
+                    room.get('turn', 1),
+                )
                 losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
                 if damage:
                     team_hp[losing_team] = max(0, team_hp.get(losing_team, battle_team_hp_limit(room)) - damage)
@@ -5948,7 +6020,14 @@ def resolve_battle_turn(room):
                 result_parts.append(f"{attacker} -> {target}: draw")
                 continue
             multiplier, labels = battle_bonus_for_keys(entry.get('keys', []))
-            damage = battle_damage_after_defense(entry.get('power', 0), entries[target].get('power', 0), entries[target].get('defense', 0), labels)
+            damage = battle_damage_after_defense(
+                entry.get('power', 0),
+                entries[target].get('power', 0),
+                entries[target].get('defense', 0),
+                labels,
+                BATTLE_MAX_HP,
+                room.get('turn', 1),
+            )
             damage_events.append((attacker, target, damage, labels, multiplier))
         for attacker, target, damage, labels, multiplier in damage_events:
             room['hp'][target] = max(0, room['hp'].get(target, BATTLE_MAX_HP) - damage)
@@ -5962,7 +6041,14 @@ def resolve_battle_turn(room):
         power_two = entries[player_two]['power']
         if power_one > power_two:
             multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'])
-            damage = battle_damage_after_defense(power_one, power_two, entries[player_two].get('defense', 0), labels)
+            damage = battle_damage_after_defense(
+                power_one,
+                power_two,
+                entries[player_two].get('defense', 0),
+                labels,
+                BATTLE_MAX_HP,
+                room.get('turn', 1),
+            )
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
             if damage > 0:
                 winners = [player_one]
@@ -5970,7 +6056,14 @@ def resolve_battle_turn(room):
             result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
             multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
-            damage = battle_damage_after_defense(power_two, power_one, entries[player_one].get('defense', 0), labels)
+            damage = battle_damage_after_defense(
+                power_two,
+                power_one,
+                entries[player_one].get('defense', 0),
+                labels,
+                BATTLE_MAX_HP,
+                room.get('turn', 1),
+            )
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
             if damage > 0:
                 winners = [player_two]
@@ -7388,8 +7481,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                             option_image = quiz.get('option_images', {}).get(option_key)
                             if option_image:
                                 border_class = 'border-green-500 bg-green-50' if quiz.get('answered') and is_answer else ('border-red-500 bg-red-50' if quiz.get('answered') and is_selected else 'border-gray-200 bg-white')
-                                with ui.column().classes(f'w-full gap-2 rounded border p-3 {border_class}'):
-                                    ui.image(option_image).classes('w-full max-w-xs self-center shadow-sm border rounded bg-white')
+                                with ui.column().classes(f'w-full gap-2 rounded border p-2 {border_class}'):
+                                    ui.image(option_image).classes('w-40 shadow-sm border rounded bg-white self-center').style('aspect-ratio: 3 / 2; object-fit: cover;')
                                     ui.button(label or t('quiz_select_option'), on_click=lambda _, key=option_key: select_quiz_option(key)) \
                                         .props(f'color={color} text-color={text_color}') \
                                         .classes('w-full')
