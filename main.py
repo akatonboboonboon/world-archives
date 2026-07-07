@@ -619,11 +619,11 @@ BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 2
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
 BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
-BATTLE_REVOLUTION_CHANCE = 0.025
-BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.08
+BATTLE_REVOLUTION_CHANCE = 0.012
+BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.035
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
-BATTLE_RANDOM_EVENT_CHANCE = 0.065
+BATTLE_RANDOM_EVENT_CHANCE = 0.03
 BATTLE_RANDOM_EVENT_MIN_TURNS = 3
 BATTLE_RANDOM_EVENT_MAX_TURNS = 7
 BATTLE_DAMAGE_SURGE_MULTIPLIER = 1000
@@ -1861,6 +1861,27 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_blockade_notice': '补给线被切断，无法重抽手牌。',
     'battle_blockade_start_log': '海上封锁开始。无法重抽手牌。',
     'battle_blockade_redraw_blocked': '海上封锁期间无法重抽。',
+})
+
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_replace_title': '手札再分配',
+    'battle_replace_notice': '全員の手札をまとめてシャッフルし、元の枚数どおりに配り直します。',
+    'battle_replace_start_log': '手札再分配が始まりました。',
+    'battle_replace_redistribute_log': '{players}人の手札{count}枚をまとめて再分配しました。',
+})
+
+UI_FALLBACKS.setdefault('en', {}).update({
+    'battle_replace_title': 'Hand Redistribution',
+    'battle_replace_notice': 'All hands are pooled, shuffled, and redealt with the same card counts.',
+    'battle_replace_start_log': 'Hand Redistribution began.',
+    'battle_replace_redistribute_log': 'Redistributed {count} cards across {players} players.',
+})
+
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'battle_replace_title': '手牌再分配',
+    'battle_replace_notice': '所有人的手牌会合并洗牌，并按原本的张数重新分配。',
+    'battle_replace_start_log': '手牌再分配开始。',
+    'battle_replace_redistribute_log': '已将{players}名玩家的{count}张手牌重新分配。',
 })
 
 def t(key, subkey=None):
@@ -5420,6 +5441,20 @@ def battle_blockade_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_exclusive_event_active(room):
+    return any([
+        battle_revolution_active(room),
+        battle_flag_only_active(room),
+        battle_vatican_active(room),
+        battle_replace_active(room),
+        battle_bomb_active(room),
+        battle_damage_surge_active(room),
+        battle_ceasefire_active(room),
+        battle_command_surge_active(room),
+        battle_supply_drop_active(room),
+        battle_blockade_active(room),
+    ])
+
 def battle_event_damage_multiplier(room):
     multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
     if battle_ceasefire_active(room):
@@ -7255,25 +7290,23 @@ def battle_start_bomb_event(room, turn, result_parts):
 def battle_apply_replace_event(room, result_parts):
     if not battle_replace_active(room):
         return
-    lookup = battle_country_lookup()
-    candidates = []
+    hands = room.setdefault('hands', {})
+    player_counts = []
+    pooled_cards = []
     for player in active_battle_players(room):
-        hand = room.setdefault('hands', {}).setdefault(player, [])
-        for index, key in enumerate(hand):
-            if key in lookup:
-                candidates.append((player, index, key))
-    if not candidates:
+        hand = list(hands.setdefault(player, []))
+        player_counts.append((player, len(hand)))
+        pooled_cards.extend(hand)
+    if not pooled_cards:
         return
-    player, index, old_key = random.choice(candidates)
-    new_cards = weighted_battle_country_sample(1)
-    if not new_cards:
-        return
-    new_key = new_cards[0]
-    room['hands'][player][index] = new_key
-    result_parts.append(t('battle_replace_log').format(
-        player=player,
-        old=battle_card_display_name(old_key, lookup, room),
-        new=battle_card_display_name(new_key, lookup, room),
+    random.shuffle(pooled_cards)
+    cursor = 0
+    for player, count in player_counts:
+        hands[player] = pooled_cards[cursor:cursor + count]
+        cursor += count
+    result_parts.append(t('battle_replace_redistribute_log').format(
+        count=len(pooled_cards),
+        players=len(player_counts),
     ))
 
 def update_battle_crisis_state(room, result_parts=None):
@@ -7302,12 +7335,16 @@ def update_battle_crisis_state(room, result_parts=None):
         room['bomb_until_turn'] = 0
         battle_expire_bomb_event(room, result_parts)
 
+    if battle_exclusive_event_active(room):
+        return
+
     if not battle_revolution_active(room):
         revolution_chance = BATTLE_WORLD_WAR_REVOLUTION_CHANCE if room.get('world_war_started') else BATTLE_REVOLUTION_CHANCE
         if random.random() < revolution_chance:
             duration = random.randint(BATTLE_REVOLUTION_MIN_TURNS, BATTLE_REVOLUTION_MAX_TURNS)
             room['revolution_until_turn'] = turn + duration - 1
             result_parts.append(t('battle_revolution_start_log'))
+            return
 
     random_events = []
     if not battle_flag_only_active(room):
