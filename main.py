@@ -583,6 +583,9 @@ class AppState:
     battle_attack_target = None
     battle_turn_timeout_seconds = 60
     battle_world_war_turn = 75
+    battle_room_player_count = 3
+    battle_team_count = 2
+    battle_team_choice = 'A'
     battle_last_signature = ''
     social_selected_chat_id = None
     social_last_signature = ''
@@ -607,7 +610,7 @@ BATTLE_REDRAW_COMMAND_COST = 2
 BATTLE_CARD_COMMAND_COSTS = [1, 2, 4, 6, 7]
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
-BATTLE_BONUS_PER_MATCH_BPS = 10
+BATTLE_BONUS_PER_MATCH_BPS = 30
 BATTLE_BONUS_DENOMINATOR = 10_000
 BATTLE_WORLD_WAR_TURN = 75
 BATTLE_WORLD_WAR_DISABLED = 0
@@ -620,28 +623,41 @@ BATTLE_REVOLUTION_CHANCE = 0.025
 BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.08
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
-BATTLE_RANDOM_EVENT_CHANCE = 0.035
+BATTLE_RANDOM_EVENT_CHANCE = 0.08
 BATTLE_RANDOM_EVENT_MIN_TURNS = 2
 BATTLE_RANDOM_EVENT_MAX_TURNS = 4
+BATTLE_DAMAGE_SURGE_MULTIPLIER = 1000
+BATTLE_BOMB_DAMAGE_PERCENT = 18
+BATTLE_BOMB_CARD = 'event:hot_potato_bomb'
 BATTLE_VATICAN_DRAW_CHANCE = 0.45
 BATTLE_SPECIAL_CARD_CHANCE = 0.12
 BATTLE_SPECIAL_CARD_MAX_PER_HAND = 2
 BATTLE_SPECIAL_CARD_PREFIX = 'event:'
 BATTLE_SPECIAL_CARDS = {
-    'event:supply_collapse': {'damage_percent': 1, 'weight': 1.0},
-    'event:frontline_disaster': {'damage_percent': 2, 'weight': 1.0},
-    'event:fallout_crisis': {'damage_percent': 4, 'weight': 1.0},
+    'event:supply_collapse': {'damage_percent': 1, 'weight': 1.4},
+    'event:frontline_disaster': {'damage_percent': 2, 'weight': 0.75},
+    'event:fallout_crisis': {'damage_percent': 4, 'weight': 0.28},
     'event:scorched_earth': {'damage_percent': 1, 'destroy_one': True, 'weight': 1.0},
     'event:relief_convoy': {'heal_percent': 3, 'weight': 0.22},
+    BATTLE_BOMB_CARD: {'bomb': True, 'weight': 0},
 }
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
 BOT_MODE = 'bot'
+BATTLE_MAX_MULTIPLAYER_PLAYERS = 9
+BATTLE_MIN_MULTIPLAYER_PLAYERS = 2
+BATTLE_TEAM_IDS = ['A', 'B', 'C', 'D']
+BATTLE_TEAM_COLORS = {
+    'A': 'red',
+    'B': 'blue',
+    'C': 'green',
+    'D': 'purple',
+}
 MULTIPLAYER_MODES = {
     DUEL_MODE: 2,
-    FFA_MODE: 3,
-    TEAM_MODE: 4,
+    FFA_MODE: BATTLE_MAX_MULTIPLAYER_PLAYERS,
+    TEAM_MODE: BATTLE_MAX_MULTIPLAYER_PLAYERS,
 }
 ADMIN_SEARCH_CHEAT_CODE = '上上下下左右左右BA'
 SECRET_HIDDEN_COUNTRY_SEARCH_TERMS = {'ケッテン連邦'}
@@ -1655,6 +1671,85 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'unread_notifications': '\u672a\u8bfb: {count}',
     'mark_all_read': '\u5168\u90e8\u6807\u4e3a\u5df2\u8bfb',
     'unread': '\u672a\u8bfb',
+})
+
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_start_with_bots': 'BOTを入れて開始',
+    'battle_team_count': 'チーム数',
+    'battle_team_choice': '参加チーム',
+    'battle_team_randomize': 'チームをランダム分け',
+    'battle_team_randomized_log': '{host}がチームをランダムに振り分けました。',
+    'battle_host_only': 'ホストだけが操作できます。',
+    'battle_revolution_start_log': '革命が発生しました。カードの強さが逆転します。',
+    'battle_flag_only_start_log': '国旗識別戦が始まりました。国名が伏せられます。',
+    'battle_vatican_start_log': 'バチカン市国が大量発生しました。配布カードに混ざりやすくなります。',
+    'battle_replace_title': '手札入れ替わり',
+    'battle_replace_notice': '毎ターン、誰かの手札が1枚ランダムに別の国へ置き換わります。',
+    'battle_replace_start_log': '手札入れ替わりが始まりました。',
+    'battle_replace_log': '{player}の手札が1枚入れ替わりました: {old} -> {new}',
+    'battle_bomb_title': '爆弾カード',
+    'battle_bomb_notice': '爆弾は現在{player}の手札にあります。出すと相手へ移り、持ったまま終わると大ダメージです。',
+    'battle_bomb_start_log': '{player}の手札に爆弾カードが入りました。',
+    'battle_bomb_pass_log': '{player}が爆弾カードを{target}へ渡しました。',
+    'battle_bomb_explode_log': '{player}の手札で爆弾カードが爆発し、{damage}ダメージを受けました。',
+    'battle_bomb_card_hint': '場に出すと相手の手札へ移ります。持ったままイベントが終わると危険です。',
+    'battle_bomb_visual': '爆弾カードの移動',
+    'battle_damage_surge_title': '超火力化',
+    'battle_damage_surge_notice': 'この間はダメージが大きく跳ね上がります。防御も反撃も重要です。',
+    'battle_damage_surge_start_log': '超火力化が始まりました。ダメージが大きく跳ね上がります。',
+    'battle_special_hot_potato_bomb': '爆弾カード',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'battle_start_with_bots': 'Start with BOTs',
+    'battle_team_count': 'Teams',
+    'battle_team_choice': 'Your team',
+    'battle_team_randomize': 'Randomize teams',
+    'battle_team_randomized_log': '{host} randomized the teams.',
+    'battle_host_only': 'Only the host can do that.',
+    'battle_revolution_start_log': 'A revolution began. Card strength is reversed.',
+    'battle_flag_only_start_log': 'Flag Recognition began. Country names are hidden.',
+    'battle_vatican_start_log': 'Vatican City outbreak began. It is more likely to appear in dealt cards.',
+    'battle_replace_title': 'Hand Shuffle',
+    'battle_replace_notice': 'Each turn, one random card in someone\'s hand is replaced.',
+    'battle_replace_start_log': 'Hand Shuffle began.',
+    'battle_replace_log': "{player}'s hand changed: {old} -> {new}",
+    'battle_bomb_title': 'Bomb Card',
+    'battle_bomb_notice': 'The bomb is in {player}\'s hand. Play it to pass it on. Hold it too long and it explodes.',
+    'battle_bomb_start_log': 'A bomb card entered {player}\'s hand.',
+    'battle_bomb_pass_log': '{player} passed the bomb card to {target}.',
+    'battle_bomb_explode_log': 'The bomb exploded in {player}\'s hand for {damage} damage.',
+    'battle_bomb_card_hint': 'Play it to pass it to an opponent. Holding it when the event ends is dangerous.',
+    'battle_bomb_visual': 'Bomb Movement',
+    'battle_damage_surge_title': 'Overdrive Damage',
+    'battle_damage_surge_notice': 'Damage is massively increased. Defense counters matter too.',
+    'battle_damage_surge_start_log': 'Overdrive Damage began. Damage is massively increased.',
+    'battle_special_hot_potato_bomb': 'Bomb Card',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'battle_start_with_bots': '加入BOT开始',
+    'battle_team_count': '队伍数',
+    'battle_team_choice': '参加队伍',
+    'battle_team_randomize': '随机分队',
+    'battle_team_randomized_log': '{host}随机分配了队伍。',
+    'battle_host_only': '只有房主可以操作。',
+    'battle_revolution_start_log': '革命发生了。卡牌强弱反转。',
+    'battle_flag_only_start_log': '国旗识别战开始。国名会被隐藏。',
+    'battle_vatican_start_log': '梵蒂冈大量出现。发牌时更容易出现。',
+    'battle_replace_title': '手牌替换',
+    'battle_replace_notice': '每回合会随机替换某人手牌中的一张牌。',
+    'battle_replace_start_log': '手牌替换开始了。',
+    'battle_replace_log': '{player}的一张手牌被替换: {old} -> {new}',
+    'battle_bomb_title': '炸弹牌',
+    'battle_bomb_notice': '炸弹现在在{player}手中。打出会传给对手，留下太久会爆炸。',
+    'battle_bomb_start_log': '炸弹牌进入了{player}的手牌。',
+    'battle_bomb_pass_log': '{player}把炸弹牌传给了{target}。',
+    'battle_bomb_explode_log': '炸弹在{player}手中爆炸，造成{damage}伤害。',
+    'battle_bomb_card_hint': '打出可传给对手。事件结束时还拿着会很危险。',
+    'battle_bomb_visual': '炸弹移动',
+    'battle_damage_surge_title': '超火力',
+    'battle_damage_surge_notice': '伤害会大幅提高，防御反击也很重要。',
+    'battle_damage_surge_start_log': '超火力开始。伤害会大幅提高。',
+    'battle_special_hot_potato_bomb': '炸弹牌',
 })
 
 def t(key, subkey=None):
@@ -5172,6 +5267,27 @@ def battle_vatican_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_replace_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('replace_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_bomb_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('bomb_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_damage_surge_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('damage_surge_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_event_damage_multiplier(room):
+    return BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
+
 def battle_vatican_country_key(data=None):
     for country in battle_country_list(data):
         names = country.get('names', {})
@@ -5187,6 +5303,15 @@ def battle_special_card_label(key):
 
 def is_battle_special_card(key):
     return str(key or '') in BATTLE_SPECIAL_CARDS
+
+def is_battle_playable_special_card(key):
+    return str(key or '') == BATTLE_BOMB_CARD
+
+def is_battle_selectable_card(key):
+    return not is_battle_special_card(key) or is_battle_playable_special_card(key)
+
+def is_battle_power_card(key):
+    return not is_battle_special_card(key)
 
 def battle_special_card_damage(key, hp_limit=BATTLE_MAX_HP):
     card = BATTLE_SPECIAL_CARDS.get(str(key or ''), {})
@@ -5278,8 +5403,8 @@ def _legacy_battle_help_labels():
                         '防御が攻撃を上回った場合は、上回った分がカウンターダメージとして攻撃側に返ります。',
                         '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                         '第三次世界大戦中は危険カードが混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
-                        'さらに低確率で革命が起こり、3〜7ターンだけカードの強弱が逆転します。',
-                        'まれに国名が伏せられて国旗だけで選ぶイベントや、バチカン市国が配られやすくなるイベントも発生します。',
+                        'さらに低確率で革命が起こり、カードの強弱がしばらく逆転します。',
+                        'まれに国名が伏せられる、手札が入れ替わる、爆弾カードが回る、ダメージが大きく跳ね上がるなどのイベントも発生します。',
                         'ダメージを与えると、相手の残り手札から1枚奪えます。BOT戦の勝利数はランキングに入りません。',
                     ],
                 ),
@@ -5298,7 +5423,7 @@ def _legacy_battle_help_labels():
                     [
                         '同じターンに出した国同士、または防御に残した国同士で、タグや地域が重なると小さなボーナスが入ります。',
                         '1枚だけでは発動しません。相手のカードとの一致も関係ありません。',
-                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+0.1%されます。大逆転用ではなく、近い勝負を少し後押しする仕組みです。',
+                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+0.3%されます。大逆転用ではなく、近い勝負を少し後押しする仕組みです。',
                     ],
                 ),
             ],
@@ -5323,8 +5448,8 @@ def _legacy_battle_help_labels():
                     'If defense exceeds the attack, the excess becomes counter damage back to the attacker.',
                     'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
-                    'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
-                    'Rare events can also hide country names so you must read flags, or make Vatican City appear more often.',
+                    'A low-chance revolution can also reverse card strength for a while.',
+                    'Rare events can also hide country names, replace a hand card, pass a bomb card around, or massively increase damage.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
                 ('Battle modes', [
@@ -5337,7 +5462,7 @@ def _legacy_battle_help_labels():
                 ('Match Bonus', [
                     'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a small bonus.',
                     'One card alone cannot trigger it. Opponent cards are not included.',
-                    'Each repeated tag or region adds +0.1% to attack or defense. It is a small edge for close turns, not an instant comeback.',
+                    'Each repeated tag or region adds +0.3% to attack or defense. It is a small edge for close turns, not an instant comeback.',
                 ]),
             ],
         },
@@ -5361,7 +5486,7 @@ def _legacy_battle_help_labels():
                     '如果防御超过攻击，超过的部分会作为反击伤害返还给攻击方。',
                     '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
-                    '还可能低概率发生革命，使卡牌强弱在3到7回合内反转。',
+                    '还可能低概率发生革命，使卡牌强弱暂时反转。',
                     '还会低概率出现隐藏国名、只能看旗帜判断，或梵蒂冈更容易出现的事件。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
                 ]),
@@ -5375,7 +5500,7 @@ def _legacy_battle_help_labels():
                 ('一致加成', [
                     '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到小幅加成。',
                     '只用1张牌不会发动。对手的牌不会参与计算。',
-                    '每个重复的标签或地区会让攻击或防御增加+0.1%。这是接近胜负时的小优势，不是一次性逆转的按钮。',
+                    '每个重复的标签或地区会让攻击或防御增加+0.3%。这是接近胜负时的小优势，不是一次性逆转的按钮。',
                 ]),
             ],
         },
@@ -5423,7 +5548,7 @@ def battle_help_labels():
                     '防御が攻撃を上回った場合は、上回った分がカウンターダメージとして攻撃側に返ります。',
                     '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                     '第三次世界大戦中は危険カードが手札に混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
-                    '低確率で革命が起こると、3〜7ターンだけカードの強弱が逆転します。',
+                    '低確率で革命が起こると、カードの強弱がしばらく逆転します。',
                     'まれに国名が伏せられて国旗だけで選ぶイベントや、バチカン市国が配られやすくなるイベントも発生します。',
                     'ダメージを与えると、相手の残り手札から1枚を奪えます。BOT戦の勝利数はランキングには入りません。',
                 ]),
@@ -5480,7 +5605,7 @@ def battle_help_labels():
                     'If defense exceeds the attack, the excess becomes counter damage back to the attacker.',
                     'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
-                    'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
+                    'A low-chance revolution can also reverse card strength for a while.',
                     'Rare events can also hide country names so you must read flags, or make Vatican City appear more often.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
@@ -5537,7 +5662,7 @@ def battle_help_labels():
                     '如果防御超过攻击，超过的部分会作为反击伤害返还给攻击方。',
                     '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
-                    '低概率发生革命时，卡牌强弱会在3到7回合内反转。',
+                    '低概率发生革命时，卡牌强弱会暂时反转。',
                     '还会低概率出现隐藏国名、只能看旗帜判断，或梵蒂冈更容易出现的事件。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战胜利不会计入排行榜。',
                 ]),
@@ -5560,6 +5685,34 @@ def battle_help_labels():
 
 def battle_mode_size(mode):
     return MULTIPLAYER_MODES.get(mode, 2)
+
+def normalize_battle_player_count(value, mode=FFA_MODE):
+    if mode == DUEL_MODE or mode == BOT_MODE:
+        return 2
+    try:
+        count = int(value)
+    except (TypeError, ValueError):
+        count = 3
+    return max(BATTLE_MIN_MULTIPLAYER_PLAYERS, min(BATTLE_MAX_MULTIPLAYER_PLAYERS, count))
+
+def selected_battle_player_count(mode=FFA_MODE):
+    return normalize_battle_player_count(getattr(state, 'battle_room_player_count', 3), mode)
+
+def normalize_battle_team_count(value):
+    try:
+        count = int(value)
+    except (TypeError, ValueError):
+        count = 2
+    return max(2, min(len(BATTLE_TEAM_IDS), count))
+
+def selected_battle_team_count():
+    return normalize_battle_team_count(getattr(state, 'battle_team_count', 2))
+
+def normalize_battle_team_choice(value, team_count=None):
+    team_count = normalize_battle_team_count(team_count if team_count is not None else selected_battle_team_count())
+    valid = BATTLE_TEAM_IDS[:team_count]
+    choice = str(value or '').upper()
+    return choice if choice in valid else valid[0]
 
 def normalize_battle_timeout_seconds(value):
     try:
@@ -5673,11 +5826,17 @@ def normalize_battle_queue_entry(entry):
         mode = str(entry.get('mode') or DUEL_MODE)
         timeout_seconds = normalize_battle_timeout_seconds(entry.get('turn_timeout_seconds'))
         world_war_turn = normalize_battle_world_war_turn(entry.get('world_war_turn'))
+        player_count = normalize_battle_player_count(entry.get('player_count'), mode)
+        team_count = normalize_battle_team_count(entry.get('team_count'))
+        team_choice = normalize_battle_team_choice(entry.get('team_choice'), team_count)
     else:
         username = clean_username(entry)
         mode = DUEL_MODE
         timeout_seconds = BATTLE_TURN_TIMEOUT_SECONDS
         world_war_turn = BATTLE_WORLD_WAR_TURN
+        player_count = 2
+        team_count = 2
+        team_choice = 'A'
     if mode not in MULTIPLAYER_MODES:
         mode = DUEL_MODE
     if not username:
@@ -5687,6 +5846,9 @@ def normalize_battle_queue_entry(entry):
         'mode': mode,
         'turn_timeout_seconds': timeout_seconds,
         'world_war_turn': world_war_turn,
+        'player_count': normalize_battle_player_count(player_count, mode),
+        'team_count': team_count,
+        'team_choice': team_choice,
     }
 
 def default_battle_state():
@@ -5793,8 +5955,15 @@ def normalize_battle_room(room):
     room.setdefault('revolution_until_turn', 0)
     room.setdefault('flag_only_until_turn', 0)
     room.setdefault('vatican_until_turn', 0)
+    room.setdefault('replace_until_turn', 0)
+    room.setdefault('bomb_until_turn', 0)
+    room.setdefault('damage_surge_until_turn', 0)
+    room.setdefault('bomb_holder', None)
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
+    room['player_count'] = normalize_battle_player_count(room.get('player_count', len(room.get('players', []))), room.get('mode', DUEL_MODE))
+    room['team_count'] = normalize_battle_team_count(room.get('team_count', 2))
+    room.setdefault('host', next((player for player in room.get('players', []) if not is_battle_bot(player)), None))
     room.setdefault('bot', False)
     room['turn_timeout_seconds'] = battle_room_timeout_seconds(room)
     room['world_war_turn'] = battle_room_world_war_turn(room)
@@ -6016,7 +6185,12 @@ def weighted_battle_country_sample(count):
 def random_battle_special_cards(count):
     if count <= 0:
         return []
-    keys = list(BATTLE_SPECIAL_CARDS.keys())
+    keys = [
+        key for key, card in BATTLE_SPECIAL_CARDS.items()
+        if float(card.get('weight', 0) or 0) > 0
+    ]
+    if not keys:
+        return []
     weights = [max(0.01, float(BATTLE_SPECIAL_CARDS[key].get('weight', 1))) for key in keys]
     return random.choices(keys, weights=weights, k=count)
 
@@ -6049,28 +6223,50 @@ def deal_battle_hand(room=None, count=5):
 def current_battle_room():
     return battle_room_for_user(state.current_user, load_battle_state_with_timeouts())
 
-def battle_teams_for_players(players, mode):
+def battle_teams_for_players(players, mode, team_choices=None, team_count=2):
     if mode != TEAM_MODE:
         return {}
+    team_choices = team_choices or {}
+    team_count = normalize_battle_team_count(team_count)
+    valid = BATTLE_TEAM_IDS[:team_count]
     return {
-        player: 'A' if index % 2 == 0 else 'B'
+        player: normalize_battle_team_choice(team_choices.get(player, valid[index % len(valid)]), team_count)
         for index, player in enumerate(players)
     }
 
-def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None):
+def create_battle_bot_names(players, target_count):
+    used = set(players)
+    names = []
+    index = 1
+    while len(players) + len(names) < target_count:
+        name = BOT_USERNAME if index == 1 else f'{BOT_USERNAME}{index}'
+        index += 1
+        if name in used:
+            continue
+        used.add(name)
+        names.append(name)
+    return names
+
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None, player_count=None, team_count=None, team_choices=None, host=None):
     state_data = state_data or load_battle_state()
     players = [clean_username(player) for player in players if clean_username(player)]
     if len(players) < 2:
         return None
     turn_timeout_seconds = normalize_battle_timeout_seconds(turn_timeout_seconds)
     world_war_turn = normalize_battle_world_war_turn(world_war_turn)
+    player_count = normalize_battle_player_count(player_count or len(players), mode)
+    team_count = normalize_battle_team_count(team_count or 2)
+    host = clean_username(host) or next((player for player in players if not is_battle_bot(player)), players[0])
     state_data['counter'] = int(state_data.get('counter', 0)) + 1
     room_id = f"battle-{state_data['counter']}"
-    teams = battle_teams_for_players(players, mode)
+    teams = battle_teams_for_players(players, mode, team_choices, team_count)
     room = {
         'id': room_id,
         'mode': mode,
         'players': players,
+        'host': host,
+        'player_count': player_count,
+        'team_count': team_count,
         'teams': teams,
         'hp': {player: BATTLE_MAX_HP for player in players},
         'team_hp': {},
@@ -6090,6 +6286,10 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'revolution_until_turn': 0,
         'flag_only_until_turn': 0,
         'vatican_until_turn': 0,
+        'replace_until_turn': 0,
+        'bomb_until_turn': 0,
+        'damage_surge_until_turn': 0,
+        'bomb_holder': None,
         'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
         'turn_started_at': current_timestamp(),
@@ -6124,6 +6324,69 @@ def create_bot_battle():
         bot=True,
         turn_timeout_seconds=selected_battle_timeout_seconds(),
         world_war_turn=selected_battle_world_war_turn(),
+        player_count=2,
+    )
+    ui.notify(t('battle_matched'), color='positive')
+    refresh_battle_view()
+
+def battle_queue_entry_matches(entry, mode, turn_timeout_seconds, world_war_turn, player_count, team_count):
+    return (
+        entry.get('mode') == mode
+        and entry.get('turn_timeout_seconds') == turn_timeout_seconds
+        and entry.get('world_war_turn') == world_war_turn
+        and entry.get('player_count') == player_count
+        and (mode != TEAM_MODE or entry.get('team_count') == team_count)
+    )
+
+def start_current_battle_queue_now():
+    username = state.current_user
+    state_data = load_battle_state()
+    current_entry = current_user_battle_queue_entry(state_data)
+    if not current_entry:
+        refresh_battle_view()
+        return
+    if battle_room_for_user(username, state_data):
+        refresh_battle_view()
+        return
+    mode = current_entry.get('mode', DUEL_MODE)
+    player_count = normalize_battle_player_count(current_entry.get('player_count'), mode)
+    team_count = normalize_battle_team_count(current_entry.get('team_count'))
+    players = [username]
+    team_choices = {username: normalize_battle_team_choice(current_entry.get('team_choice'), team_count)}
+    remaining_queue = []
+    for entry in state_data.setdefault('queue', []):
+        normalized = normalize_battle_queue_entry(entry)
+        if not normalized or normalized.get('username') == username:
+            continue
+        if (
+            len(players) < player_count
+            and battle_is_user_eligible(normalized['username'])
+            and battle_queue_entry_matches(
+                normalized,
+                mode,
+                current_entry.get('turn_timeout_seconds'),
+                current_entry.get('world_war_turn'),
+                player_count,
+                team_count,
+            )
+        ):
+            players.append(normalized['username'])
+            team_choices[normalized['username']] = normalize_battle_team_choice(normalized.get('team_choice'), team_count)
+        else:
+            remaining_queue.append(normalized)
+    players.extend(create_battle_bot_names(players, player_count))
+    state_data['queue'] = remaining_queue
+    create_battle_room(
+        *players,
+        state_data=state_data,
+        mode=mode,
+        bot=any(is_battle_bot(player) for player in players),
+        turn_timeout_seconds=current_entry.get('turn_timeout_seconds'),
+        world_war_turn=current_entry.get('world_war_turn'),
+        player_count=player_count,
+        team_count=team_count,
+        team_choices=team_choices,
+        host=username,
     )
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
@@ -6136,6 +6399,9 @@ def join_battle_queue(mode=DUEL_MODE):
     mode = mode if mode in MULTIPLAYER_MODES else DUEL_MODE
     turn_timeout_seconds = selected_battle_timeout_seconds()
     world_war_turn = selected_battle_world_war_turn()
+    player_count = selected_battle_player_count(mode)
+    team_count = selected_battle_team_count()
+    team_choice = normalize_battle_team_choice(getattr(state, 'battle_team_choice', 'A'), team_count)
     state_data = load_battle_state()
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
@@ -6154,18 +6420,20 @@ def join_battle_queue(mode=DUEL_MODE):
         normalized_queue.append(normalized)
     for normalized in normalized_queue:
         waiting_user = normalized['username']
-        if normalized.get('mode') != mode:
-            continue
-        if normalized.get('turn_timeout_seconds') != turn_timeout_seconds:
-            continue
-        if normalized.get('world_war_turn') != world_war_turn:
+        if not battle_queue_entry_matches(normalized, mode, turn_timeout_seconds, world_war_turn, player_count, team_count):
             continue
         waiting.append(waiting_user)
-        if len(waiting) >= battle_mode_size(mode) - 1:
+        if len(waiting) >= player_count - 1:
             break
-    if len(waiting) >= battle_mode_size(mode) - 1:
-        players = waiting[:battle_mode_size(mode) - 1] + [username]
+    if len(waiting) >= player_count - 1:
+        players = waiting[:player_count - 1] + [username]
         used = set(players)
+        team_choices = {
+            entry['username']: normalize_battle_team_choice(entry.get('team_choice'), team_count)
+            for entry in normalized_queue
+            if entry['username'] in used
+        }
+        team_choices[username] = team_choice
         state_data['queue'] = [entry for entry in normalized_queue if entry['username'] not in used]
         create_battle_room(
             *players,
@@ -6173,6 +6441,10 @@ def join_battle_queue(mode=DUEL_MODE):
             mode=mode,
             turn_timeout_seconds=turn_timeout_seconds,
             world_war_turn=world_war_turn,
+            player_count=player_count,
+            team_count=team_count,
+            team_choices=team_choices,
+            host=players[0],
         )
         ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
@@ -6182,6 +6454,9 @@ def join_battle_queue(mode=DUEL_MODE):
         'mode': mode,
         'turn_timeout_seconds': turn_timeout_seconds,
         'world_war_turn': world_war_turn,
+        'player_count': player_count,
+        'team_count': team_count,
+        'team_choice': team_choice,
     })
     state_data['queue'] = normalized_queue
     save_battle_state(state_data)
@@ -6195,6 +6470,30 @@ def cancel_battle_queue():
         entry for entry in queue
         if not (normalize_battle_queue_entry(entry) and normalize_battle_queue_entry(entry)['username'] == username)
     ]
+    save_battle_state(state_data)
+    refresh_battle_view()
+
+def randomize_current_battle_teams():
+    username = state.current_user
+    state_data = load_battle_state()
+    room = battle_room_for_user(username, state_data)
+    if not room or room.get('winner') or room.get('mode') != TEAM_MODE:
+        refresh_battle_view()
+        return
+    if clean_username(room.get('host')) != username or int(room.get('turn', 1) or 1) != 1 or room.get('submitted'):
+        ui.notify(t('battle_host_only'), color='warning')
+        return
+    team_count = normalize_battle_team_count(room.get('team_count'))
+    teams = BATTLE_TEAM_IDS[:team_count]
+    players = list(room.get('players', []))
+    random.shuffle(players)
+    room['teams'] = {
+        player: teams[index % len(teams)]
+        for index, player in enumerate(players)
+    }
+    room['team_hp'] = {}
+    ensure_battle_team_hp(room)
+    append_battle_log(room, t('battle_team_randomized_log').format(host=username))
     save_battle_state(state_data)
     refresh_battle_view()
 
@@ -6393,6 +6692,9 @@ def battle_visual_payload(room, entries):
         'revolution': battle_revolution_active(room),
         'flag_only': battle_flag_only_active(room),
         'vatican': battle_vatican_active(room),
+        'replace': battle_replace_active(room),
+        'bomb': battle_bomb_active(room),
+        'damage_surge': battle_damage_surge_active(room),
         'played': [
             {
                 'player': player,
@@ -6407,6 +6709,8 @@ def battle_visual_payload(room, entries):
         'counters': [],
         'steals': [],
         'self_damage': [],
+        'bombs': [],
+        'replacements': [],
     }
 
 def battle_played_cards_log(room, entries):
@@ -6459,7 +6763,7 @@ def battle_turn_pressure_scale(turn):
 def apply_battle_turn_pressure(value, turn):
     return max(0, int(value) * battle_turn_pressure_scale(turn) // BATTLE_BONUS_DENOMINATOR)
 
-def battle_damage_after_defense(win_power, lose_power, defense, labels, hp_limit=None, turn=1, world_war=False):
+def battle_damage_after_defense(win_power, lose_power, defense, labels, hp_limit=None, turn=1, world_war=False, event_multiplier=1):
     power_gap = max(0, int(win_power) - int(lose_power))
     if power_gap <= 0:
         return 0
@@ -6468,9 +6772,10 @@ def battle_damage_after_defense(win_power, lose_power, defense, labels, hp_limit
     pressured_damage = apply_battle_turn_pressure(blocked_damage, turn)
     if world_war:
         pressured_damage *= BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER
+    pressured_damage *= max(1, int(event_multiplier or 1))
     return max(0, pressured_damage)
 
-def battle_damage_and_counter(win_power, lose_power, defense, labels, turn=1, world_war=False):
+def battle_damage_and_counter(win_power, lose_power, defense, labels, turn=1, world_war=False, event_multiplier=1):
     power_gap = max(0, int(win_power) - int(lose_power))
     if power_gap <= 0:
         return 0, 0
@@ -6481,6 +6786,9 @@ def battle_damage_and_counter(win_power, lose_power, defense, labels, turn=1, wo
     if world_war:
         damage *= BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER
         counter *= BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER
+    multiplier = max(1, int(event_multiplier or 1))
+    damage *= multiplier
+    counter *= multiplier
     return max(0, damage), max(0, counter)
 
 def battle_defense_text(entry):
@@ -6546,6 +6854,43 @@ def steal_remaining_cards(room, winners, losers, defenseless_players, result_par
                 'card': battle_visual_card(stolen_key, lookup, room),
             })
 
+def battle_bomb_transfer_target(room, player, entry, players):
+    if room.get('mode') == FFA_MODE:
+        target = clean_username((entry or {}).get('target'))
+        if target in players and target != player:
+            return target
+    if room.get('mode') == TEAM_MODE:
+        teams = room.get('teams', {})
+        rivals = [
+            name for name in players
+            if name != player and teams.get(name) != teams.get(player)
+        ]
+    else:
+        rivals = [name for name in players if name != player]
+    return random.choice(rivals) if rivals else None
+
+def resolve_battle_bomb_transfers(room, entries, result_parts, visual=None):
+    if not battle_bomb_active(room):
+        return
+    players = active_battle_players(room)
+    for player, entry in entries.items():
+        if BATTLE_BOMB_CARD not in entry.get('keys', []):
+            continue
+        target = battle_bomb_transfer_target(room, player, entry, players)
+        if not target:
+            continue
+        target_hand = room.setdefault('hands', {}).setdefault(target, [])
+        if BATTLE_BOMB_CARD not in target_hand:
+            target_hand.append(BATTLE_BOMB_CARD)
+        room['bomb_holder'] = target
+        result_parts.append(t('battle_bomb_pass_log').format(player=player, target=target))
+        if visual is not None:
+            visual.setdefault('bombs', []).append({
+                'source': player,
+                'target': target,
+                'card': battle_visual_card(BATTLE_BOMB_CARD, room=room),
+            })
+
 def apply_battle_special_card_damage(room, result_parts, visual):
     if not battle_world_war_active(room):
         return
@@ -6553,7 +6898,7 @@ def apply_battle_special_card_damage(room, result_parts, visual):
     lookup = battle_country_lookup()
     for player in active_battle_players(room):
         hand = room.setdefault('hands', {}).setdefault(player, [])
-        specials = [key for key in hand if is_battle_special_card(key)]
+        specials = [key for key in hand if is_battle_special_card(key) and not is_battle_playable_special_card(key)]
         for key in specials:
             if key in hand:
                 hand.remove(key)
@@ -6640,6 +6985,88 @@ def battle_turn_time_left(room):
         return None
     return max(0, timeout_seconds - battle_turn_elapsed_seconds(room))
 
+def battle_event_duration():
+    return random.randint(BATTLE_RANDOM_EVENT_MIN_TURNS, BATTLE_RANDOM_EVENT_MAX_TURNS)
+
+def battle_find_bomb_holder(room):
+    hands = room.setdefault('hands', {})
+    holder = clean_username(room.get('bomb_holder'))
+    if holder and BATTLE_BOMB_CARD in hands.get(holder, []):
+        return holder
+    for player, hand in hands.items():
+        if BATTLE_BOMB_CARD in hand:
+            room['bomb_holder'] = player
+            return player
+    room['bomb_holder'] = None
+    return None
+
+def battle_apply_damage_to_player_or_team(room, player, damage):
+    damage = max(0, int(damage or 0))
+    if damage <= 0:
+        return 0
+    if room.get('mode') == TEAM_MODE:
+        team = room.get('teams', {}).get(player)
+        team_hp = ensure_battle_team_hp(room)
+        if not team:
+            return 0
+        before = int(team_hp.get(team, battle_team_hp_limit(room)) or 0)
+        team_hp[team] = max(0, before - damage)
+        return before - team_hp[team]
+    hp = room.setdefault('hp', {})
+    before = int(hp.get(player, BATTLE_MAX_HP) or 0)
+    hp[player] = max(0, before - damage)
+    return before - hp[player]
+
+def battle_expire_bomb_event(room, result_parts):
+    holder = battle_find_bomb_holder(room)
+    for hand in room.setdefault('hands', {}).values():
+        while BATTLE_BOMB_CARD in hand:
+            hand.remove(BATTLE_BOMB_CARD)
+    room['bomb_holder'] = None
+    if not holder:
+        return
+    hp_limit = battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
+    damage = max(1, hp_limit * BATTLE_BOMB_DAMAGE_PERCENT // 100)
+    dealt = battle_apply_damage_to_player_or_team(room, holder, damage)
+    if dealt:
+        result_parts.append(t('battle_bomb_explode_log').format(player=holder, damage=format_battle_number(dealt)))
+
+def battle_start_bomb_event(room, turn, result_parts):
+    players = active_battle_players(room)
+    if not players:
+        return
+    holder = random.choice(players)
+    hand = room.setdefault('hands', {}).setdefault(holder, [])
+    if BATTLE_BOMB_CARD not in hand:
+        hand.append(BATTLE_BOMB_CARD)
+    room['bomb_holder'] = holder
+    room['bomb_until_turn'] = turn + battle_event_duration() - 1
+    result_parts.append(t('battle_bomb_start_log').format(player=holder))
+
+def battle_apply_replace_event(room, result_parts):
+    if not battle_replace_active(room):
+        return
+    lookup = battle_country_lookup()
+    candidates = []
+    for player in active_battle_players(room):
+        hand = room.setdefault('hands', {}).setdefault(player, [])
+        for index, key in enumerate(hand):
+            if key in lookup:
+                candidates.append((player, index, key))
+    if not candidates:
+        return
+    player, index, old_key = random.choice(candidates)
+    new_cards = weighted_battle_country_sample(1)
+    if not new_cards:
+        return
+    new_key = new_cards[0]
+    room['hands'][player][index] = new_key
+    result_parts.append(t('battle_replace_log').format(
+        player=player,
+        old=battle_card_display_name(old_key, lookup, room),
+        new=battle_card_display_name(new_key, lookup, room),
+    ))
+
 def update_battle_crisis_state(room, result_parts=None):
     result_parts = result_parts if result_parts is not None else []
     turn = int(room.get('turn', 1) or 1)
@@ -6649,33 +7076,48 @@ def update_battle_crisis_state(room, result_parts=None):
         message = t('battle_world_war_log')
         result_parts.append(message)
 
-    timed_events = [
-        ('revolution_until_turn', 'battle_revolution_end_log'),
-        ('flag_only_until_turn', 'battle_flag_only_end_log'),
-        ('vatican_until_turn', 'battle_vatican_end_log'),
-    ]
-    for field, end_key in timed_events:
+    for field in [
+        'revolution_until_turn',
+        'flag_only_until_turn',
+        'vatican_until_turn',
+        'replace_until_turn',
+        'damage_surge_until_turn',
+    ]:
         if int(room.get(field, 0) or 0) and turn > int(room.get(field, 0) or 0):
             room[field] = 0
-            result_parts.append(t(end_key))
+    if int(room.get('bomb_until_turn', 0) or 0) and turn > int(room.get('bomb_until_turn', 0) or 0):
+        room['bomb_until_turn'] = 0
+        battle_expire_bomb_event(room, result_parts)
 
     if not battle_revolution_active(room):
         revolution_chance = BATTLE_WORLD_WAR_REVOLUTION_CHANCE if room.get('world_war_started') else BATTLE_REVOLUTION_CHANCE
         if random.random() < revolution_chance:
             duration = random.randint(BATTLE_REVOLUTION_MIN_TURNS, BATTLE_REVOLUTION_MAX_TURNS)
             room['revolution_until_turn'] = turn + duration - 1
-            result_parts.append(t('battle_revolution_start_log').format(turns=duration))
+            result_parts.append(t('battle_revolution_start_log'))
 
     random_events = []
     if not battle_flag_only_active(room):
-        random_events.append(('flag_only_until_turn', 'battle_flag_only_start_log'))
+        random_events.append(('flag_only_until_turn', 'battle_flag_only_start_log', 1.0))
     if not battle_vatican_active(room) and battle_vatican_country_key():
-        random_events.append(('vatican_until_turn', 'battle_vatican_start_log'))
+        random_events.append(('vatican_until_turn', 'battle_vatican_start_log', 0.9))
+    if not battle_replace_active(room):
+        random_events.append(('replace_until_turn', 'battle_replace_start_log', 0.9))
+    if not battle_bomb_active(room) and not battle_find_bomb_holder(room):
+        random_events.append(('bomb_until_turn', 'battle_bomb_start_log', 0.65))
+    if not battle_damage_surge_active(room):
+        random_events.append(('damage_surge_until_turn', 'battle_damage_surge_start_log', 0.18))
     if random_events and random.random() < BATTLE_RANDOM_EVENT_CHANCE:
-        field, start_key = random.choice(random_events)
-        duration = random.randint(BATTLE_RANDOM_EVENT_MIN_TURNS, BATTLE_RANDOM_EVENT_MAX_TURNS)
-        room[field] = turn + duration - 1
-        result_parts.append(t(start_key).format(turns=duration))
+        field, start_key, _ = random.choices(
+            random_events,
+            weights=[item[2] for item in random_events],
+            k=1,
+        )[0]
+        if field == 'bomb_until_turn':
+            battle_start_bomb_event(room, turn, result_parts)
+        else:
+            room[field] = turn + battle_event_duration() - 1
+            result_parts.append(t(start_key))
 
 def set_battle_winner_if_finished(room):
     players = room.get('players', [])
@@ -6781,12 +7223,12 @@ def apply_battle_surrender(room, player, state_data=None, timeout=False):
     return True
 
 def resolve_battle_turn(room):
+    result_parts = []
+    update_battle_crisis_state(room, result_parts)
     players = active_battle_players(room)
     if len(players) < 2:
         set_battle_winner_if_finished(room)
         return
-    result_parts = []
-    update_battle_crisis_state(room, result_parts)
     entries = {player: battle_entry_for_player(room, player) for player in players}
     reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
     result_parts.insert(0, battle_played_cards_log(room, entries))
@@ -6794,6 +7236,7 @@ def resolve_battle_turn(room):
     winners = []
     losers = []
     mode = room.get('mode', DUEL_MODE)
+    event_multiplier = battle_event_damage_multiplier(room)
 
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
@@ -6801,8 +7244,10 @@ def resolve_battle_turn(room):
         team_keys = {}
         team_power = {}
         team_defense = {}
+        team_players = {}
         for player, entry in entries.items():
             team = teams.get(player, 'A')
+            team_players.setdefault(team, []).append(player)
             team_keys.setdefault(team, []).extend(entry['keys'])
             team_power[team] = team_power.get(team, 0) + entry['power']
             team_defense[team] = team_defense.get(team, 0) + entry.get('defense', 0)
@@ -6812,34 +7257,36 @@ def resolve_battle_turn(room):
                 result_parts.append('draw')
             else:
                 winning_team, win_power = sorted_teams[0]
-                losing_team, lose_power = sorted_teams[1]
                 multiplier, labels = battle_bonus_for_keys(team_keys.get(winning_team, []))
-                damage, counter = battle_damage_and_counter(
-                    win_power,
-                    lose_power,
-                    team_defense.get(losing_team, 0),
-                    labels,
-                    room.get('turn', 1),
-                    battle_world_war_active(room),
-                )
-                losing_players = [player for player in players if teams.get(player) == losing_team and room['hp'].get(player, 0) > 0]
-                winning_players = [player for player in players if teams.get(player) == winning_team and room['hp'].get(player, 0) > 0]
-                if damage:
-                    team_hp[losing_team] = max(0, team_hp.get(losing_team, battle_team_hp_limit(room)) - damage)
-                    visual['damage'].append({'source': f"{t('battle_team')} {winning_team}", 'target': f"{t('battle_team')} {losing_team}", 'damage': damage})
-                if damage > 0:
-                    winners = winning_players
-                    losers = losing_players
-                if counter:
-                    team_hp[winning_team] = max(0, team_hp.get(winning_team, battle_team_hp_limit(room)) - counter)
-                    visual['counters'].append({'source': f"{t('battle_team')} {losing_team}", 'target': f"{t('battle_team')} {winning_team}", 'damage': counter})
-                    result_parts.append(t('battle_counter_log').format(
-                        defender=f"{t('battle_team')} {losing_team}",
-                        attacker=f"{t('battle_team')} {winning_team}",
-                        damage=format_battle_number(counter),
-                    ))
-                defense_note = battle_group_defense_text(entries, losing_players)
-                result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(damage)}{defense_note}{battle_bonus_text(labels, multiplier)}")
+                winning_players = [player for player in team_players.get(winning_team, []) if room['hp'].get(player, 0) > 0]
+                for losing_team, lose_power in sorted_teams[1:]:
+                    if team_hp.get(losing_team, 0) <= 0:
+                        continue
+                    damage, counter = battle_damage_and_counter(
+                        win_power,
+                        lose_power,
+                        team_defense.get(losing_team, 0),
+                        labels,
+                        room.get('turn', 1),
+                        battle_world_war_active(room),
+                        event_multiplier,
+                    )
+                    losing_players = [player for player in team_players.get(losing_team, []) if room['hp'].get(player, 0) > 0]
+                    if damage:
+                        team_hp[losing_team] = max(0, team_hp.get(losing_team, battle_team_hp_limit(room)) - damage)
+                        visual['damage'].append({'source': f"{t('battle_team')} {winning_team}", 'target': f"{t('battle_team')} {losing_team}", 'damage': damage})
+                        winners.extend(winning_players)
+                        losers.extend(losing_players)
+                    if counter:
+                        team_hp[winning_team] = max(0, team_hp.get(winning_team, battle_team_hp_limit(room)) - counter)
+                        visual['counters'].append({'source': f"{t('battle_team')} {losing_team}", 'target': f"{t('battle_team')} {winning_team}", 'damage': counter})
+                        result_parts.append(t('battle_counter_log').format(
+                            defender=f"{t('battle_team')} {losing_team}",
+                            attacker=f"{t('battle_team')} {winning_team}",
+                            damage=format_battle_number(counter),
+                        ))
+                    defense_note = battle_group_defense_text(entries, losing_players)
+                    result_parts.append(f"{t('battle_team')} {winning_team} vs {t('battle_team')} {losing_team}: {t('battle_team')} {losing_team} -{format_battle_number(damage)}{defense_note}{battle_bonus_text(labels, multiplier)}")
     elif mode == FFA_MODE:
         damage_events = []
         for attacker in players:
@@ -6861,6 +7308,7 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
+                event_multiplier,
             )
             damage_events.append((attacker, target, damage, counter, labels, multiplier))
         for attacker, target, damage, counter, labels, multiplier in damage_events:
@@ -6892,6 +7340,7 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
+                event_multiplier,
             )
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
             if counter:
@@ -6917,6 +7366,7 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
+                event_multiplier,
             )
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
             if counter:
@@ -6936,13 +7386,18 @@ def resolve_battle_turn(room):
         else:
             result_parts.append(f"{player_one} vs {player_two}: draw")
 
-    steal_remaining_cards(room, winners, losers, defenseless_players, result_parts, visual)
+    resolve_battle_bomb_transfers(room, entries, result_parts, visual)
+    steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual)
     apply_battle_special_card_damage(room, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
     room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
     del room['log'][12:]
     room['last_turn'] = visual
     finish_battle_turn(room, reload_set, defenseless_players)
+    post_turn_parts = []
+    battle_apply_replace_event(room, post_turn_parts)
+    if post_turn_parts:
+        append_battle_log(room, f"{t('battle_turn')} {room.get('turn', 1)}: {' / '.join(post_turn_parts)}")
     set_battle_winner_if_finished(room)
 
 def toggle_battle_card(key, checked):
@@ -6954,7 +7409,7 @@ def toggle_battle_card(key, checked):
     state.battle_selected_keys = selected
 
 def choose_bot_battle_cards(hand, room=None, player=None):
-    playable = [key for key in hand if not is_battle_special_card(key)]
+    playable = [key for key in hand if is_battle_selectable_card(key)]
     if not playable:
         return []
     command = battle_player_command(room, player) if room is not None and player else BATTLE_MAX_COMMAND
@@ -6972,13 +7427,13 @@ def submit_bot_players(room):
             continue
         reload_set = set(room.get('reload_after_turn', []))
         hand = room.setdefault('hands', {}).setdefault(player, [])
-        playable_hand = [key for key in hand if not is_battle_special_card(key)]
+        playable_hand = [key for key in hand if is_battle_selectable_card(key)]
         defenseless = player in reload_set or not hand or not playable_hand or battle_player_command(room, player) < battle_command_cost_for_count(1)
         selected = [] if defenseless else choose_bot_battle_cards(hand, room, player)
         if not selected and not defenseless:
             defenseless = True
         selected_set = set(selected)
-        defense_keys = [] if defenseless else [key for key in hand if key not in selected_set and not is_battle_special_card(key)]
+        defense_keys = [] if defenseless else [key for key in hand if key not in selected_set and is_battle_power_card(key)]
         command_cost = 0 if defenseless else battle_command_cost_for_count(len(selected))
         target = None
         if room.get('mode') == FFA_MODE and not defenseless:
@@ -7048,9 +7503,9 @@ def submit_battle_hand():
         return
     reload_set = set(room.get('reload_after_turn', []))
     hand = room['hands'].setdefault(username, [])
-    playable_hand = [key for key in hand if not is_battle_special_card(key)]
+    playable_hand = [key for key in hand if is_battle_selectable_card(key)]
     defenseless = username in reload_set or not hand or not playable_hand or battle_player_command(room, username) < battle_command_cost_for_count(1)
-    selected = [] if defenseless else [key for key in hand if key in state.battle_selected_keys and not is_battle_special_card(key)]
+    selected = [] if defenseless else [key for key in hand if key in state.battle_selected_keys and is_battle_selectable_card(key)]
     if not defenseless and not selected:
         ui.notify(t('battle_select_card_required'), color='warning')
         return
@@ -7066,7 +7521,7 @@ def submit_battle_hand():
             ui.notify(t('battle_select_target_required'), color='warning')
             return
     selected_set = set(selected)
-    defense_keys = [] if defenseless else [key for key in hand if key not in selected_set and not is_battle_special_card(key)]
+    defense_keys = [] if defenseless else [key for key in hand if key not in selected_set and is_battle_power_card(key)]
     room['submitted'][username] = {
         'keys': selected,
         'power': 0 if defenseless else battle_power_for_keys(selected, room),
@@ -7236,6 +7691,9 @@ def battle_screen_signature():
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
             'team_hp': room.get('team_hp', {}),
+            'teams': room.get('teams', {}),
+            'player_count': room.get('player_count'),
+            'team_count': room.get('team_count'),
             'command': room.get('command', {}),
             'submitted': sorted(room.get('submitted', {}).keys()),
             'reload': sorted(room.get('reload_after_turn', [])),
@@ -7248,6 +7706,10 @@ def battle_screen_signature():
             'revolution_until_turn': room.get('revolution_until_turn'),
             'flag_only_until_turn': room.get('flag_only_until_turn'),
             'vatican_until_turn': room.get('vatican_until_turn'),
+            'replace_until_turn': room.get('replace_until_turn'),
+            'bomb_until_turn': room.get('bomb_until_turn'),
+            'damage_surge_until_turn': room.get('damage_surge_until_turn'),
+            'bomb_holder': room.get('bomb_holder'),
             'last_turn': room.get('last_turn', {}),
         }
     else:
@@ -7259,7 +7721,10 @@ def battle_screen_signature():
                     'mode': room.get('mode'),
                     'turn_timeout_seconds': battle_room_timeout_seconds(room),
                     'world_war_turn': battle_room_world_war_turn(room),
+                    'player_count': room.get('player_count'),
+                    'team_count': room.get('team_count'),
                     'players': room.get('players', []),
+                    'teams': room.get('teams', {}),
                     'turn': room.get('turn'),
                     'winner': room.get('winner'),
                 }
@@ -9204,11 +9669,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             hp_limit = battle_team_hp_limit(room) if room and room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
             damage = battle_special_card_damage(key, hp_limit)
             heal = battle_special_card_heal(key, hp_limit)
+            selected = key in state.battle_selected_keys
             with ui.column().classes('gap-2 rounded border border-red-300 bg-red-50 p-3'):
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
+                    if is_battle_playable_special_card(key):
+                        ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
                     ui.icon('warning').classes('text-red-600')
                     ui.label(battle_special_card_label(key)).classes('font-bold text-red-800 text-sm')
                 ui.label(t('battle_special_card')).classes('text-xs font-bold text-red-600')
+                if BATTLE_SPECIAL_CARDS.get(key, {}).get('bomb'):
+                    ui.label(t('battle_bomb_card_hint')).classes('text-xs font-bold text-red-700')
                 if damage:
                     ui.label(f"{t('battle_special_damage')}: {format_battle_number(damage)}").classes('text-xs text-red-700')
                 if heal:
@@ -9261,6 +9731,20 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             with ui.card().classes('w-full p-5 gap-2 border-2 border-amber-300 bg-amber-50'):
                 ui.label(t('battle_vatican_title')).classes('text-2xl font-black text-amber-800')
                 ui.label(t('battle_vatican_notice')).classes('text-sm font-bold text-amber-700')
+        if battle_replace_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-cyan-300 bg-cyan-50'):
+                ui.label(t('battle_replace_title')).classes('text-2xl font-black text-cyan-800')
+                ui.label(t('battle_replace_notice')).classes('text-sm font-bold text-cyan-700')
+        if battle_bomb_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-pink-300 bg-pink-50'):
+                ui.label(t('battle_bomb_title')).classes('text-2xl font-black text-pink-800')
+                holder = battle_find_bomb_holder(room)
+                notice = t('battle_bomb_notice').format(player=holder or '?')
+                ui.label(notice).classes('text-sm font-bold text-pink-700')
+        if battle_damage_surge_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
+                ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
+                ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
 
     def render_battle_last_turn(room):
         visual = room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}
@@ -9276,6 +9760,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 if row.get('destroyed_card'):
                     parts.append('x1')
                 return f"{row.get('player', '')}: {row.get('name', '')} {' '.join(parts)}"
+            if kind == 'bomb':
+                return f"{row.get('source', '')} -> {row.get('target', '')}"
             return f"{row.get('source', '')} -> {row.get('target', '')}: -{format_battle_number(row.get('damage', 0))}"
 
         with ui.card().classes('w-full p-5 gap-4 border border-blue-100 bg-blue-50'):
@@ -9283,7 +9769,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if not visual:
                 ui.label(t('battle_no_visual')).classes('text-gray-500')
                 return
-            if visual.get('world_war') or visual.get('revolution') or visual.get('flag_only') or visual.get('vatican'):
+            if any(visual.get(key) for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge']):
                 with ui.row().classes('gap-2 flex-wrap'):
                     if visual.get('world_war'):
                         ui.badge(t('battle_world_war_title'), color='red')
@@ -9293,6 +9779,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.badge(t('battle_flag_only_title'), color='indigo')
                     if visual.get('vatican'):
                         ui.badge(t('battle_vatican_title'), color='amber')
+                    if visual.get('replace'):
+                        ui.badge(t('battle_replace_title'), color='cyan')
+                    if visual.get('bomb'):
+                        ui.badge(t('battle_bomb_title'), color='pink')
+                    if visual.get('damage_surge'):
+                        ui.badge(t('battle_damage_surge_title'), color='purple')
             ui.label(t('battle_played_visual')).classes('text-sm font-bold text-gray-600')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
                 for item in visual.get('played', []):
@@ -9317,6 +9809,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 (t('battle_damage_visual'), visual.get('damage', []), 'red', 'damage'),
                 (t('battle_counter_visual'), visual.get('counters', []), 'orange', 'counter'),
                 (t('battle_steal_visual'), visual.get('steals', []), 'purple', 'steal'),
+                (t('battle_bomb_visual'), visual.get('bombs', []), 'pink', 'bomb'),
                 (t('battle_self_damage_visual'), visual.get('self_damage', []), 'red', 'self_damage'),
             ]
             for title, rows, color, kind in events:
@@ -9399,12 +9892,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(battle_room_world_war_turn(room))}",
                 color='red',
             )
+            if mode in [FFA_MODE, TEAM_MODE]:
+                ui.badge(f"{t('battle_room_players')}: {len(players)} / {room.get('player_count', len(players))}", color='green')
             if not winner:
                 battle_countdown_label['component'] = ui.label(battle_time_left_text(room)).classes('text-sm font-bold text-orange-700')
             if mode == TEAM_MODE:
+                if clean_username(room.get('host')) == username and int(room.get('turn', 1) or 1) == 1 and not room.get('submitted'):
+                    ui.button(t('battle_team_randomize'), icon='shuffle', on_click=randomize_current_battle_teams).props('outline color=primary dense')
                 team_hp = ensure_battle_team_hp(room)
                 team_limit = battle_team_hp_limit(room)
-                with ui.grid(columns=1 if is_mobile_ui() else min(2, len(team_hp))).classes('w-full gap-4'):
+                with ui.grid(columns=1 if is_mobile_ui() else min(4, len(team_hp))).classes('w-full gap-4'):
                     for team in sorted(team_hp):
                         render_hp_bar(f"{t('battle_team')} {team}", team_hp.get(team, team_limit), team_limit)
                 with ui.row().classes('w-full gap-2 flex-wrap'):
@@ -9415,7 +9912,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     for player in players:
                         render_hp_bar(player, room.setdefault('hp', {}).get(player, BATTLE_MAX_HP))
 
-            render_battle_crisis_notice(room)
+            if not winner:
+                render_battle_crisis_notice(room)
 
             if winner:
                 is_winner = winner == username or (
@@ -9446,7 +9944,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             else:
                 hand = room['hands'].setdefault(username, [])
                 waiting_for_player = username in room.get('submitted', {})
-                playable_hand = [key for key in hand if not is_battle_special_card(key)]
+                playable_hand = [key for key in hand if is_battle_selectable_card(key)]
                 defenseless = username in set(room.get('reload_after_turn', [])) or not hand or not playable_hand or battle_player_command(room, username) < battle_command_cost_for_count(1)
                 if room.setdefault('hp', {}).get(username, BATTLE_MAX_HP) <= 0:
                     ui.label(t('battle_eliminated')).classes('text-sm font-bold text-gray-600')
@@ -9540,8 +10038,18 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                             f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(waiting_entry.get('world_war_turn'))}",
                             color='red',
                         )
+                        ui.badge(
+                            f"{t('battle_room_players')}: {waiting_entry.get('player_count', 2)}",
+                            color='green',
+                        )
+                        if waiting_entry.get('mode') == TEAM_MODE:
+                            ui.badge(
+                                f"{t('battle_team_count')}: {waiting_entry.get('team_count', 2)} / {t('battle_team')} {waiting_entry.get('team_choice', 'A')}",
+                                color='purple',
+                            )
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
+                        ui.button(t('battle_start_with_bots'), icon='smart_toy', on_click=start_current_battle_queue_now).props('color=primary')
                         ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary')
                 else:
                     with ui.row().classes('w-full gap-2 items-center flex-wrap'):
@@ -9566,6 +10074,40 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                                     refresh_battle_view(),
                                 ),
                             ).props(f'outline color={color} dense')
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_room_players')).classes('text-sm font-bold text-gray-500')
+                        for count in range(BATTLE_MIN_MULTIPLAYER_PLAYERS, BATTLE_MAX_MULTIPLAYER_PLAYERS + 1):
+                            color = 'primary' if selected_battle_player_count(FFA_MODE) == count else 'grey'
+                            ui.button(
+                                str(count),
+                                on_click=lambda _, value=count: (
+                                    setattr(state, 'battle_room_player_count', value),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_team_count')).classes('text-sm font-bold text-gray-500')
+                        for count in range(2, len(BATTLE_TEAM_IDS) + 1):
+                            color = 'primary' if selected_battle_team_count() == count else 'grey'
+                            ui.button(
+                                str(count),
+                                on_click=lambda _, value=count: (
+                                    setattr(state, 'battle_team_count', value),
+                                    setattr(state, 'battle_team_choice', normalize_battle_team_choice(state.battle_team_choice, value)),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_team_choice')).classes('text-sm font-bold text-gray-500')
+                        for team in BATTLE_TEAM_IDS[:selected_battle_team_count()]:
+                            color = BATTLE_TEAM_COLORS.get(team, 'primary') if normalize_battle_team_choice(state.battle_team_choice, selected_battle_team_count()) == team else 'grey'
+                            ui.button(
+                                f"{t('battle_team')} {team}",
+                                on_click=lambda _, value=team: (
+                                    setattr(state, 'battle_team_choice', value),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_mode_duel'), icon='sports_esports', on_click=lambda: join_battle_queue(DUEL_MODE)).props('color=primary')
                         ui.button(t('battle_mode_free_for_all'), icon='groups', on_click=lambda: join_battle_queue(FFA_MODE)).props('color=primary')
@@ -9582,6 +10124,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                         ui.label(
                             f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players} / "
+                            f"{t('battle_room_players')}: {len(room_item.get('players', []))}/{room_item.get('player_count', len(room_item.get('players', [])))} / "
                             f"{battle_timeout_label(battle_room_timeout_seconds(room_item))} / "
                             f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(battle_room_world_war_turn(room_item))}"
                         ).classes('text-sm font-bold text-gray-700')
