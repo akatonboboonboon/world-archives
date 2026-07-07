@@ -9,6 +9,7 @@ from nicegui import ui, app
 import base64
 import hashlib
 import json
+import math
 import os
 import random
 import re
@@ -582,6 +583,7 @@ class AppState:
     battle_selected_keys = set()
     battle_attack_target = None
     battle_turn_timeout_seconds = 60
+    battle_world_war_turn = 75
     battle_last_signature = ''
     social_selected_chat_id = None
     social_last_signature = ''
@@ -600,11 +602,17 @@ BATTLE_MAX_HP = 100_000_000_000_000
 BATTLE_TURN_TIMEOUT_SECONDS = 60
 BATTLE_TURN_TIMEOUT_UNLIMITED = 0
 BATTLE_TURN_TIMEOUT_OPTIONS = [60, 180, 300, BATTLE_TURN_TIMEOUT_UNLIMITED]
+BATTLE_POWER_SCALE = 300_000
+BATTLE_MAX_COMMAND = 7
+BATTLE_REDRAW_COMMAND_COST = 2
+BATTLE_CARD_COMMAND_COSTS = [1, 2, 4, 6, 7]
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
 BATTLE_BONUS_PER_MATCH_BPS = 10
 BATTLE_BONUS_DENOMINATOR = 10_000
 BATTLE_WORLD_WAR_TURN = 75
+BATTLE_WORLD_WAR_DISABLED = 0
+BATTLE_WORLD_WAR_TURN_OPTIONS = [1, 25, 50, 75, 100, BATTLE_WORLD_WAR_DISABLED]
 BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 2
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
@@ -1240,6 +1248,13 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_thinking_time': '思考時間',
     'battle_room_thinking_time': 'この部屋の思考時間',
     'battle_time_unlimited': '無制限',
+    'battle_world_war_setting': '第三次世界大戦',
+    'battle_room_world_war_setting': '第三次世界大戦開始',
+    'battle_world_war_never': 'なし',
+    'battle_command': '指揮力',
+    'battle_command_not_enough': '指揮力が足りません。出すカードを減らすか、次のターンまで温存してください。',
+    'battle_redraw_command_cost': '引き直しは指揮力を{cost}消費します。',
+    'battle_redraw_command_not_enough': '引き直しに必要な指揮力が足りません。',
     'battle_team': 'チーム',
     'battle_auto_notice': '画面は自動で更新されます。',
     'battle_damage_each': '各',
@@ -1278,6 +1293,13 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_thinking_time': 'Thinking time',
     'battle_room_thinking_time': 'Room thinking time',
     'battle_time_unlimited': 'Unlimited',
+    'battle_world_war_setting': 'World War III',
+    'battle_room_world_war_setting': 'World War III starts',
+    'battle_world_war_never': 'None',
+    'battle_command': 'Command',
+    'battle_command_not_enough': 'Not enough command. Play fewer cards or save strength for the next turn.',
+    'battle_redraw_command_cost': 'Redraw costs {cost} command.',
+    'battle_redraw_command_not_enough': 'Not enough command to redraw.',
     'battle_team': 'Team',
     'battle_auto_notice': 'This screen updates automatically.',
     'battle_damage_each': 'each',
@@ -1316,6 +1338,13 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_thinking_time': '思考时间',
     'battle_room_thinking_time': '本房间思考时间',
     'battle_time_unlimited': '无限制',
+    'battle_world_war_setting': '第三次世界大战',
+    'battle_room_world_war_setting': '第三次世界大战开始',
+    'battle_world_war_never': '无',
+    'battle_command': '指挥力',
+    'battle_command_not_enough': '指挥力不足。请减少出牌，或留到下一回合。',
+    'battle_redraw_command_cost': '重抽会消耗{cost}点指挥力。',
+    'battle_redraw_command_not_enough': '指挥力不足，无法重抽。',
     'battle_team': '队伍',
     'battle_auto_notice': '画面会自动更新。',
     'battle_damage_each': '各',
@@ -1338,7 +1367,7 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_resume': '試合に復帰',
     'battle_resume_log': '{player}が{bot}から手札を引き継いで復帰しました。',
     'battle_world_war_title': '第三次世界大戦',
-    'battle_world_war_notice': '75ターンを超えたため世界規模の危機に突入しました。ダメージが2倍になり、危険カードが手札に混ざります。',
+    'battle_world_war_notice': '世界規模の危機に突入しました。ダメージが2倍になり、危険カードが手札に混ざります。',
     'battle_world_war_log': '第三次世界大戦が始まりました。以後、ダメージが2倍になります。',
     'battle_revolution_title': '革命発生中',
     'battle_revolution_notice': '革命により国力の強弱が逆転しています。普段弱い国が切り札になるかもしれません。',
@@ -1364,7 +1393,7 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_resume': 'Rejoin Battle',
     'battle_resume_log': '{player} returned and took over {bot}’s hand.',
     'battle_world_war_title': 'World War III',
-    'battle_world_war_notice': 'The battle passed turn 75. Damage is doubled and dangerous cards can appear in hands.',
+    'battle_world_war_notice': 'The battle has entered a world crisis. Damage is doubled and dangerous cards can appear in hands.',
     'battle_world_war_log': 'World War III has begun. Damage is doubled from now on.',
     'battle_revolution_title': 'Revolution Active',
     'battle_revolution_notice': 'Revolution reverses card strength. Usually weak countries may become decisive.',
@@ -1390,7 +1419,7 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_resume': '返回战斗',
     'battle_resume_log': '{player}接管{bot}的手牌并返回战斗。',
     'battle_world_war_title': '第三次世界大战',
-    'battle_world_war_notice': '战斗超过75回合后进入世界危机。伤害变为2倍，危险牌会混入手牌。',
+    'battle_world_war_notice': '战斗进入世界危机。伤害变为2倍，危险牌会混入手牌。',
     'battle_world_war_log': '第三次世界大战开始了。之后伤害变为2倍。',
     'battle_revolution_title': '革命发生中',
     'battle_revolution_notice': '革命会反转卡牌强弱。平时弱小的国家也可能成为关键。',
@@ -5015,7 +5044,8 @@ def country_battle_raw_power(country):
     return max(1, int(area * population))
 
 def country_battle_power(country):
-    return max(1, country_battle_raw_power(country) // 1000)
+    raw_power = country_battle_raw_power(country)
+    return max(1, int(math.sqrt(raw_power) * BATTLE_POWER_SCALE))
 
 def format_battle_number(value):
     try:
@@ -5040,8 +5070,11 @@ def is_battle_bot(username):
     return str(username or '').startswith(BOT_USERNAME)
 
 def battle_world_war_active(room):
+    start_turn = battle_room_world_war_turn(room)
+    if start_turn == BATTLE_WORLD_WAR_DISABLED:
+        return bool((room or {}).get('world_war_started'))
     try:
-        return int((room or {}).get('turn', 1)) >= BATTLE_WORLD_WAR_TURN or bool((room or {}).get('world_war_started'))
+        return int((room or {}).get('turn', 1)) >= start_turn or bool((room or {}).get('world_war_started'))
     except (TypeError, ValueError):
         return bool((room or {}).get('world_war_started'))
 
@@ -5118,7 +5151,8 @@ def _legacy_battle_help_labels():
                         '配られた5枚の国カードから、今回勝負に出す国を1枚以上選びます。',
                         '出さなかった国は防御に回ります。全部出して押し切るか、守りを残すかを考えて選びましょう。',
                         '手札がなくなるまで新しい国は補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
-                        '各ターンに1回だけ、今の手札をすべて捨てて同じ枚数を引き直せます。',
+                        'カードを出すには指揮力を使います。守りに残すカードが多いほど次のターンに指揮力が戻ります。',
+                        '各ターンに1回だけ、指揮力を使って今の手札をすべて捨て、同じ枚数を引き直せます。',
                         '思考時間は部屋ごとに1分・3分・5分・無制限から選べます。時間切れになると降参扱いになり、1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
                     ],
                 ),
@@ -5127,11 +5161,11 @@ def _legacy_battle_help_labels():
                     [
                         f'HPが0になると負けです。開始時のHPは{format_battle_number(BATTLE_MAX_HP)}です。',
                         '出した国の国力を比べ、強い側が相手にダメージを与えます。',
-                        '国力は「面積 x 人口 ÷ 1000」が基本です。広くて人口の多い国ほど強くなりやすいです。',
+                        '国力は面積と人口をもとにしますが、巨大国家だけが突出しすぎないように平方根で圧縮しています。',
                         '複数枚出すと、2枚目以降は少しずつ力が抑えられます。たくさん出すほど強い一方、手札切れの危険も増えます。',
                         'ダメージは国力の差から相手の防御を引いて決まります。防御は受けるダメージを減らします。',
                         '防御が攻撃を上回った場合は、上回った分がカウンターダメージとして攻撃側に返ります。',
-                        '長引くほど少しずつダメージが伸び、75ターン以降は第三次世界大戦でさらに激しくなります。',
+                        '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                         '第三次世界大戦中は危険カードが混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
                         'さらに低確率で革命が起こり、3〜7ターンだけカードの強弱が逆転します。',
                         'ダメージを与えると、相手の残り手札から1枚奪えます。BOT戦の勝利数はランキングに入りません。',
@@ -5164,17 +5198,18 @@ def _legacy_battle_help_labels():
                     'Choose at least one country card from the five cards in your hand.',
                     'Cards you do not play become defense. Decide whether to attack hard or keep protection.',
                     'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
-                    'Once per turn, you can discard your hand and redraw the same number of cards.',
+                    'Playing cards uses command. Keeping more cards for defense restores more command next turn.',
+                    'Once per turn, you can spend command to discard your hand and redraw the same number of cards.',
                     'Each room can use 1 minute, 3 minutes, 5 minutes, or unlimited thinking time. If time runs out, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
                 ]),
                 ('Damage and victory', [
                     f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
                     'The side with higher country power deals damage.',
-                    'Country power is based on area x population divided by 1000. Large, populous countries tend to be stronger.',
+                    'Country power is based on area and population, compressed with a square root so huge countries do not dominate too completely.',
                     'Playing several cards is powerful, but the second and later cards are slightly reduced. Going all in can leave you exposed later.',
                     'Damage is based on the power gap after defense. Defense reduces incoming damage.',
                     'If defense exceeds the attack, the excess becomes counter damage back to the attacker.',
-                    'Damage gradually rises in long battles, and after turn 75 World War III makes the battle much harsher.',
+                    'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
                     'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
@@ -5200,17 +5235,18 @@ def _legacy_battle_help_labels():
                     '从5张国家卡中选择至少1张作为本回合出战的国家。',
                     '没有打出的国家会用于防御。要全力进攻还是保留防守，需要自己判断。',
                     '手牌用完前不会补充。手牌为空的回合会处于无防备状态，之后重新抽5张。',
-                    '每回合可以弃掉当前手牌，并重抽同样张数一次。',
+                    '出牌会消耗指挥力。保留为防御的牌越多，下回合恢复的指挥力越多。',
+                    '每回合可以消耗指挥力弃掉当前手牌，并重抽同样张数一次。',
                     '每个房间可选择1分钟、3分钟、5分钟或无限制思考时间。超时会自动投降；1对1和BOT战会立即结束，混战和团队战的位置会由BOT接替。',
                 ]),
                 ('伤害与胜利', [
                     f'HP变为0就会失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
                     '比较出战国家的国力，较高的一方造成伤害。',
-                    '国力基本上由「面积 x 人口 ÷ 1000」决定。面积大且人口多的国家更容易变强。',
+                    '国力根据面积和人口计算，但会用平方根压缩，避免巨大国家过度碾压。',
                     '打出多张牌会更强，但第2张以后的力量会逐渐降低。一次打光很强，也更容易陷入手牌不足。',
                     '伤害由国力差再扣除防御决定。防御会减少受到的伤害。',
                     '如果防御超过攻击，超过的部分会作为反击伤害返还给攻击方。',
-                    '战斗拖得越久，伤害会逐渐提高；75回合后第三次世界大战会让战斗更加激烈。',
+                    '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
                     '还可能低概率发生革命，使卡牌强弱在3到7回合内反转。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
@@ -5260,17 +5296,18 @@ def battle_help_labels():
                     '手札5枚の中から1枚以上を選んで出します。',
                     '出さなかったカードは防御に回ります。攻撃と防御のバランスを考えるのが大事です。',
                     '手札が空になるまで新しいカードは補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
-                    '各ターンに1回だけ、現在の手札をすべて捨てて同じ枚数を引き直せます。',
+                    'カードを出すには指揮力を使います。守りに残すカードが多いほど次のターンに指揮力が戻ります。',
+                    '各ターンに1回だけ、指揮力を使って現在の手札をすべて捨て、同じ枚数を引き直せます。',
                     '思考時間は部屋ごとに1分・3分・5分・無制限から選べます。時間切れになると降参扱いになり、1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
                 ]),
                 ('国力とダメージ', [
                     f'HPが0になると負けです。開始時のHPは{format_battle_number(BATTLE_MAX_HP)}です。',
                     '国力は、国の面積と人口をもとに計算されます。広く、人口の多い国ほど強くなりやすいです。',
-                    '基本の国力は「面積 x 人口 ÷ 1000」です。',
+                    '国力は面積と人口をもとにしますが、巨大国家だけが突出しすぎないように平方根で圧縮しています。',
                     '複数枚を出すと総攻撃は上がりますが、2枚目以降は少しずつ力が抑えられます。',
                     '相手の防御を上回った分がダメージになります。防御は受けるダメージを減らします。',
                     '防御が攻撃を上回った場合は、上回った分がカウンターダメージとして攻撃側に返ります。',
-                    '長引くほど少しずつダメージが伸び、75ターン以降は第三次世界大戦でさらに激しくなります。',
+                    '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                     '第三次世界大戦中は危険カードが手札に混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
                     '低確率で革命が起こると、3〜7ターンだけカードの強弱が逆転します。',
                     'ダメージを与えると、相手の残り手札から1枚を奪えます。BOT戦の勝利数はランキングには入りません。',
@@ -5315,17 +5352,18 @@ def battle_help_labels():
                     'Choose at least one country card from the five cards in your hand.',
                     'Cards you do not play become defense, so balance attack and protection.',
                     'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
-                    'Once per turn, you can discard your hand and redraw the same number of cards.',
+                    'Playing cards uses command. Keeping more cards for defense restores more command next turn.',
+                    'Once per turn, you can spend command to discard your hand and redraw the same number of cards.',
                     'Each room can use 1 minute, 3 minutes, 5 minutes, or unlimited thinking time. If time runs out, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
                 ]),
                 ('Power and Damage', [
                     f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
                     'Country power is based on area and population. Larger, more populous countries tend to be stronger.',
-                    'Base power is area x population divided by 1000.',
+                    'Power uses area and population, but it is compressed with a square root so huge countries do not dominate too completely.',
                     'Playing several cards raises total attack, but the second and later cards are slightly reduced.',
                     'Damage is the power gap after defense. Defense reduces incoming damage.',
                     'If defense exceeds the attack, the excess becomes counter damage back to the attacker.',
-                    'Damage gradually rises in long battles, and after turn 75 World War III makes the battle much harsher.',
+                    'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
                     'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
@@ -5370,17 +5408,18 @@ def battle_help_labels():
                     '从5张手牌中选择至少1张国家卡出牌。',
                     '没有出的牌会用于防御，所以要考虑攻击和防御的平衡。',
                     '手牌用完前不会补牌。手牌为空后的下一回合会变成无防备状态，之后重新抽5张。',
-                    '每回合可以将当前手牌全部弃掉，并重抽相同张数。',
+                    '出牌会消耗指挥力。保留为防御的牌越多，下回合恢复的指挥力越多。',
+                    '每回合可以消耗指挥力将当前手牌全部弃掉，并重抽相同张数。',
                     '每个房间可选择1分钟、3分钟、5分钟或无限制思考时间。超时会被视为投降；1对1和BOT战会立即结束，混战和团队战的位置会由BOT接手。',
                 ]),
                 ('国力与伤害', [
                     f'HP变成0就失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
                     '国力根据面积和人口计算。面积大、人口多的国家通常更强。',
-                    '基本国力为“面积 x 人口 ÷ 1000”。',
+                    '国力根据面积和人口计算，但会用平方根压缩，避免巨大国家过度碾压。',
                     '同时出多张牌会提高总攻击，但第2张以后会稍微降低效果。',
                     '伤害由扣除防御后的国力差决定。防御会减少受到的伤害。',
                     '如果防御超过攻击，超过的部分会作为反击伤害返还给攻击方。',
-                    '战斗拖得越久，伤害会逐渐提高；75回合后第三次世界大战会让战斗更加激烈。',
+                    '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
                     '低概率发生革命时，卡牌强弱会在3到7回合内反转。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战胜利不会计入排行榜。',
@@ -5431,6 +5470,80 @@ def selected_battle_timeout_seconds():
 def battle_room_timeout_seconds(room):
     return normalize_battle_timeout_seconds((room or {}).get('turn_timeout_seconds'))
 
+def normalize_battle_world_war_turn(value):
+    try:
+        turn = int(value)
+    except (TypeError, ValueError):
+        turn = BATTLE_WORLD_WAR_TURN
+    if turn not in BATTLE_WORLD_WAR_TURN_OPTIONS:
+        return BATTLE_WORLD_WAR_TURN
+    return turn
+
+def battle_world_war_turn_label(turn):
+    turn = normalize_battle_world_war_turn(turn)
+    if turn == BATTLE_WORLD_WAR_DISABLED:
+        return t('battle_world_war_never')
+    if state.lang == 'ja':
+        return f'{turn}ターン目'
+    if state.lang == 'zh':
+        return f'第{turn}回合'
+    return f'Turn {turn}'
+
+def selected_battle_world_war_turn():
+    return normalize_battle_world_war_turn(getattr(state, 'battle_world_war_turn', BATTLE_WORLD_WAR_TURN))
+
+def battle_room_world_war_turn(room):
+    return normalize_battle_world_war_turn((room or {}).get('world_war_turn'))
+
+def battle_player_command(room, player):
+    command_map = (room or {}).setdefault('command', {})
+    try:
+        current = int(command_map.get(player, BATTLE_MAX_COMMAND))
+    except (TypeError, ValueError):
+        current = BATTLE_MAX_COMMAND
+    current = max(0, min(BATTLE_MAX_COMMAND, current))
+    command_map[player] = current
+    return current
+
+def set_battle_player_command(room, player, value):
+    try:
+        value = int(value)
+    except (TypeError, ValueError):
+        value = BATTLE_MAX_COMMAND
+    room.setdefault('command', {})[player] = max(0, min(BATTLE_MAX_COMMAND, value))
+
+def battle_command_cost_for_count(count):
+    try:
+        count = int(count)
+    except (TypeError, ValueError):
+        count = 0
+    if count <= 0:
+        return 0
+    return BATTLE_CARD_COMMAND_COSTS[min(count, len(BATTLE_CARD_COMMAND_COSTS)) - 1]
+
+def battle_max_playable_card_count(command, hand_count):
+    try:
+        command = int(command)
+        hand_count = int(hand_count)
+    except (TypeError, ValueError):
+        return 0
+    max_count = 0
+    for count in range(1, max(0, hand_count) + 1):
+        if battle_command_cost_for_count(count) <= command:
+            max_count = count
+    return max_count
+
+def recover_battle_command_after_turn(room, player, submitted, defenseless=False):
+    current = battle_player_command(room, player)
+    if defenseless:
+        set_battle_player_command(room, player, current + 3)
+        return
+    keys = list((submitted or {}).get('keys', []))
+    defense_keys = list((submitted or {}).get('defense_keys', []))
+    spent = int((submitted or {}).get('command_cost', battle_command_cost_for_count(len(keys))) or 0)
+    recovery = 1 + min(4, len(defense_keys))
+    set_battle_player_command(room, player, current - spent + recovery)
+
 def battle_time_left_text(room):
     seconds = battle_turn_time_left(room)
     if seconds is None:
@@ -5442,15 +5555,22 @@ def normalize_battle_queue_entry(entry):
         username = clean_username(entry.get('username'))
         mode = str(entry.get('mode') or DUEL_MODE)
         timeout_seconds = normalize_battle_timeout_seconds(entry.get('turn_timeout_seconds'))
+        world_war_turn = normalize_battle_world_war_turn(entry.get('world_war_turn'))
     else:
         username = clean_username(entry)
         mode = DUEL_MODE
         timeout_seconds = BATTLE_TURN_TIMEOUT_SECONDS
+        world_war_turn = BATTLE_WORLD_WAR_TURN
     if mode not in MULTIPLAYER_MODES:
         mode = DUEL_MODE
     if not username:
         return None
-    return {'username': username, 'mode': mode, 'turn_timeout_seconds': timeout_seconds}
+    return {
+        'username': username,
+        'mode': mode,
+        'turn_timeout_seconds': timeout_seconds,
+        'world_war_turn': world_war_turn,
+    }
 
 def default_battle_state():
     return {
@@ -5551,12 +5671,14 @@ def normalize_battle_room(room):
     room.setdefault('spectators', [])
     room.setdefault('bot_owners', {})
     room.setdefault('last_turn', {})
+    room.setdefault('command', {})
     room.setdefault('world_war_started', False)
     room.setdefault('revolution_until_turn', 0)
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
     room.setdefault('bot', False)
     room['turn_timeout_seconds'] = battle_room_timeout_seconds(room)
+    room['world_war_turn'] = battle_room_world_war_turn(room)
     room.setdefault('turn_started_at', current_timestamp())
     hp = room.setdefault('hp', {})
     for player in room.get('players', []):
@@ -5565,6 +5687,7 @@ def normalize_battle_room(room):
         except (TypeError, ValueError):
             current_hp = BATTLE_MAX_HP
         hp[player] = max(0, min(current_hp, BATTLE_MAX_HP))
+        battle_player_command(room, player)
     ensure_battle_team_hp(room)
     return room
 
@@ -5593,6 +5716,7 @@ def restore_battle_player_from_bot(room, username, state_data=None):
     hp = room.setdefault('hp', {})
     hp[username] = max(1, int(hp.pop(bot_name, BATTLE_MAX_HP) or BATTLE_MAX_HP))
     room.setdefault('hands', {})[username] = list(room.setdefault('hands', {}).pop(bot_name, deal_battle_hand(room)))
+    room.setdefault('command', {})[username] = room.setdefault('command', {}).pop(bot_name, BATTLE_MAX_COMMAND)
     room['reload_after_turn'] = [username if name == bot_name else name for name in room.get('reload_after_turn', [])]
     room.setdefault('redraw_turns', {})[username] = room.setdefault('redraw_turns', {}).pop(bot_name, 0)
     if bot_name in room.setdefault('submitted', {}):
@@ -5765,12 +5889,13 @@ def battle_teams_for_players(players, mode):
         for index, player in enumerate(players)
     }
 
-def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None):
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None):
     state_data = state_data or load_battle_state()
     players = [clean_username(player) for player in players if clean_username(player)]
     if len(players) < 2:
         return None
     turn_timeout_seconds = normalize_battle_timeout_seconds(turn_timeout_seconds)
+    world_war_turn = normalize_battle_world_war_turn(world_war_turn)
     state_data['counter'] = int(state_data.get('counter', 0)) + 1
     room_id = f"battle-{state_data['counter']}"
     teams = battle_teams_for_players(players, mode)
@@ -5781,9 +5906,10 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'teams': teams,
         'hp': {player: BATTLE_MAX_HP for player in players},
         'team_hp': {},
-        'hands': {player: deal_battle_hand() for player in players},
+        'hands': {},
         'reload_after_turn': [],
         'redraw_turns': {},
+        'command': {player: BATTLE_MAX_COMMAND for player in players},
         'submitted': {},
         'log': [],
         'chat': [],
@@ -5792,6 +5918,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'bot_owners': {},
         'last_turn': {},
         'world_war_started': False,
+        'world_war_turn': world_war_turn,
         'revolution_until_turn': 0,
         'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
@@ -5799,6 +5926,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'winner': None,
         'bot': bool(bot),
     }
+    room['hands'] = {player: deal_battle_hand(room) for player in players}
     ensure_battle_team_hp(room)
     state_data.setdefault('rooms', {})[room_id] = room
     for player in players:
@@ -5825,6 +5953,7 @@ def create_bot_battle():
         mode=BOT_MODE,
         bot=True,
         turn_timeout_seconds=selected_battle_timeout_seconds(),
+        world_war_turn=selected_battle_world_war_turn(),
     )
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
@@ -5836,6 +5965,7 @@ def join_battle_queue(mode=DUEL_MODE):
         return
     mode = mode if mode in MULTIPLAYER_MODES else DUEL_MODE
     turn_timeout_seconds = selected_battle_timeout_seconds()
+    world_war_turn = selected_battle_world_war_turn()
     state_data = load_battle_state()
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
@@ -5858,6 +5988,8 @@ def join_battle_queue(mode=DUEL_MODE):
             continue
         if normalized.get('turn_timeout_seconds') != turn_timeout_seconds:
             continue
+        if normalized.get('world_war_turn') != world_war_turn:
+            continue
         waiting.append(waiting_user)
         if len(waiting) >= battle_mode_size(mode) - 1:
             break
@@ -5865,11 +5997,22 @@ def join_battle_queue(mode=DUEL_MODE):
         players = waiting[:battle_mode_size(mode) - 1] + [username]
         used = set(players)
         state_data['queue'] = [entry for entry in normalized_queue if entry['username'] not in used]
-        create_battle_room(*players, state_data=state_data, mode=mode, turn_timeout_seconds=turn_timeout_seconds)
+        create_battle_room(
+            *players,
+            state_data=state_data,
+            mode=mode,
+            turn_timeout_seconds=turn_timeout_seconds,
+            world_war_turn=world_war_turn,
+        )
         ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
         return
-    normalized_queue.append({'username': username, 'mode': mode, 'turn_timeout_seconds': turn_timeout_seconds})
+    normalized_queue.append({
+        'username': username,
+        'mode': mode,
+        'turn_timeout_seconds': turn_timeout_seconds,
+        'world_war_turn': world_war_turn,
+    })
     state_data['queue'] = normalized_queue
     save_battle_state(state_data)
     refresh_battle_view()
@@ -5891,6 +6034,7 @@ def leave_finished_battle(join_again=False):
     room = battle_room_for_user(username, state_data)
     if room:
         state.battle_turn_timeout_seconds = battle_room_timeout_seconds(room)
+        state.battle_world_war_turn = battle_room_world_war_turn(room)
         state_data.setdefault('user_room', {}).pop(username, None)
         state_data.setdefault('spectator_room', {}).pop(username, None)
         room['spectators'] = [name for name in room.get('spectators', []) if name != username]
@@ -6263,6 +6407,12 @@ def finish_battle_turn(room, reload_set, defenseless_players):
     for player in room.get('players', []):
         if room.setdefault('hp', {}).get(player, 0) <= 0:
             continue
+        recover_battle_command_after_turn(
+            room,
+            player,
+            room.setdefault('submitted', {}).get(player, {}),
+            player in defenseless_players,
+        )
         if not room.setdefault('hands', {}).setdefault(player, []):
             reload_set.add(player)
         else:
@@ -6302,7 +6452,8 @@ def battle_turn_time_left(room):
 def update_battle_crisis_state(room, result_parts=None):
     result_parts = result_parts if result_parts is not None else []
     turn = int(room.get('turn', 1) or 1)
-    if turn >= BATTLE_WORLD_WAR_TURN and not room.get('world_war_started'):
+    world_war_turn = battle_room_world_war_turn(room)
+    if world_war_turn != BATTLE_WORLD_WAR_DISABLED and turn >= world_war_turn and not room.get('world_war_started'):
         room['world_war_started'] = True
         message = t('battle_world_war_log')
         result_parts.append(message)
@@ -6375,6 +6526,7 @@ def replace_battle_player_with_bot(room, player, state_data=None):
     players[players.index(player)] = bot_name
     room.setdefault('hp', {})[bot_name] = max(1, int(room.setdefault('hp', {}).pop(player, BATTLE_MAX_HP) or BATTLE_MAX_HP))
     room.setdefault('hands', {})[bot_name] = list(room.setdefault('hands', {}).pop(player, deal_battle_hand(room)))
+    room.setdefault('command', {})[bot_name] = room.setdefault('command', {}).pop(player, BATTLE_MAX_COMMAND)
     if not room['hands'].get(bot_name):
         room['hands'][bot_name] = deal_battle_hand(room)
     if player in room.setdefault('reload_after_turn', []):
@@ -6593,11 +6745,15 @@ def toggle_battle_card(key, checked):
         selected.discard(key)
     state.battle_selected_keys = selected
 
-def choose_bot_battle_cards(hand):
+def choose_bot_battle_cards(hand, room=None, player=None):
     playable = [key for key in hand if not is_battle_special_card(key)]
     if not playable:
         return []
-    max_cards = min(len(playable), random.randint(1, 5))
+    command = battle_player_command(room, player) if room is not None and player else BATTLE_MAX_COMMAND
+    max_playable = battle_max_playable_card_count(command, len(playable))
+    if max_playable <= 0:
+        return []
+    max_cards = min(len(playable), random.randint(1, max_playable))
     return random.sample(playable, max_cards)
 
 def submit_bot_players(room):
@@ -6609,10 +6765,13 @@ def submit_bot_players(room):
         reload_set = set(room.get('reload_after_turn', []))
         hand = room.setdefault('hands', {}).setdefault(player, [])
         playable_hand = [key for key in hand if not is_battle_special_card(key)]
-        defenseless = player in reload_set or not hand or not playable_hand
-        selected = [] if defenseless else choose_bot_battle_cards(hand)
+        defenseless = player in reload_set or not hand or not playable_hand or battle_player_command(room, player) < battle_command_cost_for_count(1)
+        selected = [] if defenseless else choose_bot_battle_cards(hand, room, player)
+        if not selected and not defenseless:
+            defenseless = True
         selected_set = set(selected)
         defense_keys = [] if defenseless else [key for key in hand if key not in selected_set and not is_battle_special_card(key)]
+        command_cost = 0 if defenseless else battle_command_cost_for_count(len(selected))
         target = None
         if room.get('mode') == FFA_MODE and not defenseless:
             targets = [name for name in active_battle_players(room) if name != player]
@@ -6622,6 +6781,7 @@ def submit_bot_players(room):
             'power': 0 if defenseless else battle_power_for_keys(selected, room),
             'defense_keys': defense_keys,
             'defense': 0 if defenseless else battle_defense_for_keys(defense_keys, room),
+            'command_cost': command_cost,
             'defenseless': defenseless,
             'target': target,
         }
@@ -6681,10 +6841,14 @@ def submit_battle_hand():
     reload_set = set(room.get('reload_after_turn', []))
     hand = room['hands'].setdefault(username, [])
     playable_hand = [key for key in hand if not is_battle_special_card(key)]
-    defenseless = username in reload_set or not hand or not playable_hand
+    defenseless = username in reload_set or not hand or not playable_hand or battle_player_command(room, username) < battle_command_cost_for_count(1)
     selected = [] if defenseless else [key for key in hand if key in state.battle_selected_keys and not is_battle_special_card(key)]
     if not defenseless and not selected:
         ui.notify(t('battle_select_card_required'), color='warning')
+        return
+    command_cost = 0 if defenseless else battle_command_cost_for_count(len(selected))
+    if command_cost > battle_player_command(room, username):
+        ui.notify(t('battle_command_not_enough'), color='warning')
         return
     target = None
     if room.get('mode') == FFA_MODE and not defenseless:
@@ -6700,6 +6864,7 @@ def submit_battle_hand():
         'power': 0 if defenseless else battle_power_for_keys(selected, room),
         'defense_keys': defense_keys,
         'defense': 0 if defenseless else battle_defense_for_keys(defense_keys, room),
+        'command_cost': command_cost,
         'defenseless': defenseless,
         'target': target,
     }
@@ -6744,12 +6909,17 @@ def redraw_battle_hand():
     if int(redraw_turns.get(username, 0) or 0) == turn:
         ui.notify(t('battle_redraw_used'), color='warning')
         return
+    current_command = battle_player_command(room, username)
+    if current_command < BATTLE_REDRAW_COMMAND_COST + battle_command_cost_for_count(1):
+        ui.notify(t('battle_redraw_command_not_enough'), color='warning')
+        return
     hand = room.setdefault('hands', {}).setdefault(username, [])
     count = len(hand)
     if count <= 0:
         ui.notify(t('battle_defenseless'), color='warning')
         return
     room['hands'][username] = draw_battle_cards(count, room)
+    set_battle_player_command(room, username, current_command - BATTLE_REDRAW_COMMAND_COST)
     redraw_turns[username] = turn
     state.battle_selected_keys = set()
     state.battle_attack_target = None
@@ -6854,9 +7024,11 @@ def battle_screen_signature():
             'room': room.get('id'),
             'turn': room.get('turn'),
             'turn_timeout_seconds': battle_room_timeout_seconds(room),
+            'world_war_turn': battle_room_world_war_turn(room),
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
             'team_hp': room.get('team_hp', {}),
+            'command': room.get('command', {}),
             'submitted': sorted(room.get('submitted', {}).keys()),
             'reload': sorted(room.get('reload_after_turn', [])),
             'log_head': room.get('log', [])[:1],
@@ -6876,6 +7048,7 @@ def battle_screen_signature():
                     'id': room.get('id'),
                     'mode': room.get('mode'),
                     'turn_timeout_seconds': battle_room_timeout_seconds(room),
+                    'world_war_turn': battle_room_world_war_turn(room),
                     'players': room.get('players', []),
                     'turn': room.get('turn'),
                     'winner': room.get('winner'),
@@ -8979,6 +9152,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
             ui.label(t('battle_auto_notice')).classes('text-xs text-white' if battle_revolution_active(room) else 'text-xs text-gray-500')
             ui.badge(f"{t('battle_room_thinking_time')}: {battle_timeout_label(battle_room_timeout_seconds(room))}", color='blue')
+            ui.badge(
+                f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(battle_room_world_war_turn(room))}",
+                color='red',
+            )
             if not winner:
                 battle_countdown_label['component'] = ui.label(battle_time_left_text(room)).classes('text-sm font-bold text-orange-700')
             if mode == TEAM_MODE:
@@ -9027,7 +9204,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 hand = room['hands'].setdefault(username, [])
                 waiting_for_player = username in room.get('submitted', {})
                 playable_hand = [key for key in hand if not is_battle_special_card(key)]
-                defenseless = username in set(room.get('reload_after_turn', [])) or not hand or not playable_hand
+                defenseless = username in set(room.get('reload_after_turn', [])) or not hand or not playable_hand or battle_player_command(room, username) < battle_command_cost_for_count(1)
                 if room.setdefault('hp', {}).get(username, BATTLE_MAX_HP) <= 0:
                     ui.label(t('battle_eliminated')).classes('text-sm font-bold text-gray-600')
                 elif waiting_for_player:
@@ -9042,10 +9219,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                         ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
                         with ui.row().classes('items-center gap-2 flex-wrap'):
+                            ui.badge(f"{t('battle_command')}: {battle_player_command(room, username)} / {BATTLE_MAX_COMMAND}", color='purple')
                             ui.label(t('battle_power_hidden_hint')).classes('text-sm font-bold text-red-700')
                             turn = int(room.get('turn', 1))
                             redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
                             redraw_button = ui.button(t('battle_redraw'), icon='refresh', on_click=redraw_battle_hand).props('outline color=primary dense')
+                            redraw_button.tooltip(t('battle_redraw_command_cost').format(cost=BATTLE_REDRAW_COMMAND_COST))
                             if redraw_used:
                                 redraw_button.disable()
                                 redraw_button.tooltip(t('battle_redraw_used'))
@@ -9114,6 +9293,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                             f"{battle_mode_label(waiting_entry.get('mode', DUEL_MODE))} / {t('battle_thinking_time')}: {battle_timeout_label(waiting_entry.get('turn_timeout_seconds'))}",
                             color='blue',
                         )
+                        ui.badge(
+                            f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(waiting_entry.get('world_war_turn'))}",
+                            color='red',
+                        )
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
                         ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary')
@@ -9126,6 +9309,17 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                                 battle_timeout_label(seconds),
                                 on_click=lambda _, value=seconds: (
                                     setattr(state, 'battle_turn_timeout_seconds', value),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_world_war_setting')).classes('text-sm font-bold text-gray-500')
+                        for turn in BATTLE_WORLD_WAR_TURN_OPTIONS:
+                            color = 'red' if selected_battle_world_war_turn() == turn else 'grey'
+                            ui.button(
+                                battle_world_war_turn_label(turn),
+                                on_click=lambda _, value=turn: (
+                                    setattr(state, 'battle_world_war_turn', value),
                                     refresh_battle_view(),
                                 ),
                             ).props(f'outline color={color} dense')
@@ -9143,7 +9337,11 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     players = ', '.join(room_item.get('players', []))
                     room_id = room_item.get('id')
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
-                        ui.label(f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players} / {battle_timeout_label(battle_room_timeout_seconds(room_item))}").classes('text-sm font-bold text-gray-700')
+                        ui.label(
+                            f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players} / "
+                            f"{battle_timeout_label(battle_room_timeout_seconds(room_item))} / "
+                            f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(battle_room_world_war_turn(room_item))}"
+                        ).classes('text-sm font-bold text-gray-700')
                         ui.button(t('battle_spectate'), icon='visibility', on_click=lambda *_, room_id=room_id: spectate_battle_room(room_id)).props('outline color=primary dense')
 
     def auto_refresh_battle():
