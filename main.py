@@ -623,10 +623,13 @@ BATTLE_REVOLUTION_CHANCE = 0.025
 BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.08
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
-BATTLE_RANDOM_EVENT_CHANCE = 0.08
+BATTLE_RANDOM_EVENT_CHANCE = 0.065
 BATTLE_RANDOM_EVENT_MIN_TURNS = 3
 BATTLE_RANDOM_EVENT_MAX_TURNS = 7
 BATTLE_DAMAGE_SURGE_MULTIPLIER = 1000
+BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER = 0.35
+BATTLE_COMMAND_SURGE_RECOVERY = 2
+BATTLE_SUPPLY_DROP_THRESHOLD = 2
 BATTLE_BOMB_DAMAGE_PERCENT = 18
 BATTLE_BOMB_CARD = 'event:hot_potato_bomb'
 BATTLE_VATICAN_DRAW_CHANCE = 0.45
@@ -1810,6 +1813,54 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_cards_before': '开始时手牌',
     'battle_team_split_penalty': '分散惩罚',
     'battle_raw_team_attack': '分散前队伍攻击',
+})
+
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_ceasefire_title': '停戦交渉',
+    'battle_ceasefire_notice': '交渉の空気が広がり、ダメージが大きく抑えられます。',
+    'battle_ceasefire_start_log': '停戦交渉が始まりました。ダメージが抑えられます。',
+    'battle_command_surge_title': '司令部高揚',
+    'battle_command_surge_notice': '指揮系統が活性化し、ターン終了時の指揮力回復が増えます。',
+    'battle_command_surge_start_log': '司令部高揚が始まりました。指揮力が回復しやすくなります。',
+    'battle_supply_drop_title': '補給投下',
+    'battle_supply_drop_notice': '手札が少ないプレイヤーに、ターン終了時に小さな補給が届きます。',
+    'battle_supply_drop_start_log': '補給投下が始まりました。手札が少ないと補給が届きます。',
+    'battle_blockade_title': '海上封鎖',
+    'battle_blockade_notice': '補給路が止まり、手札の引き直しができません。',
+    'battle_blockade_start_log': '海上封鎖が始まりました。引き直しができなくなります。',
+    'battle_blockade_redraw_blocked': '海上封鎖中は引き直しできません。',
+})
+
+UI_FALLBACKS.setdefault('en', {}).update({
+    'battle_ceasefire_title': 'Ceasefire Talks',
+    'battle_ceasefire_notice': 'Damage is greatly reduced while negotiations are in the air.',
+    'battle_ceasefire_start_log': 'Ceasefire Talks began. Damage is reduced.',
+    'battle_command_surge_title': 'Command Surge',
+    'battle_command_surge_notice': 'Command recovery increases at the end of each turn.',
+    'battle_command_surge_start_log': 'Command Surge began. Command recovers more easily.',
+    'battle_supply_drop_title': 'Supply Drop',
+    'battle_supply_drop_notice': 'Players with few cards receive a small resupply at turn end.',
+    'battle_supply_drop_start_log': 'Supply Drop began. Low hands will receive support.',
+    'battle_blockade_title': 'Naval Blockade',
+    'battle_blockade_notice': 'Redraw is disabled while supply routes are blocked.',
+    'battle_blockade_start_log': 'Naval Blockade began. Redraw is disabled.',
+    'battle_blockade_redraw_blocked': 'Redraw is disabled during the blockade.',
+})
+
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'battle_ceasefire_title': '停火谈判',
+    'battle_ceasefire_notice': '谈判气氛扩散，伤害会大幅降低。',
+    'battle_ceasefire_start_log': '停火谈判开始。伤害会降低。',
+    'battle_command_surge_title': '指挥高涨',
+    'battle_command_surge_notice': '指挥系统活跃，回合结束时指挥力恢复增加。',
+    'battle_command_surge_start_log': '指挥高涨开始。指挥力更容易恢复。',
+    'battle_supply_drop_title': '补给投放',
+    'battle_supply_drop_notice': '手牌少的玩家会在回合结束时获得少量补给。',
+    'battle_supply_drop_start_log': '补给投放开始。手牌少时会获得支援。',
+    'battle_blockade_title': '海上封锁',
+    'battle_blockade_notice': '补给线被切断，无法重抽手牌。',
+    'battle_blockade_start_log': '海上封锁开始。无法重抽手牌。',
+    'battle_blockade_redraw_blocked': '海上封锁期间无法重抽。',
 })
 
 def t(key, subkey=None):
@@ -5345,8 +5396,35 @@ def battle_damage_surge_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_ceasefire_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('ceasefire_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_command_surge_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('command_surge_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_supply_drop_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('supply_drop_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_blockade_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('blockade_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
 def battle_event_damage_multiplier(room):
-    return BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
+    multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
+    if battle_ceasefire_active(room):
+        multiplier *= BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER
+    return multiplier
 
 def battle_vatican_country_key(data=None):
     for country in battle_country_list(data):
@@ -5866,12 +5944,15 @@ def battle_max_playable_card_count(command, hand_count):
 def recover_battle_command_after_turn(room, player, submitted, defenseless=False):
     current = battle_player_command(room, player)
     if defenseless:
-        set_battle_player_command(room, player, current + 3)
+        bonus = BATTLE_COMMAND_SURGE_RECOVERY if battle_command_surge_active(room) else 0
+        set_battle_player_command(room, player, current + 3 + bonus)
         return
     keys = list((submitted or {}).get('keys', []))
     defense_keys = list((submitted or {}).get('defense_keys', []))
     spent = int((submitted or {}).get('command_cost', battle_command_cost_for_count(len(keys))) or 0)
     recovery = 1 + min(4, len(defense_keys))
+    if battle_command_surge_active(room):
+        recovery += BATTLE_COMMAND_SURGE_RECOVERY
     set_battle_player_command(room, player, current - spent + recovery)
 
 def battle_time_left_text(room):
@@ -5971,8 +6052,13 @@ def save_battle_state(state_data):
     battle_dir = os.path.dirname(BATTLE_STATE_FILE)
     if battle_dir:
         os.makedirs(battle_dir, exist_ok=True)
+    for room in state_data.get('rooms', {}).values():
+        if isinstance(room, dict):
+            room['log'] = list(room.get('log', []))[:10]
+            room['chat'] = list(room.get('chat', []))[:20]
+            room['team_chat'] = list(room.get('team_chat', []))[:24]
     with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
-        json.dump(state_data, f, ensure_ascii=False, indent=2)
+        json.dump(state_data, f, ensure_ascii=False, separators=(',', ':'))
 
 def battle_team_hp_limit(room):
     teams = room.get('teams', {})
@@ -6018,6 +6104,10 @@ def normalize_battle_room(room):
     room.setdefault('replace_until_turn', 0)
     room.setdefault('bomb_until_turn', 0)
     room.setdefault('damage_surge_until_turn', 0)
+    room.setdefault('ceasefire_until_turn', 0)
+    room.setdefault('command_surge_until_turn', 0)
+    room.setdefault('supply_drop_until_turn', 0)
+    room.setdefault('blockade_until_turn', 0)
     room.setdefault('bomb_holder', None)
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
@@ -6349,6 +6439,10 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'replace_until_turn': 0,
         'bomb_until_turn': 0,
         'damage_surge_until_turn': 0,
+        'ceasefire_until_turn': 0,
+        'command_surge_until_turn': 0,
+        'supply_drop_until_turn': 0,
+        'blockade_until_turn': 0,
         'bomb_holder': None,
         'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
@@ -6767,6 +6861,10 @@ def battle_visual_payload(room, entries):
         'replace': battle_replace_active(room),
         'bomb': battle_bomb_active(room),
         'damage_surge': battle_damage_surge_active(room),
+        'ceasefire': battle_ceasefire_active(room),
+        'command_surge': battle_command_surge_active(room),
+        'supply_drop': battle_supply_drop_active(room),
+        'blockade': battle_blockade_active(room),
         'played': [
             {
                 'player': player,
@@ -6862,9 +6960,9 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
     pressured_damage = apply_battle_turn_pressure(blocked_damage, turn)
     pressured_counter = apply_battle_turn_pressure(counter_base, turn)
     world_war_multiplier = BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER if world_war else 1
-    event_multiplier = max(1, int(event_multiplier or 1))
-    damage = pressured_damage * world_war_multiplier * event_multiplier
-    counter = pressured_counter * world_war_multiplier * event_multiplier
+    event_multiplier = max(0.01, float(event_multiplier or 1))
+    damage = int(pressured_damage * world_war_multiplier * event_multiplier)
+    counter = int(pressured_counter * world_war_multiplier * event_multiplier)
     if defense_base is None:
         defense_base = defense
     defense_base = max(0, int(defense_base or 0))
@@ -7059,6 +7157,8 @@ def finish_battle_turn(room, reload_set, defenseless_players):
             reload_set.add(player)
         else:
             reload_set.discard(player)
+        if battle_supply_drop_active(room) and len(room.setdefault('hands', {}).setdefault(player, [])) <= BATTLE_SUPPLY_DROP_THRESHOLD:
+            room['hands'][player].extend(draw_battle_cards(1, room))
     room['reload_after_turn'] = list(reload_set)
     room['submitted'] = {}
     room['turn'] = int(room.get('turn', 1)) + 1
@@ -7191,6 +7291,10 @@ def update_battle_crisis_state(room, result_parts=None):
         'vatican_until_turn',
         'replace_until_turn',
         'damage_surge_until_turn',
+        'ceasefire_until_turn',
+        'command_surge_until_turn',
+        'supply_drop_until_turn',
+        'blockade_until_turn',
     ]:
         if int(room.get(field, 0) or 0) and turn > int(room.get(field, 0) or 0):
             room[field] = 0
@@ -7216,6 +7320,14 @@ def update_battle_crisis_state(room, result_parts=None):
         random_events.append(('bomb_until_turn', 'battle_bomb_start_log', 0.65))
     if not battle_damage_surge_active(room):
         random_events.append(('damage_surge_until_turn', 'battle_damage_surge_start_log', 0.18))
+    if not battle_ceasefire_active(room):
+        random_events.append(('ceasefire_until_turn', 'battle_ceasefire_start_log', 0.75))
+    if not battle_command_surge_active(room):
+        random_events.append(('command_surge_until_turn', 'battle_command_surge_start_log', 0.7))
+    if not battle_supply_drop_active(room):
+        random_events.append(('supply_drop_until_turn', 'battle_supply_drop_start_log', 0.65))
+    if not battle_blockade_active(room):
+        random_events.append(('blockade_until_turn', 'battle_blockade_start_log', 0.55))
     if random_events and random.random() < BATTLE_RANDOM_EVENT_CHANCE:
         field, start_key, _ = random.choices(
             random_events,
@@ -7811,6 +7923,9 @@ def redraw_battle_hand():
     if username in room.get('submitted', {}):
         ui.notify(t('battle_wait_opponent'), color='info')
         return
+    if battle_blockade_active(room):
+        ui.notify(t('battle_blockade_redraw_blocked'), color='warning')
+        return
     if username in set(room.get('reload_after_turn', [])):
         ui.notify(t('battle_defenseless'), color='warning')
         return
@@ -7926,6 +8041,36 @@ def send_battle_team_chat(message):
     save_battle_state(state_data)
     refresh_battle_view()
 
+def battle_last_turn_signature(last_turn):
+    if not isinstance(last_turn, dict):
+        return {}
+    def rows_signature(rows):
+        compact = []
+        for row in rows[:8] if isinstance(rows, list) else []:
+            if not isinstance(row, dict):
+                continue
+            compact.append({
+                'source': row.get('source') or row.get('winner') or row.get('player'),
+                'target': row.get('target') or row.get('loser'),
+                'damage': row.get('damage'),
+                'heal': row.get('heal'),
+                'outcome': row.get('outcome'),
+            })
+        return compact
+    return {
+        'turn': last_turn.get('turn'),
+        'events': {
+            key: bool(last_turn.get(key))
+            for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+        },
+        'played_count': len(last_turn.get('played', [])) if isinstance(last_turn.get('played'), list) else 0,
+        'damage': rows_signature(last_turn.get('damage', [])),
+        'counters': rows_signature(last_turn.get('counters', [])),
+        'steals': rows_signature(last_turn.get('steals', [])),
+        'self_damage': rows_signature(last_turn.get('self_damage', [])),
+        'bombs': rows_signature(last_turn.get('bombs', [])),
+    }
+
 def battle_screen_signature():
     state_data = load_battle_state_with_timeouts()
     room = battle_room_for_user(state.current_user, state_data)
@@ -7960,8 +8105,12 @@ def battle_screen_signature():
             'replace_until_turn': room.get('replace_until_turn'),
             'bomb_until_turn': room.get('bomb_until_turn'),
             'damage_surge_until_turn': room.get('damage_surge_until_turn'),
+            'ceasefire_until_turn': room.get('ceasefire_until_turn'),
+            'command_surge_until_turn': room.get('command_surge_until_turn'),
+            'supply_drop_until_turn': room.get('supply_drop_until_turn'),
+            'blockade_until_turn': room.get('blockade_until_turn'),
             'bomb_holder': room.get('bomb_holder'),
-            'last_turn': room.get('last_turn', {}),
+            'last_turn': battle_last_turn_signature(room.get('last_turn', {})),
         }
     else:
         payload = {
@@ -9998,6 +10147,22 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
                 ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
                 ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
+        if battle_ceasefire_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-emerald-300 bg-emerald-50'):
+                ui.label(t('battle_ceasefire_title')).classes('text-2xl font-black text-emerald-800')
+                ui.label(t('battle_ceasefire_notice')).classes('text-sm font-bold text-emerald-700')
+        if battle_command_surge_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-blue-300 bg-blue-50'):
+                ui.label(t('battle_command_surge_title')).classes('text-2xl font-black text-blue-800')
+                ui.label(t('battle_command_surge_notice')).classes('text-sm font-bold text-blue-700')
+        if battle_supply_drop_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-lime-300 bg-lime-50'):
+                ui.label(t('battle_supply_drop_title')).classes('text-2xl font-black text-lime-800')
+                ui.label(t('battle_supply_drop_notice')).classes('text-sm font-bold text-lime-700')
+        if battle_blockade_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-gray-400 bg-gray-100'):
+                ui.label(t('battle_blockade_title')).classes('text-2xl font-black text-gray-800')
+                ui.label(t('battle_blockade_notice')).classes('text-sm font-bold text-gray-700')
 
     def render_battle_last_turn(room):
         visual = room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}
@@ -10084,7 +10249,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if not visual:
                 ui.label(t('battle_no_visual')).classes('text-gray-500')
                 return
-            if any(visual.get(key) for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge']):
+            event_keys = ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+            if any(visual.get(key) for key in event_keys):
                 with ui.row().classes('gap-2 flex-wrap'):
                     if visual.get('world_war'):
                         ui.badge(t('battle_world_war_title'), color='red')
@@ -10100,6 +10266,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.badge(t('battle_bomb_title'), color='pink')
                     if visual.get('damage_surge'):
                         ui.badge(t('battle_damage_surge_title'), color='purple')
+                    if visual.get('ceasefire'):
+                        ui.badge(t('battle_ceasefire_title'), color='green')
+                    if visual.get('command_surge'):
+                        ui.badge(t('battle_command_surge_title'), color='blue')
+                    if visual.get('supply_drop'):
+                        ui.badge(t('battle_supply_drop_title'), color='lime')
+                    if visual.get('blockade'):
+                        ui.badge(t('battle_blockade_title'), color='grey')
             ui.label(t('battle_played_visual')).classes('text-sm font-bold text-gray-600')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
                 for item in visual.get('played', []):
