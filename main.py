@@ -581,6 +581,7 @@ class AppState:
     battle_id = None
     battle_selected_keys = set()
     battle_attack_target = None
+    battle_turn_timeout_seconds = 60
     battle_last_signature = ''
     social_selected_chat_id = None
     social_last_signature = ''
@@ -597,6 +598,8 @@ BATTLE_COUNTER = 0
 BOT_USERNAME = 'BOT'
 BATTLE_MAX_HP = 100_000_000_000_000
 BATTLE_TURN_TIMEOUT_SECONDS = 60
+BATTLE_TURN_TIMEOUT_UNLIMITED = 0
+BATTLE_TURN_TIMEOUT_OPTIONS = [60, 180, 300, BATTLE_TURN_TIMEOUT_UNLIMITED]
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
 BATTLE_BONUS_PER_MATCH_BPS = 10
@@ -1234,6 +1237,9 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_send': '送信',
     'battle_bonus': '一致ボーナス',
     'battle_room_players': '参加者',
+    'battle_thinking_time': '思考時間',
+    'battle_room_thinking_time': 'この部屋の思考時間',
+    'battle_time_unlimited': '無制限',
     'battle_team': 'チーム',
     'battle_auto_notice': '画面は自動で更新されます。',
     'battle_damage_each': '各',
@@ -1269,6 +1275,9 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_send': 'Send',
     'battle_bonus': 'Match bonus',
     'battle_room_players': 'Players',
+    'battle_thinking_time': 'Thinking time',
+    'battle_room_thinking_time': 'Room thinking time',
+    'battle_time_unlimited': 'Unlimited',
     'battle_team': 'Team',
     'battle_auto_notice': 'This screen updates automatically.',
     'battle_damage_each': 'each',
@@ -1304,6 +1313,9 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_send': '发送',
     'battle_bonus': '一致加成',
     'battle_room_players': '参加者',
+    'battle_thinking_time': '思考时间',
+    'battle_room_thinking_time': '本房间思考时间',
+    'battle_time_unlimited': '无限制',
     'battle_team': '队伍',
     'battle_auto_notice': '画面会自动更新。',
     'battle_damage_each': '各',
@@ -5107,7 +5119,7 @@ def _legacy_battle_help_labels():
                         '出さなかった国は防御に回ります。全部出して押し切るか、守りを残すかを考えて選びましょう。',
                         '手札がなくなるまで新しい国は補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
                         '各ターンに1回だけ、今の手札をすべて捨てて同じ枚数を引き直せます。',
-                        '1分以内に行動しないと降参扱いになります。1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
+                        '思考時間は部屋ごとに1分・3分・5分・無制限から選べます。時間切れになると降参扱いになり、1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
                     ],
                 ),
                 (
@@ -5153,7 +5165,7 @@ def _legacy_battle_help_labels():
                     'Cards you do not play become defense. Decide whether to attack hard or keep protection.',
                     'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
                     'Once per turn, you can discard your hand and redraw the same number of cards.',
-                    'If you do not act within one minute, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
+                    'Each room can use 1 minute, 3 minutes, 5 minutes, or unlimited thinking time. If time runs out, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
                 ]),
                 ('Damage and victory', [
                     f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
@@ -5189,7 +5201,7 @@ def _legacy_battle_help_labels():
                     '没有打出的国家会用于防御。要全力进攻还是保留防守，需要自己判断。',
                     '手牌用完前不会补充。手牌为空的回合会处于无防备状态，之后重新抽5张。',
                     '每回合可以弃掉当前手牌，并重抽同样张数一次。',
-                    '1分钟内不行动会自动投降。1对1和BOT战会立即结束；混战和团队战的位置会由BOT接替。',
+                    '每个房间可选择1分钟、3分钟、5分钟或无限制思考时间。超时会自动投降；1对1和BOT战会立即结束，混战和团队战的位置会由BOT接替。',
                 ]),
                 ('伤害与胜利', [
                     f'HP变为0就会失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
@@ -5249,7 +5261,7 @@ def battle_help_labels():
                     '出さなかったカードは防御に回ります。攻撃と防御のバランスを考えるのが大事です。',
                     '手札が空になるまで新しいカードは補充されません。空になった次のターンは無防備になり、その後で新しい5枚が配られます。',
                     '各ターンに1回だけ、現在の手札をすべて捨てて同じ枚数を引き直せます。',
-                    '1分以内に行動しないと降参扱いになります。1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
+                    '思考時間は部屋ごとに1分・3分・5分・無制限から選べます。時間切れになると降参扱いになり、1対1とBOT戦ではその場で決着し、乱戦とチーム戦ではその枠をBOTが引き継ぎます。',
                 ]),
                 ('国力とダメージ', [
                     f'HPが0になると負けです。開始時のHPは{format_battle_number(BATTLE_MAX_HP)}です。',
@@ -5304,7 +5316,7 @@ def battle_help_labels():
                     'Cards you do not play become defense, so balance attack and protection.',
                     'New cards are not drawn until your hand is empty. After an empty-hand turn, you draw five new cards.',
                     'Once per turn, you can discard your hand and redraw the same number of cards.',
-                    'If you do not act within one minute, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
+                    'Each room can use 1 minute, 3 minutes, 5 minutes, or unlimited thinking time. If time runs out, you surrender. Duel and bot battles end immediately; free-for-all and team slots are taken over by bots.',
                 ]),
                 ('Power and Damage', [
                     f'You lose when your HP reaches 0. Starting HP is {format_battle_number(BATTLE_MAX_HP)}.',
@@ -5359,7 +5371,7 @@ def battle_help_labels():
                     '没有出的牌会用于防御，所以要考虑攻击和防御的平衡。',
                     '手牌用完前不会补牌。手牌为空后的下一回合会变成无防备状态，之后重新抽5张。',
                     '每回合可以将当前手牌全部弃掉，并重抽相同张数。',
-                    '1分钟内没有行动会被视为投降。1对1和BOT战会立即结束；混战和团队战的位置会由BOT接手。',
+                    '每个房间可选择1分钟、3分钟、5分钟或无限制思考时间。超时会被视为投降；1对1和BOT战会立即结束，混战和团队战的位置会由BOT接手。',
                 ]),
                 ('国力与伤害', [
                     f'HP变成0就失败。开始时HP为{format_battle_number(BATTLE_MAX_HP)}。',
@@ -5393,18 +5405,52 @@ def battle_help_labels():
 def battle_mode_size(mode):
     return MULTIPLAYER_MODES.get(mode, 2)
 
+def normalize_battle_timeout_seconds(value):
+    try:
+        seconds = int(value)
+    except (TypeError, ValueError):
+        seconds = BATTLE_TURN_TIMEOUT_SECONDS
+    if seconds not in BATTLE_TURN_TIMEOUT_OPTIONS:
+        return BATTLE_TURN_TIMEOUT_SECONDS
+    return seconds
+
+def battle_timeout_label(seconds):
+    seconds = normalize_battle_timeout_seconds(seconds)
+    if seconds == BATTLE_TURN_TIMEOUT_UNLIMITED:
+        return t('battle_time_unlimited')
+    minutes = max(1, seconds // 60)
+    if state.lang == 'ja':
+        return f'{minutes}分'
+    if state.lang == 'zh':
+        return f'{minutes}分钟'
+    return f'{minutes} min'
+
+def selected_battle_timeout_seconds():
+    return normalize_battle_timeout_seconds(getattr(state, 'battle_turn_timeout_seconds', BATTLE_TURN_TIMEOUT_SECONDS))
+
+def battle_room_timeout_seconds(room):
+    return normalize_battle_timeout_seconds((room or {}).get('turn_timeout_seconds'))
+
+def battle_time_left_text(room):
+    seconds = battle_turn_time_left(room)
+    if seconds is None:
+        return t('battle_time_unlimited')
+    return t('battle_time_left').format(seconds=seconds)
+
 def normalize_battle_queue_entry(entry):
     if isinstance(entry, dict):
         username = clean_username(entry.get('username'))
         mode = str(entry.get('mode') or DUEL_MODE)
+        timeout_seconds = normalize_battle_timeout_seconds(entry.get('turn_timeout_seconds'))
     else:
         username = clean_username(entry)
         mode = DUEL_MODE
+        timeout_seconds = BATTLE_TURN_TIMEOUT_SECONDS
     if mode not in MULTIPLAYER_MODES:
         mode = DUEL_MODE
     if not username:
         return None
-    return {'username': username, 'mode': mode}
+    return {'username': username, 'mode': mode, 'turn_timeout_seconds': timeout_seconds}
 
 def default_battle_state():
     return {
@@ -5426,7 +5472,7 @@ def normalize_battle_state(value):
             normalized = normalize_battle_queue_entry(entry)
             if not normalized:
                 continue
-            marker = (normalized['username'], normalized['mode'])
+            marker = normalized['username']
             if marker not in seen:
                 queue_entries.append(normalized)
                 seen.add(marker)
@@ -5510,6 +5556,7 @@ def normalize_battle_room(room):
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
     room.setdefault('bot', False)
+    room['turn_timeout_seconds'] = battle_room_timeout_seconds(room)
     room.setdefault('turn_started_at', current_timestamp())
     hp = room.setdefault('hp', {})
     for player in room.get('players', []):
@@ -5598,6 +5645,15 @@ def battle_waiting_users(state_data=None):
 
 def is_current_user_waiting_for_battle():
     return state.current_user in battle_waiting_users()
+
+def current_user_battle_queue_entry(state_data=None):
+    state_data = state_data or load_battle_state()
+    username = clean_username(state.current_user)
+    for entry in state_data.get('queue', []):
+        normalized = normalize_battle_queue_entry(entry)
+        if normalized and normalized['username'] == username:
+            return normalized
+    return None
 
 def remove_user_from_battle_state(username):
     username = clean_username(username)
@@ -5709,11 +5765,12 @@ def battle_teams_for_players(players, mode):
         for index, player in enumerate(players)
     }
 
-def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False):
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None):
     state_data = state_data or load_battle_state()
     players = [clean_username(player) for player in players if clean_username(player)]
     if len(players) < 2:
         return None
+    turn_timeout_seconds = normalize_battle_timeout_seconds(turn_timeout_seconds)
     state_data['counter'] = int(state_data.get('counter', 0)) + 1
     room_id = f"battle-{state_data['counter']}"
     teams = battle_teams_for_players(players, mode)
@@ -5736,6 +5793,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False):
         'last_turn': {},
         'world_war_started': False,
         'revolution_until_turn': 0,
+        'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
         'turn_started_at': current_timestamp(),
         'winner': None,
@@ -5760,7 +5818,14 @@ def create_bot_battle():
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
         return
-    create_battle_room(username, BOT_USERNAME, state_data=state_data, mode=BOT_MODE, bot=True)
+    create_battle_room(
+        username,
+        BOT_USERNAME,
+        state_data=state_data,
+        mode=BOT_MODE,
+        bot=True,
+        turn_timeout_seconds=selected_battle_timeout_seconds(),
+    )
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
 
@@ -5770,6 +5835,7 @@ def join_battle_queue(mode=DUEL_MODE):
         ui.notify(t('unlock_condition_not_met'), color='warning')
         return
     mode = mode if mode in MULTIPLAYER_MODES else DUEL_MODE
+    turn_timeout_seconds = selected_battle_timeout_seconds()
     state_data = load_battle_state()
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
@@ -5790,6 +5856,8 @@ def join_battle_queue(mode=DUEL_MODE):
         waiting_user = normalized['username']
         if normalized.get('mode') != mode:
             continue
+        if normalized.get('turn_timeout_seconds') != turn_timeout_seconds:
+            continue
         waiting.append(waiting_user)
         if len(waiting) >= battle_mode_size(mode) - 1:
             break
@@ -5797,11 +5865,11 @@ def join_battle_queue(mode=DUEL_MODE):
         players = waiting[:battle_mode_size(mode) - 1] + [username]
         used = set(players)
         state_data['queue'] = [entry for entry in normalized_queue if entry['username'] not in used]
-        create_battle_room(*players, state_data=state_data, mode=mode)
+        create_battle_room(*players, state_data=state_data, mode=mode, turn_timeout_seconds=turn_timeout_seconds)
         ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
         return
-    normalized_queue.append({'username': username, 'mode': mode})
+    normalized_queue.append({'username': username, 'mode': mode, 'turn_timeout_seconds': turn_timeout_seconds})
     state_data['queue'] = normalized_queue
     save_battle_state(state_data)
     refresh_battle_view()
@@ -5822,6 +5890,7 @@ def leave_finished_battle(join_again=False):
     state_data = load_battle_state()
     room = battle_room_for_user(username, state_data)
     if room:
+        state.battle_turn_timeout_seconds = battle_room_timeout_seconds(room)
         state_data.setdefault('user_room', {}).pop(username, None)
         state_data.setdefault('spectator_room', {}).pop(username, None)
         room['spectators'] = [name for name in room.get('spectators', []) if name != username]
@@ -6225,7 +6294,10 @@ def battle_turn_elapsed_seconds(room):
     return max(0, int((datetime.now(timezone.utc) - started_at).total_seconds()))
 
 def battle_turn_time_left(room):
-    return max(0, BATTLE_TURN_TIMEOUT_SECONDS - battle_turn_elapsed_seconds(room))
+    timeout_seconds = battle_room_timeout_seconds(room)
+    if timeout_seconds == BATTLE_TURN_TIMEOUT_UNLIMITED:
+        return None
+    return max(0, timeout_seconds - battle_turn_elapsed_seconds(room))
 
 def update_battle_crisis_state(room, result_parts=None):
     result_parts = result_parts if result_parts is not None else []
@@ -6574,7 +6646,10 @@ def process_battle_timeouts(state_data):
             resolve_battle_turn(room)
             changed = True
             continue
-        if battle_turn_elapsed_seconds(room) < BATTLE_TURN_TIMEOUT_SECONDS:
+        timeout_seconds = battle_room_timeout_seconds(room)
+        if timeout_seconds == BATTLE_TURN_TIMEOUT_UNLIMITED:
+            continue
+        if battle_turn_elapsed_seconds(room) < timeout_seconds:
             continue
         timed_out_players = [
             player for player in active_battle_players(room)
@@ -6778,6 +6853,7 @@ def battle_screen_signature():
         payload = {
             'room': room.get('id'),
             'turn': room.get('turn'),
+            'turn_timeout_seconds': battle_room_timeout_seconds(room),
             'winner': room.get('winner'),
             'hp': room.get('hp', {}),
             'team_hp': room.get('team_hp', {}),
@@ -6799,6 +6875,7 @@ def battle_screen_signature():
                 {
                     'id': room.get('id'),
                     'mode': room.get('mode'),
+                    'turn_timeout_seconds': battle_room_timeout_seconds(room),
                     'players': room.get('players', []),
                     'turn': room.get('turn'),
                     'winner': room.get('winner'),
@@ -8901,8 +8978,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.label(f'{battle_mode_label(mode)} / {t("battle_turn")} {room.get("turn", 1)}').classes(title_class)
                 ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary dense')
             ui.label(t('battle_auto_notice')).classes('text-xs text-white' if battle_revolution_active(room) else 'text-xs text-gray-500')
+            ui.badge(f"{t('battle_room_thinking_time')}: {battle_timeout_label(battle_room_timeout_seconds(room))}", color='blue')
             if not winner:
-                battle_countdown_label['component'] = ui.label(t('battle_time_left').format(seconds=battle_turn_time_left(room))).classes('text-sm font-bold text-orange-700')
+                battle_countdown_label['component'] = ui.label(battle_time_left_text(room)).classes('text-sm font-bold text-orange-700')
             if mode == TEAM_MODE:
                 team_hp = ensure_battle_team_hp(room)
                 team_limit = battle_team_hp_limit(room)
@@ -9030,10 +9108,27 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             with ui.card().classes('w-full p-5 gap-4'):
                 if is_current_user_waiting_for_battle():
                     ui.label(t('battle_waiting')).classes('text-lg font-bold text-blue-700')
+                    waiting_entry = current_user_battle_queue_entry()
+                    if waiting_entry:
+                        ui.badge(
+                            f"{battle_mode_label(waiting_entry.get('mode', DUEL_MODE))} / {t('battle_thinking_time')}: {battle_timeout_label(waiting_entry.get('turn_timeout_seconds'))}",
+                            color='blue',
+                        )
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_cancel'), icon='close', on_click=cancel_battle_queue).props('outline color=red')
                         ui.button(t('battle_refresh'), icon='refresh', on_click=refresh_battle_view).props('outline color=primary')
                 else:
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_thinking_time')).classes('text-sm font-bold text-gray-500')
+                        for seconds in BATTLE_TURN_TIMEOUT_OPTIONS:
+                            color = 'primary' if selected_battle_timeout_seconds() == seconds else 'grey'
+                            ui.button(
+                                battle_timeout_label(seconds),
+                                on_click=lambda _, value=seconds: (
+                                    setattr(state, 'battle_turn_timeout_seconds', value),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
                     with ui.row().classes('w-full gap-2 flex-wrap'):
                         ui.button(t('battle_mode_duel'), icon='sports_esports', on_click=lambda: join_battle_queue(DUEL_MODE)).props('color=primary')
                         ui.button(t('battle_mode_free_for_all'), icon='groups', on_click=lambda: join_battle_queue(FFA_MODE)).props('color=primary')
@@ -9048,7 +9143,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     players = ', '.join(room_item.get('players', []))
                     room_id = room_item.get('id')
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
-                        ui.label(f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players}").classes('text-sm font-bold text-gray-700')
+                        ui.label(f"{battle_mode_label(room_item.get('mode', DUEL_MODE))} / {players} / {battle_timeout_label(battle_room_timeout_seconds(room_item))}").classes('text-sm font-bold text-gray-700')
                         ui.button(t('battle_spectate'), icon='visibility', on_click=lambda *_, room_id=room_id: spectate_battle_room(room_id)).props('outline color=primary dense')
 
     def auto_refresh_battle():
@@ -9058,7 +9153,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         if countdown_label:
             room = battle_room_for_user(state.current_user, load_battle_state())
             if room and not room.get('winner'):
-                countdown_label.set_text(t('battle_time_left').format(seconds=battle_turn_time_left(room)))
+                countdown_label.set_text(battle_time_left_text(room))
         signature = battle_screen_signature()
         if signature != state.battle_last_signature:
             refresh_battle_view()
