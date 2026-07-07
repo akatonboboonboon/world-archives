@@ -4789,6 +4789,43 @@ def parse_profile_number(value):
         number *= 10_000
     return max(1, number)
 
+def parse_optional_profile_number(value):
+    text = str(value or '')
+    match = re.search(r'\d+(?:[,.]\d+)*', text)
+    if not match:
+        return None
+    try:
+        number = float(match.group(0).replace(',', ''))
+    except ValueError:
+        return None
+    lower = text.lower()
+    if 'billion' in lower:
+        number *= 1_000_000_000
+    elif 'million' in lower:
+        number *= 1_000_000
+    elif 'thousand' in lower:
+        number *= 1_000
+    elif '億' in text or '亿' in text:
+        number *= 100_000_000
+    elif '万' in text:
+        number *= 10_000
+    return number if number > 0 else None
+
+def area_population_product_label():
+    labels = {
+        'ja': '面積×人口',
+        'en': 'Area x Population',
+        'zh': '面积×人口',
+    }
+    return labels.get(state.lang, labels['en'])
+
+def area_population_product_value(country):
+    area = parse_optional_profile_number(raw_profile_value(country, 'area'))
+    population = parse_optional_profile_number(raw_profile_value(country, 'population'))
+    if area is None or population is None:
+        return ''
+    return format_battle_number(int(area * population))
+
 def country_battle_raw_power(country):
     area = parse_profile_number(raw_profile_value(country, 'area'))
     population = parse_profile_number(raw_profile_value(country, 'population'))
@@ -7406,6 +7443,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             if compare_period:
                 rows.append((period_field_label(country), compare_period))
             rows.extend(profile_rows(country))
+            product_value = area_population_product_value(country)
+            if product_value:
+                rows.append((area_population_product_label(), product_value))
             rows.extend([
                 (t('labels', 'region'), region_label(country.get('region', '-'))),
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
