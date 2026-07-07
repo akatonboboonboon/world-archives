@@ -350,6 +350,53 @@ def merge_unique_list(current, incoming, limit=None):
         del merged[limit:]
     return merged
 
+def merge_record_history(current, incoming, limit):
+    merged = merge_unique_list(current, incoming)
+    merged.sort(
+        key=lambda item: parse_timestamp_utc(item.get('timestamp') if isinstance(item, dict) else ''),
+        reverse=True,
+    )
+    return merged[:limit]
+
+def quiz_stats_from_history(history):
+    entries = [entry for entry in history if isinstance(entry, dict)]
+    entries.sort(key=lambda entry: parse_timestamp_utc(entry.get('timestamp')), reverse=True)
+    answered = len(entries)
+    correct = sum(1 for entry in entries if entry.get('correct'))
+    current_streak = 0
+    for entry in entries:
+        if entry.get('correct'):
+            current_streak += 1
+        else:
+            break
+    best_streak = 0
+    running_streak = 0
+    for entry in reversed(entries):
+        if entry.get('correct'):
+            running_streak += 1
+            best_streak = max(best_streak, running_streak)
+        else:
+            running_streak = 0
+    return {
+        'answered': answered,
+        'correct': correct,
+        'streak': current_streak,
+        'best_streak': best_streak,
+    }
+
+def normalize_quiz_stats(user):
+    raw_stats = user.get('quiz_stats') if isinstance(user.get('quiz_stats'), dict) else {}
+    history_stats = quiz_stats_from_history(user.get('quiz_history', []))
+    normalized = {}
+    for key in ['answered', 'correct', 'streak', 'best_streak']:
+        try:
+            raw_value = int(raw_stats.get(key, 0) or 0)
+        except (TypeError, ValueError):
+            raw_value = 0
+        normalized[key] = max(raw_value, history_stats.get(key, 0))
+    user['quiz_stats'] = normalized
+    return normalized
+
 def merge_user_record(current, incoming):
     if not isinstance(current, dict):
         current = {}
@@ -386,14 +433,16 @@ def merge_user_record(current, incoming):
         elif key == 'quiz_stats' and isinstance(value, dict):
             stats = current.setdefault('quiz_stats', {})
             for stat_key, stat_value in value.items():
-                if isinstance(stat_value, int):
-                    stats[stat_key] = max(stats.get(stat_key, 0), stat_value)
-                else:
+                try:
+                    incoming_stat = int(stat_value)
+                    current_stat = int(stats.get(stat_key, 0) or 0)
+                    stats[stat_key] = max(current_stat, incoming_stat)
+                except (TypeError, ValueError):
                     stats.setdefault(stat_key, stat_value)
         elif key == 'viewed_keys':
             current[key] = merge_unique_list(current.get(key, []), value)
         elif key == 'quiz_history':
-            current[key] = merge_unique_list(current.get(key, []), value, 200)
+            current[key] = merge_record_history(current.get(key, []), value, 200)
         elif key == 'avatar' and isinstance(value, dict):
             current_avatar = current.get('avatar') if isinstance(current.get('avatar'), dict) else {}
             incoming_mode = value.get('mode')
@@ -408,6 +457,7 @@ def merge_user_record(current, incoming):
             current[key] = bool(current.get(key, False) or value)
         else:
             current.setdefault(key, value)
+    normalize_quiz_stats(current)
     return current
 
 def migrate_embedded_user_data():
@@ -1760,6 +1810,7 @@ def ensure_user_defaults(user):
         'streak': 0,
         'best_streak': 0,
     })
+    normalize_quiz_stats(user)
     if not isinstance(user.get('avatar'), dict):
         user['avatar'] = {'mode': 'default'}
     normalize_avatar_adjustment(user['avatar'])
@@ -1796,6 +1847,36 @@ def sync_current_user_to_browser(user_data=None):
         backups = JSON.parse(localStorage.getItem(key) || '{{}}');
       }} catch (error) {{
         backups = {{}};
+      }}
+      const existingPayload = backups[payload.username];
+      const existingRecord = existingPayload && (existingPayload.record || existingPayload);
+      if (existingRecord && payload.record) {{
+        const fields = ['answered', 'correct', 'streak', 'best_streak'];
+        payload.record.quiz_stats = payload.record.quiz_stats || {{}};
+        const existingStats = existingRecord.quiz_stats || {{}};
+        fields.forEach(field => {{
+          payload.record.quiz_stats[field] = Math.max(
+            Number(payload.record.quiz_stats[field] || 0),
+            Number(existingStats[field] || 0),
+          );
+        }});
+        const seenQuiz = new Set();
+        const mergedQuizHistory = [];
+        [...(payload.record.quiz_history || []), ...(existingRecord.quiz_history || [])].forEach(item => {{
+          if (!item || typeof item !== 'object') return;
+          const marker = JSON.stringify([
+            item.timestamp || '',
+            item.answer_key || '',
+            item.selected_key || '',
+            item.type || '',
+            !!item.correct,
+          ]);
+          if (seenQuiz.has(marker)) return;
+          seenQuiz.add(marker);
+          mergedQuizHistory.push(item);
+        }});
+        mergedQuizHistory.sort((a, b) => String(b.timestamp || '').localeCompare(String(a.timestamp || '')));
+        payload.record.quiz_history = mergedQuizHistory.slice(0, 200);
       }}
       backups[payload.username] = payload;
       const knownKey = 'world_archives_known_usernames';
@@ -1868,10 +1949,13 @@ def remove_browser_backup(username):
     except Exception as e:
         print(f"Browser backup removal skipped: {e}", flush=True)
 
-def persist_current_user_data(user_data):
+def persist_current_user_data(user_data, immediate_browser=False):
     save_user_data(user_data)
     state.public_users_browser_synced = False
-    queue_current_user_browser_sync()
+    if immediate_browser:
+        sync_current_user_to_browser(user_data)
+    else:
+        queue_current_user_browser_sync()
 
 def remember_known_user(username, user_data):
     username = clean_username(username)
@@ -3139,7 +3223,7 @@ def get_quiz_stats(data=None):
     user = get_current_user_record()
     if not user:
         return {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0}
-    return user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
+    return normalize_quiz_stats(user)
 
 def get_review_keys(data=None):
     user = get_current_user_record()
@@ -3737,7 +3821,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
     user = get_current_user_record(user_data)
     if not user:
         return
-    stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
+    stats = normalize_quiz_stats(user)
     stats['answered'] = stats.get('answered', 0) + 1
     if correct:
         stats['correct'] = stats.get('correct', 0) + 1
@@ -3763,7 +3847,8 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
         'mode': state.quiz_mode,
     })
     del history[200:]
-    persist_current_user_data(user_data)
+    normalize_quiz_stats(user)
+    persist_current_user_data(user_data, immediate_browser=True)
 
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
