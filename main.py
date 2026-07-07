@@ -17,16 +17,6 @@ from datetime import datetime, timedelta, timezone
 from html import escape as html_escape
 from urllib.parse import quote_plus
 
-try:
-    import pykakasi
-except ImportError:
-    pykakasi = None
-
-try:
-    from pypinyin import lazy_pinyin
-except ImportError:
-    lazy_pinyin = None
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, 'data.json')
 ASSETS_DIR = os.path.join(BASE_DIR, 'assets')
@@ -36,6 +26,7 @@ USER_DATA_CACHE = None
 USER_DATA_CACHE_MTIME = None
 QUIZ_POOL_CACHE = {'key': None, 'value': None}
 BATTLE_POWER_BOUNDS_CACHE = {'mtime': None, 'value': None}
+BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
 
 def file_mtime(path):
     try:
@@ -58,7 +49,8 @@ def resolve_user_data_file():
 
 USER_DATA_FILE = resolve_user_data_file()
 GUEST_USERNAME = '__guest__'
-KAKASI_CONVERTER = pykakasi.kakasi() if pykakasi else None
+KAKASI_CONVERTER = None
+PINYIN_CONVERTER = None
 APP_TIMEZONE = timezone(timedelta(hours=9), 'JST')
 USER_ASSETS_DIR = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'user_assets')
 BATTLE_STATE_FILE = os.path.join(os.path.dirname(USER_DATA_FILE) or BASE_DIR, 'battle_state.json')
@@ -227,10 +219,14 @@ def normalize_social_chats(value):
             'name': str(chat.get('name') or '').strip(),
             'created_by': clean_stored_username(chat.get('created_by')),
             'members': members,
-            'messages': messages[-120:],
+            'messages': messages[-60:],
             'created_at': str(chat.get('created_at') or current_timestamp()),
         }
-    return chats
+    return dict(sorted(
+        chats.items(),
+        key=lambda item: item[1].get('messages', [{}])[-1].get('timestamp') if item[1].get('messages') else item[1].get('created_at', ''),
+        reverse=True,
+    )[:80])
 
 USER_RECORD_KEYS = {
     'password_hash',
@@ -294,6 +290,9 @@ def normalize_user_data_file(data):
         username = username or str(key or '').strip()
         if record and username and username not in users:
             users[username] = record
+    for record in users.values():
+        if isinstance(record, dict):
+            ensure_user_defaults(record)
     data['users'] = users
     known_users = []
     if isinstance(data.get('known_users'), list):
@@ -620,13 +619,15 @@ BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
 BATTLE_REVOLUTION_CHANCE = 0.08
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
-BATTLE_SPECIAL_CARD_CHANCE = 0.35
-BATTLE_SPECIAL_CARD_MAX_PER_HAND = 4
+BATTLE_SPECIAL_CARD_CHANCE = 0.12
+BATTLE_SPECIAL_CARD_MAX_PER_HAND = 2
 BATTLE_SPECIAL_CARD_PREFIX = 'event:'
 BATTLE_SPECIAL_CARDS = {
-    'event:supply_collapse': {'damage_percent': 1},
-    'event:frontline_disaster': {'damage_percent': 2},
-    'event:fallout_crisis': {'damage_percent': 4},
+    'event:supply_collapse': {'damage_percent': 1, 'weight': 1.0},
+    'event:frontline_disaster': {'damage_percent': 2, 'weight': 1.0},
+    'event:fallout_crisis': {'damage_percent': 4, 'weight': 1.0},
+    'event:scorched_earth': {'damage_percent': 1, 'destroy_one': True, 'weight': 1.0},
+    'event:relief_convoy': {'heal_percent': 3, 'weight': 0.22},
 }
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
@@ -1386,7 +1387,11 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_special_supply_collapse': '補給崩壊',
     'battle_special_frontline_disaster': '戦線崩壊',
     'battle_special_fallout_crisis': '核汚染',
+    'battle_special_scorched_earth': '焦土作戦',
+    'battle_special_relief_convoy': '救援船団',
     'battle_self_damage_log': '{player}の{card}が暴発し、{damage}ダメージを受けました。',
+    'battle_heal_log': '{player}の{card}により、{heal}回復しました。',
+    'battle_destroy_log': '{player}の{card}が{country}を巻き込み、手札から失われました。',
     'battle_counter_log': '{defender}の防御が上回り、{attacker}へ{damage}のカウンターダメージ。',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
@@ -1412,7 +1417,11 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_special_supply_collapse': 'Supply Collapse',
     'battle_special_frontline_disaster': 'Frontline Disaster',
     'battle_special_fallout_crisis': 'Fallout Crisis',
+    'battle_special_scorched_earth': 'Scorched Earth',
+    'battle_special_relief_convoy': 'Relief Convoy',
     'battle_self_damage_log': '{player} suffered {damage} damage from {card}.',
+    'battle_heal_log': '{player} recovered {heal} HP from {card}.',
+    'battle_destroy_log': "{player}'s {card} dragged {country} out of the hand.",
     'battle_counter_log': '{defender} countered {attacker} for {damage} damage with superior defense.',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
@@ -1438,7 +1447,11 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_special_supply_collapse': '补给崩溃',
     'battle_special_frontline_disaster': '战线崩溃',
     'battle_special_fallout_crisis': '核污染',
+    'battle_special_scorched_earth': '焦土作战',
+    'battle_special_relief_convoy': '救援船队',
     'battle_self_damage_log': '{player}的{card}爆发，受到{damage}伤害。',
+    'battle_heal_log': '{player}因{card}恢复了{heal}。',
+    'battle_destroy_log': '{player}的{card}卷入了{country}，该牌从手牌中消失。',
     'battle_counter_log': '{defender}的防御超过攻击，对{attacker}造成{damage}反击伤害。',
 })
 
@@ -1923,6 +1936,16 @@ def normalize_avatar_adjustment(avatar):
     avatar['position_y'] = int(clamp_number(avatar.get('position_y'), 0, 100, 50))
     return avatar
 
+def compact_avatar_record(avatar):
+    if not isinstance(avatar, dict):
+        return {'mode': 'default', **default_avatar_adjustment()}
+    avatar = dict(avatar)
+    if avatar.get('mode') == 'upload' and avatar.get('file'):
+        avatar.pop('data_url', None)
+    elif isinstance(avatar.get('data_url'), str) and len(avatar.get('data_url', '')) > 512_000:
+        avatar.pop('data_url', None)
+    return normalize_avatar_adjustment(avatar)
+
 def normalize_notifications(value):
     if not isinstance(value, list):
         return []
@@ -1945,12 +1968,15 @@ def normalize_notifications(value):
             'created_at': created_at,
             'read': bool(item.get('read')),
         })
-    return sorted(notifications, key=lambda item: item.get('created_at', ''), reverse=True)[:100]
+    return sorted(notifications, key=lambda item: item.get('created_at', ''), reverse=True)[:50]
 
 def ensure_user_defaults(user):
     for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends', 'notifications']:
         if not isinstance(user.get(key), list):
             user[key] = []
+    del user['history'][80:]
+    del user['quiz_history'][120:]
+    del user['review_keys'][80:]
     user['notifications'] = normalize_notifications(user.get('notifications'))
     for key in ['notes', 'collections']:
         if not isinstance(user.get(key), dict):
@@ -1962,9 +1988,7 @@ def ensure_user_defaults(user):
         'best_streak': 0,
     })
     normalize_quiz_stats(user)
-    if not isinstance(user.get('avatar'), dict):
-        user['avatar'] = {'mode': 'default'}
-    normalize_avatar_adjustment(user['avatar'])
+    user['avatar'] = compact_avatar_record(user.get('avatar'))
     user['name_color'] = normalize_name_color(user.get('name_color'))
     if not isinstance(user.get('battle_wins'), int):
         user['battle_wins'] = 0
@@ -2217,10 +2241,7 @@ def public_user_backup_payload():
             continue
         ensure_user_defaults(record)
         avatar = dict(record.get('avatar', {})) if isinstance(record.get('avatar'), dict) else {'mode': 'default'}
-        if avatar.get('mode') == 'upload' and not avatar.get('data_url'):
-            data_url = avatar_data_url_from_file(avatar)
-            if data_url:
-                avatar['data_url'] = data_url
+        avatar.pop('data_url', None)
         collections = record.get('collections', {}) if isinstance(record.get('collections'), dict) else {}
         public_users[username] = {
             'favorites': [key for key in record.get('favorites', []) if key in lookup],
@@ -3477,7 +3498,7 @@ def avatar_data_url_from_file(avatar):
     if not isinstance(avatar, dict) or avatar.get('mode') != 'upload' or not avatar.get('file'):
         return ''
     file_path = os.path.join(USER_ASSETS_DIR, avatar['file'])
-    if not os.path.exists(file_path) or os.path.getsize(file_path) > 8 * 1024 * 1024:
+    if not os.path.exists(file_path) or os.path.getsize(file_path) > 3 * 1024 * 1024:
         return ''
     ext = os.path.splitext(file_path)[1].lower()
     try:
@@ -3810,7 +3831,7 @@ def save_avatar_image_content(filename, content, username=None):
         content = content.encode('utf-8')
     if not isinstance(content, (bytes, bytearray)):
         raise ValueError('invalid image content')
-    if not content or len(content) > 8 * 1024 * 1024:
+    if not content or len(content) > 3 * 1024 * 1024:
         raise ValueError('invalid image size')
     user_data = load_user_data()
     username = clean_username(username) or state.current_user
@@ -3833,7 +3854,6 @@ def save_avatar_image_content(filename, content, username=None):
         'mode': 'upload',
         'file': relative_file.replace(os.sep, '/'),
         'version': app_now().strftime('%Y%m%d%H%M%S'),
-        'data_url': avatar_data_url_from_content(ext, bytes(content)),
         **default_avatar_adjustment(),
     }
     persist_current_user_data(user_data)
@@ -4011,16 +4031,40 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
     normalize_quiz_stats(user)
     persist_current_user_data(user_data)
 
+def get_kakasi_converter():
+    global KAKASI_CONVERTER
+    if KAKASI_CONVERTER is not None:
+        return KAKASI_CONVERTER
+    try:
+        import pykakasi
+        KAKASI_CONVERTER = pykakasi.kakasi()
+    except Exception:
+        KAKASI_CONVERTER = False
+    return KAKASI_CONVERTER or None
+
+def get_pinyin_converter():
+    global PINYIN_CONVERTER
+    if PINYIN_CONVERTER is not None:
+        return PINYIN_CONVERTER
+    try:
+        from pypinyin import lazy_pinyin as converter
+        PINYIN_CONVERTER = converter
+    except Exception:
+        PINYIN_CONVERTER = False
+    return PINYIN_CONVERTER or None
+
 def sort_key(country):
     name = get_localized_text(country.get('names', {}))
-    if state.lang == 'ja' and KAKASI_CONVERTER:
+    kakasi_converter = get_kakasi_converter() if state.lang == 'ja' else None
+    if kakasi_converter:
         try:
-            return ''.join(item.get('hira') or item.get('kana') or item.get('orig', '') for item in KAKASI_CONVERTER.convert(name))
+            return ''.join(item.get('hira') or item.get('kana') or item.get('orig', '') for item in kakasi_converter.convert(name))
         except Exception:
             pass
-    if state.lang == 'zh' and lazy_pinyin:
+    pinyin_converter = get_pinyin_converter() if state.lang == 'zh' else None
+    if pinyin_converter:
         try:
-            return ' '.join(lazy_pinyin(name))
+            return ' '.join(pinyin_converter(name))
         except Exception:
             pass
     return name.casefold()
@@ -5093,11 +5137,23 @@ def is_battle_special_card(key):
 
 def battle_special_card_damage(key, hp_limit=BATTLE_MAX_HP):
     card = BATTLE_SPECIAL_CARDS.get(str(key or ''), {})
+    if not card.get('damage_percent'):
+        return 0
     try:
         hp_limit = int(hp_limit)
     except (TypeError, ValueError):
         hp_limit = BATTLE_MAX_HP
     return max(1, hp_limit * int(card.get('damage_percent', 1)) // 100)
+
+def battle_special_card_heal(key, hp_limit=BATTLE_MAX_HP):
+    card = BATTLE_SPECIAL_CARDS.get(str(key or ''), {})
+    if not card.get('heal_percent'):
+        return 0
+    try:
+        hp_limit = int(hp_limit)
+    except (TypeError, ValueError):
+        hp_limit = BATTLE_MAX_HP
+    return max(1, hp_limit * int(card.get('heal_percent', 1)) // 100)
 
 def battle_power_bounds():
     global BATTLE_POWER_BOUNDS_CACHE
@@ -5855,8 +5911,53 @@ def apply_admin_search_cheat(keyword):
         ui.notify(t('battle_unlocked_notice'), color='positive')
     return True
 
+def battle_draw_pool():
+    global BATTLE_DRAW_POOL_CACHE
+    mtime = file_mtime(JSON_FILE)
+    cached = BATTLE_DRAW_POOL_CACHE.get('value')
+    if cached and BATTLE_DRAW_POOL_CACHE.get('mtime') == mtime:
+        return cached
+    countries = battle_country_list()
+    ranked = sorted(
+        ((country_key(country), country_battle_power(country)) for country in countries),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+    total = max(1, len(ranked) - 1)
+    pool = []
+    for index, (key, power) in enumerate(ranked):
+        rank_ratio = index / total
+        weight = 0.08 + (0.92 * rank_ratio)
+        pool.append({'key': key, 'weight': weight, 'power': power})
+    BATTLE_DRAW_POOL_CACHE = {'mtime': mtime, 'value': pool}
+    return pool
+
+def weighted_battle_country_sample(count):
+    pool = [dict(item) for item in battle_draw_pool()]
+    if count <= 0 or not pool:
+        return []
+    selected = []
+    for _ in range(min(count, len(pool))):
+        total_weight = sum(max(0.01, item.get('weight', 0.01)) for item in pool)
+        marker = random.random() * total_weight
+        cursor = 0
+        chosen_index = 0
+        for index, item in enumerate(pool):
+            cursor += max(0.01, item.get('weight', 0.01))
+            if cursor >= marker:
+                chosen_index = index
+                break
+        selected.append(pool.pop(chosen_index)['key'])
+    return selected
+
+def random_battle_special_cards(count):
+    if count <= 0:
+        return []
+    keys = list(BATTLE_SPECIAL_CARDS.keys())
+    weights = [max(0.01, float(BATTLE_SPECIAL_CARDS[key].get('weight', 1))) for key in keys]
+    return random.choices(keys, weights=weights, k=count)
+
 def draw_battle_cards(count=5, room=None):
-    keys = battle_country_keys()
     count = max(0, int(count or 0))
     if count <= 0:
         return []
@@ -5865,12 +5966,9 @@ def draw_battle_cards(count=5, room=None):
         special_count = sum(1 for _ in range(count) if random.random() < BATTLE_SPECIAL_CARD_CHANCE)
         special_count = min(special_count, BATTLE_SPECIAL_CARD_MAX_PER_HAND, count - 1)
     normal_count = max(0, count - special_count)
-    if len(keys) <= normal_count:
-        cards = list(keys)[:normal_count]
-    else:
-        cards = random.sample(keys, normal_count)
+    cards = weighted_battle_country_sample(normal_count)
     if special_count:
-        specials = random.choices(list(BATTLE_SPECIAL_CARDS.keys()), k=special_count)
+        specials = random_battle_special_cards(special_count)
         cards.extend(specials)
         random.shuffle(cards)
     return cards
@@ -6201,6 +6299,8 @@ def battle_visual_card(key, lookup=None):
             'name': battle_special_card_label(key),
             'special': True,
             'damage': battle_special_card_damage(key),
+            'heal': battle_special_card_heal(key),
+            'destroy_one': bool(BATTLE_SPECIAL_CARDS.get(str(key), {}).get('destroy_one')),
             'flag': None,
         }
     country = lookup.get(key)
@@ -6376,29 +6476,46 @@ def apply_battle_special_card_damage(room, result_parts, visual):
     if not battle_world_war_active(room):
         return
     hp = room.setdefault('hp', {})
+    lookup = battle_country_lookup()
     for player in active_battle_players(room):
         hand = room.setdefault('hands', {}).setdefault(player, [])
         specials = [key for key in hand if is_battle_special_card(key)]
         for key in specials:
             if key in hand:
                 hand.remove(key)
-            damage = battle_special_card_damage(key, battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP)
+            hp_limit = battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
+            damage = battle_special_card_damage(key, hp_limit)
+            heal = battle_special_card_heal(key, hp_limit)
+            team = room.get('teams', {}).get(player)
             if room.get('mode') == TEAM_MODE:
-                team = room.get('teams', {}).get(player)
                 team_hp = ensure_battle_team_hp(room)
                 if team:
-                    team_hp[team] = max(0, team_hp.get(team, battle_team_hp_limit(room)) - damage)
+                    team_hp[team] = max(0, min(hp_limit, team_hp.get(team, hp_limit) - damage + heal))
             else:
-                hp[player] = max(0, hp.get(player, BATTLE_MAX_HP) - damage)
+                hp[player] = max(0, min(hp_limit, hp.get(player, hp_limit) - damage + heal))
             card_name = battle_special_card_label(key)
-            message = t('battle_self_damage_log').format(player=player, card=card_name, damage=format_battle_number(damage))
-            result_parts.append(message)
+            if damage:
+                result_parts.append(t('battle_self_damage_log').format(player=player, card=card_name, damage=format_battle_number(damage)))
+            if heal:
+                result_parts.append(t('battle_heal_log').format(player=player, card=card_name, heal=format_battle_number(heal)))
+            destroyed_card = None
+            if BATTLE_SPECIAL_CARDS.get(key, {}).get('destroy_one'):
+                destroyable = [item for item in hand if item in lookup]
+                if destroyable:
+                    destroyed_key = random.choice(destroyable)
+                    hand.remove(destroyed_key)
+                    destroyed_country = lookup.get(destroyed_key)
+                    destroyed_card = battle_visual_card(destroyed_key, lookup)
+                    destroyed_name = get_localized_text(destroyed_country.get('names', {})) if destroyed_country else destroyed_key
+                    result_parts.append(t('battle_destroy_log').format(player=player, card=card_name, country=destroyed_name))
             visual.setdefault('self_damage', []).append({
                 'player': player,
                 'key': key,
                 'name': card_name,
                 'damage': damage,
-                'card': {**battle_visual_card(key), 'damage': damage},
+                'heal': heal,
+                'destroyed_card': destroyed_card,
+                'card': {**battle_visual_card(key), 'damage': damage, 'heal': heal},
             })
 
 def finish_battle_turn(room, reload_set, defenseless_players):
@@ -8993,12 +9110,18 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         if is_battle_special_card(key):
             hp_limit = battle_team_hp_limit(room) if room and room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
             damage = battle_special_card_damage(key, hp_limit)
+            heal = battle_special_card_heal(key, hp_limit)
             with ui.column().classes('gap-2 rounded border border-red-300 bg-red-50 p-3'):
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
                     ui.icon('warning').classes('text-red-600')
                     ui.label(battle_special_card_label(key)).classes('font-bold text-red-800 text-sm')
                 ui.label(t('battle_special_card')).classes('text-xs font-bold text-red-600')
-                ui.label(f"{t('battle_special_damage')}: {format_battle_number(damage)}").classes('text-xs text-red-700')
+                if damage:
+                    ui.label(f"{t('battle_special_damage')}: {format_battle_number(damage)}").classes('text-xs text-red-700')
+                if heal:
+                    ui.label(f"+{format_battle_number(heal)}").classes('text-xs font-bold text-green-700')
+                if BATTLE_SPECIAL_CARDS.get(key, {}).get('destroy_one'):
+                    ui.label('手札1枚を道連れ').classes('text-xs font-bold text-red-700')
             return
         country = lookup.get(key)
         if not country:
@@ -9019,7 +9142,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 ui.icon('warning' if card.get('special') else 'style').classes('text-red-600' if card.get('special') else 'text-blue-600')
             ui.label(card.get('name', '')).classes('text-xs font-bold text-gray-800 whitespace-normal')
             if card.get('special'):
-                ui.label(f"{format_battle_number(card.get('damage', 0))}").classes('text-xs font-bold text-red-700')
+                if card.get('damage'):
+                    ui.label(f"-{format_battle_number(card.get('damage', 0))}").classes('text-xs font-bold text-red-700')
+                if card.get('heal'):
+                    ui.label(f"+{format_battle_number(card.get('heal', 0))}").classes('text-xs font-bold text-green-700')
+                if card.get('destroy_one'):
+                    ui.label('x1').classes('text-xs font-bold text-red-700')
 
     def render_battle_crisis_notice(room):
         if battle_world_war_active(room):
@@ -9038,7 +9166,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if kind == 'steal':
                 return f"{row.get('loser', '')} -> {row.get('winner', '')}: {row.get('name', '')}"
             if kind == 'self_damage':
-                return f"{row.get('player', '')}: {row.get('name', '')} -{format_battle_number(row.get('damage', 0))}"
+                parts = []
+                if row.get('damage'):
+                    parts.append(f"-{format_battle_number(row.get('damage', 0))}")
+                if row.get('heal'):
+                    parts.append(f"+{format_battle_number(row.get('heal', 0))}")
+                if row.get('destroyed_card'):
+                    parts.append('x1')
+                return f"{row.get('player', '')}: {row.get('name', '')} {' '.join(parts)}"
             return f"{row.get('source', '')} -> {row.get('target', '')}: -{format_battle_number(row.get('damage', 0))}"
 
         with ui.card().classes('w-full p-5 gap-4 border border-blue-100 bg-blue-50'):
@@ -9088,6 +9223,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                             ui.badge(event_text(kind, row), color=color).classes('whitespace-normal')
                             if row.get('card'):
                                 render_battle_visual_card(row.get('card'))
+                            if row.get('destroyed_card'):
+                                render_battle_visual_card(row.get('destroyed_card'))
 
     def battle_winner_label(room):
         winner = room.get('winner')
