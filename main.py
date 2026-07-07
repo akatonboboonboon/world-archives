@@ -610,12 +610,12 @@ BATTLE_REDRAW_COMMAND_COST = 2
 BATTLE_CARD_COMMAND_COSTS = [1, 2, 4, 6, 7]
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
-BATTLE_BONUS_PER_MATCH_BPS = 30
+BATTLE_BONUS_PER_MATCH_BPS = 10000
 BATTLE_BONUS_DENOMINATOR = 10_000
 BATTLE_WORLD_WAR_TURN = 75
 BATTLE_WORLD_WAR_DISABLED = 0
 BATTLE_WORLD_WAR_TURN_OPTIONS = [1, 25, 50, 75, 100, BATTLE_WORLD_WAR_DISABLED]
-BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 2
+BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 5
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
 BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
@@ -1392,8 +1392,8 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_resume': '試合に復帰',
     'battle_resume_log': '{player}が{bot}から手札を引き継いで復帰しました。',
     'battle_world_war_title': '第三次世界大戦',
-    'battle_world_war_notice': '世界規模の危機に突入しました。ダメージが2倍になり、危険カードが手札に混ざります。',
-    'battle_world_war_log': '第三次世界大戦が始まりました。以後、ダメージが2倍になります。',
+    'battle_world_war_notice': '世界規模の危機に突入しました。ダメージが5倍になり、危険カードが手札に混ざります。',
+    'battle_world_war_log': '第三次世界大戦が始まりました。以後、ダメージが5倍になります。',
     'battle_revolution_title': '革命発生中',
     'battle_revolution_notice': '革命により国力の強弱が逆転しています。普段弱い国が切り札になるかもしれません。',
     'battle_revolution_start_log': '革命が発生しました。{turns}ターンの間、カードの強さが逆転します。',
@@ -1431,8 +1431,8 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_resume': 'Rejoin Battle',
     'battle_resume_log': '{player} returned and took over {bot}’s hand.',
     'battle_world_war_title': 'World War III',
-    'battle_world_war_notice': 'The battle has entered a world crisis. Damage is doubled and dangerous cards can appear in hands.',
-    'battle_world_war_log': 'World War III has begun. Damage is doubled from now on.',
+    'battle_world_war_notice': 'The battle has entered a world crisis. Damage is multiplied by 5 and dangerous cards can appear in hands.',
+    'battle_world_war_log': 'World War III has begun. Damage is multiplied by 5 from now on.',
     'battle_revolution_title': 'Revolution Active',
     'battle_revolution_notice': 'Revolution reverses card strength. Usually weak countries may become decisive.',
     'battle_revolution_start_log': 'A revolution began. Card strength is reversed for {turns} turns.',
@@ -1470,8 +1470,8 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_resume': '返回战斗',
     'battle_resume_log': '{player}接管{bot}的手牌并返回战斗。',
     'battle_world_war_title': '第三次世界大战',
-    'battle_world_war_notice': '战斗进入世界危机。伤害变为2倍，危险牌会混入手牌。',
-    'battle_world_war_log': '第三次世界大战开始了。之后伤害变为2倍。',
+    'battle_world_war_notice': '战斗进入世界危机。伤害变为5倍，危险牌会混入手牌。',
+    'battle_world_war_log': '第三次世界大战开始了。之后伤害变为5倍。',
     'battle_revolution_title': '革命发生中',
     'battle_revolution_notice': '革命会反转卡牌强弱。平时弱小的国家也可能成为关键。',
     'battle_revolution_start_log': '革命爆发。{turns}回合内卡牌强弱反转。',
@@ -2670,7 +2670,7 @@ def detailed_help_labels():
                 ('復習モード', '間違えた国は復習リストに入ります。復習モードで正解すると、復習リストから外れます。'),
                 ('比較・年表・地図・ネットワーク', '比較は2つの国を並べ、年表は時代順に整理し、地図は場所を確認し、ネットワークは関連国家をたどるために使います。'),
                 ('アカウントと共有', 'アカウントページではアイコン、名前色、バックアップ、公開お気に入り、公開コレクションを管理できます。パスワードと個人メモは他人に表示されません。'),
-                ('国力対戦', '全国家を閲覧すると解禁される対戦機能です。国の面積と人口をもとにした国力で勝負し、タグや地域の一致で小さなボーナスが入ります。'),
+                ('国力対戦', '全国家を閲覧すると解禁される対戦機能です。国の面積と人口をもとにした国力で勝負し、タグや地域の一致で強力なボーナスが入ります。'),
                 ('データの保護', 'Render更新や環境変更の前には、アカウントページからバックアップを書き出しておくと安心です。'),
             ],
         },
@@ -2685,7 +2685,7 @@ def detailed_help_labels():
                 ('Review Mode', 'Missed countries enter the review list. Correct answers in review mode remove them from that list.'),
                 ('Compare, Timeline, Map, Network', 'Compare places two countries side by side. Timeline sorts history, Map checks location, and Network follows related countries.'),
                 ('Account and Sharing', 'The account page manages avatar, name color, backups, public favorites, and public collections. Passwords and personal notes are hidden from others.'),
-                ('Power Battle', 'Unlocked after viewing every country. It uses area and population for power, with small bonuses from matching tags and regions.'),
+                ('Power Battle', 'Unlocked after viewing every country. It uses area and population for power, with strong bonuses from matching tags and regions.'),
                 ('Data Protection', 'Export a backup from the account page before redeploying or changing environments.'),
             ],
         },
@@ -2700,7 +2700,7 @@ def detailed_help_labels():
                 ('复习模式', '答错的国家会进入复习列表。在复习模式答对后，会从列表中移除。'),
                 ('比较、年表、地图、网络', '比较用于并排查看两个国家，年表按时代整理，地图确认位置，网络查看相关国家。'),
                 ('账号与共享', '账号页可以管理头像、名字颜色、备份、公开收藏和公开收藏集。密码和个人笔记不会公开。'),
-                ('国力对战', '浏览所有国家后解锁。根据面积和人口计算国力，标签或地区一致会得到小幅加成。'),
+                ('国力对战', '浏览所有国家后解锁。根据面积和人口计算国力，标签或地区一致会得到强力加成。'),
                 ('数据保护', '重新部署或更换环境前，建议从账号页导出备份。'),
             ],
         },
@@ -5594,9 +5594,9 @@ def _legacy_battle_help_labels():
                 (
                     '一致ボーナス',
                     [
-                        '同じターンに出した国同士、または防御に残した国同士で、タグや地域が重なると小さなボーナスが入ります。',
+                        '同じターンに出した国同士、または防御に残した国同士で、タグや地域が重なると強力なボーナスが入ります。',
                         '1枚だけでは発動しません。相手のカードとの一致も関係ありません。',
-                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+0.3%されます。大逆転用ではなく、近い勝負を少し後押しする仕組みです。',
+                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+100%されます。1個で2倍、2個で3倍のように伸びるため、国の組み合わせが勝敗を大きく左右します。',
                     ],
                 ),
             ],
@@ -5633,9 +5633,9 @@ def _legacy_battle_help_labels():
                     'Team battles include a team chat so you can coordinate attacks and defense.',
                 ]),
                 ('Match Bonus', [
-                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a small bonus.',
+                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a strong bonus.',
                     'One card alone cannot trigger it. Opponent cards are not included.',
-                    'Each repeated tag or region adds +0.3% to attack or defense. It is a small edge for close turns, not an instant comeback.',
+                    'Each repeated tag or region adds +100% to attack or defense: one match doubles it, two matches triple it, and stacked matches can decide the turn.',
                 ]),
             ],
         },
@@ -5671,9 +5671,9 @@ def _legacy_battle_help_labels():
                     '团队战可以使用团队聊天，和队友商量进攻与防御。',
                 ]),
                 ('一致加成', [
-                    '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到小幅加成。',
+                    '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到强力加成。',
                     '只用1张牌不会发动。对手的牌不会参与计算。',
-                    '每个重复的标签或地区会让攻击或防御增加+0.3%。这是接近胜负时的小优势，不是一次性逆转的按钮。',
+                    '每个重复的标签或地区会让攻击或防御增加+100%。一个一致为2倍，两个一致为3倍，组合会大幅影响胜负。',
                 ]),
             ],
         },
@@ -5733,7 +5733,7 @@ def battle_help_labels():
                     'チーム戦ではチーム内チャットで相談できます。',
                 ]),
                 ('一致ボーナス', [
-                    '同じターンに自分が出したカード同士、または防御に残したカード同士でタグや地域が重なると小さなボーナスが入ります。',
+                    '同じターンに自分が出したカード同士、または防御に残したカード同士でタグや地域が重なると強力なボーナスが入ります。',
                     '1枚だけでは発動しません。相手のカードとの一致も判定しません。',
                     '重なったタグや地域が増えるごとに、攻撃または防御が少し上がります。大逆転用ではなく、接戦を少し有利にする仕組みです。',
                 ]),
@@ -5790,9 +5790,9 @@ def battle_help_labels():
                     'Team battles include a team chat so you can coordinate attacks and defense.',
                 ]),
                 ('Match Bonus', [
-                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a small bonus.',
+                    'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a strong bonus.',
                     'One card alone cannot trigger it. Opponent cards are not included.',
-                    'Each repeated tag or region adds a small bonus to attack or defense. It is for close turns, not instant comebacks.',
+                    'Each repeated tag or region adds +100% to attack or defense: one match doubles it, two matches triple it, and stacked matches can decide the turn.',
                 ]),
             ],
         },
@@ -5847,9 +5847,9 @@ def battle_help_labels():
                     '团队战可以使用队伍聊天来商量攻击和防御。',
                 ]),
                 ('一致加成', [
-                    '同一回合中，自己出的牌之间，或保留防御的牌之间，如果标签或地区重复，会获得小幅加成。',
+                    '同一回合中，自己出的牌之间，或保留防御的牌之间，如果标签或地区重复，会获得强力加成。',
                     '只有1张牌时不会发动。也不会和对手的牌进行比较。',
-                    '重复的标签或地区越多，攻击或防御会稍微提高。这是帮助接近胜负的机制，不是一次性逆转用的效果。',
+                    '重复的标签或地区越多，攻击或防御会大幅提高。一个一致为2倍，两个一致为3倍，组合会明显影响胜负。',
                 ]),
             ],
         },

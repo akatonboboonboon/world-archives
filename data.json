@@ -27750,6 +27750,3526 @@
       "hidden": true,
       "hide_external_links": true,
       "flag_code": "asset:ketten_flag_official.png"
+    },
+    {
+      "names": {
+        "ja": "アンティグア・バーブーダ",
+        "en": "Antigua and Barbuda",
+        "zh": "安提瓜和巴布达"
+      },
+      "capital": {
+        "ja": "セントジョンズ",
+        "en": "St. John's",
+        "zh": "圣约翰"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "カリブ海東部の島国で、1981年にイギリスから独立した。 首都はセントジョンズで、北アメリカ、カリブ海に位置する。",
+        "en": "An eastern Caribbean island state that became independent from the United Kingdom in 1981. Its capital is St. John's, and it is located in North America, Caribbean.",
+        "zh": "东加勒比海岛国，1981年脱离英国独立。 首都是圣约翰，位于北美洲、加勒比。"
+      },
+      "flag_code": "ag",
+      "period": {
+        "start": 1981,
+        "end": null,
+        "label": {
+          "ja": "1981年成立",
+          "en": "Founded 1981",
+          "zh": "1981年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約9.4万人",
+          "en": "about 94,000",
+          "zh": "约9.4万人"
+        },
+        "area": {
+          "ja": "約442 km²",
+          "en": "about 442 km²",
+          "zh": "约442 km²"
+        },
+        "languages": {
+          "ja": "英語",
+          "en": "English",
+          "zh": "英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アンティグア・バーブーダでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はセントジョンズ。",
+          "en": "For Antigua and Barbuda, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is St. John's.",
+          "zh": "安提瓜和巴布达的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是圣约翰。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1981年成立。セントジョンズを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1981. It developed institutions around St. John's and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1981年成立。以圣约翰为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ベナン",
+        "en": "Benin",
+        "zh": "贝宁"
+      },
+      "capital": {
+        "ja": "ポルトノボ",
+        "en": "Porto-Novo",
+        "zh": "波多诺伏"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Francophone World",
+        "Christian World",
+        "Islamic World",
+        "Agricultural Exporter",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "西アフリカのギニア湾岸に位置し、ダホメ王国の歴史とも関係が深い国。 首都はポルトノボで、アフリカ、西アフリカに位置する。",
+        "en": "A West African state on the Gulf of Guinea with strong links to the history of Dahomey. Its capital is Porto-Novo, and it is located in Africa, West Africa.",
+        "zh": "位于西非几内亚湾沿岸，与达荷美王国历史关系密切。 首都是波多诺伏，位于非洲、西非。"
+      },
+      "flag_code": "bj",
+      "period": {
+        "start": 1960,
+        "end": null,
+        "label": {
+          "ja": "1960年成立",
+          "en": "Founded 1960",
+          "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,370万人",
+          "en": "about 13.7 million",
+          "zh": "约1,370万人"
+        },
+        "area": {
+          "ja": "約114,763 km²",
+          "en": "about 114,763 km²",
+          "zh": "约114,763 km²"
+        },
+        "languages": {
+          "ja": "フランス語、フォン語、ヨルバ語など",
+          "en": "French, Fon, Yoruba, and others",
+          "zh": "法语、丰语、约鲁巴语等"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、ヴォドゥンなど",
+          "en": "Christianity, Islam, Vodun, and others",
+          "zh": "基督教、伊斯兰教、伏都教等"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ベナンでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はポルトノボ。",
+          "en": "For Benin, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Porto-Novo.",
+          "zh": "贝宁的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是波多诺伏。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1960年成立。ポルトノボを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1960. It developed institutions around Porto-Novo and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1960年成立。以波多诺伏为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はフランス語、フォン語、ヨルバ語など、主な宗教はキリスト教、イスラム教、ヴォドゥンなど。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: French, Fon, Yoruba, and others; main religions: Christianity, Islam, Vodun, and others. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为法语、丰语、约鲁巴语等，主要宗教为基督教、伊斯兰教、伏都教等。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ブルンジ",
+        "en": "Burundi",
+        "zh": "布隆迪"
+      },
+      "capital": {
+        "ja": "ギテガ",
+        "en": "Gitega",
+        "zh": "基特加"
+      },
+      "type": "Present",
+      "region": "Africa, African Great Lakes",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Landlocked State",
+        "Francophone World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "アフリカ大湖地域の内陸国で、王国時代からの歴史を持つ。 首都はギテガで、アフリカ大湖地域に位置する。",
+        "en": "A landlocked state in the African Great Lakes region with a long royal history. Its capital is Gitega, and it is located in Africa, African Great Lakes.",
+        "zh": "非洲大湖地区内陆国，拥有王国时代以来的历史。 首都是基特加，位于非洲大湖地区。"
+      },
+      "flag_code": "bi",
+      "period": {
+        "start": 1962,
+        "end": null,
+        "label": {
+          "ja": "1962年成立",
+          "en": "Founded 1962",
+          "zh": "1962年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,320万人",
+          "en": "about 13.2 million",
+          "zh": "约1,320万人"
+        },
+        "area": {
+          "ja": "約27,834 km²",
+          "en": "about 27,834 km²",
+          "zh": "约27,834 km²"
+        },
+        "languages": {
+          "ja": "ルンディ語、フランス語、英語",
+          "en": "Kirundi, French, and English",
+          "zh": "基隆迪语、法语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブルンジでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はギテガ。",
+          "en": "For Burundi, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Gitega.",
+          "zh": "布隆迪的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是基特加。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1962年成立。ギテガを中心に制度を整え、アフリカ大湖地域の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1962. It developed institutions around Gitega and continues to exist within the international and regional politics of Africa, African Great Lakes.",
+          "zh": "资料中的成立或建国时期为1962年成立。以基特加为中心形成制度，并在非洲大湖地区的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はルンディ語、フランス語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Kirundi, French, and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为基隆迪语、法语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "カーボベルデ",
+        "en": "Cabo Verde",
+        "zh": "佛得角"
+      },
+      "capital": {
+        "ja": "プライア",
+        "en": "Praia",
+        "zh": "普拉亚"
+      },
+      "type": "Present",
+      "region": "Africa, Atlantic Islands",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Lusophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "大西洋上の島国で、ポルトガル語圏アフリカの一員。 首都はプライアで、アフリカ、大西洋諸島に位置する。",
+        "en": "An Atlantic island state and part of Lusophone Africa. Its capital is Praia, and it is located in Africa, Atlantic Islands.",
+        "zh": "大西洋岛国，是葡语非洲的一员。 首都是普拉亚，位于非洲、大西洋群岛。"
+      },
+      "flag_code": "cv",
+      "period": {
+        "start": 1975,
+        "end": null,
+        "label": {
+          "ja": "1975年成立",
+          "en": "Founded 1975",
+          "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約52万人",
+          "en": "about 520,000",
+          "zh": "约52万人"
+        },
+        "area": {
+          "ja": "約4,033 km²",
+          "en": "about 4,033 km²",
+          "zh": "约4,033 km²"
+        },
+        "languages": {
+          "ja": "ポルトガル語、カーボベルデ・クレオール",
+          "en": "Portuguese and Cape Verdean Creole",
+          "zh": "葡萄牙语、佛得角克里奥尔语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カーボベルデでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はプライア。",
+          "en": "For Cabo Verde, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Praia.",
+          "zh": "佛得角的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是普拉亚。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1975年成立。プライアを中心に制度を整え、アフリカ、大西洋諸島の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1975. It developed institutions around Praia and continues to exist within the international and regional politics of Africa, Atlantic Islands.",
+          "zh": "资料中的成立或建国时期为1975年成立。以普拉亚为中心形成制度，并在非洲、大西洋群岛的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はポルトガル語、カーボベルデ・クレオール、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Portuguese and Cape Verdean Creole; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为葡萄牙语、佛得角克里奥尔语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "中央アフリカ共和国",
+        "en": "Central African Republic",
+        "zh": "中非共和国"
+      },
+      "capital": {
+        "ja": "バンギ",
+        "en": "Bangui",
+        "zh": "班吉"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Landlocked State",
+        "Francophone World",
+        "Christian World",
+        "Islamic World",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "アフリカ中央部の内陸国で、鉱物資源と周辺地域との関係が重要な国。 首都はバンギで、アフリカ、中央アフリカに位置する。",
+        "en": "A landlocked Central African state where mineral resources and regional politics are important. Its capital is Bangui, and it is located in Africa, Central Africa.",
+        "zh": "中部非洲内陆国，矿产资源与周边地区关系十分重要。 首都是班吉，位于非洲、中非。"
+      },
+      "flag_code": "cf",
+      "period": {
+        "start": 1960,
+        "end": null,
+        "label": {
+          "ja": "1960年成立",
+          "en": "Founded 1960",
+          "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約560万人",
+          "en": "about 5.6 million",
+          "zh": "约560万人"
+        },
+        "area": {
+          "ja": "約622,984 km²",
+          "en": "about 622,984 km²",
+          "zh": "约622,984 km²"
+        },
+        "languages": {
+          "ja": "サンゴ語、フランス語",
+          "en": "Sango and French",
+          "zh": "桑戈语、法语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、伝統宗教",
+          "en": "Christianity, Islam, and traditional beliefs",
+          "zh": "基督教、伊斯兰教、传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "中央アフリカ共和国では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はバンギ。",
+          "en": "For Central African Republic, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Bangui.",
+          "zh": "中非共和国的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是班吉。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1960年成立。バンギを中心に制度を整え、アフリカ、中央アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1960. It developed institutions around Bangui and continues to exist within the international and regional politics of Africa, Central Africa.",
+          "zh": "资料中的成立或建国时期为1960年成立。以班吉为中心形成制度，并在非洲、中非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はサンゴ語、フランス語、主な宗教はキリスト教、イスラム教、伝統宗教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Sango and French; main religions: Christianity, Islam, and traditional beliefs. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为桑戈语、法语，主要宗教为基督教、伊斯兰教、传统信仰。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "コモロ",
+        "en": "Comoros",
+        "zh": "科摩罗"
+      },
+      "capital": {
+        "ja": "モロニ",
+        "en": "Moroni",
+        "zh": "莫罗尼"
+      },
+      "type": "Present",
+      "region": "Africa, Indian Ocean",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Arab League",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Indian Ocean Trade",
+        "Francophone World",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "インド洋西部の島国で、アフリカ・アラブ・インド洋世界を結ぶ位置にある。 首都はモロニで、アフリカ、インド洋に位置する。",
+        "en": "A western Indian Ocean island state linking African, Arab, and maritime worlds. Its capital is Moroni, and it is located in Africa, Indian Ocean.",
+        "zh": "西印度洋岛国，连接非洲、阿拉伯与印度洋世界。 首都是莫罗尼，位于非洲、印度洋。"
+      },
+      "flag_code": "km",
+      "period": {
+        "start": 1975,
+        "end": null,
+        "label": {
+          "ja": "1975年成立",
+          "en": "Founded 1975",
+          "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約85万人",
+          "en": "about 850,000",
+          "zh": "约85万人"
+        },
+        "area": {
+          "ja": "約1,862 km²",
+          "en": "about 1,862 km²",
+          "zh": "约1,862 km²"
+        },
+        "languages": {
+          "ja": "コモロ語、フランス語、アラビア語",
+          "en": "Comorian, French, and Arabic",
+          "zh": "科摩罗语、法语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "コモロでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はモロニ。",
+          "en": "For Comoros, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Moroni.",
+          "zh": "科摩罗的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是莫罗尼。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1975年成立。モロニを中心に制度を整え、アフリカ、インド洋の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1975. It developed institutions around Moroni and continues to exist within the international and regional politics of Africa, Indian Ocean.",
+          "zh": "资料中的成立或建国时期为1975年成立。以莫罗尼为中心形成制度，并在非洲、印度洋的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はコモロ語、フランス語、アラビア語、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Comorian, French, and Arabic; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为科摩罗语、法语、阿拉伯语，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ジブチ",
+        "en": "Djibouti",
+        "zh": "吉布提"
+      },
+      "capital": {
+        "ja": "ジブチ市",
+        "en": "Djibouti City",
+        "zh": "吉布提市"
+      },
+      "type": "Present",
+      "region": "Africa, Horn of Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Arab League",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Strategic Crossroads",
+        "Canal & Strait Hub",
+        "Port City Network",
+        "Francophone World",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "紅海とアデン湾を結ぶ要地にあり、港湾と国際基地で知られる。 首都はジブチ市で、アフリカ、アフリカの角に位置する。",
+        "en": "A strategic state near the Red Sea and Gulf of Aden, known for ports and international bases. Its capital is Djibouti City, and it is located in Africa, Horn of Africa.",
+        "zh": "位于红海与亚丁湾附近的战略要地，以港口和国际基地闻名。 首都是吉布提市，位于非洲、非洲之角。"
+      },
+      "flag_code": "dj",
+      "period": {
+        "start": 1977,
+        "end": null,
+        "label": {
+          "ja": "1977年成立",
+          "en": "Founded 1977",
+          "zh": "1977年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約110万人",
+          "en": "about 1.1 million",
+          "zh": "约110万人"
+        },
+        "area": {
+          "ja": "約23,200 km²",
+          "en": "about 23,200 km²",
+          "zh": "约23,200 km²"
+        },
+        "languages": {
+          "ja": "フランス語、アラビア語、ソマリ語、アファル語",
+          "en": "French, Arabic, Somali, and Afar",
+          "zh": "法语、阿拉伯语、索马里语、阿法尔语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジブチでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はジブチ市。",
+          "en": "For Djibouti, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Djibouti City.",
+          "zh": "吉布提的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是吉布提市。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1977年成立。ジブチ市を中心に制度を整え、アフリカ、アフリカの角の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1977. It developed institutions around Djibouti City and continues to exist within the international and regional politics of Africa, Horn of Africa.",
+          "zh": "资料中的成立或建国时期为1977年成立。以吉布提市为中心形成制度，并在非洲、非洲之角的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はフランス語、アラビア語、ソマリ語、アファル語、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: French, Arabic, Somali, and Afar; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为法语、阿拉伯语、索马里语、阿法尔语，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ドミニカ国",
+        "en": "Dominica",
+        "zh": "多米尼克"
+      },
+      "capital": {
+        "ja": "ロゾー",
+        "en": "Roseau",
+        "zh": "罗索"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "小アンティル諸島に位置する島国で、豊かな自然環境で知られる。 首都はロゾーで、北アメリカ、カリブ海に位置する。",
+        "en": "A Lesser Antilles island state known for its rich natural environment. Its capital is Roseau, and it is located in North America, Caribbean.",
+        "zh": "小安的列斯群岛岛国，以丰富的自然环境闻名。 首都是罗索，位于北美洲、加勒比。"
+      },
+      "flag_code": "dm",
+      "period": {
+        "start": 1978,
+        "end": null,
+        "label": {
+          "ja": "1978年成立",
+          "en": "Founded 1978",
+          "zh": "1978年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約7.3万人",
+          "en": "about 73,000",
+          "zh": "约7.3万人"
+        },
+        "area": {
+          "ja": "約751 km²",
+          "en": "about 751 km²",
+          "zh": "约751 km²"
+        },
+        "languages": {
+          "ja": "英語、アンティル・クレオール",
+          "en": "English and Antillean Creole",
+          "zh": "英语、安的列斯克里奥尔语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ドミニカ国では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はロゾー。",
+          "en": "For Dominica, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Roseau.",
+          "zh": "多米尼克的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是罗索。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1978年成立。ロゾーを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1978. It developed institutions around Roseau and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1978年成立。以罗索为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、アンティル・クレオール、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and Antillean Creole; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、安的列斯克里奥尔语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "赤道ギニア",
+        "en": "Equatorial Guinea",
+        "zh": "赤道几内亚"
+      },
+      "capital": {
+        "ja": "マラボ",
+        "en": "Malabo",
+        "zh": "马拉博"
+      },
+      "type": "Present",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Oil & Gas Economy",
+        "Resource Economy",
+        "Hispanophone World",
+        "Francophone World",
+        "Lusophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "アフリカでスペイン語を公用語とする国で、石油資源が経済に大きな影響を持つ。 首都はマラボで、アフリカ、中央アフリカに位置する。",
+        "en": "An African state with Spanish as an official language and an economy strongly shaped by oil. Its capital is Malabo, and it is located in Africa, Central Africa.",
+        "zh": "非洲以西班牙语为官方语言的国家，石油资源对经济影响很大。 首都是马拉博，位于非洲、中非。"
+      },
+      "flag_code": "gq",
+      "period": {
+        "start": 1968,
+        "end": null,
+        "label": {
+          "ja": "1968年成立",
+          "en": "Founded 1968",
+          "zh": "1968年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約170万人",
+          "en": "about 1.7 million",
+          "zh": "约170万人"
+        },
+        "area": {
+          "ja": "約28,051 km²",
+          "en": "about 28,051 km²",
+          "zh": "约28,051 km²"
+        },
+        "languages": {
+          "ja": "スペイン語、フランス語、ポルトガル語",
+          "en": "Spanish, French, and Portuguese",
+          "zh": "西班牙语、法语、葡萄牙语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "赤道ギニアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はマラボ。",
+          "en": "For Equatorial Guinea, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Malabo.",
+          "zh": "赤道几内亚的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是马拉博。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1968年成立。マラボを中心に制度を整え、アフリカ、中央アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1968. It developed institutions around Malabo and continues to exist within the international and regional politics of Africa, Central Africa.",
+          "zh": "资料中的成立或建国时期为1968年成立。以马拉博为中心形成制度，并在非洲、中非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はスペイン語、フランス語、ポルトガル語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Spanish, French, and Portuguese; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为西班牙语、法语、葡萄牙语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "エスワティニ",
+        "en": "Eswatini",
+        "zh": "斯威士兰"
+      },
+      "capital": {
+        "ja": "ムババーネ",
+        "en": "Mbabane",
+        "zh": "姆巴巴内"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Kingdom",
+        "Absolute Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Landlocked State",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "南部アフリカの内陸王国で、王制と伝統文化が政治・社会に大きく残る。 首都はムババーネで、アフリカ、南部アフリカに位置する。",
+        "en": "A landlocked southern African kingdom where monarchy and traditional culture remain important. Its capital is Mbabane, and it is located in Africa, Southern Africa.",
+        "zh": "南部非洲内陆王国，君主制和传统文化仍然重要。 首都是姆巴巴内，位于非洲、南部非洲。"
+      },
+      "flag_code": "sz",
+      "period": {
+        "start": 1968,
+        "end": null,
+        "label": {
+          "ja": "1968年成立",
+          "en": "Founded 1968",
+          "zh": "1968年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約120万人",
+          "en": "about 1.2 million",
+          "zh": "约120万人"
+        },
+        "area": {
+          "ja": "約17,364 km²",
+          "en": "about 17,364 km²",
+          "zh": "约17,364 km²"
+        },
+        "languages": {
+          "ja": "スワジ語、英語",
+          "en": "Swazi and English",
+          "zh": "斯瓦蒂语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教、伝統宗教",
+          "en": "Christianity and traditional beliefs",
+          "zh": "基督教、传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "エスワティニでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はムババーネ。",
+          "en": "For Eswatini, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Mbabane.",
+          "zh": "斯威士兰的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是姆巴巴内。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1968年成立。ムババーネを中心に制度を整え、アフリカ、南部アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1968. It developed institutions around Mbabane and continues to exist within the international and regional politics of Africa, Southern Africa.",
+          "zh": "资料中的成立或建国时期为1968年成立。以姆巴巴内为中心形成制度，并在非洲、南部非洲的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はスワジ語、英語、主な宗教はキリスト教、伝統宗教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Swazi and English; main religions: Christianity and traditional beliefs. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为斯瓦蒂语、英语，主要宗教为基督教、传统信仰。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ガンビア",
+        "en": "Gambia",
+        "zh": "冈比亚"
+      },
+      "capital": {
+        "ja": "バンジュール",
+        "en": "Banjul",
+        "zh": "班珠尔"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Anglophone World",
+        "Islamic World",
+        "River Civilization",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "ガンビア川沿いに細長く広がる西アフリカの国。 首都はバンジュールで、アフリカ、西アフリカに位置する。",
+        "en": "A narrow West African state extending along the Gambia River. Its capital is Banjul, and it is located in Africa, West Africa.",
+        "zh": "沿冈比亚河呈狭长形分布的西非国家。 首都是班珠尔，位于非洲、西非。"
+      },
+      "flag_code": "gm",
+      "period": {
+        "start": 1965,
+        "end": null,
+        "label": {
+          "ja": "1965年成立",
+          "en": "Founded 1965",
+          "zh": "1965年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約280万人",
+          "en": "about 2.8 million",
+          "zh": "约280万人"
+        },
+        "area": {
+          "ja": "約11,295 km²",
+          "en": "about 11,295 km²",
+          "zh": "约11,295 km²"
+        },
+        "languages": {
+          "ja": "英語、マンディンカ語、ウォロフ語など",
+          "en": "English, Mandinka, Wolof, and others",
+          "zh": "英语、曼丁卡语、沃洛夫语等"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ガンビアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はバンジュール。",
+          "en": "For Gambia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Banjul.",
+          "zh": "冈比亚的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是班珠尔。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1965年成立。バンジュールを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1965. It developed institutions around Banjul and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1965年成立。以班珠尔为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、マンディンカ語、ウォロフ語など、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English, Mandinka, Wolof, and others; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、曼丁卡语、沃洛夫语等，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "グレナダ",
+        "en": "Grenada",
+        "zh": "格林纳达"
+      },
+      "capital": {
+        "ja": "セントジョージズ",
+        "en": "St. George's",
+        "zh": "圣乔治"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "カリブ海の島国で、香辛料産地としても知られる。 首都はセントジョージズで、北アメリカ、カリブ海に位置する。",
+        "en": "A Caribbean island state also known for spice production. Its capital is St. George's, and it is located in North America, Caribbean.",
+        "zh": "加勒比海岛国，也以香料生产闻名。 首都是圣乔治，位于北美洲、加勒比。"
+      },
+      "flag_code": "gd",
+      "period": {
+        "start": 1974,
+        "end": null,
+        "label": {
+          "ja": "1974年成立",
+          "en": "Founded 1974",
+          "zh": "1974年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約12.6万人",
+          "en": "about 126,000",
+          "zh": "约12.6万人"
+        },
+        "area": {
+          "ja": "約344 km²",
+          "en": "about 344 km²",
+          "zh": "约344 km²"
+        },
+        "languages": {
+          "ja": "英語",
+          "en": "English",
+          "zh": "英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "グレナダでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はセントジョージズ。",
+          "en": "For Grenada, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is St. George's.",
+          "zh": "格林纳达的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是圣乔治。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1974年成立。セントジョージズを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1974. It developed institutions around St. George's and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1974年成立。以圣乔治为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ギニア",
+        "en": "Guinea",
+        "zh": "几内亚"
+      },
+      "capital": {
+        "ja": "コナクリ",
+        "en": "Conakry",
+        "zh": "科纳克里"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Francophone World",
+        "Islamic World",
+        "Mining Economy",
+        "Resource Economy",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "西アフリカの大西洋岸に位置し、鉱物資源が重要な国。 首都はコナクリで、アフリカ、西アフリカに位置する。",
+        "en": "A West African Atlantic state where mineral resources are especially important. Its capital is Conakry, and it is located in Africa, West Africa.",
+        "zh": "位于西非大西洋沿岸，矿产资源十分重要。 首都是科纳克里，位于非洲、西非。"
+      },
+      "flag_code": "gn",
+      "period": {
+        "start": 1958,
+        "end": null,
+        "label": {
+          "ja": "1958年成立",
+          "en": "Founded 1958",
+          "zh": "1958年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,450万人",
+          "en": "about 14.5 million",
+          "zh": "约1,450万人"
+        },
+        "area": {
+          "ja": "約245,857 km²",
+          "en": "about 245,857 km²",
+          "zh": "约245,857 km²"
+        },
+        "languages": {
+          "ja": "フランス語、フラニ語、マリンケ語など",
+          "en": "French, Fula, Maninka, and others",
+          "zh": "法语、富拉语、马林凯语等"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ギニアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はコナクリ。",
+          "en": "For Guinea, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Conakry.",
+          "zh": "几内亚的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是科纳克里。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1958年成立。コナクリを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1958. It developed institutions around Conakry and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1958年成立。以科纳克里为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はフランス語、フラニ語、マリンケ語など、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: French, Fula, Maninka, and others; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为法语、富拉语、马林凯语等，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ギニアビサウ",
+        "en": "Guinea-Bissau",
+        "zh": "几内亚比绍"
+      },
+      "capital": {
+        "ja": "ビサウ",
+        "en": "Bissau",
+        "zh": "比绍"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Lusophone World",
+        "Islamic World",
+        "Christian World",
+        "Agricultural Exporter",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "ポルトガル植民地支配から独立した西アフリカの沿岸国。 首都はビサウで、アフリカ、西アフリカに位置する。",
+        "en": "A West African coastal state that emerged from Portuguese colonial rule. Its capital is Bissau, and it is located in Africa, West Africa.",
+        "zh": "从葡萄牙殖民统治中独立的西非沿海国家。 首都是比绍，位于非洲、西非。"
+      },
+      "flag_code": "gw",
+      "period": {
+        "start": 1973,
+        "end": null,
+        "label": {
+          "ja": "1973年成立",
+          "en": "Founded 1973",
+          "zh": "1973年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約220万人",
+          "en": "about 2.2 million",
+          "zh": "约220万人"
+        },
+        "area": {
+          "ja": "約36,125 km²",
+          "en": "about 36,125 km²",
+          "zh": "约36,125 km²"
+        },
+        "languages": {
+          "ja": "ポルトガル語、ギニアビサウ・クレオール",
+          "en": "Portuguese and Guinea-Bissau Creole",
+          "zh": "葡萄牙语、几内亚比绍克里奥尔语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教、伝統宗教",
+          "en": "Islam, Christianity, and traditional beliefs",
+          "zh": "伊斯兰教、基督教、传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ギニアビサウでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はビサウ。",
+          "en": "For Guinea-Bissau, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Bissau.",
+          "zh": "几内亚比绍的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是比绍。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1973年成立。ビサウを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1973. It developed institutions around Bissau and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1973年成立。以比绍为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はポルトガル語、ギニアビサウ・クレオール、主な宗教はイスラム教、キリスト教、伝統宗教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Portuguese and Guinea-Bissau Creole; main religions: Islam, Christianity, and traditional beliefs. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为葡萄牙语、几内亚比绍克里奥尔语，主要宗教为伊斯兰教、基督教、传统信仰。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "レソト",
+        "en": "Lesotho",
+        "zh": "莱索托"
+      },
+      "capital": {
+        "ja": "マセル",
+        "en": "Maseru",
+        "zh": "马塞卢"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Kingdom",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Landlocked State",
+        "Mountain State",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "南アフリカに囲まれた山岳内陸王国。 首都はマセルで、アフリカ、南部アフリカに位置する。",
+        "en": "A mountainous landlocked kingdom entirely surrounded by South Africa. Its capital is Maseru, and it is located in Africa, Southern Africa.",
+        "zh": "被南非包围的山地内陆王国。 首都是马塞卢，位于非洲、南部非洲。"
+      },
+      "flag_code": "ls",
+      "period": {
+        "start": 1966,
+        "end": null,
+        "label": {
+          "ja": "1966年成立",
+          "en": "Founded 1966",
+          "zh": "1966年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約230万人",
+          "en": "about 2.3 million",
+          "zh": "约230万人"
+        },
+        "area": {
+          "ja": "約30,355 km²",
+          "en": "about 30,355 km²",
+          "zh": "约30,355 km²"
+        },
+        "languages": {
+          "ja": "ソト語、英語",
+          "en": "Sesotho and English",
+          "zh": "塞索托语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "レソトでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はマセル。",
+          "en": "For Lesotho, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Maseru.",
+          "zh": "莱索托的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是马塞卢。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1966年成立。マセルを中心に制度を整え、アフリカ、南部アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1966. It developed institutions around Maseru and continues to exist within the international and regional politics of Africa, Southern Africa.",
+          "zh": "资料中的成立或建国时期为1966年成立。以马塞卢为中心形成制度，并在非洲、南部非洲的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はソト語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Sesotho and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为塞索托语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "リベリア",
+        "en": "Liberia",
+        "zh": "利比里亚"
+      },
+      "capital": {
+        "ja": "モンロビア",
+        "en": "Monrovia",
+        "zh": "蒙罗维亚"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Anglophone World",
+        "Christian World",
+        "Islamic World",
+        "Maritime Power",
+        "Port City Network",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "西アフリカの大西洋岸に位置し、19世紀に共和国として成立した国。 首都はモンロビアで、アフリカ、西アフリカに位置する。",
+        "en": "A West African Atlantic republic established in the nineteenth century. Its capital is Monrovia, and it is located in Africa, West Africa.",
+        "zh": "位于西非大西洋沿岸，19世纪成立的共和国。 首都是蒙罗维亚，位于非洲、西非。"
+      },
+      "flag_code": "lr",
+      "period": {
+        "start": 1847,
+        "end": null,
+        "label": {
+          "ja": "1847年成立",
+          "en": "Founded 1847",
+          "zh": "1847年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約550万人",
+          "en": "about 5.5 million",
+          "zh": "约550万人"
+        },
+        "area": {
+          "ja": "約111,369 km²",
+          "en": "about 111,369 km²",
+          "zh": "约111,369 km²"
+        },
+        "languages": {
+          "ja": "英語",
+          "en": "English",
+          "zh": "英语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "リベリアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はモンロビア。",
+          "en": "For Liberia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Monrovia.",
+          "zh": "利比里亚的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是蒙罗维亚。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1847年成立。モンロビアを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1847. It developed institutions around Monrovia and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1847年成立。以蒙罗维亚为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、主な宗教はキリスト教、イスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English; main religions: Christianity and Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语，主要宗教为基督教、伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "マラウイ",
+        "en": "Malawi",
+        "zh": "马拉维"
+      },
+      "capital": {
+        "ja": "リロングウェ",
+        "en": "Lilongwe",
+        "zh": "利隆圭"
+      },
+      "type": "Present",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Landlocked State",
+        "Anglophone World",
+        "Christian World",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "マラウイ湖周辺に広がる南東アフリカの内陸国。 首都はリロングウェで、アフリカ、南部アフリカに位置する。",
+        "en": "A southeastern African landlocked state centered around Lake Malawi. Its capital is Lilongwe, and it is located in Africa, Southern Africa.",
+        "zh": "围绕马拉维湖分布的东南非内陆国。 首都是利隆圭，位于非洲、南部非洲。"
+      },
+      "flag_code": "mw",
+      "period": {
+        "start": 1964,
+        "end": null,
+        "label": {
+          "ja": "1964年成立",
+          "en": "Founded 1964",
+          "zh": "1964年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約2,100万人",
+          "en": "about 21 million",
+          "zh": "约2,100万人"
+        },
+        "area": {
+          "ja": "約118,484 km²",
+          "en": "about 118,484 km²",
+          "zh": "约118,484 km²"
+        },
+        "languages": {
+          "ja": "英語、チェワ語",
+          "en": "English and Chichewa",
+          "zh": "英语、齐切瓦语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マラウイでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はリロングウェ。",
+          "en": "For Malawi, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Lilongwe.",
+          "zh": "马拉维的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是利隆圭。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1964年成立。リロングウェを中心に制度を整え、アフリカ、南部アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1964. It developed institutions around Lilongwe and continues to exist within the international and regional politics of Africa, Southern Africa.",
+          "zh": "资料中的成立或建国时期为1964年成立。以利隆圭为中心形成制度，并在非洲、南部非洲的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、チェワ語、主な宗教はキリスト教、イスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and Chichewa; main religions: Christianity and Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、齐切瓦语，主要宗教为基督教、伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "マーシャル諸島",
+        "en": "Marshall Islands",
+        "zh": "马绍尔群岛"
+      },
+      "capital": {
+        "ja": "マジュロ",
+        "en": "Majuro",
+        "zh": "马朱罗"
+      },
+      "type": "Present",
+      "region": "Oceania, Micronesia",
+      "tags": [
+        "UN Member",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "ミクロネシアの島国で、米国との自由連合関係を持つ。 首都はマジュロで、オセアニア、ミクロネシアに位置する。",
+        "en": "A Micronesian island state in free association with the United States. Its capital is Majuro, and it is located in Oceania, Micronesia.",
+        "zh": "密克罗尼西亚岛国，与美国保持自由联合关系。 首都是马朱罗，位于大洋洲、密克罗尼西亚。"
+      },
+      "flag_code": "mh",
+      "period": {
+        "start": 1986,
+        "end": null,
+        "label": {
+          "ja": "1986年成立",
+          "en": "Founded 1986",
+          "zh": "1986年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約4.2万人",
+          "en": "about 42,000",
+          "zh": "约4.2万人"
+        },
+        "area": {
+          "ja": "約181 km²",
+          "en": "about 181 km²",
+          "zh": "约181 km²"
+        },
+        "languages": {
+          "ja": "マーシャル語、英語",
+          "en": "Marshallese and English",
+          "zh": "马绍尔语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マーシャル諸島では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はマジュロ。",
+          "en": "For Marshall Islands, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Majuro.",
+          "zh": "马绍尔群岛的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是马朱罗。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1986年成立。マジュロを中心に制度を整え、オセアニア、ミクロネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1986. It developed institutions around Majuro and continues to exist within the international and regional politics of Oceania, Micronesia.",
+          "zh": "资料中的成立或建国时期为1986年成立。以马朱罗为中心形成制度，并在大洋洲、密克罗尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はマーシャル語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Marshallese and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为马绍尔语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ミクロネシア連邦",
+        "en": "Micronesia",
+        "zh": "密克罗尼西亚联邦"
+      },
+      "capital": {
+        "ja": "パリキール",
+        "en": "Palikir",
+        "zh": "帕利基尔"
+      },
+      "type": "Present",
+      "region": "Oceania, Micronesia",
+      "tags": [
+        "UN Member",
+        "Federation",
+        "Federal Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "複数の島州からなるミクロネシアの連邦国家。 首都はパリキールで、オセアニア、ミクロネシアに位置する。",
+        "en": "A federated Micronesian island state made up of several island states. Its capital is Palikir, and it is located in Oceania, Micronesia.",
+        "zh": "由多个岛州组成的密克罗尼西亚联邦国家。 首都是帕利基尔，位于大洋洲、密克罗尼西亚。"
+      },
+      "flag_code": "fm",
+      "period": {
+        "start": 1986,
+        "end": null,
+        "label": {
+          "ja": "1986年成立",
+          "en": "Founded 1986",
+          "zh": "1986年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約11.5万人",
+          "en": "about 115,000",
+          "zh": "约11.5万人"
+        },
+        "area": {
+          "ja": "約702 km²",
+          "en": "about 702 km²",
+          "zh": "约702 km²"
+        },
+        "languages": {
+          "ja": "英語、各島の言語",
+          "en": "English and local Micronesian languages",
+          "zh": "英语及各岛本地语言"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ミクロネシア連邦では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はパリキール。",
+          "en": "For Micronesia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Palikir.",
+          "zh": "密克罗尼西亚联邦的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是帕利基尔。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1986年成立。パリキールを中心に制度を整え、オセアニア、ミクロネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1986. It developed institutions around Palikir and continues to exist within the international and regional politics of Oceania, Micronesia.",
+          "zh": "资料中的成立或建国时期为1986年成立。以帕利基尔为中心形成制度，并在大洋洲、密克罗尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、各島の言語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and local Micronesian languages; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语及各岛本地语言，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "モンテネグロ",
+        "en": "Montenegro",
+        "zh": "黑山"
+      },
+      "capital": {
+        "ja": "ポドゴリツァ",
+        "en": "Podgorica",
+        "zh": "波德戈里察"
+      },
+      "type": "Present",
+      "region": "Europe, Balkans",
+      "tags": [
+        "UN Member",
+        "NATO",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Cold War State",
+        "Strategic Crossroads",
+        "Multilingual State",
+        "Orthodox Sphere",
+        "Islamic World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "バルカン半島西部の国で、2006年にセルビア・モンテネグロから独立した。 首都はポドゴリツァで、ヨーロッパ、バルカン半島に位置する。",
+        "en": "A western Balkan state that became independent from Serbia and Montenegro in 2006. Its capital is Podgorica, and it is located in Europe, Balkans.",
+        "zh": "西巴尔干国家，2006年从塞尔维亚和黑山独立。 首都是波德戈里察，位于欧洲、巴尔干半岛。"
+      },
+      "flag_code": "me",
+      "period": {
+        "start": 2006,
+        "end": null,
+        "label": {
+          "ja": "2006年成立",
+          "en": "Founded 2006",
+          "zh": "2006年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約62万人",
+          "en": "about 620,000",
+          "zh": "约62万人"
+        },
+        "area": {
+          "ja": "約13,812 km²",
+          "en": "about 13,812 km²",
+          "zh": "约13,812 km²"
+        },
+        "languages": {
+          "ja": "モンテネグロ語、セルビア語など",
+          "en": "Montenegrin, Serbian, and others",
+          "zh": "黑山语、塞尔维亚语等"
+        },
+        "religions": {
+          "ja": "正教会、イスラム教、カトリック",
+          "en": "Orthodox Christianity, Islam, and Catholicism",
+          "zh": "东正教、伊斯兰教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "モンテネグロでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はポドゴリツァ。",
+          "en": "For Montenegro, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Podgorica.",
+          "zh": "黑山的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是波德戈里察。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は2006年成立。ポドゴリツァを中心に制度を整え、ヨーロッパ、バルカン半島の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 2006. It developed institutions around Podgorica and continues to exist within the international and regional politics of Europe, Balkans.",
+          "zh": "资料中的成立或建国时期为2006年成立。以波德戈里察为中心形成制度，并在欧洲、巴尔干半岛的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はモンテネグロ語、セルビア語など、主な宗教は正教会、イスラム教、カトリック。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Montenegrin, Serbian, and others; main religions: Orthodox Christianity, Islam, and Catholicism. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为黑山语、塞尔维亚语等，主要宗教为东正教、伊斯兰教、天主教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "モザンビーク",
+        "en": "Mozambique",
+        "zh": "莫桑比克"
+      },
+      "capital": {
+        "ja": "マプト",
+        "en": "Maputo",
+        "zh": "马普托"
+      },
+      "type": "Present",
+      "region": "Africa, Southeast Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Lusophone World",
+        "Christian World",
+        "Islamic World",
+        "Indian Ocean Trade",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "インド洋に面した南東アフリカの国で、ポルトガル語圏に属する。 首都はマプトで、アフリカ、南東アフリカに位置する。",
+        "en": "A southeastern African state on the Indian Ocean and part of the Lusophone world. Its capital is Maputo, and it is located in Africa, Southeast Africa.",
+        "zh": "面向印度洋的东南非国家，属于葡语世界。 首都是马普托，位于非洲、东南非。"
+      },
+      "flag_code": "mz",
+      "period": {
+        "start": 1975,
+        "end": null,
+        "label": {
+          "ja": "1975年成立",
+          "en": "Founded 1975",
+          "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約3,300万人",
+          "en": "about 33 million",
+          "zh": "约3,300万人"
+        },
+        "area": {
+          "ja": "約801,590 km²",
+          "en": "about 801,590 km²",
+          "zh": "约801,590 km²"
+        },
+        "languages": {
+          "ja": "ポルトガル語、マクア語、ツォンガ語など",
+          "en": "Portuguese, Makhuwa, Tsonga, and others",
+          "zh": "葡萄牙语、马库阿语、聪加语等"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、伝統宗教",
+          "en": "Christianity, Islam, and traditional beliefs",
+          "zh": "基督教、伊斯兰教、传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "モザンビークでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はマプト。",
+          "en": "For Mozambique, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Maputo.",
+          "zh": "莫桑比克的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是马普托。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1975年成立。マプトを中心に制度を整え、アフリカ、南東アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1975. It developed institutions around Maputo and continues to exist within the international and regional politics of Africa, Southeast Africa.",
+          "zh": "资料中的成立或建国时期为1975年成立。以马普托为中心形成制度，并在非洲、东南非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はポルトガル語、マクア語、ツォンガ語など、主な宗教はキリスト教、イスラム教、伝統宗教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Portuguese, Makhuwa, Tsonga, and others; main religions: Christianity, Islam, and traditional beliefs. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为葡萄牙语、马库阿语、聪加语等，主要宗教为基督教、伊斯兰教、传统信仰。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ナウル",
+        "en": "Nauru",
+        "zh": "瑙鲁"
+      },
+      "capital": {
+        "ja": "ヤレン地区",
+        "en": "Yaren District",
+        "zh": "亚伦区"
+      },
+      "type": "Present",
+      "region": "Oceania, Micronesia",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World",
+        "Mining Economy"
+      ],
+      "desc": {
+        "ja": "太平洋の小さな島国で、リン鉱石採掘の歴史で知られる。 首都はヤレン地区で、オセアニア、ミクロネシアに位置する。",
+        "en": "A small Pacific island state known for its history of phosphate mining. Its capital is Yaren District, and it is located in Oceania, Micronesia.",
+        "zh": "太平洋小岛国，以磷矿开采历史闻名。 首都是亚伦区，位于大洋洲、密克罗尼西亚。"
+      },
+      "flag_code": "nr",
+      "period": {
+        "start": 1968,
+        "end": null,
+        "label": {
+          "ja": "1968年成立",
+          "en": "Founded 1968",
+          "zh": "1968年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1.2万人",
+          "en": "about 12,000",
+          "zh": "约1.2万人"
+        },
+        "area": {
+          "ja": "約21 km²",
+          "en": "about 21 km²",
+          "zh": "约21 km²"
+        },
+        "languages": {
+          "ja": "ナウル語、英語",
+          "en": "Nauruan and English",
+          "zh": "瑙鲁语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ナウルでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はヤレン地区。",
+          "en": "For Nauru, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Yaren District.",
+          "zh": "瑙鲁的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是亚伦区。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1968年成立。ヤレン地区を中心に制度を整え、オセアニア、ミクロネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1968. It developed institutions around Yaren District and continues to exist within the international and regional politics of Oceania, Micronesia.",
+          "zh": "资料中的成立或建国时期为1968年成立。以亚伦区为中心形成制度，并在大洋洲、密克罗尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はナウル語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Nauruan and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为瑙鲁语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ニュージーランド",
+        "en": "New Zealand",
+        "zh": "新西兰"
+      },
+      "capital": {
+        "ja": "ウェリントン",
+        "en": "Wellington",
+        "zh": "惠灵顿"
+      },
+      "type": "Present",
+      "region": "Oceania, Polynesia",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Island Nation",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World",
+        "Multilingual State",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "南太平洋の島国で、マオリ文化と英連邦型の制度を持つ。 首都はウェリントンで、オセアニア、ポリネシアに位置する。",
+        "en": "A South Pacific island state combining Māori heritage with Commonwealth institutions. Its capital is Wellington, and it is located in Oceania, Polynesia.",
+        "zh": "南太平洋岛国，兼具毛利文化与英联邦制度。 首都是惠灵顿，位于大洋洲、波利尼西亚。"
+      },
+      "flag_code": "nz",
+      "period": {
+        "start": 1907,
+        "end": null,
+        "label": {
+          "ja": "1907年成立",
+          "en": "Founded 1907",
+          "zh": "1907年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約530万人",
+          "en": "about 5.3 million",
+          "zh": "约530万人"
+        },
+        "area": {
+          "ja": "約268,021 km²",
+          "en": "about 268,021 km²",
+          "zh": "约268,021 km²"
+        },
+        "languages": {
+          "ja": "英語、マオリ語、ニュージーランド手話",
+          "en": "English, Māori, and New Zealand Sign Language",
+          "zh": "英语、毛利语、新西兰手语"
+        },
+        "religions": {
+          "ja": "キリスト教、無宗教など",
+          "en": "Christianity, no religion, and others",
+          "zh": "基督教、无宗教等"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ニュージーランドでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はウェリントン。",
+          "en": "For New Zealand, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Wellington.",
+          "zh": "新西兰的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是惠灵顿。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1907年成立。ウェリントンを中心に制度を整え、オセアニア、ポリネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1907. It developed institutions around Wellington and continues to exist within the international and regional politics of Oceania, Polynesia.",
+          "zh": "资料中的成立或建国时期为1907年成立。以惠灵顿为中心形成制度，并在大洋洲、波利尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、マオリ語、ニュージーランド手話、主な宗教はキリスト教、無宗教など。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English, Māori, and New Zealand Sign Language; main religions: Christianity, no religion, and others. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、毛利语、新西兰手语，主要宗教为基督教、无宗教等。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "セントクリストファー・ネイビス",
+        "en": "Saint Kitts and Nevis",
+        "zh": "圣基茨和尼维斯"
+      },
+      "capital": {
+        "ja": "バセテール",
+        "en": "Basseterre",
+        "zh": "巴斯特尔"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Federation",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "二つの主島からなるカリブ海の連邦型島国。 首都はバセテールで、北アメリカ、カリブ海に位置する。",
+        "en": "A Caribbean federation made up of two main islands. Its capital is Basseterre, and it is located in North America, Caribbean.",
+        "zh": "由两个主要岛屿组成的加勒比联邦岛国。 首都是巴斯特尔，位于北美洲、加勒比。"
+      },
+      "flag_code": "kn",
+      "period": {
+        "start": 1983,
+        "end": null,
+        "label": {
+          "ja": "1983年成立",
+          "en": "Founded 1983",
+          "zh": "1983年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約4.8万人",
+          "en": "about 48,000",
+          "zh": "约4.8万人"
+        },
+        "area": {
+          "ja": "約261 km²",
+          "en": "about 261 km²",
+          "zh": "约261 km²"
+        },
+        "languages": {
+          "ja": "英語",
+          "en": "English",
+          "zh": "英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セントクリストファー・ネイビスでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はバセテール。",
+          "en": "For Saint Kitts and Nevis, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Basseterre.",
+          "zh": "圣基茨和尼维斯的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是巴斯特尔。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1983年成立。バセテールを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1983. It developed institutions around Basseterre and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1983年成立。以巴斯特尔为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "セントルシア",
+        "en": "Saint Lucia",
+        "zh": "圣卢西亚"
+      },
+      "capital": {
+        "ja": "カストリーズ",
+        "en": "Castries",
+        "zh": "卡斯特里"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "小アンティル諸島の島国で、英語圏カリブの一員。 首都はカストリーズで、北アメリカ、カリブ海に位置する。",
+        "en": "A Lesser Antilles island state and part of the English-speaking Caribbean. Its capital is Castries, and it is located in North America, Caribbean.",
+        "zh": "小安的列斯群岛岛国，是英语加勒比的一员。 首都是卡斯特里，位于北美洲、加勒比。"
+      },
+      "flag_code": "lc",
+      "period": {
+        "start": 1979,
+        "end": null,
+        "label": {
+          "ja": "1979年成立",
+          "en": "Founded 1979",
+          "zh": "1979年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約18万人",
+          "en": "about 180,000",
+          "zh": "约18万人"
+        },
+        "area": {
+          "ja": "約617 km²",
+          "en": "about 617 km²",
+          "zh": "约617 km²"
+        },
+        "languages": {
+          "ja": "英語、セントルシア・クレオール",
+          "en": "English and Saint Lucian Creole",
+          "zh": "英语、圣卢西亚克里奥尔语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セントルシアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はカストリーズ。",
+          "en": "For Saint Lucia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Castries.",
+          "zh": "圣卢西亚的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是卡斯特里。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1979年成立。カストリーズを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1979. It developed institutions around Castries and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1979年成立。以卡斯特里为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、セントルシア・クレオール、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and Saint Lucian Creole; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、圣卢西亚克里奥尔语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "セントビンセント・グレナディーン",
+        "en": "Saint Vincent and the Grenadines",
+        "zh": "圣文森特和格林纳丁斯"
+      },
+      "capital": {
+        "ja": "キングスタウン",
+        "en": "Kingstown",
+        "zh": "金斯敦"
+      },
+      "type": "Present",
+      "region": "North America, Caribbean",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "セントビンセント島とグレナディーン諸島からなるカリブ海の島国。 首都はキングスタウンで、北アメリカ、カリブ海に位置する。",
+        "en": "A Caribbean island state made up of Saint Vincent and the Grenadines. Its capital is Kingstown, and it is located in North America, Caribbean.",
+        "zh": "由圣文森特岛和格林纳丁斯群岛组成的加勒比岛国。 首都是金斯敦，位于北美洲、加勒比。"
+      },
+      "flag_code": "vc",
+      "period": {
+        "start": 1979,
+        "end": null,
+        "label": {
+          "ja": "1979年成立",
+          "en": "Founded 1979",
+          "zh": "1979年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約11万人",
+          "en": "about 110,000",
+          "zh": "约11万人"
+        },
+        "area": {
+          "ja": "約389 km²",
+          "en": "about 389 km²",
+          "zh": "约389 km²"
+        },
+        "languages": {
+          "ja": "英語",
+          "en": "English",
+          "zh": "英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セントビンセント・グレナディーンでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はキングスタウン。",
+          "en": "For Saint Vincent and the Grenadines, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Kingstown.",
+          "zh": "圣文森特和格林纳丁斯的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是金斯敦。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1979年成立。キングスタウンを中心に制度を整え、北アメリカ、カリブ海の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1979. It developed institutions around Kingstown and continues to exist within the international and regional politics of North America, Caribbean.",
+          "zh": "资料中的成立或建国时期为1979年成立。以金斯敦为中心形成制度，并在北美洲、加勒比的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "サントメ・プリンシペ",
+        "en": "Sao Tome and Principe",
+        "zh": "圣多美和普林西比"
+      },
+      "capital": {
+        "ja": "サントメ",
+        "en": "São Tomé",
+        "zh": "圣多美"
+      },
+      "type": "Present",
+      "region": "Africa, Gulf of Guinea",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Island Nation",
+        "Archipelago State",
+        "Lusophone World",
+        "Christian World",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "ギニア湾の島国で、ポルトガル語圏アフリカに属する。 首都はサントメで、アフリカ、ギニア湾に位置する。",
+        "en": "A Gulf of Guinea island state in Lusophone Africa. Its capital is São Tomé, and it is located in Africa, Gulf of Guinea.",
+        "zh": "几内亚湾岛国，属于葡语非洲。 首都是圣多美，位于非洲、几内亚湾。"
+      },
+      "flag_code": "st",
+      "period": {
+        "start": 1975,
+        "end": null,
+        "label": {
+          "ja": "1975年成立",
+          "en": "Founded 1975",
+          "zh": "1975年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約23万人",
+          "en": "about 230,000",
+          "zh": "约23万人"
+        },
+        "area": {
+          "ja": "約964 km²",
+          "en": "about 964 km²",
+          "zh": "约964 km²"
+        },
+        "languages": {
+          "ja": "ポルトガル語",
+          "en": "Portuguese",
+          "zh": "葡萄牙语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サントメ・プリンシペでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はサントメ。",
+          "en": "For Sao Tome and Principe, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is São Tomé.",
+          "zh": "圣多美和普林西比的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是圣多美。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1975年成立。サントメを中心に制度を整え、アフリカ、ギニア湾の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1975. It developed institutions around São Tomé and continues to exist within the international and regional politics of Africa, Gulf of Guinea.",
+          "zh": "资料中的成立或建国时期为1975年成立。以圣多美为中心形成制度，并在非洲、几内亚湾的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はポルトガル語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Portuguese; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为葡萄牙语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "シエラレオネ",
+        "en": "Sierra Leone",
+        "zh": "塞拉利昂"
+      },
+      "capital": {
+        "ja": "フリータウン",
+        "en": "Freetown",
+        "zh": "弗里敦"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Commonwealth",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Anglophone World",
+        "Islamic World",
+        "Christian World",
+        "Mining Economy",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "西アフリカの大西洋岸に位置し、フリータウンを中心に発展した国。 首都はフリータウンで、アフリカ、西アフリカに位置する。",
+        "en": "A West African Atlantic state centered on Freetown. Its capital is Freetown, and it is located in Africa, West Africa.",
+        "zh": "位于西非大西洋沿岸，以弗里敦为中心发展。 首都是弗里敦，位于非洲、西非。"
+      },
+      "flag_code": "sl",
+      "period": {
+        "start": 1961,
+        "end": null,
+        "label": {
+          "ja": "1961年成立",
+          "en": "Founded 1961",
+          "zh": "1961年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約880万人",
+          "en": "about 8.8 million",
+          "zh": "约880万人"
+        },
+        "area": {
+          "ja": "約71,740 km²",
+          "en": "about 71,740 km²",
+          "zh": "约71,740 km²"
+        },
+        "languages": {
+          "ja": "英語、クリオ語など",
+          "en": "English, Krio, and others",
+          "zh": "英语、克里奥语等"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "シエラレオネでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はフリータウン。",
+          "en": "For Sierra Leone, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Freetown.",
+          "zh": "塞拉利昂的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是弗里敦。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1961年成立。フリータウンを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1961. It developed institutions around Freetown and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1961年成立。以弗里敦为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、クリオ語など、主な宗教はイスラム教、キリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English, Krio, and others; main religions: Islam and Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、克里奥语等，主要宗教为伊斯兰教、基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "南スーダン",
+        "en": "South Sudan",
+        "zh": "南苏丹"
+      },
+      "capital": {
+        "ja": "ジュバ",
+        "en": "Juba",
+        "zh": "朱巴"
+      },
+      "type": "Present",
+      "region": "Africa, East Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Cold War State",
+        "Post-Colonial State",
+        "Landlocked State",
+        "Resource Economy",
+        "Oil & Gas Economy",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "2011年にスーダンから独立した、世界で最も新しい国の一つ。 首都はジュバで、アフリカ、東アフリカに位置する。",
+        "en": "One of the world’s newest states, independent from Sudan in 2011. Its capital is Juba, and it is located in Africa, East Africa.",
+        "zh": "2011年从苏丹独立，是世界上最年轻的国家之一。 首都是朱巴，位于非洲、东非。"
+      },
+      "flag_code": "ss",
+      "period": {
+        "start": 2011,
+        "end": null,
+        "label": {
+          "ja": "2011年成立",
+          "en": "Founded 2011",
+          "zh": "2011年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,100万人",
+          "en": "about 11 million",
+          "zh": "约1,100万人"
+        },
+        "area": {
+          "ja": "約644,329 km²",
+          "en": "about 644,329 km²",
+          "zh": "约644,329 km²"
+        },
+        "languages": {
+          "ja": "英語、多数の民族言語",
+          "en": "English and many national languages",
+          "zh": "英语及多种民族语言"
+        },
+        "religions": {
+          "ja": "キリスト教、伝統宗教",
+          "en": "Christianity and traditional beliefs",
+          "zh": "基督教、传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "南スーダンでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はジュバ。",
+          "en": "For South Sudan, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Juba.",
+          "zh": "南苏丹的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是朱巴。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は2011年成立。ジュバを中心に制度を整え、アフリカ、東アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 2011. It developed institutions around Juba and continues to exist within the international and regional politics of Africa, East Africa.",
+          "zh": "资料中的成立或建国时期为2011年成立。以朱巴为中心形成制度，并在非洲、东非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、多数の民族言語、主な宗教はキリスト教、伝統宗教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and many national languages; main religions: Christianity and traditional beliefs. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语及多种民族语言，主要宗教为基督教、传统信仰。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "トーゴ",
+        "en": "Togo",
+        "zh": "多哥"
+      },
+      "capital": {
+        "ja": "ロメ",
+        "en": "Lomé",
+        "zh": "洛美"
+      },
+      "type": "Present",
+      "region": "Africa, West Africa",
+      "tags": [
+        "UN Member",
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Colonial Successor State",
+        "Francophone World",
+        "Christian World",
+        "Islamic World",
+        "Agricultural Exporter",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "ギニア湾に面した西アフリカの国で、ロメ港が重要な役割を持つ。 首都はロメで、アフリカ、西アフリカに位置する。",
+        "en": "A West African state on the Gulf of Guinea where Lomé’s port is important. Its capital is Lomé, and it is located in Africa, West Africa.",
+        "zh": "面向几内亚湾的西非国家，洛美港具有重要作用。 首都是洛美，位于非洲、西非。"
+      },
+      "flag_code": "tg",
+      "period": {
+        "start": 1960,
+        "end": null,
+        "label": {
+          "ja": "1960年成立",
+          "en": "Founded 1960",
+          "zh": "1960年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約900万人",
+          "en": "about 9 million",
+          "zh": "约900万人"
+        },
+        "area": {
+          "ja": "約56,785 km²",
+          "en": "about 56,785 km²",
+          "zh": "约56,785 km²"
+        },
+        "languages": {
+          "ja": "フランス語、エウェ語、カビエ語など",
+          "en": "French, Ewe, Kabiyè, and others",
+          "zh": "法语、埃维语、卡比耶语等"
+        },
+        "religions": {
+          "ja": "キリスト教、伝統宗教、イスラム教",
+          "en": "Christianity, traditional beliefs, and Islam",
+          "zh": "基督教、传统信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "トーゴでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はロメ。",
+          "en": "For Togo, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Lomé.",
+          "zh": "多哥的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是洛美。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1960年成立。ロメを中心に制度を整え、アフリカ、西アフリカの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1960. It developed institutions around Lomé and continues to exist within the international and regional politics of Africa, West Africa.",
+          "zh": "资料中的成立或建国时期为1960年成立。以洛美为中心形成制度，并在非洲、西非的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はフランス語、エウェ語、カビエ語など、主な宗教はキリスト教、伝統宗教、イスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: French, Ewe, Kabiyè, and others; main religions: Christianity, traditional beliefs, and Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为法语、埃维语、卡比耶语等，主要宗教为基督教、传统信仰、伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ツバル",
+        "en": "Tuvalu",
+        "zh": "图瓦卢"
+      },
+      "capital": {
+        "ja": "フナフティ",
+        "en": "Funafuti",
+        "zh": "富纳富提"
+      },
+      "type": "Present",
+      "region": "Oceania, Polynesia",
+      "tags": [
+        "UN Member",
+        "Commonwealth",
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "ポリネシアの小さな島国で、海面上昇問題でも知られる。 首都はフナフティで、オセアニア、ポリネシアに位置する。",
+        "en": "A small Polynesian island state known also for the issue of sea-level rise. Its capital is Funafuti, and it is located in Oceania, Polynesia.",
+        "zh": "波利尼西亚小岛国，也因海平面上升问题而闻名。 首都是富纳富提，位于大洋洲、波利尼西亚。"
+      },
+      "flag_code": "tv",
+      "period": {
+        "start": 1978,
+        "end": null,
+        "label": {
+          "ja": "1978年成立",
+          "en": "Founded 1978",
+          "zh": "1978年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1.1万人",
+          "en": "about 11,000",
+          "zh": "约1.1万人"
+        },
+        "area": {
+          "ja": "約26 km²",
+          "en": "about 26 km²",
+          "zh": "约26 km²"
+        },
+        "languages": {
+          "ja": "ツバル語、英語",
+          "en": "Tuvaluan and English",
+          "zh": "图瓦卢语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ツバルでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はフナフティ。",
+          "en": "For Tuvalu, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Funafuti.",
+          "zh": "图瓦卢的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是富纳富提。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1978年成立。フナフティを中心に制度を整え、オセアニア、ポリネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1978. It developed institutions around Funafuti and continues to exist within the international and regional politics of Oceania, Polynesia.",
+          "zh": "资料中的成立或建国时期为1978年成立。以富纳富提为中心形成制度，并在大洋洲、波利尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はツバル語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Tuvaluan and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为图瓦卢语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "アブハジア",
+        "en": "Abkhazia",
+        "zh": "阿布哈兹"
+      },
+      "capital": {
+        "ja": "スフミ",
+        "en": "Sukhumi",
+        "zh": "苏呼米"
+      },
+      "type": "Present",
+      "region": "Asia, Caucasus",
+      "tags": [
+        "Republic",
+        "Modern Nation-State",
+        "Post-Soviet State",
+        "Post-Cold War State",
+        "Strategic Crossroads",
+        "Buffer State",
+        "Frontier State",
+        "Multilingual State",
+        "Christian World",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "コーカサスの黒海沿岸にある限定承認国家。ジョージアが領有を主張している。 首都はスフミで、アジア、コーカサスに位置する。",
+        "en": "A partially recognized state on the Black Sea coast of the Caucasus, claimed by Georgia. Its capital is Sukhumi, and it is located in Asia, Caucasus.",
+        "zh": "位于高加索黑海沿岸的有限承认国家，格鲁吉亚主张拥有其主权。 首都是苏呼米，位于亚洲、高加索。"
+      },
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Abkhazia.svg",
+      "period": {
+        "start": 1999,
+        "end": null,
+        "label": {
+          "ja": "1999年成立",
+          "en": "Founded 1999",
+          "zh": "1999年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約24.5万人",
+          "en": "about 245,000",
+          "zh": "约24.5万人"
+        },
+        "area": {
+          "ja": "約8,665 km²",
+          "en": "about 8,665 km²",
+          "zh": "约8,665 km²"
+        },
+        "languages": {
+          "ja": "アブハズ語、ロシア語",
+          "en": "Abkhaz and Russian",
+          "zh": "阿布哈兹语、俄语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教など",
+          "en": "Christianity, Islam, and others",
+          "zh": "基督教、伊斯兰教等"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アブハジアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はスフミ。",
+          "en": "For Abkhazia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Sukhumi.",
+          "zh": "阿布哈兹的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是苏呼米。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1999年成立。スフミを中心に制度を整え、アジア、コーカサスの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1999. It developed institutions around Sukhumi and continues to exist within the international and regional politics of Asia, Caucasus.",
+          "zh": "资料中的成立或建国时期为1999年成立。以苏呼米为中心形成制度，并在亚洲、高加索的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアブハズ語、ロシア語、主な宗教はキリスト教、イスラム教など。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Abkhaz and Russian; main religions: Christianity, Islam, and others. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为阿布哈兹语、俄语，主要宗教为基督教、伊斯兰教等。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "クック諸島",
+        "en": "Cook Islands",
+        "zh": "库克群岛"
+      },
+      "capital": {
+        "ja": "アバルア",
+        "en": "Avarua",
+        "zh": "阿瓦鲁阿"
+      },
+      "type": "Present",
+      "region": "Oceania, Polynesia",
+      "tags": [
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ニュージーランドと自由連合関係にあるポリネシアの自治国家。 首都はアバルアで、オセアニア、ポリネシアに位置する。",
+        "en": "A self-governing Polynesian state in free association with New Zealand. Its capital is Avarua, and it is located in Oceania, Polynesia.",
+        "zh": "与新西兰自由联合的波利尼西亚自治国家。 首都是阿瓦鲁阿，位于大洋洲、波利尼西亚。"
+      },
+      "flag_code": "ck",
+      "period": {
+        "start": 1965,
+        "end": null,
+        "label": {
+          "ja": "1965年成立",
+          "en": "Founded 1965",
+          "zh": "1965年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1.5万人",
+          "en": "about 15,000",
+          "zh": "约1.5万人"
+        },
+        "area": {
+          "ja": "約236 km²",
+          "en": "about 236 km²",
+          "zh": "约236 km²"
+        },
+        "languages": {
+          "ja": "英語、クック諸島マオリ語",
+          "en": "English and Cook Islands Māori",
+          "zh": "英语、库克群岛毛利语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クック諸島では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はアバルア。",
+          "en": "For Cook Islands, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Avarua.",
+          "zh": "库克群岛的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是阿瓦鲁阿。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1965年成立。アバルアを中心に制度を整え、オセアニア、ポリネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1965. It developed institutions around Avarua and continues to exist within the international and regional politics of Oceania, Polynesia.",
+          "zh": "资料中的成立或建国时期为1965年成立。以阿瓦鲁阿为中心形成制度，并在大洋洲、波利尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、クック諸島マオリ語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: English and Cook Islands Māori; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为英语、库克群岛毛利语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ニウエ",
+        "en": "Niue",
+        "zh": "纽埃"
+      },
+      "capital": {
+        "ja": "アロフィ",
+        "en": "Alofi",
+        "zh": "阿洛菲"
+      },
+      "type": "Present",
+      "region": "Oceania, Polynesia",
+      "tags": [
+        "Constitutional Monarchy",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Island Nation",
+        "Maritime Power",
+        "Anglophone World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ニュージーランドと自由連合関係にあるポリネシアの小さな島国。 首都はアロフィで、オセアニア、ポリネシアに位置する。",
+        "en": "A small Polynesian island state in free association with New Zealand. Its capital is Alofi, and it is located in Oceania, Polynesia.",
+        "zh": "与新西兰自由联合的波利尼西亚小岛国。 首都是阿洛菲，位于大洋洲、波利尼西亚。"
+      },
+      "flag_code": "nu",
+      "period": {
+        "start": 1974,
+        "end": null,
+        "label": {
+          "ja": "1974年成立",
+          "en": "Founded 1974",
+          "zh": "1974年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約1,700人",
+          "en": "about 1,700",
+          "zh": "约1,700人"
+        },
+        "area": {
+          "ja": "約261 km²",
+          "en": "about 261 km²",
+          "zh": "约261 km²"
+        },
+        "languages": {
+          "ja": "ニウエ語、英語",
+          "en": "Niuean and English",
+          "zh": "纽埃语、英语"
+        },
+        "religions": {
+          "ja": "キリスト教",
+          "en": "Christianity",
+          "zh": "基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ニウエでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はアロフィ。",
+          "en": "For Niue, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Alofi.",
+          "zh": "纽埃的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是阿洛菲。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1974年成立。アロフィを中心に制度を整え、オセアニア、ポリネシアの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1974. It developed institutions around Alofi and continues to exist within the international and regional politics of Oceania, Polynesia.",
+          "zh": "资料中的成立或建国时期为1974年成立。以阿洛菲为中心形成制度，并在大洋洲、波利尼西亚的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はニウエ語、英語、主な宗教はキリスト教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Niuean and English; main religions: Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为纽埃语、英语，主要宗教为基督教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "北キプロス",
+        "en": "Northern Cyprus",
+        "zh": "北塞浦路斯"
+      },
+      "capital": {
+        "ja": "北ニコシア",
+        "en": "North Nicosia",
+        "zh": "北尼科西亚"
+      },
+      "type": "Present",
+      "region": "Europe, Cyprus",
+      "tags": [
+        "Republic",
+        "Modern Nation-State",
+        "Post-Cold War State",
+        "Island Nation",
+        "Strategic Crossroads",
+        "Buffer State",
+        "Turkic World",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "キプロス島北部にある限定承認国家。トルコのみが国家承認している。 首都は北ニコシアで、ヨーロッパ、キプロスに位置する。",
+        "en": "A partially recognized state in northern Cyprus, recognized only by Turkey. Its capital is North Nicosia, and it is located in Europe, Cyprus.",
+        "zh": "位于塞浦路斯岛北部的有限承认国家，仅获土耳其承认。 首都是北尼科西亚，位于欧洲、塞浦路斯。"
+      },
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Flag_of_the_Turkish_Republic_of_Northern_Cyprus.svg",
+      "period": {
+        "start": 1983,
+        "end": null,
+        "label": {
+          "ja": "1983年成立",
+          "en": "Founded 1983",
+          "zh": "1983年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約39万人",
+          "en": "about 390,000",
+          "zh": "约39万人"
+        },
+        "area": {
+          "ja": "約3,355 km²",
+          "en": "about 3,355 km²",
+          "zh": "约3,355 km²"
+        },
+        "languages": {
+          "ja": "トルコ語",
+          "en": "Turkish",
+          "zh": "土耳其语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "北キプロスでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都は北ニコシア。",
+          "en": "For Northern Cyprus, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is North Nicosia.",
+          "zh": "北塞浦路斯的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是北尼科西亚。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1983年成立。北ニコシアを中心に制度を整え、ヨーロッパ、キプロスの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1983. It developed institutions around North Nicosia and continues to exist within the international and regional politics of Europe, Cyprus.",
+          "zh": "资料中的成立或建国时期为1983年成立。以北尼科西亚为中心形成制度，并在欧洲、塞浦路斯的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はトルコ語、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Turkish; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为土耳其语，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "サハラ・アラブ民主共和国",
+        "en": "Sahrawi Arab Democratic Republic",
+        "zh": "阿拉伯撒哈拉民主共和国"
+      },
+      "capital": {
+        "ja": "ティファリティ",
+        "en": "Tifariti",
+        "zh": "提法里提"
+      },
+      "type": "Present",
+      "region": "Africa, Western Sahara",
+      "tags": [
+        "African Union",
+        "Republic",
+        "Modern Nation-State",
+        "Post-Colonial State",
+        "Desert State",
+        "Arab-Islamic Culture",
+        "Islamic World",
+        "Hispanophone World",
+        "Frontier State"
+      ],
+      "desc": {
+        "ja": "西サハラをめぐってモロッコと対立する限定承認国家。 首都はティファリティで、アフリカ、西サハラに位置する。",
+        "en": "A partially recognized state connected to the Western Sahara dispute with Morocco. Its capital is Tifariti, and it is located in Africa, Western Sahara.",
+        "zh": "与摩洛哥围绕西撒哈拉问题对立的有限承认国家。 首都是提法里提，位于非洲、西撒哈拉。"
+      },
+      "flag_code": "eh",
+      "period": {
+        "start": 1976,
+        "end": null,
+        "label": {
+          "ja": "1976年成立",
+          "en": "Founded 1976",
+          "zh": "1976年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約60万人",
+          "en": "about 600,000",
+          "zh": "约60万人"
+        },
+        "area": {
+          "ja": "約266,000 km²",
+          "en": "about 266,000 km²",
+          "zh": "约266,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語、スペイン語",
+          "en": "Arabic and Spanish",
+          "zh": "阿拉伯语、西班牙语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サハラ・アラブ民主共和国では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はティファリティ。",
+          "en": "For Sahrawi Arab Democratic Republic, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Tifariti.",
+          "zh": "阿拉伯撒哈拉民主共和国的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是提法里提。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1976年成立。ティファリティを中心に制度を整え、アフリカ、西サハラの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1976. It developed institutions around Tifariti and continues to exist within the international and regional politics of Africa, Western Sahara.",
+          "zh": "资料中的成立或建国时期为1976年成立。以提法里提为中心形成制度，并在非洲、西撒哈拉的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアラビア語、スペイン語、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Arabic and Spanish; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为阿拉伯语、西班牙语，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ソマリランド",
+        "en": "Somaliland",
+        "zh": "索马里兰"
+      },
+      "capital": {
+        "ja": "ハルゲイサ",
+        "en": "Hargeisa",
+        "zh": "哈尔格萨"
+      },
+      "type": "Present",
+      "region": "Africa, Horn of Africa",
+      "tags": [
+        "Republic",
+        "Modern Nation-State",
+        "Post-Cold War State",
+        "Strategic Crossroads",
+        "Maritime Power",
+        "Port City Network",
+        "Islamic World",
+        "Arab-Islamic Culture",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ソマリア北部で独立を宣言しているが、国際的承認は限られる。 首都はハルゲイサで、アフリカ、アフリカの角に位置する。",
+        "en": "A self-declared state in northern Somalia with limited international recognition. Its capital is Hargeisa, and it is located in Africa, Horn of Africa.",
+        "zh": "位于索马里北部的自行宣布独立地区，国际承认有限。 首都是哈尔格萨，位于非洲、非洲之角。"
+      },
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Flag_of_Somaliland.svg",
+      "period": {
+        "start": 1991,
+        "end": null,
+        "label": {
+          "ja": "1991年成立",
+          "en": "Founded 1991",
+          "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約570万人",
+          "en": "about 5.7 million",
+          "zh": "约570万人"
+        },
+        "area": {
+          "ja": "約176,120 km²",
+          "en": "about 176,120 km²",
+          "zh": "约176,120 km²"
+        },
+        "languages": {
+          "ja": "ソマリ語、アラビア語、英語",
+          "en": "Somali, Arabic, and English",
+          "zh": "索马里语、阿拉伯语、英语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ソマリランドでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はハルゲイサ。",
+          "en": "For Somaliland, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Hargeisa.",
+          "zh": "索马里兰的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是哈尔格萨。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1991年成立。ハルゲイサを中心に制度を整え、アフリカ、アフリカの角の国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1991. It developed institutions around Hargeisa and continues to exist within the international and regional politics of Africa, Horn of Africa.",
+          "zh": "资料中的成立或建国时期为1991年成立。以哈尔格萨为中心形成制度，并在非洲、非洲之角的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はソマリ語、アラビア語、英語、主な宗教はイスラム教。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Somali, Arabic, and English; main religions: Islam. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为索马里语、阿拉伯语、英语，主要宗教为伊斯兰教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "南オセチア",
+        "en": "South Ossetia",
+        "zh": "南奥塞梯"
+      },
+      "capital": {
+        "ja": "ツヒンヴァリ",
+        "en": "Tskhinvali",
+        "zh": "茨欣瓦利"
+      },
+      "type": "Present",
+      "region": "Asia, Caucasus",
+      "tags": [
+        "Republic",
+        "Modern Nation-State",
+        "Post-Soviet State",
+        "Post-Cold War State",
+        "Mountain State",
+        "Buffer State",
+        "Frontier State",
+        "Multilingual State",
+        "Orthodox Sphere",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "コーカサスにある限定承認国家で、ジョージアが領有を主張している。 首都はツヒンヴァリで、アジア、コーカサスに位置する。",
+        "en": "A partially recognized Caucasus state claimed by Georgia. Its capital is Tskhinvali, and it is located in Asia, Caucasus.",
+        "zh": "位于高加索的有限承认国家，格鲁吉亚主张拥有其主权。 首都是茨欣瓦利，位于亚洲、高加索。"
+      },
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_South_Ossetia.svg",
+      "period": {
+        "start": 1991,
+        "end": null,
+        "label": {
+          "ja": "1991年成立",
+          "en": "Founded 1991",
+          "zh": "1991年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約5.6万人",
+          "en": "about 56,000",
+          "zh": "约5.6万人"
+        },
+        "area": {
+          "ja": "約3,900 km²",
+          "en": "about 3,900 km²",
+          "zh": "约3,900 km²"
+        },
+        "languages": {
+          "ja": "オセット語、ロシア語",
+          "en": "Ossetian and Russian",
+          "zh": "奥塞梯语、俄语"
+        },
+        "religions": {
+          "ja": "正教会など",
+          "en": "Orthodox Christianity and others",
+          "zh": "东正教等"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "南オセチアでは、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はツヒンヴァリ。",
+          "en": "For South Ossetia, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Tskhinvali.",
+          "zh": "南奥塞梯的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是茨欣瓦利。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1991年成立。ツヒンヴァリを中心に制度を整え、アジア、コーカサスの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1991. It developed institutions around Tskhinvali and continues to exist within the international and regional politics of Asia, Caucasus.",
+          "zh": "资料中的成立或建国时期为1991年成立。以茨欣瓦利为中心形成制度，并在亚洲、高加索的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はオセット語、ロシア語、主な宗教は正教会など。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Ossetian and Russian; main religions: Orthodox Christianity and others. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为奥塞梯语、俄语，主要宗教为东正教等。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "沿ドニエストル共和国",
+        "en": "Transnistria",
+        "zh": "德涅斯特河沿岸"
+      },
+      "capital": {
+        "ja": "ティラスポリ",
+        "en": "Tiraspol",
+        "zh": "蒂拉斯波尔"
+      },
+      "type": "Present",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Republic",
+        "Modern Nation-State",
+        "Post-Soviet State",
+        "Post-Cold War State",
+        "Landlocked State",
+        "Buffer State",
+        "Multilingual State",
+        "Orthodox Sphere",
+        "Slavic World"
+      ],
+      "desc": {
+        "ja": "モルドバ東部のドニエストル川沿いにある限定承認国家。 首都はティラスポリで、ヨーロッパ、東ヨーロッパに位置する。",
+        "en": "A partially recognized state along the Dniester River in eastern Moldova. Its capital is Tiraspol, and it is located in Europe, Eastern Europe.",
+        "zh": "位于摩尔多瓦东部德涅斯特河沿岸的有限承认国家。 首都是蒂拉斯波尔，位于欧洲、东欧。"
+      },
+      "flag_code": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Transnistria_%28state%29.svg",
+      "period": {
+        "start": 1990,
+        "end": null,
+        "label": {
+          "ja": "1990年成立",
+          "en": "Founded 1990",
+          "zh": "1990年成立"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "約46.5万人",
+          "en": "about 465,000",
+          "zh": "约46.5万人"
+        },
+        "area": {
+          "ja": "約4,163 km²",
+          "en": "about 4,163 km²",
+          "zh": "约4,163 km²"
+        },
+        "languages": {
+          "ja": "ロシア語、モルドバ語、ウクライナ語",
+          "en": "Russian, Moldovan, and Ukrainian",
+          "zh": "俄语、摩尔多瓦语、乌克兰语"
+        },
+        "religions": {
+          "ja": "正教会",
+          "en": "Orthodox Christianity",
+          "zh": "东正教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "沿ドニエストル共和国では、独立・建国期の政治指導者、現在の国家元首や政府首脳、地域社会・宗教・経済分野の人物が重要人物として扱われる。首都はティラスポリ。",
+          "en": "For Transnistria, key figures include independence-era leaders, heads of state or government, and influential regional, religious, and economic actors. Its capital is Tiraspol.",
+          "zh": "德涅斯特河沿岸的重要人物包括独立或建国时期的政治领导人、现任国家元首或政府首脑，以及地区社会、宗教和经济领域人物。首都是蒂拉斯波尔。"
+        },
+        "major_events": {
+          "ja": "データ上の成立・建国時期は1990年成立。ティラスポリを中心に制度を整え、ヨーロッパ、東ヨーロッパの国際関係や地域政治の中で現在まで存続している。",
+          "en": "The recorded foundation or establishment is Founded 1990. It developed institutions around Tiraspol and continues to exist within the international and regional politics of Europe, Eastern Europe.",
+          "zh": "资料中的成立或建国时期为1990年成立。以蒂拉斯波尔为中心形成制度，并在欧洲、东欧的国际关系和地区政治中延续至今。"
+        },
+        "fall_reason": {
+          "ja": "現存する政治体のため滅亡理由はない。成立後の政体変化、国際関係、経済・社会の変化を追うと特徴が分かりやすい。",
+          "en": "This is a present-day political entity, so it has no fall. Its later constitutional, diplomatic, economic, and social changes are the main points to follow.",
+          "zh": "这是现存政治实体，因此没有灭亡原因。可关注成立后的政体、外交、经济和社会变化。"
+        },
+        "successors": {
+          "ja": "現在も存続しているため、後継国家ではなく周辺国、旧宗主国、関連する歴史国家との比較が中心になる。",
+          "en": "It still exists, so comparison focuses on neighboring states, former colonial powers, and related historical states rather than a successor state.",
+          "zh": "该政治实体仍然存在，因此重点不是继承国家，而是与周边国家、旧宗主国和相关历史国家比较。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はロシア語、モルドバ語、ウクライナ語、主な宗教は正教会。地域性、言語、宗教、国際的地位を合わせて見ると特徴がつかみやすい。",
+          "en": "Main languages: Russian, Moldovan, and Ukrainian; main religions: Orthodox Christianity. Its regional setting, languages, religions, and international status help explain its profile.",
+          "zh": "主要语言为俄语、摩尔多瓦语、乌克兰语，主要宗教为东正教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
+        }
+      }
     }
   ],
   "tag_categories": {
