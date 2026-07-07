@@ -616,9 +616,14 @@ BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 2
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
 BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
-BATTLE_REVOLUTION_CHANCE = 0.08
+BATTLE_REVOLUTION_CHANCE = 0.025
+BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.08
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
+BATTLE_RANDOM_EVENT_CHANCE = 0.035
+BATTLE_RANDOM_EVENT_MIN_TURNS = 2
+BATTLE_RANDOM_EVENT_MAX_TURNS = 4
+BATTLE_VATICAN_DRAW_CHANCE = 0.45
 BATTLE_SPECIAL_CARD_CHANCE = 0.12
 BATTLE_SPECIAL_CARD_MAX_PER_HAND = 2
 BATTLE_SPECIAL_CARD_PREFIX = 'event:'
@@ -1374,6 +1379,15 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_revolution_notice': '革命により国力の強弱が逆転しています。普段弱い国が切り札になるかもしれません。',
     'battle_revolution_start_log': '革命が発生しました。{turns}ターンの間、カードの強さが逆転します。',
     'battle_revolution_end_log': '革命が終息しました。カードの強さが通常に戻ります。',
+    'battle_flag_only_title': '国旗識別戦',
+    'battle_flag_only_notice': '国名が伏せられ、国旗だけを頼りにカードを選ぶ状態です。',
+    'battle_flag_only_start_log': '国旗識別戦が始まりました。{turns}ターンの間、国名が伏せられます。',
+    'battle_flag_only_end_log': '国旗識別戦が終了しました。国名が再表示されます。',
+    'battle_vatican_title': 'バチカン市国大量発生',
+    'battle_vatican_notice': '配られるカードにバチカン市国が混ざりやすくなっています。',
+    'battle_vatican_start_log': 'バチカン市国が大量発生しました。{turns}ターンの間、配布カードに混ざりやすくなります。',
+    'battle_vatican_end_log': 'バチカン市国大量発生が収まりました。',
+    'battle_hidden_card_name': '???',
     'battle_last_turn': '直前ターンの動き',
     'battle_played_visual': '出したカード',
     'battle_defense_visual': '防御に残したカード',
@@ -1404,6 +1418,15 @@ UI_FALLBACKS.setdefault('en', {}).update({
     'battle_revolution_notice': 'Revolution reverses card strength. Usually weak countries may become decisive.',
     'battle_revolution_start_log': 'A revolution began. Card strength is reversed for {turns} turns.',
     'battle_revolution_end_log': 'The revolution ended. Card strength returned to normal.',
+    'battle_flag_only_title': 'Flag Recognition',
+    'battle_flag_only_notice': 'Country names are hidden. Choose cards by flags alone.',
+    'battle_flag_only_start_log': 'Flag Recognition began. Country names are hidden for {turns} turns.',
+    'battle_flag_only_end_log': 'Flag Recognition ended. Country names are visible again.',
+    'battle_vatican_title': 'Vatican City Outbreak',
+    'battle_vatican_notice': 'Vatican City is much more likely to appear in dealt cards.',
+    'battle_vatican_start_log': 'Vatican City outbreak began. It is more likely to appear for {turns} turns.',
+    'battle_vatican_end_log': 'The Vatican City outbreak ended.',
+    'battle_hidden_card_name': '???',
     'battle_last_turn': 'Last Turn',
     'battle_played_visual': 'Played Cards',
     'battle_defense_visual': 'Cards Kept for Defense',
@@ -1434,6 +1457,15 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_revolution_notice': '革命会反转卡牌强弱。平时弱小的国家也可能成为关键。',
     'battle_revolution_start_log': '革命爆发。{turns}回合内卡牌强弱反转。',
     'battle_revolution_end_log': '革命结束。卡牌强弱恢复正常。',
+    'battle_flag_only_title': '旗帜识别战',
+    'battle_flag_only_notice': '国名会被隐藏，只能依靠旗帜判断卡牌。',
+    'battle_flag_only_start_log': '旗帜识别战开始。{turns}回合内国名会被隐藏。',
+    'battle_flag_only_end_log': '旗帜识别战结束。国名重新显示。',
+    'battle_vatican_title': '梵蒂冈大量出现',
+    'battle_vatican_notice': '发牌时更容易出现梵蒂冈。',
+    'battle_vatican_start_log': '梵蒂冈大量出现。{turns}回合内更容易被发到手牌。',
+    'battle_vatican_end_log': '梵蒂冈大量出现结束。',
+    'battle_hidden_card_name': '???',
     'battle_last_turn': '上一回合',
     'battle_played_visual': '打出的牌',
     'battle_defense_visual': '留下防御的牌',
@@ -5128,6 +5160,27 @@ def battle_revolution_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_flag_only_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('flag_only_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_vatican_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('vatican_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
+def battle_vatican_country_key(data=None):
+    for country in battle_country_list(data):
+        names = country.get('names', {})
+        values = names.values() if isinstance(names, dict) else [names]
+        joined = ' '.join(str(value or '').casefold() for value in values)
+        if 'vatican' in joined or 'バチカン' in joined or '梵蒂冈' in joined:
+            return country_key(country)
+    return None
+
 def battle_special_card_label(key):
     suffix = str(key or '').replace(BATTLE_SPECIAL_CARD_PREFIX, '', 1)
     return t(f'battle_special_{suffix}')
@@ -5180,11 +5233,13 @@ def battle_card_power_for_key(key, lookup=None, room=None):
         return max(1, max_power + min_power - power)
     return power
 
-def battle_card_display_name(key, lookup=None):
+def battle_card_display_name(key, lookup=None, room=None):
     if is_battle_special_card(key):
         return battle_special_card_label(key)
     lookup = lookup or battle_country_lookup()
     country = lookup.get(key)
+    if country and battle_flag_only_active(room):
+        return t('battle_hidden_card_name')
     return get_localized_text(country.get('names', {})) if country else str(key)
 
 def battle_mode_label(mode):
@@ -5224,6 +5279,7 @@ def _legacy_battle_help_labels():
                         '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                         '第三次世界大戦中は危険カードが混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
                         'さらに低確率で革命が起こり、3〜7ターンだけカードの強弱が逆転します。',
+                        'まれに国名が伏せられて国旗だけで選ぶイベントや、バチカン市国が配られやすくなるイベントも発生します。',
                         'ダメージを与えると、相手の残り手札から1枚奪えます。BOT戦の勝利数はランキングに入りません。',
                     ],
                 ),
@@ -5268,6 +5324,7 @@ def _legacy_battle_help_labels():
                     'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
                     'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
+                    'Rare events can also hide country names so you must read flags, or make Vatican City appear more often.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
                 ('Battle modes', [
@@ -5305,6 +5362,7 @@ def _legacy_battle_help_labels():
                     '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
                     '还可能低概率发生革命，使卡牌强弱在3到7回合内反转。',
+                    '还会低概率出现隐藏国名、只能看旗帜判断，或梵蒂冈更容易出现的事件。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战的胜场不计入排行。',
                 ]),
                 ('模式规则', [
@@ -5366,6 +5424,7 @@ def battle_help_labels():
                     '長引くほど少しずつダメージが伸び、部屋で選んだターン以降は第三次世界大戦でさらに激しくなります。開始しない設定にもできます。',
                     '第三次世界大戦中は危険カードが手札に混ざることがあり、ターン終了時に自分へダメージを与えて消えます。',
                     '低確率で革命が起こると、3〜7ターンだけカードの強弱が逆転します。',
+                    'まれに国名が伏せられて国旗だけで選ぶイベントや、バチカン市国が配られやすくなるイベントも発生します。',
                     'ダメージを与えると、相手の残り手札から1枚を奪えます。BOT戦の勝利数はランキングには入りません。',
                 ]),
                 ('対戦モード', [
@@ -5422,6 +5481,7 @@ def battle_help_labels():
                     'Damage gradually rises in long battles, and World War III makes the battle much harsher from the turn chosen for the room. It can also be disabled.',
                     'During World War III, dangerous cards can appear. They damage you at turn end and are discarded.',
                     'A low-chance revolution can also reverse card strength for 3 to 7 turns.',
+                    'Rare events can also hide country names so you must read flags, or make Vatican City appear more often.',
                     'When you deal damage, you steal one remaining card from the opponent. Bot battle wins are not counted in rankings.',
                 ]),
                 ('Battle Modes', [
@@ -5478,6 +5538,7 @@ def battle_help_labels():
                     '战斗拖得越久，伤害会逐渐提高；从房间选择的回合开始，第三次世界大战会让战斗更加激烈。也可以设为不发生。',
                     '第三次世界大战期间，手牌中可能出现危险牌。危险牌会在回合结束时造成自伤并被弃掉。',
                     '低概率发生革命时，卡牌强弱会在3到7回合内反转。',
+                    '还会低概率出现隐藏国名、只能看旗帜判断，或梵蒂冈更容易出现的事件。',
                     '造成伤害时，可以从对手剩余手牌中夺取1张。BOT战胜利不会计入排行榜。',
                 ]),
                 ('对战模式', [
@@ -5730,6 +5791,8 @@ def normalize_battle_room(room):
     room.setdefault('command', {})
     room.setdefault('world_war_started', False)
     room.setdefault('revolution_until_turn', 0)
+    room.setdefault('flag_only_until_turn', 0)
+    room.setdefault('vatican_until_turn', 0)
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
     room.setdefault('bot', False)
@@ -5967,6 +6030,13 @@ def draw_battle_cards(count=5, room=None):
         special_count = min(special_count, BATTLE_SPECIAL_CARD_MAX_PER_HAND, count - 1)
     normal_count = max(0, count - special_count)
     cards = weighted_battle_country_sample(normal_count)
+    if battle_vatican_active(room):
+        vatican_key = battle_vatican_country_key()
+        if vatican_key:
+            cards = [
+                vatican_key if random.random() < BATTLE_VATICAN_DRAW_CHANCE else key
+                for key in cards
+            ]
     if special_count:
         specials = random_battle_special_cards(special_count)
         cards.extend(specials)
@@ -6018,6 +6088,8 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'world_war_started': False,
         'world_war_turn': world_war_turn,
         'revolution_until_turn': 0,
+        'flag_only_until_turn': 0,
+        'vatican_until_turn': 0,
         'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
         'turn_started_at': current_timestamp(),
@@ -6284,14 +6356,14 @@ def battle_defenseless_log_label():
         'zh': '\u65e0\u9632\u5907',
     })
 
-def battle_country_names_for_keys(keys, lookup=None):
+def battle_country_names_for_keys(keys, lookup=None, room=None):
     lookup = lookup or battle_country_lookup()
     names = []
     for key in keys:
-        names.append(battle_card_display_name(key, lookup))
+        names.append(battle_card_display_name(key, lookup, room))
     return names
 
-def battle_visual_card(key, lookup=None):
+def battle_visual_card(key, lookup=None, room=None):
     lookup = lookup or battle_country_lookup()
     if is_battle_special_card(key):
         return {
@@ -6308,7 +6380,7 @@ def battle_visual_card(key, lookup=None):
         return {'key': key, 'name': str(key), 'special': False, 'flag': None}
     return {
         'key': key,
-        'name': get_localized_text(country.get('names', {})) or str(key),
+        'name': battle_card_display_name(key, lookup, room) or str(key),
         'special': False,
         'flag': get_flag_url(country.get('flag_code')),
     }
@@ -6319,12 +6391,14 @@ def battle_visual_payload(room, entries):
         'turn': int(room.get('turn', 1) or 1),
         'world_war': battle_world_war_active(room),
         'revolution': battle_revolution_active(room),
+        'flag_only': battle_flag_only_active(room),
+        'vatican': battle_vatican_active(room),
         'played': [
             {
                 'player': player,
                 'defenseless': bool(entries.get(player, {}).get('defenseless')),
-                'cards': [battle_visual_card(key, lookup) for key in entries.get(player, {}).get('keys', [])],
-                'defense_cards': [battle_visual_card(key, lookup) for key in entries.get(player, {}).get('defense_keys', [])],
+                'cards': [battle_visual_card(key, lookup, room) for key in entries.get(player, {}).get('keys', [])],
+                'defense_cards': [battle_visual_card(key, lookup, room) for key in entries.get(player, {}).get('defense_keys', [])],
             }
             for player in room.get('players', [])
             if player in entries
@@ -6343,7 +6417,7 @@ def battle_played_cards_log(room, entries):
         if entry.get('defenseless'):
             card_text = battle_defenseless_log_label()
         else:
-            names = battle_country_names_for_keys(entry.get('keys', []), lookup)
+            names = battle_country_names_for_keys(entry.get('keys', []), lookup, room)
             card_text = ', '.join(names) if names else battle_no_cards_label()
         parts.append(f'{player}: {card_text}')
     if not parts:
@@ -6461,7 +6535,7 @@ def steal_remaining_cards(room, winners, losers, defenseless_players, result_par
         loser_hand.remove(stolen_key)
         winner_hand.append(stolen_key)
         stolen_country = lookup.get(stolen_key)
-        stolen_name = get_localized_text(stolen_country.get('names', {})) if stolen_country else stolen_key
+        stolen_name = battle_card_display_name(stolen_key, lookup, room) if stolen_country else stolen_key
         result_parts.append(t('battle_steal_log').format(winner=winner, loser=loser, country=stolen_name))
         if visual is not None:
             visual.setdefault('steals', []).append({
@@ -6469,7 +6543,7 @@ def steal_remaining_cards(room, winners, losers, defenseless_players, result_par
                 'loser': loser,
                 'key': stolen_key,
                 'name': stolen_name,
-                'card': battle_visual_card(stolen_key, lookup),
+                'card': battle_visual_card(stolen_key, lookup, room),
             })
 
 def apply_battle_special_card_damage(room, result_parts, visual):
@@ -6505,8 +6579,8 @@ def apply_battle_special_card_damage(room, result_parts, visual):
                     destroyed_key = random.choice(destroyable)
                     hand.remove(destroyed_key)
                     destroyed_country = lookup.get(destroyed_key)
-                    destroyed_card = battle_visual_card(destroyed_key, lookup)
-                    destroyed_name = get_localized_text(destroyed_country.get('names', {})) if destroyed_country else destroyed_key
+                    destroyed_card = battle_visual_card(destroyed_key, lookup, room)
+                    destroyed_name = battle_card_display_name(destroyed_key, lookup, room) if destroyed_country else destroyed_key
                     result_parts.append(t('battle_destroy_log').format(player=player, card=card_name, country=destroyed_name))
             visual.setdefault('self_damage', []).append({
                 'player': player,
@@ -6515,7 +6589,7 @@ def apply_battle_special_card_damage(room, result_parts, visual):
                 'damage': damage,
                 'heal': heal,
                 'destroyed_card': destroyed_card,
-                'card': {**battle_visual_card(key), 'damage': damage, 'heal': heal},
+                'card': {**battle_visual_card(key, lookup, room), 'damage': damage, 'heal': heal},
             })
 
 def finish_battle_turn(room, reload_set, defenseless_players):
@@ -6575,16 +6649,33 @@ def update_battle_crisis_state(room, result_parts=None):
         message = t('battle_world_war_log')
         result_parts.append(message)
 
-    if room.get('world_war_started') and not battle_revolution_active(room):
-        if int(room.get('revolution_until_turn', 0) or 0) and turn > int(room.get('revolution_until_turn', 0) or 0):
-            room['revolution_until_turn'] = 0
-            message = t('battle_revolution_end_log')
-            result_parts.append(message)
-        if random.random() < BATTLE_REVOLUTION_CHANCE:
+    timed_events = [
+        ('revolution_until_turn', 'battle_revolution_end_log'),
+        ('flag_only_until_turn', 'battle_flag_only_end_log'),
+        ('vatican_until_turn', 'battle_vatican_end_log'),
+    ]
+    for field, end_key in timed_events:
+        if int(room.get(field, 0) or 0) and turn > int(room.get(field, 0) or 0):
+            room[field] = 0
+            result_parts.append(t(end_key))
+
+    if not battle_revolution_active(room):
+        revolution_chance = BATTLE_WORLD_WAR_REVOLUTION_CHANCE if room.get('world_war_started') else BATTLE_REVOLUTION_CHANCE
+        if random.random() < revolution_chance:
             duration = random.randint(BATTLE_REVOLUTION_MIN_TURNS, BATTLE_REVOLUTION_MAX_TURNS)
             room['revolution_until_turn'] = turn + duration - 1
-            message = t('battle_revolution_start_log').format(turns=duration)
-            result_parts.append(message)
+            result_parts.append(t('battle_revolution_start_log').format(turns=duration))
+
+    random_events = []
+    if not battle_flag_only_active(room):
+        random_events.append(('flag_only_until_turn', 'battle_flag_only_start_log'))
+    if not battle_vatican_active(room) and battle_vatican_country_key():
+        random_events.append(('vatican_until_turn', 'battle_vatican_start_log'))
+    if random_events and random.random() < BATTLE_RANDOM_EVENT_CHANCE:
+        field, start_key = random.choice(random_events)
+        duration = random.randint(BATTLE_RANDOM_EVENT_MIN_TURNS, BATTLE_RANDOM_EVENT_MAX_TURNS)
+        room[field] = turn + duration - 1
+        result_parts.append(t(start_key).format(turns=duration))
 
 def set_battle_winner_if_finished(room):
     players = room.get('players', [])
@@ -7155,6 +7246,8 @@ def battle_screen_signature():
             'bot_owners': room.get('bot_owners', {}),
             'world_war_started': room.get('world_war_started'),
             'revolution_until_turn': room.get('revolution_until_turn'),
+            'flag_only_until_turn': room.get('flag_only_until_turn'),
+            'vatican_until_turn': room.get('vatican_until_turn'),
             'last_turn': room.get('last_turn', {}),
         }
     else:
@@ -9130,7 +9223,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         with ui.column().classes('gap-2 rounded border border-gray-200 bg-white p-3'):
             with ui.row().classes('w-full items-center gap-2 no-wrap'):
                 ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
-                ui.label(get_localized_text(country['names'])).classes('font-bold text-[#1a2332] text-sm')
+                label = t('battle_hidden_card_name') if battle_flag_only_active(room) else get_localized_text(country['names'])
+                ui.label(label).classes('font-bold text-[#1a2332] text-sm')
             render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
 
     def render_battle_visual_card(card):
@@ -9159,6 +9253,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 .style("background-image: linear-gradient(rgba(127,29,29,0.72), rgba(127,29,29,0.72)), url('/assets/revolution_background.svg'); background-size: cover; background-position: center;"):
                 ui.label(t('battle_revolution_title')).classes('text-2xl font-black')
                 ui.label(t('battle_revolution_notice')).classes('text-sm font-bold')
+        if battle_flag_only_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-indigo-300 bg-indigo-50'):
+                ui.label(t('battle_flag_only_title')).classes('text-2xl font-black text-indigo-800')
+                ui.label(t('battle_flag_only_notice')).classes('text-sm font-bold text-indigo-700')
+        if battle_vatican_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-amber-300 bg-amber-50'):
+                ui.label(t('battle_vatican_title')).classes('text-2xl font-black text-amber-800')
+                ui.label(t('battle_vatican_notice')).classes('text-sm font-bold text-amber-700')
 
     def render_battle_last_turn(room):
         visual = room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}
@@ -9181,12 +9283,16 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if not visual:
                 ui.label(t('battle_no_visual')).classes('text-gray-500')
                 return
-            if visual.get('world_war') or visual.get('revolution'):
+            if visual.get('world_war') or visual.get('revolution') or visual.get('flag_only') or visual.get('vatican'):
                 with ui.row().classes('gap-2 flex-wrap'):
                     if visual.get('world_war'):
                         ui.badge(t('battle_world_war_title'), color='red')
                     if visual.get('revolution'):
                         ui.badge(t('battle_revolution_title'), color='orange')
+                    if visual.get('flag_only'):
+                        ui.badge(t('battle_flag_only_title'), color='indigo')
+                    if visual.get('vatican'):
+                        ui.badge(t('battle_vatican_title'), color='amber')
             ui.label(t('battle_played_visual')).classes('text-sm font-bold text-gray-600')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
                 for item in visual.get('played', []):
