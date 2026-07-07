@@ -7065,7 +7065,7 @@ def remove_submitted_cards_and_reload(room):
                     hand.remove(key)
     return reload_set, defenseless_players
 
-def steal_remaining_cards(room, winners, losers, defenseless_players, result_parts, visual=None):
+def steal_remaining_cards(room, winners, losers, defenseless_players, result_parts, visual=None, entries=None):
     lookup = battle_country_lookup()
     winners = [winner for winner in winners if winner in room.get('players', [])]
     losers = [loser for loser in losers if loser in room.get('players', []) and loser not in defenseless_players]
@@ -7074,12 +7074,17 @@ def steal_remaining_cards(room, winners, losers, defenseless_players, result_par
     for index, loser in enumerate(losers):
         loser_hand = room.setdefault('hands', {}).setdefault(loser, [])
         stealable = [key for key in loser_hand if key in lookup]
-        if not stealable:
-            continue
+        if stealable:
+            stolen_key = random.choice(stealable)
+            loser_hand.remove(stolen_key)
+        else:
+            submitted = entries.get(loser, {}) if isinstance(entries, dict) else {}
+            played_cards = [key for key in submitted.get('keys', []) if key in lookup]
+            if not played_cards:
+                continue
+            stolen_key = random.choice(played_cards)
         winner = winners[index % len(winners)]
         winner_hand = room.setdefault('hands', {}).setdefault(winner, [])
-        stolen_key = random.choice(stealable)
-        loser_hand.remove(stolen_key)
         winner_hand.append(stolen_key)
         stolen_country = lookup.get(stolen_key)
         stolen_name = battle_card_display_name(stolen_key, lookup, room) if stolen_country else stolen_key
@@ -7576,6 +7581,8 @@ def resolve_battle_turn(room):
                 })
                 if counter:
                     team_hp[source_team] = max(0, team_hp.get(source_team, battle_team_hp_limit(room)) - counter)
+                    winners.extend(target_players)
+                    losers.extend(source_players)
                     visual['counters'].append({
                         'source': f"{t('battle_team')} {target_team}",
                         'target': f"{t('battle_team')} {source_team}",
@@ -7652,6 +7659,8 @@ def resolve_battle_turn(room):
                 'outcome': 'damage' if damage else 'blocked',
             })
             if counter > 0:
+                winners.append(target)
+                losers.append(attacker)
                 visual['counters'].append({
                     'source': target,
                     'target': attacker,
@@ -7686,6 +7695,9 @@ def resolve_battle_turn(room):
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
             if counter:
                 room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - counter)
+                if counter > 0:
+                    winners = [player_two]
+                    losers = [player_one]
             if damage > 0:
                 winners = [player_one]
                 losers = [player_two]
@@ -7727,6 +7739,9 @@ def resolve_battle_turn(room):
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
             if counter:
                 room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - counter)
+                if counter > 0:
+                    winners = [player_one]
+                    losers = [player_two]
             if damage > 0:
                 winners = [player_two]
                 losers = [player_one]
@@ -7762,7 +7777,7 @@ def resolve_battle_turn(room):
             result_parts.append(f"{player_one} vs {player_two}: draw")
 
     resolve_battle_bomb_transfers(room, entries, result_parts, visual)
-    steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual)
+    steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual, entries)
     apply_battle_special_card_damage(room, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
     room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
