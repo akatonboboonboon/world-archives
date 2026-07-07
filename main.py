@@ -7985,8 +7985,6 @@ def redraw_battle_hand():
     redraw_turns[username] = turn
     state.battle_selected_keys = set()
     state.battle_attack_target = None
-    room.setdefault('log', []).insert(0, t('battle_redraw_log').format(player=username, count=count))
-    del room['log'][12:]
     save_battle_state(state_data)
     refresh_battle_view()
 
