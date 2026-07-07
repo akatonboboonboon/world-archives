@@ -561,6 +561,7 @@ class AppState:
     quiz_difficulty = 'medium'
     quiz_mode = 'normal'
     quiz_category = 'all'
+    quiz_format = 'mixed'
     compare_left_key = None
     compare_right_key = None
     map_country_key = None
@@ -658,6 +659,10 @@ UI_FALLBACKS = {
         'quiz_period': '年代が「{period}」なのはどれ？',
         'quiz_profile': '{label}が「{value}」なのはどれ？',
         'quiz_category': '分野',
+        'quiz_format': '形式',
+        'quiz_format_mixed': '混合',
+        'quiz_format_info_fixed': '国を選ぶ',
+        'quiz_format_country_fixed': '情報を選ぶ',
         'quiz_category_all': '総合',
         'quiz_category_flag': '国旗',
         'quiz_category_period': '年号',
@@ -775,6 +780,10 @@ UI_FALLBACKS = {
         'quiz_period': 'Which one belongs to “{period}”?',
         'quiz_profile': 'Which one has {label}: “{value}”?',
         'quiz_category': 'Category',
+        'quiz_format': 'Format',
+        'quiz_format_mixed': 'Mixed',
+        'quiz_format_info_fixed': 'Choose country',
+        'quiz_format_country_fixed': 'Choose info',
         'quiz_category_all': 'Mixed',
         'quiz_category_flag': 'Flags',
         'quiz_category_period': 'Years',
@@ -890,6 +899,10 @@ UI_FALLBACKS = {
         'quiz_period': '年代为“{period}”的是哪一个？',
         'quiz_profile': '{label}为“{value}”的是哪一个？',
         'quiz_category': '领域',
+        'quiz_format': '形式',
+        'quiz_format_mixed': '混合',
+        'quiz_format_info_fixed': '选择国家',
+        'quiz_format_country_fixed': '选择信息',
         'quiz_category_all': '综合',
         'quiz_category_flag': '旗帜',
         'quiz_category_period': '年代',
@@ -3381,6 +3394,16 @@ def collection_contains(collection_name, country):
 def displayable_flag_code(code):
     return bool(code) and code != 'xx'
 
+QUIZ_FLAG_EXCLUDED_TOKENS = {
+    'umayyad_flag.svg',
+}
+
+def has_quiz_visual_flag_code(code):
+    if not displayable_flag_code(code):
+        return False
+    normalized = str(code or '').strip().lower()
+    return not any(token in normalized for token in QUIZ_FLAG_EXCLUDED_TOKENS)
+
 def avatar_user_dir(username=None):
     username = username or state.current_user or 'guest'
     digest = hashlib.sha1(username.encode('utf-8')).hexdigest()[:16]
@@ -4327,6 +4350,12 @@ QUIZ_CATEGORY_OPTIONS = [
     ('detail', 'quiz_category_detail'),
 ]
 
+QUIZ_FORMAT_OPTIONS = [
+    ('mixed', 'quiz_format_mixed'),
+    ('info_fixed', 'quiz_format_info_fixed'),
+    ('country_fixed', 'quiz_format_country_fixed'),
+]
+
 QUIZ_RANKING_CATEGORIES = [
     ('overall', 'ranking_overall'),
     ('flag', 'quiz_category_flag'),
@@ -4419,6 +4448,14 @@ def quiz_question_matches_category(question_type):
         return question_type.startswith('detail_')
     return True
 
+def quiz_question_matches_format(question_type):
+    quiz_format = getattr(state, 'quiz_format', 'mixed')
+    if quiz_format == 'info_fixed':
+        return not quiz_is_reverse(question_type)
+    if quiz_format == 'country_fixed':
+        return quiz_is_reverse(question_type)
+    return True
+
 def quiz_base_question_types():
     question_types = ['desc', 'capital', 'tag', 'flag', 'period']
     question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
@@ -4456,7 +4493,7 @@ def quiz_pool_data(countries):
     return pool
 
 def has_quiz_flag(country):
-    return displayable_flag_code(country.get('flag_code'))
+    return has_quiz_visual_flag_code(country.get('flag_code'))
 
 def normalized_text(value):
     return str(value or '').strip().casefold()
@@ -4750,6 +4787,8 @@ def build_quiz():
 
     question_pools = []
     for question_type in question_types:
+        if not quiz_question_matches_format(question_type):
+            continue
         if not quiz_question_matches_category(question_type):
             continue
         candidates = option_candidates.get(quiz_base_type(question_type), [])
@@ -4878,6 +4917,12 @@ def set_quiz_difficulty(difficulty):
 
 def set_quiz_category(category):
     state.quiz_category = category
+    start_quiz()
+
+def set_quiz_format(quiz_format):
+    if quiz_format not in [key for key, _ in QUIZ_FORMAT_OPTIONS]:
+        quiz_format = 'mixed'
+    state.quiz_format = quiz_format
     start_quiz()
 
 def quiz_answer_option(quiz):
@@ -7849,6 +7894,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                 for key, label_key in QUIZ_CATEGORY_OPTIONS:
                     color = 'primary' if state.quiz_category == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, c=key: set_quiz_category(c)) \
+                        .props(f'outline color={color} dense')
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                ui.label(t('quiz_format')).classes('text-sm font-bold text-gray-500')
+                for key, label_key in QUIZ_FORMAT_OPTIONS:
+                    color = 'primary' if state.quiz_format == key else 'grey'
+                    ui.button(t(label_key), on_click=lambda _, f=key: set_quiz_format(f)) \
                         .props(f'outline color={color} dense')
             ui.button(t('quiz_next'), icon='refresh', on_click=next_quiz_from_button) \
                 .props('outline color=primary') \
