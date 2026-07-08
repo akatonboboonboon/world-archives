@@ -240,6 +240,7 @@ USER_RECORD_KEYS = {
     'quiz_stats',
     'avatar',
     'name_color',
+    'hide_public_profile',
     'battle_wins',
     'battle_unlocked_notified',
     'friends',
@@ -453,6 +454,8 @@ def merge_user_record(current, incoming):
                 current[key] = dict(value)
         elif key == 'name_color':
             current[key] = value
+        elif key == 'hide_public_profile':
+            current[key] = bool(current.get(key, False) or value)
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
         elif key == 'battle_unlocked_notified' and isinstance(value, bool):
@@ -572,6 +575,8 @@ class AppState:
     timeline_items_per_page = 20
     users_page = 1
     users_items_per_page = 6
+    users_search_keyword = ''
+    users_favorite_country_key = None
     users_browser_restore_requested = False
     public_users_browser_synced = False
     public_collection_owner = None
@@ -1884,6 +1889,42 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_replace_redistribute_log': '已将{players}名玩家的{count}张手牌重新分配。',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'privacy_settings': '公開設定',
+    'hide_public_profile': 'ユーザー一覧・ランキングに表示しない',
+    'hide_public_profile_hint': 'オンにすると、他の人から見えるユーザー一覧、公開お気に入り、公開コレクション、ランキングから自分の情報を隠します。',
+    'public_visibility_saved': '公開設定を保存しました。',
+    'users_search': 'ユーザー検索',
+    'users_search_placeholder': 'ユーザー名で探す',
+    'favorite_country_filter': 'お気に入り国で絞り込み',
+    'clear_user_filters': '絞り込みを解除',
+    'no_user_search_results': '条件に合うユーザーはいません。',
+})
+
+UI_FALLBACKS.setdefault('en', {}).update({
+    'privacy_settings': 'Privacy',
+    'hide_public_profile': 'Hide me from user lists and rankings',
+    'hide_public_profile_hint': 'When enabled, your public user card, favorites, collections, and ranking entries are hidden from other users.',
+    'public_visibility_saved': 'Privacy setting saved.',
+    'users_search': 'Search users',
+    'users_search_placeholder': 'Search by username',
+    'favorite_country_filter': 'Filter by favorite country',
+    'clear_user_filters': 'Clear filters',
+    'no_user_search_results': 'No users match these filters.',
+})
+
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'privacy_settings': '公开设置',
+    'hide_public_profile': '不显示在用户列表和排行榜',
+    'hide_public_profile_hint': '开启后，其他用户看不到你的用户卡片、公开收藏、公开合集和排行榜记录。',
+    'public_visibility_saved': '公开设置已保存。',
+    'users_search': '搜索用户',
+    'users_search_placeholder': '按用户名搜索',
+    'favorite_country_filter': '按收藏国家筛选',
+    'clear_user_filters': '清除筛选',
+    'no_user_search_results': '没有符合条件的用户。',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -2249,6 +2290,7 @@ def ensure_user_defaults(user):
     normalize_quiz_stats(user)
     user['avatar'] = compact_avatar_record(user.get('avatar'))
     user['name_color'] = normalize_name_color(user.get('name_color'))
+    user['hide_public_profile'] = bool(user.get('hide_public_profile'))
     if not isinstance(user.get('battle_wins'), int):
         user['battle_wins'] = 0
     if not isinstance(user.get('battle_unlocked_notified'), bool):
@@ -2407,7 +2449,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'battle_wins', 'battle_unlocked_notified', 'friends', 'notifications'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked_notified', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -2492,13 +2534,19 @@ def public_user_backup_payload():
     lookup = public_countries_by_key()
     known_users = [
         username for username in user_data.get('known_users', [])
-        if username and not is_guest_record(username)
+        if (
+            username
+            and not is_guest_record(username)
+            and not (isinstance(users.get(username), dict) and users[username].get('hide_public_profile'))
+        )
     ]
     public_users = {}
     for username, record in users.items():
         if is_guest_record(username, record) or not isinstance(record, dict):
             continue
         ensure_user_defaults(record)
+        if record.get('hide_public_profile'):
+            continue
         avatar = dict(record.get('avatar', {})) if isinstance(record.get('avatar'), dict) else {'mode': 'default'}
         avatar.pop('data_url', None)
         collections = record.get('collections', {}) if isinstance(record.get('collections'), dict) else {}
@@ -2515,6 +2563,7 @@ def public_user_backup_payload():
             'review_keys': [key for key in record.get('review_keys', []) if key in lookup],
             'avatar': avatar,
             'name_color': user_name_color(record),
+            'hide_public_profile': bool(record.get('hide_public_profile')),
             'battle_wins': int(record.get('battle_wins', 0) or 0),
             'battle_unlocked_notified': bool(record.get('battle_unlocked_notified')),
             'friends': [
@@ -3058,6 +3107,19 @@ def set_current_name_color(color_value):
     user['name_color'] = normalize_name_color(color_value)
     persist_current_user_data(user_data)
     ui.notify(t('name_color_saved'), color='positive')
+    refresh_current_screen()
+    return True
+
+def set_current_public_visibility(hidden):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return False
+    user['hide_public_profile'] = bool(hidden)
+    persist_current_user_data(user_data, immediate_browser=True)
+    state.public_users_browser_synced = False
+    ui.notify(t('public_visibility_saved'), color='positive')
     refresh_current_screen()
     return True
 
@@ -3967,6 +4029,9 @@ def current_avatar_country_label(user=None):
     _, key_to_label = flag_avatar_option_maps()
     return key_to_label.get(avatar.get('country_key'))
 
+def is_public_profile_hidden(record):
+    return isinstance(record, dict) and bool(record.get('hide_public_profile'))
+
 def public_user_profiles():
     user_data = load_user_data()
     users = get_users(user_data)
@@ -3982,6 +4047,8 @@ def public_user_profiles():
         if not isinstance(record, dict):
             record = {}
         ensure_user_defaults(record)
+        if is_public_profile_hidden(record):
+            continue
         favorites = [key for key in record.get('favorites', []) if key in lookup]
         viewed = [key for key in record.get('viewed_keys', []) if key in lookup]
         review = [key for key in record.get('review_keys', []) if key in lookup]
@@ -4755,6 +4822,9 @@ def quiz_ranking_profiles(category):
     rows = []
     for username, record in users.items():
         if is_guest_record(username, record) or not isinstance(record, dict):
+            continue
+        ensure_user_defaults(record)
+        if is_public_profile_hidden(record):
             continue
         stats = quiz_stats_for_ranking(record, category)
         if category != 'overall' and stats['answered'] <= 0:
@@ -9685,6 +9755,46 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             render_users_page_button('chevron_right', 'next_page', state.users_page + 1, next_disabled)
             render_users_page_button('last_page', 'last_page', total_pages, next_disabled)
 
+    def users_favorite_country_label():
+        _, key_to_label = country_option_maps()
+        return key_to_label.get(state.users_favorite_country_key)
+
+    def set_users_search_keyword(value):
+        state.users_search_keyword = str(value or '').strip()
+        state.users_page = 1
+        refresh_users_view()
+
+    def set_users_favorite_country(label):
+        label_to_key, _ = country_option_maps()
+        state.users_favorite_country_key = label_to_key.get(label) if label else None
+        state.users_page = 1
+        refresh_users_view()
+
+    def clear_users_filters():
+        state.users_search_keyword = ''
+        state.users_favorite_country_key = None
+        state.users_page = 1
+        refresh_users_view()
+
+    def filter_public_user_profiles(profiles):
+        keyword = str(state.users_search_keyword or '').strip().casefold()
+        favorite_key = state.users_favorite_country_key
+        if favorite_key and favorite_key not in public_countries_by_key():
+            favorite_key = None
+            state.users_favorite_country_key = None
+        filtered = list(profiles)
+        if keyword:
+            filtered = [
+                profile for profile in filtered
+                if keyword in str(profile.get('username', '')).casefold()
+            ]
+        if favorite_key:
+            filtered = [
+                profile for profile in filtered
+                if favorite_key in profile.get('favorites', [])
+            ]
+        return filtered
+
     def refresh_users_view():
         restore_started = False
         if not state.users_browser_restore_requested:
@@ -9707,8 +9817,30 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                 ui.label(t('public_users_notice')).classes('text-sm text-gray-500')
                 ui.button(t('users_restore_browser'), icon='cloud_sync', on_click=restore_browser_users_for_list) \
                     .props('outline color=primary dense')
-            profiles = public_user_profiles()
-            if profiles and not state.public_users_browser_synced:
+            raw_profiles = public_user_profiles()
+            with ui.card().classes('w-full p-4 gap-3 bg-blue-50 border border-blue-100'):
+                ui.label(t('users_search')).classes('text-sm font-bold text-blue-800')
+                label_to_key, _ = country_option_maps()
+                country_options = list(label_to_key.keys())
+                with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
+                    ui.input(
+                        label=t('users_search'),
+                        placeholder=t('users_search_placeholder'),
+                        value=state.users_search_keyword,
+                        on_change=lambda e: set_users_search_keyword(e.value),
+                    ).props('outlined dense clearable').classes('w-full' if is_mobile_ui() else 'flex-grow')
+                    ui.select(
+                        country_options,
+                        value=users_favorite_country_label(),
+                        label=t('favorite_country_filter'),
+                        on_change=lambda e: set_users_favorite_country(e.value),
+                        clearable=True,
+                    ).props('outlined dense use-input input-debounce=0').classes('w-full' if is_mobile_ui() else 'flex-grow')
+                    ui.button(t('clear_user_filters'), icon='filter_alt_off', on_click=clear_users_filters) \
+                        .props('outline color=primary dense') \
+                        .classes('w-full' if is_mobile_ui() else '')
+            profiles = filter_public_user_profiles(raw_profiles)
+            if raw_profiles and not state.public_users_browser_synced:
                 ui.timer(2.4 if restore_started else 0.4, sync_public_users_to_browser, once=True)
             total_count = len(profiles)
             total_pages = max(1, (total_count + state.users_items_per_page - 1) // state.users_items_per_page)
@@ -9717,7 +9849,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             end_index = min(start_index + state.users_items_per_page, total_count)
             display_profiles = profiles[start_index:end_index]
             if not profiles:
-                ui.label(t('no_users')).classes('text-gray-500')
+                ui.label(t('no_user_search_results') if raw_profiles else t('no_users')).classes('text-gray-500')
                 return
             ui.label(f'{t("users_count")}: {start_index + 1}-{end_index} / {total_count}') \
                 .classes('text-sm text-gray-500 font-bold')
@@ -10824,6 +10956,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             ).props('flat round dense') \
                                 .classes('shadow-sm border border-gray-300') \
                                 .style(f'background-color: {color_option}; width: 2rem; height: 2rem; min-width: 2rem;')
+                with ui.column().classes('w-full gap-2 border-t border-gray-200 pt-4'):
+                    ui.label(t('privacy_settings')).classes('text-sm font-bold text-gray-700')
+                    ui.switch(
+                        t('hide_public_profile'),
+                        value=bool(user.get('hide_public_profile')),
+                        on_change=lambda e: set_current_public_visibility(e.value),
+                    ).props('color=primary')
+                    ui.label(t('hide_public_profile_hint')).classes('text-xs text-gray-500')
                 if state.current_user == GUEST_USERNAME:
                     ui.label(t('cannot_manage_guest')).classes('text-sm text-gray-500')
                 else:
