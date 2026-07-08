@@ -47247,6 +47247,3872 @@
         "Oman",
         "Kilwa Sultanate"
       ]
+    },
+    {
+      "names": {
+        "ja": "グレコ・バクトリア王国",
+        "en": "Greco-Bactrian Kingdom",
+        "zh": "希腊-巴克特里亚王国"
+      },
+      "capital": {
+        "ja": "バクトラ",
+        "en": "Bactra",
+        "zh": "巴克特拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Kingdom",
+        "Hellenistic State",
+        "Hellenistic Culture",
+        "Silk Road",
+        "Trade Hub",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "バクトリアに成立したヘレニズム王国。ギリシア文化と中央アジア世界が交差した国家として重要である。",
+        "en": "A Hellenistic kingdom in Bactria, important as a meeting point of Greek culture and Central Asia.",
+        "zh": "位于巴克特里亚的希腊化王国，是希腊文化与中亚世界交汇的重要国家。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -256,
+        "end": -125,
+        "label": {
+          "ja": "紀元前256年頃〜紀元前125年頃",
+          "en": "c. 256 BCE-c. 125 BCE",
+          "zh": "约公元前256年—约公元前125年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約800,000 km²",
+          "en": "maximum extent estimate: about 800,000 km²",
+          "zh": "最大领域估计：约800,000 km²"
+        },
+        "languages": {
+          "ja": "ギリシア語、バクトリア語、イラン系諸語",
+          "en": "Greek, Bactrian, and Iranian languages",
+          "zh": "希腊语、巴克特里亚语、伊朗语族语言"
+        },
+        "religions": {
+          "ja": "ギリシア宗教、仏教、ゾロアスター教",
+          "en": "Greek religion, Buddhism, and Zoroastrianism",
+          "zh": "希腊宗教、佛教、祆教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "グレコ・バクトリア王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Greco-Bactrian Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "希腊-巴克特里亚王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前256年頃〜紀元前125年頃に活動し、ヘレニズム文化、シルクロード、中央アジア交易を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 256 BCE-c. 125 BCE, it influenced regional politics, religion, and trade through Hellenistic culture, Silk Road trade, Central Asian exchange.",
+          "zh": "活跃于约公元前256年—约公元前125年，并通过希腊化文化、丝绸之路、中亚交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "遊牧勢力の圧力と内部分裂で衰退した。",
+          "en": "Nomadic pressure and internal fragmentation weakened it.",
+          "zh": "游牧势力压力和内部分裂使其衰落。"
+        },
+        "successors": {
+          "ja": "インド・グリーク王国やクシャーナ朝前史につながる。",
+          "en": "It connects with the Indo-Greek Kingdom and the prehistory of the Kushan Empire.",
+          "zh": "与印度-希腊王国和贵霜帝国前史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はギリシア語、バクトリア語、イラン系諸語、宗教はギリシア宗教、仏教、ゾロアスター教と関係が深い。ヘレニズム文化、シルクロード、中央アジア交易を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Greek, Bactrian, and Iranian languages and Greek religion, Buddhism, and Zoroastrianism. The themes Hellenistic culture, Silk Road trade, Central Asian exchange are useful for understanding it.",
+          "zh": "其文化与希腊语、巴克特里亚语、伊朗语族语言和希腊宗教、佛教、祆教关系密切。可从希腊化文化、丝绸之路、中亚交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Seleucid Empire",
+        "Kushan Empire",
+        "Indo-Greek Kingdom"
+      ]
+    },
+    {
+      "names": {
+        "ja": "インド・グリーク王国",
+        "en": "Indo-Greek Kingdom",
+        "zh": "印度-希腊王国"
+      },
+      "capital": {
+        "ja": "タキシラ",
+        "en": "Taxila",
+        "zh": "塔克西拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Hellenistic State",
+        "Buddhist Sphere",
+        "Silk Road",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "北西インドに成立したヘレニズム系王国。ギリシア文化と仏教文化の交流で重要である。",
+        "en": "A Hellenistic kingdom in northwestern India, important for Greek-Buddhist cultural exchange.",
+        "zh": "位于印度西北部的希腊化王国，以希腊文化与佛教文化交流重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -200,
+        "end": 10,
+        "label": {
+          "ja": "紀元前200年頃〜10年頃",
+          "en": "c. 200 BCE-c. 10 CE",
+          "zh": "约公元前200年—约10年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約150万人",
+          "en": "peak estimate: about 1.5 million",
+          "zh": "鼎盛期估计：约150万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "ギリシア語、プラークリット、ガンダーラ語",
+          "en": "Greek, Prakrits, and Gandhari",
+          "zh": "希腊语、普拉克里特语、犍陀罗语"
+        },
+        "religions": {
+          "ja": "仏教、ギリシア宗教、ヒンドゥー教",
+          "en": "Buddhism, Greek religion, and Hinduism",
+          "zh": "佛教、希腊宗教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "インド・グリーク王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Indo-Greek Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "印度-希腊王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前200年頃〜10年頃に活動し、ガンダーラ文化、ヘレニズム、仏教交流を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 200 BCE-c. 10 CE, it influenced regional politics, religion, and trade through Gandharan culture, Hellenism, Buddhist exchange.",
+          "zh": "活跃于约公元前200年—约10年，并通过犍陀罗文化、希腊化、佛教交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "インド・スキタイやクシャーナ勢力の台頭で吸収された。",
+          "en": "It was absorbed as Indo-Scythian and Kushan powers rose.",
+          "zh": "随着印度-斯基泰和贵霜势力兴起而被吸收。"
+        },
+        "successors": {
+          "ja": "クシャーナ朝、ガンダーラ美術、北西インド史に影響した。",
+          "en": "It influenced the Kushans, Gandharan art, and northwestern Indian history.",
+          "zh": "影响了贵霜、犍陀罗艺术和印度西北史。"
+        },
+        "cultural_features": {
+          "ja": "言語はギリシア語、プラークリット、ガンダーラ語、宗教は仏教、ギリシア宗教、ヒンドゥー教と関係が深い。ガンダーラ文化、ヘレニズム、仏教交流を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Greek, Prakrits, and Gandhari and Buddhism, Greek religion, and Hinduism. The themes Gandharan culture, Hellenism, Buddhist exchange are useful for understanding it.",
+          "zh": "其文化与希腊语、普拉克里特语、犍陀罗语和佛教、希腊宗教、印度教关系密切。可从犍陀罗文化、希腊化、佛教交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Greco-Bactrian Kingdom",
+        "Kushan Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "インド・スキタイ王国",
+        "en": "Indo-Scythian Kingdom",
+        "zh": "印度-斯基泰王国"
+      },
+      "capital": {
+        "ja": "シルカップ",
+        "en": "Sirkap",
+        "zh": "锡尔卡普"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Nomadic Power",
+        "Silk Road",
+        "Horse Archer Tradition",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "サカ系遊牧勢力が北西インドで築いた王国。草原世界とインド世界の接続で重要である。",
+        "en": "A Saka-Scythian kingdom in northwestern India, important for linking steppe and Indian worlds.",
+        "zh": "萨迦-斯基泰人在印度西北建立的王国，是草原世界与印度世界连接的重要例子。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -150,
+        "end": 400,
+        "label": {
+          "ja": "紀元前150年頃〜400年頃",
+          "en": "c. 150 BCE-c. 400 CE",
+          "zh": "约公元前150年—约400年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約800,000 km²",
+          "en": "maximum extent estimate: about 800,000 km²",
+          "zh": "最大领域估计：约800,000 km²"
+        },
+        "languages": {
+          "ja": "サカ語、プラークリット、ギリシア語",
+          "en": "Saka, Prakrits, and Greek",
+          "zh": "塞语、普拉克里特语、希腊语"
+        },
+        "religions": {
+          "ja": "仏教、ヒンドゥー教、ゾロアスター教",
+          "en": "Buddhism, Hinduism, and Zoroastrianism",
+          "zh": "佛教、印度教、祆教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "インド・スキタイ王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Indo-Scythian Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "印度-斯基泰王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前150年頃〜400年頃に活動し、遊牧王権、シルクロード、北西インド支配を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 150 BCE-c. 400 CE, it influenced regional politics, religion, and trade through nomadic kingship, Silk Road trade, northwestern Indian rule.",
+          "zh": "活跃于约公元前150年—约400年，并通过游牧王权、丝绸之路、印度西北统治影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "クシャーナ朝やグプタ朝などの勢力に吸収された。",
+          "en": "It was absorbed by powers such as the Kushans and Guptas.",
+          "zh": "被贵霜、笈多等势力吸收。"
+        },
+        "successors": {
+          "ja": "西クシャトラパや北西インドの諸王朝に関係する。",
+          "en": "It connects with the Western Satraps and later northwestern Indian dynasties.",
+          "zh": "与西部总督和后来的印度西北诸王朝相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はサカ語、プラークリット、ギリシア語、宗教は仏教、ヒンドゥー教、ゾロアスター教と関係が深い。遊牧王権、シルクロード、北西インド支配を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Saka, Prakrits, and Greek and Buddhism, Hinduism, and Zoroastrianism. The themes nomadic kingship, Silk Road trade, northwestern Indian rule are useful for understanding it.",
+          "zh": "其文化与塞语、普拉克里特语、希腊语和佛教、印度教、祆教关系密切。可从游牧王权、丝绸之路、印度西北统治等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Kushan Empire",
+        "Western Satraps",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "インド・パルティア王国",
+        "en": "Indo-Parthian Kingdom",
+        "zh": "印度-帕提亚王国"
+      },
+      "capital": {
+        "ja": "タキシラ",
+        "en": "Taxila",
+        "zh": "塔克西拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Persianate Culture",
+        "Silk Road",
+        "Trade Hub",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "パルティア系勢力が北西インドに築いた王国。イラン文化とインド文化の交流で重要である。",
+        "en": "A Parthian-linked kingdom in northwestern India, important for Iranian-Indian cultural exchange.",
+        "zh": "帕提亚系势力在印度西北建立的王国，以伊朗与印度文化交流重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 19,
+        "end": 226,
+        "label": {
+          "ja": "19年頃〜226年頃",
+          "en": "c. 19-c. 226",
+          "zh": "约19年—约226年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "パルティア語、プラークリット、ギリシア語",
+          "en": "Parthian, Prakrits, and Greek",
+          "zh": "帕提亚语、普拉克里特语、希腊语"
+        },
+        "religions": {
+          "ja": "仏教、ゾロアスター教、ヒンドゥー教",
+          "en": "Buddhism, Zoroastrianism, and Hinduism",
+          "zh": "佛教、祆教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "インド・パルティア王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Indo-Parthian Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "印度-帕提亚王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "19年頃〜226年頃に活動し、イラン文化、北西インド交易、ガンダーラを通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 19-c. 226, it influenced regional politics, religion, and trade through Iranian culture, northwestern Indian trade, Gandhara.",
+          "zh": "活跃于约19年—约226年，并通过伊朗文化、印度西北贸易、犍陀罗影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "クシャーナ朝の拡大により政治的中心を失った。",
+          "en": "Kushan expansion displaced its political centers.",
+          "zh": "贵霜扩张使其失去政治中心。"
+        },
+        "successors": {
+          "ja": "クシャーナ朝とガンダーラ文化に接続する。",
+          "en": "It connects with the Kushan Empire and Gandharan culture.",
+          "zh": "与贵霜帝国和犍陀罗文化相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はパルティア語、プラークリット、ギリシア語、宗教は仏教、ゾロアスター教、ヒンドゥー教と関係が深い。イラン文化、北西インド交易、ガンダーラを軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Parthian, Prakrits, and Greek and Buddhism, Zoroastrianism, and Hinduism. The themes Iranian culture, northwestern Indian trade, Gandhara are useful for understanding it.",
+          "zh": "其文化与帕提亚语、普拉克里特语、希腊语和佛教、祆教、印度教关系密切。可从伊朗文化、印度西北贸易、犍陀罗等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Parthian Empire",
+        "Kushan Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "西クシャトラパ",
+        "en": "Western Satraps",
+        "zh": "西部总督"
+      },
+      "capital": {
+        "ja": "ウッジャイン",
+        "en": "Ujjain",
+        "zh": "乌贾因"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Trade Hub",
+        "Indian Ocean Trade",
+        "Indic Civilization",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "西インドに成立したサカ系王朝。インド洋交易とグプタ朝以前の地域秩序で重要である。",
+        "en": "A Saka dynasty in western India, important for Indian Ocean trade and pre-Gupta regional politics.",
+        "zh": "西印度的萨迦系王朝，对印度洋贸易和笈多以前的地区秩序重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 35,
+        "end": 415,
+        "label": {
+          "ja": "35年頃〜415年頃",
+          "en": "c. 35-c. 415",
+          "zh": "约35年—约415年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット語、プラークリット、サカ語",
+          "en": "Sanskrit, Prakrits, and Saka",
+          "zh": "梵语、普拉克里特语、塞语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、ジャイナ教",
+          "en": "Hinduism, Buddhism, and Jainism",
+          "zh": "印度教、佛教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "西クシャトラパでは、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Western Satraps, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "西部总督的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "35年頃〜415年頃に活動し、西インド交易、サカ王権、インド洋交流を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 35-c. 415, it influenced regional politics, religion, and trade through western Indian trade, Saka kingship, Indian Ocean exchange.",
+          "zh": "活跃于约35年—约415年，并通过西印度贸易、萨迦王权、印度洋交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "グプタ朝の西進により征服された。",
+          "en": "It was conquered as the Gupta Empire expanded westward.",
+          "zh": "随着笈多帝国向西扩张而被征服。"
+        },
+        "successors": {
+          "ja": "グプタ朝と西インドの地域王朝に関係する。",
+          "en": "It connects with the Guptas and later western Indian dynasties.",
+          "zh": "与笈多王朝和后来的西印度王朝相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット語、プラークリット、サカ語、宗教はヒンドゥー教、仏教、ジャイナ教と関係が深い。西インド交易、サカ王権、インド洋交流を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Sanskrit, Prakrits, and Saka and Hinduism, Buddhism, and Jainism. The themes western Indian trade, Saka kingship, Indian Ocean exchange are useful for understanding it.",
+          "zh": "其文化与梵语、普拉克里特语、塞语和印度教、佛教、耆那教关系密切。可从西印度贸易、萨迦王权、印度洋交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Gupta Empire",
+        "Indo-Scythian Kingdom",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "シュンガ朝",
+        "en": "Shunga Empire",
+        "zh": "巽伽王朝"
+      },
+      "capital": {
+        "ja": "パータリプトラ",
+        "en": "Pataliputra",
+        "zh": "华氏城"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Indic Civilization",
+        "Hindu Sphere",
+        "Buddhist Sphere",
+        "Dynastic State"
+      ],
+      "desc": {
+        "ja": "マウリヤ朝後の北インドを支配した王朝。古代インドの宗教・政治再編で重要である。",
+        "en": "A dynasty ruling northern India after the Mauryas, important for ancient Indian religious and political reorganization.",
+        "zh": "孔雀王朝之后统治北印度的王朝，对古印度宗教和政治重组重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -185,
+        "end": -73,
+        "label": {
+          "ja": "紀元前185年頃〜紀元前73年頃",
+          "en": "c. 185 BCE-c. 73 BCE",
+          "zh": "约公元前185年—约公元前73年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1,000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1,000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,000,000 km²",
+          "en": "maximum extent estimate: about 1,000,000 km²",
+          "zh": "最大领域估计：约1,000,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット語、プラークリット",
+          "en": "Sanskrit and Prakrits",
+          "zh": "梵语、普拉克里特语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、ジャイナ教",
+          "en": "Hinduism, Buddhism, and Jainism",
+          "zh": "印度教、佛教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "シュンガ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Shunga Empire, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "巽伽王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前185年頃〜紀元前73年頃に活動し、マウリヤ後継、北インド政治、宗教文化を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 185 BCE-c. 73 BCE, it influenced regional politics, religion, and trade through post-Mauryan succession, north Indian politics, religious culture.",
+          "zh": "活跃于约公元前185年—约公元前73年，并通过孔雀之后的继承、北印度政治、宗教文化影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "王朝交代によりカーンヴァ朝へ移った。",
+          "en": "Dynastic change transferred power to the Kanva Dynasty.",
+          "zh": "王朝更替后权力转至甘婆王朝。"
+        },
+        "successors": {
+          "ja": "カーンヴァ朝、サータヴァーハナ朝、北インド諸王朝に関係する。",
+          "en": "It connects with the Kanvas, Satavahanas, and north Indian dynasties.",
+          "zh": "与甘婆王朝、百乘王朝和北印度诸王朝相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット語、プラークリット、宗教はヒンドゥー教、仏教、ジャイナ教と関係が深い。マウリヤ後継、北インド政治、宗教文化を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Sanskrit and Prakrits and Hinduism, Buddhism, and Jainism. The themes post-Mauryan succession, north Indian politics, religious culture are useful for understanding it.",
+          "zh": "其文化与梵语、普拉克里特语和印度教、佛教、耆那教关系密切。可从孔雀之后的继承、北印度政治、宗教文化等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Maurya Empire",
+        "Kanva Dynasty",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カーンヴァ朝",
+        "en": "Kanva Dynasty",
+        "zh": "甘婆王朝"
+      },
+      "capital": {
+        "ja": "パータリプトラ",
+        "en": "Pataliputra",
+        "zh": "华氏城"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Indic Civilization",
+        "Hindu Sphere",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "シュンガ朝後に北インドを支配した短命王朝。古代インドの王朝交代を理解する上で重要である。",
+        "en": "A short-lived dynasty after the Shungas, important for understanding ancient Indian dynastic transition.",
+        "zh": "巽伽王朝之后统治北印度的短命王朝，对理解古印度王朝更替重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -73,
+        "end": -28,
+        "label": {
+          "ja": "紀元前73年頃〜紀元前28年頃",
+          "en": "c. 73 BCE-c. 28 BCE",
+          "zh": "约公元前73年—约公元前28年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット語、プラークリット",
+          "en": "Sanskrit and Prakrits",
+          "zh": "梵语、普拉克里特语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教",
+          "en": "Hinduism and Buddhism",
+          "zh": "印度教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カーンヴァ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kanva Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "甘婆王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前73年頃〜紀元前28年頃に活動し、北インド王朝、マウリヤ後の政治再編を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 73 BCE-c. 28 BCE, it influenced regional politics, religion, and trade through north Indian dynasty, post-Mauryan political reorganization.",
+          "zh": "活跃于约公元前73年—约公元前28年，并通过北印度王朝、孔雀之后的政治重组影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "サータヴァーハナ朝など周辺勢力に圧迫され消滅した。",
+          "en": "Pressure from powers such as the Satavahanas ended the dynasty.",
+          "zh": "受到百乘王朝等周边势力压力而消亡。"
+        },
+        "successors": {
+          "ja": "サータヴァーハナ朝や地域王朝の台頭につながる。",
+          "en": "It connects with the rise of the Satavahanas and regional dynasties.",
+          "zh": "与百乘王朝和地区王朝兴起相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット語、プラークリット、宗教はヒンドゥー教、仏教と関係が深い。北インド王朝、マウリヤ後の政治再編を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Sanskrit and Prakrits and Hinduism and Buddhism. The themes north Indian dynasty, post-Mauryan political reorganization are useful for understanding it.",
+          "zh": "其文化与梵语、普拉克里特语和印度教、佛教关系密切。可从北印度王朝、孔雀之后的政治重组等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Shunga Empire",
+        "Satavahana Dynasty",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "チェーラ朝",
+        "en": "Chera Dynasty",
+        "zh": "哲罗王朝"
+      },
+      "capital": {
+        "ja": "ヴァンジ",
+        "en": "Vanchi",
+        "zh": "万吉"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Indian Ocean Trade",
+        "Maritime Power",
+        "Hindu Sphere",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "南インド西岸のタミル系王朝。香辛料交易、ローマ交易、南インド文化で重要である。",
+        "en": "A Tamil dynasty on India's southwest coast, important for spice trade, Roman trade, and south Indian culture.",
+        "zh": "印度西南海岸的泰米尔王朝，以香料贸易、罗马贸易和南印度文化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -300,
+        "end": 1102,
+        "label": {
+          "ja": "紀元前3世紀頃〜1102年頃",
+          "en": "c. 3rd century BCE-c. 1102",
+          "zh": "约公元前3世纪—约1102年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "タミル語、マラヤーラム語、サンスクリット語",
+          "en": "Tamil, Malayalam, and Sanskrit",
+          "zh": "泰米尔语、马拉雅拉姆语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教、仏教",
+          "en": "Hinduism, Jainism, and Buddhism",
+          "zh": "印度教、耆那教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "チェーラ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Chera Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "哲罗王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前3世紀頃〜1102年頃に活動し、香辛料交易、インド洋交流、南インド王権を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 3rd century BCE-c. 1102, it influenced regional politics, religion, and trade through spice trade, Indian Ocean exchange, south Indian kingship.",
+          "zh": "活跃于约公元前3世纪—约1102年，并通过香料贸易、印度洋交流、南印度王权影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "チョーラ朝や地域勢力との競合で再編された。",
+          "en": "Competition with the Cholas and regional powers reorganized it.",
+          "zh": "与朱罗等地区势力竞争后被重组。"
+        },
+        "successors": {
+          "ja": "ケーララの地域王権と南インド交易史につながる。",
+          "en": "It connects with Kerala's regional polities and south Indian trade history.",
+          "zh": "与喀拉拉地区王权和南印度贸易史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はタミル語、マラヤーラム語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教、仏教と関係が深い。香辛料交易、インド洋交流、南インド王権を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Tamil, Malayalam, and Sanskrit and Hinduism, Jainism, and Buddhism. The themes spice trade, Indian Ocean exchange, south Indian kingship are useful for understanding it.",
+          "zh": "其文化与泰米尔语、马拉雅拉姆语、梵语和印度教、耆那教、佛教关系密切。可从香料贸易、印度洋交流、南印度王权等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Chola Empire",
+        "Pandya Dynasty",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "パッラヴァ朝",
+        "en": "Pallava Dynasty",
+        "zh": "帕拉瓦王朝"
+      },
+      "capital": {
+        "ja": "カーンチープラム",
+        "en": "Kanchipuram",
+        "zh": "甘吉布勒姆"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Indian Ocean Trade",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "南インドの王朝。寺院建築、サンスクリット文化、東南アジアへの文化伝播で重要である。",
+        "en": "A south Indian dynasty important for temple architecture, Sanskrit culture, and cultural transmission to Southeast Asia.",
+        "zh": "南印度王朝，以寺庙建筑、梵语文化和向东南亚的文化传播重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 275,
+        "end": 897,
+        "label": {
+          "ja": "275年頃〜897年頃",
+          "en": "c. 275-c. 897",
+          "zh": "约275年—约897年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約400万人",
+          "en": "peak estimate: about 4 million",
+          "zh": "鼎盛期估计：约400万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "タミル語、サンスクリット語、プラークリット",
+          "en": "Tamil, Sanskrit, and Prakrits",
+          "zh": "泰米尔语、梵语、普拉克里特语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教、仏教",
+          "en": "Hinduism, Jainism, and Buddhism",
+          "zh": "印度教、耆那教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "パッラヴァ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Pallava Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "帕拉瓦王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "275年頃〜897年頃に活動し、寺院建築、南インド文化、東南アジア交流を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 275-c. 897, it influenced regional politics, religion, and trade through temple architecture, south Indian culture, Southeast Asian exchange.",
+          "zh": "活跃于约275年—约897年，并通过寺庙建筑、南印度文化、东南亚交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "チョーラ朝など周辺勢力の台頭で衰退した。",
+          "en": "The rise of powers such as the Cholas weakened it.",
+          "zh": "朱罗等周边势力兴起使其衰落。"
+        },
+        "successors": {
+          "ja": "チョーラ朝、東南アジアのインド化文化に影響した。",
+          "en": "It influenced the Cholas and Indianized cultures of Southeast Asia.",
+          "zh": "影响了朱罗王朝和东南亚印度化文化。"
+        },
+        "cultural_features": {
+          "ja": "言語はタミル語、サンスクリット語、プラークリット、宗教はヒンドゥー教、ジャイナ教、仏教と関係が深い。寺院建築、南インド文化、東南アジア交流を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Tamil, Sanskrit, and Prakrits and Hinduism, Jainism, and Buddhism. The themes temple architecture, south Indian culture, Southeast Asian exchange are useful for understanding it.",
+          "zh": "其文化与泰米尔语、梵语、普拉克里特语和印度教、耆那教、佛教关系密切。可从寺庙建筑、南印度文化、东南亚交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Chola Empire",
+        "India",
+        "Khmer Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カダンバ朝",
+        "en": "Kadamba Dynasty",
+        "zh": "迦丹巴王朝"
+      },
+      "capital": {
+        "ja": "バナヴァシ",
+        "en": "Banavasi",
+        "zh": "巴纳瓦西"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "カルナータカ地方の古代王朝。カンナダ語文化とデカン地方の地域王権で重要である。",
+        "en": "An ancient dynasty of Karnataka, important for Kannada culture and regional rule in the Deccan.",
+        "zh": "卡纳塔克地区古代王朝，对卡纳达文化和德干地区王权重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 345,
+        "end": 540,
+        "label": {
+          "ja": "345年頃〜540年頃",
+          "en": "c. 345-c. 540",
+          "zh": "约345年—约540年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "カンナダ語、サンスクリット語",
+          "en": "Kannada and Sanskrit",
+          "zh": "卡纳达语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教",
+          "en": "Hinduism and Jainism",
+          "zh": "印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カダンバ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kadamba Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "迦丹巴王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "345年頃〜540年頃に活動し、カンナダ文化、デカン政治、地域王朝を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 345-c. 540, it influenced regional politics, religion, and trade through Kannada culture, Deccan politics, regional dynasty.",
+          "zh": "活跃于约345年—约540年，并通过卡纳达文化、德干政治、地区王朝影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "チャールキヤ朝などの勢力に従属した。",
+          "en": "It became subordinate to powers such as the Chalukyas.",
+          "zh": "逐渐从属于遮娄其等势力。"
+        },
+        "successors": {
+          "ja": "チャールキヤ朝やホイサラ朝の地域史に関係する。",
+          "en": "It connects with the Chalukyas and Hoysala regional history.",
+          "zh": "与遮娄其和曷萨拉地区史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はカンナダ語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教と関係が深い。カンナダ文化、デカン政治、地域王朝を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Kannada and Sanskrit and Hinduism and Jainism. The themes Kannada culture, Deccan politics, regional dynasty are useful for understanding it.",
+          "zh": "其文化与卡纳达语、梵语和印度教、耆那教关系密切。可从卡纳达文化、德干政治、地区王朝等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Chalukya Dynasty",
+        "Hoysala Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "チャールキヤ朝",
+        "en": "Chalukya Dynasty",
+        "zh": "遮娄其王朝"
+      },
+      "capital": {
+        "ja": "バーダーミ",
+        "en": "Badami",
+        "zh": "巴达米"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Medieval Dynasty",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "デカン地方の有力王朝。南北インドを結ぶ政治と寺院建築で重要である。",
+        "en": "A powerful Deccan dynasty, important for politics linking north and south India and temple architecture.",
+        "zh": "德干地区强大王朝，对连接南北印度的政治和寺庙建筑重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 543,
+        "end": 753,
+        "label": {
+          "ja": "543年頃〜753年",
+          "en": "c. 543-753",
+          "zh": "约543年—753年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約700,000 km²",
+          "en": "maximum extent estimate: about 700,000 km²",
+          "zh": "最大领域估计：约700,000 km²"
+        },
+        "languages": {
+          "ja": "カンナダ語、サンスクリット語",
+          "en": "Kannada and Sanskrit",
+          "zh": "卡纳达语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教、仏教",
+          "en": "Hinduism, Jainism, and Buddhism",
+          "zh": "印度教、耆那教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "チャールキヤ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Chalukya Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "遮娄其王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "543年頃〜753年に活動し、デカン支配、寺院建築、南北インド交流を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 543-753, it influenced regional politics, religion, and trade through Deccan rule, temple architecture, north-south Indian exchange.",
+          "zh": "活跃于约543年—753年，并通过德干统治、寺庙建筑、南北印度交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ラーシュトラクータ朝の台頭で勢力を失った。",
+          "en": "The rise of the Rashtrakutas displaced it.",
+          "zh": "罗湿陀罗拘陀兴起使其失势。"
+        },
+        "successors": {
+          "ja": "西チャールキヤ朝、東チャールキヤ朝、ラーシュトラクータ朝に関係する。",
+          "en": "It connects with the Western and Eastern Chalukyas and the Rashtrakutas.",
+          "zh": "与西遮娄其、东遮娄其和罗湿陀罗拘陀相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はカンナダ語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教、仏教と関係が深い。デカン支配、寺院建築、南北インド交流を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Kannada and Sanskrit and Hinduism, Jainism, and Buddhism. The themes Deccan rule, temple architecture, north-south Indian exchange are useful for understanding it.",
+          "zh": "其文化与卡纳达语、梵语和印度教、耆那教、佛教关系密切。可从德干统治、寺庙建筑、南北印度交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Rashtrakuta Empire",
+        "Western Chalukya Empire",
+        "Eastern Chalukyas"
+      ]
+    },
+    {
+      "names": {
+        "ja": "西チャールキヤ朝",
+        "en": "Western Chalukya Empire",
+        "zh": "西遮娄其王朝"
+      },
+      "capital": {
+        "ja": "カリヤーニ",
+        "en": "Kalyani",
+        "zh": "迦梨耶尼"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Medieval Dynasty",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "デカン西部の中世王朝。チョーラ朝との抗争とカンナダ文化の発展で重要である。",
+        "en": "A medieval western Deccan dynasty, important for rivalry with the Cholas and Kannada culture.",
+        "zh": "德干西部中世纪王朝，以与朱罗竞争和卡纳达文化发展重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 973,
+        "end": 1189,
+        "label": {
+          "ja": "973年頃〜1189年",
+          "en": "c. 973-1189",
+          "zh": "约973年—1189年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約600万人",
+          "en": "peak estimate: about 6 million",
+          "zh": "鼎盛期估计：约600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約600,000 km²",
+          "en": "maximum extent estimate: about 600,000 km²",
+          "zh": "最大领域估计：约600,000 km²"
+        },
+        "languages": {
+          "ja": "カンナダ語、サンスクリット語",
+          "en": "Kannada and Sanskrit",
+          "zh": "卡纳达语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教",
+          "en": "Hinduism and Jainism",
+          "zh": "印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "西チャールキヤ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Western Chalukya Empire, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "西遮娄其王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "973年頃〜1189年に活動し、デカン政治、チョーラ朝との競合、寺院文化を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 973-1189, it influenced regional politics, religion, and trade through Deccan politics, rivalry with the Cholas, temple culture.",
+          "zh": "活跃于约973年—1189年，并通过德干政治、与朱罗竞争、寺庙文化影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "地方勢力の自立とホイサラ朝などの台頭で分裂した。",
+          "en": "Regional autonomy and the rise of powers such as the Hoysalas fragmented it.",
+          "zh": "地方势力独立和曷萨拉等势力兴起使其分裂。"
+        },
+        "successors": {
+          "ja": "ホイサラ朝、ヤーダヴァ朝、南インド諸王朝に関係する。",
+          "en": "It connects with the Hoysalas, Yadavas, and south Indian dynasties.",
+          "zh": "与曷萨拉、雅达瓦和南印度诸王朝相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はカンナダ語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教と関係が深い。デカン政治、チョーラ朝との競合、寺院文化を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Kannada and Sanskrit and Hinduism and Jainism. The themes Deccan politics, rivalry with the Cholas, temple culture are useful for understanding it.",
+          "zh": "其文化与卡纳达语、梵语和印度教、耆那教关系密切。可从德干政治、与朱罗竞争、寺庙文化等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Chalukya Dynasty",
+        "Hoysala Empire",
+        "Yadava Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "東チャールキヤ朝",
+        "en": "Eastern Chalukyas",
+        "zh": "东遮娄其王朝"
+      },
+      "capital": {
+        "ja": "ヴェンギ",
+        "en": "Vengi",
+        "zh": "文吉"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Indian Ocean Trade",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "アーンドラ地方を支配した王朝。テルグ文化とチョーラ朝との連携で重要である。",
+        "en": "A dynasty ruling Andhra, important for Telugu culture and links with the Cholas.",
+        "zh": "统治安得拉地区的王朝，对泰卢固文化和与朱罗的联系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 624,
+        "end": 1189,
+        "label": {
+          "ja": "624年頃〜1189年",
+          "en": "c. 624-1189",
+          "zh": "约624年—1189年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約400万人",
+          "en": "peak estimate: about 4 million",
+          "zh": "鼎盛期估计：约400万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "テルグ語、サンスクリット語",
+          "en": "Telugu and Sanskrit",
+          "zh": "泰卢固语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教、仏教",
+          "en": "Hinduism, Jainism, and Buddhism",
+          "zh": "印度教、耆那教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "東チャールキヤ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Eastern Chalukyas, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "东遮娄其王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "624年頃〜1189年に活動し、テルグ文化、東海岸交易、チョーラ連携を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 624-1189, it influenced regional politics, religion, and trade through Telugu culture, east coast trade, Chola connections.",
+          "zh": "活跃于约624年—1189年，并通过泰卢固文化、东海岸贸易、朱罗联系影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "チョーラ朝との統合や地域王朝の再編で独立性を失った。",
+          "en": "Union with the Cholas and regional reorganization reduced its independence.",
+          "zh": "与朱罗结合及地区王朝重组使其失去独立性。"
+        },
+        "successors": {
+          "ja": "チョーラ朝、カーカティーヤ朝、アーンドラ史に関係する。",
+          "en": "It connects with the Cholas, Kakatiyas, and Andhra history.",
+          "zh": "与朱罗、卡卡提亚和安得拉史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はテルグ語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教、仏教と関係が深い。テルグ文化、東海岸交易、チョーラ連携を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Telugu and Sanskrit and Hinduism, Jainism, and Buddhism. The themes Telugu culture, east coast trade, Chola connections are useful for understanding it.",
+          "zh": "其文化与泰卢固语、梵语和印度教、耆那教、佛教关系密切。可从泰卢固文化、东海岸贸易、朱罗联系等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Chola Empire",
+        "Kakatiya Dynasty",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "セーナ朝",
+        "en": "Sena Dynasty",
+        "zh": "塞纳王朝"
+      },
+      "capital": {
+        "ja": "ナディア",
+        "en": "Nadia",
+        "zh": "纳迪亚"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "River Civilization",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "ベンガル地方のヒンドゥー王朝。パーラ朝後のベンガル政治とガンジス・デルタ文化で重要である。",
+        "en": "A Hindu dynasty in Bengal, important for post-Pala politics and Ganges delta culture.",
+        "zh": "孟加拉地区的印度教王朝，对波罗王朝之后的政治和恒河三角洲文化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1070,
+        "end": 1230,
+        "label": {
+          "ja": "1070年頃〜1230年頃",
+          "en": "c. 1070-c. 1230",
+          "zh": "约1070年—约1230年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約800万人",
+          "en": "peak estimate: about 8 million",
+          "zh": "鼎盛期估计：约800万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット語、ベンガル語",
+          "en": "Sanskrit and Bengali",
+          "zh": "梵语、孟加拉语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教",
+          "en": "Hinduism and Buddhism",
+          "zh": "印度教、佛教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セーナ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Sena Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "塞纳王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1070年頃〜1230年頃に活動し、ベンガル政治、ガンジス・デルタ、ヒンドゥー王権を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1070-c. 1230, it influenced regional politics, religion, and trade through Bengal politics, Ganges delta, Hindu kingship.",
+          "zh": "活跃于约1070年—约1230年，并通过孟加拉政治、恒河三角洲、印度教王权影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "イスラム勢力の進出により中心地を失った。",
+          "en": "Expansion by Islamic powers displaced its centers.",
+          "zh": "伊斯兰势力扩张使其失去中心地。"
+        },
+        "successors": {
+          "ja": "ベンガル・スルターン朝、バングラデシュ、東インド史に関係する。",
+          "en": "It connects with the Bengal Sultanate, Bangladesh, and eastern Indian history.",
+          "zh": "与孟加拉苏丹国、孟加拉国和东印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット語、ベンガル語、宗教はヒンドゥー教、仏教と関係が深い。ベンガル政治、ガンジス・デルタ、ヒンドゥー王権を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Sanskrit and Bengali and Hinduism and Buddhism. The themes Bengal politics, Ganges delta, Hindu kingship are useful for understanding it.",
+          "zh": "其文化与梵语、孟加拉语和印度教、佛教关系密切。可从孟加拉政治、恒河三角洲、印度教王权等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Pala Empire",
+        "Bengal Sultanate",
+        "Bangladesh"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ガジャパティ王国",
+        "en": "Gajapati Empire",
+        "zh": "迦阇波帝王国"
+      },
+      "capital": {
+        "ja": "カタック",
+        "en": "Cuttack",
+        "zh": "克塔克"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Maritime Power",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "オリッサを中心とした東インドの王国。ジャガンナート信仰と東海岸交易で重要である。",
+        "en": "An eastern Indian kingdom centered on Odisha, important for Jagannath worship and east coast trade.",
+        "zh": "以奥里萨为中心的东印度王国，以贾格纳特信仰和东海岸贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1434,
+        "end": 1541,
+        "label": {
+          "ja": "1434年〜1541年",
+          "en": "1434-1541",
+          "zh": "1434年—1541年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約450,000 km²",
+          "en": "maximum extent estimate: about 450,000 km²",
+          "zh": "最大领域估计：约450,000 km²"
+        },
+        "languages": {
+          "ja": "オディア語、サンスクリット語、テルグ語",
+          "en": "Odia, Sanskrit, and Telugu",
+          "zh": "奥里亚语、梵语、泰卢固语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教",
+          "en": "Hinduism",
+          "zh": "印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ガジャパティ王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Gajapati Empire, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "迦阇波帝王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1434年〜1541年に活動し、東海岸交易、寺院王権、オリッサ文化を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1434-1541, it influenced regional politics, religion, and trade through east coast trade, temple kingship, Odisha culture.",
+          "zh": "活跃于1434年—1541年，并通过东海岸贸易、寺庙王权、奥里萨文化影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ムガル帝国や周辺スルターン朝の圧力で分裂した。",
+          "en": "Pressure from the Mughals and neighboring sultanates fragmented it.",
+          "zh": "莫卧儿和周边苏丹国压力使其分裂。"
+        },
+        "successors": {
+          "ja": "オリッサ史、ムガル帝国、東インドの地域王権につながる。",
+          "en": "It connects with Odisha history, the Mughals, and eastern Indian regional rule.",
+          "zh": "与奥里萨史、莫卧儿帝国和东印度地区王权相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はオディア語、サンスクリット語、テルグ語、宗教はヒンドゥー教と関係が深い。東海岸交易、寺院王権、オリッサ文化を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Odia, Sanskrit, and Telugu and Hinduism. The themes east coast trade, temple kingship, Odisha culture are useful for understanding it.",
+          "zh": "其文化与奥里亚语、梵语、泰卢固语和印度教关系密切。可从东海岸贸易、寺庙王权、奥里萨文化等主题理解其特点。"
+        }
+      },
+      "related": [
+        "India",
+        "Mughal Empire",
+        "Bengal Sultanate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アーホーム王国",
+        "en": "Ahom Kingdom",
+        "zh": "阿洪王国"
+      },
+      "capital": {
+        "ja": "ガルガオン",
+        "en": "Garhgaon",
+        "zh": "加尔冈"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Indic Civilization",
+        "River Civilization",
+        "Frontier State",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "アッサム地方を長く支配したタイ系王国。ブラマプトラ流域支配とムガル帝国への抵抗で重要である。",
+        "en": "A Tai kingdom that ruled Assam for centuries, important for Brahmaputra valley rule and resistance to the Mughals.",
+        "zh": "长期统治阿萨姆的傣系王国，以布拉马普特拉河谷统治和抵抗莫卧儿重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1228,
+        "end": 1826,
+        "label": {
+          "ja": "1228年〜1826年",
+          "en": "1228-1826",
+          "zh": "1228年—1826年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "アーホーム語、アッサム語、サンスクリット語",
+          "en": "Ahom, Assamese, and Sanskrit",
+          "zh": "阿洪语、阿萨姆语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、タイ系在来信仰",
+          "en": "Hinduism and Tai traditional beliefs",
+          "zh": "印度教、傣系传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アーホーム王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Ahom Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "阿洪王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1228年〜1826年に活動し、ブラマプトラ流域、長期王権、対ムガル抵抗を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1228-1826, it influenced regional politics, religion, and trade through Brahmaputra valley, long-lived kingship, resistance to the Mughals.",
+          "zh": "活跃于1228年—1826年，并通过布拉马普特拉河谷、长期王权、抵抗莫卧儿影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ビルマの侵攻とイギリス東インド会社の進出で独立を失った。",
+          "en": "Burmese invasion and British East India Company expansion ended its independence.",
+          "zh": "缅甸入侵和英国东印度公司扩张使其失去独立。"
+        },
+        "successors": {
+          "ja": "インド、アッサム、英領インドに関係する。",
+          "en": "It connects with India, Assam, and British India.",
+          "zh": "与印度、阿萨姆和英属印度相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はアーホーム語、アッサム語、サンスクリット語、宗教はヒンドゥー教、タイ系在来信仰と関係が深い。ブラマプトラ流域、長期王権、対ムガル抵抗を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Ahom, Assamese, and Sanskrit and Hinduism and Tai traditional beliefs. The themes Brahmaputra valley, long-lived kingship, resistance to the Mughals are useful for understanding it.",
+          "zh": "其文化与阿洪语、阿萨姆语、梵语和印度教、傣系传统信仰关系密切。可从布拉马普特拉河谷、长期王权、抵抗莫卧儿等主题理解其特点。"
+        }
+      },
+      "related": [
+        "India",
+        "Mughal Empire",
+        "British Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カーマルーパ王国",
+        "en": "Kamarupa Kingdom",
+        "zh": "迦摩缕波王国"
+      },
+      "capital": {
+        "ja": "プラーグジョーティシャプラ",
+        "en": "Pragjyotishpura",
+        "zh": "布拉格乔蒂沙普拉"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Indic Civilization",
+        "Hindu Sphere",
+        "River Civilization",
+        "Frontier State"
+      ],
+      "desc": {
+        "ja": "古代アッサム地方の王国。ブラマプトラ流域と東インド・東南アジア接点で重要である。",
+        "en": "An ancient kingdom in Assam, important for the Brahmaputra valley and links between eastern India and Southeast Asia.",
+        "zh": "古代阿萨姆地区王国，对布拉马普特拉河谷以及东印度和东南亚联系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 350,
+        "end": 1140,
+        "label": {
+          "ja": "350年頃〜1140年頃",
+          "en": "c. 350-c. 1140",
+          "zh": "约350年—约1140年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約350,000 km²",
+          "en": "maximum extent estimate: about 350,000 km²",
+          "zh": "最大领域估计：约350,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット語、プラークリット、古アッサム語",
+          "en": "Sanskrit, Prakrits, and Old Assamese",
+          "zh": "梵语、普拉克里特语、古阿萨姆语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、地域信仰",
+          "en": "Hinduism, Buddhism, and local beliefs",
+          "zh": "印度教、佛教、地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カーマルーパ王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kamarupa Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "迦摩缕波王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "350年頃〜1140年頃に活動し、東インド王権、ブラマプトラ流域、地域信仰を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 350-c. 1140, it influenced regional politics, religion, and trade through eastern Indian kingship, Brahmaputra valley, local cults.",
+          "zh": "活跃于约350年—约1140年，并通过东印度王权、布拉马普特拉河谷、地方信仰影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "地域王朝へ分裂し、後のアーホーム王国などに接続した。",
+          "en": "It fragmented into regional dynasties and later connected with powers such as Ahom.",
+          "zh": "分裂为地区王朝，并与后来的阿洪等势力相连。"
+        },
+        "successors": {
+          "ja": "アーホーム王国、アッサム、東インド史につながる。",
+          "en": "It connects with Ahom, Assam, and eastern Indian history.",
+          "zh": "与阿洪王国、阿萨姆和东印度史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット語、プラークリット、古アッサム語、宗教はヒンドゥー教、仏教、地域信仰と関係が深い。東インド王権、ブラマプトラ流域、地域信仰を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Sanskrit, Prakrits, and Old Assamese and Hinduism, Buddhism, and local beliefs. The themes eastern Indian kingship, Brahmaputra valley, local cults are useful for understanding it.",
+          "zh": "其文化与梵语、普拉克里特语、古阿萨姆语和印度教、佛教、地方信仰关系密切。可从东印度王权、布拉马普特拉河谷、地方信仰等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Ahom Kingdom",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カーカティーヤ朝",
+        "en": "Kakatiya Dynasty",
+        "zh": "卡卡提亚王朝"
+      },
+      "capital": {
+        "ja": "ワランガル",
+        "en": "Warangal",
+        "zh": "瓦朗加尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Medieval Dynasty",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "テルグ地方を支配した中世王朝。灌漑、城塞、テルグ文化で重要である。",
+        "en": "A medieval Telugu dynasty, important for irrigation, fortresses, and Telugu culture.",
+        "zh": "统治泰卢固地区的中世纪王朝，以灌溉、城堡和泰卢固文化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1083,
+        "end": 1323,
+        "label": {
+          "ja": "1083年頃〜1323年",
+          "en": "c. 1083-1323",
+          "zh": "约1083年—1323年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "テルグ語、サンスクリット語",
+          "en": "Telugu and Sanskrit",
+          "zh": "泰卢固语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教",
+          "en": "Hinduism and Jainism",
+          "zh": "印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カーカティーヤ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kakatiya Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "卡卡提亚王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1083年頃〜1323年に活動し、テルグ文化、灌漑、デカン政治を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1083-1323, it influenced regional politics, religion, and trade through Telugu culture, irrigation, Deccan politics.",
+          "zh": "活跃于约1083年—1323年，并通过泰卢固文化、灌溉、德干政治影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "デリー・スルターン朝の遠征で滅亡した。",
+          "en": "Delhi Sultanate campaigns ended the dynasty.",
+          "zh": "德里苏丹国远征使其灭亡。"
+        },
+        "successors": {
+          "ja": "ヴィジャヤナガル王国やデカン諸王朝につながる。",
+          "en": "It connects with Vijayanagara and later Deccan states.",
+          "zh": "与毗奢耶那伽罗和后来的德干诸国相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はテルグ語、サンスクリット語、宗教はヒンドゥー教、ジャイナ教と関係が深い。テルグ文化、灌漑、デカン政治を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Telugu and Sanskrit and Hinduism and Jainism. The themes Telugu culture, irrigation, Deccan politics are useful for understanding it.",
+          "zh": "其文化与泰卢固语、梵语和印度教、耆那教关系密切。可从泰卢固文化、灌溉、德干政治等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Delhi Sultanate",
+        "Vijayanagara Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ヤーダヴァ朝",
+        "en": "Yadava Dynasty",
+        "zh": "雅达瓦王朝"
+      },
+      "capital": {
+        "ja": "デーヴァギリ",
+        "en": "Devagiri",
+        "zh": "德瓦吉里"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Dynastic State",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Medieval Dynasty",
+        "Mountain State"
+      ],
+      "desc": {
+        "ja": "デカン西部の王朝。マラーター地方前史とデリー・スルターン朝南下で重要である。",
+        "en": "A western Deccan dynasty, important for the prehistory of Maharashtra and Delhi Sultanate expansion southward.",
+        "zh": "德干西部王朝，对马哈拉施特拉前史和德里苏丹国南下重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1187,
+        "end": 1317,
+        "label": {
+          "ja": "1187年頃〜1317年",
+          "en": "c. 1187-1317",
+          "zh": "约1187年—1317年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約400万人",
+          "en": "peak estimate: about 4 million",
+          "zh": "鼎盛期估计：约400万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "マラーティー語、サンスクリット語、カンナダ語",
+          "en": "Marathi, Sanskrit, and Kannada",
+          "zh": "马拉地语、梵语、卡纳达语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、ジャイナ教",
+          "en": "Hinduism and Jainism",
+          "zh": "印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ヤーダヴァ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Yadava Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "雅达瓦王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1187年頃〜1317年に活動し、デカン西部、山城、マラーター地方前史を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1187-1317, it influenced regional politics, religion, and trade through western Deccan, hill forts, pre-Maratha history.",
+          "zh": "活跃于约1187年—1317年，并通过德干西部、山城、马拉塔地区前史影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "デリー・スルターン朝に征服された。",
+          "en": "It was conquered by the Delhi Sultanate.",
+          "zh": "被德里苏丹国征服。"
+        },
+        "successors": {
+          "ja": "バフマニー朝、マラーター帝国、デカン史につながる。",
+          "en": "It connects with the Bahmani Sultanate, Maratha Empire, and Deccan history.",
+          "zh": "与巴赫曼尼、马拉塔帝国和德干史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はマラーティー語、サンスクリット語、カンナダ語、宗教はヒンドゥー教、ジャイナ教と関係が深い。デカン西部、山城、マラーター地方前史を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Marathi, Sanskrit, and Kannada and Hinduism and Jainism. The themes western Deccan, hill forts, pre-Maratha history are useful for understanding it.",
+          "zh": "其文化与马拉地语、梵语、卡纳达语和印度教、耆那教关系密切。可从德干西部、山城、马拉塔地区前史等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Delhi Sultanate",
+        "Bahmani Sultanate",
+        "Maratha Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マールワー・スルターン朝",
+        "en": "Malwa Sultanate",
+        "zh": "马尔瓦苏丹国"
+      },
+      "capital": {
+        "ja": "マンドゥー",
+        "en": "Mandu",
+        "zh": "曼杜"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indic Civilization",
+        "Trade Hub",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "中央インドのスルターン朝。マンドゥーの宮廷文化と北インド・デカンの接点として重要である。",
+        "en": "A central Indian sultanate, important for Mandu's court culture and links between north India and the Deccan.",
+        "zh": "中印度苏丹国，以曼杜宫廷文化以及连接北印度和德干重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1392,
+        "end": 1562,
+        "label": {
+          "ja": "1392年〜1562年",
+          "en": "1392-1562",
+          "zh": "1392年—1562年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約200,000 km²",
+          "en": "maximum extent estimate: about 200,000 km²",
+          "zh": "最大领域估计：约200,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、ヒンディー語系諸語",
+          "en": "Persian and Hindi-related languages",
+          "zh": "波斯语、印地语相关语言"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教、ジャイナ教",
+          "en": "Islam, Hinduism, and Jainism",
+          "zh": "伊斯兰教、印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マールワー・スルターン朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Malwa Sultanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "马尔瓦苏丹国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1392年〜1562年に活動し、中央インド、宮廷文化、北インド・デカン交流を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1392-1562, it influenced regional politics, religion, and trade through central India, court culture, north India-Deccan exchange.",
+          "zh": "活跃于1392年—1562年，并通过中印度、宫廷文化、北印度-德干交流影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "グジャラートやムガル帝国など周辺勢力に併合された。",
+          "en": "It was absorbed by neighboring powers such as Gujarat and the Mughals.",
+          "zh": "被古吉拉特、莫卧儿等周边势力吸收。"
+        },
+        "successors": {
+          "ja": "ムガル帝国、グジャラート・スルターン朝、中央インド史に関係する。",
+          "en": "It connects with the Mughals, Gujarat Sultanate, and central Indian history.",
+          "zh": "与莫卧儿、古吉拉特苏丹国和中印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、ヒンディー語系諸語、宗教はイスラム教、ヒンドゥー教、ジャイナ教と関係が深い。中央インド、宮廷文化、北インド・デカン交流を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian and Hindi-related languages and Islam, Hinduism, and Jainism. The themes central India, court culture, north India-Deccan exchange are useful for understanding it.",
+          "zh": "其文化与波斯语、印地语相关语言和伊斯兰教、印度教、耆那教关系密切。可从中印度、宫廷文化、北印度-德干交流等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Mughal Empire",
+        "Gujarat Sultanate",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "グジャラート・スルターン朝",
+        "en": "Gujarat Sultanate",
+        "zh": "古吉拉特苏丹国"
+      },
+      "capital": {
+        "ja": "アフマダーバード",
+        "en": "Ahmedabad",
+        "zh": "艾哈迈达巴德"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indian Ocean Trade",
+        "Maritime Power",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "西インドの海上交易国家。インド洋交易、港市、ムガル帝国との関係で重要である。",
+        "en": "A western Indian maritime sultanate, important for Indian Ocean trade, port cities, and relations with the Mughals.",
+        "zh": "西印度海上贸易苏丹国，以印度洋贸易、港市和与莫卧儿关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1407,
+        "end": 1573,
+        "label": {
+          "ja": "1407年〜1573年",
+          "en": "1407-1573",
+          "zh": "1407年—1573年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "グジャラート語、ペルシア語、アラビア語",
+          "en": "Gujarati, Persian, and Arabic",
+          "zh": "古吉拉特语、波斯语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教、ジャイナ教",
+          "en": "Islam, Hinduism, and Jainism",
+          "zh": "伊斯兰教、印度教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "グジャラート・スルターン朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Gujarat Sultanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "古吉拉特苏丹国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1407年〜1573年に活動し、港市交易、インド洋、商人ネットワークを通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1407-1573, it influenced regional politics, religion, and trade through port-city trade, Indian Ocean, merchant networks.",
+          "zh": "活跃于1407年—1573年，并通过港市贸易、印度洋、商人网络影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ムガル帝国に征服された。",
+          "en": "It was conquered by the Mughal Empire.",
+          "zh": "被莫卧儿帝国征服。"
+        },
+        "successors": {
+          "ja": "ムガル帝国、西インド商業圏、ポルトガル帝国との関係につながる。",
+          "en": "It connects with the Mughal Empire, western Indian commerce, and Portuguese contacts.",
+          "zh": "与莫卧儿帝国、西印度商业圈和葡萄牙关系相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はグジャラート語、ペルシア語、アラビア語、宗教はイスラム教、ヒンドゥー教、ジャイナ教と関係が深い。港市交易、インド洋、商人ネットワークを軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Gujarati, Persian, and Arabic and Islam, Hinduism, and Jainism. The themes port-city trade, Indian Ocean, merchant networks are useful for understanding it.",
+          "zh": "其文化与古吉拉特语、波斯语、阿拉伯语和伊斯兰教、印度教、耆那教关系密切。可从港市贸易、印度洋、商人网络等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Mughal Empire",
+        "Portuguese Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ジャウンプル・スルターン朝",
+        "en": "Jaunpur Sultanate",
+        "zh": "章普尔苏丹国"
+      },
+      "capital": {
+        "ja": "ジャウンプル",
+        "en": "Jaunpur",
+        "zh": "章普尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indic Civilization",
+        "River Civilization",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "北インドのスルターン朝。ガンジス流域の文化、建築、デリー・スルターン朝後の政治で重要である。",
+        "en": "A north Indian sultanate, important for Ganges valley culture, architecture, and post-Delhi Sultanate politics.",
+        "zh": "北印度苏丹国，对恒河流域文化、建筑和德里苏丹国之后的政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1394,
+        "end": 1479,
+        "label": {
+          "ja": "1394年〜1479年",
+          "en": "1394-1479",
+          "zh": "1394年—1479年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、ヒンドゥスターニー語系諸語",
+          "en": "Persian and Hindustani-related languages",
+          "zh": "波斯语、印度斯坦相关语言"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教",
+          "en": "Islam and Hinduism",
+          "zh": "伊斯兰教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジャウンプル・スルターン朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Jaunpur Sultanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "章普尔苏丹国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1394年〜1479年に活動し、ガンジス流域、イスラム建築、北インド政治を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1394-1479, it influenced regional politics, religion, and trade through Ganges valley, Islamic architecture, north Indian politics.",
+          "zh": "活跃于1394年—1479年，并通过恒河流域、伊斯兰建筑、北印度政治影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ローディー朝デリー・スルターン朝に征服された。",
+          "en": "It was conquered by the Lodi rulers of Delhi.",
+          "zh": "被洛迪王朝的德里统治者征服。"
+        },
+        "successors": {
+          "ja": "デリー・スルターン朝、ムガル帝国、北インド史に関係する。",
+          "en": "It connects with the Delhi Sultanate, Mughals, and north Indian history.",
+          "zh": "与德里苏丹国、莫卧儿和北印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、ヒンドゥスターニー語系諸語、宗教はイスラム教、ヒンドゥー教と関係が深い。ガンジス流域、イスラム建築、北インド政治を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian and Hindustani-related languages and Islam and Hinduism. The themes Ganges valley, Islamic architecture, north Indian politics are useful for understanding it.",
+          "zh": "其文化与波斯语、印度斯坦相关语言和伊斯兰教、印度教关系密切。可从恒河流域、伊斯兰建筑、北印度政治等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Delhi Sultanate",
+        "Mughal Empire",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マドゥライ・スルターン朝",
+        "en": "Madurai Sultanate",
+        "zh": "马杜赖苏丹国"
+      },
+      "capital": {
+        "ja": "マドゥライ",
+        "en": "Madurai",
+        "zh": "马杜赖"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indic Civilization",
+        "Strategic Crossroads",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "南インドに短期間存在したスルターン朝。デリー勢力の南下とヴィジャヤナガル王国成立期を理解する上で重要である。",
+        "en": "A short-lived south Indian sultanate, important for Delhi's southern expansion and the rise of Vijayanagara.",
+        "zh": "南印度短命苏丹国，对理解德里南下和毗奢耶那伽罗兴起重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1335,
+        "end": 1378,
+        "label": {
+          "ja": "1335年〜1378年",
+          "en": "1335-1378",
+          "zh": "1335年—1378年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約80,000 km²",
+          "en": "maximum extent estimate: about 80,000 km²",
+          "zh": "最大领域估计：约80,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、タミル語、アラビア語",
+          "en": "Persian, Tamil, and Arabic",
+          "zh": "波斯语、泰米尔语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教",
+          "en": "Islam and Hinduism",
+          "zh": "伊斯兰教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マドゥライ・スルターン朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Madurai Sultanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "马杜赖苏丹国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1335年〜1378年に活動し、南インド政治、デリー遠征、宗教文化の接点を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1335-1378, it influenced regional politics, religion, and trade through south Indian politics, Delhi campaigns, religious-cultural contact.",
+          "zh": "活跃于1335年—1378年，并通过南印度政治、德里远征、宗教文化接点影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ヴィジャヤナガル王国に征服された。",
+          "en": "It was conquered by Vijayanagara.",
+          "zh": "被毗奢耶那伽罗王国征服。"
+        },
+        "successors": {
+          "ja": "ヴィジャヤナガル王国、パーンディヤ朝、南インド史に関係する。",
+          "en": "It connects with Vijayanagara, the Pandyas, and south Indian history.",
+          "zh": "与毗奢耶那伽罗、潘地亚和南印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、タミル語、アラビア語、宗教はイスラム教、ヒンドゥー教と関係が深い。南インド政治、デリー遠征、宗教文化の接点を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian, Tamil, and Arabic and Islam and Hinduism. The themes south Indian politics, Delhi campaigns, religious-cultural contact are useful for understanding it.",
+          "zh": "其文化与波斯语、泰米尔语、阿拉伯语和伊斯兰教、印度教关系密切。可从南印度政治、德里远征、宗教文化接点等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Vijayanagara Empire",
+        "Pandya Dynasty",
+        "India"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マイソール王国",
+        "en": "Mysore Kingdom",
+        "zh": "迈索尔王国"
+      },
+      "capital": {
+        "ja": "マイソール",
+        "en": "Mysore",
+        "zh": "迈索尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Modern Era State",
+        "Military Government",
+        "Trade Hub",
+        "Anti-Colonial Independence"
+      ],
+      "desc": {
+        "ja": "南インドの王国。ハイダル・アリーとティプー・スルターン、英領拡大への抵抗で重要である。",
+        "en": "A south Indian kingdom important for Haidar Ali, Tipu Sultan, and resistance to British expansion.",
+        "zh": "南印度王国，以海达尔·阿里、蒂普苏丹和抵抗英国扩张重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1399,
+        "end": 1950,
+        "label": {
+          "ja": "1399年〜1950年",
+          "en": "1399-1950",
+          "zh": "1399年—1950年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約600万人",
+          "en": "peak estimate: about 6 million",
+          "zh": "鼎盛期估计：约600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "カンナダ語、ペルシア語、英語",
+          "en": "Kannada, Persian, and English",
+          "zh": "卡纳达语、波斯语、英语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、イスラム教",
+          "en": "Hinduism and Islam",
+          "zh": "印度教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マイソール王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Mysore Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "迈索尔王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1399年〜1950年に活動し、南インド王国、軍事改革、対英戦争を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1399-1950, it influenced regional politics, religion, and trade through south Indian kingdom, military reform, wars with Britain.",
+          "zh": "活跃于1399年—1950年，并通过南印度王国、军事改革、对英战争影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "インド連邦への統合により藩王国としての地位を失った。",
+          "en": "Integration into India ended its princely status.",
+          "zh": "并入印度联邦后失去土邦地位。"
+        },
+        "successors": {
+          "ja": "インド、英領インド、南インド近代史に関係する。",
+          "en": "It connects with India, British India, and modern south Indian history.",
+          "zh": "与印度、英属印度和南印度近代史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はカンナダ語、ペルシア語、英語、宗教はヒンドゥー教、イスラム教と関係が深い。南インド王国、軍事改革、対英戦争を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Kannada, Persian, and English and Hinduism and Islam. The themes south Indian kingdom, military reform, wars with Britain are useful for understanding it.",
+          "zh": "其文化与卡纳达语、波斯语、英语和印度教、伊斯兰教关系密切。可从南印度王国、军事改革、对英战争等主题理解其特点。"
+        }
+      },
+      "related": [
+        "India",
+        "British Empire",
+        "Vijayanagara Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "トラヴァンコール王国",
+        "en": "Travancore",
+        "zh": "特拉凡哥尔王国"
+      },
+      "capital": {
+        "ja": "ティルヴァナンタプラム",
+        "en": "Thiruvananthapuram",
+        "zh": "特里凡得琅"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Indian Ocean Trade",
+        "Maritime Power",
+        "Modern Era State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "ケーララ南部の王国。香辛料交易、近代改革、英領インド期の藩王国として重要である。",
+        "en": "A kingdom in southern Kerala, important for spice trade, reforms, and princely-state politics under British India.",
+        "zh": "喀拉拉南部王国，以香料贸易、近代改革和英属印度时期土邦政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1729,
+        "end": 1949,
+        "label": {
+          "ja": "1729年〜1949年",
+          "en": "1729-1949",
+          "zh": "1729年—1949年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約600万人",
+          "en": "peak estimate: about 6 million",
+          "zh": "鼎盛期估计：约600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約19,000 km²",
+          "en": "maximum extent estimate: about 19,000 km²",
+          "zh": "最大领域估计：约19,000 km²"
+        },
+        "languages": {
+          "ja": "マラヤーラム語、タミル語、英語",
+          "en": "Malayalam, Tamil, and English",
+          "zh": "马拉雅拉姆语、泰米尔语、英语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、キリスト教、イスラム教",
+          "en": "Hinduism, Christianity, and Islam",
+          "zh": "印度教、基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "トラヴァンコール王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Travancore, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "特拉凡哥尔王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1729年〜1949年に活動し、香辛料交易、藩王国、ケーララ文化を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1729-1949, it influenced regional politics, religion, and trade through spice trade, princely state, Kerala culture.",
+          "zh": "活跃于1729年—1949年，并通过香料贸易、土邦、喀拉拉文化影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "インド連邦への統合により独立王国としての地位を失った。",
+          "en": "Integration into India ended its status as a separate kingdom.",
+          "zh": "并入印度联邦后失去独立王国地位。"
+        },
+        "successors": {
+          "ja": "インド、ケーララ、英領インド史に関係する。",
+          "en": "It connects with India, Kerala, and British Indian history.",
+          "zh": "与印度、喀拉拉和英属印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はマラヤーラム語、タミル語、英語、宗教はヒンドゥー教、キリスト教、イスラム教と関係が深い。香辛料交易、藩王国、ケーララ文化を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Malayalam, Tamil, and English and Hinduism, Christianity, and Islam. The themes spice trade, princely state, Kerala culture are useful for understanding it.",
+          "zh": "其文化与马拉雅拉姆语、泰米尔语、英语和印度教、基督教、伊斯兰教关系密切。可从香料贸易、土邦、喀拉拉文化等主题理解其特点。"
+        }
+      },
+      "related": [
+        "India",
+        "British Empire",
+        "Chera Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ハイデラバード藩王国",
+        "en": "Hyderabad State",
+        "zh": "海得拉巴土邦"
+      },
+      "capital": {
+        "ja": "ハイデラバード",
+        "en": "Hyderabad",
+        "zh": "海得拉巴"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Modern Era State",
+        "Islamic World",
+        "Trade Hub",
+        "Multilingual State",
+        "Federal Republic"
+      ],
+      "desc": {
+        "ja": "デカン最大級の藩王国。ニザームの支配、英領インド、インド統合で重要である。",
+        "en": "One of the largest princely states in the Deccan, important for Nizam rule, British India, and integration into India.",
+        "zh": "德干最大的土邦之一，以尼扎姆统治、英属印度和并入印度重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1724,
+        "end": 1948,
+        "label": {
+          "ja": "1724年〜1948年",
+          "en": "1724-1948",
+          "zh": "1724年—1948年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1,600万人",
+          "en": "peak estimate: about 16 million",
+          "zh": "鼎盛期估计：约1,600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約214,000 km²",
+          "en": "maximum extent estimate: about 214,000 km²",
+          "zh": "最大领域估计：约214,000 km²"
+        },
+        "languages": {
+          "ja": "ウルドゥー語、テルグ語、マラーティー語、カンナダ語",
+          "en": "Urdu, Telugu, Marathi, and Kannada",
+          "zh": "乌尔都语、泰卢固语、马拉地语、卡纳达语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教",
+          "en": "Islam and Hinduism",
+          "zh": "伊斯兰教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ハイデラバード藩王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Hyderabad State, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "海得拉巴土邦的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1724年〜1948年に活動し、デカン藩王国、ニザーム、インド統合を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1724-1948, it influenced regional politics, religion, and trade through Deccan princely state, Nizam rule, integration into India.",
+          "zh": "活跃于1724年—1948年，并通过德干土邦、尼扎姆统治、印度整合影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ポロ作戦後にインド連邦へ統合された。",
+          "en": "After Operation Polo it was integrated into India.",
+          "zh": "波罗行动后并入印度联邦。"
+        },
+        "successors": {
+          "ja": "インド、デカン地方、英領インド史に関係する。",
+          "en": "It connects with India, the Deccan, and British Indian history.",
+          "zh": "与印度、德干和英属印度史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はウルドゥー語、テルグ語、マラーティー語、カンナダ語、宗教はイスラム教、ヒンドゥー教と関係が深い。デカン藩王国、ニザーム、インド統合を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Urdu, Telugu, Marathi, and Kannada and Islam and Hinduism. The themes Deccan princely state, Nizam rule, integration into India are useful for understanding it.",
+          "zh": "其文化与乌尔都语、泰卢固语、马拉地语、卡纳达语和伊斯兰教、印度教关系密切。可从德干土邦、尼扎姆统治、印度整合等主题理解其特点。"
+        }
+      },
+      "related": [
+        "India",
+        "British Empire",
+        "Mughal Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カラート藩王国",
+        "en": "Kalat Khanate",
+        "zh": "卡拉特汗国"
+      },
+      "capital": {
+        "ja": "カラート",
+        "en": "Kalat",
+        "zh": "卡拉特"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Khanate",
+        "Modern Era State",
+        "Mountain State",
+        "Buffer State",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "バローチスターンのハン国。イラン高原、南アジア、英領インドの境界政治で重要である。",
+        "en": "A khanate in Balochistan, important for frontier politics between the Iranian plateau, South Asia, and British India.",
+        "zh": "俾路支斯坦汗国，对伊朗高原、南亚和英属印度之间的边疆政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1666,
+        "end": 1955,
+        "label": {
+          "ja": "1666年頃〜1955年",
+          "en": "c. 1666-1955",
+          "zh": "约1666年—1955年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "バローチー語、ブラーフーイー語、ペルシア語",
+          "en": "Balochi, Brahui, and Persian",
+          "zh": "俾路支语、布拉灰语、波斯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カラート藩王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kalat Khanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "卡拉特汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1666年頃〜1955年に活動し、バローチスターン、山岳国家、英領インド境界を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1666-1955, it influenced regional politics, religion, and trade through Balochistan, mountain polity, British Indian frontier.",
+          "zh": "活跃于约1666年—1955年，并通过俾路支斯坦、山地政权、英属印度边疆影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "パキスタンへの統合により藩王国としての地位を失った。",
+          "en": "Integration into Pakistan ended its princely status.",
+          "zh": "并入巴基斯坦后失去土邦地位。"
+        },
+        "successors": {
+          "ja": "パキスタン、イラン高原、英領インド境界史に関係する。",
+          "en": "It connects with Pakistan, the Iranian plateau, and British Indian frontier history.",
+          "zh": "与巴基斯坦、伊朗高原和英属印度边疆史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はバローチー語、ブラーフーイー語、ペルシア語、宗教はイスラム教と関係が深い。バローチスターン、山岳国家、英領インド境界を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Balochi, Brahui, and Persian and Islam. The themes Balochistan, mountain polity, British Indian frontier are useful for understanding it.",
+          "zh": "其文化与俾路支语、布拉灰语、波斯语和伊斯兰教关系密切。可从俾路支斯坦、山地政权、英属印度边疆等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Pakistan",
+        "British Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ホータン王国",
+        "en": "Khotan Kingdom",
+        "zh": "于阗王国"
+      },
+      "capital": {
+        "ja": "ホータン",
+        "en": "Khotan",
+        "zh": "和田"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Kingdom",
+        "Silk Road",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "タリム盆地南縁のオアシス王国。シルクロード、仏教、絹と玉の交易で重要である。",
+        "en": "An oasis kingdom on the southern Tarim Basin, important for Silk Road trade, Buddhism, silk, and jade.",
+        "zh": "塔里木盆地南缘绿洲王国，以丝绸之路、佛教、丝绸和玉石贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -200,
+        "end": 1006,
+        "label": {
+          "ja": "紀元前2世紀頃〜1006年",
+          "en": "c. 2nd century BCE-1006",
+          "zh": "约公元前2世纪—1006年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約20万人",
+          "en": "peak estimate: about 200,000",
+          "zh": "鼎盛期估计：约20万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約80,000 km²",
+          "en": "sphere estimate: about 80,000 km²",
+          "zh": "影响范围估计：约80,000 km²"
+        },
+        "languages": {
+          "ja": "ホータン語、サンスクリット語、漢語",
+          "en": "Khotanese, Sanskrit, and Chinese",
+          "zh": "于阗语、梵语、汉语"
+        },
+        "religions": {
+          "ja": "仏教、地域信仰、イスラム教",
+          "en": "Buddhism, local beliefs, and Islam",
+          "zh": "佛教、地方信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ホータン王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Khotan Kingdom, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "于阗王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "紀元前2世紀頃〜1006年に活動し、オアシス交易、仏教文化、玉交易を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 2nd century BCE-1006, it influenced regional politics, religion, and trade through oasis trade, Buddhist culture, jade trade.",
+          "zh": "活跃于约公元前2世纪—1006年，并通过绿洲贸易、佛教文化、玉石贸易影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "カラハン朝の進出によりイスラム化し、独立を失った。",
+          "en": "Kara-Khanid expansion brought Islamization and ended its independence.",
+          "zh": "喀喇汗扩张带来伊斯兰化并使其失去独立。"
+        },
+        "successors": {
+          "ja": "カラハン朝、新疆史、シルクロード史につながる。",
+          "en": "It connects with the Kara-Khanids, Xinjiang history, and Silk Road history.",
+          "zh": "与喀喇汗、新疆史和丝绸之路史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はホータン語、サンスクリット語、漢語、宗教は仏教、地域信仰、イスラム教と関係が深い。オアシス交易、仏教文化、玉交易を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Khotanese, Sanskrit, and Chinese and Buddhism, local beliefs, and Islam. The themes oasis trade, Buddhist culture, jade trade are useful for understanding it.",
+          "zh": "其文化与于阗语、梵语、汉语和佛教、地方信仰、伊斯兰教关系密切。可从绿洲贸易、佛教文化、玉石贸易等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Kara-Khanid Khanate",
+        "China"
+      ]
+    },
+    {
+      "names": {
+        "ja": "高昌王国",
+        "en": "Kingdom of Qocho",
+        "zh": "高昌回鹘王国"
+      },
+      "capital": {
+        "ja": "高昌",
+        "en": "Qocho",
+        "zh": "高昌"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Kingdom",
+        "Silk Road",
+        "Buddhist Sphere",
+        "Turkic World",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "トルファン盆地のオアシス王国。ウイグル文化、仏教、マニ教、シルクロード交易で重要である。",
+        "en": "An oasis kingdom in the Turfan Basin, important for Uyghur culture, Buddhism, Manichaeism, and Silk Road trade.",
+        "zh": "吐鲁番盆地绿洲王国，以回鹘文化、佛教、摩尼教和丝绸之路贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 843,
+        "end": 1335,
+        "label": {
+          "ja": "843年頃〜1335年頃",
+          "en": "c. 843-c. 1335",
+          "zh": "约843年—约1335年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約100,000 km²",
+          "en": "sphere estimate: about 100,000 km²",
+          "zh": "影响范围估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "古ウイグル語、漢語、ソグド語",
+          "en": "Old Uyghur, Chinese, and Sogdian",
+          "zh": "古回鹘语、汉语、粟特语"
+        },
+        "religions": {
+          "ja": "仏教、マニ教、ネストリウス派、イスラム教",
+          "en": "Buddhism, Manichaeism, Nestorian Christianity, and Islam",
+          "zh": "佛教、摩尼教、景教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "高昌王国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kingdom of Qocho, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "高昌回鹘王国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "843年頃〜1335年頃に活動し、トルファン盆地、ウイグル文化、シルクロードを通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 843-c. 1335, it influenced regional politics, religion, and trade through Turfan Basin, Uyghur culture, Silk Road trade.",
+          "zh": "活跃于约843年—约1335年，并通过吐鲁番盆地、回鹘文化、丝绸之路影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "モンゴル帝国と元朝の支配下で独立性を失った。",
+          "en": "It lost autonomy under Mongol and Yuan rule.",
+          "zh": "在蒙古帝国和元朝统治下失去独立性。"
+        },
+        "successors": {
+          "ja": "元朝、新疆史、ウイグル文化史に関係する。",
+          "en": "It connects with the Yuan Dynasty, Xinjiang history, and Uyghur cultural history.",
+          "zh": "与元朝、新疆史和回鹘文化史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語は古ウイグル語、漢語、ソグド語、宗教は仏教、マニ教、ネストリウス派、イスラム教と関係が深い。トルファン盆地、ウイグル文化、シルクロードを軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Old Uyghur, Chinese, and Sogdian and Buddhism, Manichaeism, Nestorian Christianity, and Islam. The themes Turfan Basin, Uyghur culture, Silk Road trade are useful for understanding it.",
+          "zh": "其文化与古回鹘语、汉语、粟特语和佛教、摩尼教、景教、伊斯兰教关系密切。可从吐鲁番盆地、回鹘文化、丝绸之路等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Yuan Dynasty",
+        "Gokturk Khaganate",
+        "China"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ヤルカンド・ハン国",
+        "en": "Yarkent Khanate",
+        "zh": "叶尔羌汗国"
+      },
+      "capital": {
+        "ja": "ヤルカンド",
+        "en": "Yarkent",
+        "zh": "叶尔羌"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Islamic World",
+        "Silk Road",
+        "Turkic World",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "タリム盆地西部のハン国。カシュガル・ヤルカンドを中心とするイスラム政権として重要である。",
+        "en": "A khanate in the western Tarim Basin, important as an Islamic power around Kashgar and Yarkent.",
+        "zh": "塔里木盆地西部汗国，是喀什和叶尔羌周边重要的伊斯兰政权。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1514,
+        "end": 1705,
+        "label": {
+          "ja": "1514年〜1705年",
+          "en": "1514-1705",
+          "zh": "1514年—1705年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "チャガタイ語、テュルク語、ペルシア語",
+          "en": "Chagatai, Turkic languages, and Persian",
+          "zh": "察合台语、突厥语、波斯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ヤルカンド・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Yarkent Khanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "叶尔羌汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1514年〜1705年に活動し、タリム盆地、イスラム王権、オアシス交易を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1514-1705, it influenced regional politics, religion, and trade through Tarim Basin, Islamic kingship, oasis trade.",
+          "zh": "活跃于1514年—1705年，并通过塔里木盆地、伊斯兰王权、绿洲贸易影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ジュンガルの圧力と内部分裂で支配力を失った。",
+          "en": "Dzungar pressure and internal division weakened it.",
+          "zh": "准噶尔压力和内部分裂使其失去统治力。"
+        },
+        "successors": {
+          "ja": "ジュンガル、清、中国新疆史に関係する。",
+          "en": "It connects with the Dzungars, Qing, and Xinjiang history.",
+          "zh": "与准噶尔、清朝和新疆史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチャガタイ語、テュルク語、ペルシア語、宗教はイスラム教と関係が深い。タリム盆地、イスラム王権、オアシス交易を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Chagatai, Turkic languages, and Persian and Islam. The themes Tarim Basin, Islamic kingship, oasis trade are useful for understanding it.",
+          "zh": "其文化与察合台语、突厥语、波斯语和伊斯兰教关系密切。可从塔里木盆地、伊斯兰王权、绿洲贸易等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Dzungar Khanate",
+        "Qing Dynasty",
+        "China"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ジュンガル・ハン国",
+        "en": "Dzungar Khanate",
+        "zh": "准噶尔汗国"
+      },
+      "capital": {
+        "ja": "イリ",
+        "en": "Ili",
+        "zh": "伊犁"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Buddhist Sphere",
+        "Horse Archer Tradition"
+      ],
+      "desc": {
+        "ja": "オイラト系モンゴル人が築いた最後の大草原国家。清との戦争と中央アジア秩序で重要である。",
+        "en": "The last major Oirat Mongol steppe power, important for wars with Qing and Central Asian politics.",
+        "zh": "卫拉特蒙古建立的最后大型草原国家，对与清朝战争和中亚秩序重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1634,
+        "end": 1758,
+        "label": {
+          "ja": "1634年〜1758年",
+          "en": "1634-1758",
+          "zh": "1634年—1758年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約60万人",
+          "en": "peak estimate: about 600,000",
+          "zh": "鼎盛期估计：约60万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約3,500,000 km²",
+          "en": "maximum extent estimate: about 3,500,000 km²",
+          "zh": "最大领域估计：约3,500,000 km²"
+        },
+        "languages": {
+          "ja": "オイラト語、モンゴル語、チベット語",
+          "en": "Oirat, Mongolian, and Tibetan",
+          "zh": "卫拉特语、蒙古语、藏语"
+        },
+        "religions": {
+          "ja": "チベット仏教、テングリ信仰",
+          "en": "Tibetan Buddhism and Tengrism",
+          "zh": "藏传佛教、腾格里信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジュンガル・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Dzungar Khanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "准噶尔汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1634年〜1758年に活動し、草原帝国、チベット仏教、清との抗争を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1634-1758, it influenced regional politics, religion, and trade through steppe empire, Tibetan Buddhism, wars with Qing.",
+          "zh": "活跃于1634年—1758年，并通过草原帝国、藏传佛教、与清战争影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "清の遠征により滅亡した。",
+          "en": "Qing campaigns destroyed the khanate.",
+          "zh": "清朝远征消灭了该汗国。"
+        },
+        "successors": {
+          "ja": "清朝、新疆、モンゴル史に関係する。",
+          "en": "It connects with Qing, Xinjiang, and Mongolian history.",
+          "zh": "与清朝、新疆和蒙古史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はオイラト語、モンゴル語、チベット語、宗教はチベット仏教、テングリ信仰と関係が深い。草原帝国、チベット仏教、清との抗争を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Oirat, Mongolian, and Tibetan and Tibetan Buddhism and Tengrism. The themes steppe empire, Tibetan Buddhism, wars with Qing are useful for understanding it.",
+          "zh": "其文化与卫拉特语、蒙古语、藏语和藏传佛教、腾格里信仰关系密切。可从草原帝国、藏传佛教、与清战争等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Qing Dynasty",
+        "Mongol Empire",
+        "China"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カザフ・ハン国",
+        "en": "Kazakh Khanate",
+        "zh": "哈萨克汗国"
+      },
+      "capital": {
+        "ja": "スグナク",
+        "en": "Sighnaq",
+        "zh": "锡格纳克"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Turkic World",
+        "Pastoral Nomadism"
+      ],
+      "desc": {
+        "ja": "カザフ草原に成立したハン国。カザフ人形成と中央アジア草原史で重要である。",
+        "en": "A khanate on the Kazakh steppe, important for Kazakh ethnogenesis and Central Asian steppe history.",
+        "zh": "哈萨克草原上的汗国，对哈萨克族形成和中亚草原史重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1465,
+        "end": 1847,
+        "label": {
+          "ja": "1465年頃〜1847年",
+          "en": "c. 1465-1847",
+          "zh": "约1465年—1847年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大活動圏推定: 約2,500,000 km²",
+          "en": "maximum sphere estimate: about 2,500,000 km²",
+          "zh": "最大活动范围估计：约2,500,000 km²"
+        },
+        "languages": {
+          "ja": "カザフ語、キプチャク語系諸語",
+          "en": "Kazakh and Kipchak Turkic languages",
+          "zh": "哈萨克语、钦察突厥语"
+        },
+        "religions": {
+          "ja": "イスラム教、テングリ信仰",
+          "en": "Islam and Tengrism",
+          "zh": "伊斯兰教、腾格里信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カザフ・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kazakh Khanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "哈萨克汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1465年頃〜1847年に活動し、遊牧連合、カザフ草原、牧畜経済を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1465-1847, it influenced regional politics, religion, and trade through nomadic confederation, Kazakh steppe, pastoral economy.",
+          "zh": "活跃于约1465年—1847年，并通过游牧联盟、哈萨克草原、牧业经济影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ロシア帝国の進出で政治的独立を失った。",
+          "en": "Russian imperial expansion ended its political independence.",
+          "zh": "俄罗斯帝国扩张使其失去政治独立。"
+        },
+        "successors": {
+          "ja": "カザフスタン、ロシア帝国、中央アジア史に関係する。",
+          "en": "It connects with Kazakhstan, the Russian Empire, and Central Asian history.",
+          "zh": "与哈萨克斯坦、俄罗斯帝国和中亚史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はカザフ語、キプチャク語系諸語、宗教はイスラム教、テングリ信仰と関係が深い。遊牧連合、カザフ草原、牧畜経済を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Kazakh and Kipchak Turkic languages and Islam and Tengrism. The themes nomadic confederation, Kazakh steppe, pastoral economy are useful for understanding it.",
+          "zh": "其文化与哈萨克语、钦察突厥语和伊斯兰教、腾格里信仰关系密切。可从游牧联盟、哈萨克草原、牧业经济等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Kazakhstan",
+        "Russian Empire",
+        "Golden Horde"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ブハラ・ハン国",
+        "en": "Khanate of Bukhara",
+        "zh": "布哈拉汗国"
+      },
+      "capital": {
+        "ja": "ブハラ",
+        "en": "Bukhara",
+        "zh": "布哈拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Islamic World",
+        "Silk Road",
+        "Trade Hub",
+        "Persianate Culture"
+      ],
+      "desc": {
+        "ja": "中央アジアのオアシス国家。ブハラの学問都市、交易、ウズベク諸王朝で重要である。",
+        "en": "A Central Asian oasis state, important for Bukhara's scholarship, trade, and Uzbek dynastic politics.",
+        "zh": "中亚绿洲国家，以布哈拉学术城市、贸易和乌兹别克王朝政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1500,
+        "end": 1785,
+        "label": {
+          "ja": "1500年頃〜1785年",
+          "en": "c. 1500-1785",
+          "zh": "约1500年—1785年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "チャガタイ語、ペルシア語、アラビア語",
+          "en": "Chagatai, Persian, and Arabic",
+          "zh": "察合台语、波斯语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブハラ・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Khanate of Bukhara, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "布哈拉汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1500年頃〜1785年に活動し、オアシス都市、イスラム学問、中央アジア交易を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1500-1785, it influenced regional politics, religion, and trade through oasis cities, Islamic scholarship, Central Asian trade.",
+          "zh": "活跃于约1500年—1785年，并通过绿洲城市、伊斯兰学术、中亚贸易影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "王朝交代によりブハラ首長国へ移行した。",
+          "en": "Dynastic change transformed it into the Emirate of Bukhara.",
+          "zh": "王朝更替后转变为布哈拉酋长国。"
+        },
+        "successors": {
+          "ja": "ウズベキスタン、ブハラ首長国、中央アジア史に関係する。",
+          "en": "It connects with Uzbekistan, the Emirate of Bukhara, and Central Asian history.",
+          "zh": "与乌兹别克斯坦、布哈拉酋长国和中亚史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチャガタイ語、ペルシア語、アラビア語、宗教はイスラム教と関係が深い。オアシス都市、イスラム学問、中央アジア交易を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Chagatai, Persian, and Arabic and Islam. The themes oasis cities, Islamic scholarship, Central Asian trade are useful for understanding it.",
+          "zh": "其文化与察合台语、波斯语、阿拉伯语和伊斯兰教关系密切。可从绿洲城市、伊斯兰学术、中亚贸易等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Uzbekistan",
+        "Timurid Empire",
+        "Khanate of Khiva"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ヒヴァ・ハン国",
+        "en": "Khanate of Khiva",
+        "zh": "希瓦汗国"
+      },
+      "capital": {
+        "ja": "ヒヴァ",
+        "en": "Khiva",
+        "zh": "希瓦"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Islamic World",
+        "Silk Road",
+        "Desert State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "ホラズム地方のハン国。オアシス交易、アムダリヤ流域、ロシア南下で重要である。",
+        "en": "A khanate in Khwarazm, important for oasis trade, the Amu Darya basin, and Russian expansion.",
+        "zh": "花剌子模地区汗国，以绿洲贸易、阿姆河流域和俄罗斯南下重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1511,
+        "end": 1920,
+        "label": {
+          "ja": "1511年〜1920年",
+          "en": "1511-1920",
+          "zh": "1511年—1920年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約80万人",
+          "en": "peak estimate: about 800,000",
+          "zh": "鼎盛期估计：约80万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "チャガタイ語、ウズベク語、ペルシア語",
+          "en": "Chagatai, Uzbek, and Persian",
+          "zh": "察合台语、乌兹别克语、波斯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ヒヴァ・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Khanate of Khiva, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "希瓦汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1511年〜1920年に活動し、ホラズム、オアシス交易、ロシア南下を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1511-1920, it influenced regional politics, religion, and trade through Khwarazm, oasis trade, Russian expansion.",
+          "zh": "活跃于1511年—1920年，并通过花剌子模、绿洲贸易、俄罗斯扩张影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "赤軍の進出によりハン国が廃止された。",
+          "en": "Red Army intervention abolished the khanate.",
+          "zh": "红军进入后汗国被废除。"
+        },
+        "successors": {
+          "ja": "ウズベキスタン、トルクメニスタン、ソビエト中央アジアに関係する。",
+          "en": "It connects with Uzbekistan, Turkmenistan, and Soviet Central Asia.",
+          "zh": "与乌兹别克斯坦、土库曼斯坦和苏联中亚相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチャガタイ語、ウズベク語、ペルシア語、宗教はイスラム教と関係が深い。ホラズム、オアシス交易、ロシア南下を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Chagatai, Uzbek, and Persian and Islam. The themes Khwarazm, oasis trade, Russian expansion are useful for understanding it.",
+          "zh": "其文化与察合台语、乌兹别克语、波斯语和伊斯兰教关系密切。可从花剌子模、绿洲贸易、俄罗斯扩张等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Uzbekistan",
+        "Turkmenistan",
+        "Soviet Union"
+      ]
+    },
+    {
+      "names": {
+        "ja": "コーカンド・ハン国",
+        "en": "Kokand Khanate",
+        "zh": "浩罕汗国"
+      },
+      "capital": {
+        "ja": "コーカンド",
+        "en": "Kokand",
+        "zh": "浩罕"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Islamic World",
+        "Silk Road",
+        "Trade Hub",
+        "Mountain State"
+      ],
+      "desc": {
+        "ja": "フェルガナ盆地を中心としたハン国。中央アジア交易とロシア帝国の進出で重要である。",
+        "en": "A khanate centered on the Fergana Valley, important for Central Asian trade and Russian expansion.",
+        "zh": "以费尔干纳盆地为中心的汗国，对中亚贸易和俄罗斯扩张重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1709,
+        "end": 1876,
+        "label": {
+          "ja": "1709年〜1876年",
+          "en": "1709-1876",
+          "zh": "1709年—1876年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約150万人",
+          "en": "peak estimate: about 1.5 million",
+          "zh": "鼎盛期估计：约150万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約350,000 km²",
+          "en": "maximum extent estimate: about 350,000 km²",
+          "zh": "最大领域估计：约350,000 km²"
+        },
+        "languages": {
+          "ja": "ウズベク語、チャガタイ語、ペルシア語",
+          "en": "Uzbek, Chagatai, and Persian",
+          "zh": "乌兹别克语、察合台语、波斯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "コーカンド・ハン国では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Kokand Khanate, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "浩罕汗国的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1709年〜1876年に活動し、フェルガナ盆地、中央アジア交易、ロシア進出を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1709-1876, it influenced regional politics, religion, and trade through Fergana Valley, Central Asian trade, Russian expansion.",
+          "zh": "活跃于1709年—1876年，并通过费尔干纳盆地、中亚贸易、俄罗斯扩张影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ロシア帝国に併合された。",
+          "en": "It was annexed by the Russian Empire.",
+          "zh": "被俄罗斯帝国吞并。"
+        },
+        "successors": {
+          "ja": "ウズベキスタン、キルギス、ロシア帝国中央アジア支配に関係する。",
+          "en": "It connects with Uzbekistan, Kyrgyzstan, and Russian rule in Central Asia.",
+          "zh": "与乌兹别克斯坦、吉尔吉斯斯坦和俄罗斯在中亚统治相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はウズベク語、チャガタイ語、ペルシア語、宗教はイスラム教と関係が深い。フェルガナ盆地、中央アジア交易、ロシア進出を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Uzbek, Chagatai, and Persian and Islam. The themes Fergana Valley, Central Asian trade, Russian expansion are useful for understanding it.",
+          "zh": "其文化与乌兹别克语、察合台语、波斯语和伊斯兰教关系密切。可从费尔干纳盆地、中亚贸易、俄罗斯扩张等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Uzbekistan",
+        "Kyrgyzstan",
+        "Russian Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サッファール朝",
+        "en": "Saffarid Dynasty",
+        "zh": "萨法尔王朝"
+      },
+      "capital": {
+        "ja": "ザランジュ",
+        "en": "Zaranj",
+        "zh": "扎兰季"
+      },
+      "type": "Past",
+      "region": "Middle East, Central Asia",
+      "tags": [
+        "Dynastic State",
+        "Islamic World",
+        "Persianate Culture",
+        "Military Government",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "スィースターンから広がったイラン系王朝。アッバース朝後の東方イスラム世界で重要である。",
+        "en": "An Iranian dynasty from Sistan, important in the eastern Islamic world after Abbasid fragmentation.",
+        "zh": "起于锡斯坦的伊朗系王朝，对阿拔斯分裂后的东方伊斯兰世界重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 861,
+        "end": 1003,
+        "label": {
+          "ja": "861年〜1003年",
+          "en": "861-1003",
+          "zh": "861年—1003年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,000,000 km²",
+          "en": "maximum extent estimate: about 1,000,000 km²",
+          "zh": "最大领域估计：约1,000,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、アラビア語",
+          "en": "Persian and Arabic",
+          "zh": "波斯语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サッファール朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Saffarid Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "萨法尔王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "861年〜1003年に活動し、東方イスラム世界、イラン復興、軍事王朝を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 861-1003, it influenced regional politics, religion, and trade through eastern Islamic world, Iranian revival, military dynasty.",
+          "zh": "活跃于861年—1003年，并通过东方伊斯兰世界、伊朗复兴、军事王朝影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "サーマーン朝やガズナ朝の圧力で衰退した。",
+          "en": "Pressure from the Samanids and Ghaznavids weakened it.",
+          "zh": "萨曼和伽色尼压力使其衰落。"
+        },
+        "successors": {
+          "ja": "サーマーン朝、ガズナ朝、イラン高原史に関係する。",
+          "en": "It connects with the Samanids, Ghaznavids, and Iranian plateau history.",
+          "zh": "与萨曼、伽色尼和伊朗高原史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、アラビア語、宗教はイスラム教と関係が深い。東方イスラム世界、イラン復興、軍事王朝を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian and Arabic and Islam. The themes eastern Islamic world, Iranian revival, military dynasty are useful for understanding it.",
+          "zh": "其文化与波斯语、阿拉伯语和伊斯兰教关系密切。可从东方伊斯兰世界、伊朗复兴、军事王朝等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Samanid Empire",
+        "Ghaznavid Empire",
+        "Afghanistan"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ターヒル朝",
+        "en": "Tahirid Dynasty",
+        "zh": "塔希尔王朝"
+      },
+      "capital": {
+        "ja": "ニーシャープール",
+        "en": "Nishapur",
+        "zh": "内沙布尔"
+      },
+      "type": "Past",
+      "region": "Middle East, Central Asia",
+      "tags": [
+        "Dynastic State",
+        "Islamic World",
+        "Persianate Culture",
+        "Trade Hub",
+        "Silk Road"
+      ],
+      "desc": {
+        "ja": "ホラーサーンを支配したイラン系王朝。アッバース朝下での地方自立とペルシア文化復興で重要である。",
+        "en": "An Iranian dynasty ruling Khurasan, important for provincial autonomy under the Abbasids and Persian cultural revival.",
+        "zh": "统治呼罗珊的伊朗系王朝，对阿拔斯治下地方自治和波斯文化复兴重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 821,
+        "end": 873,
+        "label": {
+          "ja": "821年〜873年",
+          "en": "821-873",
+          "zh": "821年—873年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、アラビア語",
+          "en": "Persian and Arabic",
+          "zh": "波斯语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ターヒル朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Tahirid Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "塔希尔王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "821年〜873年に活動し、ホラーサーン、地方自立、ペルシア文化を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 821-873, it influenced regional politics, religion, and trade through Khurasan, provincial autonomy, Persian culture.",
+          "zh": "活跃于821年—873年，并通过呼罗珊、地方自治、波斯文化影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "サッファール朝の攻撃で滅亡した。",
+          "en": "It was overthrown by the Saffarids.",
+          "zh": "被萨法尔王朝推翻。"
+        },
+        "successors": {
+          "ja": "サッファール朝、サーマーン朝、ホラーサーン史に関係する。",
+          "en": "It connects with the Saffarids, Samanids, and Khurasan history.",
+          "zh": "与萨法尔、萨曼和呼罗珊史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、アラビア語、宗教はイスラム教と関係が深い。ホラーサーン、地方自立、ペルシア文化を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian and Arabic and Islam. The themes Khurasan, provincial autonomy, Persian culture are useful for understanding it.",
+          "zh": "其文化与波斯语、阿拉伯语和伊斯兰教关系密切。可从呼罗珊、地方自治、波斯文化等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Abbasid Caliphate",
+        "Saffarid Dynasty",
+        "Samanid Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ズィヤール朝",
+        "en": "Ziyarid Dynasty",
+        "zh": "齐亚尔王朝"
+      },
+      "capital": {
+        "ja": "ゴルガーン",
+        "en": "Gorgan",
+        "zh": "戈尔甘"
+      },
+      "type": "Past",
+      "region": "Middle East (Iran)",
+      "tags": [
+        "Dynastic State",
+        "Persianate Culture",
+        "Islamic World",
+        "Mountain State",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "カスピ海南岸のイラン系王朝。ブワイフ朝期の地域政治とペルシア文学で重要である。",
+        "en": "An Iranian dynasty south of the Caspian, important for regional politics under the Buyids and Persian literature.",
+        "zh": "里海南岸伊朗系王朝，对白益时期地区政治和波斯文学重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 930,
+        "end": 1090,
+        "label": {
+          "ja": "930年頃〜1090年頃",
+          "en": "c. 930-c. 1090",
+          "zh": "约930年—约1090年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、アラビア語、ギーラーン系諸語",
+          "en": "Persian, Arabic, and Caspian languages",
+          "zh": "波斯语、阿拉伯语、里海地区语言"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ズィヤール朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Ziyarid Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "齐亚尔王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "930年頃〜1090年頃に活動し、カスピ海南岸、ペルシア文化、地域王朝を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 930-c. 1090, it influenced regional politics, religion, and trade through south Caspian region, Persian culture, regional dynasty.",
+          "zh": "活跃于约930年—约1090年，并通过里海南岸、波斯文化、地区王朝影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "セルジューク朝や周辺勢力の圧力で自立性を失った。",
+          "en": "Seljuk and regional pressure reduced its autonomy.",
+          "zh": "塞尔柱和周边势力压力使其失去自治。"
+        },
+        "successors": {
+          "ja": "ブワイフ朝、セルジューク帝国、イラン北部史に関係する。",
+          "en": "It connects with the Buyids, Seljuks, and northern Iranian history.",
+          "zh": "与白益、塞尔柱和伊朗北部史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、アラビア語、ギーラーン系諸語、宗教はイスラム教と関係が深い。カスピ海南岸、ペルシア文化、地域王朝を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian, Arabic, and Caspian languages and Islam. The themes south Caspian region, Persian culture, regional dynasty are useful for understanding it.",
+          "zh": "其文化与波斯语、阿拉伯语、里海地区语言和伊斯兰教关系密切。可从里海南岸、波斯文化、地区王朝等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Buyid Dynasty",
+        "Seljuk Empire",
+        "Iran"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アルトゥク朝",
+        "en": "Artuqids",
+        "zh": "阿尔图格王朝"
+      },
+      "capital": {
+        "ja": "マルディン",
+        "en": "Mardin",
+        "zh": "马尔丁"
+      },
+      "type": "Past",
+      "region": "Middle East (Anatolia)",
+      "tags": [
+        "Dynastic State",
+        "Turkic World",
+        "Islamic World",
+        "Frontier State",
+        "Medieval Dynasty"
+      ],
+      "desc": {
+        "ja": "アナトリア東部とジャズィーラに成立したトルコ系王朝。十字軍時代の国境政治で重要である。",
+        "en": "A Turkic dynasty in eastern Anatolia and Jazira, important for frontier politics during the Crusades.",
+        "zh": "安纳托利亚东部和贾兹拉的突厥系王朝，对十字军时期边疆政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1101,
+        "end": 1409,
+        "label": {
+          "ja": "1101年頃〜1409年",
+          "en": "c. 1101-1409",
+          "zh": "约1101年—1409年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "トルコ語、アラビア語、クルド語",
+          "en": "Turkish, Arabic, and Kurdish",
+          "zh": "土耳其语、阿拉伯语、库尔德语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アルトゥク朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Artuqids, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "阿尔图格王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1101年頃〜1409年に活動し、十字軍時代、アナトリア辺境、トルコ系王朝を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1101-1409, it influenced regional politics, religion, and trade through Crusader era, Anatolian frontier, Turkic dynasty.",
+          "zh": "活跃于约1101年—1409年，并通过十字军时代、安纳托利亚边疆、突厥王朝影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ティムール朝や黒羊朝などの圧力で解体した。",
+          "en": "Pressure from Timurids and Qara Qoyunlu powers dissolved it.",
+          "zh": "帖木儿和黑羊等势力压力使其解体。"
+        },
+        "successors": {
+          "ja": "オスマン帝国前史、アナトリア東部史に関係する。",
+          "en": "It connects with pre-Ottoman and eastern Anatolian history.",
+          "zh": "与奥斯曼前史和安纳托利亚东部史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はトルコ語、アラビア語、クルド語、宗教はイスラム教、キリスト教と関係が深い。十字軍時代、アナトリア辺境、トルコ系王朝を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Turkish, Arabic, and Kurdish and Islam and Christianity. The themes Crusader era, Anatolian frontier, Turkic dynasty are useful for understanding it.",
+          "zh": "其文化与土耳其语、阿拉伯语、库尔德语和伊斯兰教、基督教关系密切。可从十字军时代、安纳托利亚边疆、突厥王朝等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Seljuk Empire",
+        "Sultanate of Rum",
+        "Ottoman Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ダニシュメンド朝",
+        "en": "Danishmendids",
+        "zh": "达尼什曼德王朝"
+      },
+      "capital": {
+        "ja": "スィヴァス",
+        "en": "Sivas",
+        "zh": "锡瓦斯"
+      },
+      "type": "Past",
+      "region": "Middle East (Anatolia)",
+      "tags": [
+        "Dynastic State",
+        "Turkic World",
+        "Islamic World",
+        "Frontier State",
+        "Warrior Aristocracy"
+      ],
+      "desc": {
+        "ja": "アナトリア中央部のトルコ系王朝。ルーム・セルジューク朝や十字軍との関係で重要である。",
+        "en": "A Turkic dynasty in central Anatolia, important for relations with Rum Seljuks and Crusaders.",
+        "zh": "安纳托利亚中部突厥系王朝，对与罗姆塞尔柱和十字军关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1071,
+        "end": 1178,
+        "label": {
+          "ja": "1071年頃〜1178年",
+          "en": "c. 1071-1178",
+          "zh": "约1071年—1178年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "トルコ語、ギリシア語、アルメニア語",
+          "en": "Turkish, Greek, and Armenian",
+          "zh": "土耳其语、希腊语、亚美尼亚语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ダニシュメンド朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Danishmendids, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "达尼什曼德王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1071年頃〜1178年に活動し、アナトリア征服、辺境軍事、十字軍時代を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1071-1178, it influenced regional politics, religion, and trade through Anatolian conquest, frontier warfare, Crusader era.",
+          "zh": "活跃于约1071年—1178年，并通过安纳托利亚征服、边疆军事、十字军时代影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ルーム・セルジューク朝に吸収された。",
+          "en": "It was absorbed by the Sultanate of Rum.",
+          "zh": "被罗姆塞尔柱苏丹国吸收。"
+        },
+        "successors": {
+          "ja": "ルーム・セルジューク朝、オスマン帝国前史に関係する。",
+          "en": "It connects with the Sultanate of Rum and pre-Ottoman history.",
+          "zh": "与罗姆塞尔柱和奥斯曼前史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はトルコ語、ギリシア語、アルメニア語、宗教はイスラム教、キリスト教と関係が深い。アナトリア征服、辺境軍事、十字軍時代を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Turkish, Greek, and Armenian and Islam and Christianity. The themes Anatolian conquest, frontier warfare, Crusader era are useful for understanding it.",
+          "zh": "其文化与土耳其语、希腊语、亚美尼亚语和伊斯兰教、基督教关系密切。可从安纳托利亚征服、边疆军事、十字军时代等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Sultanate of Rum",
+        "Seljuk Empire",
+        "Ottoman Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "イルデニズ朝",
+        "en": "Eldiguzids",
+        "zh": "伊尔迪吉兹王朝"
+      },
+      "capital": {
+        "ja": "タブリーズ",
+        "en": "Tabriz",
+        "zh": "大不里士"
+      },
+      "type": "Past",
+      "region": "Middle East, Central Asia",
+      "tags": [
+        "Dynastic State",
+        "Turkic World",
+        "Islamic World",
+        "Persianate Culture",
+        "Strategic Crossroads"
+      ],
+      "desc": {
+        "ja": "アゼルバイジャンとイラン北西部を支配したアタベク政権。セルジューク後の地域秩序で重要である。",
+        "en": "An atabeg dynasty in Azerbaijan and northwestern Iran, important for the post-Seljuk regional order.",
+        "zh": "统治阿塞拜疆和伊朗西北部的阿塔贝格政权，对后塞尔柱地区秩序重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1136,
+        "end": 1225,
+        "label": {
+          "ja": "1136年頃〜1225年",
+          "en": "c. 1136-1225",
+          "zh": "约1136年—1225年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約150万人",
+          "en": "peak estimate: about 1.5 million",
+          "zh": "鼎盛期估计：约150万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、トルコ語、アラビア語",
+          "en": "Persian, Turkish, and Arabic",
+          "zh": "波斯语、土耳其语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "イルデニズ朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Eldiguzids, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "伊尔迪吉兹王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1136年頃〜1225年に活動し、アタベク政権、コーカサス、セルジューク後継を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during c. 1136-1225, it influenced regional politics, religion, and trade through atabeg rule, Caucasus, post-Seljuk order.",
+          "zh": "活跃于约1136年—1225年，并通过阿塔贝格政权、高加索、后塞尔柱秩序影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ホラズム・シャー朝とモンゴル帝国の圧力で消滅した。",
+          "en": "Khwarazmian and Mongol pressure ended it.",
+          "zh": "花剌子模和蒙古压力使其消亡。"
+        },
+        "successors": {
+          "ja": "ホラズム・シャー朝、イルハン国、アゼルバイジャン史に関係する。",
+          "en": "It connects with Khwarazm, the Ilkhanate, and Azerbaijani history.",
+          "zh": "与花剌子模、伊儿汗国和阿塞拜疆史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、トルコ語、アラビア語、宗教はイスラム教と関係が深い。アタベク政権、コーカサス、セルジューク後継を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian, Turkish, and Arabic and Islam. The themes atabeg rule, Caucasus, post-Seljuk order are useful for understanding it.",
+          "zh": "其文化与波斯语、土耳其语、阿拉伯语和伊斯兰教关系密切。可从阿塔贝格政权、高加索、后塞尔柱秩序等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Seljuk Empire",
+        "Khwarazmian Empire",
+        "Ilkhanate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "クトゥブ・シャーヒー朝",
+        "en": "Qutb Shahi Dynasty",
+        "zh": "库特布沙希王朝"
+      },
+      "capital": {
+        "ja": "ゴールコンダ",
+        "en": "Golconda",
+        "zh": "戈尔康达"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indic Civilization",
+        "Trade Hub",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "デカンのゴールコンダを中心とした王朝。ダイヤモンド交易、テルグ文化、ムガル帝国との関係で重要である。",
+        "en": "A Deccan dynasty centered on Golconda, important for diamond trade, Telugu culture, and relations with the Mughals.",
+        "zh": "以戈尔康达为中心的德干王朝，以钻石贸易、泰卢固文化和与莫卧儿关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1518,
+        "end": 1687,
+        "label": {
+          "ja": "1518年〜1687年",
+          "en": "1518-1687",
+          "zh": "1518年—1687年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、ダッキニー、テルグ語",
+          "en": "Persian, Dakhni, and Telugu",
+          "zh": "波斯语、达克尼语、泰卢固语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教",
+          "en": "Islam and Hinduism",
+          "zh": "伊斯兰教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クトゥブ・シャーヒー朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Qutb Shahi Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "库特布沙希王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1518年〜1687年に活動し、デカン・スルターン、ダイヤモンド交易、多文化宮廷を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1518-1687, it influenced regional politics, religion, and trade through Deccan sultanate, diamond trade, multicultural court.",
+          "zh": "活跃于1518年—1687年，并通过德干苏丹国、钻石贸易、多文化宫廷影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ムガル帝国アウラングゼーブに征服された。",
+          "en": "It was conquered by Aurangzeb's Mughal Empire.",
+          "zh": "被奥朗则布时期的莫卧儿帝国征服。"
+        },
+        "successors": {
+          "ja": "ムガル帝国、ハイデラバード藩王国、デカン史につながる。",
+          "en": "It connects with the Mughal Empire, Hyderabad State, and Deccan history.",
+          "zh": "与莫卧儿、海得拉巴土邦和德干史相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、ダッキニー、テルグ語、宗教はイスラム教、ヒンドゥー教と関係が深い。デカン・スルターン、ダイヤモンド交易、多文化宮廷を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian, Dakhni, and Telugu and Islam and Hinduism. The themes Deccan sultanate, diamond trade, multicultural court are useful for understanding it.",
+          "zh": "其文化与波斯语、达克尼语、泰卢固语和伊斯兰教、印度教关系密切。可从德干苏丹国、钻石贸易、多文化宫廷等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Mughal Empire",
+        "Hyderabad State",
+        "Bahmani Sultanate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アーディル・シャーヒー朝",
+        "en": "Adil Shahi Dynasty",
+        "zh": "阿迪勒沙希王朝"
+      },
+      "capital": {
+        "ja": "ビジャープル",
+        "en": "Bijapur",
+        "zh": "比贾布尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indic Civilization",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "デカンのビジャープルを中心とした王朝。建築、ペルシア文化、ヴィジャヤナガル・ムガルとの関係で重要である。",
+        "en": "A Deccan dynasty centered on Bijapur, important for architecture, Persianate culture, and relations with Vijayanagara and the Mughals.",
+        "zh": "以比贾布尔为中心的德干王朝，以建筑、波斯文化以及与毗奢耶那伽罗和莫卧儿关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1490,
+        "end": 1686,
+        "label": {
+          "ja": "1490年〜1686年",
+          "en": "1490-1686",
+          "zh": "1490年—1686年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、ダッキニー、カンナダ語、マラーティー語",
+          "en": "Persian, Dakhni, Kannada, and Marathi",
+          "zh": "波斯语、达克尼语、卡纳达语、马拉地语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教",
+          "en": "Islam and Hinduism",
+          "zh": "伊斯兰教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アーディル・シャーヒー朝では、王族・宮廷官僚・軍事指導者・宗教権威・交易都市の有力者が政治を動かした。",
+          "en": "For Adil Shahi Dynasty, rulers, court officials, military leaders, religious authorities, and urban trading elites shaped politics.",
+          "zh": "阿迪勒沙希王朝的重要人物包括君主、宫廷官僚、军事领导人、宗教权威以及贸易城市精英。"
+        },
+        "major_events": {
+          "ja": "1490年〜1686年に活動し、デカン文化、宮廷建築、南インド外交を通じて周辺世界の政治・宗教・交易に影響した。",
+          "en": "Active during 1490-1686, it influenced regional politics, religion, and trade through Deccan culture, court architecture, south Indian diplomacy.",
+          "zh": "活跃于1490年—1686年，并通过德干文化、宫廷建筑、南印度外交影响周边世界的政治、宗教和贸易。"
+        },
+        "fall_reason": {
+          "ja": "ムガル帝国に征服された。",
+          "en": "It was conquered by the Mughal Empire.",
+          "zh": "被莫卧儿帝国征服。"
+        },
+        "successors": {
+          "ja": "ムガル帝国、マラーター帝国、デカン史に関係する。",
+          "en": "It connects with the Mughals, Marathas, and Deccan history.",
+          "zh": "与莫卧儿、马拉塔和德干史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、ダッキニー、カンナダ語、マラーティー語、宗教はイスラム教、ヒンドゥー教と関係が深い。デカン文化、宮廷建築、南インド外交を軸に見ると特徴をつかみやすい。",
+          "en": "Its culture is connected with Persian, Dakhni, Kannada, and Marathi and Islam and Hinduism. The themes Deccan culture, court architecture, south Indian diplomacy are useful for understanding it.",
+          "zh": "其文化与波斯语、达克尼语、卡纳达语、马拉地语和伊斯兰教、印度教关系密切。可从德干文化、宫廷建筑、南印度外交等主题理解其特点。"
+        }
+      },
+      "related": [
+        "Mughal Empire",
+        "Maratha Empire",
+        "Bahmani Sultanate"
+      ]
     }
   ],
   "tag_categories": {

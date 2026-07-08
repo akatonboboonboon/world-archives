@@ -4609,6 +4609,51 @@ def first_sentence(text):
         return text
     return text[:min(positions) + 1]
 
+DETAIL_QUIZ_BLOCKED_PHRASES = [
+    'データ上の成立・建国時期',
+    'The recorded foundation or establishment',
+    '数据中记录的成立',
+]
+
+def split_quiz_sentences(text):
+    text = (text or '').strip()
+    if not text:
+        return []
+    return [
+        sentence.strip()
+        for sentence in re.split(r'(?<=[。.!！？?])\s*', text)
+        if sentence.strip()
+    ]
+
+def strip_period_only_intro(sentence):
+    sentence = (sentence or '').strip()
+    patterns = [
+        r'^(?:紀元前)?\d+年(?:頃)?(?:[〜～\-—–](?:紀元前)?\d+年(?:頃)?)?に活動(?:し、|。|\.)\s*',
+        r'^(?:c\.\s*)?\d+(?:\s*BCE|\s*CE)?(?:\s*[-–—]\s*(?:c\.\s*)?\d+(?:\s*BCE|\s*CE)?)?\s+active(?:,|\.| and )\s*',
+        r'^\d+年(?:前)?(?:[—\-]\d+年(?:前)?)?活动(?:，|。)\s*',
+    ]
+    cleaned = sentence
+    for pattern in patterns:
+        cleaned = re.sub(pattern, '', cleaned, flags=re.IGNORECASE).strip()
+    return cleaned
+
+def detail_quiz_sentence(country, field):
+    value = detail_value(country, field)
+    if not value:
+        return ''
+    normalized_value = normalized_text(value)
+    if any(normalized_text(phrase) in normalized_value for phrase in DETAIL_QUIZ_BLOCKED_PHRASES):
+        return ''
+    for sentence in split_quiz_sentences(value):
+        cleaned = strip_period_only_intro(sentence)
+        normalized_sentence = normalized_text(cleaned)
+        if not cleaned or any(normalized_text(phrase) in normalized_sentence for phrase in DETAIL_QUIZ_BLOCKED_PHRASES):
+            continue
+        if len(normalized_sentence) < 12:
+            continue
+        return cleaned
+    return ''
+
 def countries_by_key(data=None):
     return derived_country_data(data)['all_by_key']
 
@@ -4837,6 +4882,49 @@ MAP_QUERY_OVERRIDES = {
     'Kuba Kingdom': 'Nsheng, Democratic Republic of the Congo',
     'Kingdom of Nri': 'Nri, Anambra, Nigeria',
     'Sultanate of Zanzibar': 'Stone Town, Zanzibar, Tanzania',
+    'Greco-Bactrian Kingdom': 'Balkh, Afghanistan',
+    'Indo-Greek Kingdom': 'Taxila, Pakistan',
+    'Indo-Scythian Kingdom': 'Sirkap, Taxila, Pakistan',
+    'Indo-Parthian Kingdom': 'Taxila, Pakistan',
+    'Western Satraps': 'Ujjain, India',
+    'Shunga Empire': 'Patna, Bihar, India',
+    'Kanva Dynasty': 'Patna, Bihar, India',
+    'Chera Dynasty': 'Kodungallur, Kerala, India',
+    'Pallava Dynasty': 'Kanchipuram, Tamil Nadu, India',
+    'Kadamba Dynasty': 'Banavasi, Karnataka, India',
+    'Western Chalukya Empire': 'Basavakalyan, Karnataka, India',
+    'Eastern Chalukyas': 'Vengi, Andhra Pradesh, India',
+    'Chalukya Dynasty': 'Badami, Karnataka, India',
+    'Sena Dynasty': 'Nabadwip, West Bengal, India',
+    'Gajapati Empire': 'Cuttack, Odisha, India',
+    'Ahom Kingdom': 'Sivasagar, Assam, India',
+    'Kamarupa Kingdom': 'Guwahati, Assam, India',
+    'Kakatiya Dynasty': 'Warangal, Telangana, India',
+    'Yadava Dynasty': 'Daulatabad Fort, Maharashtra, India',
+    'Malwa Sultanate': 'Mandu, Madhya Pradesh, India',
+    'Gujarat Sultanate': 'Ahmedabad, Gujarat, India',
+    'Jaunpur Sultanate': 'Jaunpur, Uttar Pradesh, India',
+    'Madurai Sultanate': 'Madurai, Tamil Nadu, India',
+    'Mysore Kingdom': 'Mysuru, Karnataka, India',
+    'Travancore': 'Thiruvananthapuram, Kerala, India',
+    'Hyderabad State': 'Hyderabad, Telangana, India',
+    'Kalat Khanate': 'Kalat, Balochistan, Pakistan',
+    'Khotan Kingdom': 'Hotan, Xinjiang, China',
+    'Kingdom of Qocho': 'Gaochang, Turpan, Xinjiang, China',
+    'Yarkent Khanate': 'Yarkant County, Xinjiang, China',
+    'Dzungar Khanate': 'Yining, Xinjiang, China',
+    'Kazakh Khanate': 'Sighnaq, Kazakhstan',
+    'Khanate of Bukhara': 'Bukhara, Uzbekistan',
+    'Khanate of Khiva': 'Khiva, Uzbekistan',
+    'Kokand Khanate': 'Kokand, Uzbekistan',
+    'Saffarid Dynasty': 'Zaranj, Afghanistan',
+    'Tahirid Dynasty': 'Nishapur, Iran',
+    'Ziyarid Dynasty': 'Gorgan, Iran',
+    'Artuqids': 'Mardin, Turkey',
+    'Danishmendids': 'Sivas, Turkey',
+    'Eldiguzids': 'Tabriz, Iran',
+    'Qutb Shahi Dynasty': 'Golconda Fort, Hyderabad, India',
+    'Adil Shahi Dynasty': 'Bijapur, Karnataka, India',
 }
 
 def map_override_query(country):
@@ -5240,7 +5328,7 @@ def quiz_display_value(country, question_type):
         return profile_value(country, field)
     if question_type.startswith('detail_'):
         field = question_type.replace('detail_', '', 1)
-        return first_sentence(detail_value(country, field))
+        return detail_quiz_sentence(country, field)
     return ''
 
 def quiz_reverse_field_label(question_type):
@@ -5280,7 +5368,7 @@ def quiz_question_value(country, question_type):
         return normalized_text(profile_value(country, field))
     if question_type.startswith('detail_'):
         field = question_type.replace('detail_', '', 1)
-        return normalized_text(first_sentence(detail_value(country, field)))
+        return normalized_text(detail_quiz_sentence(country, field))
     return ''
 
 def quiz_option_signature(label=None, image=None):
@@ -5609,7 +5697,7 @@ def quiz_view_parts(quiz, answer):
         return question, '', None
     elif question_type.startswith('detail_'):
         field = question_type.replace('detail_', '', 1)
-        value = detail_value(answer, field)
+        value = detail_quiz_sentence(answer, field)
         question = t('quiz_profile').format(label=t(field), value=first_sentence(value))
         return question, '', None
     else:
