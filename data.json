@@ -43391,6 +43391,3862 @@
         "Sudan",
         "Makuria"
       ]
+    },
+    {
+      "names": {
+        "ja": "ワリ帝国",
+        "en": "Wari Empire",
+        "zh": "瓦里帝国"
+      },
+      "capital": {
+        "ja": "ワリ",
+        "en": "Wari",
+        "zh": "瓦里"
+      },
+      "type": "Past",
+      "region": "South America (Peru)",
+      "tags": [
+        "Empire",
+        "Indigenous Civilization",
+        "Mountain State",
+        "Trade Hub",
+        "Ancient Civilization"
+      ],
+      "desc": {
+        "ja": "インカ帝国以前のアンデス中央部で広域支配を行った国家。道路網、都市計画、行政の発達で重要である。",
+        "en": "A major Andean state before the Inca, important for roads, urban planning, and administration.",
+        "zh": "印加以前安第斯中部的重要国家，以道路网、城市规划和行政制度著称。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 600,
+        "end": 1000,
+        "label": {
+          "ja": "600年頃〜1000年頃",
+          "en": "c. 600-c. 1000",
+          "zh": "约600年—约1000年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "ケチュア系諸語、アイマラ系諸語",
+          "en": "Quechuan and Aymaran languages",
+          "zh": "克丘亚语族、艾马拉语族"
+        },
+        "religions": {
+          "ja": "アンデス在来信仰",
+          "en": "Andean traditional beliefs",
+          "zh": "安第斯传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ワリ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Wari Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "瓦里帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "600年頃〜1000年頃に活動し、アンデス高地支配、道路網、行政都市を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 600-c. 1000, it influenced regional politics, trade, and culture through Andean highland rule, road networks, administrative cities.",
+          "zh": "活跃于约600年—约1000年，并通过安第斯高地统治、道路网、行政城市影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "干ばつ、地域勢力の自立、都市中心の衰退で分裂したと考えられる。",
+          "en": "Drought, regional autonomy, and urban decline likely contributed to fragmentation.",
+          "zh": "干旱、地区势力独立和城市中心衰落可能导致其分裂。"
+        },
+        "successors": {
+          "ja": "後のアンデス国家やインカ帝国の統治モデルに影響した。",
+          "en": "It influenced later Andean states and Inca models of rule.",
+          "zh": "它影响了后来的安第斯国家和印加统治模式。"
+        },
+        "cultural_features": {
+          "ja": "言語はケチュア系諸語、アイマラ系諸語、宗教・信仰はアンデス在来信仰と関係が深い。アンデス高地支配、道路網、行政都市が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Quechuan and Aymaran languages and Andean traditional beliefs. The key themes are Andean highland rule, road networks, administrative cities.",
+          "zh": "其文化与克丘亚语族、艾马拉语族和安第斯传统信仰关系密切。理解其特点的关键主题是安第斯高地统治、道路网、行政城市。"
+        }
+      },
+      "related": [
+        "Peru",
+        "Inca Empire",
+        "Tiwanaku Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "モチェ文明",
+        "en": "Moche Civilization",
+        "zh": "莫切文明"
+      },
+      "capital": {
+        "ja": "モチェ",
+        "en": "Moche",
+        "zh": "莫切"
+      },
+      "type": "Past",
+      "region": "South America (Peru)",
+      "tags": [
+        "Indigenous Civilization",
+        "Ancient Civilization",
+        "Maritime Power",
+        "Agricultural Exporter",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "ペルー北海岸で栄えた古代文明。灌漑農業、陶器、金属工芸、儀礼文化で知られる。",
+        "en": "An ancient civilization on Peru's north coast, known for irrigation, ceramics, metalwork, and ritual culture.",
+        "zh": "秘鲁北海岸的古代文明，以灌溉农业、陶器、金属工艺和祭祀文化闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 100,
+        "end": 700,
+        "label": {
+          "ja": "100年頃〜700年頃",
+          "en": "c. 100-c. 700",
+          "zh": "约100年—约700年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約60,000 km²",
+          "en": "sphere estimate: about 60,000 km²",
+          "zh": "影响范围估计：约60,000 km²"
+        },
+        "languages": {
+          "ja": "モチカ語、アンデス諸語",
+          "en": "Mochica and Andean languages",
+          "zh": "莫奇卡语、安第斯诸语"
+        },
+        "religions": {
+          "ja": "アンデス在来信仰、儀礼的祭祀",
+          "en": "Andean traditional beliefs and ritual cults",
+          "zh": "安第斯传统信仰、祭祀仪式"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "モチェ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Moche Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "莫切文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "100年頃〜700年頃に活動し、灌漑農業、海岸交易、工芸文化を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 100-c. 700, it influenced regional politics, trade, and culture through irrigation agriculture, coastal trade, craft culture.",
+          "zh": "活跃于约100年—约700年，并通过灌溉农业、海岸贸易、工艺文化影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "気候変動、洪水、干ばつ、地域政治の再編で衰退した。",
+          "en": "Climate shifts, floods, drought, and political reorganization weakened it.",
+          "zh": "气候变化、洪水、干旱和地区政治重组使其衰落。"
+        },
+        "successors": {
+          "ja": "北部アンデスの後続文化やチムー文化につながる。",
+          "en": "It connects with later northern Andean cultures and Chimu Culture.",
+          "zh": "与后来的北安第斯文化和奇穆文化相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はモチカ語、アンデス諸語、宗教・信仰はアンデス在来信仰、儀礼的祭祀と関係が深い。灌漑農業、海岸交易、工芸文化が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Mochica and Andean languages and Andean traditional beliefs and ritual cults. The key themes are irrigation agriculture, coastal trade, craft culture.",
+          "zh": "其文化与莫奇卡语、安第斯诸语和安第斯传统信仰、祭祀仪式关系密切。理解其特点的关键主题是灌溉农业、海岸贸易、工艺文化。"
+        }
+      },
+      "related": [
+        "Peru",
+        "Chimu Culture",
+        "Inca Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ナスカ文明",
+        "en": "Nazca Civilization",
+        "zh": "纳斯卡文明"
+      },
+      "capital": {
+        "ja": "カワチ",
+        "en": "Cahuachi",
+        "zh": "卡瓦奇"
+      },
+      "type": "Past",
+      "region": "South America (Peru)",
+      "tags": [
+        "Indigenous Civilization",
+        "Ancient Civilization",
+        "Desert State",
+        "Cultural Sphere",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "ペルー南海岸で栄えた文明。ナスカの地上絵、地下水路、乾燥地農業で有名である。",
+        "en": "A civilization on Peru's south coast, famous for the Nazca Lines, underground aqueducts, and desert agriculture.",
+        "zh": "秘鲁南海岸文明，以纳斯卡地画、地下水渠和干旱地农业闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -100,
+        "end": 800,
+        "label": {
+          "ja": "紀元前100年頃〜800年頃",
+          "en": "c. 100 BCE-c. 800",
+          "zh": "约公元前100年—约800年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約10万人",
+          "en": "peak estimate: about 100,000",
+          "zh": "鼎盛期估计：约10万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約20,000 km²",
+          "en": "sphere estimate: about 20,000 km²",
+          "zh": "影响范围估计：约20,000 km²"
+        },
+        "languages": {
+          "ja": "アンデス諸語",
+          "en": "Andean languages",
+          "zh": "安第斯诸语"
+        },
+        "religions": {
+          "ja": "アンデス在来信仰、自然崇拝",
+          "en": "Andean traditional beliefs and nature cults",
+          "zh": "安第斯传统信仰、自然崇拜"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ナスカ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Nazca Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "纳斯卡文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "紀元前100年頃〜800年頃に活動し、地上絵、乾燥地農業、水利技術を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 100 BCE-c. 800, it influenced regional politics, trade, and culture through geoglyphs, desert agriculture, water management.",
+          "zh": "活跃于约公元前100年—约800年，并通过地画、干旱地农业、水利技术影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "環境変化と水資源の不安定化により社会構造が変化した。",
+          "en": "Environmental change and water stress transformed its social structure.",
+          "zh": "环境变化和水资源压力改变了其社会结构。"
+        },
+        "successors": {
+          "ja": "ワリ帝国や後のアンデス諸文化と比較される。",
+          "en": "It is often compared with Wari and later Andean cultures.",
+          "zh": "常与瓦里帝国及后来的安第斯文化比较。"
+        },
+        "cultural_features": {
+          "ja": "言語はアンデス諸語、宗教・信仰はアンデス在来信仰、自然崇拝と関係が深い。地上絵、乾燥地農業、水利技術が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Andean languages and Andean traditional beliefs and nature cults. The key themes are geoglyphs, desert agriculture, water management.",
+          "zh": "其文化与安第斯诸语和安第斯传统信仰、自然崇拜关系密切。理解其特点的关键主题是地画、干旱地农业、水利技术。"
+        }
+      },
+      "related": [
+        "Peru",
+        "Wari Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ムイスカ連邦",
+        "en": "Muisca Confederation",
+        "zh": "穆伊斯卡联盟"
+      },
+      "capital": {
+        "ja": "バカタ",
+        "en": "Bacata",
+        "zh": "巴卡塔"
+      },
+      "type": "Past",
+      "region": "South America",
+      "tags": [
+        "Confederation",
+        "Indigenous Civilization",
+        "Mountain State",
+        "Resource Economy",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "現在のコロンビア高地にあったムイスカ人の連合体。金細工、塩交易、首長制社会で重要である。",
+        "en": "A confederation in the Colombian highlands, important for goldwork, salt trade, and chiefdom politics.",
+        "zh": "今哥伦比亚高地的穆伊斯卡人联盟，以金器、盐贸易和酋邦政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1450,
+        "end": 1537,
+        "label": {
+          "ja": "1450年頃〜1537年",
+          "en": "c. 1450-1537",
+          "zh": "约1450年—1537年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約25,000 km²",
+          "en": "sphere estimate: about 25,000 km²",
+          "zh": "影响范围估计：约25,000 km²"
+        },
+        "languages": {
+          "ja": "チブチャ語族",
+          "en": "Chibchan languages",
+          "zh": "奇布查语族"
+        },
+        "religions": {
+          "ja": "ムイスカ在来信仰、太陽・月信仰",
+          "en": "Muisca traditional beliefs and solar-lunar cults",
+          "zh": "穆伊斯卡传统信仰、太阳和月亮崇拜"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ムイスカ連邦では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Muisca Confederation, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "穆伊斯卡联盟的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1450年頃〜1537年に活動し、高地交易、金細工、首長制連合を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1450-1537, it influenced regional politics, trade, and culture through highland trade, goldwork, chiefdom confederation.",
+          "zh": "活跃于约1450年—1537年，并通过高地贸易、金器工艺、酋邦联盟影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "スペイン人の征服により政治的独立を失った。",
+          "en": "Spanish conquest ended its political independence.",
+          "zh": "西班牙征服使其失去政治独立。"
+        },
+        "successors": {
+          "ja": "コロンビア史、スペイン帝国、アンデス北部社会に関係する。",
+          "en": "It connects with Colombian history, the Spanish Empire, and northern Andean societies.",
+          "zh": "与哥伦比亚史、西班牙帝国和北安第斯社会相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチブチャ語族、宗教・信仰はムイスカ在来信仰、太陽・月信仰と関係が深い。高地交易、金細工、首長制連合が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Chibchan languages and Muisca traditional beliefs and solar-lunar cults. The key themes are highland trade, goldwork, chiefdom confederation.",
+          "zh": "其文化与奇布查语族和穆伊斯卡传统信仰、太阳和月亮崇拜关系密切。理解其特点的关键主题是高地贸易、金器工艺、酋邦联盟。"
+        }
+      },
+      "related": [
+        "Colombia",
+        "Spanish Empire",
+        "Inca Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "タイロナ",
+        "en": "Tairona",
+        "zh": "泰罗纳"
+      },
+      "capital": {
+        "ja": "ポシグエイカ",
+        "en": "Pueblito",
+        "zh": "普埃布利托"
+      },
+      "type": "Past",
+      "region": "South America",
+      "tags": [
+        "Indigenous Civilization",
+        "Mountain State",
+        "Maritime Power",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "コロンビア北部の山地とカリブ海沿岸で栄えた社会。石造都市と海岸交易で重要である。",
+        "en": "A society in northern Colombia's mountains and Caribbean coast, important for stone towns and coastal trade.",
+        "zh": "哥伦比亚北部山地和加勒比海岸的社会，以石造城市和海岸贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 200,
+        "end": 1600,
+        "label": {
+          "ja": "200年頃〜1600年頃",
+          "en": "c. 200-c. 1600",
+          "zh": "约200年—约1600年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約20万人",
+          "en": "peak estimate: about 200,000",
+          "zh": "鼎盛期估计：约20万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約10,000 km²",
+          "en": "sphere estimate: about 10,000 km²",
+          "zh": "影响范围估计：约10,000 km²"
+        },
+        "languages": {
+          "ja": "チブチャ語族",
+          "en": "Chibchan languages",
+          "zh": "奇布查语族"
+        },
+        "religions": {
+          "ja": "タイロナ在来信仰",
+          "en": "Tairona traditional beliefs",
+          "zh": "泰罗纳传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "タイロナでは、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Tairona, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "泰罗纳的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "200年頃〜1600年頃に活動し、山地都市、カリブ海交易、金細工を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 200-c. 1600, it influenced regional politics, trade, and culture through mountain towns, Caribbean trade, goldwork.",
+          "zh": "活跃于约200年—约1600年，并通过山地城市、加勒比贸易、金器工艺影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "スペイン植民地化、疫病、戦争で社会が変容した。",
+          "en": "Spanish colonization, disease, and war transformed the society.",
+          "zh": "西班牙殖民、疾病和战争改变了其社会。"
+        },
+        "successors": {
+          "ja": "コロンビア北部の先住民社会と現代のコギなどにつながる。",
+          "en": "It connects with northern Colombian Indigenous societies and groups such as the Kogi.",
+          "zh": "与哥伦比亚北部原住民社会及科吉人等相连。"
+        },
+        "cultural_features": {
+          "ja": "言語はチブチャ語族、宗教・信仰はタイロナ在来信仰と関係が深い。山地都市、カリブ海交易、金細工が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Chibchan languages and Tairona traditional beliefs. The key themes are mountain towns, Caribbean trade, goldwork.",
+          "zh": "其文化与奇布查语族和泰罗纳传统信仰关系密切。理解其特点的关键主题是山地城市、加勒比贸易、金器工艺。"
+        }
+      },
+      "related": [
+        "Colombia",
+        "Spanish Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ノルテ・チコ文明",
+        "en": "Norte Chico Civilization",
+        "zh": "北奇科文明"
+      },
+      "capital": {
+        "ja": "カラル",
+        "en": "Caral",
+        "zh": "卡拉尔"
+      },
+      "type": "Past",
+      "region": "South America (Peru)",
+      "tags": [
+        "Ancient Civilization",
+        "Indigenous Civilization",
+        "River Civilization",
+        "Cultural Sphere",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "アンデス最古級の都市文明。カラルを中心とした神殿都市と灌漑農業で重要である。",
+        "en": "One of the earliest Andean urban civilizations, important for temple cities around Caral and irrigation agriculture.",
+        "zh": "安第斯最早的城市文明之一，以卡拉尔周边神庙城市和灌溉农业重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -3500,
+        "end": -1800,
+        "label": {
+          "ja": "紀元前3500年頃〜紀元前1800年頃",
+          "en": "c. 3500 BCE-c. 1800 BCE",
+          "zh": "约公元前3500年—约公元前1800年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約5万人",
+          "en": "peak estimate: about 50,000",
+          "zh": "鼎盛期估计：约5万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約10,000 km²",
+          "en": "sphere estimate: about 10,000 km²",
+          "zh": "影响范围估计：约10,000 km²"
+        },
+        "languages": {
+          "ja": "アンデス諸語",
+          "en": "Andean languages",
+          "zh": "安第斯诸语"
+        },
+        "religions": {
+          "ja": "アンデス在来信仰、神殿儀礼",
+          "en": "Andean traditional beliefs and temple rituals",
+          "zh": "安第斯传统信仰、神庙仪式"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ノルテ・チコ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Norte Chico Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "北奇科文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "紀元前3500年頃〜紀元前1800年頃に活動し、初期都市、神殿建築、灌漑農業を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 3500 BCE-c. 1800 BCE, it influenced regional politics, trade, and culture through early cities, temple architecture, irrigation agriculture.",
+          "zh": "活跃于约公元前3500年—约公元前1800年，并通过早期城市、神庙建筑、灌溉农业影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "気候変動と河川環境の変化により中心地が衰退した。",
+          "en": "Climate and river-system changes contributed to the decline of its centers.",
+          "zh": "气候和河流环境变化导致其中心衰退。"
+        },
+        "successors": {
+          "ja": "後のアンデス文明の都市・儀礼文化の前段階に位置づけられる。",
+          "en": "It stands as an early foundation for later Andean urban and ritual traditions.",
+          "zh": "它是后来安第斯城市和仪礼传统的早期基础。"
+        },
+        "cultural_features": {
+          "ja": "言語はアンデス諸語、宗教・信仰はアンデス在来信仰、神殿儀礼と関係が深い。初期都市、神殿建築、灌漑農業が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Andean languages and Andean traditional beliefs and temple rituals. The key themes are early cities, temple architecture, irrigation agriculture.",
+          "zh": "其文化与安第斯诸语和安第斯传统信仰、神庙仪式关系密切。理解其特点的关键主题是早期城市、神庙建筑、灌溉农业。"
+        }
+      },
+      "related": [
+        "Peru",
+        "Wari Empire",
+        "Inca Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サポテカ文明",
+        "en": "Zapotec Civilization",
+        "zh": "萨波特克文明"
+      },
+      "capital": {
+        "ja": "モンテ・アルバン",
+        "en": "Monte Alban",
+        "zh": "蒙特阿尔班"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Indigenous Civilization",
+        "Ancient Civilization",
+        "City-State",
+        "Mountain State",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "オアハカ地方で栄えたメソアメリカ文明。モンテ・アルバン、文字、暦、都市国家で重要である。",
+        "en": "A Mesoamerican civilization in Oaxaca, important for Monte Alban, writing, calendars, and city-state politics.",
+        "zh": "瓦哈卡地区的中美洲文明，以蒙特阿尔班、文字、历法和城邦政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -700,
+        "end": 1521,
+        "label": {
+          "ja": "紀元前700年頃〜1521年頃",
+          "en": "c. 700 BCE-c. 1521",
+          "zh": "约公元前700年—约1521年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約50,000 km²",
+          "en": "sphere estimate: about 50,000 km²",
+          "zh": "影响范围估计：约50,000 km²"
+        },
+        "languages": {
+          "ja": "サポテカ語族",
+          "en": "Zapotecan languages",
+          "zh": "萨波特克语族"
+        },
+        "religions": {
+          "ja": "メソアメリカ在来信仰",
+          "en": "Mesoamerican traditional beliefs",
+          "zh": "中美洲传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サポテカ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Zapotec Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "萨波特克文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "紀元前700年頃〜1521年頃に活動し、文字、暦、山地都市、メソアメリカ交流を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 700 BCE-c. 1521, it influenced regional politics, trade, and culture through writing, calendars, mountain cities, Mesoamerican exchange.",
+          "zh": "活跃于约公元前700年—约1521年，并通过文字、历法、山地城市、中美洲交流影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "都市中心の変化とアステカ・スペイン勢力の進出により独立性を失った。",
+          "en": "Changing urban centers and Aztec and Spanish expansion reduced its autonomy.",
+          "zh": "城市中心变化以及阿兹特克和西班牙扩张削弱了其自治。"
+        },
+        "successors": {
+          "ja": "メキシコ、オルメカ、アステカ帝国、ミシュテカ文化と関係する。",
+          "en": "It connects with Mexico, Olmec, the Aztec Empire, and Mixtec culture.",
+          "zh": "与墨西哥、奥尔梅克、阿兹特克帝国和米斯特克文化相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はサポテカ語族、宗教・信仰はメソアメリカ在来信仰と関係が深い。文字、暦、山地都市、メソアメリカ交流が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Zapotecan languages and Mesoamerican traditional beliefs. The key themes are writing, calendars, mountain cities, Mesoamerican exchange.",
+          "zh": "其文化与萨波特克语族和中美洲传统信仰关系密切。理解其特点的关键主题是文字、历法、山地城市、中美洲交流。"
+        }
+      },
+      "related": [
+        "Mexico",
+        "Olmec",
+        "Aztec Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ミシュテカ文明",
+        "en": "Mixtec Civilization",
+        "zh": "米斯特克文明"
+      },
+      "capital": {
+        "ja": "ティラントンゴ",
+        "en": "Tilantongo",
+        "zh": "蒂兰通戈"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Indigenous Civilization",
+        "City-State",
+        "Mountain State",
+        "Cultural Sphere",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "オアハカからプエブラ方面に広がったメソアメリカ文化圏。写本、金細工、都市国家の連合で重要である。",
+        "en": "A Mesoamerican culture of Oaxaca and nearby regions, important for codices, goldwork, and networks of city-states.",
+        "zh": "分布于瓦哈卡及周边的中美洲文化圈，以抄本、金器和城邦网络重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 900,
+        "end": 1523,
+        "label": {
+          "ja": "900年頃〜1523年",
+          "en": "c. 900-1523",
+          "zh": "约900年—1523年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約40,000 km²",
+          "en": "sphere estimate: about 40,000 km²",
+          "zh": "影响范围估计：约40,000 km²"
+        },
+        "languages": {
+          "ja": "ミシュテカ語族",
+          "en": "Mixtec languages",
+          "zh": "米斯特克语族"
+        },
+        "religions": {
+          "ja": "メソアメリカ在来信仰",
+          "en": "Mesoamerican traditional beliefs",
+          "zh": "中美洲传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ミシュテカ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Mixtec Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "米斯特克文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "900年頃〜1523年に活動し、絵文書、金細工、都市国家外交を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 900-1523, it influenced regional politics, trade, and culture through pictorial codices, goldwork, city-state diplomacy.",
+          "zh": "活跃于约900年—1523年，并通过图画抄本、金器、城邦外交影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "アステカ帝国の影響とスペイン征服で政治秩序が変化した。",
+          "en": "Aztec influence and Spanish conquest transformed its political order.",
+          "zh": "阿兹特克影响和西班牙征服改变了其政治秩序。"
+        },
+        "successors": {
+          "ja": "サポテカ文明、アステカ帝国、メキシコ史に関係する。",
+          "en": "It connects with Zapotec civilization, the Aztec Empire, and Mexican history.",
+          "zh": "与萨波特克文明、阿兹特克帝国和墨西哥史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はミシュテカ語族、宗教・信仰はメソアメリカ在来信仰と関係が深い。絵文書、金細工、都市国家外交が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Mixtec languages and Mesoamerican traditional beliefs. The key themes are pictorial codices, goldwork, city-state diplomacy.",
+          "zh": "其文化与米斯特克语族和中美洲传统信仰关系密切。理解其特点的关键主题是图画抄本、金器、城邦外交。"
+        }
+      },
+      "related": [
+        "Mexico",
+        "Zapotec Civilization",
+        "Aztec Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "プレペチャ帝国",
+        "en": "Purepecha Empire",
+        "zh": "普雷佩查帝国"
+      },
+      "capital": {
+        "ja": "ツィンツンツァン",
+        "en": "Tzintzuntzan",
+        "zh": "钦聪灿"
+      },
+      "type": "Past",
+      "region": "North America (Mexico)",
+      "tags": [
+        "Empire",
+        "Indigenous Civilization",
+        "Military Government",
+        "Resource Economy",
+        "Strategic Crossroads"
+      ],
+      "desc": {
+        "ja": "メキシコ西部にあった国家。アステカ帝国に対抗した軍事力、銅器文化、湖沼地帯の支配で重要である。",
+        "en": "A western Mexican state important for resisting the Aztec Empire, copper metallurgy, and rule around lake basins.",
+        "zh": "墨西哥西部国家，以抵抗阿兹特克、铜器文化和湖区统治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1300,
+        "end": 1530,
+        "label": {
+          "ja": "1300年頃〜1530年",
+          "en": "c. 1300-1530",
+          "zh": "约1300年—1530年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約150万人",
+          "en": "peak estimate: about 1.5 million",
+          "zh": "鼎盛期估计：约150万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約75,000 km²",
+          "en": "maximum extent estimate: about 75,000 km²",
+          "zh": "最大领域估计：约75,000 km²"
+        },
+        "languages": {
+          "ja": "プレペチャ語",
+          "en": "Purepecha language",
+          "zh": "普雷佩查语"
+        },
+        "religions": {
+          "ja": "メソアメリカ在来信仰",
+          "en": "Mesoamerican traditional beliefs",
+          "zh": "中美洲传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "プレペチャ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Purepecha Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "普雷佩查帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1300年頃〜1530年に活動し、対アステカ防衛、銅器生産、湖沼地帯支配を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1300-1530, it influenced regional politics, trade, and culture through defense against the Aztecs, copper production, lake-basin rule.",
+          "zh": "活跃于约1300年—1530年，并通过对阿兹特克防御、铜器生产、湖区统治影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "スペイン征服と植民地支配により王権が解体した。",
+          "en": "Spanish conquest and colonial rule dismantled its monarchy.",
+          "zh": "西班牙征服和殖民统治使其王权解体。"
+        },
+        "successors": {
+          "ja": "メキシコ、アステカ帝国、スペイン帝国と関係する。",
+          "en": "It connects with Mexico, the Aztec Empire, and the Spanish Empire.",
+          "zh": "与墨西哥、阿兹特克帝国和西班牙帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はプレペチャ語、宗教・信仰はメソアメリカ在来信仰と関係が深い。対アステカ防衛、銅器生産、湖沼地帯支配が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Purepecha language and Mesoamerican traditional beliefs. The key themes are defense against the Aztecs, copper production, lake-basin rule.",
+          "zh": "其文化与普雷佩查语和中美洲传统信仰关系密切。理解其特点的关键主题是对阿兹特克防御、铜器生产、湖区统治。"
+        }
+      },
+      "related": [
+        "Mexico",
+        "Aztec Empire",
+        "Spanish Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マヤパン同盟",
+        "en": "League of Mayapan",
+        "zh": "玛雅潘联盟"
+      },
+      "capital": {
+        "ja": "マヤパン",
+        "en": "Mayapan",
+        "zh": "玛雅潘"
+      },
+      "type": "Past",
+      "region": "Central America",
+      "tags": [
+        "Confederation",
+        "Indigenous Civilization",
+        "City-State",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "後古典期マヤの都市同盟。ユカタン半島の政治再編と交易ネットワークで重要である。",
+        "en": "A Postclassic Maya league, important for political reorganization and trade networks in Yucatan.",
+        "zh": "后古典期玛雅城市联盟，对尤卡坦半岛政治重组和贸易网络重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 987,
+        "end": 1441,
+        "label": {
+          "ja": "987年頃〜1441年",
+          "en": "c. 987-1441",
+          "zh": "约987年—1441年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約20万人",
+          "en": "peak estimate: about 200,000",
+          "zh": "鼎盛期估计：约20万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約50,000 km²",
+          "en": "sphere estimate: about 50,000 km²",
+          "zh": "影响范围估计：约50,000 km²"
+        },
+        "languages": {
+          "ja": "ユカテコ語、マヤ諸語",
+          "en": "Yucatec and other Mayan languages",
+          "zh": "尤卡坦玛雅语及其他玛雅语"
+        },
+        "religions": {
+          "ja": "マヤ在来信仰",
+          "en": "Maya traditional beliefs",
+          "zh": "玛雅传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マヤパン同盟では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For League of Mayapan, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "玛雅潘联盟的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "987年頃〜1441年に活動し、都市同盟、ユカタン交易、後古典期マヤ文化を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 987-1441, it influenced regional politics, trade, and culture through city league, Yucatan trade, Postclassic Maya culture.",
+          "zh": "活跃于约987年—1441年，并通过城市联盟、尤卡坦贸易、后古典期玛雅文化影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "都市間対立と内乱により同盟が崩壊した。",
+          "en": "Inter-city conflict and civil strife broke the league apart.",
+          "zh": "城市间冲突和内乱使联盟瓦解。"
+        },
+        "successors": {
+          "ja": "マヤ文明、メキシコ、グアテマラの先住民史につながる。",
+          "en": "It connects with Maya Civilization and the Indigenous histories of Mexico and Guatemala.",
+          "zh": "与玛雅文明以及墨西哥、危地马拉原住民史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はユカテコ語、マヤ諸語、宗教・信仰はマヤ在来信仰と関係が深い。都市同盟、ユカタン交易、後古典期マヤ文化が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Yucatec and other Mayan languages and Maya traditional beliefs. The key themes are city league, Yucatan trade, Postclassic Maya culture.",
+          "zh": "其文化与尤卡坦玛雅语及其他玛雅语和玛雅传统信仰关系密切。理解其特点的关键主题是城市联盟、尤卡坦贸易、后古典期玛雅文化。"
+        }
+      },
+      "related": [
+        "Maya Civilization",
+        "Mexico",
+        "Guatemala"
+      ]
+    },
+    {
+      "names": {
+        "ja": "クマルカフのキチェ王国",
+        "en": "Kiche Kingdom of Qumarkaj",
+        "zh": "库马尔卡赫基切王国"
+      },
+      "capital": {
+        "ja": "クマルカフ",
+        "en": "Qumarkaj",
+        "zh": "库马尔卡赫"
+      },
+      "type": "Past",
+      "region": "Central America",
+      "tags": [
+        "Kingdom",
+        "Indigenous Civilization",
+        "Mountain State",
+        "Cultural Sphere",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "グアテマラ高地のマヤ系王国。ポポル・ヴフに関わるキチェ文化と高地政治で重要である。",
+        "en": "A Maya kingdom in the Guatemalan highlands, important for Kiche culture, Popol Vuh traditions, and highland politics.",
+        "zh": "危地马拉高地的玛雅王国，对基切文化、《波波尔乌》传统和高地政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1225,
+        "end": 1524,
+        "label": {
+          "ja": "1225年頃〜1524年",
+          "en": "c. 1225-1524",
+          "zh": "约1225年—1524年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約25,000 km²",
+          "en": "sphere estimate: about 25,000 km²",
+          "zh": "影响范围估计：约25,000 km²"
+        },
+        "languages": {
+          "ja": "キチェ語、マヤ諸語",
+          "en": "Kiche and other Mayan languages",
+          "zh": "基切语及其他玛雅语"
+        },
+        "religions": {
+          "ja": "マヤ在来信仰、キリスト教",
+          "en": "Maya traditional beliefs and Christianity",
+          "zh": "玛雅传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クマルカフのキチェ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kiche Kingdom of Qumarkaj, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "库马尔卡赫基切王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1225年頃〜1524年に活動し、高地マヤ政治、口承文学、都市王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1225-1524, it influenced regional politics, trade, and culture through highland Maya politics, oral literature, urban kingship.",
+          "zh": "活跃于约1225年—1524年，并通过高地玛雅政治、口传文学、城市王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "スペイン征服と同盟関係の変化で滅亡した。",
+          "en": "Spanish conquest and shifting alliances ended the kingdom.",
+          "zh": "西班牙征服和联盟关系变化使王国灭亡。"
+        },
+        "successors": {
+          "ja": "マヤ文明、グアテマラ、スペイン帝国と関係する。",
+          "en": "It connects with Maya Civilization, Guatemala, and the Spanish Empire.",
+          "zh": "与玛雅文明、危地马拉和西班牙帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はキチェ語、マヤ諸語、宗教・信仰はマヤ在来信仰、キリスト教と関係が深い。高地マヤ政治、口承文学、都市王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kiche and other Mayan languages and Maya traditional beliefs and Christianity. The key themes are highland Maya politics, oral literature, urban kingship.",
+          "zh": "其文化与基切语及其他玛雅语和玛雅传统信仰、基督教关系密切。理解其特点的关键主题是高地玛雅政治、口传文学、城市王权。"
+        }
+      },
+      "related": [
+        "Maya Civilization",
+        "Guatemala",
+        "Spanish Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "イツァ王国",
+        "en": "Itza Kingdom",
+        "zh": "伊察王国"
+      },
+      "capital": {
+        "ja": "ノフペテン",
+        "en": "Nojpeten",
+        "zh": "诺赫佩滕"
+      },
+      "type": "Past",
+      "region": "Central America",
+      "tags": [
+        "Kingdom",
+        "Indigenous Civilization",
+        "Island Nation",
+        "Cultural Sphere",
+        "Strategic Crossroads"
+      ],
+      "desc": {
+        "ja": "ペテン湖周辺に残ったマヤ系王国。スペイン征服に最後まで抵抗したマヤ国家の一つとして重要である。",
+        "en": "A Maya kingdom around Lake Peten Itza, important as one of the last Maya states to resist Spanish conquest.",
+        "zh": "佩滕伊察湖周边的玛雅王国，是最后抵抗西班牙征服的玛雅国家之一。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 900,
+        "end": 1697,
+        "label": {
+          "ja": "900年頃〜1697年",
+          "en": "c. 900-1697",
+          "zh": "约900年—1697年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約10万人",
+          "en": "peak estimate: about 100,000",
+          "zh": "鼎盛期估计：约10万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約10,000 km²",
+          "en": "sphere estimate: about 10,000 km²",
+          "zh": "影响范围估计：约10,000 km²"
+        },
+        "languages": {
+          "ja": "イツァ語、マヤ諸語",
+          "en": "Itza and other Mayan languages",
+          "zh": "伊察语及其他玛雅语"
+        },
+        "religions": {
+          "ja": "マヤ在来信仰、キリスト教",
+          "en": "Maya traditional beliefs and Christianity",
+          "zh": "玛雅传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "イツァ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Itza Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "伊察王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "900年頃〜1697年に活動し、湖上都市、征服抵抗、後期マヤ政治を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 900-1697, it influenced regional politics, trade, and culture through lake city, resistance to conquest, late Maya politics.",
+          "zh": "活跃于约900年—1697年，并通过湖上城市、抵抗征服、后期玛雅政治影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "1697年にスペイン軍に征服された。",
+          "en": "It was conquered by Spanish forces in 1697.",
+          "zh": "1697年被西班牙军队征服。"
+        },
+        "successors": {
+          "ja": "マヤ文明、グアテマラ、スペイン帝国に関係する。",
+          "en": "It connects with Maya Civilization, Guatemala, and the Spanish Empire.",
+          "zh": "与玛雅文明、危地马拉和西班牙帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はイツァ語、マヤ諸語、宗教・信仰はマヤ在来信仰、キリスト教と関係が深い。湖上都市、征服抵抗、後期マヤ政治が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Itza and other Mayan languages and Maya traditional beliefs and Christianity. The key themes are lake city, resistance to conquest, late Maya politics.",
+          "zh": "其文化与伊察语及其他玛雅语和玛雅传统信仰、基督教关系密切。理解其特点的关键主题是湖上城市、抵抗征服、后期玛雅政治。"
+        }
+      },
+      "related": [
+        "Maya Civilization",
+        "Guatemala",
+        "Spanish Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ポウハタン連邦",
+        "en": "Powhatan Confederacy",
+        "zh": "波瓦坦联盟"
+      },
+      "capital": {
+        "ja": "ウェロウォコモコ",
+        "en": "Werowocomoco",
+        "zh": "韦罗沃科莫科"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Confederation",
+        "Indigenous Civilization",
+        "River Civilization",
+        "Trade Hub",
+        "Frontier State"
+      ],
+      "desc": {
+        "ja": "北米東岸のアルゴンキン系諸集団の連合。ジェームズタウン植民地との接触で重要である。",
+        "en": "An Algonquian confederacy on the eastern coast of North America, important for contact with Jamestown.",
+        "zh": "北美东海岸阿尔冈昆系部族联盟，因与詹姆斯敦殖民地接触而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1570,
+        "end": 1646,
+        "label": {
+          "ja": "1570年頃〜1646年",
+          "en": "c. 1570-1646",
+          "zh": "约1570年—1646年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約15,000人",
+          "en": "peak estimate: about 15,000",
+          "zh": "鼎盛期估计：约1.5万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約20,000 km²",
+          "en": "sphere estimate: about 20,000 km²",
+          "zh": "影响范围估计：约20,000 km²"
+        },
+        "languages": {
+          "ja": "アルゴンキン語族",
+          "en": "Algonquian languages",
+          "zh": "阿尔冈昆语族"
+        },
+        "religions": {
+          "ja": "北米先住民信仰",
+          "en": "Native North American beliefs",
+          "zh": "北美原住民信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ポウハタン連邦では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Powhatan Confederacy, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "波瓦坦联盟的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1570年頃〜1646年に活動し、部族連合、河川交易、植民地接触を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1570-1646, it influenced regional politics, trade, and culture through tribal confederacy, river trade, colonial contact.",
+          "zh": "活跃于约1570年—1646年，并通过部族联盟、河流贸易、殖民接触影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "イングランド植民地との戦争と土地喪失により独立性を失った。",
+          "en": "Wars with English colonists and land loss ended its autonomy.",
+          "zh": "与英格兰殖民者的战争和土地丧失使其失去自治。"
+        },
+        "successors": {
+          "ja": "アメリカ合衆国、イギリス帝国、北米先住民史に関係する。",
+          "en": "It connects with the United States, the British Empire, and Native North American history.",
+          "zh": "与美国、大英帝国和北美原住民史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はアルゴンキン語族、宗教・信仰は北米先住民信仰と関係が深い。部族連合、河川交易、植民地接触が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Algonquian languages and Native North American beliefs. The key themes are tribal confederacy, river trade, colonial contact.",
+          "zh": "其文化与阿尔冈昆语族和北美原住民信仰关系密切。理解其特点的关键主题是部族联盟、河流贸易、殖民接触。"
+        }
+      },
+      "related": [
+        "United States",
+        "British Empire",
+        "Iroquois Confederacy"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カホキア",
+        "en": "Cahokia",
+        "zh": "卡霍基亚"
+      },
+      "capital": {
+        "ja": "カホキア",
+        "en": "Cahokia",
+        "zh": "卡霍基亚"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "City-State",
+        "Indigenous Civilization",
+        "River Civilization",
+        "Trade Hub",
+        "Ancient Civilization"
+      ],
+      "desc": {
+        "ja": "ミシシッピ文化最大級の都市。墳丘建築、広域交易、北米先住民都市社会で重要である。",
+        "en": "A major Mississippian city, important for mound architecture, regional trade, and Indigenous urban society in North America.",
+        "zh": "密西西比文化最大城市之一，以土丘建筑、广域贸易和北美原住民城市社会重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1050,
+        "end": 1350,
+        "label": {
+          "ja": "1050年頃〜1350年頃",
+          "en": "c. 1050-c. 1350",
+          "zh": "约1050年—约1350年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約20,000人",
+          "en": "peak estimate: about 20,000",
+          "zh": "鼎盛期估计：约2万人"
+        },
+        "area": {
+          "ja": "都市圏推定: 約16 km²",
+          "en": "urban area estimate: about 16 km²",
+          "zh": "城市区域估计：约16 km²"
+        },
+        "languages": {
+          "ja": "ミシシッピ文化の諸言語",
+          "en": "languages of Mississippian communities",
+          "zh": "密西西比文化诸语言"
+        },
+        "religions": {
+          "ja": "北米先住民信仰、墳丘儀礼",
+          "en": "Native North American beliefs and mound rituals",
+          "zh": "北美原住民信仰、土丘仪式"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カホキアでは、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Cahokia, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "卡霍基亚的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1050年頃〜1350年頃に活動し、墳丘都市、ミシシッピ川交易、都市儀礼を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1050-c. 1350, it influenced regional politics, trade, and culture through mound city, Mississippi River trade, urban ritual.",
+          "zh": "活跃于约1050年—约1350年，并通过土丘城市、密西西比河贸易、城市仪礼影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "環境変化、社会的緊張、交易網の変化で人口が減少した。",
+          "en": "Environmental change, social stress, and shifting trade networks reduced its population.",
+          "zh": "环境变化、社会压力和贸易网络变化使人口减少。"
+        },
+        "successors": {
+          "ja": "アメリカ合衆国、北米先住民史、ミシシッピ文化に関係する。",
+          "en": "It connects with the United States, Native North American history, and Mississippian culture.",
+          "zh": "与美国、北美原住民史和密西西比文化相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はミシシッピ文化の諸言語、宗教・信仰は北米先住民信仰、墳丘儀礼と関係が深い。墳丘都市、ミシシッピ川交易、都市儀礼が特徴を理解する軸になる。",
+          "en": "Its culture is connected with languages of Mississippian communities and Native North American beliefs and mound rituals. The key themes are mound city, Mississippi River trade, urban ritual.",
+          "zh": "其文化与密西西比文化诸语言和北美原住民信仰、土丘仪式关系密切。理解其特点的关键主题是土丘城市、密西西比河贸易、城市仪礼。"
+        }
+      },
+      "related": [
+        "United States",
+        "Iroquois Confederacy"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ホホカム文化",
+        "en": "Hohokam",
+        "zh": "霍霍卡姆文化"
+      },
+      "capital": {
+        "ja": "スネークタウン",
+        "en": "Snaketown",
+        "zh": "蛇镇"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Indigenous Civilization",
+        "Desert State",
+        "Agricultural Exporter",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "現在のアリゾナ周辺で栄えた先住民文化。大規模灌漑と砂漠農業で重要である。",
+        "en": "An Indigenous culture in present-day Arizona, important for large irrigation systems and desert agriculture.",
+        "zh": "今亚利桑那一带的原住民文化，以大型灌溉系统和沙漠农业重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 300,
+        "end": 1450,
+        "label": {
+          "ja": "300年頃〜1450年頃",
+          "en": "c. 300-c. 1450",
+          "zh": "约300年—约1450年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約80,000人",
+          "en": "peak estimate: about 80,000",
+          "zh": "鼎盛期估计：约8万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約100,000 km²",
+          "en": "sphere estimate: about 100,000 km²",
+          "zh": "影响范围估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "ユト・アステカ語族など",
+          "en": "Uto-Aztecan and related languages",
+          "zh": "犹他-阿兹特克语族等"
+        },
+        "religions": {
+          "ja": "北米先住民信仰",
+          "en": "Native North American beliefs",
+          "zh": "北美原住民信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ホホカム文化では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Hohokam, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "霍霍卡姆文化的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "300年頃〜1450年頃に活動し、灌漑水路、砂漠農業、南西部交易を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 300-c. 1450, it influenced regional politics, trade, and culture through irrigation canals, desert agriculture, Southwest trade.",
+          "zh": "活跃于约300年—约1450年，并通过灌溉水渠、沙漠农业、西南贸易影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "気候変動、洪水、社会再編により集落が縮小した。",
+          "en": "Climate change, floods, and social reorganization reduced settlements.",
+          "zh": "气候变化、洪水和社会重组使聚落缩小。"
+        },
+        "successors": {
+          "ja": "アメリカ南西部の先住民文化と現代のオーダム諸集団に関係する。",
+          "en": "It connects with Indigenous cultures of the American Southwest and O'odham communities.",
+          "zh": "与美国西南部原住民文化及奥奥德姆族群相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はユト・アステカ語族など、宗教・信仰は北米先住民信仰と関係が深い。灌漑水路、砂漠農業、南西部交易が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Uto-Aztecan and related languages and Native North American beliefs. The key themes are irrigation canals, desert agriculture, Southwest trade.",
+          "zh": "其文化与犹他-阿兹特克语族等和北美原住民信仰关系密切。理解其特点的关键主题是灌溉水渠、沙漠农业、西南贸易。"
+        }
+      },
+      "related": [
+        "United States",
+        "Mexico"
+      ]
+    },
+    {
+      "names": {
+        "ja": "プエブロ祖先文化",
+        "en": "Ancestral Puebloans",
+        "zh": "普韦布洛先民"
+      },
+      "capital": {
+        "ja": "チャコ・キャニオン",
+        "en": "Chaco Canyon",
+        "zh": "查科峡谷"
+      },
+      "type": "Past",
+      "region": "North America",
+      "tags": [
+        "Indigenous Civilization",
+        "Mountain State",
+        "Cultural Sphere",
+        "Trade Hub",
+        "Ancient Civilization"
+      ],
+      "desc": {
+        "ja": "北米南西部の先住民文化。チャコ・キャニオン、崖住居、広域儀礼ネットワークで重要である。",
+        "en": "An Indigenous culture of the American Southwest, important for Chaco Canyon, cliff dwellings, and ritual networks.",
+        "zh": "美国西南部原住民文化，以查科峡谷、崖居和仪礼网络重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 700,
+        "end": 1300,
+        "label": {
+          "ja": "700年頃〜1300年頃",
+          "en": "c. 700-c. 1300",
+          "zh": "约700年—约1300年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100,000人",
+          "en": "peak estimate: about 100,000",
+          "zh": "鼎盛期估计：约10万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約150,000 km²",
+          "en": "sphere estimate: about 150,000 km²",
+          "zh": "影响范围估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "プエブロ諸語、ユト・アステカ語族など",
+          "en": "Pueblo languages, Uto-Aztecan languages, and others",
+          "zh": "普韦布洛诸语、犹他-阿兹特克语族等"
+        },
+        "religions": {
+          "ja": "北米先住民信仰",
+          "en": "Native North American beliefs",
+          "zh": "北美原住民信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "プエブロ祖先文化では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Ancestral Puebloans, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "普韦布洛先民的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "700年頃〜1300年頃に活動し、崖住居、儀礼道路、南西部交易を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 700-c. 1300, it influenced regional politics, trade, and culture through cliff dwellings, ritual roads, Southwest trade.",
+          "zh": "活跃于约700年—约1300年，并通过崖居、仪礼道路、西南贸易影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "長期干ばつと社会再編により中心地から移住が進んだ。",
+          "en": "Long drought and social reorganization led to migration from major centers.",
+          "zh": "长期干旱和社会重组导致人们离开主要中心。"
+        },
+        "successors": {
+          "ja": "現代のプエブロ諸民族、アメリカ南西部史に関係する。",
+          "en": "It connects with modern Pueblo peoples and the history of the American Southwest.",
+          "zh": "与现代普韦布洛诸民族和美国西南史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はプエブロ諸語、ユト・アステカ語族など、宗教・信仰は北米先住民信仰と関係が深い。崖住居、儀礼道路、南西部交易が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Pueblo languages, Uto-Aztecan languages, and others and Native North American beliefs. The key themes are cliff dwellings, ritual roads, Southwest trade.",
+          "zh": "其文化与普韦布洛诸语、犹他-阿兹特克语族等和北美原住民信仰关系密切。理解其特点的关键主题是崖居、仪礼道路、西南贸易。"
+        }
+      },
+      "related": [
+        "United States",
+        "Mexico"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ノク文化",
+        "en": "Nok Culture",
+        "zh": "诺克文化"
+      },
+      "capital": {
+        "ja": "ノク",
+        "en": "Nok",
+        "zh": "诺克"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Iron Age State",
+        "Indigenous Civilization",
+        "Cultural Sphere",
+        "Agricultural Exporter",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "ナイジェリア中部の古代文化。テラコッタ像と早期鉄器文化で重要である。",
+        "en": "An ancient culture in central Nigeria, important for terracotta sculptures and early ironworking.",
+        "zh": "尼日利亚中部古代文化，以陶俑和早期铁器文化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -1500,
+        "end": 500,
+        "label": {
+          "ja": "紀元前1500年頃〜500年頃",
+          "en": "c. 1500 BCE-c. 500",
+          "zh": "约公元前1500年—约500年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "人口推定: 不明",
+          "en": "population estimate: unknown",
+          "zh": "人口估计：不明"
+        },
+        "area": {
+          "ja": "影響圏推定: 約50,000 km²",
+          "en": "sphere estimate: about 50,000 km²",
+          "zh": "影响范围估计：约50,000 km²"
+        },
+        "languages": {
+          "ja": "初期ニジェール・コンゴ系諸語",
+          "en": "early Niger-Congo languages",
+          "zh": "早期尼日尔-刚果语系语言"
+        },
+        "religions": {
+          "ja": "西アフリカ在来信仰",
+          "en": "West African traditional beliefs",
+          "zh": "西非传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ノク文化では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Nok Culture, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "诺克文化的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "紀元前1500年頃〜500年頃に活動し、鉄器文化、テラコッタ像、農耕社会を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1500 BCE-c. 500, it influenced regional politics, trade, and culture through ironworking, terracotta sculpture, farming society.",
+          "zh": "活跃于约公元前1500年—约500年，并通过铁器文化、陶俑、农业社会影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "気候・人口移動・地域文化の変化により姿を変えた。",
+          "en": "Climate, migration, and regional cultural changes transformed it.",
+          "zh": "气候、迁徙和地区文化变化使其转变。"
+        },
+        "successors": {
+          "ja": "ナイジェリア、ベニン王国、西アフリカ鉄器文化に関係する。",
+          "en": "It connects with Nigeria, Benin, and west African ironworking traditions.",
+          "zh": "与尼日利亚、贝宁和西非铁器传统相关。"
+        },
+        "cultural_features": {
+          "ja": "言語は初期ニジェール・コンゴ系諸語、宗教・信仰は西アフリカ在来信仰と関係が深い。鉄器文化、テラコッタ像、農耕社会が特徴を理解する軸になる。",
+          "en": "Its culture is connected with early Niger-Congo languages and West African traditional beliefs. The key themes are ironworking, terracotta sculpture, farming society.",
+          "zh": "其文化与早期尼日尔-刚果语系语言和西非传统信仰关系密切。理解其特点的关键主题是铁器文化、陶俑、农业社会。"
+        }
+      },
+      "related": [
+        "Nigeria",
+        "Benin Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サオ文明",
+        "en": "Sao Civilization",
+        "zh": "萨奥文明"
+      },
+      "capital": {
+        "ja": "チャド湖周辺",
+        "en": "Lake Chad basin",
+        "zh": "乍得湖盆地"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Indigenous Civilization",
+        "River Civilization",
+        "Trade Hub",
+        "Cultural Sphere",
+        "Iron Age State"
+      ],
+      "desc": {
+        "ja": "チャド湖周辺で栄えた古代・中世文化。都市集落、鉄器、チャド湖交易で重要である。",
+        "en": "An ancient and medieval culture around Lake Chad, important for urban settlements, ironworking, and lake-basin trade.",
+        "zh": "乍得湖周边古代和中世纪文化，以城市聚落、铁器和湖区贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -500,
+        "end": 1600,
+        "label": {
+          "ja": "紀元前500年頃〜1600年頃",
+          "en": "c. 500 BCE-c. 1600",
+          "zh": "约公元前500年—约1600年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "人口推定: 不明",
+          "en": "population estimate: unknown",
+          "zh": "人口估计：不明"
+        },
+        "area": {
+          "ja": "影響圏推定: 約100,000 km²",
+          "en": "sphere estimate: about 100,000 km²",
+          "zh": "影响范围估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "チャド語派、ナイル・サハラ系諸語",
+          "en": "Chadic and Nilo-Saharan languages",
+          "zh": "乍得语支、尼罗-撒哈拉语系语言"
+        },
+        "religions": {
+          "ja": "在来信仰、イスラム教",
+          "en": "traditional beliefs and Islam",
+          "zh": "传统信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サオ文明では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Sao Civilization, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "萨奥文明的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "紀元前500年頃〜1600年頃に活動し、チャド湖交易、鉄器、都市集落を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 500 BCE-c. 1600, it influenced regional politics, trade, and culture through Lake Chad trade, ironworking, urban settlements.",
+          "zh": "活跃于约公元前500年—约1600年，并通过乍得湖贸易、铁器、城市聚落影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "カネム・ボルヌなど周辺国家の拡大と地域再編に組み込まれた。",
+          "en": "Expansion by states such as Kanem-Bornu absorbed and reorganized the region.",
+          "zh": "卡涅姆-博尔努等周边国家扩张并重组了该地区。"
+        },
+        "successors": {
+          "ja": "チャド、カメルーン、カネム・ボルヌ帝国に関係する。",
+          "en": "It connects with Chad, Cameroon, and the Kanem-Bornu Empire.",
+          "zh": "与乍得、喀麦隆和卡涅姆-博尔努帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチャド語派、ナイル・サハラ系諸語、宗教・信仰は在来信仰、イスラム教と関係が深い。チャド湖交易、鉄器、都市集落が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Chadic and Nilo-Saharan languages and traditional beliefs and Islam. The key themes are Lake Chad trade, ironworking, urban settlements.",
+          "zh": "其文化与乍得语支、尼罗-撒哈拉语系语言和传统信仰、伊斯兰教关系密切。理解其特点的关键主题是乍得湖贸易、铁器、城市聚落。"
+        }
+      },
+      "related": [
+        "Chad",
+        "Cameroon",
+        "Kanem-Bornu Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ジョロフ帝国",
+        "en": "Jolof Empire",
+        "zh": "乔洛夫帝国"
+      },
+      "capital": {
+        "ja": "リンゲール",
+        "en": "Linguere",
+        "zh": "林盖尔"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Trade Hub",
+        "Islamic World",
+        "Agricultural Exporter",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "セネガンビアで栄えたウォロフ系国家。大西洋交易以前の西アフリカ政治で重要である。",
+        "en": "A Wolof state in Senegambia, important in west African politics before and during Atlantic trade expansion.",
+        "zh": "塞内冈比亚的沃洛夫国家，对大西洋贸易扩展前后的西非政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1350,
+        "end": 1549,
+        "label": {
+          "ja": "1350年頃〜1549年",
+          "en": "c. 1350-1549",
+          "zh": "约1350年—1549年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "ウォロフ語、セレール語、マンデ系諸語",
+          "en": "Wolof, Serer, and Mande languages",
+          "zh": "沃洛夫语、塞雷尔语、曼德诸语"
+        },
+        "religions": {
+          "ja": "イスラム教、西アフリカ在来信仰",
+          "en": "Islam and West African traditional beliefs",
+          "zh": "伊斯兰教、西非传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジョロフ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Jolof Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "乔洛夫帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1350年頃〜1549年に活動し、セネガンビア交易、王権、ウォロフ文化を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1350-1549, it influenced regional politics, trade, and culture through Senegambian trade, kingship, Wolof culture.",
+          "zh": "活跃于约1350年—1549年，并通过塞内冈比亚贸易、王权、沃洛夫文化影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "地方王国の自立と大西洋交易の変化により分裂した。",
+          "en": "Provincial kingdoms and changes in Atlantic trade fragmented it.",
+          "zh": "地方王国独立和大西洋贸易变化使其分裂。"
+        },
+        "successors": {
+          "ja": "セネガル、ガンビア、マリ帝国後の地域史に関係する。",
+          "en": "It connects with Senegal, Gambia, and post-Mali regional history.",
+          "zh": "与塞内加尔、冈比亚和马里帝国之后的地区史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はウォロフ語、セレール語、マンデ系諸語、宗教・信仰はイスラム教、西アフリカ在来信仰と関係が深い。セネガンビア交易、王権、ウォロフ文化が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Wolof, Serer, and Mande languages and Islam and West African traditional beliefs. The key themes are Senegambian trade, kingship, Wolof culture.",
+          "zh": "其文化与沃洛夫语、塞雷尔语、曼德诸语和伊斯兰教、西非传统信仰关系密切。理解其特点的关键主题是塞内冈比亚贸易、王权、沃洛夫文化。"
+        }
+      },
+      "related": [
+        "Senegal",
+        "Gambia",
+        "Mali Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カーブ帝国",
+        "en": "Kaabu Empire",
+        "zh": "卡布帝国"
+      },
+      "capital": {
+        "ja": "カンサラ",
+        "en": "Kansala",
+        "zh": "坎萨拉"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Trade Hub",
+        "Islamic World",
+        "Agricultural Exporter",
+        "Warrior Aristocracy"
+      ],
+      "desc": {
+        "ja": "マンデ系の西アフリカ国家。マリ帝国の西部継承勢力として、交易と軍事貴族制で重要である。",
+        "en": "A Mande state in west Africa, important as a western successor of Mali and for trade and warrior aristocracy.",
+        "zh": "西非曼德系国家，是马里帝国西部继承势力，以贸易和军事贵族制重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1537,
+        "end": 1867,
+        "label": {
+          "ja": "1537年頃〜1867年",
+          "en": "c. 1537-1867",
+          "zh": "约1537年—1867年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "マンデ系諸語、フラ語",
+          "en": "Mande languages and Fula",
+          "zh": "曼德诸语、富拉语"
+        },
+        "religions": {
+          "ja": "イスラム教、西アフリカ在来信仰",
+          "en": "Islam and West African traditional beliefs",
+          "zh": "伊斯兰教、西非传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カーブ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kaabu Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "卡布帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1537年頃〜1867年に活動し、マンデ政治、交易、軍事貴族制を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1537-1867, it influenced regional politics, trade, and culture through Mande politics, trade, warrior aristocracy.",
+          "zh": "活跃于约1537年—1867年，并通过曼德政治、贸易、军事贵族制影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "フラ系勢力との戦争と地域変動により滅亡した。",
+          "en": "Wars with Fula powers and regional change ended it.",
+          "zh": "与富拉势力的战争和地区变化使其灭亡。"
+        },
+        "successors": {
+          "ja": "ギニアビサウ、セネガル、マリ帝国に関係する。",
+          "en": "It connects with Guinea-Bissau, Senegal, and the Mali Empire.",
+          "zh": "与几内亚比绍、塞内加尔和马里帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はマンデ系諸語、フラ語、宗教・信仰はイスラム教、西アフリカ在来信仰と関係が深い。マンデ政治、交易、軍事貴族制が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Mande languages and Fula and Islam and West African traditional beliefs. The key themes are Mande politics, trade, warrior aristocracy.",
+          "zh": "其文化与曼德诸语、富拉语和伊斯兰教、西非传统信仰关系密切。理解其特点的关键主题是曼德政治、贸易、军事贵族制。"
+        }
+      },
+      "related": [
+        "Guinea-Bissau",
+        "Senegal",
+        "Mali Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "バンバラ帝国",
+        "en": "Bamana Empire",
+        "zh": "巴马纳帝国"
+      },
+      "capital": {
+        "ja": "セグー",
+        "en": "Segu",
+        "zh": "塞古"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Trade Hub",
+        "Agricultural Exporter",
+        "Warrior Aristocracy",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "現在のマリ周辺で栄えたバンバラ系国家。ニジェール川交易と軍事国家として重要である。",
+        "en": "A Bamana state around present-day Mali, important for Niger River trade and military organization.",
+        "zh": "今马里一带的巴马纳国家，以尼日尔河贸易和军事组织重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1712,
+        "end": 1861,
+        "label": {
+          "ja": "1712年頃〜1861年",
+          "en": "c. 1712-1861",
+          "zh": "约1712年—1861年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約200,000 km²",
+          "en": "maximum extent estimate: about 200,000 km²",
+          "zh": "最大领域估计：约200,000 km²"
+        },
+        "languages": {
+          "ja": "バンバラ語、マンデ系諸語",
+          "en": "Bamana and Mande languages",
+          "zh": "巴马纳语、曼德诸语"
+        },
+        "religions": {
+          "ja": "西アフリカ在来信仰、イスラム教",
+          "en": "West African traditional beliefs and Islam",
+          "zh": "西非传统信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "バンバラ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Bamana Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "巴马纳帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1712年頃〜1861年に活動し、ニジェール川交易、軍事組織、農業国家を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1712-1861, it influenced regional politics, trade, and culture through Niger River trade, military organization, farming state.",
+          "zh": "活跃于约1712年—1861年，并通过尼日尔河贸易、军事组织、农业国家影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "トゥクロール帝国の攻撃で征服された。",
+          "en": "It was conquered by the Toucouleur Empire.",
+          "zh": "被图库洛尔帝国征服。"
+        },
+        "successors": {
+          "ja": "マリ、ソンガイ帝国後の西アフリカ史に関係する。",
+          "en": "It connects with Mali and west African history after Songhai.",
+          "zh": "与马里和桑海帝国之后的西非史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はバンバラ語、マンデ系諸語、宗教・信仰は西アフリカ在来信仰、イスラム教と関係が深い。ニジェール川交易、軍事組織、農業国家が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Bamana and Mande languages and West African traditional beliefs and Islam. The key themes are Niger River trade, military organization, farming state.",
+          "zh": "其文化与巴马纳语、曼德诸语和西非传统信仰、伊斯兰教关系密切。理解其特点的关键主题是尼日尔河贸易、军事组织、农业国家。"
+        }
+      },
+      "related": [
+        "Mali",
+        "Songhai Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ワスルー帝国",
+        "en": "Wassoulou Empire",
+        "zh": "瓦苏鲁帝国"
+      },
+      "capital": {
+        "ja": "ビサンドゥグ",
+        "en": "Bissandugu",
+        "zh": "比桑杜古"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Islamic World",
+        "Anti-Colonial Independence",
+        "Military Government",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "サモリ・トゥーレが築いた西アフリカの国家。フランス植民地化への抵抗で重要である。",
+        "en": "A west African state founded by Samori Ture, important for resistance to French colonial expansion.",
+        "zh": "萨莫里·图雷建立的西非国家，以抵抗法国殖民扩张重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1878,
+        "end": 1898,
+        "label": {
+          "ja": "1878年〜1898年",
+          "en": "1878-1898",
+          "zh": "1878年—1898年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約400,000 km²",
+          "en": "maximum extent estimate: about 400,000 km²",
+          "zh": "最大领域估计：约400,000 km²"
+        },
+        "languages": {
+          "ja": "マンデ系諸語、アラビア語",
+          "en": "Mande languages and Arabic",
+          "zh": "曼德诸语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ワスルー帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Wassoulou Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "瓦苏鲁帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1878年〜1898年に活動し、反植民地抵抗、軍事改革、内陸交易を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during 1878-1898, it influenced regional politics, trade, and culture through anti-colonial resistance, military reform, inland trade.",
+          "zh": "活跃于1878年—1898年，并通过反殖民抵抗、军事改革、内陆贸易影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "フランス軍に敗れ、植民地支配へ組み込まれた。",
+          "en": "It was defeated by French forces and absorbed into colonial rule.",
+          "zh": "被法国军队击败并纳入殖民统治。"
+        },
+        "successors": {
+          "ja": "ギニア、マリ、フランス植民地帝国に関係する。",
+          "en": "It connects with Guinea, Mali, and the French Colonial Empire.",
+          "zh": "与几内亚、马里和法国殖民帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はマンデ系諸語、アラビア語、宗教・信仰はイスラム教と関係が深い。反植民地抵抗、軍事改革、内陸交易が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Mande languages and Arabic and Islam. The key themes are anti-colonial resistance, military reform, inland trade.",
+          "zh": "其文化与曼德诸语、阿拉伯语和伊斯兰教关系密切。理解其特点的关键主题是反殖民抵抗、军事改革、内陆贸易。"
+        }
+      },
+      "related": [
+        "Guinea",
+        "Mali",
+        "French Colonial Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "コング帝国",
+        "en": "Kong Empire",
+        "zh": "孔格帝国"
+      },
+      "capital": {
+        "ja": "コング",
+        "en": "Kong",
+        "zh": "孔格"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Empire",
+        "Islamic World",
+        "Trade Hub",
+        "Caravan Trade",
+        "Agricultural Exporter"
+      ],
+      "desc": {
+        "ja": "西アフリカ内陸のジュラ商人ネットワークから発展した国家。交易都市とイスラム文化で重要である。",
+        "en": "A west African inland state shaped by Dyula merchant networks, important for trading towns and Islamic culture.",
+        "zh": "由迪乌拉商人网络发展而来的西非内陆国家，以贸易城市和伊斯兰文化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1710,
+        "end": 1898,
+        "label": {
+          "ja": "1710年頃〜1898年",
+          "en": "c. 1710-1898",
+          "zh": "约1710年—1898年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約120,000 km²",
+          "en": "maximum extent estimate: about 120,000 km²",
+          "zh": "最大领域估计：约120,000 km²"
+        },
+        "languages": {
+          "ja": "ジュラ語、マンデ系諸語",
+          "en": "Dyula and Mande languages",
+          "zh": "迪乌拉语、曼德诸语"
+        },
+        "religions": {
+          "ja": "イスラム教、西アフリカ在来信仰",
+          "en": "Islam and West African traditional beliefs",
+          "zh": "伊斯兰教、西非传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "コング帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kong Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "孔格帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1710年頃〜1898年に活動し、商人ネットワーク、内陸交易、イスラム都市を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1710-1898, it influenced regional politics, trade, and culture through merchant networks, inland trade, Islamic towns.",
+          "zh": "活跃于约1710年—1898年，并通过商人网络、内陆贸易、伊斯兰城市影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "サモリ・トゥーレの侵攻とフランス植民地化で独立を失った。",
+          "en": "Samori Ture's campaigns and French colonization ended its independence.",
+          "zh": "萨莫里·图雷的进攻和法国殖民化使其失去独立。"
+        },
+        "successors": {
+          "ja": "コートジボワール、ブルキナファソ、ワスルー帝国に関係する。",
+          "en": "It connects with Ivory Coast, Burkina Faso, and the Wassoulou Empire.",
+          "zh": "与科特迪瓦、布基纳法索和瓦苏鲁帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はジュラ語、マンデ系諸語、宗教・信仰はイスラム教、西アフリカ在来信仰と関係が深い。商人ネットワーク、内陸交易、イスラム都市が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Dyula and Mande languages and Islam and West African traditional beliefs. The key themes are merchant networks, inland trade, Islamic towns.",
+          "zh": "其文化与迪乌拉语、曼德诸语和伊斯兰教、西非传统信仰关系密切。理解其特点的关键主题是商人网络、内陆贸易、伊斯兰城市。"
+        }
+      },
+      "related": [
+        "Ivory Coast",
+        "Burkina Faso",
+        "Wassoulou Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "モシ諸王国",
+        "en": "Mossi Kingdoms",
+        "zh": "莫西诸王国"
+      },
+      "capital": {
+        "ja": "ワガドゥグー",
+        "en": "Ouagadougou",
+        "zh": "瓦加杜古"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Kingdom",
+        "Confederation",
+        "Warrior Aristocracy",
+        "Agricultural Exporter",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "現在のブルキナファソ周辺に形成された諸王国。騎兵軍事力と長期的な王権の持続で重要である。",
+        "en": "A group of kingdoms around present-day Burkina Faso, important for cavalry power and durable kingship.",
+        "zh": "今布基纳法索一带的诸王国，以骑兵力量和长期王权延续重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1100,
+        "end": 1896,
+        "label": {
+          "ja": "1100年頃〜1896年",
+          "en": "c. 1100-1896",
+          "zh": "约1100年—1896年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約200,000 km²",
+          "en": "sphere estimate: about 200,000 km²",
+          "zh": "影响范围估计：约200,000 km²"
+        },
+        "languages": {
+          "ja": "モレ語、グル諸語",
+          "en": "Moore and Gur languages",
+          "zh": "莫雷语、古尔诸语"
+        },
+        "religions": {
+          "ja": "西アフリカ在来信仰、イスラム教",
+          "en": "West African traditional beliefs and Islam",
+          "zh": "西非传统信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "モシ諸王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Mossi Kingdoms, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "莫西诸王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1100年頃〜1896年に活動し、騎兵国家、王権連合、サヘル交易を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1100-1896, it influenced regional politics, trade, and culture through cavalry states, royal confederation, Sahel trade.",
+          "zh": "活跃于约1100年—1896年，并通过骑兵国家、王权联盟、萨赫勒贸易影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "フランスの植民地支配により政治的独立を失った。",
+          "en": "French colonial expansion ended their political independence.",
+          "zh": "法国殖民扩张使其失去政治独立。"
+        },
+        "successors": {
+          "ja": "ブルキナファソ、ガーナ帝国、マリ帝国後の地域秩序に関係する。",
+          "en": "They connect with Burkina Faso and the regional order after Ghana and Mali.",
+          "zh": "与布基纳法索以及加纳、马里之后的地区秩序相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はモレ語、グル諸語、宗教・信仰は西アフリカ在来信仰、イスラム教と関係が深い。騎兵国家、王権連合、サヘル交易が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Moore and Gur languages and West African traditional beliefs and Islam. The key themes are cavalry states, royal confederation, Sahel trade.",
+          "zh": "其文化与莫雷语、古尔诸语和西非传统信仰、伊斯兰教关系密切。理解其特点的关键主题是骑兵国家、王权联盟、萨赫勒贸易。"
+        }
+      },
+      "related": [
+        "Burkina Faso",
+        "Ghana Empire",
+        "Mali Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ダグボン王国",
+        "en": "Dagbon Kingdom",
+        "zh": "达格邦王国"
+      },
+      "capital": {
+        "ja": "イェンディ",
+        "en": "Yendi",
+        "zh": "延迪"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Kingdom",
+        "Cultural Sphere",
+        "Agricultural Exporter",
+        "Trade Hub",
+        "Sacred Kingship"
+      ],
+      "desc": {
+        "ja": "現在のガーナ北部にあるダグバンバ人の王国。王権儀礼、内陸交易、北部ガーナ史で重要である。",
+        "en": "A Dagomba kingdom in northern Ghana, important for royal ritual, inland trade, and northern Ghanaian history.",
+        "zh": "今加纳北部的达贡巴王国，以王权仪礼、内陆贸易和北加纳历史重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1400,
+        "end": 1899,
+        "label": {
+          "ja": "1400年頃〜1899年",
+          "en": "c. 1400-1899",
+          "zh": "约1400年—1899年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約20,000 km²",
+          "en": "sphere estimate: about 20,000 km²",
+          "zh": "影响范围估计：约20,000 km²"
+        },
+        "languages": {
+          "ja": "ダグバニ語、グル諸語",
+          "en": "Dagbani and Gur languages",
+          "zh": "达格巴尼语、古尔诸语"
+        },
+        "religions": {
+          "ja": "西アフリカ在来信仰、イスラム教",
+          "en": "West African traditional beliefs and Islam",
+          "zh": "西非传统信仰、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ダグボン王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Dagbon Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "达格邦王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1400年頃〜1899年に活動し、王権儀礼、北部交易、農耕社会を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1400-1899, it influenced regional politics, trade, and culture through royal ritual, northern trade, farming society.",
+          "zh": "活跃于约1400年—1899年，并通过王权仪礼、北部贸易、农业社会影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "英独植民地勢力の進出で旧来の独立性を失った。",
+          "en": "British and German colonial expansion reduced its independence.",
+          "zh": "英德殖民势力扩张使其失去旧有独立性。"
+        },
+        "successors": {
+          "ja": "ガーナ、アシャンティ王国、西アフリカ内陸交易に関係する。",
+          "en": "It connects with Ghana, the Ashanti Empire, and inland west African trade.",
+          "zh": "与加纳、阿散蒂帝国和西非内陆贸易相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はダグバニ語、グル諸語、宗教・信仰は西アフリカ在来信仰、イスラム教と関係が深い。王権儀礼、北部交易、農耕社会が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Dagbani and Gur languages and West African traditional beliefs and Islam. The key themes are royal ritual, northern trade, farming society.",
+          "zh": "其文化与达格巴尼语、古尔诸语和西非传统信仰、伊斯兰教关系密切。理解其特点的关键主题是王权仪礼、北部贸易、农业社会。"
+        }
+      },
+      "related": [
+        "Ghana",
+        "Ashanti Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ソコト・カリフ国",
+        "en": "Sokoto Caliphate",
+        "zh": "索科托哈里发国"
+      },
+      "capital": {
+        "ja": "ソコト",
+        "en": "Sokoto",
+        "zh": "索科托"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Caliphate",
+        "Islamic World",
+        "Empire",
+        "Caravan Trade",
+        "Religious Center"
+      ],
+      "desc": {
+        "ja": "西アフリカ最大級のイスラム国家。フラニ・ジハード、学問、サヘル交易で重要である。",
+        "en": "One of the largest Islamic states in west Africa, important for the Fulani jihad, scholarship, and Sahel trade.",
+        "zh": "西非最大伊斯兰国家之一，以富拉尼圣战、学术和萨赫勒贸易重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1804,
+        "end": 1903,
+        "label": {
+          "ja": "1804年〜1903年",
+          "en": "1804-1903",
+          "zh": "1804年—1903年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1,000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1,000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約400,000 km²",
+          "en": "maximum extent estimate: about 400,000 km²",
+          "zh": "最大领域估计：约400,000 km²"
+        },
+        "languages": {
+          "ja": "フラ語、ハウサ語、アラビア語",
+          "en": "Fula, Hausa, and Arabic",
+          "zh": "富拉语、豪萨语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ソコト・カリフ国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Sokoto Caliphate, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "索科托哈里发国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1804年〜1903年に活動し、イスラム改革、サヘル交易、学問都市を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during 1804-1903, it influenced regional politics, trade, and culture through Islamic reform, Sahel trade, scholarly cities.",
+          "zh": "活跃于1804年—1903年，并通过伊斯兰改革、萨赫勒贸易、学术城市影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "イギリスの軍事征服で政治的独立を失った。",
+          "en": "British military conquest ended its political independence.",
+          "zh": "英国军事征服使其失去政治独立。"
+        },
+        "successors": {
+          "ja": "ナイジェリア、ニジェール、ハウサ諸国の歴史に関係する。",
+          "en": "It connects with Nigeria, Niger, and the history of Hausa states.",
+          "zh": "与尼日利亚、尼日尔和豪萨诸国历史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はフラ語、ハウサ語、アラビア語、宗教・信仰はイスラム教と関係が深い。イスラム改革、サヘル交易、学問都市が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Fula, Hausa, and Arabic and Islam. The key themes are Islamic reform, Sahel trade, scholarly cities.",
+          "zh": "其文化与富拉语、豪萨语、阿拉伯语和伊斯兰教关系密切。理解其特点的关键主题是伊斯兰改革、萨赫勒贸易、学术城市。"
+        }
+      },
+      "related": [
+        "Nigeria",
+        "Niger",
+        "British Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ワダイ帝国",
+        "en": "Wadai Empire",
+        "zh": "瓦代帝国"
+      },
+      "capital": {
+        "ja": "アベシェ",
+        "en": "Abeche",
+        "zh": "阿贝歇"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Empire",
+        "Islamic World",
+        "Caravan Trade",
+        "Desert State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "チャド東部からスーダン西部にかけて栄えたサヘル国家。サハラ交易とイスラム王権で重要である。",
+        "en": "A Sahelian state in eastern Chad and western Sudan, important for Saharan trade and Islamic kingship.",
+        "zh": "乍得东部至苏丹西部的萨赫勒国家，以撒哈拉贸易和伊斯兰王权重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1635,
+        "end": 1912,
+        "label": {
+          "ja": "1635年頃〜1912年",
+          "en": "c. 1635-1912",
+          "zh": "约1635年—1912年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "マバ語、アラビア語、チャド諸語",
+          "en": "Maba, Arabic, and Chadic languages",
+          "zh": "马巴语、阿拉伯语、乍得诸语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ワダイ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Wadai Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "瓦代帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1635年頃〜1912年に活動し、サハラ交易、イスラム王権、サヘル外交を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1635-1912, it influenced regional politics, trade, and culture through Saharan trade, Islamic kingship, Sahel diplomacy.",
+          "zh": "活跃于约1635年—1912年，并通过撒哈拉贸易、伊斯兰王权、萨赫勒外交影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "フランス植民地軍に征服された。",
+          "en": "It was conquered by French colonial forces.",
+          "zh": "被法国殖民军征服。"
+        },
+        "successors": {
+          "ja": "チャド、スーダン、ダルフール・スルターン国に関係する。",
+          "en": "It connects with Chad, Sudan, and the Sultanate of Darfur.",
+          "zh": "与乍得、苏丹和达尔富尔苏丹国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はマバ語、アラビア語、チャド諸語、宗教・信仰はイスラム教と関係が深い。サハラ交易、イスラム王権、サヘル外交が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Maba, Arabic, and Chadic languages and Islam. The key themes are Saharan trade, Islamic kingship, Sahel diplomacy.",
+          "zh": "其文化与马巴语、阿拉伯语、乍得诸语和伊斯兰教关系密切。理解其特点的关键主题是撒哈拉贸易、伊斯兰王权、萨赫勒外交。"
+        }
+      },
+      "related": [
+        "Chad",
+        "Sudan",
+        "Sultanate of Darfur"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ダルフール・スルターン国",
+        "en": "Sultanate of Darfur",
+        "zh": "达尔富尔苏丹国"
+      },
+      "capital": {
+        "ja": "アル＝ファーシル",
+        "en": "Al-Fashir",
+        "zh": "法希尔"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Caravan Trade",
+        "Desert State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "スーダン西部のスルターン国。サハラ交易、イスラム王権、周辺サヘル国家との関係で重要である。",
+        "en": "A sultanate in western Sudan, important for Saharan trade, Islamic kingship, and relations with Sahelian states.",
+        "zh": "苏丹西部苏丹国，以撒哈拉贸易、伊斯兰王权和与萨赫勒国家关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1603,
+        "end": 1916,
+        "label": {
+          "ja": "1603年頃〜1916年",
+          "en": "c. 1603-1916",
+          "zh": "约1603年—1916年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "フール語、アラビア語",
+          "en": "Fur and Arabic",
+          "zh": "富尔语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ダルフール・スルターン国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Sultanate of Darfur, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "达尔富尔苏丹国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1603年頃〜1916年に活動し、サハラ交易、イスラム王権、サヘル政治を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1603-1916, it influenced regional politics, trade, and culture through Saharan trade, Islamic kingship, Sahel politics.",
+          "zh": "活跃于约1603年—1916年，并通过撒哈拉贸易、伊斯兰王权、萨赫勒政治影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "英埃スーダンに併合され、独立を失った。",
+          "en": "It was annexed into Anglo-Egyptian Sudan and lost independence.",
+          "zh": "被并入英埃苏丹并失去独立。"
+        },
+        "successors": {
+          "ja": "スーダン、ワダイ帝国、サヘル交易史に関係する。",
+          "en": "It connects with Sudan, the Wadai Empire, and Sahelian trade history.",
+          "zh": "与苏丹、瓦代帝国和萨赫勒贸易史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はフール語、アラビア語、宗教・信仰はイスラム教と関係が深い。サハラ交易、イスラム王権、サヘル政治が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Fur and Arabic and Islam. The key themes are Saharan trade, Islamic kingship, Sahel politics.",
+          "zh": "其文化与富尔语、阿拉伯语和伊斯兰教关系密切。理解其特点的关键主题是撒哈拉贸易、伊斯兰王权、萨赫勒政治。"
+        }
+      },
+      "related": [
+        "Sudan",
+        "Wadai Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "フンジ・スルターン国",
+        "en": "Funj Sultanate",
+        "zh": "丰吉苏丹国"
+      },
+      "capital": {
+        "ja": "センナール",
+        "en": "Sennar",
+        "zh": "森纳尔"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "River Civilization",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "青ナイル流域を中心としたスルターン国。ヌビア後のスーダン史とイスラム化で重要である。",
+        "en": "A sultanate centered on the Blue Nile, important for post-Nubian Sudanese history and Islamization.",
+        "zh": "以青尼罗河为中心的苏丹国，对努比亚之后的苏丹史和伊斯兰化重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1504,
+        "end": 1821,
+        "label": {
+          "ja": "1504年〜1821年",
+          "en": "1504-1821",
+          "zh": "1504年—1821年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語、ヌビア語、フンジ系諸語",
+          "en": "Arabic, Nubian, and Funj-related languages",
+          "zh": "阿拉伯语、努比亚语、丰吉相关语言"
+        },
+        "religions": {
+          "ja": "イスラム教、地域信仰",
+          "en": "Islam and local beliefs",
+          "zh": "伊斯兰教、地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "フンジ・スルターン国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Funj Sultanate, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "丰吉苏丹国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1504年〜1821年に活動し、ナイル交易、イスラム化、スーダン王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during 1504-1821, it influenced regional politics, trade, and culture through Nile trade, Islamization, Sudanese kingship.",
+          "zh": "活跃于1504年—1821年，并通过尼罗河贸易、伊斯兰化、苏丹王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "エジプトのムハンマド・アリー朝による征服で滅亡した。",
+          "en": "It fell to the conquest of Muhammad Ali's Egypt.",
+          "zh": "被穆罕默德·阿里统治下的埃及征服。"
+        },
+        "successors": {
+          "ja": "スーダン、アロディア王国、エジプトに関係する。",
+          "en": "It connects with Sudan, Alodia, and Egypt.",
+          "zh": "与苏丹、阿洛迪亚和埃及相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はアラビア語、ヌビア語、フンジ系諸語、宗教・信仰はイスラム教、地域信仰と関係が深い。ナイル交易、イスラム化、スーダン王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Arabic, Nubian, and Funj-related languages and Islam and local beliefs. The key themes are Nile trade, Islamization, Sudanese kingship.",
+          "zh": "其文化与阿拉伯语、努比亚语、丰吉相关语言和伊斯兰教、地方信仰关系密切。理解其特点的关键主题是尼罗河贸易、伊斯兰化、苏丹王权。"
+        }
+      },
+      "related": [
+        "Sudan",
+        "Alodia",
+        "Egypt"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ルワンダ王国",
+        "en": "Kingdom of Rwanda",
+        "zh": "卢旺达王国"
+      },
+      "capital": {
+        "ja": "ニャンザ",
+        "en": "Nyanza",
+        "zh": "尼扬扎"
+      },
+      "type": "Past",
+      "region": "Africa, African Great Lakes",
+      "tags": [
+        "Kingdom",
+        "Sacred Kingship",
+        "Agricultural Exporter",
+        "Cultural Sphere",
+        "Mountain State"
+      ],
+      "desc": {
+        "ja": "アフリカ大湖地域の王国。中央集権的な王権、牧畜・農耕社会、植民地化前の地域秩序で重要である。",
+        "en": "A Great Lakes kingdom important for centralized kingship, pastoral-farming society, and precolonial regional order.",
+        "zh": "非洲大湖地区王国，以中央集权王权、牧畜农耕社会和殖民前地区秩序重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1500,
+        "end": 1961,
+        "label": {
+          "ja": "15世紀頃〜1961年",
+          "en": "c. 15th century-1961",
+          "zh": "约15世纪—1961年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約26,000 km²",
+          "en": "maximum extent estimate: about 26,000 km²",
+          "zh": "最大领域估计：约26,000 km²"
+        },
+        "languages": {
+          "ja": "ルワンダ語",
+          "en": "Kinyarwanda",
+          "zh": "卢旺达语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ルワンダ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Rwanda, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "卢旺达王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "15世紀頃〜1961年に活動し、大湖地域王権、牧畜、丘陵農業を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 15th century-1961, it influenced regional politics, trade, and culture through Great Lakes kingship, pastoralism, hill agriculture.",
+          "zh": "活跃于约15世纪—1961年，并通过大湖地区王权、牧畜、丘陵农业影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配と独立前後の政治変化で王政が廃止された。",
+          "en": "Colonial rule and independence-era political change abolished the monarchy.",
+          "zh": "殖民统治和独立时期政治变化废除了王政。"
+        },
+        "successors": {
+          "ja": "ルワンダ、ブルンジ王国、ドイツ・ベルギー植民地支配に関係する。",
+          "en": "It connects with Rwanda, Burundi, and German and Belgian colonial rule.",
+          "zh": "与卢旺达、布隆迪王国以及德国、比利时殖民统治相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はルワンダ語、宗教・信仰は在来信仰、キリスト教と関係が深い。大湖地域王権、牧畜、丘陵農業が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kinyarwanda and traditional beliefs and Christianity. The key themes are Great Lakes kingship, pastoralism, hill agriculture.",
+          "zh": "其文化与卢旺达语和传统信仰、基督教关系密切。理解其特点的关键主题是大湖地区王权、牧畜、丘陵农业。"
+        }
+      },
+      "related": [
+        "Rwanda",
+        "Kingdom of Burundi"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ブルンジ王国",
+        "en": "Kingdom of Burundi",
+        "zh": "布隆迪王国"
+      },
+      "capital": {
+        "ja": "ギテガ",
+        "en": "Gitega",
+        "zh": "基特加"
+      },
+      "type": "Past",
+      "region": "Africa, African Great Lakes",
+      "tags": [
+        "Kingdom",
+        "Sacred Kingship",
+        "Agricultural Exporter",
+        "Cultural Sphere",
+        "Mountain State"
+      ],
+      "desc": {
+        "ja": "アフリカ大湖地域の王国。王権、丘陵農業、ルワンダとの比較で重要である。",
+        "en": "A Great Lakes kingdom important for kingship, hill agriculture, and comparison with Rwanda.",
+        "zh": "非洲大湖地区王国，以王权、丘陵农业以及与卢旺达的比较重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1680,
+        "end": 1966,
+        "label": {
+          "ja": "1680年頃〜1966年",
+          "en": "c. 1680-1966",
+          "zh": "约1680年—1966年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約150万人",
+          "en": "peak estimate: about 1.5 million",
+          "zh": "鼎盛期估计：约150万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約28,000 km²",
+          "en": "maximum extent estimate: about 28,000 km²",
+          "zh": "最大领域估计：约28,000 km²"
+        },
+        "languages": {
+          "ja": "ルンディ語",
+          "en": "Kirundi",
+          "zh": "隆迪语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブルンジ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Burundi, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "布隆迪王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1680年頃〜1966年に活動し、大湖地域王権、丘陵農業、牧畜社会を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1680-1966, it influenced regional politics, trade, and culture through Great Lakes kingship, hill agriculture, pastoral society.",
+          "zh": "活跃于约1680年—1966年，并通过大湖地区王权、丘陵农业、牧畜社会影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "独立後の政治変動により王政が廃止された。",
+          "en": "Post-independence political change abolished the monarchy.",
+          "zh": "独立后的政治变化废除了王政。"
+        },
+        "successors": {
+          "ja": "ブルンジ、ルワンダ王国、アフリカ大湖地域に関係する。",
+          "en": "It connects with Burundi, Rwanda, and the African Great Lakes region.",
+          "zh": "与布隆迪、卢旺达和非洲大湖地区相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はルンディ語、宗教・信仰は在来信仰、キリスト教と関係が深い。大湖地域王権、丘陵農業、牧畜社会が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kirundi and traditional beliefs and Christianity. The key themes are Great Lakes kingship, hill agriculture, pastoral society.",
+          "zh": "其文化与隆迪语和传统信仰、基督教关系密切。理解其特点的关键主题是大湖地区王权、丘陵农业、牧畜社会。"
+        }
+      },
+      "related": [
+        "Burundi",
+        "Kingdom of Rwanda"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ブガンダ王国",
+        "en": "Buganda Kingdom",
+        "zh": "布干达王国"
+      },
+      "capital": {
+        "ja": "メンゴ",
+        "en": "Mengo",
+        "zh": "门戈"
+      },
+      "type": "Past",
+      "region": "Africa, African Great Lakes",
+      "tags": [
+        "Kingdom",
+        "Sacred Kingship",
+        "Trade Hub",
+        "Agricultural Exporter",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "現在のウガンダ南部にある王国。大湖地域の政治、バナナ農業、植民地期の間接統治で重要である。",
+        "en": "A kingdom in southern Uganda, important for Great Lakes politics, banana agriculture, and colonial indirect rule.",
+        "zh": "今乌干达南部王国，以大湖地区政治、香蕉农业和殖民时期间接统治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1300,
+        "end": 1967,
+        "label": {
+          "ja": "1300年頃〜1967年",
+          "en": "c. 1300-1967",
+          "zh": "约1300年—1967年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約60,000 km²",
+          "en": "maximum extent estimate: about 60,000 km²",
+          "zh": "最大领域估计：约60,000 km²"
+        },
+        "languages": {
+          "ja": "ガンダ語",
+          "en": "Luganda",
+          "zh": "卢干达语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教、イスラム教",
+          "en": "traditional beliefs, Christianity, and Islam",
+          "zh": "传统信仰、基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブガンダ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Buganda Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "布干达王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1300年頃〜1967年に活動し、大湖地域外交、バナナ農業、王権儀礼を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1300-1967, it influenced regional politics, trade, and culture through Great Lakes diplomacy, banana agriculture, royal ritual.",
+          "zh": "活跃于约1300年—1967年，并通过大湖地区外交、香蕉农业、王权仪礼影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "独立後の政治改革で王国制度が一時廃止された。",
+          "en": "Post-independence political reforms temporarily abolished the kingdom.",
+          "zh": "独立后的政治改革一度废除了王国制度。"
+        },
+        "successors": {
+          "ja": "ウガンダ、ブニョロ王国、イギリス帝国に関係する。",
+          "en": "It connects with Uganda, Bunyoro, and the British Empire.",
+          "zh": "与乌干达、布尼奥罗王国和大英帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はガンダ語、宗教・信仰は在来信仰、キリスト教、イスラム教と関係が深い。大湖地域外交、バナナ農業、王権儀礼が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Luganda and traditional beliefs, Christianity, and Islam. The key themes are Great Lakes diplomacy, banana agriculture, royal ritual.",
+          "zh": "其文化与卢干达语和传统信仰、基督教、伊斯兰教关系密切。理解其特点的关键主题是大湖地区外交、香蕉农业、王权仪礼。"
+        }
+      },
+      "related": [
+        "Uganda",
+        "Bunyoro Kingdom",
+        "British Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ブニョロ王国",
+        "en": "Bunyoro Kingdom",
+        "zh": "布尼奥罗王国"
+      },
+      "capital": {
+        "ja": "ホイマ",
+        "en": "Hoima",
+        "zh": "霍伊马"
+      },
+      "type": "Past",
+      "region": "Africa, African Great Lakes",
+      "tags": [
+        "Kingdom",
+        "Sacred Kingship",
+        "Trade Hub",
+        "Resource Economy",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "ウガンダ西部の王国。大湖地域の古い王権、鉄資源、ブガンダとの競合で重要である。",
+        "en": "A kingdom in western Uganda, important for older Great Lakes kingship, iron resources, and rivalry with Buganda.",
+        "zh": "乌干达西部王国，以大湖地区古老王权、铁资源和与布干达竞争重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1300,
+        "end": 1967,
+        "label": {
+          "ja": "1300年頃〜1967年",
+          "en": "c. 1300-1967",
+          "zh": "约1300年—1967年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "ニョロ語、バントゥー諸語",
+          "en": "Nyoro and Bantu languages",
+          "zh": "尼奥罗语、班图诸语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブニョロ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Bunyoro Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "布尼奥罗王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1300年頃〜1967年に活動し、大湖地域王権、鉄資源、地域競合を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1300-1967, it influenced regional politics, trade, and culture through Great Lakes kingship, iron resources, regional rivalry.",
+          "zh": "活跃于约1300年—1967年，并通过大湖地区王权、铁资源、地区竞争影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配と独立後の政治変動で王国制度が一時廃止された。",
+          "en": "Colonial rule and post-independence change temporarily abolished the kingdom.",
+          "zh": "殖民统治和独立后政治变化一度废除了王国制度。"
+        },
+        "successors": {
+          "ja": "ウガンダ、ブガンダ王国、大湖地域史に関係する。",
+          "en": "It connects with Uganda, Buganda, and Great Lakes history.",
+          "zh": "与乌干达、布干达王国和大湖地区史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はニョロ語、バントゥー諸語、宗教・信仰は在来信仰、キリスト教と関係が深い。大湖地域王権、鉄資源、地域競合が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Nyoro and Bantu languages and traditional beliefs and Christianity. The key themes are Great Lakes kingship, iron resources, regional rivalry.",
+          "zh": "其文化与尼奥罗语、班图诸语和传统信仰、基督教关系密切。理解其特点的关键主题是大湖地区王权、铁资源、地区竞争。"
+        }
+      },
+      "related": [
+        "Uganda",
+        "Buganda Kingdom"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ロズヴィ帝国",
+        "en": "Rozvi Empire",
+        "zh": "罗兹维帝国"
+      },
+      "capital": {
+        "ja": "ダナンゴンベ",
+        "en": "Danangombe",
+        "zh": "达南贡贝"
+      },
+      "type": "Past",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Empire",
+        "Resource Economy",
+        "Trade Hub",
+        "Sacred Kingship",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "ジンバブエ高原のショナ系国家。石造遺跡、金交易、ムタパ後の地域秩序で重要である。",
+        "en": "A Shona state on the Zimbabwe plateau, important for stone sites, gold trade, and the post-Mutapa order.",
+        "zh": "津巴布韦高原的绍纳国家，以石造遗址、黄金贸易和穆塔帕之后的地区秩序重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1684,
+        "end": 1834,
+        "label": {
+          "ja": "1684年頃〜1834年",
+          "en": "c. 1684-1834",
+          "zh": "约1684年—1834年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "ショナ語",
+          "en": "Shona",
+          "zh": "绍纳语"
+        },
+        "religions": {
+          "ja": "ショナ在来信仰",
+          "en": "Shona traditional beliefs",
+          "zh": "绍纳传统信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ロズヴィ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Rozvi Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "罗兹维帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1684年頃〜1834年に活動し、金交易、石造文化、ショナ王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1684-1834, it influenced regional politics, trade, and culture through gold trade, stone-building culture, Shona kingship.",
+          "zh": "活跃于约1684年—1834年，并通过黄金贸易、石造文化、绍纳王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ンデベレ勢力の進出などにより政治的中心を失った。",
+          "en": "Expansion by Ndebele forces and regional change weakened its centers.",
+          "zh": "恩德贝莱势力扩张和地区变化削弱了其中心。"
+        },
+        "successors": {
+          "ja": "ジンバブエ、ムタパ王国、グレート・ジンバブエに関係する。",
+          "en": "It connects with Zimbabwe, Mutapa, and Great Zimbabwe.",
+          "zh": "与津巴布韦、穆塔帕王国和大津巴布韦相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はショナ語、宗教・信仰はショナ在来信仰と関係が深い。金交易、石造文化、ショナ王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Shona and Shona traditional beliefs. The key themes are gold trade, stone-building culture, Shona kingship.",
+          "zh": "其文化与绍纳语和绍纳传统信仰关系密切。理解其特点的关键主题是黄金贸易、石造文化、绍纳王权。"
+        }
+      },
+      "related": [
+        "Zimbabwe",
+        "Kingdom of Mutapa",
+        "Great Zimbabwe"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マラヴィ帝国",
+        "en": "Maravi Empire",
+        "zh": "马拉维帝国"
+      },
+      "capital": {
+        "ja": "マノンバ",
+        "en": "Manthimba",
+        "zh": "曼辛巴"
+      },
+      "type": "Past",
+      "region": "Africa, Southeast Africa",
+      "tags": [
+        "Empire",
+        "Trade Hub",
+        "Agricultural Exporter",
+        "Cultural Sphere",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "マラウイ湖周辺に広がったチェワ系国家連合。象牙交易、農業、南東アフリカ政治で重要である。",
+        "en": "A Chewa-led state system around Lake Malawi, important for ivory trade, agriculture, and southeast African politics.",
+        "zh": "马拉维湖周边的切瓦系国家体系，以象牙贸易、农业和东南非政治重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1480,
+        "end": 1891,
+        "label": {
+          "ja": "1480年頃〜1891年",
+          "en": "c. 1480-1891",
+          "zh": "约1480年—1891年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "チェワ語、バントゥー諸語",
+          "en": "Chewa and Bantu languages",
+          "zh": "切瓦语、班图诸语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マラヴィ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Maravi Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "马拉维帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1480年頃〜1891年に活動し、湖岸交易、象牙、農業王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1480-1891, it influenced regional politics, trade, and culture through lake trade, ivory, agrarian kingship.",
+          "zh": "活跃于约1480年—1891年，并通过湖岸贸易、象牙、农业王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "奴隷交易、地域移動、植民地勢力の進出で弱体化した。",
+          "en": "Slave trading pressures, migrations, and colonial expansion weakened it.",
+          "zh": "奴隶贸易压力、迁徙和殖民扩张使其衰弱。"
+        },
+        "successors": {
+          "ja": "マラウイ、モザンビーク、ザンビアに関係する。",
+          "en": "It connects with Malawi, Mozambique, and Zambia.",
+          "zh": "与马拉维、莫桑比克和赞比亚相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はチェワ語、バントゥー諸語、宗教・信仰は在来信仰、キリスト教と関係が深い。湖岸交易、象牙、農業王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Chewa and Bantu languages and traditional beliefs and Christianity. The key themes are lake trade, ivory, agrarian kingship.",
+          "zh": "其文化与切瓦语、班图诸语和传统信仰、基督教关系密切。理解其特点的关键主题是湖岸贸易、象牙、农业王权。"
+        }
+      },
+      "related": [
+        "Malawi",
+        "Mozambique",
+        "Zambia"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ロジ王国",
+        "en": "Lozi Kingdom",
+        "zh": "洛兹王国"
+      },
+      "capital": {
+        "ja": "リムルンガ",
+        "en": "Lealui",
+        "zh": "莱阿卢伊"
+      },
+      "type": "Past",
+      "region": "Africa, Southern Africa",
+      "tags": [
+        "Kingdom",
+        "River Civilization",
+        "Agricultural Exporter",
+        "Cultural Sphere",
+        "Strategic Crossroads"
+      ],
+      "desc": {
+        "ja": "ザンベジ川上流のバロツェランドにあった王国。氾濫原農業と王権儀礼で重要である。",
+        "en": "A kingdom in Barotseland on the upper Zambezi, important for floodplain agriculture and royal ritual.",
+        "zh": "赞比西河上游巴罗策兰的王国，以泛滥平原农业和王权仪礼重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1600,
+        "end": 1890,
+        "label": {
+          "ja": "17世紀頃〜1890年頃",
+          "en": "c. 17th century-c. 1890",
+          "zh": "约17世纪—约1890年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約120,000 km²",
+          "en": "sphere estimate: about 120,000 km²",
+          "zh": "影响范围估计：约120,000 km²"
+        },
+        "languages": {
+          "ja": "ロジ語、バントゥー諸語",
+          "en": "Lozi and Bantu languages",
+          "zh": "洛兹语、班图诸语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ロジ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Lozi Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "洛兹王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "17世紀頃〜1890年頃に活動し、ザンベジ川、氾濫原農業、王権儀礼を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 17th century-c. 1890, it influenced regional politics, trade, and culture through Zambezi River, floodplain agriculture, royal ritual.",
+          "zh": "活跃于约17世纪—约1890年，并通过赞比西河、泛滥平原农业、王权仪礼影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "イギリス保護領化と周辺政治の変化で独立性を失った。",
+          "en": "British protectorate rule and regional political change reduced its autonomy.",
+          "zh": "英国保护领统治和地区政治变化使其失去自治。"
+        },
+        "successors": {
+          "ja": "ザンビア、ジンバブエ、南部アフリカ史に関係する。",
+          "en": "It connects with Zambia, Zimbabwe, and southern African history.",
+          "zh": "与赞比亚、津巴布韦和南部非洲史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はロジ語、バントゥー諸語、宗教・信仰は在来信仰、キリスト教と関係が深い。ザンベジ川、氾濫原農業、王権儀礼が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Lozi and Bantu languages and traditional beliefs and Christianity. The key themes are Zambezi River, floodplain agriculture, royal ritual.",
+          "zh": "其文化与洛兹语、班图诸语和传统信仰、基督教关系密切。理解其特点的关键主题是赞比西河、泛滥平原农业、王权仪礼。"
+        }
+      },
+      "related": [
+        "Zambia",
+        "Zimbabwe"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ガザ帝国",
+        "en": "Gaza Empire",
+        "zh": "加扎帝国"
+      },
+      "capital": {
+        "ja": "マンジャカゼ",
+        "en": "Mandlakazi",
+        "zh": "曼德拉卡齐"
+      },
+      "type": "Past",
+      "region": "Africa, Southeast Africa",
+      "tags": [
+        "Empire",
+        "Military Government",
+        "Trade Hub",
+        "Warrior Aristocracy",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "現在のモザンビーク南部にあったングニ系国家。軍事組織、地域支配、ポルトガルとの関係で重要である。",
+        "en": "A Nguni state in southern Mozambique, important for military organization, regional rule, and relations with Portugal.",
+        "zh": "今莫桑比克南部的恩古尼系国家，以军事组织、地区统治和与葡萄牙关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1824,
+        "end": 1895,
+        "label": {
+          "ja": "1824年頃〜1895年",
+          "en": "c. 1824-1895",
+          "zh": "约1824年—1895年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "ツォンガ語、ングニ諸語",
+          "en": "Tsonga and Nguni languages",
+          "zh": "聪加语、恩古尼诸语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ガザ帝国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Gaza Empire, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "加扎帝国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1824年頃〜1895年に活動し、軍事国家、南東アフリカ交易、植民地抵抗を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1824-1895, it influenced regional politics, trade, and culture through military state, southeast African trade, colonial resistance.",
+          "zh": "活跃于约1824年—1895年，并通过军事国家、东南非贸易、殖民抵抗影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ポルトガル軍に敗れ、植民地支配に組み込まれた。",
+          "en": "It was defeated by Portuguese forces and absorbed into colonial rule.",
+          "zh": "被葡萄牙军队击败并纳入殖民统治。"
+        },
+        "successors": {
+          "ja": "モザンビーク、ポルトガル帝国、ズールー王国に関係する。",
+          "en": "It connects with Mozambique, the Portuguese Empire, and the Zulu Kingdom.",
+          "zh": "与莫桑比克、葡萄牙帝国和祖鲁王国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はツォンガ語、ングニ諸語、宗教・信仰は在来信仰、キリスト教と関係が深い。軍事国家、南東アフリカ交易、植民地抵抗が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Tsonga and Nguni languages and traditional beliefs and Christianity. The key themes are military state, southeast African trade, colonial resistance.",
+          "zh": "其文化与聪加语、恩古尼诸语和传统信仰、基督教关系密切。理解其特点的关键主题是军事国家、东南非贸易、殖民抵抗。"
+        }
+      },
+      "related": [
+        "Mozambique",
+        "Portuguese Empire",
+        "Zulu Kingdom"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ンドンゴ王国",
+        "en": "Kingdom of Ndongo",
+        "zh": "恩东戈王国"
+      },
+      "capital": {
+        "ja": "カバサ",
+        "en": "Kabasa",
+        "zh": "卡巴萨"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Kingdom",
+        "Trade Hub",
+        "Resource Economy",
+        "Anti-Colonial Independence",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "アンゴラ内陸のンブンドゥ系王国。ポルトガルとの戦争、奴隷交易、ンジンガ女王で重要である。",
+        "en": "An Mbundu kingdom in Angola, important for wars with Portugal, Atlantic slave trade, and Queen Nzinga.",
+        "zh": "安哥拉内陆的姆本杜王国，以与葡萄牙战争、大西洋奴隶贸易和恩津加女王重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1400,
+        "end": 1671,
+        "label": {
+          "ja": "1400年頃〜1671年",
+          "en": "c. 1400-1671",
+          "zh": "约1400年—1671年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約100,000 km²",
+          "en": "sphere estimate: about 100,000 km²",
+          "zh": "影响范围估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "キンブンドゥ語、ポルトガル語",
+          "en": "Kimbundu and Portuguese",
+          "zh": "金邦杜语、葡萄牙语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ンドンゴ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Ndongo, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "恩东戈王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1400年頃〜1671年に活動し、大西洋交易、対ポルトガル戦争、中央アフリカ王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1400-1671, it influenced regional politics, trade, and culture through Atlantic trade, wars with Portugal, central African kingship.",
+          "zh": "活跃于约1400年—1671年，并通过大西洋贸易、对葡萄牙战争、中非王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ポルトガル勢力の拡大により政治的独立を失った。",
+          "en": "Portuguese expansion ended its political independence.",
+          "zh": "葡萄牙扩张使其失去政治独立。"
+        },
+        "successors": {
+          "ja": "アンゴラ、マタンバ王国、ポルトガル帝国に関係する。",
+          "en": "It connects with Angola, Matamba, and the Portuguese Empire.",
+          "zh": "与安哥拉、马坦巴王国和葡萄牙帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はキンブンドゥ語、ポルトガル語、宗教・信仰は在来信仰、キリスト教と関係が深い。大西洋交易、対ポルトガル戦争、中央アフリカ王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kimbundu and Portuguese and traditional beliefs and Christianity. The key themes are Atlantic trade, wars with Portugal, central African kingship.",
+          "zh": "其文化与金邦杜语、葡萄牙语和传统信仰、基督教关系密切。理解其特点的关键主题是大西洋贸易、对葡萄牙战争、中非王权。"
+        }
+      },
+      "related": [
+        "Angola",
+        "Kingdom of Matamba",
+        "Portuguese Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マタンバ王国",
+        "en": "Kingdom of Matamba",
+        "zh": "马坦巴王国"
+      },
+      "capital": {
+        "ja": "マタンバ",
+        "en": "Matamba",
+        "zh": "马坦巴"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Kingdom",
+        "Anti-Colonial Independence",
+        "Trade Hub",
+        "Cultural Sphere",
+        "Warrior Aristocracy"
+      ],
+      "desc": {
+        "ja": "アンゴラ内陸の王国。ンジンガ女王の抵抗、ンドンゴとの関係、ポルトガルとの外交で重要である。",
+        "en": "An inland Angolan kingdom important for Queen Nzinga's resistance, ties with Ndongo, and diplomacy with Portugal.",
+        "zh": "安哥拉内陆王国，以恩津加女王的抵抗、与恩东戈关系和对葡萄牙外交重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1631,
+        "end": 1744,
+        "label": {
+          "ja": "1631年頃〜1744年",
+          "en": "c. 1631-1744",
+          "zh": "约1631年—1744年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約80,000 km²",
+          "en": "sphere estimate: about 80,000 km²",
+          "zh": "影响范围估计：约80,000 km²"
+        },
+        "languages": {
+          "ja": "キンブンドゥ語、ポルトガル語",
+          "en": "Kimbundu and Portuguese",
+          "zh": "金邦杜语、葡萄牙语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マタンバ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Matamba, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "马坦巴王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1631年頃〜1744年に活動し、女王権、抵抗外交、中央アフリカ交易を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1631-1744, it influenced regional politics, trade, and culture through queenly rule, resistance diplomacy, central African trade.",
+          "zh": "活跃于约1631年—1744年，并通过女王统治、抵抗外交、中非贸易影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "王位継承争いと周辺勢力の圧力で衰退した。",
+          "en": "Succession disputes and pressure from surrounding powers weakened it.",
+          "zh": "王位继承争端和周边势力压力使其衰落。"
+        },
+        "successors": {
+          "ja": "アンゴラ、ンドンゴ王国、ポルトガル帝国に関係する。",
+          "en": "It connects with Angola, Ndongo, and the Portuguese Empire.",
+          "zh": "与安哥拉、恩东戈王国和葡萄牙帝国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はキンブンドゥ語、ポルトガル語、宗教・信仰は在来信仰、キリスト教と関係が深い。女王権、抵抗外交、中央アフリカ交易が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kimbundu and Portuguese and traditional beliefs and Christianity. The key themes are queenly rule, resistance diplomacy, central African trade.",
+          "zh": "其文化与金邦杜语、葡萄牙语和传统信仰、基督教关系密切。理解其特点的关键主题是女王统治、抵抗外交、中非贸易。"
+        }
+      },
+      "related": [
+        "Angola",
+        "Kingdom of Ndongo",
+        "Portuguese Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ロアンゴ王国",
+        "en": "Kingdom of Loango",
+        "zh": "洛安戈王国"
+      },
+      "capital": {
+        "ja": "ブアリ",
+        "en": "Bwali",
+        "zh": "布瓦利"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Kingdom",
+        "Maritime Power",
+        "Trade Hub",
+        "Resource Economy",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "コンゴ川北方の大西洋岸にあった王国。海岸交易、銅・象牙、コンゴ王国との関係で重要である。",
+        "en": "An Atlantic coastal kingdom north of the Congo River, important for coastal trade, copper, ivory, and ties with Kongo.",
+        "zh": "刚果河北方大西洋岸王国，以海岸贸易、铜、象牙及与刚果王国关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1550,
+        "end": 1883,
+        "label": {
+          "ja": "1550年頃〜1883年",
+          "en": "c. 1550-1883",
+          "zh": "约1550年—1883年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約100,000 km²",
+          "en": "sphere estimate: about 100,000 km²",
+          "zh": "影响范围估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "ヴィリ語、キコンゴ語",
+          "en": "Vili and Kikongo",
+          "zh": "维利语、刚果语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ロアンゴ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Loango, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "洛安戈王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1550年頃〜1883年に活動し、大西洋交易、海岸王国、中央アフリカ外交を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1550-1883, it influenced regional politics, trade, and culture through Atlantic trade, coastal kingship, central African diplomacy.",
+          "zh": "活跃于约1550年—1883年，并通过大西洋贸易、海岸王国、中非外交影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ヨーロッパ植民地勢力の保護領化で独立性を失った。",
+          "en": "European protectorate arrangements ended its independence.",
+          "zh": "欧洲保护领安排使其失去独立。"
+        },
+        "successors": {
+          "ja": "コンゴ共和国、アンゴラ、コンゴ王国に関係する。",
+          "en": "It connects with the Republic of the Congo, Angola, and the Kingdom of Kongo.",
+          "zh": "与刚果共和国、安哥拉和刚果王国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はヴィリ語、キコンゴ語、宗教・信仰は在来信仰、キリスト教と関係が深い。大西洋交易、海岸王国、中央アフリカ外交が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Vili and Kikongo and traditional beliefs and Christianity. The key themes are Atlantic trade, coastal kingship, central African diplomacy.",
+          "zh": "其文化与维利语、刚果语和传统信仰、基督教关系密切。理解其特点的关键主题是大西洋贸易、海岸王国、中非外交。"
+        }
+      },
+      "related": [
+        "Republic of the Congo",
+        "Angola",
+        "Kingdom of Kongo"
+      ]
+    },
+    {
+      "names": {
+        "ja": "クバ王国",
+        "en": "Kuba Kingdom",
+        "zh": "库巴王国"
+      },
+      "capital": {
+        "ja": "ヌシェン",
+        "en": "Nsheng",
+        "zh": "恩申"
+      },
+      "type": "Past",
+      "region": "Africa, Central Africa",
+      "tags": [
+        "Kingdom",
+        "Cultural Sphere",
+        "Resource Economy",
+        "Sacred Kingship",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "コンゴ盆地内陸の王国。宮廷芸術、織物、神聖王権で重要である。",
+        "en": "An inland Congo Basin kingdom, important for court art, textiles, and sacred kingship.",
+        "zh": "刚果盆地内陆王国，以宫廷艺术、织物和神圣王权重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1625,
+        "end": 1900,
+        "label": {
+          "ja": "1625年頃〜1900年頃",
+          "en": "c. 1625-c. 1900",
+          "zh": "约1625年—约1900年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約25万人",
+          "en": "peak estimate: about 250,000",
+          "zh": "鼎盛期估计：约25万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約80,000 km²",
+          "en": "sphere estimate: about 80,000 km²",
+          "zh": "影响范围估计：约80,000 km²"
+        },
+        "languages": {
+          "ja": "クバ諸語、バントゥー諸語",
+          "en": "Kuba and Bantu languages",
+          "zh": "库巴诸语、班图诸语"
+        },
+        "religions": {
+          "ja": "在来信仰、キリスト教",
+          "en": "traditional beliefs and Christianity",
+          "zh": "传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クバ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kuba Kingdom, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "库巴王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1625年頃〜1900年頃に活動し、宮廷芸術、織物、中央アフリカ王権を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 1625-c. 1900, it influenced regional politics, trade, and culture through court art, textiles, central African kingship.",
+          "zh": "活跃于约1625年—约1900年，并通过宫廷艺术、织物、中非王权影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ベルギー植民地支配の拡大で旧来の政治権限が制限された。",
+          "en": "Belgian colonial expansion restricted its old political authority.",
+          "zh": "比利时殖民扩张限制了其传统政治权力。"
+        },
+        "successors": {
+          "ja": "DRコンゴ、ルバ王国、ルンダ王国に関係する。",
+          "en": "It connects with DR Congo, the Luba Kingdom, and the Lunda Empire.",
+          "zh": "与刚果民主共和国、卢巴王国和隆达王国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はクバ諸語、バントゥー諸語、宗教・信仰は在来信仰、キリスト教と関係が深い。宮廷芸術、織物、中央アフリカ王権が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Kuba and Bantu languages and traditional beliefs and Christianity. The key themes are court art, textiles, central African kingship.",
+          "zh": "其文化与库巴诸语、班图诸语和传统信仰、基督教关系密切。理解其特点的关键主题是宫廷艺术、织物、中非王权。"
+        }
+      },
+      "related": [
+        "DR Congo",
+        "Luba Kingdom",
+        "Lunda Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ンリ王国",
+        "en": "Kingdom of Nri",
+        "zh": "恩里王国"
+      },
+      "capital": {
+        "ja": "ンリ",
+        "en": "Nri",
+        "zh": "恩里"
+      },
+      "type": "Past",
+      "region": "Africa, West Africa",
+      "tags": [
+        "Kingdom",
+        "Theocratic State",
+        "Religious Center",
+        "Cultural Sphere",
+        "Sacred Kingship"
+      ],
+      "desc": {
+        "ja": "イボ人社会の宗教的王国。儀礼的権威、奴隷解放儀礼、交易ネットワークで重要である。",
+        "en": "A ritual kingdom in Igbo society, important for religious authority, ritual manumission, and trade networks.",
+        "zh": "伊博社会的宗教王国，以仪礼权威、解放奴隶仪式和贸易网络重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 948,
+        "end": 1911,
+        "label": {
+          "ja": "948年頃〜1911年",
+          "en": "c. 948-1911",
+          "zh": "约948年—1911年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "影響圏推定: 約30,000 km²",
+          "en": "sphere estimate: about 30,000 km²",
+          "zh": "影响范围估计：约30,000 km²"
+        },
+        "languages": {
+          "ja": "イボ語",
+          "en": "Igbo",
+          "zh": "伊博语"
+        },
+        "religions": {
+          "ja": "イボ在来信仰、キリスト教",
+          "en": "Igbo traditional beliefs and Christianity",
+          "zh": "伊博传统信仰、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ンリ王国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Kingdom of Nri, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "恩里王国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "948年頃〜1911年に活動し、宗教的王権、儀礼外交、イボ文化を通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during c. 948-1911, it influenced regional politics, trade, and culture through ritual kingship, ceremonial diplomacy, Igbo culture.",
+          "zh": "活跃于约948年—1911年，并通过宗教王权、仪礼外交、伊博文化影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "イギリス植民地支配により政治的権威を失った。",
+          "en": "British colonial rule ended its political authority.",
+          "zh": "英国殖民统治使其失去政治权威。"
+        },
+        "successors": {
+          "ja": "ナイジェリア、ビアフラ共和国、イボ人史に関係する。",
+          "en": "It connects with Nigeria, Biafra, and Igbo history.",
+          "zh": "与尼日利亚、比亚法拉共和国和伊博人历史相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はイボ語、宗教・信仰はイボ在来信仰、キリスト教と関係が深い。宗教的王権、儀礼外交、イボ文化が特徴を理解する軸になる。",
+          "en": "Its culture is connected with Igbo and Igbo traditional beliefs and Christianity. The key themes are ritual kingship, ceremonial diplomacy, Igbo culture.",
+          "zh": "其文化与伊博语和伊博传统信仰、基督教关系密切。理解其特点的关键主题是宗教王权、仪礼外交、伊博文化。"
+        }
+      },
+      "related": [
+        "Nigeria",
+        "Republic of Biafra"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ザンジバル・スルターン国",
+        "en": "Sultanate of Zanzibar",
+        "zh": "桑给巴尔苏丹国"
+      },
+      "capital": {
+        "ja": "ザンジバル",
+        "en": "Zanzibar",
+        "zh": "桑给巴尔"
+      },
+      "type": "Past",
+      "region": "Africa, Indian Ocean",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Indian Ocean Trade",
+        "Maritime Power",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "インド洋西部の島嶼スルターン国。香辛料交易、奴隷交易、オマーンとの関係で重要である。",
+        "en": "An island sultanate in the western Indian Ocean, important for spice trade, slave trade, and ties with Oman.",
+        "zh": "西印度洋岛屿苏丹国，以香料贸易、奴隶贸易和与阿曼关系重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1856,
+        "end": 1964,
+        "label": {
+          "ja": "1856年〜1964年",
+          "en": "1856-1964",
+          "zh": "1856年—1964年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,650 km²",
+          "en": "maximum extent estimate: about 2,650 km²",
+          "zh": "最大领域估计：约2,650 km²"
+        },
+        "languages": {
+          "ja": "スワヒリ語、アラビア語",
+          "en": "Swahili and Arabic",
+          "zh": "斯瓦希里语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ザンジバル・スルターン国では、首長・王族・長老層・軍事指導者・交易を担った人々が政治と社会を支えた。",
+          "en": "For Sultanate of Zanzibar, rulers, chiefs, elders, military leaders, and trading communities shaped politics and society.",
+          "zh": "桑给巴尔苏丹国的重要人物包括君主、首领、长老、军事领导人以及贸易群体，他们支撑了政治和社会。"
+        },
+        "major_events": {
+          "ja": "1856年〜1964年に活動し、インド洋交易、香辛料、港市ネットワークを通じて周辺地域の政治・交易・文化に影響を与えた。",
+          "en": "Active during 1856-1964, it influenced regional politics, trade, and culture through Indian Ocean trade, spices, port-city networks.",
+          "zh": "活跃于1856年—1964年，并通过印度洋贸易、香料、港市网络影响周边地区的政治、贸易和文化。"
+        },
+        "fall_reason": {
+          "ja": "ザンジバル革命後、タンガニーカと連合してタンザニアとなった。",
+          "en": "After the Zanzibar Revolution, it united with Tanganyika to form Tanzania.",
+          "zh": "桑给巴尔革命后与坦噶尼喀合并组成坦桑尼亚。"
+        },
+        "successors": {
+          "ja": "タンザニア、オマーン、キルワ・スルターン国に関係する。",
+          "en": "It connects with Tanzania, Oman, and the Kilwa Sultanate.",
+          "zh": "与坦桑尼亚、阿曼和基尔瓦苏丹国相关。"
+        },
+        "cultural_features": {
+          "ja": "言語はスワヒリ語、アラビア語、宗教・信仰はイスラム教と関係が深い。インド洋交易、香辛料、港市ネットワークが特徴を理解する軸になる。",
+          "en": "Its culture is connected with Swahili and Arabic and Islam. The key themes are Indian Ocean trade, spices, port-city networks.",
+          "zh": "其文化与斯瓦希里语、阿拉伯语和伊斯兰教关系密切。理解其特点的关键主题是印度洋贸易、香料、港市网络。"
+        }
+      },
+      "related": [
+        "Tanzania",
+        "Oman",
+        "Kilwa Sultanate"
+      ]
     }
   ],
   "tag_categories": {
