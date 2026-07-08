@@ -387,7 +387,7 @@ def save_user_data(data):
     if user_dir:
         os.makedirs(user_dir, exist_ok=True)
     with open(USER_DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
     USER_DATA_CACHE = data
     USER_DATA_CACHE_MTIME = file_mtime(USER_DATA_FILE)
 
@@ -614,6 +614,7 @@ class AppState:
     current_user = None
     current_user_browser_sync_pending = False
     remember_login = True
+    remember_login_restore_requested = False
     theme_mode = 'light'
     search_keyword = ''
     page = 1
@@ -638,6 +639,7 @@ class AppState:
     users_favorite_country_key = None
     users_browser_restore_requested = False
     public_users_browser_synced = False
+    public_users_browser_sync_pending = False
     public_collection_owner = None
     public_collection_name = None
     public_collection_keys = []
@@ -2610,7 +2612,10 @@ def set_browser_remember_login(enabled, username=None):
     except Exception as e:
         print(f"Remember-login update skipped: {e}", flush=True)
 
-def request_remembered_login():
+def request_remembered_login(force=False):
+    if state.remember_login_restore_requested and not force:
+        return
+    state.remember_login_restore_requested = True
     script = f"""
     (async () => {{
       if (localStorage.getItem('{REMEMBER_LOGIN_KEY}') !== '1') return;
@@ -2829,6 +2834,7 @@ def public_user_backup_payload():
     }
 
 def sync_public_users_to_browser(force=False):
+    state.public_users_browser_sync_pending = False
     if state.public_users_browser_synced and not force:
         return
     payload = public_user_backup_payload()
@@ -2857,6 +2863,16 @@ def sync_public_users_to_browser(force=False):
         state.public_users_browser_synced = True
     except Exception as e:
         print(f"Public browser backup skipped: {e}", flush=True)
+
+def schedule_public_users_browser_sync(delay=0.8, force=False):
+    if state.public_users_browser_sync_pending and not force:
+        return
+    state.public_users_browser_sync_pending = True
+    try:
+        ui.timer(delay, lambda: sync_public_users_to_browser(force=force), once=True)
+    except Exception as e:
+        state.public_users_browser_sync_pending = False
+        print(f"Public browser backup scheduling skipped: {e}", flush=True)
 
 def backup_labels():
     labels = {
@@ -5887,13 +5903,21 @@ def build_quiz():
     if not question_pools:
         return None
 
-    for _ in range(80):
+    resolved_candidates_cache = {}
+
+    def resolved_candidates_for(question_type, candidate_keys):
+        base_type = quiz_base_type(question_type)
+        if base_type not in resolved_candidates_cache:
+            resolved_candidates_cache[base_type] = resolve_quiz_candidates(candidate_keys, lookup)
+        return resolved_candidates_cache[base_type]
+
+    for _ in range(45):
         question_type, candidate_keys = random.choice(question_pools)
         answer_key = random.choice(candidate_keys)
         answer = lookup.get(answer_key)
         if not answer:
             continue
-        candidates = resolve_quiz_candidates(candidate_keys, lookup)
+        candidates = resolved_candidates_for(question_type, candidate_keys)
         quiz_tag = None
         reverse_payload = None
         if quiz_is_reverse(question_type):
@@ -7384,8 +7408,8 @@ def deal_battle_hand(room=None, count=5):
 def current_battle_room():
     return battle_room_for_user(state.current_user, load_battle_state_with_timeouts())
 
-def current_battle_room_snapshot():
-    state_data = load_battle_state()
+def current_battle_room_snapshot(state_data=None):
+    state_data = state_data or load_battle_state()
     username = clean_username(state.current_user)
     room_id = state_data.get('user_room', {}).get(username) or state_data.get('spectator_room', {}).get(username)
     room = state_data.get('rooms', {}).get(room_id)
@@ -9189,8 +9213,8 @@ def battle_last_turn_signature(last_turn):
         'bombs': rows_signature(last_turn.get('bombs', [])),
     }
 
-def battle_screen_signature():
-    state_data = load_battle_state_with_timeouts()
+def battle_screen_signature(state_data=None):
+    state_data = state_data or load_battle_state_with_timeouts()
     room = battle_room_for_user(state.current_user, state_data)
     if room:
         payload = {
@@ -9708,7 +9732,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
         if not state.current_user:
             request_browser_backup_restore()
             request_remembered_login()
-            ui.timer(1.0, request_remembered_login, once=True)
+            ui.timer(1.0, lambda: request_remembered_login(force=True), once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
@@ -10792,8 +10816,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
         ui.notify(t('users_restore_browser'), color='info')
         ui.timer(0.8, refresh_users_view, once=True)
         ui.timer(1.8, refresh_users_view, once=True)
-        ui.timer(3.0, refresh_users_view, once=True)
-        ui.timer(3.2, lambda: sync_public_users_to_browser(force=True), once=True)
+        schedule_public_users_browser_sync(2.0, force=True)
 
     def change_users_page(page):
         state.users_page = page
@@ -10866,7 +10889,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             restore_started = True
             request_browser_backup_restore()
             ui.timer(0.8, refresh_users_view, once=True)
-            ui.timer(1.8, refresh_users_view, once=True)
+            schedule_public_users_browser_sync(1.6, force=True)
         render_header(header_container_users)
         update_mode_classes(
             users_content,
@@ -10905,7 +10928,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                         .classes('w-full' if is_mobile_ui() else '')
             profiles = filter_public_user_profiles(raw_profiles)
             if raw_profiles and not state.public_users_browser_synced:
-                ui.timer(2.4 if restore_started else 0.4, sync_public_users_to_browser, once=True)
+                schedule_public_users_browser_sync(2.4 if restore_started else 0.6)
             total_count = len(profiles)
             total_pages = max(1, (total_count + state.users_items_per_page - 1) // state.users_items_per_page)
             state.users_page = max(1, min(state.users_page, total_pages))
@@ -11255,7 +11278,7 @@ def poll_social_updates():
     if changed and users_screen.visible:
         refresh_users_view()
 
-ui.timer(3.0, poll_social_updates)
+ui.timer(8.0, poll_social_updates)
 
 with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
@@ -11962,12 +11985,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
     def auto_refresh_battle():
         if not battle_screen.visible:
             return
+        state_data = load_battle_state_with_timeouts()
         countdown_label = battle_countdown_label.get('component')
         if countdown_label:
-            room = current_battle_room_snapshot()
+            room = current_battle_room_snapshot(state_data)
             if room and not room.get('winner'):
                 countdown_label.set_text(battle_time_left_text(room))
-        signature = battle_screen_signature()
+        signature = battle_screen_signature(state_data)
         if signature != state.battle_last_signature:
             refresh_battle_view()
 
