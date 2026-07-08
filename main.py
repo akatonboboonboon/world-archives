@@ -119,34 +119,114 @@ ui.add_head_html("""
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
+.wa-staff-roll-window {
+  background: radial-gradient(circle at top, #283750 0%, #0b1020 58%, #050814 100%);
+  color: #f8fafc;
+  min-height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+.wa-staff-roll-scroll {
+  animation: wa-staff-roll 44s linear forwards;
+  transform: translateY(52vh);
+  text-align: center;
+}
+.wa-staff-roll-scroll h2 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin-bottom: 2rem;
+}
+.wa-staff-roll-scroll p {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0.9rem 0;
+}
+html.wa-dark .wa-staff-roll-window {
+  background: radial-gradient(circle at top, #283750 0%, #0b1020 58%, #050814 100%) !important;
+  color: #f8fafc !important;
+}
+@keyframes wa-staff-roll {
+  from { transform: translateY(52vh); }
+  to { transform: translateY(-100%); }
+}
 html.wa-dark body,
+html.wa-dark .nicegui-content,
+html.wa-dark .q-page,
+html.wa-dark .q-layout,
 html.wa-dark .bg-gray-50,
 html.wa-dark .bg-blue-50,
-html.wa-dark .bg-gray-100 {
-  background: #0f172a !important;
-  color: #e5e7eb !important;
+html.wa-dark .bg-gray-100,
+html.wa-dark .bg-blue-100,
+html.wa-dark .bg-orange-50,
+html.wa-dark .bg-red-50,
+html.wa-dark .bg-gray-200 {
+  background: #090f1f !important;
+  color: #f8fafc !important;
 }
 html.wa-dark .bg-white,
-html.wa-dark .q-card {
-  background: #1f2937 !important;
-  color: #e5e7eb !important;
+html.wa-dark .q-card,
+html.wa-dark .q-menu,
+html.wa-dark .q-drawer,
+html.wa-dark .q-list,
+html.wa-dark .q-expansion-item,
+html.wa-dark .q-table,
+html.wa-dark .q-table__container {
+  background: #172033 !important;
+  color: #f8fafc !important;
 }
 html.wa-dark .text-\\[\\#1a2332\\],
 html.wa-dark .text-gray-800,
 html.wa-dark .text-gray-700,
 html.wa-dark .text-gray-600,
-html.wa-dark .text-gray-500 {
-  color: #e5e7eb !important;
+html.wa-dark .text-gray-500,
+html.wa-dark .text-gray-400,
+html.wa-dark .text-blue-800,
+html.wa-dark .text-blue-700,
+html.wa-dark .text-green-700,
+html.wa-dark .text-red-700,
+html.wa-dark .text-orange-700,
+html.wa-dark .q-item,
+html.wa-dark .q-item__label,
+html.wa-dark .q-tab,
+html.wa-dark .q-field__label,
+html.wa-dark .q-field__native,
+html.wa-dark .q-field__prefix,
+html.wa-dark .q-field__suffix {
+  color: #f8fafc !important;
 }
 html.wa-dark .border,
 html.wa-dark .border-gray-200,
-html.wa-dark .border-blue-100 {
-  border-color: #334155 !important;
+html.wa-dark .border-gray-300,
+html.wa-dark .border-blue-100,
+html.wa-dark .q-separator {
+  border-color: #475569 !important;
+  background: #475569 !important;
 }
 html.wa-dark input,
 html.wa-dark textarea,
-html.wa-dark .q-field__control {
-  color: #e5e7eb !important;
+html.wa-dark .q-field__control,
+html.wa-dark .q-field__marginal {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+html.wa-dark .q-btn--outline:before {
+  border-color: #60a5fa !important;
+}
+html.wa-dark .q-btn--outline {
+  color: #93c5fd !important;
+}
+html.wa-dark .q-menu {
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55) !important;
+}
+html.wa-dark .q-item:hover,
+html.wa-dark .hover\\:bg-blue-50:hover {
+  background: #22304a !important;
+}
+html.wa-dark .shadow,
+html.wa-dark .shadow-md,
+html.wa-dark .shadow-lg {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45) !important;
 }
 </style>
 """)
@@ -155,8 +235,6 @@ ui.add_body_html("""
 (() => {
   sessionStorage.removeItem('world_archives_route_hash_applied');
   sessionStorage.removeItem('world_archives_login_redirect');
-  localStorage.removeItem('world_archives_remember_login');
-  localStorage.removeItem('world_archives_last_user');
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
@@ -304,6 +382,7 @@ USER_RECORD_KEYS = {
     'sengoku_unlocked',
     'sengoku_unlocked_notified',
     'sengoku_mode',
+    'sengoku_medal',
     'friends',
     'notifications',
 }
@@ -519,7 +598,7 @@ def merge_user_record(current, incoming):
             current[key] = bool(current.get(key, False) or value)
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
-        elif key in ['battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode'] and isinstance(value, bool):
+        elif key in ['battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal'] and isinstance(value, bool):
             current[key] = bool(current.get(key, False) or value)
         else:
             current.setdefault(key, value)
@@ -665,6 +744,7 @@ class AppState:
     battle_team_choice = 'A'
     battle_events_enabled = True
     battle_last_signature = ''
+    staff_roll_room_shown = None
     sengoku_mode = False
     social_selected_chat_id = None
     social_last_signature = ''
@@ -2094,6 +2174,25 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'no_user_search_results': '没有符合条件的用户。',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'sengoku_medal_unlocked_notice': '戦国BOTタイマン完全勝利。勲章を獲得しました。',
+    'staff_roll_title': 'World Archives スタッフロール',
+    'staff_roll_close': '閉じる',
+    'staff_roll_source_heading': '参考資料・画像・地図',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'sengoku_medal_unlocked_notice': 'Sengoku BOT duel clear. Medal unlocked.',
+    'staff_roll_title': 'World Archives Credits',
+    'staff_roll_close': 'Close',
+    'staff_roll_source_heading': 'References, Images, and Maps',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'sengoku_medal_unlocked_notice': '战国 BOT 单挑战胜。已获得勋章。',
+    'staff_roll_title': 'World Archives 制作人员',
+    'staff_roll_close': '关闭',
+    'staff_roll_source_heading': '参考资料、图片与地图',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -2497,6 +2596,8 @@ def ensure_user_defaults(user):
         user['sengoku_unlocked_notified'] = False
     if not isinstance(user.get('sengoku_mode'), bool):
         user['sengoku_mode'] = False
+    if not isinstance(user.get('sengoku_medal'), bool):
+        user['sengoku_medal'] = False
     restore_all_viewed_progress_if_unlocked(user)
     return user
 
@@ -2658,7 +2759,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'friends', 'notifications'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -2788,6 +2889,7 @@ def public_user_backup_payload():
             'battle_unlocked': bool(record.get('battle_unlocked')),
             'battle_unlocked_notified': bool(record.get('battle_unlocked_notified')),
             'sengoku_unlocked': bool(record.get('sengoku_unlocked')),
+            'sengoku_medal': bool(record.get('sengoku_medal')),
             'friends': [
                 friend for friend in record.get('friends', [])
                 if clean_stored_username(friend) and not is_stored_guest_username(friend)
@@ -3127,6 +3229,67 @@ def current_user_label():
     if state.current_user == GUEST_USERNAME:
         return t('guest_user')
     return state.current_user or ''
+
+def user_badge_marks(user):
+    if not isinstance(user, dict):
+        return ''
+    marks = []
+    if user.get('sengoku_unlocked'):
+        marks.append('👹')
+    if user.get('sengoku_medal'):
+        marks.append('🏅')
+    return ''.join(marks)
+
+def display_user_name(username, user=None):
+    name = str(username or '').strip()
+    marks = user_badge_marks(user)
+    return f'{name} {marks}'.strip()
+
+def current_user_display_name(user=None):
+    return display_user_name(current_user_label(), user)
+
+def show_staff_roll():
+    credits = [
+        ('総監督', 'あかとんぼ'),
+        ('発案', 'あかとんぼ'),
+        ('企画', 'あかとんぼ'),
+        ('編纂', 'あかとんぼ'),
+        ('歴史資料監修', 'あかとんぼ'),
+        ('国旗収集', 'あかとんぼ'),
+        ('地図導線設計', 'あかとんぼ'),
+        ('ミニクイズ構成', 'あかとんぼ'),
+        ('国力対戦原案', 'あかとんぼ'),
+        ('戦国モード設計', 'あかとんぼ'),
+        ('タグ分類方針', 'あかとんぼ'),
+        ('ユーザー機能構想', 'あかとんぼ'),
+        ('面接発表準備', 'あかとんぼ'),
+        ('最後まで粘った人', 'あかとんぼ'),
+    ]
+    references = [
+        'Wikipedia',
+        'Google Maps',
+        'Wikimedia Commons',
+        'flagcdn.com',
+        'CIA World Factbook',
+        'World Bank Open Data',
+    ]
+    with ui.dialog() as dialog, ui.card().classes('wa-staff-roll-window w-full max-w-3xl p-0'):
+        ui.button(icon='close', on_click=dialog.close).props('flat round color=white') \
+            .classes('absolute top-2 right-2 z-10')
+        with ui.column().classes('wa-staff-roll-scroll w-full px-8 py-10 gap-1'):
+            ui.label(t('staff_roll_title')).classes('text-4xl font-black text-white mb-8')
+            ui.label('戦国BOTタイマン 完全勝利').classes('text-2xl font-black text-yellow-200 mb-8')
+            for role, name in credits:
+                ui.label(role).classes('text-sm font-bold text-blue-200 mt-3')
+                ui.label(name).classes('text-2xl font-black text-white')
+            ui.label(t('staff_roll_source_heading')).classes('text-xl font-black text-yellow-200 mt-12 mb-3')
+            for source in references:
+                ui.label(source).classes('text-lg font-bold text-white')
+            ui.label('協力').classes('text-sm font-bold text-blue-200 mt-12')
+            ui.label('Codex').classes('text-3xl font-black text-white mb-16')
+        ui.button(t('staff_roll_close'), icon='close', on_click=dialog.close).props('outline color=white') \
+            .classes('absolute bottom-3 right-3 z-10')
+    dialog.open()
 
 def login_user(username, password):
     username = clean_username(username)
@@ -4345,6 +4508,7 @@ def public_user_profiles():
             'battle_wins': record.get('battle_wins', 0),
             'battle_unlocked': bool(record.get('battle_unlocked')),
             'sengoku_unlocked': bool(record.get('sengoku_unlocked')),
+            'sengoku_medal': bool(record.get('sengoku_medal')),
             'all_viewed': set(all_public_country_keys()).issubset(set(viewed)),
             'last_viewed': format_timestamp(latest_history.get('timestamp')),
         })
@@ -7695,6 +7859,44 @@ def add_battle_win(username):
     if username == state.current_user:
         sync_current_user_to_browser(user_data)
 
+def is_sengoku_medal_battle(room, winner):
+    winner = clean_username(winner)
+    if not winner or is_battle_bot(winner) or not isinstance(room, dict):
+        return False
+    human_players = [player for player in room.get('players', []) if not is_battle_bot(player)]
+    return (
+        room.get('mode') == BOT_MODE
+        and bool(room.get('bot'))
+        and bool(room.get('sengoku_mode'))
+        and len(human_players) == 1
+        and human_players[0] == winner
+        and battle_room_timeout_seconds(room) == BATTLE_TURN_TIMEOUT_SECONDS
+        and battle_room_world_war_turn(room) == BATTLE_WORLD_WAR_DISABLED
+        and not battle_room_events_enabled(room)
+    )
+
+def award_sengoku_medal_if_needed(username, room):
+    username = clean_username(username)
+    if not is_sengoku_medal_battle(room, username):
+        return False
+    user_data = load_user_data()
+    user = get_users(user_data).get(username)
+    if not user:
+        return False
+    ensure_user_defaults(user)
+    newly_awarded = not bool(user.get('sengoku_medal'))
+    user['sengoku_medal'] = True
+    room['sengoku_medal_awarded_to'] = username
+    save_user_data(user_data)
+    if username == state.current_user:
+        sync_current_user_to_browser(user_data)
+        if newly_awarded:
+            ui.notify(t('sengoku_medal_unlocked_notice'), color='positive')
+        if state.staff_roll_room_shown != room.get('id'):
+            state.staff_roll_room_shown = room.get('id')
+            ui.timer(0.2, show_staff_roll, once=True)
+    return newly_awarded
+
 def battle_base_powers_for_keys(keys, room=None):
     lookup = battle_country_lookup()
     return [battle_card_power_for_key(key, lookup, room) for key in keys if key in lookup]
@@ -8422,6 +8624,7 @@ def set_battle_winner_if_finished(room):
         return True
     if len(alive) == 1:
         room['winner'] = alive[0]
+        award_sengoku_medal_if_needed(alive[0], room)
         if count_wins and not is_battle_bot(alive[0]):
             add_battle_win(alive[0])
         return True
@@ -9671,7 +9874,7 @@ def render_header(container):
                         icon_size='2rem',
                         icon_classes='text-white',
                     )
-                    header_name = f"{current_user_label()} {'👹' if header_user and header_user.get('sengoku_unlocked') else ''}".strip()
+                    header_name = current_user_display_name(header_user)
                     ui.label(header_name) \
                         .classes('text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
                         .style(f'color: {user_name_color(header_user)};')
@@ -9746,7 +9949,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
                 top_user = get_current_user_record()
-                top_name = f"{current_user_label()} {'👹' if top_user and top_user.get('sengoku_unlocked') else ''}".strip()
+                top_name = current_user_display_name(top_user)
                 ui.label(t('logged_in_as').format(user=top_name)) \
                     .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(top_user)};')
@@ -10947,7 +11150,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             )
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('items-center gap-2 flex-wrap'):
-                                    ui.label(f"{profile['username']} {'👹' if profile.get('sengoku_unlocked') else ''}".strip()) \
+                                    ui.label(display_user_name(profile['username'], profile)) \
                                         .classes('text-xl font-bold') \
                                         .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
                                     if profile['username'] == state.current_user:
@@ -11069,7 +11272,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as rankings_scr
                     live=False,
                 )
                 with ui.column().classes('gap-1 flex-grow'):
-                    ui.label(f"{profile['username']} {'👹' if profile.get('sengoku_unlocked') else ''}".strip()) \
+                    ui.label(display_user_name(profile['username'], profile)) \
                         .classes('text-lg font-bold') \
                         .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
                     ui.label(detail).classes('text-xs text-gray-500')
@@ -12026,7 +12229,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         with account_content:
             ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
             with ui.row().classes('w-full items-center gap-2 flex-wrap'):
-                account_name = f"{current_user_label()} {'👹' if user.get('sengoku_unlocked') else ''}".strip()
+                account_name = current_user_display_name(user)
                 ui.label(t('logged_in_as').format(user=account_name)) \
                     .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(user)};')
