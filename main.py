@@ -22,8 +22,14 @@ JSON_FILE = os.path.join(BASE_DIR, 'data.json')
 ASSETS_DIR = os.path.join(BASE_DIR, 'assets')
 DATA_CACHE = None
 DATA_CACHE_MTIME = None
+DERIVED_DATA_CACHE = {'mtime': None, 'data_id': None, 'value': None}
+SEARCH_TEXT_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
+COUNTRY_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
+FLAG_AVATAR_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
 USER_DATA_CACHE = None
 USER_DATA_CACHE_MTIME = None
+BATTLE_STATE_CACHE = None
+BATTLE_STATE_CACHE_MTIME = None
 QUIZ_POOL_CACHE = {'key': None, 'value': None}
 BATTLE_POWER_BOUNDS_CACHE = {'mtime': None, 'value': None}
 BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
@@ -33,6 +39,13 @@ def file_mtime(path):
         return os.path.getmtime(path)
     except OSError:
         return None
+
+def clear_data_derived_caches():
+    global DERIVED_DATA_CACHE, SEARCH_TEXT_CACHE, COUNTRY_OPTION_MAP_CACHE, FLAG_AVATAR_OPTION_MAP_CACHE
+    DERIVED_DATA_CACHE = {'mtime': None, 'data_id': None, 'value': None}
+    SEARCH_TEXT_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
+    COUNTRY_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
+    FLAG_AVATAR_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
 
 # 生成した国旗など、リポジトリ内に置いた画像を /assets/... で配信します。
 if os.path.isdir(ASSETS_DIR):
@@ -1964,7 +1977,7 @@ def tag_categories(data=None):
 
 def get_tag_group_options():
     data = get_data()
-    used_tags = {tag for c in public_country_list(data) for tag in c.get('tags', [])}
+    used_tags = derived_country_data(data)['public_tags']
     options = []
     for category, category_tags in tag_categories(data).items():
         if any(tag in used_tags for tag in category_tags):
@@ -2086,11 +2099,10 @@ def can_show_hidden_country(country, keyword):
     return any(term == allowed.casefold() for allowed in SECRET_HIDDEN_COUNTRY_SEARCH_TERMS)
 
 def public_country_list(data=None):
-    data = data or get_data()
-    return [country for country in data.get('countries', []) if not is_hidden_country(country)]
+    return derived_country_data(data)['public_countries']
 
 def public_countries_by_key(data=None):
-    return {country_key(country): country for country in public_country_list(data)}
+    return derived_country_data(data)['public_by_key']
 
 def get_flag_url(code):
     if not code or code == 'xx':
@@ -2107,17 +2119,15 @@ def render_flag_frame(country, frame_classes, image_classes='w-full h-full objec
 
 def get_filter_options():
     data = get_data()
-    countries = public_country_list(data)
-    regions = set()
+    cache = derived_country_data(data)
+    regions = cache['public_regions']
     tags = set()
     allowed_tags = tag_group_allowed_tags(state.filter_tag_group, data)
-    for c in countries:
-        if c.get('region'):
-            regions.add(c['region'])
-        if c.get('tags'):
-            for tag in c['tags']:
-                if allowed_tags is None or tag in allowed_tags:
-                    tags.add(tag)
+    source_tags = cache['public_tags']
+    if allowed_tags is None:
+        tags = source_tags
+    else:
+        tags = {tag for tag in source_tags if tag in allowed_tags}
     sorted_tags = sorted(tags, key=lambda tag: tag_label(tag).lower())
     sorted_regions = sorted(regions, key=lambda region: region_label(region).lower())
     return [region_label(region) for region in sorted_regions], [tag_label(tag) for tag in sorted_tags]
@@ -2126,7 +2136,7 @@ def normalize_region_value(value):
     if not value:
         return None
     data = get_data()
-    regions = {c.get('region') for c in data.get('countries', []) if c.get('region')}
+    regions = derived_country_data(data)['public_regions']
     if value in regions:
         return value
     for region in regions:
@@ -2139,7 +2149,7 @@ def normalize_tag_value(value):
     if not value:
         return None
     data = get_data()
-    tags = {tag for c in data.get('countries', []) for tag in c.get('tags', [])}
+    tags = derived_country_data(data)['public_tags']
     if value in tags:
         return value
     for tag in tags:
@@ -2169,6 +2179,34 @@ def country_key(country):
         country.get('type', ''),
         capital.get('en', capital.get('ja', '')),
     ])
+
+def derived_country_data(data=None):
+    global DERIVED_DATA_CACHE
+    data = data or get_data()
+    mtime = DATA_CACHE_MTIME or file_mtime(JSON_FILE)
+    data_id = id(data)
+    cached = DERIVED_DATA_CACHE.get('value')
+    if cached and DERIVED_DATA_CACHE.get('mtime') == mtime and DERIVED_DATA_CACHE.get('data_id') == data_id:
+        return cached
+
+    countries = list(data.get('countries', []))
+    public_countries = [country for country in countries if not is_hidden_country(country)]
+    all_by_key = {country_key(country): country for country in countries}
+    public_by_key = {country_key(country): country for country in public_countries}
+    public_keys = list(public_by_key.keys())
+    public_regions = {country.get('region') for country in public_countries if country.get('region')}
+    public_tags = {tag for country in public_countries for tag in country.get('tags', [])}
+    value = {
+        'countries': countries,
+        'public_countries': public_countries,
+        'all_by_key': all_by_key,
+        'public_by_key': public_by_key,
+        'public_keys': public_keys,
+        'public_regions': public_regions,
+        'public_tags': public_tags,
+    }
+    DERIVED_DATA_CACHE = {'mtime': mtime, 'data_id': data_id, 'value': value}
+    return value
 
 def clean_username(username):
     return (username or '').strip()
@@ -4012,7 +4050,20 @@ def render_avatar_drag_editor(avatar_url, source):
     ui.timer(0.1, lambda script=script: ui.run_javascript(script), once=True)
 
 def flag_avatar_option_maps(data=None):
+    global FLAG_AVATAR_OPTION_MAP_CACHE
     data = data or get_data()
+    mtime = DATA_CACHE_MTIME or file_mtime(JSON_FILE)
+    data_id = id(data)
+    lang = state.lang
+    cached = FLAG_AVATAR_OPTION_MAP_CACHE.get('value')
+    if (
+        cached
+        and FLAG_AVATAR_OPTION_MAP_CACHE.get('mtime') == mtime
+        and FLAG_AVATAR_OPTION_MAP_CACHE.get('data_id') == data_id
+        and FLAG_AVATAR_OPTION_MAP_CACHE.get('lang') == lang
+    ):
+        return cached
+
     label_to_key = {}
     key_to_label = {}
     for country in public_country_list(data):
@@ -4022,7 +4073,9 @@ def flag_avatar_option_maps(data=None):
         key = country_key(country)
         label_to_key[label] = key
         key_to_label[key] = label
-    return label_to_key, key_to_label
+    value = (label_to_key, key_to_label)
+    FLAG_AVATAR_OPTION_MAP_CACHE = {'mtime': mtime, 'data_id': data_id, 'lang': lang, 'value': value}
+    return value
 
 def current_avatar_country_label(user=None):
     user = user or get_current_user_record()
@@ -4484,6 +4537,49 @@ def detail_search_text(country):
             values.append(str(value))
     return ' '.join(values)
 
+def localized_values(value):
+    if isinstance(value, dict):
+        return [str(item) for item in value.values() if item]
+    if isinstance(value, list):
+        return [str(item) for item in value if item]
+    if value:
+        return [str(value)]
+    return []
+
+def country_search_index(data=None):
+    global SEARCH_TEXT_CACHE
+    data = data or get_data()
+    mtime = DATA_CACHE_MTIME or file_mtime(JSON_FILE)
+    data_id = id(data)
+    lang = state.lang
+    cached = SEARCH_TEXT_CACHE.get('value')
+    if (
+        cached
+        and SEARCH_TEXT_CACHE.get('mtime') == mtime
+        and SEARCH_TEXT_CACHE.get('data_id') == data_id
+        and SEARCH_TEXT_CACHE.get('lang') == lang
+    ):
+        return cached
+
+    index = {}
+    for country in derived_country_data(data)['countries']:
+        values = []
+        values.extend(localized_values(country.get('names', {})))
+        values.extend(localized_values(country.get('capital', {})))
+        values.extend(localized_values(country.get('desc', {})))
+        values.extend(tag_search_text(tag) for tag in country.get('tags', []))
+        period = country.get('period') or {}
+        values.extend(localized_values(period.get('label', {})))
+        values.append(str(period.get('start', '')))
+        values.append(str(period.get('end') or ''))
+        values.append(profile_search_text(country))
+        values.append(detail_search_text(country))
+        values.append(region_search_text(country.get('region', '')))
+        index[country_key(country)] = ' '.join(str(value) for value in values if value).casefold()
+
+    SEARCH_TEXT_CACHE = {'mtime': mtime, 'data_id': data_id, 'lang': lang, 'value': index}
+    return index
+
 def country_list_sort_key(country):
     if state.sort_field == 'period':
         start = period_start(country)
@@ -4514,8 +4610,7 @@ def first_sentence(text):
     return text[:min(positions) + 1]
 
 def countries_by_key(data=None):
-    data = data or get_data()
-    return {country_key(country): country for country in data.get('countries', [])}
+    return derived_country_data(data)['all_by_key']
 
 def country_option_label(country):
     local_name = get_localized_text(country.get('names', {}))
@@ -4525,7 +4620,20 @@ def country_option_label(country):
     return local_name
 
 def country_option_maps(data=None):
+    global COUNTRY_OPTION_MAP_CACHE
     data = data or get_data()
+    mtime = DATA_CACHE_MTIME or file_mtime(JSON_FILE)
+    data_id = id(data)
+    lang = state.lang
+    cached = COUNTRY_OPTION_MAP_CACHE.get('value')
+    if (
+        cached
+        and COUNTRY_OPTION_MAP_CACHE.get('mtime') == mtime
+        and COUNTRY_OPTION_MAP_CACHE.get('data_id') == data_id
+        and COUNTRY_OPTION_MAP_CACHE.get('lang') == lang
+    ):
+        return cached
+
     label_to_key = {}
     key_to_label = {}
     for country in sorted(public_country_list(data), key=lambda c: (sort_key(c), c.get('names', {}).get('en', ''))):
@@ -4535,7 +4643,9 @@ def country_option_maps(data=None):
         key = country_key(country)
         label_to_key[label] = key
         key_to_label[key] = label
-    return label_to_key, key_to_label
+    value = (label_to_key, key_to_label)
+    COUNTRY_OPTION_MAP_CACHE = {'mtime': mtime, 'data_id': data_id, 'lang': lang, 'value': value}
+    return value
 
 MAP_QUERY_OVERRIDES = {
     'Aztec Empire': 'Templo Mayor, Mexico City, Mexico',
@@ -5014,7 +5124,6 @@ def quiz_pool_cache_key(countries):
         DATA_CACHE_MTIME,
         state.lang,
         len(countries),
-        tuple(country_key(country) for country in countries),
     )
 
 def quiz_pool_data(countries):
@@ -6297,16 +6406,25 @@ def normalize_battle_state(value):
     return state_data
 
 def load_battle_state():
+    global BATTLE_STATE_CACHE, BATTLE_STATE_CACHE_MTIME
     if not os.path.exists(BATTLE_STATE_FILE):
-        return default_battle_state()
+        BATTLE_STATE_CACHE = default_battle_state()
+        BATTLE_STATE_CACHE_MTIME = None
+        return BATTLE_STATE_CACHE
+    mtime = file_mtime(BATTLE_STATE_FILE)
+    if BATTLE_STATE_CACHE is not None and BATTLE_STATE_CACHE_MTIME == mtime:
+        return BATTLE_STATE_CACHE
     try:
         with open(BATTLE_STATE_FILE, 'r', encoding='utf-8') as f:
-            return normalize_battle_state(json.load(f))
+            BATTLE_STATE_CACHE = normalize_battle_state(json.load(f))
+            BATTLE_STATE_CACHE_MTIME = mtime
+            return BATTLE_STATE_CACHE
     except Exception as e:
         print(f'Error loading battle state: {e}', flush=True)
         return default_battle_state()
 
 def save_battle_state(state_data):
+    global BATTLE_STATE_CACHE, BATTLE_STATE_CACHE_MTIME
     state_data = normalize_battle_state(state_data)
     battle_dir = os.path.dirname(BATTLE_STATE_FILE)
     if battle_dir:
@@ -6318,6 +6436,8 @@ def save_battle_state(state_data):
             room['team_chat'] = list(room.get('team_chat', []))[:24]
     with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state_data, f, ensure_ascii=False, separators=(',', ':'))
+    BATTLE_STATE_CACHE = state_data
+    BATTLE_STATE_CACHE_MTIME = file_mtime(BATTLE_STATE_FILE)
 
 def battle_team_hp_limit(room):
     teams = room.get('teams', {})
@@ -8482,6 +8602,7 @@ def get_data():
     with open(JSON_FILE, 'r', encoding='utf-8') as f:
         DATA_CACHE = json.load(f)
     DATA_CACHE_MTIME = mtime
+    clear_data_derived_caches()
     return DATA_CACHE
 
 @app.post('/api/restore-user-backups')
@@ -8518,6 +8639,7 @@ def save_data(data):
         json.dump(data, f, ensure_ascii=False, indent=2)
     DATA_CACHE = data
     DATA_CACHE_MTIME = file_mtime(JSON_FILE)
+    clear_data_derived_caches()
 
 def add_history(country_data):
     if is_hidden_country(country_data):
@@ -9208,8 +9330,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
             favorites = favorite_keys(data)
             selected_collection = set(get_collections().get(state.collection_filter, [])) if state.collection_filter else set()
             raw_keyword = str(state.search_keyword or '').strip()
-            keyword = raw_keyword.lower()
-            countries = data.get('countries', [])
+            keyword = raw_keyword.casefold()
+            countries = derived_country_data(data)['countries']
+            search_index = country_search_index(data) if keyword else {}
             filtered = []
             for c in countries:
                 # サプライズ用の国は、専用の合言葉が完全一致した時だけ一覧に入れます。
@@ -9232,21 +9355,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
                 if state.collection_filter and key not in selected_collection:
                     continue
 
-                name_local = get_localized_text(c['names'])
-                name_text = ' '.join(str(name) for name in c.get('names', {}).values())
-                desc_local = get_localized_text(c['desc'])
-                tag_text = ' '.join(tag_search_text(tag) for tag in c.get('tags', []))
-                period = c.get('period') or {}
-                period_text = ' '.join([
-                    period_label(c),
-                    str(period.get('start', '')),
-                    str(period.get('end') or ''),
-                ])
-                profile_text = profile_search_text(c)
-                detail_text = detail_search_text(c)
-                region_text = region_search_text(c.get('region', ''))
-                search_target = f"{name_local} {name_text} {desc_local} {tag_text} {period_text} {profile_text} {detail_text} {region_text}".lower()
-                if keyword in search_target:
+                if not keyword or keyword in search_index.get(key, ''):
                     filtered.append(c)
             if state.sort_field == 'period':
                 filtered.sort(key=country_list_sort_key)
