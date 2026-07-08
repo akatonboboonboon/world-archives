@@ -854,6 +854,9 @@ UI_FALLBACKS = {
         'difficulty_hard': '上級',
         'difficulty_extreme': '超級',
         'remember_login': 'ログイン状態を保持する',
+        'previous_login': '前回のユーザーで入る',
+        'previous_login_missing': '前回のユーザー情報が見つかりません。',
+        'previous_login_failed': '前回のユーザーでログインできませんでした。',
         'battle_direct': '国力対戦',
         'battle_unlock_hint': '現存する国をすべて閲覧する、またはミニクイズで累計100問正解すると解放されます。ゲストでも解放できます。',
         'battle_events_setting': 'イベント',
@@ -998,6 +1001,9 @@ UI_FALLBACKS = {
         'difficulty_hard': 'Hard',
         'difficulty_extreme': 'Extreme',
         'remember_login': 'Keep me logged in',
+        'previous_login': 'Continue as previous user',
+        'previous_login_missing': 'No previous user was found.',
+        'previous_login_failed': 'Could not continue as the previous user.',
         'battle_direct': 'Power Battle',
         'battle_unlock_hint': 'Unlock by viewing every present country or answering 100 mini quiz questions correctly. Guests can unlock it too.',
         'battle_events_setting': 'Events',
@@ -1140,6 +1146,9 @@ UI_FALLBACKS = {
         'difficulty_hard': '高级',
         'difficulty_extreme': '超高级',
         'remember_login': '保持登录状态',
+        'previous_login': '以上次用户进入',
+        'previous_login_missing': '找不到上次用户信息。',
+        'previous_login_failed': '无法以上次用户登录。',
         'battle_direct': '国力对战',
         'battle_unlock_hint': '浏览所有现存国家，或在迷你测验中累计答对100题即可解锁。访客也可以解锁。',
         'battle_events_setting': '事件',
@@ -2654,6 +2663,49 @@ def request_remembered_login(force=False):
         ui.run_javascript(script)
     except Exception as e:
         print(f"Remember-login restore skipped: {e}", flush=True)
+
+def login_with_previous_user():
+    if state.current_user:
+        return
+    request_browser_backup_restore()
+    missing_message = t('previous_login_missing')
+    failed_message = t('previous_login_failed')
+    script = f"""
+    (async () => {{
+      const username = localStorage.getItem('world_archives_last_user') || '';
+      const notify = (message) => {{
+        if (window.Quasar && Quasar.Notify) {{
+          Quasar.Notify.create({{message, color: 'warning'}});
+        }} else {{
+          window.alert(message);
+        }}
+      }};
+      if (!username) {{
+        notify({json.dumps(missing_message)});
+        return;
+      }}
+      try {{
+        const response = await fetch('/api/remember-login', {{
+          method: 'POST',
+          headers: {{'Content-Type': 'application/json'}},
+          body: JSON.stringify({{username}}),
+        }});
+        const payload = await response.json();
+        if (payload && payload.ok) {{
+          window.location.reload();
+        }} else {{
+          notify({json.dumps(failed_message)});
+        }}
+      }} catch (error) {{
+        console.warn('previous login failed', error);
+        notify({json.dumps(failed_message)});
+      }}
+    }})();
+    """
+    try:
+        ui.timer(0.6, lambda: ui.run_javascript(script), once=True)
+    except Exception as e:
+        print(f"Previous login skipped: {e}", flush=True)
 
 def flush_current_user_browser_sync():
     state.current_user_browser_sync_pending = False
@@ -9825,10 +9877,6 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
         apply_theme()
         if not state.current_user:
             request_browser_backup_restore()
-            ui.timer(0.4, lambda: request_remembered_login(force=True), once=True)
-            ui.timer(1.6, lambda: request_remembered_login(force=True), once=True)
-            ui.timer(0.9, lambda: refresh_top_ui() if state.current_user and top_screen.visible else None, once=True)
-            ui.timer(2.1, lambda: refresh_top_ui() if state.current_user and top_screen.visible else None, once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
@@ -9896,6 +9944,9 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                     username_input = ui.input(label=t('username')).props('outlined dense').classes('w-full')
                     password_input = ui.input(label=t('password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
                     remember_checkbox = ui.checkbox(t('remember_login'), value=state.remember_login).props('dense')
+                    ui.button(t('previous_login'), icon='history', on_click=login_with_previous_user) \
+                        .props('outline color=primary') \
+                        .classes('w-full')
                     with ui.row().classes('w-full gap-2 items-center'):
                         ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value, remember_checkbox.value)) \
                             .classes('flex-grow bg-[#1a2332] text-white')
