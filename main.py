@@ -153,48 +153,11 @@ html.wa-dark .q-field__control {
 ui.add_body_html("""
 <script>
 (() => {
-  if (window.__worldArchivesHashRouterInstalled) return;
-  window.__worldArchivesHashRouterInstalled = true;
-  const appliedKey = 'world_archives_route_hash_applied';
-
-  window.worldArchivesRouteFromHash = async (force = false) => {
-    const rawHash = (window.location.hash || '').replace(/^#/, '').trim();
-    if (!rawHash) return;
-    if (!force && sessionStorage.getItem(appliedKey) === rawHash) return;
-    try {
-      const response = await fetch('/api/hash-route', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({hash: rawHash}),
-      });
-      const payload = await response.json();
-      if (payload && payload.ok) {
-        const nextHash = payload.hash || rawHash;
-        if (payload.redirect_hash) {
-          sessionStorage.setItem('world_archives_login_redirect', payload.redirect_hash);
-        }
-        sessionStorage.setItem(appliedKey, nextHash);
-        const currentHash = (window.location.hash || '').replace(/^#/, '');
-        if (currentHash !== nextHash) {
-          history.replaceState(null, '', '#' + nextHash);
-        }
-        const shouldReload = payload.reload !== false && (
-          payload.redirect_hash || currentHash !== nextHash || payload.screen !== 'login'
-        );
-        if (shouldReload) {
-          window.location.reload();
-        }
-      } else {
-        sessionStorage.removeItem(appliedKey);
-      }
-    } catch (error) {
-      console.warn('hash route failed', error);
-    }
-  };
-
-  window.addEventListener('hashchange', () => window.worldArchivesRouteFromHash(true));
-  window.addEventListener('popstate', () => window.worldArchivesRouteFromHash(true));
-  setTimeout(() => window.worldArchivesRouteFromHash(false), 120);
+  sessionStorage.removeItem('world_archives_route_hash_applied');
+  sessionStorage.removeItem('world_archives_login_redirect');
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
 })();
 </script>
 """)
@@ -692,7 +655,6 @@ class AppState:
     public_collection_name = None
     public_collection_keys = []
     public_collection_kind = 'collection'
-    pending_hash_screen = None
     battle_id = None
     battle_selected_keys = set()
     battle_attack_target = None
@@ -3258,7 +3220,6 @@ def login_user(username, password, remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
-    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def guest_login(remember_login=None):
@@ -3298,7 +3259,6 @@ def guest_login(remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
-    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def register_user(username, password, remember_login=None):
@@ -3338,7 +3298,6 @@ def register_user(username, password, remember_login=None):
     reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
-    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def logout_user():
@@ -3361,7 +3320,7 @@ def logout_user():
     state.sengoku_mode = False
     set_browser_remember_login(False)
     ui.notify(t('logout_success'), color='info')
-    show_screen('login')
+    show_screen('top')
 
 def current_password_is_valid(user, password):
     if not state.current_user or not password:
@@ -3458,7 +3417,7 @@ def delete_current_account(current_password):
     state.battle_selected_keys = set()
     set_browser_remember_login(False)
     ui.notify(t('account_deleted'), color='info')
-    show_screen('login')
+    show_screen('top')
     return True
 
 def set_current_name_color(color_value):
@@ -6085,7 +6044,7 @@ def quiz_view_parts(quiz, answer):
 def start_quiz(mode=None):
     if not state.current_user:
         ui.notify(t('login_required'), color='warning')
-        show_screen('login')
+        show_screen('top')
         return
     if mode:
         state.quiz_mode = mode
@@ -9506,96 +9465,33 @@ def screen_from_hash(hash_value):
     return HASH_SCREENS.get(normalized, 'top')
 
 def update_browser_hash(screen_name):
-    hash_value = hash_for_screen(screen_name)
-    script = f"""
-    (() => {{
-      const target = {json.dumps(hash_value)};
-      const appliedKey = 'world_archives_route_hash_applied';
-      sessionStorage.setItem(appliedKey, target);
-      const current = (window.location.hash || '').replace(/^#/, '');
-      if (current !== target) {{
-        history.pushState(null, '', '#' + target);
-      }}
-    }})();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Hash update skipped: {e}", flush=True)
+    return
 
 def request_hash_route_from_browser(force=False):
-    script = f"""
-    (() => {{
-      if (window.worldArchivesRouteFromHash) {{
-        window.worldArchivesRouteFromHash({json.dumps(bool(force))});
-      }}
-    }})();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Hash route request skipped: {e}", flush=True)
+    return
 
 def request_login_redirect_from_browser():
-    script = """
-    (() => {
-      const redirectKey = 'world_archives_login_redirect';
-      const redirectHash = (sessionStorage.getItem(redirectKey) || '').trim();
-      if (!redirectHash) return;
-      sessionStorage.removeItem(redirectKey);
-      history.replaceState(null, '', '#' + redirectHash.replace(/^#/, ''));
-      if (window.worldArchivesRouteFromHash) {
-        window.worldArchivesRouteFromHash(true);
-      }
-    })();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Login redirect skipped: {e}", flush=True)
+    return
 
 def consume_pending_hash_screen():
-    screen_name = state.pending_hash_screen
-    state.pending_hash_screen = None
-    if screen_name:
-        show_screen(screen_name, update_hash=False, notify=False)
+    return
 
 @app.post('/api/hash-route')
 async def route_from_hash(payload: dict):
-    screen_name = screen_from_hash(payload.get('hash'))
-    protected_screens = {'main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social'}
-    if screen_name in protected_screens and not state.current_user:
-        state.pending_hash_screen = screen_name
-        return {
-            'ok': True,
-            'screen': 'login',
-            'hash': hash_for_screen('login'),
-            'redirect_hash': hash_for_screen(screen_name),
-            'login_required': True,
-        }
-    if screen_name == 'login' and state.current_user:
-        screen_name = 'top'
-    state.pending_hash_screen = screen_name
-    return {
-        'ok': True,
-        'screen': screen_name,
-        'hash': hash_for_screen(screen_name),
-        'reload': screen_name != 'login',
-    }
+    return {'ok': False, 'disabled': True}
 
 def show_screen(screen_name, update_hash=True, notify=True):
     protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
     if screen_name in protected_screens and not state.current_user:
-        state.pending_hash_screen = screen_name
         if notify:
             ui.notify(t('login_required'), color='warning')
-        screen_name = 'login'
+        screen_name = 'top'
     if screen_name == 'result' and not state.selected_country:
-        screen_name = 'main' if state.current_user else 'login'
+        screen_name = 'main' if state.current_user else 'top'
     if screen_name == 'public_collection' and not state.public_collection_keys:
-        screen_name = 'users' if state.current_user else 'login'
+        screen_name = 'users' if state.current_user else 'top'
 
-    if screen_name in ['top', 'login']:
+    if screen_name == 'top':
         state.search_keyword = ''
         state.filter_region = None
         state.filter_tag_group = None
@@ -9612,7 +9508,7 @@ def show_screen(screen_name, update_hash=True, notify=True):
             notification_drawer.hide()
         refresh_top_ui()
 
-    top_screen.set_visibility(screen_name in ['top', 'login'])
+    top_screen.set_visibility(screen_name == 'top')
     main_screen.set_visibility(screen_name == 'main')
     result_screen.set_visibility(screen_name == 'result')
     quiz_screen.set_visibility(screen_name == 'quiz')
@@ -9659,8 +9555,6 @@ def show_screen(screen_name, update_hash=True, notify=True):
     if screen_name == 'help_detail':
         refresh_help_detail_view()
     state.current_screen = screen_name
-    if update_hash:
-        update_browser_hash(screen_name)
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -9933,11 +9827,6 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             request_browser_backup_restore()
             request_remembered_login()
             ui.timer(1.0, lambda: request_remembered_login(force=True), once=True)
-        else:
-            if state.pending_hash_screen:
-                ui.timer(0.1, consume_pending_hash_screen, once=True)
-            else:
-                ui.timer(0.2, lambda: request_hash_route_from_browser(force=False), once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
@@ -12432,7 +12321,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 # ========================================
 # 初期表示
 # ========================================
-show_screen('login', update_hash=False)
+show_screen('top')
 server_port = int(os.environ.get('PORT', 8080))
 print(f'Starting World Archives on 0.0.0.0:{server_port}', flush=True)
 print(f'User data file: {USER_DATA_FILE}', flush=True)
