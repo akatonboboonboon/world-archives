@@ -155,6 +155,7 @@ ui.add_body_html("""
 (() => {
   sessionStorage.removeItem('world_archives_route_hash_applied');
   sessionStorage.removeItem('world_archives_login_redirect');
+  sessionStorage.removeItem('world_archives_remember_login_tried');
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
@@ -2625,14 +2626,14 @@ def set_browser_remember_login(enabled, username=None):
         print(f"Remember-login update skipped: {e}", flush=True)
 
 def request_remembered_login(force=False):
+    if state.current_user:
+        return
     if state.remember_login_restore_requested and not force:
         return
     state.remember_login_restore_requested = True
     script = f"""
     (async () => {{
       if (localStorage.getItem('{REMEMBER_LOGIN_KEY}') !== '1') return;
-      const triedKey = 'world_archives_remember_login_tried';
-      if (sessionStorage.getItem(triedKey) === '1') return;
       const username = localStorage.getItem('world_archives_last_user') || '';
       if (!username) return;
       try {{
@@ -2643,7 +2644,6 @@ def request_remembered_login(force=False):
         }});
         const payload = await response.json();
         if (payload && payload.ok) {{
-          sessionStorage.setItem(triedKey, '1');
           location.reload();
         }}
       }} catch (error) {{
@@ -9338,6 +9338,7 @@ async def remember_login_from_browser(payload: dict):
         return {'ok': False}
     state.current_user = username
     state.users_browser_restore_requested = False
+    state.remember_login = True
     ensure_user_defaults(user)
     remember_known_user(username, user_data)
     battle_unlocked_now = mark_battle_unlock_if_ready(user)
@@ -9825,8 +9826,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
         apply_theme()
         if not state.current_user:
             request_browser_backup_restore()
-            request_remembered_login()
-            ui.timer(1.0, lambda: request_remembered_login(force=True), once=True)
+            ui.timer(0.4, lambda: request_remembered_login(force=True), once=True)
+            ui.timer(1.6, lambda: request_remembered_login(force=True), once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
