@@ -617,6 +617,7 @@ BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
 BATTLE_BONUS_PER_MATCH_BPS = 10000
 BATTLE_BONUS_DENOMINATOR = 10_000
+BATTLE_DAMAGE_OUTPUT_PERCENT = 30
 BATTLE_WORLD_WAR_TURN = 75
 BATTLE_WORLD_WAR_DISABLED = 0
 BATTLE_WORLD_WAR_TURN_OPTIONS = [1, 25, 50, 75, 100, BATTLE_WORLD_WAR_DISABLED]
@@ -4998,6 +4999,12 @@ def quiz_question_value(country, question_type):
         return normalized_text(first_sentence(detail_value(country, field)))
     return ''
 
+def quiz_option_signature(label=None, image=None):
+    image_signature = str(image or '').strip().casefold()
+    if image_signature:
+        return ('image', image_signature)
+    return ('label', normalized_text(label))
+
 def quiz_candidates_for_type(countries, question_type, tag_counts=None, tag_total=None):
     question_type = quiz_base_type(question_type)
     if question_type == 'desc':
@@ -5129,14 +5136,25 @@ def build_reverse_quiz_options(answer, question_type, countries, tag_counts=None
     images = {}
     if answer_payload.get('image'):
         images[answer_value] = answer_payload['image']
+    used_signatures = {
+        quiz_option_signature(
+            answer_payload.get('label', str(answer_value)),
+            answer_payload.get('image'),
+        )
+    }
 
     if base_type == 'tag':
         tag_options = all_tags if all_tags is not None else all_quiz_tags(countries, tag_counts)
         candidates = [tag for tag in tag_options if tag != answer_value and tag not in answer.get('tags', [])]
         random.shuffle(candidates)
         for tag in candidates:
+            label = tag_label(tag)
+            signature = quiz_option_signature(label)
+            if signature in used_signatures:
+                continue
             options.append(tag)
-            labels[tag] = tag_label(tag)
+            labels[tag] = label
+            used_signatures.add(signature)
             if len(options) >= desired_count:
                 break
     else:
@@ -5155,10 +5173,14 @@ def build_reverse_quiz_options(answer, question_type, countries, tag_counts=None
                 image = get_flag_url(candidate.get('flag_code'))
             if not label and not image:
                 continue
+            signature = quiz_option_signature(label, image)
+            if signature in used_signatures:
+                continue
             options.append(value)
             labels[value] = label
             if image:
                 images[value] = image
+            used_signatures.add(signature)
             if len(options) >= desired_count:
                 break
 
@@ -7066,8 +7088,8 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
     pressured_counter = apply_battle_turn_pressure(counter_base, turn)
     world_war_multiplier = BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER if world_war else 1
     event_multiplier = max(0.01, float(event_multiplier or 1))
-    damage = int(pressured_damage * world_war_multiplier * event_multiplier)
-    counter = int(pressured_counter * world_war_multiplier * event_multiplier)
+    damage = int(pressured_damage * world_war_multiplier * event_multiplier * BATTLE_DAMAGE_OUTPUT_PERCENT / 100)
+    counter = int(pressured_counter * world_war_multiplier * event_multiplier * BATTLE_DAMAGE_OUTPUT_PERCENT / 100)
     if defense_base is None:
         defense_base = defense
     defense_base = max(0, int(defense_base or 0))
@@ -7089,6 +7111,7 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
         'turn_pressure_multiplier': battle_turn_pressure_scale(turn) / BATTLE_BONUS_DENOMINATOR,
         'world_war_multiplier': world_war_multiplier,
         'event_multiplier': event_multiplier,
+        'damage_output_multiplier': BATTLE_DAMAGE_OUTPUT_PERCENT / 100,
         'damage': max(0, damage),
         'counter': max(0, counter),
     }
@@ -7455,7 +7478,7 @@ def update_battle_crisis_state(room, result_parts=None):
 def set_battle_winner_if_finished(room):
     players = room.get('players', [])
     mode = room.get('mode', DUEL_MODE)
-    count_wins = mode != BOT_MODE
+    count_wins = mode != BOT_MODE and not room.get('bot') and not any(is_battle_bot(player) for player in players)
     if mode == TEAM_MODE:
         teams = room.get('teams', {})
         team_hp = ensure_battle_team_hp(room)
