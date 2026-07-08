@@ -609,6 +609,8 @@ BATTLE_MAX_HP = 100_000_000_000_000
 BATTLE_TURN_TIMEOUT_SECONDS = 60
 BATTLE_TURN_TIMEOUT_UNLIMITED = 0
 BATTLE_TURN_TIMEOUT_OPTIONS = [60, 180, 300, BATTLE_TURN_TIMEOUT_UNLIMITED]
+BATTLE_HEARTBEAT_INTERVAL_SECONDS = 3
+BATTLE_DISCONNECT_REPLACE_SECONDS = 8
 BATTLE_POWER_SCALE = 300_000
 BATTLE_MAX_COMMAND = 7
 BATTLE_REDRAW_COMMAND_COST = 2
@@ -6222,6 +6224,7 @@ def normalize_battle_room(room):
     room.setdefault('team_chat', [])
     room.setdefault('spectators', [])
     room.setdefault('bot_owners', {})
+    room.setdefault('player_seen_at', {})
     room.setdefault('last_turn', {})
     room.setdefault('command', {})
     room.setdefault('world_war_started', False)
@@ -6246,12 +6249,16 @@ def normalize_battle_room(room):
     room['world_war_turn'] = battle_room_world_war_turn(room)
     room.setdefault('turn_started_at', current_timestamp())
     hp = room.setdefault('hp', {})
+    now_stamp = current_timestamp()
+    seen = room.setdefault('player_seen_at', {})
     for player in room.get('players', []):
         try:
             current_hp = int(hp.get(player, BATTLE_MAX_HP))
         except (TypeError, ValueError):
             current_hp = BATTLE_MAX_HP
         hp[player] = max(0, min(current_hp, BATTLE_MAX_HP))
+        if not is_battle_bot(player):
+            seen.setdefault(player, now_stamp)
         battle_player_command(room, player)
     ensure_battle_team_hp(room)
     return room
@@ -6266,6 +6273,51 @@ def prune_empty_battle_rooms(state_data):
         room['spectators'] = spectators
         if not has_player_user and not spectators:
             rooms.pop(room_id, None)
+
+def battle_unlimited_disconnect_replacement_enabled(room):
+    return (
+        room
+        and not room.get('winner')
+        and room.get('mode') in [FFA_MODE, TEAM_MODE]
+        and battle_room_timeout_seconds(room) == BATTLE_TURN_TIMEOUT_UNLIMITED
+    )
+
+def seconds_since_timestamp(value):
+    if not value:
+        return 0
+    return max(0, int((datetime.now(timezone.utc) - parse_timestamp_utc(value)).total_seconds()))
+
+def mark_battle_player_seen(room, username):
+    username = clean_username(username)
+    if not username or is_battle_bot(username) or username not in room.get('players', []):
+        return False
+    seen = room.setdefault('player_seen_at', {})
+    last_seen = seen.get(username)
+    if last_seen and seconds_since_timestamp(last_seen) < BATTLE_HEARTBEAT_INTERVAL_SECONDS:
+        return False
+    seen[username] = current_timestamp()
+    return True
+
+def replace_disconnected_unlimited_battle_players(room, state_data=None):
+    if not battle_unlimited_disconnect_replacement_enabled(room):
+        return False
+    changed = False
+    seen = room.setdefault('player_seen_at', {})
+    for player in list(active_battle_players(room)):
+        if is_battle_bot(player):
+            continue
+        last_seen = seen.get(player)
+        if not last_seen:
+            seen[player] = current_timestamp()
+            changed = True
+            continue
+        if seconds_since_timestamp(last_seen) < BATTLE_DISCONNECT_REPLACE_SECONDS:
+            continue
+        if replace_battle_player_with_bot(room, player, state_data, keep_submission=True):
+            changed = True
+    if changed:
+        submit_bot_players(room)
+    return changed
 
 def restore_battle_player_from_bot(room, username, state_data=None):
     username = clean_username(username)
@@ -6294,6 +6346,7 @@ def restore_battle_player_from_bot(room, username, state_data=None):
         teams[username] = teams.pop(bot_name, 'A')
         ensure_battle_team_hp(room)
     room['spectators'] = [name for name in room.get('spectators', []) if name != username]
+    room.setdefault('player_seen_at', {})[username] = current_timestamp()
     bot_owners.pop(bot_name, None)
     append_battle_log(room, t('battle_resume_log').format(player=username, bot=bot_name))
     if state_data is not None:
@@ -6310,7 +6363,12 @@ def battle_room_for_user(username, state_data=None):
     room = state_data.get('rooms', {}).get(room_id)
     if room and (username in room.get('players', []) or username in room.get('spectators', [])):
         normalize_battle_room(room)
+        changed = False
         if username in room.get('spectators', []) and restore_battle_player_from_bot(room, username, state_data):
+            changed = True
+        if username in room.get('players', []) and mark_battle_player_seen(room, username):
+            changed = True
+        if changed:
             save_battle_state(state_data)
         if username == state.current_user:
             state.battle_id = room_id
@@ -6557,6 +6615,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'team_chat': [],
         'spectators': [],
         'bot_owners': {},
+        'player_seen_at': {player: current_timestamp() for player in players if not is_battle_bot(player)},
         'last_turn': {},
         'world_war_started': False,
         'world_war_turn': world_war_turn,
@@ -7523,7 +7582,7 @@ def next_battle_bot_name(room):
         index += 1
     return f'{BOT_USERNAME}{index}'
 
-def replace_battle_player_with_bot(room, player, state_data=None):
+def replace_battle_player_with_bot(room, player, state_data=None, keep_submission=False):
     player = clean_username(player)
     if not player or is_battle_bot(player) or player not in room.get('players', []):
         return None
@@ -7538,7 +7597,9 @@ def replace_battle_player_with_bot(room, player, state_data=None):
     if player in room.setdefault('reload_after_turn', []):
         room['reload_after_turn'] = [bot_name if name == player else name for name in room.get('reload_after_turn', [])]
     room.setdefault('redraw_turns', {})[bot_name] = room.setdefault('redraw_turns', {}).pop(player, 0)
-    room.setdefault('submitted', {}).pop(player, None)
+    submitted_entry = room.setdefault('submitted', {}).pop(player, None)
+    if keep_submission and submitted_entry is not None:
+        room['submitted'][bot_name] = submitted_entry
     for submitted in room.setdefault('submitted', {}).values():
         if clean_username(submitted.get('target')) == player:
             submitted['target'] = bot_name
@@ -7953,6 +8014,8 @@ def process_battle_timeouts(state_data):
         normalize_battle_room(room)
         if room.get('winner'):
             continue
+        if replace_disconnected_unlimited_battle_players(room, state_data):
+            changed = True
         before_bot = json.dumps(room.get('submitted', {}), ensure_ascii=False, sort_keys=True)
         submit_bot_players(room)
         if json.dumps(room.get('submitted', {}), ensure_ascii=False, sort_keys=True) != before_bot:
