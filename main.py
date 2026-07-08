@@ -169,7 +169,15 @@ ui.add_body_html("""
       });
       const payload = await response.json();
       if (payload && payload.ok) {
-        sessionStorage.setItem(appliedKey, payload.hash || rawHash);
+        const nextHash = payload.hash || rawHash;
+        if (payload.redirect_hash) {
+          sessionStorage.setItem('world_archives_login_redirect', payload.redirect_hash);
+        }
+        sessionStorage.setItem(appliedKey, nextHash);
+        const currentHash = (window.location.hash || '').replace(/^#/, '');
+        if (currentHash !== nextHash) {
+          history.replaceState(null, '', '#' + nextHash);
+        }
         window.location.reload();
       } else {
         sessionStorage.removeItem(appliedKey);
@@ -3242,7 +3250,7 @@ def login_user(username, password, remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
-    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
+    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def guest_login(remember_login=None):
@@ -3282,7 +3290,7 @@ def guest_login(remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
-    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
+    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def register_user(username, password, remember_login=None):
@@ -3322,7 +3330,7 @@ def register_user(username, password, remember_login=None):
     reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
-    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
+    ui.timer(0.3, request_login_redirect_from_browser, once=True)
     return True
 
 def logout_user():
@@ -3345,7 +3353,7 @@ def logout_user():
     state.sengoku_mode = False
     set_browser_remember_login(False)
     ui.notify(t('logout_success'), color='info')
-    show_screen('top')
+    show_screen('login')
 
 def current_password_is_valid(user, password):
     if not state.current_user or not password:
@@ -3442,7 +3450,7 @@ def delete_current_account(current_password):
     state.battle_selected_keys = set()
     set_browser_remember_login(False)
     ui.notify(t('account_deleted'), color='info')
-    show_screen('top')
+    show_screen('login')
     return True
 
 def set_current_name_color(color_value):
@@ -6069,7 +6077,7 @@ def quiz_view_parts(quiz, answer):
 def start_quiz(mode=None):
     if not state.current_user:
         ui.notify(t('login_required'), color='warning')
-        show_screen('top')
+        show_screen('login')
         return
     if mode:
         state.quiz_mode = mode
@@ -9446,6 +9454,7 @@ def clear_history():
 # 画面切り替え
 # ========================================
 SCREEN_HASHES = {
+    'login': 'login',
     'top': 'home',
     'main': 'search',
     'result': 'detail',
@@ -9467,6 +9476,8 @@ SCREEN_HASHES = {
 HASH_SCREENS = {
     **{hash_value: screen for screen, hash_value in SCREEN_HASHES.items()},
     '': 'top',
+    'signin': 'login',
+    'sign-in': 'login',
     'top': 'top',
     'home': 'top',
     'main': 'main',
@@ -9517,6 +9528,24 @@ def request_hash_route_from_browser(force=False):
     except Exception as e:
         print(f"Hash route request skipped: {e}", flush=True)
 
+def request_login_redirect_from_browser():
+    script = """
+    (() => {
+      const redirectKey = 'world_archives_login_redirect';
+      const redirectHash = (sessionStorage.getItem(redirectKey) || '').trim();
+      if (!redirectHash) return;
+      sessionStorage.removeItem(redirectKey);
+      history.replaceState(null, '', '#' + redirectHash.replace(/^#/, ''));
+      if (window.worldArchivesRouteFromHash) {
+        window.worldArchivesRouteFromHash(true);
+      }
+    })();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Login redirect skipped: {e}", flush=True)
+
 def consume_pending_hash_screen():
     screen_name = state.pending_hash_screen
     state.pending_hash_screen = None
@@ -9528,22 +9557,32 @@ async def route_from_hash(payload: dict):
     screen_name = screen_from_hash(payload.get('hash'))
     protected_screens = {'main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social'}
     if screen_name in protected_screens and not state.current_user:
-        return {'ok': False, 'login_required': True}
+        state.pending_hash_screen = screen_name
+        return {
+            'ok': True,
+            'screen': 'login',
+            'hash': hash_for_screen('login'),
+            'redirect_hash': hash_for_screen(screen_name),
+            'login_required': True,
+        }
+    if screen_name == 'login' and state.current_user:
+        screen_name = 'top'
     state.pending_hash_screen = screen_name
     return {'ok': True, 'screen': screen_name, 'hash': hash_for_screen(screen_name)}
 
 def show_screen(screen_name, update_hash=True, notify=True):
     protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
     if screen_name in protected_screens and not state.current_user:
+        state.pending_hash_screen = screen_name
         if notify:
             ui.notify(t('login_required'), color='warning')
-        screen_name = 'top'
+        screen_name = 'login'
     if screen_name == 'result' and not state.selected_country:
-        screen_name = 'main' if state.current_user else 'top'
+        screen_name = 'main' if state.current_user else 'login'
     if screen_name == 'public_collection' and not state.public_collection_keys:
-        screen_name = 'users' if state.current_user else 'top'
+        screen_name = 'users' if state.current_user else 'login'
 
-    if screen_name == 'top':
+    if screen_name in ['top', 'login']:
         state.search_keyword = ''
         state.filter_region = None
         state.filter_tag_group = None
@@ -9560,7 +9599,7 @@ def show_screen(screen_name, update_hash=True, notify=True):
             notification_drawer.hide()
         refresh_top_ui()
 
-    top_screen.set_visibility(screen_name == 'top')
+    top_screen.set_visibility(screen_name in ['top', 'login'])
     main_screen.set_visibility(screen_name == 'main')
     result_screen.set_visibility(screen_name == 'result')
     quiz_screen.set_visibility(screen_name == 'quiz')
@@ -12380,7 +12419,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 # ========================================
 # 初期表示
 # ========================================
-show_screen('top')
+show_screen('login', update_hash=False)
 server_port = int(os.environ.get('PORT', 8080))
 print(f'Starting World Archives on 0.0.0.0:{server_port}', flush=True)
 print(f'User data file: {USER_DATA_FILE}', flush=True)
