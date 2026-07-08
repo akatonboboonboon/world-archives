@@ -33,6 +33,7 @@ BATTLE_STATE_CACHE_MTIME = None
 QUIZ_POOL_CACHE = {'key': None, 'value': None}
 BATTLE_POWER_BOUNDS_CACHE = {'mtime': None, 'value': None}
 BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
+RAW_PUBLIC_COUNTRY_KEYS_CACHE = {'mtime': None, 'value': None}
 QUIZ_HISTORY_LIMIT = 80
 
 def file_mtime(path):
@@ -42,12 +43,13 @@ def file_mtime(path):
         return None
 
 def clear_data_derived_caches():
-    global DERIVED_DATA_CACHE, SEARCH_TEXT_CACHE, COUNTRY_OPTION_MAP_CACHE, FLAG_AVATAR_OPTION_MAP_CACHE, QUIZ_POOL_CACHE
+    global DERIVED_DATA_CACHE, SEARCH_TEXT_CACHE, COUNTRY_OPTION_MAP_CACHE, FLAG_AVATAR_OPTION_MAP_CACHE, QUIZ_POOL_CACHE, RAW_PUBLIC_COUNTRY_KEYS_CACHE
     DERIVED_DATA_CACHE = {'mtime': None, 'data_id': None, 'value': None}
     SEARCH_TEXT_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
     COUNTRY_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
     FLAG_AVATAR_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
     QUIZ_POOL_CACHE = {'key': None, 'value': None}
+    RAW_PUBLIC_COUNTRY_KEYS_CACHE = {'mtime': None, 'value': None}
 
 # 生成した国旗など、リポジトリ内に置いた画像を /assets/... で配信します。
 if os.path.isdir(ASSETS_DIR):
@@ -383,6 +385,7 @@ USER_RECORD_KEYS = {
     'sengoku_unlocked_notified',
     'sengoku_mode',
     'sengoku_medal',
+    'all_viewed_granted',
     'friends',
     'notifications',
 }
@@ -459,7 +462,13 @@ def load_user_data():
     try:
         with open(USER_DATA_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        USER_DATA_CACHE = normalize_user_data_file(data)
+        before_normalize = json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+        normalized = normalize_user_data_file(data)
+        after_normalize = json.dumps(normalized, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+        if after_normalize != before_normalize:
+            save_user_data(normalized)
+            return USER_DATA_CACHE
+        USER_DATA_CACHE = normalized
         USER_DATA_CACHE_MTIME = mtime
         return USER_DATA_CACHE
     except Exception as e:
@@ -598,20 +607,76 @@ def merge_user_record(current, incoming):
             current[key] = bool(current.get(key, False) or value)
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
-        elif key in ['battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal'] and isinstance(value, bool):
+        elif key in ['battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'all_viewed_granted'] and isinstance(value, bool):
             current[key] = bool(current.get(key, False) or value)
         else:
             current.setdefault(key, value)
     normalize_quiz_stats(current)
     return current
 
+LEGACY_ALL_VIEWED_MIN_COUNT = 280
+
+def raw_country_key(country):
+    names = country.get('names', {}) if isinstance(country.get('names'), dict) else {}
+    capital = country.get('capital', {}) if isinstance(country.get('capital'), dict) else {}
+    return '|'.join([
+        names.get('en', names.get('ja', '')),
+        country.get('type', ''),
+        capital.get('en', capital.get('ja', '')),
+    ])
+
+def raw_public_country_keys():
+    mtime = file_mtime(JSON_FILE)
+    cached = RAW_PUBLIC_COUNTRY_KEYS_CACHE
+    if cached.get('mtime') == mtime and isinstance(cached.get('value'), list):
+        return list(cached['value'])
+    try:
+        with open(JSON_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return []
+    keys = []
+    seen = set()
+    for country in data.get('countries', []):
+        if not isinstance(country, dict) or country.get('hidden'):
+            continue
+        key = raw_country_key(country)
+        if key and key not in seen:
+            keys.append(key)
+            seen.add(key)
+    RAW_PUBLIC_COUNTRY_KEYS_CACHE['mtime'] = mtime
+    RAW_PUBLIC_COUNTRY_KEYS_CACHE['value'] = list(keys)
+    return keys
+
 def restore_all_viewed_progress_if_unlocked(user):
-    if not isinstance(user, dict) or not user.get('battle_unlocked_notified'):
+    if not isinstance(user, dict):
         return False
-    if not user.get('battle_unlocked'):
-        user['battle_unlocked'] = True
-        return True
-    return False
+    viewed = user.setdefault('viewed_keys', [])
+    public_keys = raw_public_country_keys()
+    public_set = set(public_keys)
+    viewed_set = set(viewed)
+    valid_viewed_count = len(viewed_set & public_set)
+    already_current_all_viewed = bool(public_set) and public_set.issubset(viewed_set)
+    legacy_all_viewed = (
+        bool(user.get('all_viewed_granted'))
+        or already_current_all_viewed
+        or (
+            bool(user.get('battle_unlocked') or user.get('battle_unlocked_notified') or user.get('sengoku_unlocked') or user.get('sengoku_medal'))
+            and valid_viewed_count >= LEGACY_ALL_VIEWED_MIN_COUNT
+        )
+    )
+    changed = False
+    if legacy_all_viewed:
+        user['all_viewed_granted'] = True
+        for key in public_keys:
+            if key not in viewed_set:
+                viewed.append(key)
+                viewed_set.add(key)
+                changed = True
+        if not user.get('battle_unlocked'):
+            user['battle_unlocked'] = True
+            changed = True
+    return changed
 
 def migrate_embedded_user_data():
     if not os.path.exists(JSON_FILE):
@@ -2629,6 +2694,8 @@ def ensure_user_defaults(user):
         user['sengoku_mode'] = False
     if not isinstance(user.get('sengoku_medal'), bool):
         user['sengoku_medal'] = False
+    if not isinstance(user.get('all_viewed_granted'), bool):
+        user['all_viewed_granted'] = False
     restore_all_viewed_progress_if_unlocked(user)
     return user
 
@@ -2790,7 +2857,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'friends', 'notifications'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'all_viewed_granted', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -7443,9 +7510,10 @@ def apply_admin_search_cheat(keyword):
         return True
 
     viewed = user.setdefault('viewed_keys', [])
-    for key in battle_unlock_country_keys():
+    for key in all_public_country_keys():
         if key not in viewed:
             viewed.append(key)
+    user['all_viewed_granted'] = True
     unlocked_now = mark_battle_unlock_if_ready(user)
     sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     persist_current_user_data(user_data)
@@ -9569,6 +9637,9 @@ def add_history(country_data):
     viewed = user.setdefault('viewed_keys', [])
     if key not in viewed:
         viewed.append(key)
+    public_keys = set(all_public_country_keys())
+    if public_keys and public_keys.issubset(set(viewed)):
+        user['all_viewed_granted'] = True
     history = user.setdefault('history', [])
     history.insert(0, new_record)
     del history[50:]
@@ -12350,7 +12421,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                                 ui.slider(min=20, max=300, step=5, value=adjust['zoom'], on_change=lambda e: update_avatar_adjustment('zoom', e.value)) \
                                     .props('label-always')
             with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-4'):
-                render_stat_card(t('viewed_count'), f'{len(viewed)} / {total}', f'{int(len(viewed) / total * 100) if total else 0}%')
+                viewed_public_count = len([key for key in viewed if key in lookup])
+                render_stat_card(t('viewed_count'), f'{viewed_public_count} / {total}', f'{int(viewed_public_count / total * 100) if total else 0}%')
                 render_stat_card(t('favorite_count'), str(len(favorites)))
                 render_stat_card(t('review_count'), str(len(review)))
                 render_stat_card(t('quiz'), f"{stats.get('correct', 0)} / {stats.get('answered', 0)}", f"{t('quiz_stats').format(correct=stats.get('correct', 0), answered=stats.get('answered', 0), streak=stats.get('streak', 0), best=stats.get('best_streak', 0))}")
