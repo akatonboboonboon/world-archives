@@ -155,6 +155,8 @@ ui.add_body_html("""
 (() => {
   sessionStorage.removeItem('world_archives_route_hash_applied');
   sessionStorage.removeItem('world_archives_login_redirect');
+  localStorage.removeItem('world_archives_remember_login');
+  localStorage.removeItem('world_archives_last_user');
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
@@ -624,8 +626,6 @@ class AppState:
     ui_mode = 'pc'
     current_user = None
     current_user_browser_sync_pending = False
-    remember_login = True
-    remember_login_restore_requested = False
     theme_mode = 'light'
     search_keyword = ''
     page = 1
@@ -853,10 +853,6 @@ UI_FALLBACKS = {
         'difficulty_medium': '中級',
         'difficulty_hard': '上級',
         'difficulty_extreme': '超級',
-        'remember_login': 'ログイン状態を保持する',
-        'previous_login': '前回のユーザーで入る',
-        'previous_login_missing': '前回のユーザー情報が見つかりません。',
-        'previous_login_failed': '前回のユーザーでログインできませんでした。',
         'battle_direct': '国力対戦',
         'battle_unlock_hint': '現存する国をすべて閲覧する、またはミニクイズで累計100問正解すると解放されます。ゲストでも解放できます。',
         'battle_events_setting': 'イベント',
@@ -1000,10 +996,6 @@ UI_FALLBACKS = {
         'difficulty_medium': 'Medium',
         'difficulty_hard': 'Hard',
         'difficulty_extreme': 'Extreme',
-        'remember_login': 'Keep me logged in',
-        'previous_login': 'Continue as previous user',
-        'previous_login_missing': 'No previous user was found.',
-        'previous_login_failed': 'Could not continue as the previous user.',
         'battle_direct': 'Power Battle',
         'battle_unlock_hint': 'Unlock by viewing every present country or answering 100 mini quiz questions correctly. Guests can unlock it too.',
         'battle_events_setting': 'Events',
@@ -1145,10 +1137,6 @@ UI_FALLBACKS = {
         'difficulty_medium': '中级',
         'difficulty_hard': '高级',
         'difficulty_extreme': '超高级',
-        'remember_login': '保持登录状态',
-        'previous_login': '以上次用户进入',
-        'previous_login_missing': '找不到上次用户信息。',
-        'previous_login_failed': '无法以上次用户登录。',
         'battle_direct': '国力对战',
         'battle_unlock_hint': '浏览所有现存国家，或在迷你测验中累计答对100题即可解锁。访客也可以解锁。',
         'battle_events_setting': '事件',
@@ -2514,7 +2502,6 @@ def ensure_user_defaults(user):
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
 PUBLIC_BROWSER_BACKUP_KEY = 'world_archives_public_user_backups'
-REMEMBER_LOGIN_KEY = 'world_archives_remember_login'
 
 def sync_current_user_to_browser(user_data=None):
     if not state.current_user:
@@ -2605,149 +2592,12 @@ def sync_current_user_to_browser(user_data=None):
         localStorage.setItem(key, JSON.stringify(backups));
       }}
       localStorage.setItem(knownKey, JSON.stringify(known));
-      localStorage.setItem('world_archives_last_user', payload.username);
     }})();
     """
     try:
         ui.run_javascript(script)
     except Exception as e:
         print(f"Browser backup skipped: {e}", flush=True)
-
-def set_browser_remember_login(enabled, username=None):
-    state.remember_login = bool(enabled)
-    username = clean_username(username or state.current_user)
-    script = f"""
-    (() => {{
-      const rememberKey = '{REMEMBER_LOGIN_KEY}';
-      const lastUserKey = 'world_archives_last_user';
-      if ({json.dumps(bool(enabled))} && {json.dumps(bool(username))}) {{
-        localStorage.setItem(rememberKey, '1');
-        localStorage.setItem(lastUserKey, {json.dumps(username)});
-      }} else {{
-        localStorage.removeItem(rememberKey);
-      }}
-    }})();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Remember-login update skipped: {e}", flush=True)
-
-def request_remembered_login(force=False):
-    if state.current_user:
-        return
-    if state.remember_login_restore_requested and not force:
-        return
-    state.remember_login_restore_requested = True
-    script = f"""
-    (async () => {{
-      if (localStorage.getItem('{REMEMBER_LOGIN_KEY}') !== '1') return;
-      const username = localStorage.getItem('world_archives_last_user') || '';
-      if (!username) return;
-      try {{
-        const response = await fetch('/api/remember-login', {{
-          method: 'POST',
-          headers: {{'Content-Type': 'application/json'}},
-          body: JSON.stringify({{username}}),
-        }});
-        const payload = await response.json();
-        if (payload && payload.ok) {{
-          console.info('remember login restored');
-        }}
-      }} catch (error) {{
-        console.warn('remember login failed', error);
-      }}
-    }})();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Remember-login restore skipped: {e}", flush=True)
-
-def login_with_previous_user():
-    if state.current_user:
-        return
-    missing_message = t('previous_login_missing')
-    failed_message = t('previous_login_failed')
-    script = f"""
-    (async () => {{
-      const backupKey = '{BROWSER_BACKUP_KEY}';
-      const knownKey = 'world_archives_known_usernames';
-      const notify = (message) => {{
-        if (window.Quasar && Quasar.Notify) {{
-          Quasar.Notify.create({{message, color: 'warning'}});
-        }} else {{
-          window.alert(message);
-        }}
-      }};
-      const parseJson = (value, fallback) => {{
-        try {{
-          return JSON.parse(value || '');
-        }} catch (error) {{
-          return fallback;
-        }}
-      }};
-      const backups = parseJson(localStorage.getItem(backupKey), {{}});
-      const backupRecord = (value) => {{
-        if (!value || typeof value !== 'object') return null;
-        if (value.record && typeof value.record === 'object') return value.record;
-        return value;
-      }};
-      const hasPrivateRecord = (username) => {{
-        const record = backupRecord(backups[username]);
-        return !!(record && typeof record === 'object' && (
-          record.password_hash || record.is_guest || record.favorites || record.viewed_keys || record.quiz_history
-        ));
-      }};
-      let username = localStorage.getItem('world_archives_last_user') || '';
-      if (!username || !hasPrivateRecord(username)) {{
-        const candidates = Object.entries(backups || {{}})
-          .filter(([name]) => name && hasPrivateRecord(name))
-          .sort((a, b) => String((b[1] || {{}}).updated_at || '').localeCompare(String((a[1] || {{}}).updated_at || '')));
-        if (candidates.length) username = candidates[0][0];
-      }}
-      if (!username) {{
-        const knownUsers = parseJson(localStorage.getItem(knownKey), []);
-        username = Array.isArray(knownUsers) ? (knownUsers.find(Boolean) || '') : '';
-      }}
-      if (!username) {{
-        notify({json.dumps(missing_message)});
-        return;
-      }}
-      try {{
-        const privatePayload = {{}};
-        if (backups[username]) {{
-          privatePayload[username] = backups[username];
-          await fetch('/api/restore-user-backups', {{
-            method: 'POST',
-            headers: {{'Content-Type': 'application/json'}},
-            body: JSON.stringify({{
-              users: privatePayload,
-              known_users: [username],
-            }}),
-          }});
-        }}
-        const response = await fetch('/api/remember-login', {{
-          method: 'POST',
-          headers: {{'Content-Type': 'application/json'}},
-          body: JSON.stringify({{username}}),
-        }});
-        const payload = await response.json();
-        if (payload && payload.ok) {{
-          window.location.reload();
-        }} else {{
-          notify({json.dumps(failed_message)});
-        }}
-      }} catch (error) {{
-        console.warn('previous login failed', error);
-        notify({json.dumps(failed_message)});
-      }}
-    }})();
-    """
-    try:
-        ui.run_javascript(script)
-    except Exception as e:
-        print(f"Previous login skipped: {e}", flush=True)
 
 def flush_current_user_browser_sync():
     state.current_user_browser_sync_pending = False
@@ -2777,9 +2627,6 @@ def remove_browser_backup(username):
       }}
       delete backups[{json.dumps(username)}];
       localStorage.setItem(key, JSON.stringify(backups));
-      if (localStorage.getItem('world_archives_last_user') === {json.dumps(username)}) {{
-        localStorage.removeItem('world_archives_last_user');
-      }}
     }})();
     """
     try:
@@ -2873,8 +2720,6 @@ def request_browser_backup_restore():
       try {{
         collectPayload({{known_users: JSON.parse(localStorage.getItem(knownKey) || '[]')}});
       }} catch (error) {{}}
-      const lastUser = localStorage.getItem('world_archives_last_user');
-      if (lastUser) knownUsers.add(lastUser);
       for (let i = 0; i < localStorage.length; i += 1) {{
         const key = localStorage.key(i) || '';
         if (key === backupKey || key === publicBackupKey) continue;
@@ -3283,7 +3128,7 @@ def current_user_label():
         return t('guest_user')
     return state.current_user or ''
 
-def login_user(username, password, remember_login=None):
+def login_user(username, password):
     username = clean_username(username)
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
@@ -3300,10 +3145,7 @@ def login_user(username, password, remember_login=None):
     unlocked_now = mark_battle_unlock_if_ready(user)
     sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     state.sengoku_mode = bool(user.get('sengoku_mode') and user.get('sengoku_unlocked'))
-    if remember_login is not None:
-        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
-    set_browser_remember_login(state.remember_login, username)
     request_browser_backup_restore()
     ui.timer(1.2, lambda: sync_current_user_to_browser(load_user_data()), once=True)
     reset_social_notification_state(show_existing=True)
@@ -3315,7 +3157,7 @@ def login_user(username, password, remember_login=None):
     show_screen('top')
     return True
 
-def guest_login(remember_login=None):
+def guest_login():
     user_data = load_user_data()
     users = get_users(user_data)
     guest = users.setdefault(GUEST_USERNAME, {
@@ -3341,10 +3183,7 @@ def guest_login(remember_login=None):
     unlocked_now = mark_battle_unlock_if_ready(guest)
     sengoku_unlocked_now = mark_sengoku_unlock_if_ready(guest)
     state.sengoku_mode = bool(guest.get('sengoku_mode') and guest.get('sengoku_unlocked'))
-    if remember_login is not None:
-        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
-    set_browser_remember_login(state.remember_login, GUEST_USERNAME)
     reset_social_notification_state()
     ui.notify(t('guest_login_success'), color='positive')
     if unlocked_now:
@@ -3354,7 +3193,7 @@ def guest_login(remember_login=None):
     show_screen('top')
     return True
 
-def register_user(username, password, remember_login=None):
+def register_user(username, password):
     username = clean_username(username)
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
@@ -3384,10 +3223,7 @@ def register_user(username, password, remember_login=None):
     state.current_user = username
     state.users_browser_restore_requested = False
     state.sengoku_mode = False
-    if remember_login is not None:
-        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
-    set_browser_remember_login(state.remember_login, username)
     reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
@@ -3411,7 +3247,6 @@ def logout_user():
     state.social_last_signature = ''
     state.social_selected_chat_id = None
     state.sengoku_mode = False
-    set_browser_remember_login(False)
     ui.notify(t('logout_success'), color='info')
     show_screen('top')
 
@@ -3456,7 +3291,6 @@ def rename_current_account(new_username, current_password):
     state.battle_selected_keys = set()
     persist_current_user_data(user_data)
     remove_browser_backup(old_username)
-    set_browser_remember_login(state.remember_login, new_username)
     ui.notify(t('account_updated'), color='positive')
     refresh_current_screen()
     return True
@@ -3508,7 +3342,6 @@ def delete_current_account(current_password):
     state.selected_country = None
     state.battle_id = None
     state.battle_selected_keys = set()
-    set_browser_remember_login(False)
     ui.notify(t('account_deleted'), color='info')
     show_screen('top')
     return True
@@ -9420,31 +9253,6 @@ async def restore_user_backups(payload: dict):
         print(f'Restored {restored} browser user backup(s) to {USER_DATA_FILE}', flush=True)
     return {'ok': True, 'restored': restored}
 
-@app.post('/api/remember-login')
-async def remember_login_from_browser(payload: dict):
-    username = clean_username(payload.get('username'))
-    if not username:
-        return {'ok': False}
-    user_data = load_user_data()
-    user = get_users(user_data).get(username)
-    if not user:
-        return {'ok': False}
-    state.current_user = username
-    state.users_browser_restore_requested = False
-    state.remember_login = True
-    ensure_user_defaults(user)
-    remember_known_user(username, user_data)
-    battle_unlocked_now = mark_battle_unlock_if_ready(user)
-    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
-    state.sengoku_mode = bool(user.get('sengoku_mode') and user.get('sengoku_unlocked'))
-    persist_current_user_data(user_data)
-    reset_social_notification_state(show_existing=True)
-    if battle_unlocked_now:
-        print(f'Battle unlocked by remembered login: {username}', flush=True)
-    if sengoku_unlocked_now:
-        print(f'Sengoku unlocked by remembered login: {username}', flush=True)
-    return {'ok': True, 'username': username}
-
 @app.post('/api/avatar-adjust')
 async def save_avatar_adjustment(payload: dict):
     ok = save_avatar_adjustment_values(payload)
@@ -9985,17 +9793,13 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                     ui.label(t('login_required')).classes('text-sm text-gray-500 text-center')
                     username_input = ui.input(label=t('username')).props('outlined dense').classes('w-full')
                     password_input = ui.input(label=t('password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
-                    remember_checkbox = ui.checkbox(t('remember_login'), value=state.remember_login).props('dense')
-                    ui.button(t('previous_login'), icon='history', on_click=login_with_previous_user) \
-                        .props('outline color=primary') \
-                        .classes('w-full')
                     with ui.row().classes('w-full gap-2 items-center'):
-                        ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value, remember_checkbox.value)) \
+                        ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value)) \
                             .classes('flex-grow bg-[#1a2332] text-white')
-                        ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value, remember_checkbox.value)) \
+                        ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value)) \
                             .props('outline color=primary') \
                             .classes('flex-grow')
-                    ui.button(t('guest_login'), icon='person', on_click=lambda: guest_login(remember_checkbox.value)) \
+                    ui.button(t('guest_login'), icon='person', on_click=guest_login) \
                         .props('outline color=grey') \
                         .classes('w-full')
             with ui.row().classes('mt-8 gap-4'):
