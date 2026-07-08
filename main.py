@@ -119,6 +119,35 @@ ui.add_head_html("""
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
+html.wa-dark body,
+html.wa-dark .bg-gray-50,
+html.wa-dark .bg-blue-50,
+html.wa-dark .bg-gray-100 {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+}
+html.wa-dark .bg-white,
+html.wa-dark .q-card {
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+html.wa-dark .text-\\[\\#1a2332\\],
+html.wa-dark .text-gray-800,
+html.wa-dark .text-gray-700,
+html.wa-dark .text-gray-600,
+html.wa-dark .text-gray-500 {
+  color: #e5e7eb !important;
+}
+html.wa-dark .border,
+html.wa-dark .border-gray-200,
+html.wa-dark .border-blue-100 {
+  border-color: #334155 !important;
+}
+html.wa-dark input,
+html.wa-dark textarea,
+html.wa-dark .q-field__control {
+  color: #e5e7eb !important;
+}
 </style>
 """)
 
@@ -257,7 +286,11 @@ USER_RECORD_KEYS = {
     'name_color',
     'hide_public_profile',
     'battle_wins',
+    'battle_unlocked',
     'battle_unlocked_notified',
+    'sengoku_unlocked',
+    'sengoku_unlocked_notified',
+    'sengoku_mode',
     'friends',
     'notifications',
 }
@@ -473,7 +506,7 @@ def merge_user_record(current, incoming):
             current[key] = bool(current.get(key, False) or value)
         elif key == 'battle_wins' and isinstance(value, int):
             current[key] = max(current.get(key, 0), value)
-        elif key == 'battle_unlocked_notified' and isinstance(value, bool):
+        elif key in ['battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode'] and isinstance(value, bool):
             current[key] = bool(current.get(key, False) or value)
         else:
             current.setdefault(key, value)
@@ -483,24 +516,10 @@ def merge_user_record(current, incoming):
 def restore_all_viewed_progress_if_unlocked(user):
     if not isinstance(user, dict) or not user.get('battle_unlocked_notified'):
         return False
-    unlock_keys_func = globals().get('battle_unlock_country_keys')
-    if not callable(unlock_keys_func):
-        return False
-    try:
-        needed_keys = unlock_keys_func()
-    except Exception:
-        return False
-    viewed = user.setdefault('viewed_keys', [])
-    if not isinstance(viewed, list):
-        viewed = []
-        user['viewed_keys'] = viewed
-    existing = set(viewed)
-    before = len(existing)
-    for key in needed_keys:
-        if key not in existing:
-            viewed.append(key)
-            existing.add(key)
-    return len(existing) > before
+    if not user.get('battle_unlocked'):
+        user['battle_unlocked'] = True
+        return True
+    return False
 
 def migrate_embedded_user_data():
     if not os.path.exists(JSON_FILE):
@@ -594,6 +613,8 @@ class AppState:
     ui_mode = 'pc'
     current_user = None
     current_user_browser_sync_pending = False
+    remember_login = True
+    theme_mode = 'light'
     search_keyword = ''
     page = 1
     items_per_page = 20
@@ -629,7 +650,9 @@ class AppState:
     battle_room_player_count = 3
     battle_team_count = 2
     battle_team_choice = 'A'
+    battle_events_enabled = True
     battle_last_signature = ''
+    sengoku_mode = False
     social_selected_chat_id = None
     social_last_signature = ''
     social_notify_user = None
@@ -669,8 +692,8 @@ BATTLE_AUTO_REFRESH_SECONDS = 3.0
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
 BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
-BATTLE_REVOLUTION_CHANCE = 0.012
-BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.035
+BATTLE_REVOLUTION_CHANCE = 0.003
+BATTLE_WORLD_WAR_REVOLUTION_CHANCE = 0.009
 BATTLE_REVOLUTION_MIN_TURNS = 3
 BATTLE_REVOLUTION_MAX_TURNS = 7
 BATTLE_RANDOM_EVENT_CHANCE = 0.03
@@ -714,6 +737,7 @@ MULTIPLAYER_MODES = {
     TEAM_MODE: BATTLE_MAX_MULTIPLAYER_PLAYERS,
 }
 ADMIN_SEARCH_CHEAT_CODE = '上上下下左右左右BA'
+SENGOKU_SEARCH_CHEAT_CODE = 'HH右NK'
 SECRET_HIDDEN_COUNTRY_SEARCH_TERMS = {'ケッテン連邦'}
 DEFAULT_NAME_COLOR = '#1a2332'
 NAME_COLOR_OPTIONS = [
@@ -814,6 +838,25 @@ UI_FALLBACKS = {
         'difficulty_easy': '初級',
         'difficulty_medium': '中級',
         'difficulty_hard': '上級',
+        'difficulty_extreme': '超級',
+        'remember_login': 'ログイン状態を保持する',
+        'battle_direct': '国力対戦',
+        'battle_unlock_hint': '現存する国をすべて閲覧する、またはミニクイズで累計100問正解すると解放されます。ゲストでも解放できます。',
+        'battle_events_setting': 'イベント',
+        'battle_events_on': 'あり',
+        'battle_events_off': 'なし',
+        'battle_kick': 'キック',
+        'battle_kicked_notice': 'この部屋からキックされています。',
+        'battle_kicked_log': '{player} はホストにより退室しました。',
+        'sengoku_mode': '戦国モード',
+        'normal_mode': '通常モード',
+        'sengoku_mode_on': '戦国モードに切り替えました。',
+        'sengoku_mode_off': '通常モードに戻しました。',
+        'sengoku_unlocked_notice': '戦国モードが解禁されました。',
+        'sengoku_unlock_hint': '国力対戦解放後、全国家を閲覧するか、上級・総合・全問・混合のミニクイズで20問連続正解すると解放されます。',
+        'theme_dark': 'ダーク',
+        'theme_light': 'ライト',
+        'theme_toggle': '表示テーマ',
         'quiz_stats': '正解 {correct} / {answered}・連続 {streak}・最高 {best}',
         'account': 'アカウント',
         'avatar': 'アイコン',
@@ -939,6 +982,25 @@ UI_FALLBACKS = {
         'difficulty_easy': 'Easy',
         'difficulty_medium': 'Medium',
         'difficulty_hard': 'Hard',
+        'difficulty_extreme': 'Extreme',
+        'remember_login': 'Keep me logged in',
+        'battle_direct': 'Power Battle',
+        'battle_unlock_hint': 'Unlock by viewing every present country or answering 100 mini quiz questions correctly. Guests can unlock it too.',
+        'battle_events_setting': 'Events',
+        'battle_events_on': 'On',
+        'battle_events_off': 'Off',
+        'battle_kick': 'Kick',
+        'battle_kicked_notice': 'You were kicked from this room.',
+        'battle_kicked_log': '{player} was removed by the host.',
+        'sengoku_mode': 'Sengoku Mode',
+        'normal_mode': 'Normal Mode',
+        'sengoku_mode_on': 'Sengoku Mode enabled.',
+        'sengoku_mode_off': 'Returned to Normal Mode.',
+        'sengoku_unlocked_notice': 'Sengoku Mode is now unlocked.',
+        'sengoku_unlock_hint': 'After unlocking Power Battle, view every country or get 20 consecutive correct answers on Hard / Overall / All / Mixed quiz settings.',
+        'theme_dark': 'Dark',
+        'theme_light': 'Light',
+        'theme_toggle': 'Theme',
         'quiz_stats': 'Correct {correct} / {answered} - Streak {streak} - Best {best}',
         'account': 'Account',
         'avatar': 'Icon',
@@ -1062,6 +1124,25 @@ UI_FALLBACKS = {
         'difficulty_easy': '初级',
         'difficulty_medium': '中级',
         'difficulty_hard': '高级',
+        'difficulty_extreme': '超高级',
+        'remember_login': '保持登录状态',
+        'battle_direct': '国力对战',
+        'battle_unlock_hint': '浏览所有现存国家，或在迷你测验中累计答对100题即可解锁。访客也可以解锁。',
+        'battle_events_setting': '事件',
+        'battle_events_on': '开启',
+        'battle_events_off': '关闭',
+        'battle_kick': '踢出',
+        'battle_kicked_notice': '你已被踢出该房间。',
+        'battle_kicked_log': '{player} 被房主移出房间。',
+        'sengoku_mode': '战国模式',
+        'normal_mode': '普通模式',
+        'sengoku_mode_on': '已切换到战国模式。',
+        'sengoku_mode_off': '已返回普通模式。',
+        'sengoku_unlocked_notice': '战国模式已解锁。',
+        'sengoku_unlock_hint': '解锁国力对战后，浏览所有国家，或在高级/综合/全问/混合设置下连续答对20题即可解锁。',
+        'theme_dark': '深色',
+        'theme_light': '浅色',
+        'theme_toggle': '主题',
         'quiz_stats': '正确 {correct} / {answered}・连续 {streak}・最高 {best}',
         'account': '账户',
         'avatar': '头像',
@@ -2395,13 +2476,22 @@ def ensure_user_defaults(user):
     user['hide_public_profile'] = bool(user.get('hide_public_profile'))
     if not isinstance(user.get('battle_wins'), int):
         user['battle_wins'] = 0
+    if not isinstance(user.get('battle_unlocked'), bool):
+        user['battle_unlocked'] = bool(user.get('battle_unlocked_notified'))
     if not isinstance(user.get('battle_unlocked_notified'), bool):
         user['battle_unlocked_notified'] = False
+    if not isinstance(user.get('sengoku_unlocked'), bool):
+        user['sengoku_unlocked'] = False
+    if not isinstance(user.get('sengoku_unlocked_notified'), bool):
+        user['sengoku_unlocked_notified'] = False
+    if not isinstance(user.get('sengoku_mode'), bool):
+        user['sengoku_mode'] = False
     restore_all_viewed_progress_if_unlocked(user)
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
 PUBLIC_BROWSER_BACKUP_KEY = 'world_archives_public_user_backups'
+REMEMBER_LOGIN_KEY = 'world_archives_remember_login'
 
 def sync_current_user_to_browser(user_data=None):
     if not state.current_user:
@@ -2500,6 +2590,52 @@ def sync_current_user_to_browser(user_data=None):
     except Exception as e:
         print(f"Browser backup skipped: {e}", flush=True)
 
+def set_browser_remember_login(enabled, username=None):
+    state.remember_login = bool(enabled)
+    username = clean_username(username or state.current_user)
+    script = f"""
+    (() => {{
+      const rememberKey = '{REMEMBER_LOGIN_KEY}';
+      const lastUserKey = 'world_archives_last_user';
+      if ({json.dumps(bool(enabled))} && {json.dumps(bool(username))}) {{
+        localStorage.setItem(rememberKey, '1');
+        localStorage.setItem(lastUserKey, {json.dumps(username)});
+      }} else {{
+        localStorage.removeItem(rememberKey);
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Remember-login update skipped: {e}", flush=True)
+
+def request_remembered_login():
+    script = f"""
+    (async () => {{
+      if (localStorage.getItem('{REMEMBER_LOGIN_KEY}') !== '1') return;
+      const username = localStorage.getItem('world_archives_last_user') || '';
+      if (!username) return;
+      try {{
+        const response = await fetch('/api/remember-login', {{
+          method: 'POST',
+          headers: {{'Content-Type': 'application/json'}},
+          body: JSON.stringify({{username}}),
+        }});
+        const payload = await response.json();
+        if (payload && payload.ok) {{
+          location.reload();
+        }}
+      }} catch (error) {{
+        console.warn('remember login failed', error);
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Remember-login restore skipped: {e}", flush=True)
+
 def flush_current_user_browser_sync():
     state.current_user_browser_sync_pending = False
     sync_current_user_to_browser()
@@ -2562,7 +2698,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked_notified', 'friends', 'notifications'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -2678,7 +2814,9 @@ def public_user_backup_payload():
             'name_color': user_name_color(record),
             'hide_public_profile': bool(record.get('hide_public_profile')),
             'battle_wins': int(record.get('battle_wins', 0) or 0),
+            'battle_unlocked': bool(record.get('battle_unlocked')),
             'battle_unlocked_notified': bool(record.get('battle_unlocked_notified')),
+            'sengoku_unlocked': bool(record.get('sengoku_unlocked')),
             'friends': [
                 friend for friend in record.get('friends', [])
                 if clean_stored_username(friend) and not is_stored_guest_username(friend)
@@ -3008,7 +3146,7 @@ def current_user_label():
         return t('guest_user')
     return state.current_user or ''
 
-def login_user(username, password):
+def login_user(username, password, remember_login=None):
     username = clean_username(username)
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
@@ -3023,17 +3161,24 @@ def login_user(username, password):
     ensure_user_defaults(user)
     remember_known_user(username, user_data)
     unlocked_now = mark_battle_unlock_if_ready(user)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
+    state.sengoku_mode = bool(user.get('sengoku_mode') and user.get('sengoku_unlocked'))
+    if remember_login is not None:
+        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
+    set_browser_remember_login(state.remember_login, username)
     request_browser_backup_restore()
     ui.timer(1.2, lambda: sync_current_user_to_browser(load_user_data()), once=True)
     reset_social_notification_state(show_existing=True)
     ui.notify(t('login_success'), color='positive')
     if unlocked_now:
         ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
     return True
 
-def guest_login():
+def guest_login(remember_login=None):
     user_data = load_user_data()
     users = get_users(user_data)
     guest = users.setdefault(GUEST_USERNAME, {
@@ -3056,13 +3201,23 @@ def guest_login():
     state.current_user = GUEST_USERNAME
     state.users_browser_restore_requested = False
     ensure_user_defaults(guest)
+    unlocked_now = mark_battle_unlock_if_ready(guest)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(guest)
+    state.sengoku_mode = bool(guest.get('sengoku_mode') and guest.get('sengoku_unlocked'))
+    if remember_login is not None:
+        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
+    set_browser_remember_login(state.remember_login, GUEST_USERNAME)
     reset_social_notification_state()
     ui.notify(t('guest_login_success'), color='positive')
+    if unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
     return True
 
-def register_user(username, password):
+def register_user(username, password, remember_login=None):
     username = clean_username(username)
     if not username or not password:
         ui.notify(t('auth_missing'), color='warning')
@@ -3091,7 +3246,11 @@ def register_user(username, password):
     remember_known_user(username, user_data)
     state.current_user = username
     state.users_browser_restore_requested = False
+    state.sengoku_mode = False
+    if remember_login is not None:
+        state.remember_login = bool(remember_login)
     persist_current_user_data(user_data)
+    set_browser_remember_login(state.remember_login, username)
     reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
@@ -3114,6 +3273,8 @@ def logout_user():
     state.social_notify_snapshot = None
     state.social_last_signature = ''
     state.social_selected_chat_id = None
+    state.sengoku_mode = False
+    set_browser_remember_login(False)
     ui.notify(t('logout_success'), color='info')
     show_screen('top')
 
@@ -3158,6 +3319,7 @@ def rename_current_account(new_username, current_password):
     state.battle_selected_keys = set()
     persist_current_user_data(user_data)
     remove_browser_backup(old_username)
+    set_browser_remember_login(state.remember_login, new_username)
     ui.notify(t('account_updated'), color='positive')
     refresh_current_screen()
     return True
@@ -3209,6 +3371,7 @@ def delete_current_account(current_password):
     state.selected_country = None
     state.battle_id = None
     state.battle_selected_keys = set()
+    set_browser_remember_login(False)
     ui.notify(t('account_deleted'), color='info')
     show_screen('top')
     return True
@@ -4210,7 +4373,9 @@ def public_user_profiles():
             'correct': stats.get('correct', 0),
             'best_streak': stats.get('best_streak', 0),
             'battle_wins': record.get('battle_wins', 0),
-            'all_viewed': set(battle_unlock_country_keys()).issubset(set(viewed)),
+            'battle_unlocked': bool(record.get('battle_unlocked')),
+            'sengoku_unlocked': bool(record.get('sengoku_unlocked')),
+            'all_viewed': set(all_public_country_keys()).issubset(set(viewed)),
             'last_viewed': format_timestamp(latest_history.get('timestamp')),
         })
     return profiles
@@ -4482,10 +4647,20 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
         'correct': bool(correct),
         'type': question_type or '',
         'mode': state.quiz_mode,
+        'difficulty': state.quiz_difficulty,
+        'category': state.quiz_category,
+        'scope': state.quiz_scope,
+        'format': state.quiz_format,
     })
     del history[QUIZ_HISTORY_LIMIT:]
     normalize_quiz_stats(user)
+    battle_unlocked_now = mark_battle_unlock_if_ready(user)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     persist_current_user_data(user_data)
+    if battle_unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
 
 def get_kakasi_converter():
     global KAKASI_CONVERTER
@@ -5196,7 +5371,13 @@ def timeline_period(country):
     return 'period_contemporary'
 
 def quiz_option_count():
-    return {'easy': 3, 'medium': 4, 'hard': 5}.get(state.quiz_difficulty, 4)
+    return {'easy': 3, 'medium': 4, 'hard': 5, 'extreme': 8}.get(state.quiz_difficulty, 4)
+
+def quiz_difficulty_options():
+    options = ['easy', 'medium', 'hard']
+    if sengoku_is_user_eligible():
+        options.append('extreme')
+    return options
 
 QUIZ_CATEGORY_OPTIONS = [
     ('all', 'quiz_category_all'),
@@ -5815,6 +5996,8 @@ def start_quiz(mode=None):
         return
     if mode:
         state.quiz_mode = mode
+    if state.quiz_difficulty not in quiz_difficulty_options():
+        state.quiz_difficulty = 'hard'
     state.quiz = build_quiz()
     if state.quiz_mode == 'review' and not state.quiz:
         ui.notify(t('review_empty'), color='info')
@@ -5823,6 +6006,8 @@ def start_quiz(mode=None):
     show_screen('quiz')
 
 def set_quiz_difficulty(difficulty):
+    if difficulty not in quiz_difficulty_options():
+        difficulty = 'hard'
     state.quiz_difficulty = difficulty
     start_quiz()
 
@@ -5937,7 +6122,17 @@ def battle_country_keys(data=None):
     return [country_key(country) for country in battle_country_list(data)]
 
 def battle_unlock_country_keys(data=None):
+    return [country_key(country) for country in public_country_list(data) if country.get('type') == 'Present']
+
+def all_public_country_keys(data=None):
     return [country_key(country) for country in public_country_list(data)]
+
+def user_viewed_all_public_countries(user, data=None):
+    if not user:
+        return False
+    ensure_user_defaults(user)
+    needed = set(all_public_country_keys(data))
+    return bool(needed) and needed.issubset(set(user.get('viewed_keys', [])))
 
 def battle_country_lookup(data=None):
     return {country_key(country): country for country in battle_country_list(data)}
@@ -6036,6 +6231,8 @@ def battle_exclusive_event_active(room):
     ])
 
 def battle_event_damage_multiplier(room):
+    if not battle_room_events_enabled(room):
+        return 1
     multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
     if battle_ceasefire_active(room):
         multiplier *= BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER
@@ -6518,6 +6715,12 @@ def selected_battle_world_war_turn():
 def battle_room_world_war_turn(room):
     return normalize_battle_world_war_turn((room or {}).get('world_war_turn'))
 
+def selected_battle_events_enabled():
+    return bool(getattr(state, 'battle_events_enabled', True))
+
+def battle_room_events_enabled(room):
+    return bool((room or {}).get('events_enabled', True))
+
 def battle_player_command(room, player):
     command_map = (room or {}).setdefault('command', {})
     try:
@@ -6585,6 +6788,7 @@ def normalize_battle_queue_entry(entry):
         player_count = normalize_battle_player_count(entry.get('player_count'), mode)
         team_count = normalize_battle_team_count(entry.get('team_count'))
         team_choice = normalize_battle_team_choice(entry.get('team_choice'), team_count)
+        events_enabled = bool(entry.get('events_enabled', True))
     else:
         username = clean_username(entry)
         mode = DUEL_MODE
@@ -6593,6 +6797,7 @@ def normalize_battle_queue_entry(entry):
         player_count = 2
         team_count = 2
         team_choice = 'A'
+        events_enabled = True
     if mode not in MULTIPLAYER_MODES:
         mode = DUEL_MODE
     if not username:
@@ -6605,6 +6810,7 @@ def normalize_battle_queue_entry(entry):
         'player_count': normalize_battle_player_count(player_count, mode),
         'team_count': team_count,
         'team_choice': team_choice,
+        'events_enabled': events_enabled,
     }
 
 def default_battle_state():
@@ -6743,6 +6949,9 @@ def normalize_battle_room(room):
     room.setdefault('last_turn', {})
     room.setdefault('command', {})
     room.setdefault('world_war_started', False)
+    room.setdefault('events_enabled', True)
+    room.setdefault('sengoku_mode', False)
+    room.setdefault('kicked', [])
     room.setdefault('revolution_until_turn', 0)
     room.setdefault('flag_only_until_turn', 0)
     room.setdefault('vatican_until_turn', 0)
@@ -6877,6 +7086,13 @@ def battle_room_for_user(username, state_data=None):
     state_data = state_data or load_battle_state()
     room_id = state_data.get('user_room', {}).get(username) or state_data.get('spectator_room', {}).get(username)
     room = state_data.get('rooms', {}).get(room_id)
+    if room and username in room.get('kicked', []):
+        state_data.get('user_room', {}).pop(username, None)
+        state_data.get('spectator_room', {}).pop(username, None)
+        save_battle_state(state_data)
+        if username == state.current_user:
+            state.battle_id = None
+        return None
     if room and (username in room.get('players', []) or username in room.get('spectators', [])):
         normalize_battle_room(room)
         changed = False
@@ -6946,7 +7162,7 @@ def remove_user_from_battle_state(username):
 
 def battle_is_user_eligible(username=None, user=None):
     username = username or state.current_user
-    if not username or username == GUEST_USERNAME:
+    if not username:
         return False
     if user is None:
         user_data = load_user_data()
@@ -6954,26 +7170,96 @@ def battle_is_user_eligible(username=None, user=None):
     if not user:
         return False
     ensure_user_defaults(user)
+    if user.get('battle_unlocked'):
+        return True
     needed = set(battle_unlock_country_keys())
-    if not needed:
-        return False
-    return needed.issubset(set(user.get('viewed_keys', [])))
+    viewed = set(user.get('viewed_keys', []))
+    stats = normalize_quiz_stats(user)
+    viewed_present = bool(needed) and needed.issubset(viewed)
+    quiz_mastered = int(stats.get('correct', 0) or 0) >= 100
+    return viewed_present or quiz_mastered
 
 def mark_battle_unlock_if_ready(user):
-    if not state.current_user or state.current_user == GUEST_USERNAME or not user:
+    if not state.current_user or not user:
         return False
     ensure_user_defaults(user)
-    if user.get('battle_unlocked_notified'):
-        return False
+    already_notified = bool(user.get('battle_unlocked_notified'))
     if not battle_is_user_eligible(user=user):
         return False
+    user['battle_unlocked'] = True
+    if already_notified:
+        return False
     user['battle_unlocked_notified'] = True
+    return True
+
+def sengoku_quiz_streak(user):
+    if not user:
+        return 0
+    ensure_user_defaults(user)
+    streak = 0
+    for entry in user.get('quiz_history', []):
+        if not isinstance(entry, dict):
+            break
+        if not entry.get('correct'):
+            break
+        if (
+            entry.get('difficulty') == 'hard'
+            and entry.get('category') == 'all'
+            and entry.get('scope') == 'all'
+            and entry.get('format') == 'mixed'
+            and entry.get('mode') == 'normal'
+        ):
+            streak += 1
+            continue
+        break
+    return streak
+
+def sengoku_is_user_eligible(username=None, user=None):
+    username = username or state.current_user
+    if not username:
+        return False
+    if user is None:
+        user_data = load_user_data()
+        user = get_users(user_data).get(username)
+    if not user:
+        return False
+    ensure_user_defaults(user)
+    if user.get('sengoku_unlocked'):
+        return True
+    if not battle_is_user_eligible(username=username, user=user):
+        return False
+    return user_viewed_all_public_countries(user) or sengoku_quiz_streak(user) >= 20
+
+def mark_sengoku_unlock_if_ready(user):
+    if not state.current_user or not user:
+        return False
+    ensure_user_defaults(user)
+    already_notified = bool(user.get('sengoku_unlocked_notified'))
+    if not sengoku_is_user_eligible(user=user):
+        return False
+    user['sengoku_unlocked'] = True
+    if already_notified:
+        return False
+    user['sengoku_unlocked_notified'] = True
+    return True
+
+def set_sengoku_mode(enabled):
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user or not sengoku_is_user_eligible(user=user):
+        ui.notify(t('unlock_condition_not_met'), color='warning')
+        return False
+    user['sengoku_mode'] = bool(enabled)
+    state.sengoku_mode = bool(enabled)
+    persist_current_user_data(user_data, immediate_browser=True)
+    ui.notify(t('sengoku_mode_on' if enabled else 'sengoku_mode_off'), color='positive' if enabled else 'info')
+    refresh_current_screen()
     return True
 
 def apply_admin_search_cheat(keyword):
     if str(keyword or '').strip() != ADMIN_SEARCH_CHEAT_CODE:
         return False
-    if not state.current_user or state.current_user == GUEST_USERNAME:
+    if not state.current_user:
         ui.notify(t('login_required'), color='warning')
         return True
 
@@ -6988,10 +7274,34 @@ def apply_admin_search_cheat(keyword):
         if key not in viewed:
             viewed.append(key)
     unlocked_now = mark_battle_unlock_if_ready(user)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     persist_current_user_data(user_data)
     ui.notify(t('admin_search_cheat_applied'), color='positive')
     if unlocked_now:
         ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
+    return True
+
+def apply_sengoku_search_cheat(keyword):
+    if str(keyword or '').strip() != SENGOKU_SEARCH_CHEAT_CODE:
+        return False
+    if not state.current_user:
+        ui.notify(t('login_required'), color='warning')
+        return True
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not user:
+        ui.notify(t('login_required'), color='warning')
+        return True
+    if not battle_is_user_eligible(user=user):
+        ui.notify(t('unlock_condition_not_met'), color='warning')
+        return True
+    user['sengoku_unlocked'] = True
+    user['sengoku_unlocked_notified'] = True
+    persist_current_user_data(user_data)
+    ui.notify(t('sengoku_unlocked_notice'), color='positive')
+    refresh_current_screen()
     return True
 
 def battle_draw_pool():
@@ -7050,12 +7360,12 @@ def draw_battle_cards(count=5, room=None):
     if count <= 0:
         return []
     special_count = 0
-    if battle_world_war_active(room) and count > 1:
+    if battle_room_events_enabled(room) and battle_world_war_active(room) and count > 1:
         special_count = sum(1 for _ in range(count) if random.random() < BATTLE_SPECIAL_CARD_CHANCE)
         special_count = min(special_count, BATTLE_SPECIAL_CARD_MAX_PER_HAND, count - 1)
     normal_count = max(0, count - special_count)
     cards = weighted_battle_country_sample(normal_count)
-    if battle_vatican_active(room):
+    if battle_room_events_enabled(room) and battle_vatican_active(room):
         vatican_key = battle_vatican_country_key()
         if vatican_key:
             cards = [
@@ -7107,7 +7417,7 @@ def create_battle_bot_names(players, target_count):
         names.append(name)
     return names
 
-def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None, player_count=None, team_count=None, team_choices=None, host=None):
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None, player_count=None, team_count=None, team_choices=None, host=None, events_enabled=True, sengoku_mode=False):
     state_data = state_data or load_battle_state()
     players = [clean_username(player) for player in players if clean_username(player)]
     if len(players) < 2:
@@ -7144,6 +7454,8 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'last_turn': {},
         'world_war_started': False,
         'world_war_turn': world_war_turn,
+        'events_enabled': bool(events_enabled),
+        'sengoku_mode': bool(sengoku_mode),
         'revolution_until_turn': 0,
         'flag_only_until_turn': 0,
         'vatican_until_turn': 0,
@@ -7161,6 +7473,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'turn_started_at': current_timestamp(),
         'winner': None,
         'bot': bool(bot),
+        'kicked': [],
     }
     room['hands'] = {player: deal_battle_hand(room) for player in players}
     ensure_battle_team_hp(room)
@@ -7191,17 +7504,20 @@ def create_bot_battle():
         turn_timeout_seconds=selected_battle_timeout_seconds(),
         world_war_turn=selected_battle_world_war_turn(),
         player_count=2,
+        events_enabled=selected_battle_events_enabled(),
+        sengoku_mode=bool(state.sengoku_mode),
     )
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
 
-def battle_queue_entry_matches(entry, mode, turn_timeout_seconds, world_war_turn, player_count, team_count):
+def battle_queue_entry_matches(entry, mode, turn_timeout_seconds, world_war_turn, player_count, team_count, events_enabled=None):
     return (
         entry.get('mode') == mode
         and entry.get('turn_timeout_seconds') == turn_timeout_seconds
         and entry.get('world_war_turn') == world_war_turn
         and entry.get('player_count') == player_count
         and (mode != TEAM_MODE or entry.get('team_count') == team_count)
+        and (events_enabled is None or bool(entry.get('events_enabled', True)) == bool(events_enabled))
     )
 
 def start_current_battle_queue_now():
@@ -7234,6 +7550,7 @@ def start_current_battle_queue_now():
                 current_entry.get('world_war_turn'),
                 player_count,
                 team_count,
+                current_entry.get('events_enabled', True),
             )
         ):
             players.append(normalized['username'])
@@ -7253,6 +7570,8 @@ def start_current_battle_queue_now():
         team_count=team_count,
         team_choices=team_choices,
         host=username,
+        events_enabled=current_entry.get('events_enabled', True),
+        sengoku_mode=bool(state.sengoku_mode),
     )
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
@@ -7268,6 +7587,7 @@ def join_battle_queue(mode=DUEL_MODE):
     player_count = selected_battle_player_count(mode)
     team_count = selected_battle_team_count()
     team_choice = normalize_battle_team_choice(getattr(state, 'battle_team_choice', 'A'), team_count)
+    events_enabled = selected_battle_events_enabled()
     state_data = load_battle_state()
     if battle_room_for_user(username, state_data):
         refresh_battle_view()
@@ -7286,7 +7606,7 @@ def join_battle_queue(mode=DUEL_MODE):
         normalized_queue.append(normalized)
     for normalized in normalized_queue:
         waiting_user = normalized['username']
-        if not battle_queue_entry_matches(normalized, mode, turn_timeout_seconds, world_war_turn, player_count, team_count):
+        if not battle_queue_entry_matches(normalized, mode, turn_timeout_seconds, world_war_turn, player_count, team_count, selected_battle_events_enabled()):
             continue
         waiting.append(waiting_user)
         if len(waiting) >= player_count - 1:
@@ -7311,6 +7631,8 @@ def join_battle_queue(mode=DUEL_MODE):
             team_count=team_count,
             team_choices=team_choices,
             host=players[0],
+            events_enabled=events_enabled,
+            sengoku_mode=bool(state.sengoku_mode),
         )
         ui.notify(t('battle_matched'), color='positive')
         refresh_battle_view()
@@ -7323,6 +7645,7 @@ def join_battle_queue(mode=DUEL_MODE):
         'player_count': player_count,
         'team_count': team_count,
         'team_choice': team_choice,
+        'events_enabled': events_enabled,
     })
     state_data['queue'] = normalized_queue
     save_battle_state(state_data)
@@ -7831,7 +8154,7 @@ def resolve_battle_bomb_transfers(room, entries, result_parts, visual=None):
         room['bomb_holder'] = new_holder
 
 def apply_battle_special_card_damage(room, result_parts, visual):
-    if not battle_world_war_active(room):
+    if not battle_room_events_enabled(room) or not battle_world_war_active(room):
         return
     hp = room.setdefault('hp', {})
     lookup = battle_country_lookup()
@@ -8043,7 +8366,7 @@ def update_battle_crisis_state(room, result_parts=None):
         room['bomb_until_turn'] = 0
         battle_expire_bomb_event(room, result_parts)
 
-    if battle_exclusive_event_active(room):
+    if not battle_room_events_enabled(room):
         return
 
     if not battle_revolution_active(room):
@@ -8513,6 +8836,10 @@ def choose_bot_battle_cards(hand, room=None, player=None):
     max_playable = battle_max_playable_card_count(command, len(playable))
     if max_playable <= 0:
         return []
+    human_players = [name for name in active_battle_players(room) if not is_battle_bot(name)] if room else []
+    if room and room.get('sengoku_mode') and player and is_battle_bot(player) and len(human_players) <= 1:
+        playable = sorted(playable, key=lambda key: battle_card_power_for_key(key, room=room), reverse=True)
+        return playable[:max_playable]
     max_cards = min(len(playable), random.randint(1, max_playable))
     return random.sample(playable, max_cards)
 
@@ -8674,6 +9001,34 @@ def surrender_battle():
         save_battle_state(state_data)
     refresh_battle_view()
 
+def kick_battle_player(target_username):
+    host = clean_username(state.current_user)
+    target = clean_username(target_username)
+    state_data = load_battle_state()
+    room = battle_room_for_user(host, state_data)
+    if not room or room.get('winner') or room.get('host') != host or not target or target == host:
+        refresh_battle_view()
+        return
+    room.setdefault('kicked', [])
+    if target not in room['kicked']:
+        room['kicked'].append(target)
+    if target in room.get('players', []):
+        bot_name = replace_battle_player_with_bot(room, target, state_data)
+        if bot_name:
+            room['spectators'] = [name for name in room.get('spectators', []) if name != target]
+            state_data.setdefault('spectator_room', {}).pop(target, None)
+            state_data.setdefault('user_room', {}).pop(target, None)
+            append_battle_log(room, t('battle_kicked_log').format(player=target))
+            submit_bot_players(room)
+            if battle_all_players_submitted(room):
+                resolve_battle_turn(room)
+    else:
+        room['spectators'] = [name for name in room.get('spectators', []) if name != target]
+        state_data.setdefault('spectator_room', {}).pop(target, None)
+        append_battle_log(room, t('battle_kicked_log').format(player=target))
+    save_battle_state(state_data)
+    refresh_battle_view()
+
 def redraw_battle_hand():
     username = state.current_user
     state_data = load_battle_state_with_timeouts()
@@ -8731,6 +9086,10 @@ def spectate_battle_room(room_id):
     state_data = load_battle_state()
     room = state_data.get('rooms', {}).get(str(room_id))
     if not room or room.get('winner'):
+        refresh_battle_view()
+        return
+    if username in room.get('kicked', []):
+        ui.notify(t('battle_kicked_notice'), color='warning')
         refresh_battle_view()
         return
     if username in room.get('players', []):
@@ -8916,6 +9275,30 @@ async def restore_user_backups(payload: dict):
         print(f'Restored {restored} browser user backup(s) to {USER_DATA_FILE}', flush=True)
     return {'ok': True, 'restored': restored}
 
+@app.post('/api/remember-login')
+async def remember_login_from_browser(payload: dict):
+    username = clean_username(payload.get('username'))
+    if not username:
+        return {'ok': False}
+    user_data = load_user_data()
+    user = get_users(user_data).get(username)
+    if not user:
+        return {'ok': False}
+    state.current_user = username
+    state.users_browser_restore_requested = False
+    ensure_user_defaults(user)
+    remember_known_user(username, user_data)
+    battle_unlocked_now = mark_battle_unlock_if_ready(user)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
+    state.sengoku_mode = bool(user.get('sengoku_mode') and user.get('sengoku_unlocked'))
+    persist_current_user_data(user_data)
+    reset_social_notification_state(show_existing=True)
+    if battle_unlocked_now:
+        print(f'Battle unlocked by remembered login: {username}', flush=True)
+    if sengoku_unlocked_now:
+        print(f'Sengoku unlocked by remembered login: {username}', flush=True)
+    return {'ok': True, 'username': username}
+
 @app.post('/api/avatar-adjust')
 async def save_avatar_adjustment(payload: dict):
     ok = save_avatar_adjustment_values(payload)
@@ -8968,9 +9351,12 @@ def add_history(country_data):
     history.insert(0, new_record)
     del history[50:]
     unlocked_now = mark_battle_unlock_if_ready(user)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     persist_current_user_data(user_data)
     if unlocked_now:
         ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
 
 def clear_history():
     user_data = load_user_data()
@@ -9119,6 +9505,24 @@ def toggle_ui_mode():
     state.ui_mode = 'pc' if is_mobile_ui() else 'mobile'
     refresh_current_screen()
 
+def apply_theme():
+    is_dark = state.theme_mode == 'dark'
+    script = f"""
+    (() => {{
+      document.documentElement.classList.toggle('wa-dark', {json.dumps(is_dark)});
+      localStorage.setItem('world_archives_theme', {json.dumps(state.theme_mode)});
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Theme update skipped: {e}", flush=True)
+
+def toggle_theme():
+    state.theme_mode = 'light' if state.theme_mode == 'dark' else 'dark'
+    apply_theme()
+    refresh_current_screen()
+
 def ui_mode_tooltip():
     return t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile')
 
@@ -9219,6 +9623,7 @@ def refresh_notification_content():
 
 def render_header(container):
     container.clear()
+    apply_theme()
     with container:
         header_classes = 'w-full min-h-16 bg-[#1a2332] items-center px-3 py-2 justify-between shadow-md flex-wrap gap-2' if is_mobile_ui() else 'w-full h-16 bg-[#1a2332] items-center px-4 justify-between shadow-md'
         title_classes = 'text-white font-bold text-base' if is_mobile_ui() else 'text-white font-bold text-lg'
@@ -9229,6 +9634,10 @@ def render_header(container):
                 ui.label(t('app_title')).classes(title_classes)
             with ui.row().classes(action_classes):
                 ui.button(icon=ui_mode_icon(), on_click=toggle_ui_mode).props('flat round color=white').tooltip(ui_mode_tooltip())
+                ui.button(
+                    icon='dark_mode' if state.theme_mode == 'light' else 'light_mode',
+                    on_click=toggle_theme,
+                ).props('flat round color=white').tooltip(t('theme_toggle'))
                 with ui.dropdown_button(text=state.lang.upper(), icon='language', auto_close=True).props('flat color=white dense'):
                     ui.item('日本語 (JA)', on_click=lambda: switch_language('ja'))
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
@@ -9242,9 +9651,16 @@ def render_header(container):
                         icon_size='2rem',
                         icon_classes='text-white',
                     )
-                    ui.label(current_user_label()) \
+                    header_name = f"{current_user_label()} {'👹' if header_user and header_user.get('sengoku_unlocked') else ''}".strip()
+                    ui.label(header_name) \
                         .classes('text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
                         .style(f'color: {user_name_color(header_user)};')
+                    if header_user and sengoku_is_user_eligible(user=header_user):
+                        ui.button(
+                            t('normal_mode') if state.sengoku_mode else t('sengoku_mode'),
+                            icon='local_fire_department',
+                            on_click=lambda: set_sengoku_mode(not state.sengoku_mode),
+                        ).props('flat color=white dense')
                     unread_count = unread_notification_count(header_user)
                     if unread_count:
                         ui.button(str(unread_count), icon='notifications', on_click=open_notifications_box) \
@@ -9263,6 +9679,9 @@ def render_header(container):
                 with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
                     ui.item(help_labels()['nav'], on_click=lambda: show_screen('help'))
                     ui.item(help_labels()['detail_nav'], on_click=lambda: show_screen('help_detail'))
+                    ui.separator()
+                    if state.current_user and battle_is_user_eligible(user=get_current_user_record()):
+                        ui.item(t('battle_direct'), on_click=lambda: show_screen('battle'))
                     ui.separator()
                     ui.item(t('quiz'), on_click=lambda: start_quiz('normal'))
                     ui.item(t('map'), on_click=lambda: show_screen('map'))
@@ -9285,14 +9704,20 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
     top_container = ui.column().classes('items-center gap-4')
     def refresh_top_ui():
         top_container.clear()
+        apply_theme()
         if not state.current_user:
             request_browser_backup_restore()
+            request_remembered_login()
+            ui.timer(1.0, request_remembered_login, once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
             ui.label(t('app_title')).classes('text-3xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-5xl font-bold text-[#1a2332]')
             ui.label(t('subtitle')).classes('text-base text-gray-500' if is_mobile_ui() else 'text-xl text-gray-500')
             ui.button(t('switch_to_pc') if is_mobile_ui() else t('switch_to_mobile'), icon=ui_mode_icon(), on_click=toggle_ui_mode) \
+                .props('outline color=primary') \
+                .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
+            ui.button(t('theme_light') if state.theme_mode == 'dark' else t('theme_dark'), icon='light_mode' if state.theme_mode == 'dark' else 'dark_mode', on_click=toggle_theme) \
                 .props('outline color=primary') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             ui.button(help_labels()['nav'], icon='help', on_click=lambda: show_screen('help')) \
@@ -9303,7 +9728,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
             if state.current_user:
                 top_user = get_current_user_record()
-                ui.label(t('logged_in_as').format(user=current_user_label())) \
+                top_name = f"{current_user_label()} {'👹' if top_user and top_user.get('sengoku_unlocked') else ''}".strip()
+                ui.label(t('logged_in_as').format(user=top_name)) \
                     .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(top_user)};')
                 daily = today_country()
@@ -9348,14 +9774,15 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 with ui.card().classes('w-full max-w-sm p-5 gap-3 shadow-md'):
                     ui.label(t('login_required')).classes('text-sm text-gray-500 text-center')
                     username_input = ui.input(label=t('username')).props('outlined dense').classes('w-full')
-                    password_input = ui.input(label=t('password')).props('outlined dense type=password').classes('w-full')
+                    password_input = ui.input(label=t('password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
+                    remember_checkbox = ui.checkbox(t('remember_login'), value=state.remember_login).props('dense')
                     with ui.row().classes('w-full gap-2 items-center'):
-                        ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value)) \
+                        ui.button(t('login'), icon='login', on_click=lambda: login_user(username_input.value, password_input.value, remember_checkbox.value)) \
                             .classes('flex-grow bg-[#1a2332] text-white')
-                        ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value)) \
+                        ui.button(t('register'), icon='person_add', on_click=lambda: register_user(username_input.value, password_input.value, remember_checkbox.value)) \
                             .props('outline color=primary') \
                             .classes('flex-grow')
-                    ui.button(t('guest_login'), icon='person', on_click=guest_login) \
+                    ui.button(t('guest_login'), icon='person', on_click=lambda: guest_login(remember_checkbox.value)) \
                         .props('outline color=grey') \
                         .classes('w-full')
             with ui.row().classes('mt-8 gap-4'):
@@ -9475,7 +9902,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 
         def update_keyword(e):
             state.page = 1
-            if apply_admin_search_cheat(e.value):
+            if apply_admin_search_cheat(e.value) or apply_sengoku_search_cheat(e.value):
                 state.search_keyword = ''
                 refresh_main_ui()
                 return
@@ -9959,7 +10386,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
                 ui.label(t('difficulty')).classes('text-sm font-bold text-gray-500')
-                for key in ['easy', 'medium', 'hard']:
+                if state.quiz_difficulty not in quiz_difficulty_options():
+                    state.quiz_difficulty = 'hard'
+                for key in quiz_difficulty_options():
                     color = 'primary' if state.quiz_difficulty == key else 'grey'
                     ui.button(t(f'difficulty_{key}'), on_click=lambda _, d=key: set_quiz_difficulty(d)) \
                         .props(f'outline color={color} dense')
@@ -10502,7 +10931,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
                             )
                             with ui.column().classes('gap-1 flex-grow'):
                                 with ui.row().classes('items-center gap-2 flex-wrap'):
-                                    ui.label(profile['username']) \
+                                    ui.label(f"{profile['username']} {'👹' if profile.get('sengoku_unlocked') else ''}".strip()) \
                                         .classes('text-xl font-bold') \
                                         .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
                                     if profile['username'] == state.current_user:
@@ -10624,7 +11053,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as rankings_scr
                     live=False,
                 )
                 with ui.column().classes('gap-1 flex-grow'):
-                    ui.label(profile['username']) \
+                    ui.label(f"{profile['username']} {'👹' if profile.get('sengoku_unlocked') else ''}".strip()) \
                         .classes('text-lg font-bold') \
                         .style(f"color: {profile.get('name_color', DEFAULT_NAME_COLOR)};")
                     ui.label(detail).classes('text-xs text-gray-500')
@@ -11245,6 +11674,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(battle_room_world_war_turn(room))}",
                 color='red',
             )
+            ui.badge(
+                f"{t('battle_events_setting')}: {t('battle_events_on') if battle_room_events_enabled(room) else t('battle_events_off')}",
+                color='orange',
+            )
+            if room.get('sengoku_mode'):
+                ui.badge(t('sengoku_mode'), color='purple')
             if mode in [FFA_MODE, TEAM_MODE]:
                 ui.badge(f"{t('battle_room_players')}: {len(players)} / {room.get('player_count', len(players))}", color='green')
             if not winner:
@@ -11260,20 +11695,26 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 with ui.row().classes('w-full gap-2 flex-wrap'):
                     for player in players:
                         hand_count = len(room.setdefault('hands', {}).get(player, []))
-                        ui.badge(
-                            f"{player}: {t('battle_team')} {teams.get(player, '-')} / {t('battle_hand_count')} {hand_count}",
-                            color='blue' if room.setdefault('hp', {}).get(player, 0) > 0 else 'grey',
-                        )
+                        with ui.row().classes('items-center gap-1'):
+                            ui.badge(
+                                f"{player}: {t('battle_team')} {teams.get(player, '-')} / {t('battle_hand_count')} {hand_count}",
+                                color='blue' if room.setdefault('hp', {}).get(player, 0) > 0 else 'grey',
+                            )
+                            if clean_username(room.get('host')) == username and player != username and not is_battle_bot(player):
+                                ui.button(t('battle_kick'), icon='person_remove', on_click=lambda _, p=player: kick_battle_player(p)).props('outline color=red dense')
             else:
                 with ui.grid(columns=1 if is_mobile_ui() else min(4, len(players))).classes('w-full gap-4'):
                     for player in players:
                         hand_count = len(room.setdefault('hands', {}).get(player, []))
-                        render_hp_bar(
-                            player,
-                            room.setdefault('hp', {}).get(player, BATTLE_MAX_HP),
-                            BATTLE_MAX_HP,
-                            f"{t('battle_hand_count')}: {hand_count}",
-                        )
+                        with ui.column().classes('w-full gap-2'):
+                            render_hp_bar(
+                                player,
+                                room.setdefault('hp', {}).get(player, BATTLE_MAX_HP),
+                                BATTLE_MAX_HP,
+                                f"{t('battle_hand_count')}: {hand_count}",
+                            )
+                            if clean_username(room.get('host')) == username and player != username and not is_battle_bot(player):
+                                ui.button(t('battle_kick'), icon='person_remove', on_click=lambda _, p=player: kick_battle_player(p)).props('outline color=red dense')
 
             if not winner:
                 render_battle_crisis_notice(room)
@@ -11389,6 +11830,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 with ui.card().classes('w-full p-5 gap-2'):
                     ui.label(t('battle_locked')).classes('font-bold text-gray-700')
                     ui.label(t('unlock_condition_not_met')).classes('text-sm text-gray-500')
+                    ui.label(t('battle_unlock_hint')).classes('text-sm text-gray-500')
                 return
             render_battle_help()
 
@@ -11409,6 +11851,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.badge(
                             f"{t('battle_room_world_war_setting')}: {battle_world_war_turn_label(waiting_entry.get('world_war_turn'))}",
                             color='red',
+                        )
+                        ui.badge(
+                            f"{t('battle_events_setting')}: {t('battle_events_on') if waiting_entry.get('events_enabled', True) else t('battle_events_off')}",
+                            color='orange',
                         )
                         ui.badge(
                             f"{t('battle_room_players')}: {waiting_entry.get('player_count', 2)}",
@@ -11443,6 +11889,17 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                                 battle_world_war_turn_label(turn),
                                 on_click=lambda _, value=turn: (
                                     setattr(state, 'battle_world_war_turn', value),
+                                    refresh_battle_view(),
+                                ),
+                            ).props(f'outline color={color} dense')
+                    with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                        ui.label(t('battle_events_setting')).classes('text-sm font-bold text-gray-500')
+                        for enabled, label_key in [(True, 'battle_events_on'), (False, 'battle_events_off')]:
+                            color = 'orange' if selected_battle_events_enabled() == enabled else 'grey'
+                            ui.button(
+                                t(label_key),
+                                on_click=lambda _, value=enabled: (
+                                    setattr(state, 'battle_events_enabled', value),
                                     refresh_battle_view(),
                                 ),
                             ).props(f'outline color={color} dense')
@@ -11552,7 +12009,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         with account_content:
             ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
             with ui.row().classes('w-full items-center gap-2 flex-wrap'):
-                ui.label(t('logged_in_as').format(user=current_user_label())) \
+                account_name = f"{current_user_label()} {'👹' if user.get('sengoku_unlocked') else ''}".strip()
+                ui.label(t('logged_in_as').format(user=account_name)) \
                     .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(user)};')
                 ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
@@ -11642,7 +12100,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         with ui.column().classes('w-full gap-2'):
                             ui.label(t('change_username')).classes('text-sm font-bold text-gray-700')
                             new_username_input = ui.input(label=t('new_username'), value=state.current_user).props('outlined dense').classes('w-full')
-                            rename_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full')
+                            rename_password_input = ui.input(label=t('current_password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
                             ui.button(
                                 t('change_username'),
                                 icon='manage_accounts',
@@ -11650,8 +12108,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             ).props('color=primary').classes('w-full' if is_mobile_ui() else 'self-start')
                         with ui.column().classes('w-full gap-2'):
                             ui.label(t('change_password')).classes('text-sm font-bold text-gray-700')
-                            current_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full')
-                            new_password_input = ui.input(label=t('new_password')).props('outlined dense type=password').classes('w-full')
+                            current_password_input = ui.input(label=t('current_password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
+                            new_password_input = ui.input(label=t('new_password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full')
                             ui.button(
                                 t('change_password'),
                                 icon='lock_reset',
@@ -11660,7 +12118,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     with ui.column().classes('w-full gap-2 border-t border-gray-200 pt-4'):
                         ui.label(t('delete_account')).classes('text-sm font-bold text-red-700')
                         ui.label(t('delete_account_warning')).classes('text-xs text-gray-500')
-                        delete_password_input = ui.input(label=t('current_password')).props('outlined dense type=password').classes('w-full' if is_mobile_ui() else 'max-w-md')
+                        delete_password_input = ui.input(label=t('current_password'), password=True, password_toggle_button=True).props('outlined dense').classes('w-full' if is_mobile_ui() else 'max-w-md')
                         ui.button(
                             t('delete_account'),
                             icon='delete_forever',
@@ -11675,6 +12133,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: show_screen('battle')).props('color=primary')
                 else:
                     ui.label(t('unlock_condition_not_met')).classes('text-sm text-gray-500')
+                    ui.label(t('battle_unlock_hint')).classes('text-xs text-gray-500')
+                ui.label(t('sengoku_unlock_hint')).classes('text-xs text-gray-500')
 
             backup = backup_labels()
             with ui.card().classes('w-full p-5 gap-3'):
