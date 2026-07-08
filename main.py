@@ -150,6 +150,41 @@ html.wa-dark .q-field__control {
 }
 </style>
 """)
+ui.add_body_html("""
+<script>
+(() => {
+  if (window.__worldArchivesHashRouterInstalled) return;
+  window.__worldArchivesHashRouterInstalled = true;
+  const appliedKey = 'world_archives_route_hash_applied';
+
+  window.worldArchivesRouteFromHash = async (force = false) => {
+    const rawHash = (window.location.hash || '').replace(/^#/, '').trim();
+    if (!rawHash) return;
+    if (!force && sessionStorage.getItem(appliedKey) === rawHash) return;
+    try {
+      const response = await fetch('/api/hash-route', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({hash: rawHash}),
+      });
+      const payload = await response.json();
+      if (payload && payload.ok) {
+        sessionStorage.setItem(appliedKey, payload.hash || rawHash);
+        window.location.reload();
+      } else {
+        sessionStorage.removeItem(appliedKey);
+      }
+    } catch (error) {
+      console.warn('hash route failed', error);
+    }
+  };
+
+  window.addEventListener('hashchange', () => window.worldArchivesRouteFromHash(true));
+  window.addEventListener('popstate', () => window.worldArchivesRouteFromHash(true));
+  setTimeout(() => window.worldArchivesRouteFromHash(false), 120);
+})();
+</script>
+""")
 
 def app_now():
     return datetime.now(APP_TIMEZONE)
@@ -660,6 +695,7 @@ class AppState:
     social_notify_user = None
     social_notify_snapshot = None
     ranking_quiz_category = 'overall'
+    current_screen = 'top'
 
 state = AppState()
 
@@ -3192,6 +3228,7 @@ def login_user(username, password, remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
+    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
     return True
 
 def guest_login(remember_login=None):
@@ -3231,6 +3268,7 @@ def guest_login(remember_login=None):
     if sengoku_unlocked_now:
         ui.notify(t('sengoku_unlocked_notice'), color='positive')
     show_screen('top')
+    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
     return True
 
 def register_user(username, password, remember_login=None):
@@ -3270,6 +3308,7 @@ def register_user(username, password, remember_login=None):
     reset_social_notification_state()
     ui.notify(t('user_created'), color='positive')
     show_screen('top')
+    ui.timer(0.3, lambda: request_hash_route_from_browser(force=True), once=True)
     return True
 
 def logout_user():
@@ -9392,11 +9431,97 @@ def clear_history():
 # ========================================
 # 画面切り替え
 # ========================================
-def show_screen(screen_name):
+SCREEN_HASHES = {
+    'top': 'home',
+    'main': 'search',
+    'result': 'detail',
+    'quiz': 'quiz',
+    'compare': 'compare',
+    'timeline': 'timeline',
+    'map': 'map',
+    'network': 'network',
+    'account': 'account',
+    'users': 'users',
+    'public_collection': 'collection',
+    'battle': 'battle',
+    'rankings': 'rankings',
+    'social': 'friends',
+    'help': 'help',
+    'help_detail': 'help-detail',
+}
+
+HASH_SCREENS = {
+    **{hash_value: screen for screen, hash_value in SCREEN_HASHES.items()},
+    '': 'top',
+    'top': 'top',
+    'home': 'top',
+    'main': 'main',
+    'countries': 'main',
+    'country': 'result',
+    'detail': 'result',
+    'chat': 'social',
+    'social': 'social',
+    'guide': 'help',
+    'help_detail': 'help_detail',
+}
+
+def hash_for_screen(screen_name):
+    return SCREEN_HASHES.get(screen_name, 'home')
+
+def screen_from_hash(hash_value):
+    normalized = str(hash_value or '').strip().lstrip('#').split('?', 1)[0].split('&', 1)[0].casefold()
+    return HASH_SCREENS.get(normalized, 'top')
+
+def update_browser_hash(screen_name):
+    hash_value = hash_for_screen(screen_name)
+    script = f"""
+    (() => {{
+      const target = {json.dumps(hash_value)};
+      const appliedKey = 'world_archives_route_hash_applied';
+      sessionStorage.setItem(appliedKey, target);
+      const current = (window.location.hash || '').replace(/^#/, '');
+      if (current !== target) {{
+        history.pushState(null, '', '#' + target);
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Hash update skipped: {e}", flush=True)
+
+def request_hash_route_from_browser(force=False):
+    script = f"""
+    (() => {{
+      if (window.worldArchivesRouteFromHash) {{
+        window.worldArchivesRouteFromHash({json.dumps(bool(force))});
+      }}
+    }})();
+    """
+    try:
+        ui.run_javascript(script)
+    except Exception as e:
+        print(f"Hash route request skipped: {e}", flush=True)
+
+@app.post('/api/hash-route')
+async def route_from_hash(payload: dict):
+    screen_name = screen_from_hash(payload.get('hash'))
+    protected_screens = {'main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social'}
+    if screen_name in protected_screens and not state.current_user:
+        return {'ok': False, 'login_required': True}
+    show_screen(screen_name, update_hash=False, notify=False)
+    return {'ok': True, 'screen': state.current_screen, 'hash': hash_for_screen(state.current_screen)}
+
+def show_screen(screen_name, update_hash=True, notify=True):
     protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
     if screen_name in protected_screens and not state.current_user:
-        ui.notify(t('login_required'), color='warning')
+        if notify:
+            ui.notify(t('login_required'), color='warning')
         screen_name = 'top'
+    if screen_name == 'result' and not state.selected_country:
+        screen_name = 'main' if state.current_user else 'top'
+    if screen_name == 'public_collection' and not state.public_collection_keys:
+        screen_name = 'users' if state.current_user else 'top'
 
     if screen_name == 'top':
         state.search_keyword = ''
@@ -9461,6 +9586,9 @@ def show_screen(screen_name):
         refresh_help_view()
     if screen_name == 'help_detail':
         refresh_help_detail_view()
+    state.current_screen = screen_name
+    if update_hash:
+        update_browser_hash(screen_name)
 
 def switch_language(lang_code):
     state.lang = lang_code
@@ -9733,6 +9861,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             request_browser_backup_restore()
             request_remembered_login()
             ui.timer(1.0, lambda: request_remembered_login(force=True), once=True)
+        else:
+            ui.timer(0.2, lambda: request_hash_route_from_browser(force=False), once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
