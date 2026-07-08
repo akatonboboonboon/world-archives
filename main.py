@@ -178,7 +178,12 @@ ui.add_body_html("""
         if (currentHash !== nextHash) {
           history.replaceState(null, '', '#' + nextHash);
         }
-        window.location.reload();
+        const shouldReload = payload.reload !== false && (
+          payload.redirect_hash || currentHash !== nextHash || payload.screen !== 'login'
+        );
+        if (shouldReload) {
+          window.location.reload();
+        }
       } else {
         sessionStorage.removeItem(appliedKey);
       }
@@ -2664,6 +2669,8 @@ def request_remembered_login(force=False):
     script = f"""
     (async () => {{
       if (localStorage.getItem('{REMEMBER_LOGIN_KEY}') !== '1') return;
+      const triedKey = 'world_archives_remember_login_tried';
+      if (sessionStorage.getItem(triedKey) === '1') return;
       const username = localStorage.getItem('world_archives_last_user') || '';
       if (!username) return;
       try {{
@@ -2674,6 +2681,7 @@ def request_remembered_login(force=False):
         }});
         const payload = await response.json();
         if (payload && payload.ok) {{
+          sessionStorage.setItem(triedKey, '1');
           location.reload();
         }}
       }} catch (error) {{
@@ -9568,7 +9576,12 @@ async def route_from_hash(payload: dict):
     if screen_name == 'login' and state.current_user:
         screen_name = 'top'
     state.pending_hash_screen = screen_name
-    return {'ok': True, 'screen': screen_name, 'hash': hash_for_screen(screen_name)}
+    return {
+        'ok': True,
+        'screen': screen_name,
+        'hash': hash_for_screen(screen_name),
+        'reload': screen_name != 'login',
+    }
 
 def show_screen(screen_name, update_hash=True, notify=True):
     protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
