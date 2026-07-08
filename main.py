@@ -480,6 +480,28 @@ def merge_user_record(current, incoming):
     normalize_quiz_stats(current)
     return current
 
+def restore_all_viewed_progress_if_unlocked(user):
+    if not isinstance(user, dict) or not user.get('battle_unlocked_notified'):
+        return False
+    unlock_keys_func = globals().get('battle_unlock_country_keys')
+    if not callable(unlock_keys_func):
+        return False
+    try:
+        needed_keys = unlock_keys_func()
+    except Exception:
+        return False
+    viewed = user.setdefault('viewed_keys', [])
+    if not isinstance(viewed, list):
+        viewed = []
+        user['viewed_keys'] = viewed
+    existing = set(viewed)
+    before = len(existing)
+    for key in needed_keys:
+        if key not in existing:
+            viewed.append(key)
+            existing.add(key)
+    return len(existing) > before
+
 def migrate_embedded_user_data():
     if not os.path.exists(JSON_FILE):
         return
@@ -2342,6 +2364,7 @@ def ensure_user_defaults(user):
         user['battle_wins'] = 0
     if not isinstance(user.get('battle_unlocked_notified'), bool):
         user['battle_unlocked_notified'] = False
+    restore_all_viewed_progress_if_unlocked(user)
     return user
 
 BROWSER_BACKUP_KEY = 'world_archives_user_backups'
@@ -2382,6 +2405,16 @@ def sync_current_user_to_browser(user_data=None):
             Number(payload.record.quiz_stats[field] || 0),
             Number(existingStats[field] || 0),
           );
+        }});
+        ['viewed_keys'].forEach(field => {{
+          const merged = [];
+          const seen = new Set();
+          [...(payload.record[field] || []), ...(existingRecord[field] || [])].forEach(item => {{
+            if (!item || seen.has(item)) return;
+            seen.add(item);
+            merged.push(item);
+          }});
+          payload.record[field] = merged;
         }});
         const seenQuiz = new Set();
         const mergedQuizHistory = [];
@@ -2958,6 +2991,8 @@ def login_user(username, password):
     remember_known_user(username, user_data)
     unlocked_now = mark_battle_unlock_if_ready(user)
     persist_current_user_data(user_data)
+    request_browser_backup_restore()
+    ui.timer(1.2, lambda: sync_current_user_to_browser(load_user_data()), once=True)
     reset_social_notification_state(show_existing=True)
     ui.notify(t('login_success'), color='positive')
     if unlocked_now:
