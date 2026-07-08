@@ -2193,6 +2193,37 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'staff_roll_source_heading': '参考资料、图片与地图',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_bomb_notice': '爆弾カードがどこかの手札にあります。持ち主は本人にだけ表示されます。',
+    'battle_bomb_start_log': '爆弾カードが誰かの手札に入りました。',
+    'battle_bomb_pass_log': '爆弾カードが移動しました。',
+    'battle_bomb_card_hint': '場に出すと誰かの手札へ移ります。持ったままイベントが終わると危険です。',
+    'battle_bomb_in_your_hand': '爆弾カードがあなたの手札にあります。',
+    'battle_bomb_secret_move': '爆弾カードが移動しました。',
+    'battle_bomb_lytton_explode_log': 'リットン調査団が爆弾カードを発見し、{holder}と{viewer}が{damage}ダメージに巻き込まれました。',
+    'battle_bomb_lytton_notice': 'リットン調査団が爆弾カードを見つけてしまいました。爆発に巻き込まれます。',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'battle_bomb_notice': "A bomb card is hidden in someone's hand. Only its holder can see it clearly.",
+    'battle_bomb_start_log': "A bomb card entered someone's hand.",
+    'battle_bomb_pass_log': 'The bomb card moved.',
+    'battle_bomb_card_hint': "Play it to pass it to someone's hand. Holding it when the event ends is dangerous.",
+    'battle_bomb_in_your_hand': 'The bomb card is in your hand.',
+    'battle_bomb_secret_move': 'The bomb card moved.',
+    'battle_bomb_lytton_explode_log': 'The Lytton Commission found the bomb card. {holder} and {viewer} were caught for {damage} damage.',
+    'battle_bomb_lytton_notice': 'The Lytton Commission found the bomb card. You are caught in the blast.',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'battle_bomb_notice': '炸弹牌藏在某个人的手牌中。只有持有人能清楚看到。',
+    'battle_bomb_start_log': '炸弹牌进入了某个人的手牌。',
+    'battle_bomb_pass_log': '炸弹牌移动了。',
+    'battle_bomb_card_hint': '打出可传到某个人手中。事件结束时还拿着会很危险。',
+    'battle_bomb_in_your_hand': '炸弹牌在你的手牌中。',
+    'battle_bomb_secret_move': '炸弹牌移动了。',
+    'battle_bomb_lytton_explode_log': '李顿调查团发现了炸弹牌，{holder}和{viewer}受到{damage}伤害。',
+    'battle_bomb_lytton_notice': '李顿调查团发现了炸弹牌。你被卷入爆炸。',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -8325,8 +8356,6 @@ def resolve_battle_bomb_transfers(room, entries, result_parts, visual=None):
         result_parts.append(t('battle_bomb_pass_log').format(player=player, target=target))
         if visual is not None:
             visual.setdefault('bombs', []).append({
-                'source': player,
-                'target': target,
                 'card': battle_visual_card(BATTLE_BOMB_CARD, room=room),
             })
     if new_holder:
@@ -8483,6 +8512,42 @@ def battle_expire_bomb_event(room, result_parts):
     dealt = battle_apply_damage_to_player_or_team(room, holder, damage)
     if dealt:
         result_parts.append(t('battle_bomb_explode_log').format(player=holder, damage=format_battle_number(dealt)))
+
+def battle_trigger_lytton_bomb(room, viewer, visible_players):
+    viewer = clean_username(viewer)
+    visible_players = set(visible_players or [])
+    if not battle_lytton_active(room) or not viewer or viewer not in active_battle_players(room):
+        return False
+    holder = battle_find_bomb_holder(room)
+    if not holder or holder not in visible_players:
+        return False
+
+    remove_all_battle_bomb_cards(room)
+    room['bomb_holder'] = None
+    room['bomb_until_turn'] = 0
+    hp_limit = battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
+    damage = max(1, hp_limit * BATTLE_BOMB_DAMAGE_PERCENT // 100)
+    dealt_holder = battle_apply_damage_to_player_or_team(room, holder, damage)
+    dealt_viewer = 0 if viewer == holder else battle_apply_damage_to_player_or_team(room, viewer, damage)
+    shown_damage = max(dealt_holder, dealt_viewer, damage)
+    append_battle_log(room, t('battle_bomb_lytton_explode_log').format(
+        holder=holder,
+        viewer=viewer,
+        damage=format_battle_number(shown_damage),
+    ))
+    room['last_turn'] = trim_battle_last_turn({
+        **(room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}),
+        'bombs': [{
+            'card': battle_visual_card(BATTLE_BOMB_CARD, room=room),
+            'damage': shown_damage,
+        }],
+    })
+    set_battle_winner_if_finished(room)
+    save_battle_state(load_battle_state())
+    if viewer == state.current_user:
+        ui.notify(t('battle_bomb_lytton_notice'), color='negative')
+        ui.timer(0.2, refresh_battle_view, once=True)
+    return True
 
 def battle_start_bomb_event(room, turn, result_parts):
     players = active_battle_players(room)
@@ -11537,14 +11602,18 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             damage = battle_special_card_damage(key, hp_limit)
             heal = battle_special_card_heal(key, hp_limit)
             selected = key in state.battle_selected_keys
-            with ui.column().classes('gap-2 rounded border border-red-300 bg-red-50 p-3'):
+            is_bomb = BATTLE_SPECIAL_CARDS.get(key, {}).get('bomb')
+            card_classes = 'gap-2 rounded border p-3'
+            card_classes += ' border-pink-500 bg-pink-100 shadow-lg' if is_bomb else ' border-red-300 bg-red-50'
+            with ui.column().classes(card_classes):
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
                     if is_battle_playable_special_card(key):
                         ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
-                    ui.icon('warning').classes('text-red-600')
-                    ui.label(battle_special_card_label(key)).classes('font-bold text-red-800 text-sm')
+                    ui.icon('priority_high' if is_bomb else 'warning').classes('text-pink-700' if is_bomb else 'text-red-600')
+                    ui.label(battle_special_card_label(key)).classes('font-bold text-pink-900 text-sm' if is_bomb else 'font-bold text-red-800 text-sm')
                 ui.label(t('battle_special_card')).classes('text-xs font-bold text-red-600')
-                if BATTLE_SPECIAL_CARDS.get(key, {}).get('bomb'):
+                if is_bomb:
+                    ui.badge(t('battle_bomb_in_your_hand'), color='pink')
                     ui.label(t('battle_bomb_card_hint')).classes('text-xs font-bold text-red-700')
                 if damage:
                     ui.label(f"{t('battle_special_damage')}: {format_battle_number(damage)}").classes('text-xs text-red-700')
@@ -11605,9 +11674,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         if battle_bomb_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-pink-300 bg-pink-50'):
                 ui.label(t('battle_bomb_title')).classes('text-2xl font-black text-pink-800')
-                holder = battle_find_bomb_holder(room)
-                notice = t('battle_bomb_notice').format(player=holder or '?')
-                ui.label(notice).classes('text-sm font-bold text-pink-700')
+                ui.label(t('battle_bomb_notice')).classes('text-sm font-bold text-pink-700')
         if battle_lytton_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-sky-300 bg-sky-50'):
                 ui.label(t('battle_lytton_title')).classes('text-2xl font-black text-sky-800')
@@ -11647,11 +11714,13 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             visible_players = [player for player in players if player != username]
         if not visible_players:
             return
+        if not is_spectator and battle_trigger_lytton_bomb(room, username, visible_players):
+            return
         with ui.card().classes('w-full p-5 gap-3 border border-sky-200 bg-sky-50'):
             ui.label(t('battle_revealed_hands')).classes('text-lg font-bold text-sky-900')
             with ui.grid(columns=1 if is_mobile_ui() else min(3, len(visible_players))).classes('w-full gap-3'):
                 for player in visible_players:
-                    hand = room.setdefault('hands', {}).get(player, [])
+                    hand = [key for key in room.setdefault('hands', {}).get(player, []) if key != BATTLE_BOMB_CARD]
                     with ui.column().classes('gap-2 rounded border border-sky-100 bg-white p-3'):
                         ui.label(f"{player} / {t('battle_hand_count')} {len(hand)}").classes('font-bold text-[#1a2332]')
                         if not hand:
@@ -11677,7 +11746,9 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                     parts.append('x1')
                 return f"{row.get('player', '')}: {row.get('name', '')} {' '.join(parts)}"
             if kind == 'bomb':
-                return f"{row.get('source', '')} -> {row.get('target', '')}"
+                if row.get('damage'):
+                    return f"{t('battle_bomb_secret_move')}: -{format_battle_number(row.get('damage', 0))}"
+                return t('battle_bomb_secret_move')
             if kind == 'damage' and row.get('outcome') in ['draw', 'blocked', 'overpowered'] and not row.get('damage'):
                 return f"{row.get('source', '')} -> {row.get('target', '')}: {t('battle_no_damage')}"
             return f"{row.get('source', '')} -> {row.get('target', '')}: -{format_battle_number(row.get('damage', 0))}"
