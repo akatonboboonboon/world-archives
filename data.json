@@ -31306,6 +31306,2349 @@
           "zh": "主要语言为俄语、摩尔多瓦语、乌克兰语，主要宗教为东正教。结合地域、语言、宗教和国际地位来看，更容易理解其特点。"
         }
       }
+    },
+    {
+      "names": {
+        "ja": "ローマ帝国",
+        "en": "Roman Empire",
+        "zh": "罗马帝国"
+      },
+      "capital": {
+        "ja": "ローマ",
+        "en": "Rome",
+        "zh": "罗马"
+      },
+      "type": "Past",
+      "region": "Europe, Middle East, North Africa",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Classical Antiquity",
+        "Mediterranean Trade",
+        "Roman Legacy",
+        "Latin Christian World",
+        "Multilingual State",
+        "Military Government"
+      ],
+      "desc": {
+        "ja": "地中海世界を統合した古代最大級の帝国。法、都市、道路、ラテン文化、キリスト教世界の形成に大きな影響を残した。",
+        "en": "One of antiquity's largest empires, unifying the Mediterranean world and leaving a major legacy in law, cities, roads, Latin culture, and Christianity.",
+        "zh": "统一地中海世界的古代大帝国之一，对法律、城市、道路、拉丁文化和基督教世界产生深远影响。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -27,
+        "end": 395,
+        "label": {
+          "ja": "紀元前27年〜395年",
+          "en": "27 BCE-395",
+          "zh": "公元前27年—395年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約6000万〜7000万人",
+          "en": "peak estimate: about 60-70 million",
+          "zh": "鼎盛期估计：约6000万—7000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約5,000,000 km²",
+          "en": "maximum extent estimate: about 5,000,000 km²",
+          "zh": "最大领域估计：约5,000,000 km²"
+        },
+        "languages": {
+          "ja": "ラテン語、ギリシャ語、地域諸語",
+          "en": "Latin, Greek, and local languages",
+          "zh": "拉丁语、希腊语及地方语言"
+        },
+        "religions": {
+          "ja": "ローマ宗教、キリスト教、地域宗教",
+          "en": "Roman religion, Christianity, and local religions",
+          "zh": "罗马宗教、基督教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ローマ帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ローマの支配層が政治、軍事、外交を動かした。",
+          "en": "For Roman Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Rome shaped politics, warfare, and diplomacy.",
+          "zh": "罗马帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以罗马为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前27年〜395年に活動。ローマを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてヨーロッパ・中東・北アフリカの歴史に大きな影響を与えた。",
+          "en": "Active during 27 BCE-395. It formed and expanded around Rome, influencing the history of Europe, the Middle East, and North Africa through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前27年—395年。以罗马为中心形成和扩张，并通过战争、贸易、外交和统治制度影响欧洲、中东和北非历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "西ローマ帝国、東ローマ帝国、イタリア、フランス、スペイン、ドイツなどと比較すると継承関係が分かりやすい。",
+          "en": "It is useful to compare it with the Western Roman Empire, Byzantine Empire, Italy, France, Spain, and Germany.",
+          "zh": "可与西罗马帝国、东罗马帝国、意大利、法国、西班牙和德国等联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はラテン語、ギリシャ語、地域諸語、宗教はローマ宗教、キリスト教、地域宗教と関係が深い。帝国、古代、地中海交易、ローマ的遺産という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Latin, Greek, and local languages and Roman religion, Christianity, and local religions. The themes Empire, Antiquity, Mediterranean trade, Roman legacy help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与拉丁语、希腊语及地方语言和罗马宗教、基督教及地方宗教关系密切。可从帝国、古代、地中海贸易、罗马遗产等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Italy",
+        "Byzantine Empire",
+        "Holy Roman Empire",
+        "France",
+        "Spain",
+        "Germany"
+      ]
+    },
+    {
+      "names": {
+        "ja": "西ローマ帝国",
+        "en": "Western Roman Empire",
+        "zh": "西罗马帝国"
+      },
+      "capital": {
+        "ja": "ラヴェンナ",
+        "en": "Ravenna",
+        "zh": "拉文纳"
+      },
+      "type": "Past",
+      "region": "Europe, North Africa",
+      "tags": [
+        "Empire",
+        "Classical Antiquity",
+        "Roman Legacy",
+        "Latin Christian World",
+        "Military Government",
+        "Mediterranean Trade",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ローマ帝国の西半分を継承した政権。ゲルマン諸勢力の進出とともに解体し、西欧中世の出発点になった。",
+        "en": "The western half of the Roman imperial order. Its collapse amid Germanic migrations became a starting point for medieval Western Europe.",
+        "zh": "继承罗马帝国西半部的政权。随着日耳曼诸势力进入而瓦解，成为西欧中世纪的重要起点。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 395,
+        "end": 476,
+        "label": {
+          "ja": "395年〜476年",
+          "en": "395-476",
+          "zh": "395年—476年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,000,000 km²",
+          "en": "maximum extent estimate: about 2,000,000 km²",
+          "zh": "最大领域估计：约2,000,000 km²"
+        },
+        "languages": {
+          "ja": "ラテン語、地域諸語",
+          "en": "Latin and local languages",
+          "zh": "拉丁语及地方语言"
+        },
+        "religions": {
+          "ja": "キリスト教、ローマ宗教",
+          "en": "Christianity and Roman religion",
+          "zh": "基督教、罗马宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "西ローマ帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ラヴェンナの支配層が政治、軍事、外交を動かした。",
+          "en": "For Western Roman Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Ravenna shaped politics, warfare, and diplomacy.",
+          "zh": "西罗马帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以拉文纳为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "395年〜476年に活動。ラヴェンナを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて西ヨーロッパ・北アフリカの歴史に大きな影響を与えた。",
+          "en": "Active during 395-476. It formed and expanded around Ravenna, influencing the history of Western Europe and North Africa through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于395年—476年。以拉文纳为中心形成和扩张，并通过战争、贸易、外交和统治制度影响西欧和北非历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "イタリア、西ゴート王国、フランク王国、東ローマ帝国などと関連づけて理解できる。",
+          "en": "It connects closely with Italy, the Visigothic Kingdom, the Frankish Kingdom, and the Byzantine Empire.",
+          "zh": "可与意大利、西哥特王国、法兰克王国和东罗马帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はラテン語、地域諸語、宗教はキリスト教、ローマ宗教と関係が深い。ローマ的遺産、古代末期、キリスト教世界という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Latin and local languages and Christianity and Roman religion. The themes Roman legacy, Late Antiquity, Christian world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与拉丁语及地方语言和基督教、罗马宗教关系密切。可从罗马遗产、古代晚期、基督教世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Roman Empire",
+        "Byzantine Empire",
+        "Visigothic Kingdom",
+        "Frankish Empire",
+        "Italy"
+      ]
+    },
+    {
+      "names": {
+        "ja": "大英帝国",
+        "en": "British Empire",
+        "zh": "大英帝国"
+      },
+      "capital": {
+        "ja": "ロンドン",
+        "en": "London",
+        "zh": "伦敦"
+      },
+      "type": "Past",
+      "region": "Global (Europe)",
+      "tags": [
+        "Empire",
+        "Colonial Empire",
+        "Atlantic Empire",
+        "Maritime Power",
+        "Naval Power",
+        "Industrial Power",
+        "Financial Center",
+        "Anglophone World",
+        "Commonwealth"
+      ],
+      "desc": {
+        "ja": "近代最大の植民地帝国。海軍力、産業革命、金融、英語圏、コモンウェルス形成に大きな影響を与えた。",
+        "en": "The largest modern colonial empire, shaped by naval power, industrialization, finance, the Anglophone world, and the Commonwealth.",
+        "zh": "近代最大的殖民帝国，对海军力量、工业化、金融、英语世界和英联邦形成产生巨大影响。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Kingdom.svg",
+      "period": {
+        "start": 1583,
+        "end": 1997,
+        "label": {
+          "ja": "1583年〜1997年",
+          "en": "1583-1997",
+          "zh": "1583年—1997年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約4.12億人",
+          "en": "peak estimate: about 412 million",
+          "zh": "鼎盛期估计：约4.12亿人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約35,500,000 km²",
+          "en": "maximum extent estimate: about 35,500,000 km²",
+          "zh": "最大领域估计：约35,500,000 km²"
+        },
+        "languages": {
+          "ja": "英語、地域諸語",
+          "en": "English and local languages",
+          "zh": "英语及地方语言"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、ヒンドゥー教、仏教、地域宗教",
+          "en": "Christianity, Islam, Hinduism, Buddhism, and local religions",
+          "zh": "基督教、伊斯兰教、印度教、佛教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "大英帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ロンドンの支配層が政治、軍事、外交を動かした。",
+          "en": "For British Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around London shaped politics, warfare, and diplomacy.",
+          "zh": "大英帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以伦敦为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1583年〜1997年に活動。ロンドンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて世界各地の歴史に大きな影響を与えた。",
+          "en": "Active during 1583-1997. It formed and expanded around London, influencing the history of the world through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1583年—1997年。以伦敦为中心形成和扩张，并通过战争、贸易、外交和统治制度影响世界各地历史。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配への抵抗、民族運動、世界大戦後の国際環境の変化、財政・軍事負担によって解体が進んだ。",
+          "en": "Resistance to colonial rule, nationalist movements, the postwar international order, and fiscal and military costs drove its dissolution.",
+          "zh": "反殖民运动、民族主义、战后国际秩序变化以及财政和军事负担推动了其解体。"
+        },
+        "successors": {
+          "ja": "イギリス、カナダ、オーストラリア、インド、南アフリカ、コモンウェルス諸国と関連が深い。",
+          "en": "It connects with the United Kingdom, Canada, Australia, India, South Africa, and Commonwealth countries.",
+          "zh": "与英国、加拿大、澳大利亚、印度、南非和英联邦国家关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語は英語、地域諸語、宗教はキリスト教、イスラム教、ヒンドゥー教、仏教、地域宗教と関係が深い。植民地帝国、海洋帝国、産業、英語圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with English and local languages and Christianity, Islam, Hinduism, Buddhism, and local religions. The themes colonial empire, maritime empire, industry, Anglophone world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与英语及地方语言和基督教、伊斯兰教、印度教、佛教及地方宗教关系密切。可从殖民帝国、海洋帝国、工业、英语世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "United Kingdom",
+        "Canada",
+        "Australia",
+        "India",
+        "South Africa",
+        "New Zealand"
+      ]
+    },
+    {
+      "names": {
+        "ja": "スペイン帝国",
+        "en": "Spanish Empire",
+        "zh": "西班牙帝国"
+      },
+      "capital": {
+        "ja": "マドリード",
+        "en": "Madrid",
+        "zh": "马德里"
+      },
+      "type": "Past",
+      "region": "Global (Europe)",
+      "tags": [
+        "Empire",
+        "Colonial Empire",
+        "Atlantic Empire",
+        "Maritime Power",
+        "Catholic Sphere",
+        "Hispanophone World",
+        "Resource Economy",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "アメリカ大陸と太平洋に広がった巨大植民地帝国。銀貿易、カトリック布教、スペイン語圏形成の中心となった。",
+        "en": "A vast colonial empire across the Americas and the Pacific, central to silver trade, Catholic missions, and the Hispanophone world.",
+        "zh": "横跨美洲和太平洋的巨大殖民帝国，是白银贸易、天主教传播和西班牙语世界形成的核心。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Cross_of_Burgundy.svg",
+      "period": {
+        "start": 1492,
+        "end": 1976,
+        "label": {
+          "ja": "1492年〜1976年",
+          "en": "1492-1976",
+          "zh": "1492年—1976年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約6800万人",
+          "en": "peak estimate: about 68 million",
+          "zh": "鼎盛期估计：约6800万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約13,700,000 km²",
+          "en": "maximum extent estimate: about 13,700,000 km²",
+          "zh": "最大领域估计：约13,700,000 km²"
+        },
+        "languages": {
+          "ja": "スペイン語、先住民諸語、地域諸語",
+          "en": "Spanish, Indigenous languages, and local languages",
+          "zh": "西班牙语、原住民语言及地方语言"
+        },
+        "religions": {
+          "ja": "カトリック、先住民宗教",
+          "en": "Catholic Christianity and Indigenous religions",
+          "zh": "天主教及原住民宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "スペイン帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地マドリードの支配層が政治、軍事、外交を動かした。",
+          "en": "For Spanish Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Madrid shaped politics, warfare, and diplomacy.",
+          "zh": "西班牙帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以马德里为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1492年〜1976年に活動。マドリードを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてヨーロッパ・アメリカ大陸・アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1492-1976. It formed and expanded around Madrid, influencing the history of Europe, the Americas, and Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1492年—1976年。以马德里为中心形成和扩张，并通过战争、贸易、外交和统治制度影响欧洲、美洲和亚洲历史。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配への抵抗、民族運動、世界大戦後の国際環境の変化、財政・軍事負担によって解体が進んだ。",
+          "en": "Resistance to colonial rule, nationalist movements, the postwar international order, and fiscal and military costs drove its dissolution.",
+          "zh": "反殖民运动、民族主义、战后国际秩序变化以及财政和军事负担推动了其解体。"
+        },
+        "successors": {
+          "ja": "スペイン、メキシコ、ペルー、フィリピン、ラテンアメリカ諸国と関係が深い。",
+          "en": "It connects with Spain, Mexico, Peru, the Philippines, and many Latin American states.",
+          "zh": "与西班牙、墨西哥、秘鲁、菲律宾和许多拉丁美洲国家关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はスペイン語、先住民諸語、地域諸語、宗教はカトリック、先住民宗教と関係が深い。植民地帝国、大西洋帝国、カトリック圏、スペイン語圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Spanish, Indigenous languages, and local languages and Catholic Christianity and Indigenous religions. The themes colonial empire, Atlantic empire, Catholic sphere, Hispanophone world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与西班牙语、原住民语言及地方语言和天主教及原住民宗教关系密切。可从殖民帝国、大西洋帝国、天主教圈、西班牙语世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Spain",
+        "Mexico",
+        "Peru",
+        "Philippines",
+        "Argentina",
+        "Colombia"
+      ]
+    },
+    {
+      "names": {
+        "ja": "フランス植民地帝国",
+        "en": "French Colonial Empire",
+        "zh": "法兰西殖民帝国"
+      },
+      "capital": {
+        "ja": "パリ",
+        "en": "Paris",
+        "zh": "巴黎"
+      },
+      "type": "Past",
+      "region": "Global (Europe)",
+      "tags": [
+        "Empire",
+        "Colonial Empire",
+        "Atlantic Empire",
+        "Maritime Power",
+        "Francophone World",
+        "Catholic Sphere",
+        "Resource Economy",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "北米、カリブ海、アフリカ、インドシナなどに広がったフランスの植民地帝国。フランス語圏形成に大きな影響を残した。",
+        "en": "France's colonial empire spread across North America, the Caribbean, Africa, and Indochina, strongly shaping the Francophone world.",
+        "zh": "法国殖民帝国曾扩展到北美、加勒比、非洲和印度支那，对法语世界形成影响深远。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_France.svg",
+      "period": {
+        "start": 1534,
+        "end": 1980,
+        "label": {
+          "ja": "1534年〜1980年",
+          "en": "1534-1980",
+          "zh": "1534年—1980年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1.1億人",
+          "en": "peak estimate: about 110 million",
+          "zh": "鼎盛期估计：约1.1亿人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約13,500,000 km²",
+          "en": "maximum extent estimate: about 13,500,000 km²",
+          "zh": "最大领域估计：约13,500,000 km²"
+        },
+        "languages": {
+          "ja": "フランス語、アラビア語、ベトナム語、地域諸語",
+          "en": "French, Arabic, Vietnamese, and local languages",
+          "zh": "法语、阿拉伯语、越南语及地方语言"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、仏教、地域宗教",
+          "en": "Christianity, Islam, Buddhism, and local religions",
+          "zh": "基督教、伊斯兰教、佛教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "フランス植民地帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地パリの支配層が政治、軍事、外交を動かした。",
+          "en": "For French Colonial Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Paris shaped politics, warfare, and diplomacy.",
+          "zh": "法兰西殖民帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以巴黎为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1534年〜1980年に活動。パリを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて世界各地の歴史に大きな影響を与えた。",
+          "en": "Active during 1534-1980. It formed and expanded around Paris, influencing the history of the world through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1534年—1980年。以巴黎为中心形成和扩张，并通过战争、贸易、外交和统治制度影响世界各地历史。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配への抵抗、民族運動、世界大戦後の国際環境の変化、財政・軍事負担によって解体が進んだ。",
+          "en": "Resistance to colonial rule, nationalist movements, the postwar international order, and fiscal and military costs drove its dissolution.",
+          "zh": "反殖民运动、民族主义、战后国际秩序变化以及财政和军事负担推动了其解体。"
+        },
+        "successors": {
+          "ja": "フランス、カナダ、ベトナム、アルジェリア、セネガルなどと関係が深い。",
+          "en": "It connects with France, Canada, Vietnam, Algeria, Senegal, and other Francophone states.",
+          "zh": "与法国、加拿大、越南、阿尔及利亚、塞内加尔等法语圈国家关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はフランス語、アラビア語、ベトナム語、地域諸語、宗教はキリスト教、イスラム教、仏教、地域宗教と関係が深い。植民地帝国、フランス語圏、海洋交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with French, Arabic, Vietnamese, and local languages and Christianity, Islam, Buddhism, and local religions. The themes colonial empire, Francophone world, maritime trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与法语、阿拉伯语、越南语及地方语言和基督教、伊斯兰教、佛教及地方宗教关系密切。可从殖民帝国、法语世界、海洋贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "France",
+        "Canada",
+        "Vietnam",
+        "Algeria",
+        "Senegal"
+      ]
+    },
+    {
+      "names": {
+        "ja": "オランダ海上帝国",
+        "en": "Dutch Empire",
+        "zh": "荷兰殖民帝国"
+      },
+      "capital": {
+        "ja": "アムステルダム",
+        "en": "Amsterdam",
+        "zh": "阿姆斯特丹"
+      },
+      "type": "Past",
+      "region": "Global (Europe)",
+      "tags": [
+        "Empire",
+        "Colonial Empire",
+        "Maritime Power",
+        "Trade Hub",
+        "Financial Center",
+        "Port City Network",
+        "Atlantic Empire",
+        "Indian Ocean Trade"
+      ],
+      "desc": {
+        "ja": "オランダ東インド会社・西インド会社を軸にした海上帝国。商業、金融、海運、東南アジア支配で重要な役割を果たした。",
+        "en": "A maritime empire centered on Dutch trading companies, important for commerce, finance, shipping, and Southeast Asian colonial rule.",
+        "zh": "以荷兰东印度公司和西印度公司为核心的海上帝国，在商业、金融、航运和东南亚殖民统治中作用突出。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Netherlands.svg",
+      "period": {
+        "start": 1602,
+        "end": 1975,
+        "label": {
+          "ja": "1602年〜1975年",
+          "en": "1602-1975",
+          "zh": "1602年—1975年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約6000万人",
+          "en": "peak estimate: about 60 million",
+          "zh": "鼎盛期估计：约6000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約3,700,000 km²",
+          "en": "maximum extent estimate: about 3,700,000 km²",
+          "zh": "最大领域估计：约3,700,000 km²"
+        },
+        "languages": {
+          "ja": "オランダ語、マレー語、インドネシア諸語、地域諸語",
+          "en": "Dutch, Malay, Indonesian languages, and local languages",
+          "zh": "荷兰语、马来语、印度尼西亚诸语及地方语言"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教、地域宗教",
+          "en": "Christianity, Islam, and local religions",
+          "zh": "基督教、伊斯兰教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "オランダ海上帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地アムステルダムの支配層が政治、軍事、外交を動かした。",
+          "en": "For Dutch Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Amsterdam shaped politics, warfare, and diplomacy.",
+          "zh": "荷兰殖民帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以阿姆斯特丹为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1602年〜1975年に活動。アムステルダムを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて世界各地の歴史に大きな影響を与えた。",
+          "en": "Active during 1602-1975. It formed and expanded around Amsterdam, influencing the history of the world through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1602年—1975年。以阿姆斯特丹为中心形成和扩张，并通过战争、贸易、外交和统治制度影响世界各地历史。"
+        },
+        "fall_reason": {
+          "ja": "植民地支配への抵抗、民族運動、世界大戦後の国際環境の変化、財政・軍事負担によって解体が進んだ。",
+          "en": "Resistance to colonial rule, nationalist movements, the postwar international order, and fiscal and military costs drove its dissolution.",
+          "zh": "反殖民运动、民族主义、战后国际秩序变化以及财政和军事负担推动了其解体。"
+        },
+        "successors": {
+          "ja": "オランダ、インドネシア、スリナム、南アフリカなどと関連が深い。",
+          "en": "It connects with the Netherlands, Indonesia, Suriname, South Africa, and other regions.",
+          "zh": "与荷兰、印度尼西亚、苏里南、南非等地区关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はオランダ語、マレー語、インドネシア諸語、地域諸語、宗教はキリスト教、イスラム教、地域宗教と関係が深い。海洋帝国、植民地帝国、交易、金融という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Dutch, Malay, Indonesian languages, and local languages and Christianity, Islam, and local religions. The themes maritime empire, colonial empire, trade, finance help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与荷兰语、马来语、印度尼西亚诸语及地方语言和基督教、伊斯兰教及地方宗教关系密切。可从海洋帝国、殖民帝国、贸易、金融等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Netherlands",
+        "Indonesia",
+        "Suriname",
+        "South Africa"
+      ]
+    },
+    {
+      "names": {
+        "ja": "オーストリア帝国",
+        "en": "Austrian Empire",
+        "zh": "奥地利帝国"
+      },
+      "capital": {
+        "ja": "ウィーン",
+        "en": "Vienna",
+        "zh": "维也纳"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Empire",
+        "Composite Monarchy",
+        "Imperial Dynasty",
+        "Early Modern State",
+        "Modern Era State",
+        "Catholic Sphere",
+        "Multilingual State",
+        "Continental Power"
+      ],
+      "desc": {
+        "ja": "ハプスブルク家の多民族帝国。ナポレオン戦争後のヨーロッパ秩序と中欧政治を理解するうえで重要である。",
+        "en": "A multiethnic Habsburg empire, important for understanding post-Napoleonic European order and Central European politics.",
+        "zh": "哈布斯堡家族的多民族帝国，是理解拿破仑战争后欧洲秩序和中欧政治的重要对象。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Habsburg_Monarchy.svg",
+      "period": {
+        "start": 1804,
+        "end": 1867,
+        "label": {
+          "ja": "1804年〜1867年",
+          "en": "1804-1867",
+          "zh": "1804年—1867年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約3600万人",
+          "en": "peak estimate: about 36 million",
+          "zh": "鼎盛期估计：约3600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約698,700 km²",
+          "en": "maximum extent estimate: about 698,700 km²",
+          "zh": "最大领域估计：约698,700 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語、ハンガリー語、チェコ語、イタリア語、地域諸語",
+          "en": "German, Hungarian, Czech, Italian, and local languages",
+          "zh": "德语、匈牙利语、捷克语、意大利语及地方语言"
+        },
+        "religions": {
+          "ja": "カトリック、正教会、プロテスタント、ユダヤ教",
+          "en": "Catholic Christianity, Orthodoxy, Protestantism, and Judaism",
+          "zh": "天主教、东正教、新教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "オーストリア帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ウィーンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Austrian Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Vienna shaped politics, warfare, and diplomacy.",
+          "zh": "奥地利帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以维也纳为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1804年〜1867年に活動。ウィーンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて中央ヨーロッパの歴史に大きな影響を与えた。",
+          "en": "Active during 1804-1867. It formed and expanded around Vienna, influencing the history of Central Europe through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1804年—1867年。以维也纳为中心形成和扩张，并通过战争、贸易、外交和统治制度影响中欧历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "オーストリア＝ハンガリー帝国、オーストリア、ハンガリー、チェコなどと関連が深い。",
+          "en": "It connects with Austria-Hungary, Austria, Hungary, Czechia, and neighboring states.",
+          "zh": "与奥匈帝国、奥地利、匈牙利、捷克等国家关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はドイツ語、ハンガリー語、チェコ語、イタリア語、地域諸語、宗教はカトリック、正教会、プロテスタント、ユダヤ教と関係が深い。複合君主国、多民族帝国、中央ヨーロッパという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with German, Hungarian, Czech, Italian, and local languages and Catholic Christianity, Orthodoxy, Protestantism, and Judaism. The themes composite monarchy, multiethnic empire, Central Europe help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与德语、匈牙利语、捷克语、意大利语及地方语言和天主教、东正教、新教、犹太教关系密切。可从复合君主国、多民族帝国、中欧等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Austro-Hungarian Empire",
+        "Austria",
+        "Hungary",
+        "Czechia"
+      ]
+    },
+    {
+      "names": {
+        "ja": "周",
+        "en": "Zhou Dynasty",
+        "zh": "周朝"
+      },
+      "capital": {
+        "ja": "鎬京 / 洛邑",
+        "en": "Haojing / Luoyi",
+        "zh": "镐京 / 洛邑"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Dynastic State",
+        "Imperial Dynasty",
+        "Bronze Age State",
+        "Iron Age State",
+        "Ancient Civilization",
+        "Feudal Realm",
+        "Confucian Sphere",
+        "Sinic World",
+        "Tributary System",
+        "Sacred Kingship"
+      ],
+      "desc": {
+        "ja": "中国古代の長期王朝。封建制、礼制、春秋戦国時代、儒家思想の背景として重要である。",
+        "en": "A long-lasting ancient Chinese dynasty, central to feudal institutions, ritual order, the Spring and Autumn and Warring States periods, and Confucian thought.",
+        "zh": "中国古代长期王朝，是理解封建制度、礼制、春秋战国时代和儒家思想的重要背景。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -1046,
+        "end": -256,
+        "label": {
+          "ja": "紀元前1046年〜紀元前256年",
+          "en": "1046 BCE-256 BCE",
+          "zh": "公元前1046年—公元前256年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,300,000 km²",
+          "en": "maximum extent estimate: about 1,300,000 km²",
+          "zh": "最大领域估计：约1,300,000 km²"
+        },
+        "languages": {
+          "ja": "上古中国語",
+          "en": "Old Chinese",
+          "zh": "上古汉语"
+        },
+        "religions": {
+          "ja": "祖先祭祀、天命思想、古代中国宗教",
+          "en": "ancestor worship, Mandate of Heaven ideas, and ancient Chinese religion",
+          "zh": "祖先祭祀、天命思想和古代中国宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "周では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地鎬京 / 洛邑の支配層が政治、軍事、外交を動かした。",
+          "en": "For Zhou Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Haojing / Luoyi shaped politics, warfare, and diplomacy.",
+          "zh": "周朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以镐京 / 洛邑为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前1046年〜紀元前256年に活動。鎬京 / 洛邑を中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて東アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1046 BCE-256 BCE. It formed and expanded around Haojing / Luoyi, influencing the history of East Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前1046年—公元前256年。以镐京 / 洛邑为中心形成和扩张，并通过战争、贸易、外交和统治制度影响东亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "秦、漢、中国と関連づけると、中国国家形成の流れが分かりやすい。",
+          "en": "It connects with Qin, Han, and China as part of the formation of Chinese state traditions.",
+          "zh": "可与秦、汉和中国联系起来理解中国国家传统的形成。"
+        },
+        "cultural_features": {
+          "ja": "言語は上古中国語、宗教は祖先祭祀、天命思想、古代中国宗教と関係が深い。古代文明、王朝、儒教圏、華夏世界という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Chinese and ancestor worship, Mandate of Heaven ideas, and ancient Chinese religion. The themes ancient civilization, dynasty, Confucian sphere, Sinic world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与上古汉语和祖先祭祀、天命思想和古代中国宗教关系密切。可从古代文明、王朝、儒家圈、华夏世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Han Dynasty",
+        "Qing Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "殷 (商)",
+        "en": "Shang Dynasty",
+        "zh": "商朝"
+      },
+      "capital": {
+        "ja": "殷",
+        "en": "Yin",
+        "zh": "殷"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Dynastic State",
+        "Bronze Age State",
+        "Ancient Civilization",
+        "River Civilization",
+        "Sacred Kingship",
+        "Sinic World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "甲骨文字と青銅器で知られる中国古代王朝。黄河流域の国家形成を理解する基礎になる。",
+        "en": "An ancient Chinese dynasty known for oracle bone script and bronze culture, foundational for understanding state formation in the Yellow River basin.",
+        "zh": "以甲骨文和青铜器闻名的中国古代王朝，是理解黄河流域国家形成的基础。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -1600,
+        "end": -1046,
+        "label": {
+          "ja": "紀元前1600年〜紀元前1046年",
+          "en": "1600 BCE-1046 BCE",
+          "zh": "公元前1600年—公元前1046年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,250,000 km²",
+          "en": "maximum extent estimate: about 1,250,000 km²",
+          "zh": "最大领域估计：约1,250,000 km²"
+        },
+        "languages": {
+          "ja": "上古中国語",
+          "en": "Old Chinese",
+          "zh": "上古汉语"
+        },
+        "religions": {
+          "ja": "祖先祭祀、占卜、古代中国宗教",
+          "en": "ancestor worship, divination, and ancient Chinese religion",
+          "zh": "祖先祭祀、占卜和古代中国宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "殷 (商)では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地殷の支配層が政治、軍事、外交を動かした。",
+          "en": "For Shang Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Yin shaped politics, warfare, and diplomacy.",
+          "zh": "商朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以殷为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前1600年〜紀元前1046年に活動。殷を中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて東アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1600 BCE-1046 BCE. It formed and expanded around Yin, influencing the history of East Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前1600年—公元前1046年。以殷为中心形成和扩张，并通过战争、贸易、外交和统治制度影响东亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "周、秦、漢、中国と関連づけると、中国古代王朝の流れが分かりやすい。",
+          "en": "It connects with Zhou, Qin, Han, and China in the sequence of ancient Chinese dynasties.",
+          "zh": "可与周、秦、汉和中国联系起来理解中国古代王朝的演变。"
+        },
+        "cultural_features": {
+          "ja": "言語は上古中国語、宗教は祖先祭祀、占卜、古代中国宗教と関係が深い。青銅器文明、黄河文明、古代王朝という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Chinese and ancestor worship, divination, and ancient Chinese religion. The themes Bronze Age civilization, Yellow River civilization, ancient dynasty help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与上古汉语和祖先祭祀、占卜和古代中国宗教关系密切。可从青铜文明、黄河文明、古代王朝等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Zhou Dynasty",
+        "Han Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マウリヤ朝",
+        "en": "Maurya Empire",
+        "zh": "孔雀王朝"
+      },
+      "capital": {
+        "ja": "パータリプトラ",
+        "en": "Pataliputra",
+        "zh": "华氏城"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Ancient Civilization",
+        "Classical Antiquity",
+        "Continental Power",
+        "Imperial Bureaucracy",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "インド亜大陸初の大統一帝国。アショーカ王、仏教保護、中央集権的な行政で知られる。",
+        "en": "The first great empire to unite much of the Indian subcontinent, known for Ashoka, Buddhist patronage, and centralized administration.",
+        "zh": "印度次大陆第一个大规模统一帝国，以阿育王、佛教保护和中央集权行政闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -322,
+        "end": -185,
+        "label": {
+          "ja": "紀元前322年〜紀元前185年",
+          "en": "322 BCE-185 BCE",
+          "zh": "公元前322年—公元前185年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約5000万人",
+          "en": "peak estimate: about 50 million",
+          "zh": "鼎盛期估计：约5000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約5,000,000 km²",
+          "en": "maximum extent estimate: about 5,000,000 km²",
+          "zh": "最大领域估计：约5,000,000 km²"
+        },
+        "languages": {
+          "ja": "プラークリット、サンスクリット、地域諸語",
+          "en": "Prakrit, Sanskrit, and local languages",
+          "zh": "俗语、梵语及地方语言"
+        },
+        "religions": {
+          "ja": "仏教、ジャイナ教、バラモン教、地域宗教",
+          "en": "Buddhism, Jainism, Brahmanism, and local religions",
+          "zh": "佛教、耆那教、婆罗门教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マウリヤ朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地パータリプトラの支配層が政治、軍事、外交を動かした。",
+          "en": "For Maurya Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Pataliputra shaped politics, warfare, and diplomacy.",
+          "zh": "孔雀王朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以华氏城为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前322年〜紀元前185年に活動。パータリプトラを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 322 BCE-185 BCE. It formed and expanded around Pataliputra, influencing the history of South Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前322年—公元前185年。以华氏城为中心形成和扩张，并通过战争、贸易、外交和统治制度影响南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "インド、パキスタン、バングラデシュ、グプタ朝などと関連づけると南アジア史の流れが分かりやすい。",
+          "en": "It connects with India, Pakistan, Bangladesh, and the Gupta Empire in South Asian history.",
+          "zh": "可与印度、巴基斯坦、孟加拉国和笈多王朝联系起来理解南亚史。"
+        },
+        "cultural_features": {
+          "ja": "言語はプラークリット、サンスクリット、地域諸語、宗教は仏教、ジャイナ教、バラモン教、地域宗教と関係が深い。南アジア、帝国、仏教圏、古代文明という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Prakrit, Sanskrit, and local languages and Buddhism, Jainism, Brahmanism, and local religions. The themes South Asia, empire, Buddhist sphere, ancient civilization help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与俗语、梵语及地方语言和佛教、耆那教、婆罗门教及地方宗教关系密切。可从南亚、帝国、佛教圈、古代文明等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "India",
+        "Pakistan",
+        "Bangladesh",
+        "Gupta Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "グプタ朝",
+        "en": "Gupta Empire",
+        "zh": "笈多王朝"
+      },
+      "capital": {
+        "ja": "パータリプトラ",
+        "en": "Pataliputra",
+        "zh": "华氏城"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Classical Antiquity",
+        "Cultural Sphere",
+        "Hindu Sphere",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "古典インド文化の黄金期とされる王朝。数学、文学、美術、ヒンドゥー文化の展開で重要である。",
+        "en": "A dynasty often associated with a golden age of classical Indian culture, important for mathematics, literature, art, and Hindu traditions.",
+        "zh": "常被视为古典印度文化黄金时代的王朝，在数学、文学、美术和印度教文化发展中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 320,
+        "end": 550,
+        "label": {
+          "ja": "320年〜550年",
+          "en": "320-550",
+          "zh": "320年—550年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2500万人",
+          "en": "peak estimate: about 25 million",
+          "zh": "鼎盛期估计：约2500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約3,500,000 km²",
+          "en": "maximum extent estimate: about 3,500,000 km²",
+          "zh": "最大领域估计：约3,500,000 km²"
+        },
+        "languages": {
+          "ja": "サンスクリット、プラークリット、地域諸語",
+          "en": "Sanskrit, Prakrit, and local languages",
+          "zh": "梵语、俗语及地方语言"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、ジャイナ教",
+          "en": "Hinduism, Buddhism, and Jainism",
+          "zh": "印度教、佛教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "グプタ朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地パータリプトラの支配層が政治、軍事、外交を動かした。",
+          "en": "For Gupta Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Pataliputra shaped politics, warfare, and diplomacy.",
+          "zh": "笈多王朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以华氏城为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "320年〜550年に活動。パータリプトラを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 320-550. It formed and expanded around Pataliputra, influencing the history of South Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于320年—550年。以华氏城为中心形成和扩张，并通过战争、贸易、外交和统治制度影响南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "インド、マウリヤ朝、後代の北インド諸王朝と関連づけて理解できる。",
+          "en": "It connects with India, the Maurya Empire, and later North Indian kingdoms.",
+          "zh": "可与印度、孔雀王朝和后来的北印度诸王朝联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はサンスクリット、プラークリット、地域諸語、宗教はヒンドゥー教、仏教、ジャイナ教と関係が深い。古典文化、ヒンドゥー圏、南アジアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Sanskrit, Prakrit, and local languages and Hinduism, Buddhism, and Jainism. The themes classical culture, Hindu sphere, South Asia help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与梵语、俗语及地方语言和印度教、佛教、耆那教关系密切。可从古典文化、印度教圈、南亚等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "India",
+        "Maurya Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "チョーラ朝",
+        "en": "Chola Empire",
+        "zh": "朱罗王朝"
+      },
+      "capital": {
+        "ja": "タンジャーヴール",
+        "en": "Thanjavur",
+        "zh": "坦贾武尔"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Medieval Dynasty",
+        "Maritime Power",
+        "Indian Ocean Trade",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Naval Power",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "南インドの海洋帝国。インド洋交易、寺院建築、東南アジアとの交流で重要である。",
+        "en": "A South Indian maritime empire, important for Indian Ocean trade, temple architecture, and links with Southeast Asia.",
+        "zh": "南印度海洋帝国，在印度洋贸易、寺院建筑和与东南亚交流方面非常重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 848,
+        "end": 1279,
+        "label": {
+          "ja": "848年〜1279年",
+          "en": "848-1279",
+          "zh": "848年—1279年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約3,600,000 km²",
+          "en": "maximum extent estimate: about 3,600,000 km²",
+          "zh": "最大领域估计：约3,600,000 km²"
+        },
+        "languages": {
+          "ja": "タミル語、サンスクリット、地域諸語",
+          "en": "Tamil, Sanskrit, and local languages",
+          "zh": "泰米尔语、梵语及地方语言"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、ジャイナ教",
+          "en": "Hinduism, Buddhism, and Jainism",
+          "zh": "印度教、佛教、耆那教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "チョーラ朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地タンジャーヴールの支配層が政治、軍事、外交を動かした。",
+          "en": "For Chola Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Thanjavur shaped politics, warfare, and diplomacy.",
+          "zh": "朱罗王朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以坦贾武尔为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "848年〜1279年に活動。タンジャーヴールを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて南アジア・インド洋の歴史に大きな影響を与えた。",
+          "en": "Active during 848-1279. It formed and expanded around Thanjavur, influencing the history of South Asia and the Indian Ocean through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于848年—1279年。以坦贾武尔为中心形成和扩张，并通过战争、贸易、外交和统治制度影响南亚和印度洋历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "インド、スリランカ、東南アジアの海上交易圏と関連づけて理解できる。",
+          "en": "It connects with India, Sri Lanka, and Southeast Asian maritime trade networks.",
+          "zh": "可与印度、斯里兰卡和东南亚海上贸易圈联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はタミル語、サンスクリット、地域諸語、宗教はヒンドゥー教、仏教、ジャイナ教と関係が深い。海洋国家、インド洋交易、ヒンドゥー圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Tamil, Sanskrit, and local languages and Hinduism, Buddhism, and Jainism. The themes maritime state, Indian Ocean trade, Hindu sphere help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与泰米尔语、梵语及地方语言和印度教、佛教、耆那教关系密切。可从海洋国家、印度洋贸易、印度教圈等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "India",
+        "Sri Lanka",
+        "Srivijaya"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マラーター同盟",
+        "en": "Maratha Empire",
+        "zh": "马拉塔帝国"
+      },
+      "capital": {
+        "ja": "プネー / ラーイガド",
+        "en": "Pune / Raigad",
+        "zh": "浦那 / 拉伊加德"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Confederation",
+        "Early Modern State",
+        "Military Government",
+        "Hindu Sphere",
+        "Indic Civilization",
+        "Continental Power",
+        "Warrior Aristocracy"
+      ],
+      "desc": {
+        "ja": "ムガル帝国衰退後のインドで勢力を広げたヒンドゥー系の軍事連合。イギリス東インド会社との対立でも重要である。",
+        "en": "A Hindu-led military confederacy that expanded after Mughal decline and became a major rival of the British East India Company.",
+        "zh": "莫卧儿帝国衰落后在印度扩张的印度教军事联盟，也是英国东印度公司的重要对手。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Maratha_Empire.svg",
+      "period": {
+        "start": 1674,
+        "end": 1818,
+        "label": {
+          "ja": "1674年〜1818年",
+          "en": "1674-1818",
+          "zh": "1674年—1818年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1.5億人",
+          "en": "peak estimate: about 150 million",
+          "zh": "鼎盛期估计：约1.5亿人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,800,000 km²",
+          "en": "maximum extent estimate: about 2,800,000 km²",
+          "zh": "最大领域估计：约2,800,000 km²"
+        },
+        "languages": {
+          "ja": "マラーティー語、サンスクリット、ペルシア語、地域諸語",
+          "en": "Marathi, Sanskrit, Persian, and local languages",
+          "zh": "马拉地语、梵语、波斯语及地方语言"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、イスラム教、地域宗教",
+          "en": "Hinduism, Islam, and local religions",
+          "zh": "印度教、伊斯兰教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マラーター同盟では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地プネー / ラーイガドの支配層が政治、軍事、外交を動かした。",
+          "en": "For Maratha Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Pune / Raigad shaped politics, warfare, and diplomacy.",
+          "zh": "马拉塔帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以浦那 / 拉伊加德为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1674年〜1818年に活動。プネー / ラーイガドを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1674-1818. It formed and expanded around Pune / Raigad, influencing the history of South Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1674年—1818年。以浦那 / 拉伊加德为中心形成和扩张，并通过战争、贸易、外交和统治制度影响南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "インド、ムガル帝国、大英帝国と関連づけると近世・近代インドの転換が分かりやすい。",
+          "en": "It connects with India, the Mughal Empire, and the British Empire in the transition from early modern to modern South Asia.",
+          "zh": "可与印度、莫卧儿帝国和大英帝国联系起来理解近世到近代南亚的转变。"
+        },
+        "cultural_features": {
+          "ja": "言語はマラーティー語、サンスクリット、ペルシア語、地域諸語、宗教はヒンドゥー教、イスラム教、地域宗教と関係が深い。軍事連合、南アジア、ヒンドゥー圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Marathi, Sanskrit, Persian, and local languages and Hinduism, Islam, and local religions. The themes military confederacy, South Asia, Hindu sphere help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与马拉地语、梵语、波斯语及地方语言和印度教、伊斯兰教及地方宗教关系密切。可从军事联盟、南亚、印度教圈等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "India",
+        "Mughal Empire",
+        "British Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カルタゴ",
+        "en": "Carthage",
+        "zh": "迦太基"
+      },
+      "capital": {
+        "ja": "カルタゴ",
+        "en": "Carthage",
+        "zh": "迦太基"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "City-State",
+        "Maritime Power",
+        "Trade Hub",
+        "Mediterranean Trade",
+        "Naval Power",
+        "Classical Antiquity",
+        "Colonial Empire",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "フェニキア系の海上交易国家。ローマと地中海の覇権を争ったポエニ戦争で知られる。",
+        "en": "A Phoenician maritime trading power, famous for the Punic Wars against Rome over Mediterranean dominance.",
+        "zh": "腓尼基系海上贸易强国，因与罗马争夺地中海霸权的布匿战争而闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -814,
+        "end": -146,
+        "label": {
+          "ja": "紀元前814年〜紀元前146年",
+          "en": "814 BCE-146 BCE",
+          "zh": "公元前814年—公元前146年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約400万人",
+          "en": "peak estimate: about 4 million",
+          "zh": "鼎盛期估计：约400万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "フェニキア語、ポエニ語、地域諸語",
+          "en": "Phoenician, Punic, and local languages",
+          "zh": "腓尼基语、布匿语及地方语言"
+        },
+        "religions": {
+          "ja": "フェニキア宗教、地域宗教",
+          "en": "Phoenician and local religions",
+          "zh": "腓尼基宗教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カルタゴでは、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地カルタゴの支配層が政治、軍事、外交を動かした。",
+          "en": "For Carthage, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Carthage shaped politics, warfare, and diplomacy.",
+          "zh": "迦太基的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以迦太基为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前814年〜紀元前146年に活動。カルタゴを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて北アフリカ・地中海の歴史に大きな影響を与えた。",
+          "en": "Active during 814 BCE-146 BCE. It formed and expanded around Carthage, influencing the history of North Africa and the Mediterranean through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前814年—公元前146年。以迦太基为中心形成和扩张，并通过战争、贸易、外交和统治制度影响北非和地中海历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "チュニジア、ローマ帝国、フェニキア系都市国家と関連づけて理解できる。",
+          "en": "It connects with Tunisia, the Roman Empire, and Phoenician city-state networks.",
+          "zh": "可与突尼斯、罗马帝国和腓尼基城市网络联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はフェニキア語、ポエニ語、地域諸語、宗教はフェニキア宗教、地域宗教と関係が深い。海上交易、都市国家、地中海世界という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Phoenician, Punic, and local languages and Phoenician and local religions. The themes maritime trade, city-state, Mediterranean world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与腓尼基语、布匿语及地方语言和腓尼基宗教及地方宗教关系密切。可从海上贸易、城邦、地中海世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Tunisia",
+        "Roman Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "新バビロニア王国",
+        "en": "Neo-Babylonian Empire",
+        "zh": "新巴比伦王国"
+      },
+      "capital": {
+        "ja": "バビロン",
+        "en": "Babylon",
+        "zh": "巴比伦"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Empire",
+        "Kingdom",
+        "Iron Age State",
+        "Ancient Civilization",
+        "River Civilization",
+        "Desert State",
+        "Multilingual State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "メソポタミア後期の大国。ネブカドネザル2世、バビロン捕囚、バビロンの都市文化で知られる。",
+        "en": "A late Mesopotamian power known for Nebuchadnezzar II, the Babylonian captivity, and the urban culture of Babylon.",
+        "zh": "美索不达米亚后期强国，以尼布甲尼撒二世、巴比伦之囚和巴比伦城市文化闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -626,
+        "end": -539,
+        "label": {
+          "ja": "紀元前626年〜紀元前539年",
+          "en": "626 BCE-539 BCE",
+          "zh": "公元前626年—公元前539年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約500,000 km²",
+          "en": "maximum extent estimate: about 500,000 km²",
+          "zh": "最大领域估计：约500,000 km²"
+        },
+        "languages": {
+          "ja": "アッカド語、アラム語",
+          "en": "Akkadian and Aramaic",
+          "zh": "阿卡德语、阿拉姆语"
+        },
+        "religions": {
+          "ja": "メソポタミア宗教",
+          "en": "Mesopotamian religion",
+          "zh": "美索不达米亚宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "新バビロニア王国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地バビロンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Neo-Babylonian Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Babylon shaped politics, warfare, and diplomacy.",
+          "zh": "新巴比伦王国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以巴比伦为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前626年〜紀元前539年に活動。バビロンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて中東・メソポタミアの歴史に大きな影響を与えた。",
+          "en": "Active during 626 BCE-539 BCE. It formed and expanded around Babylon, influencing the history of the Middle East and Mesopotamia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前626年—公元前539年。以巴比伦为中心形成和扩张，并通过战争、贸易、外交和统治制度影响中东和美索不达米亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "イラク、アケメネス朝、アッシリア帝国と関連づけると古代中東史の流れが分かりやすい。",
+          "en": "It connects with Iraq, the Achaemenid Empire, and Assyria in ancient Near Eastern history.",
+          "zh": "可与伊拉克、阿契美尼德帝国和亚述联系起来理解古代近东史。"
+        },
+        "cultural_features": {
+          "ja": "言語はアッカド語、アラム語、宗教はメソポタミア宗教と関係が深い。メソポタミア、古代文明、河川文明という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Akkadian and Aramaic and Mesopotamian religion. The themes Mesopotamia, ancient civilization, river civilization help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与阿卡德语、阿拉姆语和美索不达米亚宗教关系密切。可从美索不达米亚、古代文明、河流文明等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Iraq",
+        "Achaemenid Empire",
+        "Assyria"
+      ]
+    },
+    {
+      "names": {
+        "ja": "マケドニア帝国",
+        "en": "Macedonian Empire",
+        "zh": "马其顿帝国"
+      },
+      "capital": {
+        "ja": "ペラ / バビロン",
+        "en": "Pella / Babylon",
+        "zh": "佩拉 / 巴比伦"
+      },
+      "type": "Past",
+      "region": "Europe, Middle East, South Asia",
+      "tags": [
+        "Empire",
+        "Hellenistic State",
+        "Classical Antiquity",
+        "Military Government",
+        "Hellenistic Culture",
+        "Mediterranean Trade",
+        "Overland Empire",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "アレクサンドロス大王の征服で成立した巨大帝国。ヘレニズム世界の出発点となった。",
+        "en": "The vast empire created by Alexander the Great's conquests and the starting point of the Hellenistic world.",
+        "zh": "由亚历山大大帝征服形成的巨大帝国，是希腊化世界的开端。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -336,
+        "end": -323,
+        "label": {
+          "ja": "紀元前336年〜紀元前323年",
+          "en": "336 BCE-323 BCE",
+          "zh": "公元前336年—公元前323年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約5,200,000 km²",
+          "en": "maximum extent estimate: about 5,200,000 km²",
+          "zh": "最大领域估计：约5,200,000 km²"
+        },
+        "languages": {
+          "ja": "ギリシャ語、アラム語、ペルシア語、地域諸語",
+          "en": "Greek, Aramaic, Persian, and local languages",
+          "zh": "希腊语、阿拉姆语、波斯语及地方语言"
+        },
+        "religions": {
+          "ja": "ギリシャ宗教、ゾロアスター教、エジプト宗教、地域宗教",
+          "en": "Greek religion, Zoroastrianism, Egyptian religion, and local religions",
+          "zh": "希腊宗教、琐罗亚斯德教、埃及宗教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マケドニア帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ペラ / バビロンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Macedonian Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Pella / Babylon shaped politics, warfare, and diplomacy.",
+          "zh": "马其顿帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以佩拉 / 巴比伦为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前336年〜紀元前323年に活動。ペラ / バビロンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてギリシャ・中東・南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 336 BCE-323 BCE. It formed and expanded around Pella / Babylon, influencing the history of Greece, the Middle East, and South Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前336年—公元前323年。以佩拉 / 巴比伦为中心形成和扩张，并通过战争、贸易、外交和统治制度影响希腊、中东和南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "セレウコス朝、プトレマイオス朝、ギリシャ、エジプト、イランなどと関連が深い。",
+          "en": "It connects with the Seleucid Empire, Ptolemaic Kingdom, Greece, Egypt, and Iran.",
+          "zh": "与塞琉古帝国、托勒密王国、希腊、埃及和伊朗关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はギリシャ語、アラム語、ペルシア語、地域諸語、宗教はギリシャ宗教、ゾロアスター教、エジプト宗教、地域宗教と関係が深い。ヘレニズム、征服帝国、古代という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Greek, Aramaic, Persian, and local languages and Greek religion, Zoroastrianism, Egyptian religion, and local religions. The themes Hellenism, conquest empire, Antiquity help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与希腊语、阿拉姆语、波斯语及地方语言和希腊宗教、琐罗亚斯德教、埃及宗教及地方宗教关系密切。可从希腊化、征服帝国、古代等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Greece",
+        "Seleucid Empire",
+        "Ptolemaic Kingdom",
+        "Achaemenid Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "プトレマイオス朝",
+        "en": "Ptolemaic Kingdom",
+        "zh": "托勒密王国"
+      },
+      "capital": {
+        "ja": "アレクサンドリア",
+        "en": "Alexandria",
+        "zh": "亚历山大港"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Kingdom",
+        "Hellenistic State",
+        "Classical Antiquity",
+        "Mediterranean Trade",
+        "Hellenistic Culture",
+        "River Civilization",
+        "Cultural Sphere",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "アレクサンドロスの後継者がエジプトに建てたヘレニズム王国。アレクサンドリアの学術文化で有名。",
+        "en": "A Hellenistic kingdom founded in Egypt by Alexander's successors, famous for the scholarly culture of Alexandria.",
+        "zh": "亚历山大继承者在埃及建立的希腊化王国，以亚历山大港的学术文化闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -305,
+        "end": -30,
+        "label": {
+          "ja": "紀元前305年〜紀元前30年",
+          "en": "305 BCE-30 BCE",
+          "zh": "公元前305年—公元前30年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約700万人",
+          "en": "peak estimate: about 7 million",
+          "zh": "鼎盛期估计：约700万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,000,000 km²",
+          "en": "maximum extent estimate: about 1,000,000 km²",
+          "zh": "最大领域估计：约1,000,000 km²"
+        },
+        "languages": {
+          "ja": "ギリシャ語、エジプト語",
+          "en": "Greek and Egyptian",
+          "zh": "希腊语、埃及语"
+        },
+        "religions": {
+          "ja": "ギリシャ宗教、エジプト宗教",
+          "en": "Greek and Egyptian religions",
+          "zh": "希腊宗教、埃及宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "プトレマイオス朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地アレクサンドリアの支配層が政治、軍事、外交を動かした。",
+          "en": "For Ptolemaic Kingdom, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Alexandria shaped politics, warfare, and diplomacy.",
+          "zh": "托勒密王国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以亚历山大港为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前305年〜紀元前30年に活動。アレクサンドリアを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてエジプト・東地中海の歴史に大きな影響を与えた。",
+          "en": "Active during 305 BCE-30 BCE. It formed and expanded around Alexandria, influencing the history of Egypt and the eastern Mediterranean through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前305年—公元前30年。以亚历山大港为中心形成和扩张，并通过战争、贸易、外交和统治制度影响埃及和东地中海历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "エジプト、ローマ帝国、マケドニア帝国と関連づけて理解できる。",
+          "en": "It connects with Egypt, the Roman Empire, and the Macedonian Empire.",
+          "zh": "可与埃及、罗马帝国和马其顿帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はギリシャ語、エジプト語、宗教はギリシャ宗教、エジプト宗教と関係が深い。ヘレニズム、地中海交易、エジプトという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Greek and Egyptian and Greek and Egyptian religions. The themes Hellenism, Mediterranean trade, Egypt help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与希腊语、埃及语和希腊宗教、埃及宗教关系密切。可从希腊化、地中海贸易、埃及等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Egypt",
+        "Roman Empire",
+        "Macedonian Empire",
+        "Ancient Egypt"
+      ]
+    },
+    {
+      "names": {
+        "ja": "シュメール",
+        "en": "Sumer",
+        "zh": "苏美尔"
+      },
+      "capital": {
+        "ja": "ウルクなど",
+        "en": "Uruk and other city-states",
+        "zh": "乌鲁克等城邦"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "City-State",
+        "Ancient Civilization",
+        "Bronze Age State",
+        "River Civilization",
+        "Cultural Sphere",
+        "Trade Hub",
+        "Sacred Kingship"
+      ],
+      "desc": {
+        "ja": "都市国家、楔形文字、神殿経済で知られるメソポタミア最初期の文明の一つ。",
+        "en": "One of the earliest Mesopotamian civilizations, known for city-states, cuneiform writing, and temple economies.",
+        "zh": "美索不达米亚最早期文明之一，以城邦、楔形文字和神庙经济闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -4500,
+        "end": -1900,
+        "label": {
+          "ja": "紀元前4500年〜紀元前1900年",
+          "en": "4500 BCE-1900 BCE",
+          "zh": "公元前4500年—公元前1900年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約30,000 km²",
+          "en": "maximum extent estimate: about 30,000 km²",
+          "zh": "最大领域估计：约30,000 km²"
+        },
+        "languages": {
+          "ja": "シュメール語、アッカド語",
+          "en": "Sumerian and Akkadian",
+          "zh": "苏美尔语、阿卡德语"
+        },
+        "religions": {
+          "ja": "シュメール宗教、メソポタミア宗教",
+          "en": "Sumerian and Mesopotamian religions",
+          "zh": "苏美尔宗教、美索不达米亚宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "シュメールでは、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ウルクなどの支配層が政治、軍事、外交を動かした。",
+          "en": "For Sumer, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Uruk and other city-states shaped politics, warfare, and diplomacy.",
+          "zh": "苏美尔的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以乌鲁克等城邦为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前4500年〜紀元前1900年に活動。ウルクなどを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてメソポタミアの歴史に大きな影響を与えた。",
+          "en": "Active during 4500 BCE-1900 BCE. It formed and expanded around Uruk and other city-states, influencing the history of Mesopotamia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前4500年—公元前1900年。以乌鲁克等城邦为中心形成和扩张，并通过战争、贸易、外交和统治制度影响美索不达米亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "アッカド帝国、バビロニア、イラクと関連づけるとメソポタミア文明の流れが分かりやすい。",
+          "en": "It connects with the Akkadian Empire, Babylonia, and Iraq in Mesopotamian history.",
+          "zh": "可与阿卡德帝国、巴比伦尼亚和伊拉克联系起来理解美索不达米亚文明。"
+        },
+        "cultural_features": {
+          "ja": "言語はシュメール語、アッカド語、宗教はシュメール宗教、メソポタミア宗教と関係が深い。都市国家、文字、河川文明という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Sumerian and Akkadian and Sumerian and Mesopotamian religions. The themes city-states, writing, river civilization help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与苏美尔语、阿卡德语和苏美尔宗教、美索不达米亚宗教关系密切。可从城邦、文字、河流文明等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Iraq",
+        "Akkadian Empire",
+        "Neo-Babylonian Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アッカド帝国",
+        "en": "Akkadian Empire",
+        "zh": "阿卡德帝国"
+      },
+      "capital": {
+        "ja": "アッカド",
+        "en": "Akkad",
+        "zh": "阿卡德"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Empire",
+        "Bronze Age State",
+        "Ancient Civilization",
+        "River Civilization",
+        "Imperial Bureaucracy",
+        "Military Government",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "サルゴン王で知られる、メソポタミアの都市国家群を統合した最初期の帝国。",
+        "en": "One of the earliest empires, associated with Sargon and the unification of Mesopotamian city-states.",
+        "zh": "最早期帝国之一，与萨尔贡及美索不达米亚城邦统一相关。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -2334,
+        "end": -2154,
+        "label": {
+          "ja": "紀元前2334年〜紀元前2154年",
+          "en": "2334 BCE-2154 BCE",
+          "zh": "公元前2334年—公元前2154年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約800,000 km²",
+          "en": "maximum extent estimate: about 800,000 km²",
+          "zh": "最大领域估计：约800,000 km²"
+        },
+        "languages": {
+          "ja": "アッカド語、シュメール語",
+          "en": "Akkadian and Sumerian",
+          "zh": "阿卡德语、苏美尔语"
+        },
+        "religions": {
+          "ja": "メソポタミア宗教",
+          "en": "Mesopotamian religion",
+          "zh": "美索不达米亚宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アッカド帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地アッカドの支配層が政治、軍事、外交を動かした。",
+          "en": "For Akkadian Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Akkad shaped politics, warfare, and diplomacy.",
+          "zh": "阿卡德帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以阿卡德为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前2334年〜紀元前2154年に活動。アッカドを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じてメソポタミアの歴史に大きな影響を与えた。",
+          "en": "Active during 2334 BCE-2154 BCE. It formed and expanded around Akkad, influencing the history of Mesopotamia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于公元前2334年—公元前2154年。以阿卡德为中心形成和扩张，并通过战争、贸易、外交和统治制度影响美索不达米亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "シュメール、アッシリア、新バビロニア、イラクと関連づけて理解できる。",
+          "en": "It connects with Sumer, Assyria, the Neo-Babylonian Empire, and Iraq.",
+          "zh": "可与苏美尔、亚述、新巴比伦和伊拉克联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はアッカド語、シュメール語、宗教はメソポタミア宗教と関係が深い。最初期の帝国、メソポタミア、河川文明という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Akkadian and Sumerian and Mesopotamian religion. The themes early empire, Mesopotamia, river civilization help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与阿卡德语、苏美尔语和美索不达米亚宗教关系密切。可从早期帝国、美索不达米亚、河流文明等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Sumer",
+        "Assyria",
+        "Neo-Babylonian Empire",
+        "Iraq"
+      ]
+    },
+    {
+      "names": {
+        "ja": "クシャーナ朝",
+        "en": "Kushan Empire",
+        "zh": "贵霜帝国"
+      },
+      "capital": {
+        "ja": "プルシャプラ / マトゥラー",
+        "en": "Purushapura / Mathura",
+        "zh": "布路沙布逻 / 马图拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia, South Asia",
+      "tags": [
+        "Empire",
+        "Classical Antiquity",
+        "Silk Road",
+        "Trade Hub",
+        "Buddhist Sphere",
+        "Hellenistic Culture",
+        "Indic Civilization",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "中央アジアから北インドを支配した交易帝国。シルクロード、仏教美術、ガンダーラ文化で重要である。",
+        "en": "A trade empire spanning Central Asia and northern India, important for the Silk Road, Buddhist art, and Gandharan culture.",
+        "zh": "横跨中亚和北印度的贸易帝国，在丝绸之路、佛教艺术和犍陀罗文化中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 30,
+        "end": 375,
+        "label": {
+          "ja": "30年〜375年",
+          "en": "30-375",
+          "zh": "30年—375年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,000,000 km²",
+          "en": "maximum extent estimate: about 2,000,000 km²",
+          "zh": "最大领域估计：约2,000,000 km²"
+        },
+        "languages": {
+          "ja": "バクトリア語、ガンダーラ語、サンスクリット、地域諸語",
+          "en": "Bactrian, Gandhari, Sanskrit, and local languages",
+          "zh": "巴克特里亚语、犍陀罗语、梵语及地方语言"
+        },
+        "religions": {
+          "ja": "仏教、ゾロアスター教、ヒンドゥー教、地域宗教",
+          "en": "Buddhism, Zoroastrianism, Hinduism, and local religions",
+          "zh": "佛教、琐罗亚斯德教、印度教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クシャーナ朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地プルシャプラ / マトゥラーの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kushan Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Purushapura / Mathura shaped politics, warfare, and diplomacy.",
+          "zh": "贵霜帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以布路沙布逻 / 马图拉为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "30年〜375年に活動。プルシャプラ / マトゥラーを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて中央アジア・南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 30-375. It formed and expanded around Purushapura / Mathura, influencing the history of Central Asia and South Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于30年—375年。以布路沙布逻 / 马图拉为中心形成和扩张，并通过战争、贸易、外交和统治制度影响中亚和南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "インド、パキスタン、アフガニスタン、中央アジア諸国と関連づけて理解できる。",
+          "en": "It connects with India, Pakistan, Afghanistan, and Central Asian states.",
+          "zh": "可与印度、巴基斯坦、阿富汗和中亚国家联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はバクトリア語、ガンダーラ語、サンスクリット、地域諸語、宗教は仏教、ゾロアスター教、ヒンドゥー教、地域宗教と関係が深い。シルクロード、仏教圏、中央アジアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Bactrian, Gandhari, Sanskrit, and local languages and Buddhism, Zoroastrianism, Hinduism, and local religions. The themes Silk Road, Buddhist sphere, Central Asia help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与巴克特里亚语、犍陀罗语、梵语及地方语言和佛教、琐罗亚斯德教、印度教及地方宗教关系密切。可从丝绸之路、佛教圈、中亚等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "India",
+        "Pakistan",
+        "Afghanistan",
+        "Uzbekistan"
+      ]
+    },
+    {
+      "names": {
+        "ja": "突厥可汗国",
+        "en": "Gokturk Khaganate",
+        "zh": "突厥汗国"
+      },
+      "capital": {
+        "ja": "オテュケン",
+        "en": "Otuken",
+        "zh": "于都斤"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Khanate",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Horse Archer Tradition",
+        "Turkic World",
+        "Silk Road",
+        "Pastoral Nomadism",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ユーラシア草原を支配した突厥系の遊牧帝国。テュルク世界の形成とシルクロード政治で重要である。",
+        "en": "A Turkic nomadic empire of the Eurasian steppe, important for the formation of the Turkic world and Silk Road politics.",
+        "zh": "支配欧亚草原的突厥游牧帝国，对突厥世界形成和丝绸之路政治很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 552,
+        "end": 744,
+        "label": {
+          "ja": "552年〜744年",
+          "en": "552-744",
+          "zh": "552年—744年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約6,000,000 km²",
+          "en": "maximum extent estimate: about 6,000,000 km²",
+          "zh": "最大领域估计：约6,000,000 km²"
+        },
+        "languages": {
+          "ja": "古テュルク語、ソグド語、地域諸語",
+          "en": "Old Turkic, Sogdian, and local languages",
+          "zh": "古突厥语、粟特语及地方语言"
+        },
+        "religions": {
+          "ja": "テングリ信仰、仏教、マニ教、地域宗教",
+          "en": "Tengrism, Buddhism, Manichaeism, and local religions",
+          "zh": "腾格里信仰、佛教、摩尼教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "突厥可汗国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地オテュケンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Gokturk Khaganate, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Otuken shaped politics, warfare, and diplomacy.",
+          "zh": "突厥汗国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以于都斤为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "552年〜744年に活動。オテュケンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて中央アジア・ユーラシア草原の歴史に大きな影響を与えた。",
+          "en": "Active during 552-744. It formed and expanded around Otuken, influencing the history of Central Asia and the Eurasian steppe through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于552年—744年。以于都斤为中心形成和扩张，并通过战争、贸易、外交和统治制度影响中亚和欧亚草原历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "トルコ、モンゴル、中央アジア諸国、ウイグル系国家と関連づけて理解できる。",
+          "en": "It connects with Turkey, Mongolia, Central Asian states, and later Uyghur polities.",
+          "zh": "可与土耳其、蒙古、中亚国家和后来的回鹘政权联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は古テュルク語、ソグド語、地域諸語、宗教はテングリ信仰、仏教、マニ教、地域宗教と関係が深い。草原帝国、テュルク世界、シルクロードという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Turkic, Sogdian, and local languages and Tengrism, Buddhism, Manichaeism, and local religions. The themes steppe empire, Turkic world, Silk Road help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古突厥语、粟特语及地方语言和腾格里信仰、佛教、摩尼教及地方宗教关系密切。可从草原帝国、突厥世界、丝绸之路等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Turkey",
+        "Mongolia",
+        "Uzbekistan",
+        "Xiongnu"
+      ]
+    },
+    {
+      "names": {
+        "ja": "スコータイ王朝",
+        "en": "Sukhothai Kingdom",
+        "zh": "素可泰王国"
+      },
+      "capital": {
+        "ja": "スコータイ",
+        "en": "Sukhothai",
+        "zh": "素可泰"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "Trade Hub",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "タイ族の初期王朝。上座部仏教、タイ文字、後のタイ国家形成の前史として重要である。",
+        "en": "An early Thai kingdom, important for Theravada Buddhism, Thai script, and the background of later Thai state formation.",
+        "zh": "早期泰族王国，对上座部佛教、泰文字和后来泰国国家形成具有重要意义。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1238,
+        "end": 1438,
+        "label": {
+          "ja": "1238年〜1438年",
+          "en": "1238-1438",
+          "zh": "1238年—1438年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約250,000 km²",
+          "en": "maximum extent estimate: about 250,000 km²",
+          "zh": "最大领域估计：约250,000 km²"
+        },
+        "languages": {
+          "ja": "古タイ語、クメール語、パーリ語",
+          "en": "Old Thai, Khmer, and Pali",
+          "zh": "古泰语、高棉语、巴利语"
+        },
+        "religions": {
+          "ja": "上座部仏教、地域信仰",
+          "en": "Theravada Buddhism and local beliefs",
+          "zh": "上座部佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "スコータイ王朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地スコータイの支配層が政治、軍事、外交を動かした。",
+          "en": "For Sukhothai Kingdom, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Sukhothai shaped politics, warfare, and diplomacy.",
+          "zh": "素可泰王国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以素可泰为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1238年〜1438年に活動。スコータイを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて東南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1238-1438. It formed and expanded around Sukhothai, influencing the history of Southeast Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1238年—1438年。以素可泰为中心形成和扩张，并通过战争、贸易、外交和统治制度影响东南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "タイ、アユタヤ王朝、クメール王朝と関連づけると東南アジア史の流れが分かりやすい。",
+          "en": "It connects with Thailand, the Ayutthaya Kingdom, and the Khmer Empire.",
+          "zh": "可与泰国、阿瑜陀耶王朝和高棉帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は古タイ語、クメール語、パーリ語、宗教は上座部仏教、地域信仰と関係が深い。仏教王国、東南アジア、王国という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Thai, Khmer, and Pali and Theravada Buddhism and local beliefs. The themes Buddhist kingdom, Southeast Asia, kingdom help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古泰语、高棉语、巴利语和上座部佛教及地方信仰关系密切。可从佛教王国、东南亚、王国等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Thailand",
+        "Ayutthaya Kingdom",
+        "Khmer Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ラーンサーン王国",
+        "en": "Lan Xang",
+        "zh": "澜沧王国"
+      },
+      "capital": {
+        "ja": "ルアンパバーン / ヴィエンチャン",
+        "en": "Luang Prabang / Vientiane",
+        "zh": "琅勃拉邦 / 万象"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Buddhist Sphere",
+        "Landlocked State",
+        "Cultural Sphere",
+        "Buffer State"
+      ],
+      "desc": {
+        "ja": "ラオス地域を代表する歴史王国。メコン川流域、上座部仏教、周辺大国との関係で重要である。",
+        "en": "A major historical kingdom of the Lao region, important for the Mekong basin, Theravada Buddhism, and relations with neighboring powers.",
+        "zh": "老挝地区的重要历史王国，在湄公河流域、上座部佛教和周边大国关系中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1353,
+        "end": 1707,
+        "label": {
+          "ja": "1353年〜1707年",
+          "en": "1353-1707",
+          "zh": "1353年—1707年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約400,000 km²",
+          "en": "maximum extent estimate: about 400,000 km²",
+          "zh": "最大领域估计：约400,000 km²"
+        },
+        "languages": {
+          "ja": "ラーオ語、パーリ語、地域諸語",
+          "en": "Lao, Pali, and local languages",
+          "zh": "老挝语、巴利语及地方语言"
+        },
+        "religions": {
+          "ja": "上座部仏教、地域信仰",
+          "en": "Theravada Buddhism and local beliefs",
+          "zh": "上座部佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ラーンサーン王国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ルアンパバーン / ヴィエンチャンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Lan Xang, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Luang Prabang / Vientiane shaped politics, warfare, and diplomacy.",
+          "zh": "澜沧王国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以琅勃拉邦 / 万象为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1353年〜1707年に活動。ルアンパバーン / ヴィエンチャンを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて東南アジアの歴史に大きな影響を与えた。",
+          "en": "Active during 1353-1707. It formed and expanded around Luang Prabang / Vientiane, influencing the history of Southeast Asia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1353年—1707年。以琅勃拉邦 / 万象为中心形成和扩张，并通过战争、贸易、外交和统治制度影响东南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "ラオス、タイ、ベトナム、アユタヤ王朝と関連づけて理解できる。",
+          "en": "It connects with Laos, Thailand, Vietnam, and the Ayutthaya Kingdom.",
+          "zh": "可与老挝、泰国、越南和阿瑜陀耶王朝联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はラーオ語、パーリ語、地域諸語、宗教は上座部仏教、地域信仰と関係が深い。メコン流域、仏教王国、東南アジアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Lao, Pali, and local languages and Theravada Buddhism and local beliefs. The themes Mekong basin, Buddhist kingdom, Southeast Asia help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与老挝语、巴利语及地方语言和上座部佛教及地方信仰关系密切。可从湄公河流域、佛教王国、东南亚等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Laos",
+        "Thailand",
+        "Vietnam",
+        "Ayutthaya Kingdom"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ムワッヒド朝",
+        "en": "Almohad Caliphate",
+        "zh": "穆瓦希德王朝"
+      },
+      "capital": {
+        "ja": "マラケシュ",
+        "en": "Marrakesh",
+        "zh": "马拉喀什"
+      },
+      "type": "Past",
+      "region": "Africa, North Africa",
+      "tags": [
+        "Caliphate",
+        "Empire",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Arab-Islamic Culture",
+        "Caravan Trade",
+        "Mediterranean Trade",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "北アフリカとイベリア半島を支配したベルベル系イスラム王朝。西地中海の政治と宗教改革運動で重要である。",
+        "en": "A Berber Islamic dynasty ruling North Africa and Iberia, important for western Mediterranean politics and religious reform.",
+        "zh": "统治北非和伊比利亚半岛的柏柏尔伊斯兰王朝，在西地中海政治和宗教改革中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1121,
+        "end": 1269,
+        "label": {
+          "ja": "1121年〜1269年",
+          "en": "1121-1269",
+          "zh": "1121年—1269年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,300,000 km²",
+          "en": "maximum extent estimate: about 2,300,000 km²",
+          "zh": "最大领域估计：约2,300,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語、ベルベル諸語、ロマンス諸語",
+          "en": "Arabic, Berber languages, and Romance languages",
+          "zh": "阿拉伯语、柏柏尔诸语和罗曼语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教、ユダヤ教",
+          "en": "Islam, Christianity, and Judaism",
+          "zh": "伊斯兰教、基督教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ムワッヒド朝では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地マラケシュの支配層が政治、軍事、外交を動かした。",
+          "en": "For Almohad Caliphate, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Marrakesh shaped politics, warfare, and diplomacy.",
+          "zh": "穆瓦希德王朝的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以马拉喀什为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1121年〜1269年に活動。マラケシュを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて北アフリカ・イベリア半島の歴史に大きな影響を与えた。",
+          "en": "Active during 1121-1269. It formed and expanded around Marrakesh, influencing the history of North Africa and Iberia through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1121年—1269年。以马拉喀什为中心形成和扩张，并通过战争、贸易、外交和统治制度影响北非和伊比利亚半岛历史。"
+        },
+        "fall_reason": {
+          "ja": "広域支配の維持、後継争い、地方勢力の自立、財政や軍事負担、外部勢力の圧力が弱体化につながった。",
+          "en": "The burden of ruling a broad territory, succession disputes, local autonomy, fiscal and military pressure, and outside powers weakened it.",
+          "zh": "广域统治、继承纷争、地方势力自立、财政和军事负担以及外部压力推动了其弱化。"
+        },
+        "successors": {
+          "ja": "モロッコ、スペイン、ポルトガル、後ウマイヤ朝と関連づけると西地中海史が分かりやすい。",
+          "en": "It connects with Morocco, Spain, Portugal, and al-Andalus traditions.",
+          "zh": "可与摩洛哥、西班牙、葡萄牙和安达卢斯传统联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はアラビア語、ベルベル諸語、ロマンス諸語、宗教はイスラム教、キリスト教、ユダヤ教と関係が深い。カリフ制、イスラム世界、西地中海という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Arabic, Berber languages, and Romance languages and Islam, Christianity, and Judaism. The themes caliphate, Islamic world, western Mediterranean help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与阿拉伯语、柏柏尔诸语和罗曼语和伊斯兰教、基督教、犹太教关系密切。可从哈里发制、伊斯兰世界、西地中海等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Morocco",
+        "Spain",
+        "Portugal",
+        "Umayyad Caliphate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "エチオピア帝国",
+        "en": "Ethiopian Empire",
+        "zh": "埃塞俄比亚帝国"
+      },
+      "capital": {
+        "ja": "ゴンダール / アディスアベバ",
+        "en": "Gondar / Addis Ababa",
+        "zh": "贡德尔 / 亚的斯亚贝巴"
+      },
+      "type": "Past",
+      "region": "Africa, East Africa",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Christian World",
+        "Orthodox Sphere",
+        "Mountain State",
+        "Anti-Colonial Independence",
+        "Modern Era State",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "アフリカで長く存続したキリスト教帝国。ソロモン朝、アドワの戦い、近代化と革命で重要である。",
+        "en": "A long-lasting Christian empire in Africa, important for the Solomonic dynasty, the Battle of Adwa, modernization, and revolution.",
+        "zh": "非洲长期存在的基督教帝国，因所罗门王朝、阿杜瓦战役、近代化和革命而重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ethiopia_(1897%E2%80%931936;_1941%E2%80%931974).svg",
+      "period": {
+        "start": 1270,
+        "end": 1974,
+        "label": {
+          "ja": "1270年〜1974年",
+          "en": "1270-1974",
+          "zh": "1270年—1974年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2500万人",
+          "en": "peak estimate: about 25 million",
+          "zh": "鼎盛期估计：约2500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,221,900 km²",
+          "en": "maximum extent estimate: about 1,221,900 km²",
+          "zh": "最大领域估计：约1,221,900 km²"
+        },
+        "languages": {
+          "ja": "アムハラ語、ゲエズ語、オロモ語、地域諸語",
+          "en": "Amharic, Ge'ez, Oromo, and local languages",
+          "zh": "阿姆哈拉语、吉兹语、奥罗莫语及地方语言"
+        },
+        "religions": {
+          "ja": "エチオピア正教、イスラム教、地域宗教",
+          "en": "Ethiopian Orthodoxy, Islam, and local religions",
+          "zh": "埃塞俄比亚正教、伊斯兰教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "エチオピア帝国では、君主・軍事指導者・行政官・宗教権威・交易を担った人々が重要人物となる。中心地ゴンダール / アディスアベバの支配層が政治、軍事、外交を動かした。",
+          "en": "For Ethiopian Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade. Elites around Gondar / Addis Ababa shaped politics, warfare, and diplomacy.",
+          "zh": "埃塞俄比亚帝国的重要人物包括君主、军事领导人、行政官、宗教权威和贸易相关人物。以贡德尔 / 亚的斯亚贝巴为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1270年〜1974年に活動。ゴンダール / アディスアベバを中心に成立・拡大し、周辺勢力との戦争、交易、外交、統治制度を通じて東アフリカの歴史に大きな影響を与えた。",
+          "en": "Active during 1270-1974. It formed and expanded around Gondar / Addis Ababa, influencing the history of East Africa through war, trade, diplomacy, and systems of rule.",
+          "zh": "活跃于1270年—1974年。以贡德尔 / 亚的斯亚贝巴为中心形成和扩张，并通过战争、贸易、外交和统治制度影响东非历史。"
+        },
+        "fall_reason": {
+          "ja": "近代化の行き詰まり、社会不満、軍部の台頭、1974年革命によって帝政が終わった。",
+          "en": "Imperial rule ended through modernization pressures, social unrest, military intervention, and the 1974 revolution.",
+          "zh": "现代化压力、社会不满、军方介入和1974年革命结束了帝制。"
+        },
+        "successors": {
+          "ja": "エチオピア、エリトリア、アクスム王国と関連づけると東アフリカ史の流れが分かりやすい。",
+          "en": "It connects with Ethiopia, Eritrea, and the Kingdom of Aksum in East African history.",
+          "zh": "可与埃塞俄比亚、厄立特里亚和阿克苏姆王国联系起来理解东非史。"
+        },
+        "cultural_features": {
+          "ja": "言語はアムハラ語、ゲエズ語、オロモ語、地域諸語、宗教はエチオピア正教、イスラム教、地域宗教と関係が深い。正教会、帝国、山岳国家、反植民地という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Amharic, Ge'ez, Oromo, and local languages and Ethiopian Orthodoxy, Islam, and local religions. The themes Orthodoxy, empire, mountain state, anti-colonial history help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与阿姆哈拉语、吉兹语、奥罗莫语及地方语言和埃塞俄比亚正教、伊斯兰教及地方宗教关系密切。可从东正教、帝国、山地国家、反殖民史等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Ethiopia",
+        "Eritrea",
+        "Kingdom of Aksum"
+      ]
     }
   ],
   "tag_categories": {
