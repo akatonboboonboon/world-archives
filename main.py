@@ -679,6 +679,7 @@ class AppState:
     public_collection_name = None
     public_collection_keys = []
     public_collection_kind = 'collection'
+    pending_hash_screen = None
     battle_id = None
     battle_selected_keys = set()
     battle_attack_target = None
@@ -2743,10 +2744,23 @@ def request_browser_backup_restore():
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
-        knownUsers.add(String(username));
+        const cleanName = String(username);
+        knownUsers.add(cleanName);
         const record = looksLikeRecord(value) ? value : (looksLikeRecord(value.record) ? value.record : null);
         if (!record) return;
-        collected[String(username)] = value;
+        const existingPayload = collected[cleanName];
+        const existingRecord = looksLikeRecord(existingPayload)
+          ? existingPayload
+          : (existingPayload && looksLikeRecord(existingPayload.record) ? existingPayload.record : null);
+        if (existingRecord) {{
+          const mergedRecord = Object.assign({{}}, existingRecord, record);
+          if (existingRecord.password_hash && !record.password_hash) {{
+            mergedRecord.password_hash = existingRecord.password_hash;
+          }}
+          collected[cleanName] = {{username: cleanName, record: mergedRecord}};
+        }} else {{
+          collected[cleanName] = {{username: cleanName, record}};
+        }}
       }};
       const collectPayload = value => {{
         if (!value) return;
@@ -9503,14 +9517,20 @@ def request_hash_route_from_browser(force=False):
     except Exception as e:
         print(f"Hash route request skipped: {e}", flush=True)
 
+def consume_pending_hash_screen():
+    screen_name = state.pending_hash_screen
+    state.pending_hash_screen = None
+    if screen_name:
+        show_screen(screen_name, update_hash=False, notify=False)
+
 @app.post('/api/hash-route')
 async def route_from_hash(payload: dict):
     screen_name = screen_from_hash(payload.get('hash'))
     protected_screens = {'main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social'}
     if screen_name in protected_screens and not state.current_user:
         return {'ok': False, 'login_required': True}
-    show_screen(screen_name, update_hash=False, notify=False)
-    return {'ok': True, 'screen': state.current_screen, 'hash': hash_for_screen(state.current_screen)}
+    state.pending_hash_screen = screen_name
+    return {'ok': True, 'screen': screen_name, 'hash': hash_for_screen(screen_name)}
 
 def show_screen(screen_name, update_hash=True, notify=True):
     protected_screens = ['main', 'result', 'quiz', 'compare', 'timeline', 'map', 'network', 'account', 'users', 'public_collection', 'battle', 'rankings', 'social']
@@ -9862,7 +9882,10 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             request_remembered_login()
             ui.timer(1.0, lambda: request_remembered_login(force=True), once=True)
         else:
-            ui.timer(0.2, lambda: request_hash_route_from_browser(force=False), once=True)
+            if state.pending_hash_screen:
+                ui.timer(0.1, consume_pending_hash_screen, once=True)
+            else:
+                ui.timer(0.2, lambda: request_hash_route_from_browser(force=False), once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
