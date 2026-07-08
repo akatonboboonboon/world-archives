@@ -2667,12 +2667,12 @@ def request_remembered_login(force=False):
 def login_with_previous_user():
     if state.current_user:
         return
-    request_browser_backup_restore()
     missing_message = t('previous_login_missing')
     failed_message = t('previous_login_failed')
     script = f"""
     (async () => {{
-      const username = localStorage.getItem('world_archives_last_user') || '';
+      const backupKey = '{BROWSER_BACKUP_KEY}';
+      const knownKey = 'world_archives_known_usernames';
       const notify = (message) => {{
         if (window.Quasar && Quasar.Notify) {{
           Quasar.Notify.create({{message, color: 'warning'}});
@@ -2680,11 +2680,53 @@ def login_with_previous_user():
           window.alert(message);
         }}
       }};
+      const parseJson = (value, fallback) => {{
+        try {{
+          return JSON.parse(value || '');
+        }} catch (error) {{
+          return fallback;
+        }}
+      }};
+      const backups = parseJson(localStorage.getItem(backupKey), {{}});
+      const backupRecord = (value) => {{
+        if (!value || typeof value !== 'object') return null;
+        if (value.record && typeof value.record === 'object') return value.record;
+        return value;
+      }};
+      const hasPrivateRecord = (username) => {{
+        const record = backupRecord(backups[username]);
+        return !!(record && typeof record === 'object' && (
+          record.password_hash || record.is_guest || record.favorites || record.viewed_keys || record.quiz_history
+        ));
+      }};
+      let username = localStorage.getItem('world_archives_last_user') || '';
+      if (!username || !hasPrivateRecord(username)) {{
+        const candidates = Object.entries(backups || {{}})
+          .filter(([name]) => name && hasPrivateRecord(name))
+          .sort((a, b) => String((b[1] || {{}}).updated_at || '').localeCompare(String((a[1] || {{}}).updated_at || '')));
+        if (candidates.length) username = candidates[0][0];
+      }}
+      if (!username) {{
+        const knownUsers = parseJson(localStorage.getItem(knownKey), []);
+        username = Array.isArray(knownUsers) ? (knownUsers.find(Boolean) || '') : '';
+      }}
       if (!username) {{
         notify({json.dumps(missing_message)});
         return;
       }}
       try {{
+        const privatePayload = {{}};
+        if (backups[username]) {{
+          privatePayload[username] = backups[username];
+          await fetch('/api/restore-user-backups', {{
+            method: 'POST',
+            headers: {{'Content-Type': 'application/json'}},
+            body: JSON.stringify({{
+              users: privatePayload,
+              known_users: [username],
+            }}),
+          }});
+        }}
         const response = await fetch('/api/remember-login', {{
           method: 'POST',
           headers: {{'Content-Type': 'application/json'}},
@@ -2703,7 +2745,7 @@ def login_with_previous_user():
     }})();
     """
     try:
-        ui.timer(0.6, lambda: ui.run_javascript(script), once=True)
+        ui.run_javascript(script)
     except Exception as e:
         print(f"Previous login skipped: {e}", flush=True)
 
