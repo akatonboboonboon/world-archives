@@ -155,7 +155,6 @@ ui.add_body_html("""
 (() => {
   sessionStorage.removeItem('world_archives_route_hash_applied');
   sessionStorage.removeItem('world_archives_login_redirect');
-  sessionStorage.removeItem('world_archives_remember_login_tried');
   if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
@@ -2644,7 +2643,7 @@ def request_remembered_login(force=False):
         }});
         const payload = await response.json();
         if (payload && payload.ok) {{
-          location.reload();
+          console.info('remember login restored');
         }}
       }} catch (error) {{
         console.warn('remember login failed', error);
@@ -9828,6 +9827,8 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
             request_browser_backup_restore()
             ui.timer(0.4, lambda: request_remembered_login(force=True), once=True)
             ui.timer(1.6, lambda: request_remembered_login(force=True), once=True)
+            ui.timer(0.9, lambda: refresh_top_ui() if state.current_user and top_screen.visible else None, once=True)
+            ui.timer(2.1, lambda: refresh_top_ui() if state.current_user and top_screen.visible else None, once=True)
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
