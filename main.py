@@ -615,7 +615,7 @@ BATTLE_REDRAW_COMMAND_COST = 2
 BATTLE_CARD_COMMAND_COSTS = [1, 2, 4, 6, 7]
 BATTLE_CARD_POWER_PERCENTS = [100, 90, 80, 70, 60]
 BATTLE_DEFENSE_PERCENT = 50
-BATTLE_BONUS_PER_MATCH_BPS = 10000
+BATTLE_BONUS_PER_MATCH_BPS = 5000
 BATTLE_BONUS_DENOMINATOR = 10_000
 BATTLE_DAMAGE_OUTPUT_PERCENT = 30
 BATTLE_WORLD_WAR_TURN = 75
@@ -5688,7 +5688,7 @@ def _legacy_battle_help_labels():
                     [
                         '同じターンに出した国同士、または防御に残した国同士で、タグや地域が重なると強力なボーナスが入ります。',
                         '1枚だけでは発動しません。相手のカードとの一致も関係ありません。',
-                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+100%されます。1個で2倍、2個で3倍のように伸びるため、国の組み合わせが勝敗を大きく左右します。',
+                        '一致したタグや地域が1種類増えるごとに、攻撃または防御が+50%されます。1個で1.5倍、2個で2倍のように伸びるため、国の組み合わせが勝敗を大きく左右します。',
                     ],
                 ),
             ],
@@ -5727,7 +5727,7 @@ def _legacy_battle_help_labels():
                 ('Match Bonus', [
                     'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a strong bonus.',
                     'One card alone cannot trigger it. Opponent cards are not included.',
-                    'Each repeated tag or region adds +100% to attack or defense: one match doubles it, two matches triple it, and stacked matches can decide the turn.',
+                    'Each repeated tag or region adds +50% to attack or defense: one match makes it 1.5x, two matches make it 2x, and stacked matches can decide the turn.',
                 ]),
             ],
         },
@@ -5765,7 +5765,7 @@ def _legacy_battle_help_labels():
                 ('一致加成', [
                     '本回合打出的国家之间，或留下防御的国家之间，如果标签或地区重复，就会得到强力加成。',
                     '只用1张牌不会发动。对手的牌不会参与计算。',
-                    '每个重复的标签或地区会让攻击或防御增加+100%。一个一致为2倍，两个一致为3倍，组合会大幅影响胜负。',
+                    '每个重复的标签或地区会让攻击或防御增加+50%。一个一致为1.5倍，两个一致为2倍，组合会大幅影响胜负。',
                 ]),
             ],
         },
@@ -5884,7 +5884,7 @@ def battle_help_labels():
                 ('Match Bonus', [
                     'If your played cards share tags or regions, or your saved defense cards share tags or regions, you get a strong bonus.',
                     'One card alone cannot trigger it. Opponent cards are not included.',
-                    'Each repeated tag or region adds +100% to attack or defense: one match doubles it, two matches triple it, and stacked matches can decide the turn.',
+                    'Each repeated tag or region adds +50% to attack or defense: one match makes it 1.5x, two matches make it 2x, and stacked matches can decide the turn.',
                 ]),
             ],
         },
@@ -5941,7 +5941,7 @@ def battle_help_labels():
                 ('一致加成', [
                     '同一回合中，自己出的牌之间，或保留防御的牌之间，如果标签或地区重复，会获得强力加成。',
                     '只有1张牌时不会发动。也不会和对手的牌进行比较。',
-                    '重复的标签或地区越多，攻击或防御会大幅提高。一个一致为2倍，两个一致为3倍，组合会明显影响胜负。',
+                    '重复的标签或地区越多，攻击或防御会大幅提高。一个一致为1.5倍，两个一致为2倍，组合会明显影响胜负。',
                 ]),
             ],
         },
