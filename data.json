@@ -36435,6 +36435,2965 @@
         "Turkmenistan",
         "Mongol Empire"
       ]
+    },
+    {
+      "names": {
+        "ja": "秦",
+        "en": "Qin Dynasty",
+        "zh": "秦朝"
+      },
+      "capital": {
+        "ja": "咸陽",
+        "en": "Xianyang",
+        "zh": "咸阳"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Dynastic State",
+        "Imperial Dynasty",
+        "Iron Age State",
+        "Imperial Bureaucracy",
+        "Military Government",
+        "Sinic World",
+        "Tributary System"
+      ],
+      "desc": {
+        "ja": "中国を初めて統一した王朝。皇帝制度、郡県制、度量衡統一など、後の中国国家の基礎を作った。",
+        "en": "The dynasty that first unified China, creating foundations such as the imperial title, commandery system, and standardization.",
+        "zh": "首次统一中国的王朝，建立皇帝制度、郡县制和度量衡统一等后世国家基础。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -221,
+        "end": -206,
+        "label": {
+          "ja": "紀元前221年〜紀元前206年",
+          "en": "221 BCE-206 BCE",
+          "zh": "公元前221年—公元前206年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,300,000 km²",
+          "en": "maximum extent estimate: about 2,300,000 km²",
+          "zh": "最大领域估计：约2,300,000 km²"
+        },
+        "languages": {
+          "ja": "上古中国語",
+          "en": "Old Chinese",
+          "zh": "上古汉语"
+        },
+        "religions": {
+          "ja": "法家思想、祖先祭祀、古代中国宗教",
+          "en": "Legalist thought, ancestor rites, and ancient Chinese religion",
+          "zh": "法家思想、祖先祭祀和古代中国宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "秦では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地咸陽の支配層が政治、軍事、外交を動かした。",
+          "en": "For Qin Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Xianyang shaped politics, warfare, and diplomacy.",
+          "zh": "秦朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以咸阳为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前221年〜紀元前206年に活動。咸陽を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて東アジアの歴史に影響を与えた。",
+          "en": "Active during 221 BCE-206 BCE. It formed and expanded around Xianyang, influencing the history of East Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于公元前221年—公元前206年。以咸阳为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响东亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "漢、中国、周と関連づけると中国統一国家の流れが分かりやすい。",
+          "en": "It connects with Han, China, and Zhou in the history of Chinese unification.",
+          "zh": "可与汉、中国和周联系起来理解中国统一国家的形成。"
+        },
+        "cultural_features": {
+          "ja": "言語は上古中国語、宗教は法家思想、祖先祭祀、古代中国宗教と関係が深い。統一王朝、官僚制、華夏世界という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Chinese and Legalist thought, ancestor rites, and ancient Chinese religion. The themes unifying dynasty, bureaucracy, Sinic world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与上古汉语和法家思想、祖先祭祀和古代中国宗教关系密切。可从统一王朝、官僚制、华夏世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Han Dynasty",
+        "Zhou Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "隋",
+        "en": "Sui Dynasty",
+        "zh": "隋朝"
+      },
+      "capital": {
+        "ja": "大興城",
+        "en": "Daxingcheng",
+        "zh": "大兴城"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Dynastic State",
+        "Imperial Dynasty",
+        "Medieval Dynasty",
+        "Imperial Bureaucracy",
+        "Canal & Strait Hub",
+        "Buddhist Sphere",
+        "Sinic World"
+      ],
+      "desc": {
+        "ja": "分裂後の中国を再統一した短命王朝。大運河建設と科挙制度整備で唐の繁栄の土台を作った。",
+        "en": "A short-lived dynasty that reunified China after division, laying foundations for Tang prosperity through canals and examinations.",
+        "zh": "结束分裂、重新统一中国的短命王朝，通过大运河和科举制度奠定唐代繁荣基础。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 581,
+        "end": 618,
+        "label": {
+          "ja": "581年〜618年",
+          "en": "581-618",
+          "zh": "581年—618年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約4600万人",
+          "en": "peak estimate: about 46 million",
+          "zh": "鼎盛期估计：约4600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約4,000,000 km²",
+          "en": "maximum extent estimate: about 4,000,000 km²",
+          "zh": "最大领域估计：约4,000,000 km²"
+        },
+        "languages": {
+          "ja": "中古中国語",
+          "en": "Middle Chinese",
+          "zh": "中古汉语"
+        },
+        "religions": {
+          "ja": "仏教、道教、儒教",
+          "en": "Buddhism, Taoism, and Confucianism",
+          "zh": "佛教、道教、儒教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "隋では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地大興城の支配層が政治、軍事、外交を動かした。",
+          "en": "For Sui Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Daxingcheng shaped politics, warfare, and diplomacy.",
+          "zh": "隋朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以大兴城为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "581年〜618年に活動。大興城を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて東アジアの歴史に影響を与えた。",
+          "en": "Active during 581-618. It formed and expanded around Daxingcheng, influencing the history of East Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于581年—618年。以大兴城为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响东亚历史。"
+        },
+        "fall_reason": {
+          "ja": "後継争い、外圧、交易路の変化、地方勢力の自立、財政や軍事負担が重なって弱体化した。",
+          "en": "Succession disputes, outside pressure, shifting trade routes, local autonomy, and fiscal or military burdens weakened it.",
+          "zh": "继承纷争、外部压力、贸易路线变化、地方势力自立以及财政和军事负担共同推动其弱化。"
+        },
+        "successors": {
+          "ja": "唐、宋、中国と関連づけて理解できる。",
+          "en": "It connects with Tang, Song, and China.",
+          "zh": "可与唐、宋和中国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は中古中国語、宗教は仏教、道教、儒教と関係が深い。再統一、官僚制、運河という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Middle Chinese and Buddhism, Taoism, and Confucianism. The themes reunification, bureaucracy, canals help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与中古汉语和佛教、道教、儒教关系密切。可从再统一、官僚制、运河等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Tang Dynasty",
+        "Song Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "遼",
+        "en": "Liao Dynasty",
+        "zh": "辽朝"
+      },
+      "capital": {
+        "ja": "上京臨潢府",
+        "en": "Shangjing Linhuangfu",
+        "zh": "上京临潢府"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia, Central Asia",
+      "tags": [
+        "Dynastic State",
+        "Imperial Dynasty",
+        "Medieval Dynasty",
+        "Nomadic Power",
+        "Steppe Empire",
+        "Sinic World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "契丹人が建てた王朝。遊牧世界と中国式官僚制を組み合わせ、宋や高麗と並び立った。",
+        "en": "A Khitan dynasty combining steppe rule and Chinese-style administration, coexisting with Song and Goryeo.",
+        "zh": "契丹人建立的王朝，结合草原统治和中式官僚制，与宋和高丽并立。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 916,
+        "end": 1125,
+        "label": {
+          "ja": "916年〜1125年",
+          "en": "916-1125",
+          "zh": "916年—1125年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約900万人",
+          "en": "peak estimate: about 9 million",
+          "zh": "鼎盛期估计：约900万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,600,000 km²",
+          "en": "maximum extent estimate: about 2,600,000 km²",
+          "zh": "最大领域估计：约2,600,000 km²"
+        },
+        "languages": {
+          "ja": "契丹語、中国語、女真語、地域諸語",
+          "en": "Khitan, Chinese, Jurchen, and local languages",
+          "zh": "契丹语、汉语、女真语及地方语言"
+        },
+        "religions": {
+          "ja": "仏教、シャーマニズム、儒教",
+          "en": "Buddhism, shamanism, and Confucianism",
+          "zh": "佛教、萨满信仰、儒教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "遼では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地上京臨潢府の支配層が政治、軍事、外交を動かした。",
+          "en": "For Liao Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Shangjing Linhuangfu shaped politics, warfare, and diplomacy.",
+          "zh": "辽朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以上京临潢府为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "916年〜1125年に活動。上京臨潢府を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて東アジア・内陸アジアの歴史に影響を与えた。",
+          "en": "Active during 916-1125. It formed and expanded around Shangjing Linhuangfu, influencing the history of East Asia and Inner Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于916年—1125年。以上京临潢府为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响东亚和内亚历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "中国、宋、金、西夏、モンゴル高原の諸勢力と関連が深い。",
+          "en": "It connects with China, Song, Jin, Western Xia, and steppe polities.",
+          "zh": "与中国、宋、金、西夏和草原诸政权关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語は契丹語、中国語、女真語、地域諸語、宗教は仏教、シャーマニズム、儒教と関係が深い。遊牧王朝、内陸アジア、華夷秩序という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Khitan, Chinese, Jurchen, and local languages and Buddhism, shamanism, and Confucianism. The themes nomadic dynasty, Inner Asia, Sino-steppe order help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与契丹语、汉语、女真语及地方语言和佛教、萨满信仰、儒教关系密切。可从游牧王朝、内亚、华夷秩序等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Song Dynasty",
+        "Jin Dynasty",
+        "Western Xia"
+      ]
+    },
+    {
+      "names": {
+        "ja": "吐蕃",
+        "en": "Tibetan Empire",
+        "zh": "吐蕃"
+      },
+      "capital": {
+        "ja": "ラサ",
+        "en": "Lhasa",
+        "zh": "拉萨"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Empire",
+        "Imperial Dynasty",
+        "Mountain State",
+        "Buddhist Sphere",
+        "Overland Empire",
+        "Silk Road",
+        "Multilingual State",
+        "Military Government"
+      ],
+      "desc": {
+        "ja": "チベット高原から中央アジアへ勢力を広げた帝国。唐との抗争、仏教受容、シルクロード支配で重要である。",
+        "en": "An empire expanding from the Tibetan Plateau into Central Asia, important for rivalry with Tang, Buddhism, and Silk Road control.",
+        "zh": "从青藏高原扩展到中亚的帝国，因与唐对抗、接受佛教和控制丝绸之路而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 618,
+        "end": 842,
+        "label": {
+          "ja": "618年〜842年",
+          "en": "618-842",
+          "zh": "618年—842年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約4,600,000 km²",
+          "en": "maximum extent estimate: about 4,600,000 km²",
+          "zh": "最大领域估计：约4,600,000 km²"
+        },
+        "languages": {
+          "ja": "チベット語、サンスクリット、地域諸語",
+          "en": "Tibetan, Sanskrit, and local languages",
+          "zh": "藏语、梵语及地方语言"
+        },
+        "religions": {
+          "ja": "チベット仏教、ボン教",
+          "en": "Tibetan Buddhism and Bon",
+          "zh": "藏传佛教、苯教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "吐蕃では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ラサの支配層が政治、軍事、外交を動かした。",
+          "en": "For Tibetan Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Lhasa shaped politics, warfare, and diplomacy.",
+          "zh": "吐蕃的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以拉萨为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "618年〜842年に活動。ラサを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてチベット高原・中央アジアの歴史に影響を与えた。",
+          "en": "Active during 618-842. It formed and expanded around Lhasa, influencing the history of the Tibetan Plateau and Central Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于618年—842年。以拉萨为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响青藏高原和中亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "チベット、中国、唐、中央アジア諸国と関連づけて理解できる。",
+          "en": "It connects with Tibet, China, Tang, and Central Asian polities.",
+          "zh": "可与西藏、中国、唐和中亚政权联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はチベット語、サンスクリット、地域諸語、宗教はチベット仏教、ボン教と関係が深い。チベット高原、仏教圏、シルクロードという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Tibetan, Sanskrit, and local languages and Tibetan Buddhism and Bon. The themes Tibetan Plateau, Buddhist sphere, Silk Road help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与藏语、梵语及地方语言和藏传佛教、苯教关系密切。可从青藏高原、佛教圈、丝绸之路等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Tang Dynasty",
+        "Nepal",
+        "Bhutan"
+      ]
+    },
+    {
+      "names": {
+        "ja": "南詔",
+        "en": "Nanzhao",
+        "zh": "南诏"
+      },
+      "capital": {
+        "ja": "太和城",
+        "en": "Taihe City",
+        "zh": "太和城"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia, East Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Mountain State",
+        "Trade Hub",
+        "Buddhist Sphere",
+        "Strategic Crossroads",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "雲南を中心に栄えた王国。唐、吐蕃、東南アジアを結ぶ山岳交易圏で重要である。",
+        "en": "A kingdom centered on Yunnan, important in mountain trade networks linking Tang, Tibet, and Southeast Asia.",
+        "zh": "以云南为中心的王国，是连接唐、吐蕃和东南亚的山地贸易网络的重要节点。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 738,
+        "end": 902,
+        "label": {
+          "ja": "738年〜902年",
+          "en": "738-902",
+          "zh": "738年—902年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約800,000 km²",
+          "en": "maximum extent estimate: about 800,000 km²",
+          "zh": "最大领域估计：约800,000 km²"
+        },
+        "languages": {
+          "ja": "ペー語、チベット・ビルマ系諸語、中国語",
+          "en": "Bai, Tibeto-Burman languages, and Chinese",
+          "zh": "白语、藏缅语族诸语、汉语"
+        },
+        "religions": {
+          "ja": "仏教、地域信仰",
+          "en": "Buddhism and local beliefs",
+          "zh": "佛教、地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "南詔では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地太和城の支配層が政治、軍事、外交を動かした。",
+          "en": "For Nanzhao, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Taihe City shaped politics, warfare, and diplomacy.",
+          "zh": "南诏的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以太和城为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "738年〜902年に活動。太和城を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて雲南・東南アジア北部の歴史に影響を与えた。",
+          "en": "Active during 738-902. It formed and expanded around Taihe City, influencing the history of Yunnan and northern Southeast Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于738年—902年。以太和城为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响云南和北部东南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "中国、雲南、大理国、唐と関連づけて理解できる。",
+          "en": "It connects with China, Yunnan, the Dali Kingdom, and Tang.",
+          "zh": "可与中国、云南、大理国和唐联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はペー語、チベット・ビルマ系諸語、中国語、宗教は仏教、地域信仰と関係が深い。雲南、山岳国家、交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Bai, Tibeto-Burman languages, and Chinese and Buddhism and local beliefs. The themes Yunnan, mountain state, trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与白语、藏缅语族诸语、汉语和佛教、地方信仰关系密切。可从云南、山地国家、贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Dali Kingdom",
+        "Tang Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "大理国",
+        "en": "Dali Kingdom",
+        "zh": "大理国"
+      },
+      "capital": {
+        "ja": "大理",
+        "en": "Dali",
+        "zh": "大理"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Mountain State",
+        "Buddhist Sphere",
+        "Trade Hub",
+        "Strategic Crossroads",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "雲南に成立した仏教王国。宋代中国と東南アジアの間の交易・文化交流で重要である。",
+        "en": "A Buddhist kingdom in Yunnan, important for trade and cultural exchange between Song China and Southeast Asia.",
+        "zh": "云南的佛教王国，在宋代中国与东南亚之间的贸易和文化交流中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 937,
+        "end": 1253,
+        "label": {
+          "ja": "937年〜1253年",
+          "en": "937-1253",
+          "zh": "937年—1253年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約600,000 km²",
+          "en": "maximum extent estimate: about 600,000 km²",
+          "zh": "最大领域估计：约600,000 km²"
+        },
+        "languages": {
+          "ja": "ペー語、中国語、チベット・ビルマ系諸語",
+          "en": "Bai, Chinese, and Tibeto-Burman languages",
+          "zh": "白语、汉语、藏缅语族诸语"
+        },
+        "religions": {
+          "ja": "仏教、地域信仰",
+          "en": "Buddhism and local beliefs",
+          "zh": "佛教、地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "大理国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地大理の支配層が政治、軍事、外交を動かした。",
+          "en": "For Dali Kingdom, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Dali shaped politics, warfare, and diplomacy.",
+          "zh": "大理国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以大理为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "937年〜1253年に活動。大理を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて雲南の歴史に影響を与えた。",
+          "en": "Active during 937-1253. It formed and expanded around Dali, influencing the history of Yunnan through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于937年—1253年。以大理为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响云南历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "中国、南詔、元、雲南地域と関連づけて理解できる。",
+          "en": "It connects with China, Nanzhao, Yuan, and the Yunnan region.",
+          "zh": "可与中国、南诏、元和云南地区联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はペー語、中国語、チベット・ビルマ系諸語、宗教は仏教、地域信仰と関係が深い。雲南、仏教王国、山岳交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Bai, Chinese, and Tibeto-Burman languages and Buddhism and local beliefs. The themes Yunnan, Buddhist kingdom, mountain trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与白语、汉语、藏缅语族诸语和佛教、地方信仰关系密切。可从云南、佛教王国、山地贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "China",
+        "Nanzhao",
+        "Yuan Dynasty"
+      ]
+    },
+    {
+      "names": {
+        "ja": "渤海",
+        "en": "Balhae",
+        "zh": "渤海国"
+      },
+      "capital": {
+        "ja": "上京龍泉府",
+        "en": "Sanggyeong / Longquanfu",
+        "zh": "上京龙泉府"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Frontier State",
+        "Buddhist Sphere",
+        "Confucian Sphere",
+        "Sinic World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "高句麗滅亡後に満洲から朝鮮半島北部で栄えた王国。唐、日本、新羅との外交で重要である。",
+        "en": "A kingdom in Manchuria and northern Korea after Goguryeo, important for diplomacy with Tang, Japan, and Silla.",
+        "zh": "高句丽灭亡后在满洲和朝鲜半岛北部兴起的王国，因与唐、日本和新罗外交而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 698,
+        "end": 926,
+        "label": {
+          "ja": "698年〜926年",
+          "en": "698-926",
+          "zh": "698年—926年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約800,000 km²",
+          "en": "maximum extent estimate: about 800,000 km²",
+          "zh": "最大领域估计：约800,000 km²"
+        },
+        "languages": {
+          "ja": "渤海語、靺鞨系言語、中国語",
+          "en": "Balhae language, Mohe languages, and Chinese",
+          "zh": "渤海语、靺鞨语系、汉语"
+        },
+        "religions": {
+          "ja": "仏教、シャーマニズム、儒教",
+          "en": "Buddhism, shamanism, and Confucianism",
+          "zh": "佛教、萨满信仰、儒教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "渤海では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地上京龍泉府の支配層が政治、軍事、外交を動かした。",
+          "en": "For Balhae, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Sanggyeong / Longquanfu shaped politics, warfare, and diplomacy.",
+          "zh": "渤海国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以上京龙泉府为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "698年〜926年に活動。上京龍泉府を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて満洲・朝鮮半島北部の歴史に影響を与えた。",
+          "en": "Active during 698-926. It formed and expanded around Sanggyeong / Longquanfu, influencing the history of Manchuria and northern Korea through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于698年—926年。以上京龙泉府为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响满洲和朝鲜半岛北部历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "韓国、北朝鮮、中国、高句麗、新羅と関連づけて理解できる。",
+          "en": "It connects with Korea, China, Goguryeo, and Silla.",
+          "zh": "可与韩国、朝鲜、中国、高句丽和新罗联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は渤海語、靺鞨系言語、中国語、宗教は仏教、シャーマニズム、儒教と関係が深い。満洲、朝鮮史、東アジア外交という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Balhae language, Mohe languages, and Chinese and Buddhism, shamanism, and Confucianism. The themes Manchuria, Korean history, East Asian diplomacy help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与渤海语、靺鞨语系、汉语和佛教、萨满信仰、儒教关系密切。可从满洲、朝鲜史、东亚外交等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "South Korea",
+        "North Korea",
+        "China",
+        "Goguryeo",
+        "Silla"
+      ]
+    },
+    {
+      "names": {
+        "ja": "百済",
+        "en": "Baekje",
+        "zh": "百济"
+      },
+      "capital": {
+        "ja": "慰礼城 / 泗沘",
+        "en": "Wiryeseong / Sabi",
+        "zh": "慰礼城 / 泗沘"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Buddhist Sphere",
+        "Confucian Sphere",
+        "Maritime Power",
+        "Port City Network",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "朝鮮三国の一つ。日本や中国南朝との交流、仏教・技術の伝播で重要である。",
+        "en": "One of Korea's Three Kingdoms, important for exchange with Japan and southern China and the spread of Buddhism and technology.",
+        "zh": "朝鲜三国之一，因与日本和中国南朝交流以及佛教、技术传播而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": -18,
+        "end": 660,
+        "label": {
+          "ja": "紀元前18年〜660年",
+          "en": "18 BCE-660",
+          "zh": "公元前18年—660年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約380万人",
+          "en": "peak estimate: about 3.8 million",
+          "zh": "鼎盛期估计：约380万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約120,000 km²",
+          "en": "maximum extent estimate: about 120,000 km²",
+          "zh": "最大领域估计：约120,000 km²"
+        },
+        "languages": {
+          "ja": "百済語、漢文",
+          "en": "Baekje language and Literary Chinese",
+          "zh": "百济语、汉文"
+        },
+        "religions": {
+          "ja": "仏教、シャーマニズム、儒教",
+          "en": "Buddhism, shamanism, and Confucianism",
+          "zh": "佛教、萨满信仰、儒教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "百済では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地慰礼城 / 泗沘の支配層が政治、軍事、外交を動かした。",
+          "en": "For Baekje, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Wiryeseong / Sabi shaped politics, warfare, and diplomacy.",
+          "zh": "百济的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以慰礼城 / 泗沘为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "紀元前18年〜660年に活動。慰礼城 / 泗沘を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて朝鮮半島西南部の歴史に影響を与えた。",
+          "en": "Active during 18 BCE-660. It formed and expanded around Wiryeseong / Sabi, influencing the history of southwestern Korea through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于公元前18年—660年。以慰礼城 / 泗沘为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响朝鲜半岛西南部历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "韓国、日本、高句麗、新羅と関連づけて理解できる。",
+          "en": "It connects with Korea, Japan, Goguryeo, and Silla.",
+          "zh": "可与韩国、日本、高句丽和新罗联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は百済語、漢文、宗教は仏教、シャーマニズム、儒教と関係が深い。朝鮮三国、仏教、海上交流という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Baekje language and Literary Chinese and Buddhism, shamanism, and Confucianism. The themes Korean Three Kingdoms, Buddhism, maritime exchange help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与百济语、汉文和佛教、萨满信仰、儒教关系密切。可从朝鲜三国、佛教、海上交流等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "South Korea",
+        "Japan",
+        "Goguryeo",
+        "Silla"
+      ]
+    },
+    {
+      "names": {
+        "ja": "室町幕府",
+        "en": "Muromachi Shogunate",
+        "zh": "室町幕府"
+      },
+      "capital": {
+        "ja": "京都",
+        "en": "Kyoto",
+        "zh": "京都"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Shogunate",
+        "Feudal Realm",
+        "Medieval Dynasty",
+        "Warrior Aristocracy",
+        "Buddhist Sphere",
+        "Shinto-Buddhist Sphere",
+        "Maritime Power",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "足利氏による武家政権。南北朝、守護大名、東アジア交易、戦国時代への移行で重要である。",
+        "en": "A warrior government led by the Ashikaga, important for the Northern and Southern Courts, shugo daimyo, East Asian trade, and the transition to the Sengoku period.",
+        "zh": "足利氏武家政权，因南北朝、守护大名、东亚贸易和向战国时代转变而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1336,
+        "end": 1573,
+        "label": {
+          "ja": "1336年〜1573年",
+          "en": "1336-1573",
+          "zh": "1336年—1573年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1000万人",
+          "en": "peak estimate: about 10 million",
+          "zh": "鼎盛期估计：约1000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約380,000 km²",
+          "en": "maximum extent estimate: about 380,000 km²",
+          "zh": "最大领域估计：约380,000 km²"
+        },
+        "languages": {
+          "ja": "日本語、漢文",
+          "en": "Japanese and Literary Chinese",
+          "zh": "日语、汉文"
+        },
+        "religions": {
+          "ja": "仏教、神道",
+          "en": "Buddhism and Shinto",
+          "zh": "佛教、神道"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "室町幕府では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地京都の支配層が政治、軍事、外交を動かした。",
+          "en": "For Muromachi Shogunate, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Kyoto shaped politics, warfare, and diplomacy.",
+          "zh": "室町幕府的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以京都为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1336年〜1573年に活動。京都を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて日本列島の歴史に影響を与えた。",
+          "en": "Active during 1336-1573. It formed and expanded around Kyoto, influencing the history of the Japanese archipelago through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1336年—1573年。以京都为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响日本列岛历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "日本、鎌倉幕府、江戸幕府と関連づけて理解できる。",
+          "en": "It connects with Japan, the Kamakura Shogunate, and the Tokugawa Shogunate.",
+          "zh": "可与日本、镰仓幕府和德川幕府联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は日本語、漢文、宗教は仏教、神道と関係が深い。幕府、武家政権、中世日本という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Japanese and Literary Chinese and Buddhism and Shinto. The themes shogunate, warrior government, medieval Japan help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与日语、汉文和佛教、神道关系密切。可从幕府、武家政权、中世日本等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Japan",
+        "Kamakura Shogunate",
+        "Tokugawa Shogunate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "江戸幕府",
+        "en": "Tokugawa Shogunate",
+        "zh": "德川幕府"
+      },
+      "capital": {
+        "ja": "江戸",
+        "en": "Edo",
+        "zh": "江户"
+      },
+      "type": "Past",
+      "region": "Asia, East Asia",
+      "tags": [
+        "Shogunate",
+        "Feudal Realm",
+        "Early Modern State",
+        "Warrior Aristocracy",
+        "Shinto-Buddhist Sphere",
+        "Confucian Sphere",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "徳川氏による近世日本の武家政権。幕藩体制、鎖国、江戸文化、明治維新への転換で重要である。",
+        "en": "The Tokugawa warrior government of early modern Japan, important for the bakuhan system, maritime restrictions, Edo culture, and the transition to Meiji.",
+        "zh": "德川氏近世日本武家政权，因幕藩体制、海禁、江户文化和明治维新转型而重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Tokugawa_Shogunate.svg",
+      "period": {
+        "start": 1603,
+        "end": 1868,
+        "label": {
+          "ja": "1603年〜1868年",
+          "en": "1603-1868",
+          "zh": "1603年—1868年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約3000万人",
+          "en": "peak estimate: about 30 million",
+          "zh": "鼎盛期估计：约3000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約380,000 km²",
+          "en": "maximum extent estimate: about 380,000 km²",
+          "zh": "最大领域估计：约380,000 km²"
+        },
+        "languages": {
+          "ja": "日本語、漢文",
+          "en": "Japanese and Literary Chinese",
+          "zh": "日语、汉文"
+        },
+        "religions": {
+          "ja": "仏教、神道、儒教",
+          "en": "Buddhism, Shinto, and Confucianism",
+          "zh": "佛教、神道、儒教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "江戸幕府では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地江戸の支配層が政治、軍事、外交を動かした。",
+          "en": "For Tokugawa Shogunate, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Edo shaped politics, warfare, and diplomacy.",
+          "zh": "德川幕府的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以江户为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1603年〜1868年に活動。江戸を中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて日本列島の歴史に影響を与えた。",
+          "en": "Active during 1603-1868. It formed and expanded around Edo, influencing the history of the Japanese archipelago through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1603年—1868年。以江户为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响日本列岛历史。"
+        },
+        "fall_reason": {
+          "ja": "後継争い、外圧、交易路の変化、地方勢力の自立、財政や軍事負担が重なって弱体化した。",
+          "en": "Succession disputes, outside pressure, shifting trade routes, local autonomy, and fiscal or military burdens weakened it.",
+          "zh": "继承纷争、外部压力、贸易路线变化、地方势力自立以及财政和军事负担共同推动其弱化。"
+        },
+        "successors": {
+          "ja": "日本、明治政府、室町幕府、鎌倉幕府と関連づけて理解できる。",
+          "en": "It connects with Japan, the Meiji state, Muromachi, and Kamakura.",
+          "zh": "可与日本、明治政府、室町幕府和镰仓幕府联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は日本語、漢文、宗教は仏教、神道、儒教と関係が深い。幕府、近世国家、江戸文化という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Japanese and Literary Chinese and Buddhism, Shinto, and Confucianism. The themes shogunate, early modern state, Edo culture help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与日语、汉文和佛教、神道、儒教关系密切。可从幕府、近世国家、江户文化等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Japan",
+        "Muromachi Shogunate",
+        "Kamakura Shogunate"
+      ]
+    },
+    {
+      "names": {
+        "ja": "セルジューク帝国",
+        "en": "Seljuk Empire",
+        "zh": "塞尔柱帝国"
+      },
+      "capital": {
+        "ja": "イスファハーン",
+        "en": "Isfahan",
+        "zh": "伊斯法罕"
+      },
+      "type": "Past",
+      "region": "Middle East, Central Asia",
+      "tags": [
+        "Empire",
+        "Sultanate",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Persianate Culture",
+        "Turkic World",
+        "Silk Road",
+        "Overland Empire"
+      ],
+      "desc": {
+        "ja": "テュルク系イスラム帝国。アナトリア進出、十字軍前夜の中東政治、ペルシア文化の保護で重要である。",
+        "en": "A Turkic Islamic empire important for expansion into Anatolia, Middle Eastern politics before the Crusades, and Persianate culture.",
+        "zh": "突厥系伊斯兰帝国，因进入安纳托利亚、十字军前夜中东政治和保护波斯文化而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1037,
+        "end": 1194,
+        "label": {
+          "ja": "1037年〜1194年",
+          "en": "1037-1194",
+          "zh": "1037年—1194年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2000万人",
+          "en": "peak estimate: about 20 million",
+          "zh": "鼎盛期估计：约2000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約3,900,000 km²",
+          "en": "maximum extent estimate: about 3,900,000 km²",
+          "zh": "最大领域估计：约3,900,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、テュルク諸語、アラビア語",
+          "en": "Persian, Turkic languages, and Arabic",
+          "zh": "波斯语、突厥诸语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セルジューク帝国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地イスファハーンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Seljuk Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Isfahan shaped politics, warfare, and diplomacy.",
+          "zh": "塞尔柱帝国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以伊斯法罕为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1037年〜1194年に活動。イスファハーンを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて中東・中央アジアの歴史に影響を与えた。",
+          "en": "Active during 1037-1194. It formed and expanded around Isfahan, influencing the history of the Middle East and Central Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1037年—1194年。以伊斯法罕为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响中东和中亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "トルコ、イラン、アッバース朝、ルーム・セルジューク朝と関連が深い。",
+          "en": "It connects with Turkey, Iran, the Abbasid Caliphate, and the Sultanate of Rum.",
+          "zh": "与土耳其、伊朗、阿拔斯王朝和罗姆苏丹国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、テュルク諸語、アラビア語、宗教はイスラム教と関係が深い。イスラム世界、テュルク世界、ペルシア文化圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Persian, Turkic languages, and Arabic and Islam. The themes Islamic world, Turkic world, Persianate culture help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与波斯语、突厥诸语、阿拉伯语和伊斯兰教关系密切。可从伊斯兰世界、突厥世界、波斯文化圈等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Turkey",
+        "Iran",
+        "Abbasid Caliphate",
+        "Sultanate of Rum"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ルーム・セルジューク朝",
+        "en": "Sultanate of Rum",
+        "zh": "罗姆苏丹国"
+      },
+      "capital": {
+        "ja": "コンヤ",
+        "en": "Konya",
+        "zh": "科尼亚"
+      },
+      "type": "Past",
+      "region": "Middle East (Anatolia)",
+      "tags": [
+        "Sultanate",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Turkic World",
+        "Persianate Culture",
+        "Trade Hub",
+        "Silk Road",
+        "Frontier State"
+      ],
+      "desc": {
+        "ja": "アナトリアに成立したセルジューク系国家。ビザンツ後のアナトリアのトルコ化と交易都市で重要である。",
+        "en": "A Seljuk state in Anatolia, important for Turkic settlement after Byzantine rule and urban trade.",
+        "zh": "安纳托利亚的塞尔柱系国家，对拜占庭之后安纳托利亚突厥化和城市贸易很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1077,
+        "end": 1308,
+        "label": {
+          "ja": "1077年〜1308年",
+          "en": "1077-1308",
+          "zh": "1077年—1308年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約400,000 km²",
+          "en": "maximum extent estimate: about 400,000 km²",
+          "zh": "最大领域估计：约400,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、テュルク諸語、ギリシャ語、アルメニア語",
+          "en": "Persian, Turkic languages, Greek, and Armenian",
+          "zh": "波斯语、突厥诸语、希腊语、亚美尼亚语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ルーム・セルジューク朝では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地コンヤの支配層が政治、軍事、外交を動かした。",
+          "en": "For Sultanate of Rum, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Konya shaped politics, warfare, and diplomacy.",
+          "zh": "罗姆苏丹国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以科尼亚为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1077年〜1308年に活動。コンヤを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてアナトリアの歴史に影響を与えた。",
+          "en": "Active during 1077-1308. It formed and expanded around Konya, influencing the history of Anatolia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1077年—1308年。以科尼亚为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响安纳托利亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "トルコ、セルジューク帝国、東ローマ帝国、オスマン帝国と関連づけて理解できる。",
+          "en": "It connects with Turkey, the Seljuk Empire, Byzantium, and the Ottoman Empire.",
+          "zh": "可与土耳其、塞尔柱帝国、东罗马帝国和奥斯曼帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、テュルク諸語、ギリシャ語、アルメニア語、宗教はイスラム教、キリスト教と関係が深い。アナトリア、スルタン制、交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Persian, Turkic languages, Greek, and Armenian and Islam and Christianity. The themes Anatolia, sultanate, trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与波斯语、突厥诸语、希腊语、亚美尼亚语和伊斯兰教、基督教关系密切。可从安纳托利亚、苏丹制、贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Turkey",
+        "Seljuk Empire",
+        "Byzantine Empire",
+        "Ottoman Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サーマーン朝",
+        "en": "Samanid Empire",
+        "zh": "萨曼王朝"
+      },
+      "capital": {
+        "ja": "ブハラ",
+        "en": "Bukhara",
+        "zh": "布哈拉"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Dynastic State",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Persianate Culture",
+        "Silk Road",
+        "Trade Hub",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ペルシア文化復興で知られる中央アジアのイスラム王朝。ブハラを中心に学問と交易が栄えた。",
+        "en": "An Islamic dynasty of Central Asia known for Persian cultural revival, scholarship, and trade centered on Bukhara.",
+        "zh": "中亚伊斯兰王朝，以波斯文化复兴、布哈拉学术和贸易繁荣而闻名。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 819,
+        "end": 999,
+        "label": {
+          "ja": "819年〜999年",
+          "en": "819-999",
+          "zh": "819年—999年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約800万人",
+          "en": "peak estimate: about 8 million",
+          "zh": "鼎盛期估计：约800万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,500,000 km²",
+          "en": "maximum extent estimate: about 1,500,000 km²",
+          "zh": "最大领域估计：约1,500,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、アラビア語、ソグド語、テュルク諸語",
+          "en": "Persian, Arabic, Sogdian, and Turkic languages",
+          "zh": "波斯语、阿拉伯语、粟特语、突厥诸语"
+        },
+        "religions": {
+          "ja": "イスラム教、ゾロアスター教、地域宗教",
+          "en": "Islam, Zoroastrianism, and local religions",
+          "zh": "伊斯兰教、琐罗亚斯德教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サーマーン朝では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ブハラの支配層が政治、軍事、外交を動かした。",
+          "en": "For Samanid Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Bukhara shaped politics, warfare, and diplomacy.",
+          "zh": "萨曼王朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以布哈拉为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "819年〜999年に活動。ブハラを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて中央アジア・イラン東部の歴史に影響を与えた。",
+          "en": "Active during 819-999. It formed and expanded around Bukhara, influencing the history of Central Asia and eastern Iran through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于819年—999年。以布哈拉为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响中亚和伊朗东部历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "ウズベキスタン、タジキスタン、ガズナ朝、カラハン朝と関連づけて理解できる。",
+          "en": "It connects with Uzbekistan, Tajikistan, the Ghaznavids, and Qarakhanids.",
+          "zh": "可与乌兹别克斯坦、塔吉克斯坦、伽色尼王朝和喀喇汗王朝联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、アラビア語、ソグド語、テュルク諸語、宗教はイスラム教、ゾロアスター教、地域宗教と関係が深い。ペルシア文化圏、シルクロード、中央アジアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Persian, Arabic, Sogdian, and Turkic languages and Islam, Zoroastrianism, and local religions. The themes Persianate culture, Silk Road, Central Asia help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与波斯语、阿拉伯语、粟特语、突厥诸语和伊斯兰教、琐罗亚斯德教及地方宗教关系密切。可从波斯文化圈、丝绸之路、中亚等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Uzbekistan",
+        "Tajikistan",
+        "Ghaznavid Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ブワイフ朝",
+        "en": "Buyid Dynasty",
+        "zh": "白益王朝"
+      },
+      "capital": {
+        "ja": "シーラーズ / バグダード",
+        "en": "Shiraz / Baghdad",
+        "zh": "设拉子 / 巴格达"
+      },
+      "type": "Past",
+      "region": "Middle East (Iran)",
+      "tags": [
+        "Dynastic State",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Persianate Culture",
+        "Military Government",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "イラン系のシーア派王朝。アッバース朝カリフを保護下に置き、イラン・イラク政治で重要だった。",
+        "en": "An Iranian Shia dynasty that placed the Abbasid caliph under its protection and shaped Iranian-Iraqi politics.",
+        "zh": "伊朗系什叶派王朝，将阿拔斯哈里发置于保护之下，影响伊朗和伊拉克政治。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 934,
+        "end": 1062,
+        "label": {
+          "ja": "934年〜1062年",
+          "en": "934-1062",
+          "zh": "934年—1062年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,600,000 km²",
+          "en": "maximum extent estimate: about 1,600,000 km²",
+          "zh": "最大领域估计：约1,600,000 km²"
+        },
+        "languages": {
+          "ja": "ペルシア語、アラビア語",
+          "en": "Persian and Arabic",
+          "zh": "波斯语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "シーア派イスラム教、スンナ派イスラム教",
+          "en": "Shia Islam and Sunni Islam",
+          "zh": "什叶派伊斯兰教、逊尼派伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ブワイフ朝では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地シーラーズ / バグダードの支配層が政治、軍事、外交を動かした。",
+          "en": "For Buyid Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Shiraz / Baghdad shaped politics, warfare, and diplomacy.",
+          "zh": "白益王朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以设拉子 / 巴格达为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "934年〜1062年に活動。シーラーズ / バグダードを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてイラン・イラクの歴史に影響を与えた。",
+          "en": "Active during 934-1062. It formed and expanded around Shiraz / Baghdad, influencing the history of Iran and Iraq through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于934年—1062年。以设拉子 / 巴格达为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响伊朗和伊拉克历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "イラン、イラク、アッバース朝、セルジューク帝国と関連が深い。",
+          "en": "It connects with Iran, Iraq, the Abbasid Caliphate, and the Seljuk Empire.",
+          "zh": "与伊朗、伊拉克、阿拔斯王朝和塞尔柱帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はペルシア語、アラビア語、宗教はシーア派イスラム教、スンナ派イスラム教と関係が深い。ペルシア文化圏、シーア派、アッバース朝期という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Persian and Arabic and Shia Islam and Sunni Islam. The themes Persianate culture, Shia Islam, Abbasid period help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与波斯语、阿拉伯语和什叶派伊斯兰教、逊尼派伊斯兰教关系密切。可从波斯文化圈、什叶派、阿拔斯时期等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Iran",
+        "Iraq",
+        "Abbasid Caliphate",
+        "Seljuk Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ザンギー朝",
+        "en": "Zengid Dynasty",
+        "zh": "赞吉王朝"
+      },
+      "capital": {
+        "ja": "モースル / アレッポ",
+        "en": "Mosul / Aleppo",
+        "zh": "摩苏尔 / 阿勒颇"
+      },
+      "type": "Past",
+      "region": "Middle East",
+      "tags": [
+        "Dynastic State",
+        "Sultanate",
+        "Medieval Dynasty",
+        "Islamic World",
+        "Arab-Islamic Culture",
+        "Crusader State",
+        "Military Government"
+      ],
+      "desc": {
+        "ja": "十字軍国家に対抗したイスラム王朝。ヌールッディーンやサラディン台頭の前史として重要である。",
+        "en": "An Islamic dynasty opposing the Crusader states, important as a background to Nur al-Din and Saladin.",
+        "zh": "对抗十字军国家的伊斯兰王朝，是理解努尔丁和萨拉丁崛起的重要背景。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1127,
+        "end": 1250,
+        "label": {
+          "ja": "1127年〜1250年",
+          "en": "1127-1250",
+          "zh": "1127年—1250年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約300万人",
+          "en": "peak estimate: about 3 million",
+          "zh": "鼎盛期估计：约300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約600,000 km²",
+          "en": "maximum extent estimate: about 600,000 km²",
+          "zh": "最大领域估计：约600,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語、テュルク諸語、クルド語",
+          "en": "Arabic, Turkic languages, and Kurdish",
+          "zh": "阿拉伯语、突厥诸语、库尔德语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ザンギー朝では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地モースル / アレッポの支配層が政治、軍事、外交を動かした。",
+          "en": "For Zengid Dynasty, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Mosul / Aleppo shaped politics, warfare, and diplomacy.",
+          "zh": "赞吉王朝的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以摩苏尔 / 阿勒颇为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1127年〜1250年に活動。モースル / アレッポを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてシリア・イラク北部の歴史に影響を与えた。",
+          "en": "Active during 1127-1250. It formed and expanded around Mosul / Aleppo, influencing the history of Syria and northern Iraq through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1127年—1250年。以摩苏尔 / 阿勒颇为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响叙利亚和伊拉克北部历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "シリア、イラク、アイユーブ朝、エルサレム王国と関連づけて理解できる。",
+          "en": "It connects with Syria, Iraq, the Ayyubids, and the Kingdom of Jerusalem.",
+          "zh": "可与叙利亚、伊拉克、阿尤布王朝和耶路撒冷王国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はアラビア語、テュルク諸語、クルド語、宗教はイスラム教、キリスト教と関係が深い。十字軍時代、イスラム世界、軍事王朝という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Arabic, Turkic languages, and Kurdish and Islam and Christianity. The themes Crusader era, Islamic world, military dynasty help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与阿拉伯语、突厥诸语、库尔德语和伊斯兰教、基督教关系密切。可从十字军时代、伊斯兰世界、军事王朝等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Syria",
+        "Iraq",
+        "Ayyubid Sultanate",
+        "Kingdom of Jerusalem"
+      ]
+    },
+    {
+      "names": {
+        "ja": "カスティーリャ王冠",
+        "en": "Crown of Castile",
+        "zh": "卡斯蒂利亚王冠"
+      },
+      "capital": {
+        "ja": "トレド / ブルゴス",
+        "en": "Toledo / Burgos",
+        "zh": "托莱多 / 布尔戈斯"
+      },
+      "type": "Past",
+      "region": "Europe (Spain)",
+      "tags": [
+        "Kingdom",
+        "Composite Monarchy",
+        "Catholic Sphere",
+        "Latin Christian World",
+        "Hispanophone World",
+        "Atlantic Empire",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "スペイン形成の中核となったイベリアの王国連合。レコンキスタ、大航海、スペイン帝国の母体として重要である。",
+        "en": "A core Iberian monarchy behind Spain's formation, important for the Reconquista, oceanic expansion, and the Spanish Empire.",
+        "zh": "西班牙形成的核心伊比利亚王权，因收复失地运动、海洋扩张和西班牙帝国而重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Banner_of_arms_kingdom_of_Castille_Habsbourg_style.svg",
+      "period": {
+        "start": 1230,
+        "end": 1715,
+        "label": {
+          "ja": "1230年〜1715年",
+          "en": "1230-1715",
+          "zh": "1230年—1715年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約600万人",
+          "en": "peak estimate: about 6 million",
+          "zh": "鼎盛期估计：约600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約350,000 km²",
+          "en": "maximum extent estimate: about 350,000 km²",
+          "zh": "最大领域估计：约350,000 km²"
+        },
+        "languages": {
+          "ja": "カスティーリャ語、ラテン語、アラビア語、地域諸語",
+          "en": "Castilian, Latin, Arabic, and local languages",
+          "zh": "卡斯蒂利亚语、拉丁语、阿拉伯语及地方语言"
+        },
+        "religions": {
+          "ja": "カトリック、イスラム教、ユダヤ教",
+          "en": "Catholic Christianity, Islam, and Judaism",
+          "zh": "天主教、伊斯兰教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "カスティーリャ王冠では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地トレド / ブルゴスの支配層が政治、軍事、外交を動かした。",
+          "en": "For Crown of Castile, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Toledo / Burgos shaped politics, warfare, and diplomacy.",
+          "zh": "卡斯蒂利亚王冠的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以托莱多 / 布尔戈斯为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1230年〜1715年に活動。トレド / ブルゴスを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてイベリア半島の歴史に影響を与えた。",
+          "en": "Active during 1230-1715. It formed and expanded around Toledo / Burgos, influencing the history of Iberia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1230年—1715年。以托莱多 / 布尔戈斯为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响伊比利亚半岛历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "スペイン、アラゴン連合王国、スペイン帝国と関連が深い。",
+          "en": "It connects with Spain, the Crown of Aragon, and the Spanish Empire.",
+          "zh": "与西班牙、阿拉贡联合王国和西班牙帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はカスティーリャ語、ラテン語、アラビア語、地域諸語、宗教はカトリック、イスラム教、ユダヤ教と関係が深い。イベリア、カトリック世界、スペイン語圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Castilian, Latin, Arabic, and local languages and Catholic Christianity, Islam, and Judaism. The themes Iberia, Catholic world, Hispanophone world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与卡斯蒂利亚语、拉丁语、阿拉伯语及地方语言和天主教、伊斯兰教、犹太教关系密切。可从伊比利亚、天主教世界、西班牙语圈等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Spain",
+        "Crown of Aragon",
+        "Spanish Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サルデーニャ王国",
+        "en": "Kingdom of Sardinia",
+        "zh": "撒丁王国"
+      },
+      "capital": {
+        "ja": "トリノ / カリャリ",
+        "en": "Turin / Cagliari",
+        "zh": "都灵 / 卡利亚里"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Kingdom",
+        "Dynastic State",
+        "Modern Era State",
+        "Constitutional Monarchy",
+        "Catholic Sphere",
+        "Latin Christian World",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "サヴォイア家の王国。イタリア統一運動の中心となり、イタリア王国へつながった。",
+        "en": "A Savoyard kingdom that became the center of Italian unification and led to the Kingdom of Italy.",
+        "zh": "萨伏依家的王国，成为意大利统一运动中心，并通向意大利王国。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Kingdom_of_Sardinia.svg",
+      "period": {
+        "start": 1324,
+        "end": 1861,
+        "label": {
+          "ja": "1324年〜1861年",
+          "en": "1324-1861",
+          "zh": "1324年—1861年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約500万人",
+          "en": "peak estimate: about 5 million",
+          "zh": "鼎盛期估计：约500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約80,000 km²",
+          "en": "maximum extent estimate: about 80,000 km²",
+          "zh": "最大领域估计：约80,000 km²"
+        },
+        "languages": {
+          "ja": "イタリア語、ピエモンテ語、サルデーニャ語、フランス語",
+          "en": "Italian, Piedmontese, Sardinian, and French",
+          "zh": "意大利语、皮埃蒙特语、撒丁语、法语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サルデーニャ王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地トリノ / カリャリの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kingdom of Sardinia, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Turin / Cagliari shaped politics, warfare, and diplomacy.",
+          "zh": "撒丁王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以都灵 / 卡利亚里为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1324年〜1861年に活動。トリノ / カリャリを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてイタリア・サルデーニャの歴史に影響を与えた。",
+          "en": "Active during 1324-1861. It formed and expanded around Turin / Cagliari, influencing the history of Italy and Sardinia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1324年—1861年。以都灵 / 卡利亚里为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响意大利和撒丁岛历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "イタリア、サヴォイア公国、ナポリ王国、両シチリア王国と関連づけて理解できる。",
+          "en": "It connects with Italy, Savoy, Naples, and the Kingdom of the Two Sicilies.",
+          "zh": "可与意大利、萨伏依、那不勒斯王国和两西西里王国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はイタリア語、ピエモンテ語、サルデーニャ語、フランス語、宗教はカトリックと関係が深い。イタリア統一、王国、サヴォイア家という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Italian, Piedmontese, Sardinian, and French and Catholic Christianity. The themes Italian unification, kingdom, House of Savoy help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与意大利语、皮埃蒙特语、撒丁语、法语和天主教关系密切。可从意大利统一、王国、萨伏依家等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Italy",
+        "Kingdom of Naples",
+        "Kingdom of the Two Sicilies"
+      ]
+    },
+    {
+      "names": {
+        "ja": "セルビア王国",
+        "en": "Kingdom of Serbia",
+        "zh": "塞尔维亚王国"
+      },
+      "capital": {
+        "ja": "ベオグラード",
+        "en": "Belgrade",
+        "zh": "贝尔格莱德"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Kingdom",
+        "Modern Era State",
+        "Orthodox Sphere",
+        "Slavic World",
+        "Frontier State",
+        "Buffer State",
+        "Military Government"
+      ],
+      "desc": {
+        "ja": "近代バルカンの王国。オスマン帝国からの自立、バルカン戦争、第一次世界大戦前夜で重要である。",
+        "en": "A modern Balkan kingdom, important for independence from the Ottomans, the Balkan Wars, and the eve of World War I.",
+        "zh": "近代巴尔干王国，因摆脱奥斯曼、巴尔干战争和一战前夜而重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/State_Flag_of_Serbia_(1882-1918).svg",
+      "period": {
+        "start": 1882,
+        "end": 1918,
+        "label": {
+          "ja": "1882年〜1918年",
+          "en": "1882-1918",
+          "zh": "1882年—1918年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約450万人",
+          "en": "peak estimate: about 4.5 million",
+          "zh": "鼎盛期估计：约450万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約87,800 km²",
+          "en": "maximum extent estimate: about 87,800 km²",
+          "zh": "最大领域估计：约87,800 km²"
+        },
+        "languages": {
+          "ja": "セルビア語",
+          "en": "Serbian",
+          "zh": "塞尔维亚语"
+        },
+        "religions": {
+          "ja": "正教会、イスラム教、カトリック",
+          "en": "Orthodoxy, Islam, and Catholic Christianity",
+          "zh": "东正教、伊斯兰教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セルビア王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ベオグラードの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kingdom of Serbia, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Belgrade shaped politics, warfare, and diplomacy.",
+          "zh": "塞尔维亚王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以贝尔格莱德为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1882年〜1918年に活動。ベオグラードを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてバルカン半島の歴史に影響を与えた。",
+          "en": "Active during 1882-1918. It formed and expanded around Belgrade, influencing the history of the Balkans through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1882年—1918年。以贝尔格莱德为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响巴尔干半岛历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "セルビア、ユーゴスラビア、オスマン帝国、オーストリア＝ハンガリー帝国と関連が深い。",
+          "en": "It connects with Serbia, Yugoslavia, the Ottoman Empire, and Austria-Hungary.",
+          "zh": "与塞尔维亚、南斯拉夫、奥斯曼帝国和奥匈帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はセルビア語、宗教は正教会、イスラム教、カトリックと関係が深い。バルカン、近代国家、正教世界という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Serbian and Orthodoxy, Islam, and Catholic Christianity. The themes Balkans, modern state, Orthodox world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与塞尔维亚语和东正教、伊斯兰教、天主教关系密切。可从巴尔干、近代国家、东正教世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Serbia",
+        "Ottoman Empire",
+        "Austro-Hungarian Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "クロアチア王国",
+        "en": "Kingdom of Croatia",
+        "zh": "克罗地亚王国"
+      },
+      "capital": {
+        "ja": "ニン / ザグレブ",
+        "en": "Nin / Zagreb",
+        "zh": "宁 / 萨格勒布"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Catholic Sphere",
+        "Latin Christian World",
+        "Maritime Power",
+        "Buffer State",
+        "Frontier State"
+      ],
+      "desc": {
+        "ja": "中世クロアチアの王国。アドリア海、ハンガリーとの同君連合、南スラヴ史で重要である。",
+        "en": "A medieval Croatian kingdom important for Adriatic politics, union with Hungary, and South Slavic history.",
+        "zh": "中世纪克罗地亚王国，在亚得里亚海政治、与匈牙利同君联合和南斯拉夫史中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 925,
+        "end": 1102,
+        "label": {
+          "ja": "925年〜1102年",
+          "en": "925-1102",
+          "zh": "925年—1102年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約50万人",
+          "en": "peak estimate: about 500,000",
+          "zh": "鼎盛期估计：约50万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "クロアチア語、ラテン語",
+          "en": "Croatian and Latin",
+          "zh": "克罗地亚语、拉丁语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クロアチア王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ニン / ザグレブの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kingdom of Croatia, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Nin / Zagreb shaped politics, warfare, and diplomacy.",
+          "zh": "克罗地亚王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以宁 / 萨格勒布为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "925年〜1102年に活動。ニン / ザグレブを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてバルカン西部・アドリア海の歴史に影響を与えた。",
+          "en": "Active during 925-1102. It formed and expanded around Nin / Zagreb, influencing the history of the western Balkans and Adriatic through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于925年—1102年。以宁 / 萨格勒布为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响西巴尔干和亚得里亚海历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "クロアチア、ハンガリー王国、ヴェネツィア共和国と関連づけて理解できる。",
+          "en": "It connects with Croatia, the Kingdom of Hungary, and Venice.",
+          "zh": "可与克罗地亚、匈牙利王国和威尼斯联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はクロアチア語、ラテン語、宗教はカトリックと関係が深い。アドリア海、カトリック圏、南スラヴという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Croatian and Latin and Catholic Christianity. The themes Adriatic, Catholic sphere, South Slavs help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与克罗地亚语、拉丁语和天主教关系密切。可从亚得里亚海、天主教圈、南斯拉夫等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Croatia",
+        "Kingdom of Hungary",
+        "Venetian Republic"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ナバラ王国",
+        "en": "Kingdom of Navarre",
+        "zh": "纳瓦拉王国"
+      },
+      "capital": {
+        "ja": "パンプローナ",
+        "en": "Pamplona",
+        "zh": "潘普洛纳"
+      },
+      "type": "Past",
+      "region": "Europe (Spain)",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Buffer State",
+        "Catholic Sphere",
+        "Latin Christian World",
+        "Mountain State",
+        "Personal Union"
+      ],
+      "desc": {
+        "ja": "ピレネー地方の王国。フランス、カスティーリャ、アラゴンの間の緩衝国家として重要である。",
+        "en": "A Pyrenean kingdom important as a buffer between France, Castile, and Aragon.",
+        "zh": "比利牛斯地区王国，是法国、卡斯蒂利亚和阿拉贡之间的重要缓冲国家。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Bandera_de_Reino_de_Navarra.svg",
+      "period": {
+        "start": 824,
+        "end": 1620,
+        "label": {
+          "ja": "824年〜1620年",
+          "en": "824-1620",
+          "zh": "824年—1620年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約30万人",
+          "en": "peak estimate: about 300,000",
+          "zh": "鼎盛期估计：约30万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約40,000 km²",
+          "en": "maximum extent estimate: about 40,000 km²",
+          "zh": "最大领域估计：约40,000 km²"
+        },
+        "languages": {
+          "ja": "ナバラ・アラゴン語、バスク語、ラテン語",
+          "en": "Navarro-Aragonese, Basque, and Latin",
+          "zh": "纳瓦拉-阿拉贡语、巴斯克语、拉丁语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ナバラ王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地パンプローナの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kingdom of Navarre, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Pamplona shaped politics, warfare, and diplomacy.",
+          "zh": "纳瓦拉王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以潘普洛纳为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "824年〜1620年に活動。パンプローナを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてピレネー・イベリア北部の歴史に影響を与えた。",
+          "en": "Active during 824-1620. It formed and expanded around Pamplona, influencing the history of the Pyrenees and northern Iberia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于824年—1620年。以潘普洛纳为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响比利牛斯和北伊比利亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "スペイン、フランス、カスティーリャ王冠、アラゴン連合王国と関連が深い。",
+          "en": "It connects with Spain, France, Castile, and Aragon.",
+          "zh": "与西班牙、法国、卡斯蒂利亚和阿拉贡关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はナバラ・アラゴン語、バスク語、ラテン語、宗教はカトリックと関係が深い。ピレネー、王国、緩衝国家という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Navarro-Aragonese, Basque, and Latin and Catholic Christianity. The themes Pyrenees, kingdom, buffer state help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与纳瓦拉-阿拉贡语、巴斯克语、拉丁语和天主教关系密切。可从比利牛斯、王国、缓冲国家等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Spain",
+        "France",
+        "Crown of Castile",
+        "Crown of Aragon"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アンジュー帝国",
+        "en": "Angevin Empire",
+        "zh": "安茹帝国"
+      },
+      "capital": {
+        "ja": "アンジェ / ロンドン",
+        "en": "Angers / London",
+        "zh": "昂热 / 伦敦"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Composite Monarchy",
+        "Personal Union",
+        "Kingdom",
+        "Feudal Realm",
+        "Latin Christian World",
+        "Catholic Sphere",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "プランタジネット家が支配した広域領邦。イングランドとフランス西部の関係、百年戦争前史で重要である。",
+        "en": "A broad Plantagenet dominion, important for relations between England and western France and the prehistory of the Hundred Years' War.",
+        "zh": "金雀花家族统治的广域领地，是理解英格兰与法国西部关系及百年战争前史的重要对象。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1154,
+        "end": 1214,
+        "label": {
+          "ja": "1154年〜1214年",
+          "en": "1154-1214",
+          "zh": "1154年—1214年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約800万人",
+          "en": "peak estimate: about 8 million",
+          "zh": "鼎盛期估计：约800万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約600,000 km²",
+          "en": "maximum extent estimate: about 600,000 km²",
+          "zh": "最大领域估计：约600,000 km²"
+        },
+        "languages": {
+          "ja": "古フランス語、英語、ラテン語",
+          "en": "Old French, English, and Latin",
+          "zh": "古法语、英语、拉丁语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アンジュー帝国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地アンジェ / ロンドンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Angevin Empire, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Angers / London shaped politics, warfare, and diplomacy.",
+          "zh": "安茹帝国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以昂热 / 伦敦为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1154年〜1214年に活動。アンジェ / ロンドンを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて西ヨーロッパの歴史に影響を与えた。",
+          "en": "Active during 1154-1214. It formed and expanded around Angers / London, influencing the history of Western Europe through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1154年—1214年。以昂热 / 伦敦为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响西欧历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "イングランド王国、フランス、ノルマンディー公国と関連が深い。",
+          "en": "It connects with the Kingdom of England, France, and Normandy.",
+          "zh": "与英格兰王国、法国和诺曼底公国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語は古フランス語、英語、ラテン語、宗教はカトリックと関係が深い。同君連合、封建領邦、西欧という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old French, English, and Latin and Catholic Christianity. The themes personal union, feudal realm, Western Europe help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古法语、英语、拉丁语和天主教关系密切。可从同君联合、封建领地、西欧等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Kingdom of England",
+        "France",
+        "Duchy of Normandy"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ノルマンディー公国",
+        "en": "Duchy of Normandy",
+        "zh": "诺曼底公国"
+      },
+      "capital": {
+        "ja": "ルーアン",
+        "en": "Rouen",
+        "zh": "鲁昂"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Duchy & Principality",
+        "Feudal Realm",
+        "Maritime Power",
+        "Warrior Aristocracy",
+        "Latin Christian World",
+        "Port City Network"
+      ],
+      "desc": {
+        "ja": "ノルマン人が建てた公国。ノルマン・コンクエスト、イングランド王国との関係で重要である。",
+        "en": "A duchy founded by Normans, important for the Norman Conquest and relations with England.",
+        "zh": "诺曼人建立的公国，因诺曼征服和与英格兰的关系而重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 911,
+        "end": 1204,
+        "label": {
+          "ja": "911年〜1204年",
+          "en": "911-1204",
+          "zh": "911年—1204年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約30,000 km²",
+          "en": "maximum extent estimate: about 30,000 km²",
+          "zh": "最大领域估计：约30,000 km²"
+        },
+        "languages": {
+          "ja": "古フランス語、ノルマン語、ラテン語",
+          "en": "Old French, Norman, and Latin",
+          "zh": "古法语、诺曼语、拉丁语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ノルマンディー公国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ルーアンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Duchy of Normandy, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Rouen shaped politics, warfare, and diplomacy.",
+          "zh": "诺曼底公国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以鲁昂为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "911年〜1204年に活動。ルーアンを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて北フランス・イングランド海峡の歴史に影響を与えた。",
+          "en": "Active during 911-1204. It formed and expanded around Rouen, influencing the history of northern France and the English Channel through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于911年—1204年。以鲁昂为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响法国北部和英吉利海峡历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "フランス、イングランド王国、アンジュー帝国と関連が深い。",
+          "en": "It connects with France, the Kingdom of England, and the Angevin Empire.",
+          "zh": "与法国、英格兰王国和安茹帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語は古フランス語、ノルマン語、ラテン語、宗教はカトリックと関係が深い。ノルマン人、海峡、封建領邦という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old French, Norman, and Latin and Catholic Christianity. The themes Normans, English Channel, feudal realm help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古法语、诺曼语、拉丁语和天主教关系密切。可从诺曼人、海峡、封建领地等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "France",
+        "Kingdom of England",
+        "Angevin Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ミラノ公国",
+        "en": "Duchy of Milan",
+        "zh": "米兰公国"
+      },
+      "capital": {
+        "ja": "ミラノ",
+        "en": "Milan",
+        "zh": "米兰"
+      },
+      "type": "Past",
+      "region": "Europe, Italy",
+      "tags": [
+        "Duchy & Principality",
+        "City-State",
+        "Early Modern State",
+        "Financial Center",
+        "Manufacturing Hub",
+        "Catholic Sphere",
+        "Latin Christian World"
+      ],
+      "desc": {
+        "ja": "北イタリアの有力公国。ルネサンス、傭兵政治、フランス・神聖ローマ帝国・スペインの争奪で重要である。",
+        "en": "A powerful northern Italian duchy, important for the Renaissance, mercenary politics, and rivalry among France, the Empire, and Spain.",
+        "zh": "北意大利强大公国，在文艺复兴、雇佣兵政治以及法国、帝国和西班牙争夺中很重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Duchy_of_Milan_(1450).svg",
+      "period": {
+        "start": 1395,
+        "end": 1797,
+        "label": {
+          "ja": "1395年〜1797年",
+          "en": "1395-1797",
+          "zh": "1395年—1797年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約120万人",
+          "en": "peak estimate: about 1.2 million",
+          "zh": "鼎盛期估计：约120万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約30,000 km²",
+          "en": "maximum extent estimate: about 30,000 km²",
+          "zh": "最大领域估计：约30,000 km²"
+        },
+        "languages": {
+          "ja": "イタリア語、ロンバルド語、ラテン語",
+          "en": "Italian, Lombard, and Latin",
+          "zh": "意大利语、伦巴第语、拉丁语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ミラノ公国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ミラノの支配層が政治、軍事、外交を動かした。",
+          "en": "For Duchy of Milan, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Milan shaped politics, warfare, and diplomacy.",
+          "zh": "米兰公国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以米兰为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1395年〜1797年に活動。ミラノを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じて北イタリアの歴史に影響を与えた。",
+          "en": "Active during 1395-1797. It formed and expanded around Milan, influencing the history of northern Italy through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1395年—1797年。以米兰为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响北意大利历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "イタリア、神聖ローマ帝国、スペイン帝国、フランスと関連が深い。",
+          "en": "It connects with Italy, the Holy Roman Empire, Spain, and France.",
+          "zh": "与意大利、神圣罗马帝国、西班牙和法国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はイタリア語、ロンバルド語、ラテン語、宗教はカトリックと関係が深い。ルネサンス、都市国家、北イタリアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Italian, Lombard, and Latin and Catholic Christianity. The themes Renaissance, city-state, northern Italy help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与意大利语、伦巴第语、拉丁语和天主教关系密切。可从文艺复兴、城邦、北意大利等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Italy",
+        "Holy Roman Empire",
+        "Spanish Empire",
+        "France"
+      ]
+    },
+    {
+      "names": {
+        "ja": "サヴォイア公国",
+        "en": "Duchy of Savoy",
+        "zh": "萨伏依公国"
+      },
+      "capital": {
+        "ja": "シャンベリ / トリノ",
+        "en": "Chambery / Turin",
+        "zh": "尚贝里 / 都灵"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Duchy & Principality",
+        "Dynastic State",
+        "Mountain State",
+        "Buffer State",
+        "Catholic Sphere",
+        "Composite Monarchy"
+      ],
+      "desc": {
+        "ja": "アルプスをまたぐサヴォイア家の領邦。後のサルデーニャ王国、イタリア統一へつながる。",
+        "en": "A Savoyard Alpine polity that later led toward the Kingdom of Sardinia and Italian unification.",
+        "zh": "跨越阿尔卑斯的萨伏依家领地，后来通向撒丁王国和意大利统一。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Savoie.svg",
+      "period": {
+        "start": 1416,
+        "end": 1847,
+        "label": {
+          "ja": "1416年〜1847年",
+          "en": "1416-1847",
+          "zh": "1416年—1847年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約70,000 km²",
+          "en": "maximum extent estimate: about 70,000 km²",
+          "zh": "最大领域估计：约70,000 km²"
+        },
+        "languages": {
+          "ja": "フランス語、イタリア語、ピエモンテ語",
+          "en": "French, Italian, and Piedmontese",
+          "zh": "法语、意大利语、皮埃蒙特语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "サヴォイア公国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地シャンベリ / トリノの支配層が政治、軍事、外交を動かした。",
+          "en": "For Duchy of Savoy, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Chambery / Turin shaped politics, warfare, and diplomacy.",
+          "zh": "萨伏依公国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以尚贝里 / 都灵为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1416年〜1847年に活動。シャンベリ / トリノを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてアルプス西部・北イタリアの歴史に影響を与えた。",
+          "en": "Active during 1416-1847. It formed and expanded around Chambery / Turin, influencing the history of the western Alps and northern Italy through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1416年—1847年。以尚贝里 / 都灵为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响西阿尔卑斯和北意大利历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "イタリア、フランス、サルデーニャ王国と関連が深い。",
+          "en": "It connects with Italy, France, and the Kingdom of Sardinia.",
+          "zh": "与意大利、法国和撒丁王国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はフランス語、イタリア語、ピエモンテ語、宗教はカトリックと関係が深い。アルプス、王朝、イタリア統一前史という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with French, Italian, and Piedmontese and Catholic Christianity. The themes Alps, dynasty, prehistory of Italian unification help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与法语、意大利语、皮埃蒙特语和天主教关系密切。可从阿尔卑斯、王朝、意大利统一前史等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Italy",
+        "France",
+        "Kingdom of Sardinia"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ラグーザ共和国",
+        "en": "Republic of Ragusa",
+        "zh": "拉古萨共和国"
+      },
+      "capital": {
+        "ja": "ラグーザ",
+        "en": "Ragusa / Dubrovnik",
+        "zh": "拉古萨 / 杜布罗夫尼克"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Republic",
+        "Merchant Republic",
+        "City-State",
+        "Maritime Power",
+        "Mediterranean Trade",
+        "Port City Network",
+        "Catholic Sphere"
+      ],
+      "desc": {
+        "ja": "現在のドゥブロヴニクを中心とした海上商業共和国。ヴェネツィア、オスマン帝国、地中海交易の間で繁栄した。",
+        "en": "A maritime merchant republic centered on Dubrovnik, prospering between Venice, the Ottoman Empire, and Mediterranean trade.",
+        "zh": "以杜布罗夫尼克为中心的海上商业共和国，在威尼斯、奥斯曼帝国和地中海贸易之间繁荣。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ragusa.svg",
+      "period": {
+        "start": 1358,
+        "end": 1808,
+        "label": {
+          "ja": "1358年〜1808年",
+          "en": "1358-1808",
+          "zh": "1358年—1808年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約9万人",
+          "en": "peak estimate: about 90,000",
+          "zh": "鼎盛期估计：约9万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,500 km²",
+          "en": "maximum extent estimate: about 1,500 km²",
+          "zh": "最大领域估计：约1,500 km²"
+        },
+        "languages": {
+          "ja": "ラテン語、イタリア語、クロアチア語",
+          "en": "Latin, Italian, and Croatian",
+          "zh": "拉丁语、意大利语、克罗地亚语"
+        },
+        "religions": {
+          "ja": "カトリック",
+          "en": "Catholic Christianity",
+          "zh": "天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ラグーザ共和国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ラグーザの支配層が政治、軍事、外交を動かした。",
+          "en": "For Republic of Ragusa, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Ragusa / Dubrovnik shaped politics, warfare, and diplomacy.",
+          "zh": "拉古萨共和国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以拉古萨 / 杜布罗夫尼克为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1358年〜1808年に活動。ラグーザを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてアドリア海東岸の歴史に影響を与えた。",
+          "en": "Active during 1358-1808. It formed and expanded around Ragusa / Dubrovnik, influencing the history of the eastern Adriatic through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1358年—1808年。以拉古萨 / 杜布罗夫尼克为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响亚得里亚海东岸历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "クロアチア、ヴェネツィア共和国、オスマン帝国と関連が深い。",
+          "en": "It connects with Croatia, Venice, and the Ottoman Empire.",
+          "zh": "与克罗地亚、威尼斯和奥斯曼帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はラテン語、イタリア語、クロアチア語、宗教はカトリックと関係が深い。商業共和国、アドリア海、都市国家という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Latin, Italian, and Croatian and Catholic Christianity. The themes merchant republic, Adriatic, city-state help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与拉丁语、意大利语、克罗地亚语和天主教关系密切。可从商业共和国、亚得里亚海、城邦等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Croatia",
+        "Venetian Republic",
+        "Ottoman Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ポルトガル王国",
+        "en": "Kingdom of Portugal",
+        "zh": "葡萄牙王国"
+      },
+      "capital": {
+        "ja": "リスボン",
+        "en": "Lisbon",
+        "zh": "里斯本"
+      },
+      "type": "Past",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Kingdom",
+        "Colonial Empire",
+        "Maritime Power",
+        "Atlantic Empire",
+        "Lusophone World",
+        "Catholic Sphere",
+        "Naval Power"
+      ],
+      "desc": {
+        "ja": "ポルトガル共和国以前の王国。大航海時代、海上帝国、ポルトガル語圏形成の中心となった。",
+        "en": "The kingdom before modern Portugal, central to oceanic expansion, maritime empire, and the Lusophone world.",
+        "zh": "现代葡萄牙共和国以前的王国，是大航海、海上帝国和葡语世界形成的核心。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_Portugal_(1830).svg",
+      "period": {
+        "start": 1139,
+        "end": 1910,
+        "label": {
+          "ja": "1139年〜1910年",
+          "en": "1139-1910",
+          "zh": "1139年—1910年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約600万人",
+          "en": "peak estimate: about 6 million in the metropole",
+          "zh": "鼎盛期估计：本土约600万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約10,400,000 km²",
+          "en": "maximum imperial extent estimate: about 10,400,000 km²",
+          "zh": "帝国最大领域估计：约10,400,000 km²"
+        },
+        "languages": {
+          "ja": "ポルトガル語、地域諸語",
+          "en": "Portuguese and local languages",
+          "zh": "葡萄牙语及地方语言"
+        },
+        "religions": {
+          "ja": "カトリック、地域宗教",
+          "en": "Catholic Christianity and local religions",
+          "zh": "天主教及地方宗教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ポルトガル王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地リスボンの支配層が政治、軍事、外交を動かした。",
+          "en": "For Kingdom of Portugal, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Lisbon shaped politics, warfare, and diplomacy.",
+          "zh": "葡萄牙王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以里斯本为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1139年〜1910年に活動。リスボンを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてイベリア半島・大西洋の歴史に影響を与えた。",
+          "en": "Active during 1139-1910. It formed and expanded around Lisbon, influencing the history of Iberia and the Atlantic through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1139年—1910年。以里斯本为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响伊比利亚半岛和大西洋历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "ポルトガル、ポルトガル海上帝国、ブラジル帝国と関連が深い。",
+          "en": "It connects with Portugal, the Portuguese Empire, and the Empire of Brazil.",
+          "zh": "与葡萄牙、葡萄牙海上帝国和巴西帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はポルトガル語、地域諸語、宗教はカトリック、地域宗教と関係が深い。大航海、海洋帝国、ポルトガル語圏という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Portuguese and local languages and Catholic Christianity and local religions. The themes Age of Discovery, maritime empire, Lusophone world help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与葡萄牙语及地方语言和天主教及地方宗教关系密切。可从大航海、海洋帝国、葡语世界等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Portugal",
+        "Portuguese Empire",
+        "Empire of Brazil"
+      ]
+    },
+    {
+      "names": {
+        "ja": "扶南",
+        "en": "Funan",
+        "zh": "扶南"
+      },
+      "capital": {
+        "ja": "オケオ / ヴャーダプラ",
+        "en": "Oc Eo / Vyadhapura",
+        "zh": "奥克欧 / 毗耶陀补罗"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Ancient Civilization",
+        "Indian Ocean Trade",
+        "Maritime Power",
+        "Trade Hub",
+        "Hindu Sphere",
+        "Buddhist Sphere",
+        "Indic Civilization"
+      ],
+      "desc": {
+        "ja": "メコンデルタ周辺の初期国家。インド洋交易とインド文化受容で東南アジア国家形成の重要な例である。",
+        "en": "An early Mekong Delta polity, important for Indian Ocean trade and Indic cultural influence in Southeast Asian state formation.",
+        "zh": "湄公河三角洲周边早期国家，是印度洋贸易和印度文化影响东南亚国家形成的重要例子。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 50,
+        "end": 550,
+        "label": {
+          "ja": "50年〜550年",
+          "en": "50-550",
+          "zh": "50年—550年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "古クメール語、サンスクリット、地域諸語",
+          "en": "Old Khmer, Sanskrit, and local languages",
+          "zh": "古高棉语、梵语及地方语言"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、地域信仰",
+          "en": "Hinduism, Buddhism, and local beliefs",
+          "zh": "印度教、佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "扶南では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地オケオ / ヴャーダプラの支配層が政治、軍事、外交を動かした。",
+          "en": "For Funan, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Oc Eo / Vyadhapura shaped politics, warfare, and diplomacy.",
+          "zh": "扶南的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以奥克欧 / 毗耶陀补罗为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "50年〜550年に活動。オケオ / ヴャーダプラを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてメコンデルタ・東南アジアの歴史に影響を与えた。",
+          "en": "Active during 50-550. It formed and expanded around Oc Eo / Vyadhapura, influencing the history of the Mekong Delta and Southeast Asia through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于50年—550年。以奥克欧 / 毗耶陀补罗为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响湄公河三角洲和东南亚历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "カンボジア、ベトナム、真臘、クメール王朝と関連づけて理解できる。",
+          "en": "It connects with Cambodia, Vietnam, Chenla, and the Khmer Empire.",
+          "zh": "可与柬埔寨、越南、真腊和高棉帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は古クメール語、サンスクリット、地域諸語、宗教はヒンドゥー教、仏教、地域信仰と関係が深い。初期国家、インド洋交易、東南アジアという観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Khmer, Sanskrit, and local languages and Hinduism, Buddhism, and local beliefs. The themes early state, Indian Ocean trade, Southeast Asia help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古高棉语、梵语及地方语言和印度教、佛教及地方信仰关系密切。可从早期国家、印度洋贸易、东南亚等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Cambodia",
+        "Vietnam",
+        "Chenla",
+        "Khmer Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "真臘",
+        "en": "Chenla",
+        "zh": "真腊"
+      },
+      "capital": {
+        "ja": "イーシャーナプラ",
+        "en": "Isanapura",
+        "zh": "伊奢那补罗"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Hindu Sphere",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "River Civilization",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "扶南後のメコン流域国家。後のクメール王朝へつながる政治・文化の土台となった。",
+        "en": "A Mekong basin polity after Funan, forming a political and cultural basis for the later Khmer Empire.",
+        "zh": "扶南之后的湄公河流域国家，为后来的高棉王朝奠定政治和文化基础。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 550,
+        "end": 802,
+        "label": {
+          "ja": "550年〜802年",
+          "en": "550-802",
+          "zh": "550年—802年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約400,000 km²",
+          "en": "maximum extent estimate: about 400,000 km²",
+          "zh": "最大领域估计：约400,000 km²"
+        },
+        "languages": {
+          "ja": "古クメール語、サンスクリット",
+          "en": "Old Khmer and Sanskrit",
+          "zh": "古高棉语、梵语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、仏教、地域信仰",
+          "en": "Hinduism, Buddhism, and local beliefs",
+          "zh": "印度教、佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "真臘では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地イーシャーナプラの支配層が政治、軍事、外交を動かした。",
+          "en": "For Chenla, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Isanapura shaped politics, warfare, and diplomacy.",
+          "zh": "真腊的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以伊奢那补罗为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "550年〜802年に活動。イーシャーナプラを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてカンボジア・メコン流域の歴史に影響を与えた。",
+          "en": "Active during 550-802. It formed and expanded around Isanapura, influencing the history of Cambodia and the Mekong basin through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于550年—802年。以伊奢那补罗为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响柬埔寨和湄公河流域历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "カンボジア、扶南、クメール王朝と関連づけて理解できる。",
+          "en": "It connects with Cambodia, Funan, and the Khmer Empire.",
+          "zh": "可与柬埔寨、扶南和高棉帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語は古クメール語、サンスクリット、宗教はヒンドゥー教、仏教、地域信仰と関係が深い。メコン流域、ヒンドゥー圏、クメール前史という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Old Khmer and Sanskrit and Hinduism, Buddhism, and local beliefs. The themes Mekong basin, Hindu sphere, pre-Khmer history help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与古高棉语、梵语和印度教、佛教及地方信仰关系密切。可从湄公河流域、印度教圈、高棉前史等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Cambodia",
+        "Funan",
+        "Khmer Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ドヴァーラヴァティー",
+        "en": "Dvaravati",
+        "zh": "堕罗钵底"
+      },
+      "capital": {
+        "ja": "ナコーンパトムなど",
+        "en": "Nakhon Pathom and other centers",
+        "zh": "佛统等"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Buddhist Sphere",
+        "Indic Civilization",
+        "Trade Hub",
+        "River Civilization",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "タイ中部のモン系仏教文化圏。上座部仏教、美術、東南アジア内陸交易で重要である。",
+        "en": "A Mon Buddhist cultural sphere in central Thailand, important for Theravada Buddhism, art, and inland Southeast Asian trade.",
+        "zh": "泰国中部孟族佛教文化圈，在上座部佛教、艺术和东南亚内陆贸易中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 600,
+        "end": 1100,
+        "label": {
+          "ja": "600年〜1100年",
+          "en": "600-1100",
+          "zh": "600年—1100年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "モン語、サンスクリット、パーリ語",
+          "en": "Mon, Sanskrit, and Pali",
+          "zh": "孟语、梵语、巴利语"
+        },
+        "religions": {
+          "ja": "仏教、地域信仰",
+          "en": "Buddhism and local beliefs",
+          "zh": "佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ドヴァーラヴァティーでは、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ナコーンパトムなどの支配層が政治、軍事、外交を動かした。",
+          "en": "For Dvaravati, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Nakhon Pathom and other centers shaped politics, warfare, and diplomacy.",
+          "zh": "堕罗钵底的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以佛统等为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "600年〜1100年に活動。ナコーンパトムなどを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてタイ中部の歴史に影響を与えた。",
+          "en": "Active during 600-1100. It formed and expanded around Nakhon Pathom and other centers, influencing the history of central Thailand through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于600年—1100年。以佛统等为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响泰国中部历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "タイ、スコータイ王朝、クメール王朝と関連づけて理解できる。",
+          "en": "It connects with Thailand, Sukhothai, and the Khmer Empire.",
+          "zh": "可与泰国、素可泰王国和高棉帝国联系起来理解。"
+        },
+        "cultural_features": {
+          "ja": "言語はモン語、サンスクリット、パーリ語、宗教は仏教、地域信仰と関係が深い。仏教文化圏、タイ中部、交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Mon, Sanskrit, and Pali and Buddhism and local beliefs. The themes Buddhist cultural sphere, central Thailand, trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与孟语、梵语、巴利语和佛教及地方信仰关系密切。可从佛教文化圈、泰国中部、贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Thailand",
+        "Sukhothai Kingdom",
+        "Khmer Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ラーンナー王国",
+        "en": "Lanna Kingdom",
+        "zh": "兰纳王国"
+      },
+      "capital": {
+        "ja": "チェンマイ",
+        "en": "Chiang Mai",
+        "zh": "清迈"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Kingdom",
+        "Medieval Dynasty",
+        "Mountain State",
+        "Buddhist Sphere",
+        "Trade Hub",
+        "Buffer State",
+        "Cultural Sphere"
+      ],
+      "desc": {
+        "ja": "タイ北部の王国。チェンマイを中心に上座部仏教、山岳交易、ビルマ・アユタヤとの関係で重要である。",
+        "en": "A northern Thai kingdom centered on Chiang Mai, important for Buddhism, mountain trade, and relations with Burma and Ayutthaya.",
+        "zh": "以清迈为中心的泰北王国，在佛教、山地贸易以及与缅甸和阿瑜陀耶的关系中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1292,
+        "end": 1775,
+        "label": {
+          "ja": "1292年〜1775年",
+          "en": "1292-1775",
+          "zh": "1292年—1775年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約200,000 km²",
+          "en": "maximum extent estimate: about 200,000 km²",
+          "zh": "最大领域估计：约200,000 km²"
+        },
+        "languages": {
+          "ja": "北タイ語、パーリ語、地域諸語",
+          "en": "Northern Thai, Pali, and local languages",
+          "zh": "北泰语、巴利语及地方语言"
+        },
+        "religions": {
+          "ja": "上座部仏教、地域信仰",
+          "en": "Theravada Buddhism and local beliefs",
+          "zh": "上座部佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ラーンナー王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地チェンマイの支配層が政治、軍事、外交を動かした。",
+          "en": "For Lanna Kingdom, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Chiang Mai shaped politics, warfare, and diplomacy.",
+          "zh": "兰纳王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以清迈为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1292年〜1775年に活動。チェンマイを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてタイ北部の歴史に影響を与えた。",
+          "en": "Active during 1292-1775. It formed and expanded around Chiang Mai, influencing the history of northern Thailand through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1292年—1775年。以清迈为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响泰国北部历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "タイ、アユタヤ王朝、トゥングー王朝、ラーンサーン王国と関連が深い。",
+          "en": "It connects with Thailand, Ayutthaya, Toungoo, and Lan Xang.",
+          "zh": "与泰国、阿瑜陀耶王朝、东吁王朝和澜沧王国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語は北タイ語、パーリ語、地域諸語、宗教は上座部仏教、地域信仰と関係が深い。タイ北部、仏教王国、山岳交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Northern Thai, Pali, and local languages and Theravada Buddhism and local beliefs. The themes northern Thailand, Buddhist kingdom, mountain trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与北泰语、巴利语及地方语言和上座部佛教及地方信仰关系密切。可从泰北、佛教王国、山地贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Thailand",
+        "Ayutthaya Kingdom",
+        "Toungoo Dynasty",
+        "Lan Xang"
+      ]
+    },
+    {
+      "names": {
+        "ja": "アチェ王国",
+        "en": "Sultanate of Aceh",
+        "zh": "亚齐苏丹国"
+      },
+      "capital": {
+        "ja": "バンダアチェ",
+        "en": "Banda Aceh",
+        "zh": "班达亚齐"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Sultanate",
+        "Maritime Power",
+        "Islamic World",
+        "Indian Ocean Trade",
+        "Port City Network",
+        "Trade Hub",
+        "Resource Economy"
+      ],
+      "desc": {
+        "ja": "スマトラ北部のイスラム海上国家。香辛料交易、インド洋交易、ポルトガル・オランダとの抗争で重要である。",
+        "en": "An Islamic maritime state in northern Sumatra, important for spice trade, Indian Ocean networks, and rivalry with Portugal and the Dutch.",
+        "zh": "苏门答腊北部伊斯兰海上国家，在香料贸易、印度洋网络以及与葡萄牙和荷兰对抗中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1496,
+        "end": 1903,
+        "label": {
+          "ja": "1496年〜1903年",
+          "en": "1496-1903",
+          "zh": "1496年—1903年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "アチェ語、マレー語、アラビア語",
+          "en": "Acehnese, Malay, and Arabic",
+          "zh": "亚齐语、马来语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アチェ王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地バンダアチェの支配層が政治、軍事、外交を動かした。",
+          "en": "For Sultanate of Aceh, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Banda Aceh shaped politics, warfare, and diplomacy.",
+          "zh": "亚齐苏丹国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以班达亚齐为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1496年〜1903年に活動。バンダアチェを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてスマトラ北部・インド洋の歴史に影響を与えた。",
+          "en": "Active during 1496-1903. It formed and expanded around Banda Aceh, influencing the history of northern Sumatra and the Indian Ocean through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1496年—1903年。以班达亚齐为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响苏门答腊北部和印度洋历史。"
+        },
+        "fall_reason": {
+          "ja": "外部勢力の征服、軍事的敗北、周辺国家の台頭によって独立した政権としては終わった。",
+          "en": "Conquest by outside powers, military defeat, and the rise of neighboring states ended it as an independent polity.",
+          "zh": "外部势力征服、军事失败和周边国家崛起使其作为独立政权结束。"
+        },
+        "successors": {
+          "ja": "インドネシア、マラッカ王国、ポルトガル海上帝国、オランダ海上帝国と関連が深い。",
+          "en": "It connects with Indonesia, Malacca, the Portuguese Empire, and the Dutch Empire.",
+          "zh": "与印度尼西亚、马六甲王国、葡萄牙海上帝国和荷兰殖民帝国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はアチェ語、マレー語、アラビア語、宗教はイスラム教と関係が深い。海上イスラム国家、香辛料交易、インド洋という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Acehnese, Malay, and Arabic and Islam. The themes maritime Islamic state, spice trade, Indian Ocean help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与亚齐语、马来语、阿拉伯语和伊斯兰教关系密切。可从海上伊斯兰国家、香料贸易、印度洋等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Indonesia",
+        "Malacca Sultanate",
+        "Portuguese Empire",
+        "Dutch Empire"
+      ]
+    },
+    {
+      "names": {
+        "ja": "ドゥマク王国",
+        "en": "Sultanate of Demak",
+        "zh": "德马克苏丹国"
+      },
+      "capital": {
+        "ja": "ドゥマク",
+        "en": "Demak",
+        "zh": "德马克"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Sultanate",
+        "Islamic World",
+        "Maritime Power",
+        "Indian Ocean Trade",
+        "Port City Network",
+        "Cultural Sphere",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "ジャワ島初期のイスラム王国。マジャパヒト後のジャワ政治とイスラム化で重要である。",
+        "en": "An early Islamic kingdom in Java, important after Majapahit for Javanese politics and Islamization.",
+        "zh": "爪哇早期伊斯兰王国，在满者伯夷之后的爪哇政治和伊斯兰化中很重要。"
+      },
+      "flag_code": "xx",
+      "period": {
+        "start": 1475,
+        "end": 1554,
+        "label": {
+          "ja": "1475年〜1554年",
+          "en": "1475-1554",
+          "zh": "1475年—1554年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約200万人",
+          "en": "peak estimate: about 2 million",
+          "zh": "鼎盛期估计：约200万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "ジャワ語、マレー語、アラビア語",
+          "en": "Javanese, Malay, and Arabic",
+          "zh": "爪哇语、马来语、阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教、仏教、地域信仰",
+          "en": "Islam, Hinduism, Buddhism, and local beliefs",
+          "zh": "伊斯兰教、印度教、佛教及地方信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ドゥマク王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地ドゥマクの支配層が政治、軍事、外交を動かした。",
+          "en": "For Sultanate of Demak, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Demak shaped politics, warfare, and diplomacy.",
+          "zh": "德马克苏丹国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以德马克为中心的统治集团影响政治、军事和外交。"
+        },
+        "major_events": {
+          "ja": "1475年〜1554年に活動。ドゥマクを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてジャワ島の歴史に影響を与えた。",
+          "en": "Active during 1475-1554. It formed and expanded around Demak, influencing the history of Java through war, diplomacy, trade, religion, and systems of rule.",
+          "zh": "活跃于1475年—1554年。以德马克为中心形成和扩张，并通过战争、外交、贸易、宗教和统治制度影响爪哇岛历史。"
+        },
+        "fall_reason": {
+          "ja": "内部対立、地域勢力の分裂、支配構造の変化によって統一的な政権としての力を失った。",
+          "en": "Internal conflict, regional fragmentation, and changes in systems of rule weakened it as a unified polity.",
+          "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
+        },
+        "successors": {
+          "ja": "インドネシア、マジャパヒト王国、マタラム王国と関連が深い。",
+          "en": "It connects with Indonesia, Majapahit, and later Javanese states.",
+          "zh": "与印度尼西亚、满者伯夷和后来的爪哇诸国关系密切。"
+        },
+        "cultural_features": {
+          "ja": "言語はジャワ語、マレー語、アラビア語、宗教はイスラム教、ヒンドゥー教、仏教、地域信仰と関係が深い。ジャワ、イスラム化、海上交易という観点から見ると、政治制度・軍事・交易・文化の特徴がつかみやすい。",
+          "en": "Its culture is connected with Javanese, Malay, and Arabic and Islam, Hinduism, Buddhism, and local beliefs. The themes Java, Islamization, maritime trade help explain its institutions, warfare, trade, and cultural life.",
+          "zh": "其文化与爪哇语、马来语、阿拉伯语和伊斯兰教、印度教、佛教及地方信仰关系密切。可从爪哇、伊斯兰化、海上贸易等角度理解其制度、军事、贸易和文化特征。"
+        }
+      },
+      "related": [
+        "Indonesia",
+        "Majapahit Empire"
+      ]
     }
   ],
   "tag_categories": {
