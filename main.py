@@ -602,6 +602,7 @@ class AppState:
     quiz_mode = 'normal'
     quiz_category = 'all'
     quiz_format = 'mixed'
+    quiz_scope = 'all'
     compare_left_key = None
     compare_right_key = None
     map_country_key = None
@@ -746,6 +747,10 @@ UI_FALLBACKS = {
         'quiz_profile': '{label}が「{value}」なのはどれ？',
         'quiz_category': '分野',
         'quiz_format': '形式',
+        'quiz_scope': '出題範囲',
+        'quiz_scope_all': '全問',
+        'quiz_scope_past': '過去の国のみ',
+        'quiz_scope_present': '現代の国のみ',
         'quiz_format_mixed': '混合',
         'quiz_format_info_fixed': '国を選ぶ',
         'quiz_format_country_fixed': '情報を選ぶ',
@@ -867,6 +872,10 @@ UI_FALLBACKS = {
         'quiz_profile': 'Which one has {label}: “{value}”?',
         'quiz_category': 'Category',
         'quiz_format': 'Format',
+        'quiz_scope': 'Scope',
+        'quiz_scope_all': 'All',
+        'quiz_scope_past': 'Historical only',
+        'quiz_scope_present': 'Present only',
         'quiz_format_mixed': 'Mixed',
         'quiz_format_info_fixed': 'Choose country',
         'quiz_format_country_fixed': 'Choose info',
@@ -986,6 +995,10 @@ UI_FALLBACKS = {
         'quiz_profile': '{label}为“{value}”的是哪一个？',
         'quiz_category': '领域',
         'quiz_format': '形式',
+        'quiz_scope': '出题范围',
+        'quiz_scope_all': '全部',
+        'quiz_scope_past': '仅历史国家',
+        'quiz_scope_present': '仅现代国家',
         'quiz_format_mixed': '混合',
         'quiz_format_info_fixed': '选择国家',
         'quiz_format_country_fixed': '选择信息',
@@ -5202,6 +5215,12 @@ QUIZ_FORMAT_OPTIONS = [
     ('country_fixed', 'quiz_format_country_fixed'),
 ]
 
+QUIZ_SCOPE_OPTIONS = [
+    ('all', 'quiz_scope_all'),
+    ('past', 'quiz_scope_past'),
+    ('present', 'quiz_scope_present'),
+]
+
 QUIZ_RANKING_CATEGORIES = [
     ('overall', 'ranking_overall'),
     ('flag', 'quiz_category_flag'),
@@ -5305,6 +5324,18 @@ def quiz_question_matches_format(question_type):
         return quiz_is_reverse(question_type)
     return True
 
+def quiz_country_matches_scope(country):
+    scope = getattr(state, 'quiz_scope', 'all')
+    country_type = str(country.get('type') or '')
+    if scope == 'past':
+        return country_type == 'Past'
+    if scope == 'present':
+        return country_type == 'Present'
+    return True
+
+def quiz_country_pool(data=None):
+    return [country for country in public_country_list(data) if quiz_country_matches_scope(country)]
+
 def quiz_base_question_types():
     question_types = ['desc', 'capital', 'tag', 'flag', 'period']
     question_types.extend(f'profile_{field}' for field in PROFILE_FIELDS)
@@ -5315,6 +5346,7 @@ def quiz_pool_cache_key(countries):
     return (
         DATA_CACHE_MTIME,
         state.lang,
+        getattr(state, 'quiz_scope', 'all'),
         len(countries),
     )
 
@@ -5639,7 +5671,7 @@ def build_reverse_quiz_options(answer, question_type, countries, tag_counts=None
 
 def build_quiz():
     data = get_data()
-    countries = public_country_list(data)
+    countries = quiz_country_pool(data)
     if len(countries) < 4:
         return None
     lookup = public_countries_by_key(data)
@@ -5802,6 +5834,12 @@ def set_quiz_format(quiz_format):
     if quiz_format not in [key for key, _ in QUIZ_FORMAT_OPTIONS]:
         quiz_format = 'mixed'
     state.quiz_format = quiz_format
+    start_quiz()
+
+def set_quiz_scope(scope):
+    if scope not in [key for key, _ in QUIZ_SCOPE_OPTIONS]:
+        scope = 'all'
+    state.quiz_scope = scope
     start_quiz()
 
 def quiz_answer_option(quiz):
@@ -9930,6 +9968,12 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
                 for key, label_key in QUIZ_CATEGORY_OPTIONS:
                     color = 'primary' if state.quiz_category == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, c=key: set_quiz_category(c)) \
+                        .props(f'outline color={color} dense')
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                ui.label(t('quiz_scope')).classes('text-sm font-bold text-gray-500')
+                for key, label_key in QUIZ_SCOPE_OPTIONS:
+                    color = 'primary' if state.quiz_scope == key else 'grey'
+                    ui.button(t(label_key), on_click=lambda _, s=key: set_quiz_scope(s)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
                 ui.label(t('quiz_format')).classes('text-sm font-bold text-gray-500')
