@@ -681,6 +681,7 @@ BATTLE_COMMAND_SURGE_RECOVERY = 2
 BATTLE_SUPPLY_DROP_THRESHOLD = 2
 BATTLE_BOMB_DAMAGE_PERCENT = 18
 BATTLE_BOMB_CARD = 'event:hot_potato_bomb'
+BATTLE_LYTTON_EVENT_WEIGHT = 0.7
 BATTLE_VATICAN_DRAW_CHANCE = 0.45
 BATTLE_SPECIAL_CARD_CHANCE = 0.12
 BATTLE_SPECIAL_CARD_MAX_PER_HAND = 2
@@ -1931,6 +1932,25 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_replace_notice': '所有人的手牌会合并洗牌，并按原本的张数重新分配。',
     'battle_replace_start_log': '手牌再分配开始。',
     'battle_replace_redistribute_log': '已将{players}名玩家的{count}张手牌重新分配。',
+})
+
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_lytton_title': 'リットン調査団',
+    'battle_lytton_notice': '調査団の報告により、相手の現在の手札が見える状態です。',
+    'battle_lytton_start_log': 'リットン調査団が到着しました。相手の手札が公開されます。',
+    'battle_revealed_hands': '公開された相手の手札',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'battle_lytton_title': 'Lytton Commission',
+    'battle_lytton_notice': 'The commission report reveals opponents current hands.',
+    'battle_lytton_start_log': 'The Lytton Commission arrived. Opponents hands are revealed.',
+    'battle_revealed_hands': 'Revealed opponent hands',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'battle_lytton_title': '李顿调查团',
+    'battle_lytton_notice': '调查团报告公开了对手当前的手牌。',
+    'battle_lytton_start_log': '李顿调查团到达。对手手牌会被公开。',
+    'battle_revealed_hands': '公开的对手手牌',
 })
 
 UI_FALLBACKS.setdefault('ja', {}).update({
@@ -5926,6 +5946,12 @@ def battle_bomb_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_lytton_active(room):
+    try:
+        return int((room or {}).get('turn', 1)) <= int((room or {}).get('lytton_until_turn', 0) or 0)
+    except (TypeError, ValueError):
+        return False
+
 def battle_damage_surge_active(room):
     try:
         return int((room or {}).get('turn', 1)) <= int((room or {}).get('damage_surge_until_turn', 0) or 0)
@@ -5963,6 +5989,7 @@ def battle_exclusive_event_active(room):
         battle_vatican_active(room),
         battle_replace_active(room),
         battle_bomb_active(room),
+        battle_lytton_active(room),
         battle_damage_surge_active(room),
         battle_ceasefire_active(room),
         battle_command_surge_active(room),
@@ -6683,6 +6710,7 @@ def normalize_battle_room(room):
     room.setdefault('vatican_until_turn', 0)
     room.setdefault('replace_until_turn', 0)
     room.setdefault('bomb_until_turn', 0)
+    room.setdefault('lytton_until_turn', 0)
     room.setdefault('damage_surge_until_turn', 0)
     room.setdefault('ceasefire_until_turn', 0)
     room.setdefault('command_surge_until_turn', 0)
@@ -7083,6 +7111,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'vatican_until_turn': 0,
         'replace_until_turn': 0,
         'bomb_until_turn': 0,
+        'lytton_until_turn': 0,
         'damage_surge_until_turn': 0,
         'ceasefire_until_turn': 0,
         'command_surge_until_turn': 0,
@@ -7505,6 +7534,7 @@ def battle_visual_payload(room, entries):
         'vatican': battle_vatican_active(room),
         'replace': battle_replace_active(room),
         'bomb': battle_bomb_active(room),
+        'lytton': battle_lytton_active(room),
         'damage_surge': battle_damage_surge_active(room),
         'ceasefire': battle_ceasefire_active(room),
         'command_surge': battle_command_surge_active(room),
@@ -7716,6 +7746,14 @@ def battle_bomb_transfer_target(room, player, entry, players):
             return target
     if room.get('mode') == TEAM_MODE:
         teams = room.get('teams', {})
+        target_team = str((entry or {}).get('target') or '').strip()
+        if target_team:
+            team_targets = [
+                name for name in players
+                if name != player and teams.get(name) == target_team and teams.get(name) != teams.get(player)
+            ]
+            if team_targets:
+                return random.choice(team_targets)
         rivals = [
             name for name in players
             if name != player and teams.get(name) != teams.get(player)
@@ -7728,16 +7766,21 @@ def resolve_battle_bomb_transfers(room, entries, result_parts, visual=None):
     if not battle_bomb_active(room):
         return
     players = active_battle_players(room)
-    for player, entry in entries.items():
-        if BATTLE_BOMB_CARD not in entry.get('keys', []):
-            continue
+    passers = [
+        (player, entry)
+        for player, entry in entries.items()
+        if BATTLE_BOMB_CARD in entry.get('keys', [])
+    ]
+    if not passers:
+        return
+    remove_all_battle_bomb_cards(room)
+    room['bomb_holder'] = None
+    new_holder = None
+    for player, entry in passers:
         target = battle_bomb_transfer_target(room, player, entry, players)
         if not target:
             continue
-        target_hand = room.setdefault('hands', {}).setdefault(target, [])
-        if BATTLE_BOMB_CARD not in target_hand:
-            target_hand.append(BATTLE_BOMB_CARD)
-        room['bomb_holder'] = target
+        new_holder = target
         result_parts.append(t('battle_bomb_pass_log').format(player=player, target=target))
         if visual is not None:
             visual.setdefault('bombs', []).append({
@@ -7745,6 +7788,9 @@ def resolve_battle_bomb_transfers(room, entries, result_parts, visual=None):
                 'target': target,
                 'card': battle_visual_card(BATTLE_BOMB_CARD, room=room),
             })
+    if new_holder:
+        room.setdefault('hands', {}).setdefault(new_holder, []).append(BATTLE_BOMB_CARD)
+        room['bomb_holder'] = new_holder
 
 def apply_battle_special_card_damage(room, result_parts, visual):
     if not battle_world_war_active(room):
@@ -7860,6 +7906,14 @@ def battle_find_bomb_holder(room):
     room['bomb_holder'] = None
     return None
 
+def remove_all_battle_bomb_cards(room):
+    removed = 0
+    for hand in room.setdefault('hands', {}).values():
+        while BATTLE_BOMB_CARD in hand:
+            hand.remove(BATTLE_BOMB_CARD)
+            removed += 1
+    return removed
+
 def battle_apply_damage_to_player_or_team(room, player, damage):
     damage = max(0, int(damage or 0))
     if damage <= 0:
@@ -7879,9 +7933,7 @@ def battle_apply_damage_to_player_or_team(room, player, damage):
 
 def battle_expire_bomb_event(room, result_parts):
     holder = battle_find_bomb_holder(room)
-    for hand in room.setdefault('hands', {}).values():
-        while BATTLE_BOMB_CARD in hand:
-            hand.remove(BATTLE_BOMB_CARD)
+    remove_all_battle_bomb_cards(room)
     room['bomb_holder'] = None
     if not holder:
         return
@@ -7895,6 +7947,7 @@ def battle_start_bomb_event(room, turn, result_parts):
     players = active_battle_players(room)
     if not players:
         return
+    remove_all_battle_bomb_cards(room)
     holder = random.choice(players)
     hand = room.setdefault('hands', {}).setdefault(holder, [])
     if BATTLE_BOMB_CARD not in hand:
@@ -7939,6 +7992,7 @@ def update_battle_crisis_state(room, result_parts=None):
         'flag_only_until_turn',
         'vatican_until_turn',
         'replace_until_turn',
+        'lytton_until_turn',
         'damage_surge_until_turn',
         'ceasefire_until_turn',
         'command_surge_until_turn',
@@ -7971,6 +8025,8 @@ def update_battle_crisis_state(room, result_parts=None):
         random_events.append(('replace_until_turn', 'battle_replace_start_log', 0.9))
     if not battle_bomb_active(room) and not battle_find_bomb_holder(room):
         random_events.append(('bomb_until_turn', 'battle_bomb_start_log', 0.65))
+    if not battle_lytton_active(room):
+        random_events.append(('lytton_until_turn', 'battle_lytton_start_log', BATTLE_LYTTON_EVENT_WEIGHT))
     if not battle_damage_surge_active(room):
         random_events.append(('damage_surge_until_turn', 'battle_damage_surge_start_log', 0.18))
     if not battle_ceasefire_active(room):
@@ -8726,7 +8782,7 @@ def battle_last_turn_signature(last_turn):
         'turn': last_turn.get('turn'),
         'events': {
             key: bool(last_turn.get(key))
-            for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+            for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
         },
         'played_count': len(last_turn.get('played', [])) if isinstance(last_turn.get('played'), list) else 0,
         'damage': rows_signature(last_turn.get('damage', [])),
@@ -8769,6 +8825,7 @@ def battle_screen_signature():
             'vatican_until_turn': room.get('vatican_until_turn'),
             'replace_until_turn': room.get('replace_until_turn'),
             'bomb_until_turn': room.get('bomb_until_turn'),
+            'lytton_until_turn': room.get('lytton_until_turn'),
             'damage_surge_until_turn': room.get('damage_surge_until_turn'),
             'ceasefire_until_turn': room.get('ceasefire_until_turn'),
             'command_surge_until_turn': room.get('command_surge_until_turn'),
@@ -10859,6 +10916,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                 holder = battle_find_bomb_holder(room)
                 notice = t('battle_bomb_notice').format(player=holder or '?')
                 ui.label(notice).classes('text-sm font-bold text-pink-700')
+        if battle_lytton_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-sky-300 bg-sky-50'):
+                ui.label(t('battle_lytton_title')).classes('text-2xl font-black text-sky-800')
+                ui.label(t('battle_lytton_notice')).classes('text-sm font-bold text-sky-700')
         if battle_damage_surge_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
                 ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
@@ -10879,6 +10940,35 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             with ui.card().classes('w-full p-5 gap-2 border-2 border-gray-400 bg-gray-100'):
                 ui.label(t('battle_blockade_title')).classes('text-2xl font-black text-gray-800')
                 ui.label(t('battle_blockade_notice')).classes('text-sm font-bold text-gray-700')
+
+    def render_battle_revealed_hands(room, lookup, username, is_spectator):
+        if not battle_lytton_active(room):
+            return
+        players = active_battle_players(room)
+        teams = room.get('teams', {})
+        if is_spectator or username not in players:
+            visible_players = players
+        elif room.get('mode') == TEAM_MODE:
+            own_team = teams.get(username)
+            visible_players = [player for player in players if teams.get(player) != own_team]
+        else:
+            visible_players = [player for player in players if player != username]
+        if not visible_players:
+            return
+        with ui.card().classes('w-full p-5 gap-3 border border-sky-200 bg-sky-50'):
+            ui.label(t('battle_revealed_hands')).classes('text-lg font-bold text-sky-900')
+            with ui.grid(columns=1 if is_mobile_ui() else min(3, len(visible_players))).classes('w-full gap-3'):
+                for player in visible_players:
+                    hand = room.setdefault('hands', {}).get(player, [])
+                    with ui.column().classes('gap-2 rounded border border-sky-100 bg-white p-3'):
+                        ui.label(f"{player} / {t('battle_hand_count')} {len(hand)}").classes('font-bold text-[#1a2332]')
+                        if not hand:
+                            ui.label('-').classes('text-gray-500')
+                        else:
+                            with ui.row().classes('gap-2 flex-wrap'):
+                                for key in hand:
+                                    name = battle_special_card_label(key) if is_battle_special_card(key) else battle_card_display_name(key, lookup, room)
+                                    ui.badge(name or str(key), color='red' if is_battle_special_card(key) else 'blue').classes('whitespace-normal')
 
     def render_battle_last_turn(room):
         visual = room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}
@@ -10965,7 +11055,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if not visual:
                 ui.label(t('battle_no_visual')).classes('text-gray-500')
                 return
-            event_keys = ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+            event_keys = ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
             if any(visual.get(key) for key in event_keys):
                 with ui.row().classes('gap-2 flex-wrap'):
                     if visual.get('world_war'):
@@ -10980,6 +11070,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         ui.badge(t('battle_replace_title'), color='cyan')
                     if visual.get('bomb'):
                         ui.badge(t('battle_bomb_title'), color='pink')
+                    if visual.get('lytton'):
+                        ui.badge(t('battle_lytton_title'), color='blue')
                     if visual.get('damage_surge'):
                         ui.badge(t('battle_damage_surge_title'), color='purple')
                     if visual.get('ceasefire'):
@@ -11141,6 +11233,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
 
             if not winner:
                 render_battle_crisis_notice(room)
+                render_battle_revealed_hands(room, lookup, username, is_spectator)
 
             if winner:
                 is_winner = winner == username or (
