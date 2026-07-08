@@ -33,6 +33,7 @@ BATTLE_STATE_CACHE_MTIME = None
 QUIZ_POOL_CACHE = {'key': None, 'value': None}
 BATTLE_POWER_BOUNDS_CACHE = {'mtime': None, 'value': None}
 BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
+QUIZ_HISTORY_LIMIT = 80
 
 def file_mtime(path):
     try:
@@ -41,11 +42,12 @@ def file_mtime(path):
         return None
 
 def clear_data_derived_caches():
-    global DERIVED_DATA_CACHE, SEARCH_TEXT_CACHE, COUNTRY_OPTION_MAP_CACHE, FLAG_AVATAR_OPTION_MAP_CACHE
+    global DERIVED_DATA_CACHE, SEARCH_TEXT_CACHE, COUNTRY_OPTION_MAP_CACHE, FLAG_AVATAR_OPTION_MAP_CACHE, QUIZ_POOL_CACHE
     DERIVED_DATA_CACHE = {'mtime': None, 'data_id': None, 'value': None}
     SEARCH_TEXT_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
     COUNTRY_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
     FLAG_AVATAR_OPTION_MAP_CACHE = {'mtime': None, 'data_id': None, 'lang': None, 'value': None}
+    QUIZ_POOL_CACHE = {'key': None, 'value': None}
 
 # 生成した国旗など、リポジトリ内に置いた画像を /assets/... で配信します。
 if os.path.isdir(ASSETS_DIR):
@@ -637,6 +639,10 @@ BATTLE_WORLD_WAR_TURN = 75
 BATTLE_WORLD_WAR_DISABLED = 0
 BATTLE_WORLD_WAR_TURN_OPTIONS = [1, 25, 50, 75, 100, BATTLE_WORLD_WAR_DISABLED]
 BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER = 5
+BATTLE_LOG_LIMIT = 6
+BATTLE_CHAT_LIMIT = 12
+BATTLE_LAST_TURN_ROW_LIMIT = 9
+BATTLE_AUTO_REFRESH_SECONDS = 3.0
 BATTLE_PRESSURE_START_TURN = 10
 BATTLE_PRESSURE_PER_TURN_BPS = 500
 BATTLE_PRESSURE_MAX_EXTRA_BPS = 15_000
@@ -2316,7 +2322,7 @@ def ensure_user_defaults(user):
         if not isinstance(user.get(key), list):
             user[key] = []
     del user['history'][80:]
-    del user['quiz_history'][120:]
+    del user['quiz_history'][QUIZ_HISTORY_LIMIT:]
     del user['review_keys'][80:]
     user['notifications'] = normalize_notifications(user.get('notifications'))
     for key in ['notes', 'collections']:
@@ -2393,7 +2399,7 @@ def sync_current_user_to_browser(user_data=None):
           mergedQuizHistory.push(item);
         }});
         mergedQuizHistory.sort((a, b) => String(b.timestamp || '').localeCompare(String(a.timestamp || '')));
-        payload.record.quiz_history = mergedQuizHistory.slice(0, 200);
+        payload.record.quiz_history = mergedQuizHistory.slice(0, {QUIZ_HISTORY_LIMIT});
       }}
       backups[payload.username] = payload;
       const knownKey = 'world_archives_known_usernames';
@@ -4409,7 +4415,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
         'type': question_type or '',
         'mode': state.quiz_mode,
     })
-    del history[200:]
+    del history[QUIZ_HISTORY_LIMIT:]
     normalize_quiz_stats(user)
     persist_current_user_data(user_data)
 
@@ -5265,19 +5271,25 @@ def quiz_pool_data(countries):
     tag_counts = quiz_tag_counts(countries)
     tag_options = all_quiz_tags(countries, tag_counts)
     base_question_types = quiz_base_question_types()
-    option_candidates = {
-        question_type: quiz_candidates_for_type(countries, question_type, tag_counts, len(countries))
+    option_candidate_keys = {
+        question_type: [
+            country_key(country)
+            for country in quiz_candidates_for_type(countries, question_type, tag_counts, len(countries))
+        ]
         for question_type in base_question_types
     }
     pool = {
         'tag_counts': tag_counts,
         'tag_options': tag_options,
         'base_question_types': base_question_types,
-        'option_candidates': option_candidates,
+        'option_candidate_keys': option_candidate_keys,
     }
     QUIZ_POOL_CACHE['key'] = cache_key
     QUIZ_POOL_CACHE['value'] = pool
     return pool
+
+def resolve_quiz_candidates(candidate_keys, lookup):
+    return [lookup[key] for key in candidate_keys if key in lookup]
 
 def has_quiz_flag(country):
     return has_quiz_visual_flag_code(country.get('flag_code'))
@@ -5579,7 +5591,7 @@ def build_quiz():
     pool = quiz_pool_data(countries)
     tag_counts = pool['tag_counts']
     tag_options = pool['tag_options']
-    option_candidates = pool['option_candidates']
+    option_candidate_keys = pool['option_candidate_keys']
     answer_source_keys = None
     if state.quiz_mode == 'review':
         review_source = [lookup[key] for key in get_review_keys() if key in lookup]
@@ -5599,17 +5611,21 @@ def build_quiz():
             continue
         if not quiz_question_matches_category(question_type):
             continue
-        candidates = option_candidates.get(quiz_base_type(question_type), [])
+        candidates = option_candidate_keys.get(quiz_base_type(question_type), [])
         if answer_source_keys is not None:
-            candidates = [country for country in candidates if country_key(country) in answer_source_keys]
+            candidates = [key for key in candidates if key in answer_source_keys]
         if candidates:
             question_pools.append((question_type, candidates))
     if not question_pools:
         return None
 
     for _ in range(80):
-        question_type, candidates = random.choice(question_pools)
-        answer = random.choice(candidates)
+        question_type, candidate_keys = random.choice(question_pools)
+        answer_key = random.choice(candidate_keys)
+        answer = lookup.get(answer_key)
+        if not answer:
+            continue
+        candidates = resolve_quiz_candidates(candidate_keys, lookup)
         quiz_tag = None
         reverse_payload = None
         if quiz_is_reverse(question_type):
@@ -5618,7 +5634,7 @@ def build_quiz():
                 question_type,
                 countries,
                 tag_counts=tag_counts,
-                candidates_by_type=option_candidates,
+                candidates_by_type={quiz_base_type(question_type): candidates},
                 all_tags=tag_options,
             )
             if not reverse_payload:
@@ -5635,7 +5651,7 @@ def build_quiz():
                 answer,
                 question_type,
                 countries,
-                candidates=option_candidates.get(quiz_base_type(question_type)),
+                candidates=candidates,
             )
         if options:
             if reverse_payload:
@@ -6554,6 +6570,26 @@ def load_battle_state():
         print(f'Error loading battle state: {e}', flush=True)
         return default_battle_state()
 
+def trim_battle_visual_rows(rows):
+    if not isinstance(rows, list):
+        return []
+    return rows[:BATTLE_LAST_TURN_ROW_LIMIT]
+
+def trim_battle_last_turn(last_turn):
+    if not isinstance(last_turn, dict):
+        return {}
+    trimmed = dict(last_turn)
+    for key in ['played', 'damage', 'counters', 'steals', 'self_damage', 'bombs', 'replacements']:
+        trimmed[key] = trim_battle_visual_rows(trimmed.get(key))
+    return trimmed
+
+def trim_battle_room_for_storage(room):
+    room['log'] = list(room.get('log', []))[:BATTLE_LOG_LIMIT]
+    room['chat'] = list(room.get('chat', []))[:BATTLE_CHAT_LIMIT]
+    room['team_chat'] = list(room.get('team_chat', []))[:BATTLE_CHAT_LIMIT]
+    room['last_turn'] = trim_battle_last_turn(room.get('last_turn', {}))
+    return room
+
 def save_battle_state(state_data):
     global BATTLE_STATE_CACHE, BATTLE_STATE_CACHE_MTIME
     state_data = normalize_battle_state(state_data)
@@ -6562,9 +6598,7 @@ def save_battle_state(state_data):
         os.makedirs(battle_dir, exist_ok=True)
     for room in state_data.get('rooms', {}).values():
         if isinstance(room, dict):
-            room['log'] = list(room.get('log', []))[:10]
-            room['chat'] = list(room.get('chat', []))[:20]
-            room['team_chat'] = list(room.get('team_chat', []))[:24]
+            trim_battle_room_for_storage(room)
     with open(BATTLE_STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state_data, f, ensure_ascii=False, separators=(',', ':'))
     BATTLE_STATE_CACHE = state_data
@@ -6938,6 +6972,15 @@ def deal_battle_hand(room=None, count=5):
 
 def current_battle_room():
     return battle_room_for_user(state.current_user, load_battle_state_with_timeouts())
+
+def current_battle_room_snapshot():
+    state_data = load_battle_state()
+    username = clean_username(state.current_user)
+    room_id = state_data.get('user_room', {}).get(username) or state_data.get('spectator_room', {}).get(username)
+    room = state_data.get('rooms', {}).get(room_id)
+    if isinstance(room, dict):
+        return room
+    return None
 
 def battle_teams_for_players(players, mode, team_choices=None, team_count=2):
     if mode != TEAM_MODE:
@@ -7741,7 +7784,7 @@ def append_battle_log(room, text):
     if not text:
         return
     room.setdefault('log', []).insert(0, text)
-    del room['log'][12:]
+    del room['log'][BATTLE_LOG_LIMIT:]
 
 def active_battle_players(room):
     hp = room.setdefault('hp', {})
@@ -8316,8 +8359,8 @@ def resolve_battle_turn(room):
     apply_battle_special_card_damage(room, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
     room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
-    del room['log'][12:]
-    room['last_turn'] = visual
+    del room['log'][BATTLE_LOG_LIMIT:]
+    room['last_turn'] = trim_battle_last_turn(visual)
     finish_battle_turn(room, reload_set, defenseless_players)
     post_turn_parts = []
     battle_apply_replace_event(room, post_turn_parts)
@@ -8600,7 +8643,7 @@ def send_battle_chat(message):
         'text': text[:160],
         'timestamp': current_timestamp(),
     })
-    del room['chat'][30:]
+    del room['chat'][BATTLE_CHAT_LIMIT:]
     save_battle_state(state_data)
     refresh_battle_view()
 
@@ -8624,7 +8667,7 @@ def send_battle_team_chat(message):
         'text': text[:160],
         'timestamp': current_timestamp(),
     })
-    del room['team_chat'][40:]
+    del room['team_chat'][BATTLE_CHAT_LIMIT:]
     save_battle_state(state_data)
     refresh_battle_view()
 
@@ -11292,14 +11335,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             return
         countdown_label = battle_countdown_label.get('component')
         if countdown_label:
-            room = battle_room_for_user(state.current_user, load_battle_state())
+            room = current_battle_room_snapshot()
             if room and not room.get('winner'):
                 countdown_label.set_text(battle_time_left_text(room))
         signature = battle_screen_signature()
         if signature != state.battle_last_signature:
             refresh_battle_view()
 
-    ui.timer(1.5, auto_refresh_battle)
+    ui.timer(BATTLE_AUTO_REFRESH_SECONDS, auto_refresh_battle)
 
 # ========================================
 # 11. アカウントページ
