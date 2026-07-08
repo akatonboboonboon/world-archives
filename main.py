@@ -172,6 +172,9 @@ html.wa-dark .q-menu,
 html.wa-dark .q-drawer,
 html.wa-dark .q-list,
 html.wa-dark .q-expansion-item,
+html.wa-dark .q-tab-panels,
+html.wa-dark .q-tab-panel,
+html.wa-dark .q-panel,
 html.wa-dark .q-table,
 html.wa-dark .q-table__container {
   background: #172033 !important;
@@ -219,7 +222,19 @@ html.wa-dark .q-btn--outline {
   color: #93c5fd !important;
 }
 html.wa-dark .q-menu {
+  background: #111827 !important;
+  color: #f8fafc !important;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55) !important;
+}
+html.wa-dark .q-menu .q-list,
+html.wa-dark .q-menu .q-item {
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark .q-menu .q-item--disabled,
+html.wa-dark .q-menu .disabled {
+  color: #94a3b8 !important;
+  opacity: 0.78 !important;
 }
 html.wa-dark .q-item:hover,
 html.wa-dark .hover\\:bg-blue-50:hover {
@@ -229,6 +244,77 @@ html.wa-dark .shadow,
 html.wa-dark .shadow-md,
 html.wa-dark .shadow-lg {
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45) !important;
+}
+html.wa-dark .wa-user-pill,
+html.wa-dark .rounded-full.bg-white,
+html.wa-dark .q-btn.bg-white {
+  background: #1e293b !important;
+  border-color: #475569 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+html.wa-dark .q-field--outlined .q-field__control:before,
+html.wa-dark .q-field--outlined .q-field__control:after {
+  border-color: #64748b !important;
+}
+html.wa-dark .q-card .q-card {
+  background: #111827 !important;
+}
+html.wa-dark .q-chip {
+  border-color: #64748b !important;
+}
+html.wa-dark .q-notification,
+html.wa-dark .q-dialog__inner .q-card:not(.wa-staff-roll-window) {
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark .q-checkbox__bg {
+  border-color: #93c5fd !important;
+}
+html.wa-dark .wa-battle-surface,
+html.wa-dark .wa-battle-surface .bg-gray-50 {
+  background: #07111f !important;
+}
+html.wa-dark .wa-battle-surface .q-card {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #334155 !important;
+}
+html.wa-dark .wa-battle-surface .bg-white {
+  background: #172033 !important;
+}
+html.wa-dark .wa-battle-surface .bg-blue-50,
+html.wa-dark .wa-battle-surface .bg-indigo-50,
+html.wa-dark .wa-battle-surface .bg-amber-50,
+html.wa-dark .wa-battle-surface .bg-orange-50,
+html.wa-dark .wa-battle-surface .bg-red-50 {
+  background: #1f2937 !important;
+}
+html.wa-dark .wa-battle-surface .text-\\[\\#1a2332\\],
+html.wa-dark .wa-battle-surface .text-gray-800,
+html.wa-dark .wa-battle-surface .text-gray-700,
+html.wa-dark .wa-battle-surface .text-gray-600,
+html.wa-dark .wa-battle-surface .text-gray-500,
+html.wa-dark .wa-battle-surface .text-blue-800,
+html.wa-dark .wa-battle-surface .text-blue-700,
+html.wa-dark .wa-battle-surface .text-indigo-800,
+html.wa-dark .wa-battle-surface .text-indigo-700,
+html.wa-dark .wa-battle-surface .text-amber-800,
+html.wa-dark .wa-battle-surface .text-amber-700,
+html.wa-dark .wa-battle-surface .text-red-800,
+html.wa-dark .wa-battle-surface .text-red-700,
+html.wa-dark .wa-battle-surface .text-orange-700,
+html.wa-dark .wa-battle-surface .text-yellow-700 {
+  color: #e5e7eb !important;
+}
+html.wa-dark .wa-battle-surface .q-field__control,
+html.wa-dark .wa-battle-surface input,
+html.wa-dark .wa-battle-surface textarea {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+html.wa-dark .wa-battle-surface .wa-boss-card {
+  background: linear-gradient(135deg, #182235, #241936) !important;
+  border-color: #7c3aed !important;
 }
 </style>
 """)
@@ -385,6 +471,7 @@ USER_RECORD_KEYS = {
     'sengoku_unlocked_notified',
     'sengoku_mode',
     'sengoku_medal',
+    'sengoku_boss_clears',
     'all_viewed_granted',
     'friends',
     'notifications',
@@ -402,6 +489,17 @@ def user_record_from_candidate(value):
     if looks_like_user_record(record):
         return record
     return None
+
+def normalize_sengoku_boss_clears(value):
+    valid = {f'boss_{index}' for index in range(1, 9)}
+    seen = set()
+    clears = []
+    for boss_id in value if isinstance(value, list) else []:
+        boss_id = str(boss_id or '')
+        if boss_id in valid and boss_id not in seen:
+            clears.append(boss_id)
+            seen.add(boss_id)
+    return clears
 
 def normalize_user_data_file(data):
     if not isinstance(data, dict):
@@ -555,7 +653,7 @@ def merge_user_record(current, incoming):
     if not isinstance(incoming, dict):
         return current
     for key, value in incoming.items():
-        if key in ['favorites', 'review_keys', 'friends']:
+        if key in ['favorites', 'review_keys', 'friends', 'sengoku_boss_clears']:
             current[key] = merge_unique_list(current.get(key, []), value)
         elif key == 'history':
             current[key] = merge_unique_list(current.get(key, []), value, 50)
@@ -877,6 +975,20 @@ BATTLE_SPECIAL_CARDS = {
     'event:relief_convoy': {'heal_percent': 3, 'weight': 0.22},
     BATTLE_BOMB_CARD: {'bomb': True, 'weight': 0},
 }
+SENGOKU_BOSS_EVENT_FIELDS = {
+    'revolution': 'revolution_until_turn',
+    'flag_only': 'flag_only_until_turn',
+    'vatican': 'vatican_until_turn',
+    'replace': 'replace_until_turn',
+    'bomb': 'bomb_until_turn',
+    'lytton': 'lytton_until_turn',
+    'damage_surge': 'damage_surge_until_turn',
+    'ceasefire': 'ceasefire_until_turn',
+    'command_surge': 'command_surge_until_turn',
+    'supply_drop': 'supply_drop_until_turn',
+    'blockade': 'blockade_until_turn',
+}
+SENGOKU_BOSS_FORCED_TURN = 999_999
 DUEL_MODE = 'duel'
 FFA_MODE = 'free_for_all'
 TEAM_MODE = 'team'
@@ -2240,19 +2352,19 @@ UI_FALLBACKS.setdefault('zh', {}).update({
 })
 
 UI_FALLBACKS.setdefault('ja', {}).update({
-    'sengoku_medal_unlocked_notice': '戦国BOTタイマン完全勝利。勲章を獲得しました。',
+    'sengoku_medal_unlocked_notice': '戦国ボス全撃破。勲章を獲得しました。',
     'staff_roll_title': 'World Archives スタッフロール',
     'staff_roll_close': '閉じる',
     'staff_roll_source_heading': '参考資料・画像・地図',
 })
 UI_FALLBACKS.setdefault('en', {}).update({
-    'sengoku_medal_unlocked_notice': 'Sengoku BOT duel clear. Medal unlocked.',
+    'sengoku_medal_unlocked_notice': 'All Sengoku bosses cleared. Medal unlocked.',
     'staff_roll_title': 'World Archives Credits',
     'staff_roll_close': 'Close',
     'staff_roll_source_heading': 'References, Images, and Maps',
 })
 UI_FALLBACKS.setdefault('zh', {}).update({
-    'sengoku_medal_unlocked_notice': '战国 BOT 单挑战胜。已获得勋章。',
+    'sengoku_medal_unlocked_notice': '战国Boss全部击破。已获得勋章。',
     'staff_roll_title': 'World Archives 制作人员',
     'staff_roll_close': '关闭',
     'staff_roll_source_heading': '参考资料、图片与地图',
@@ -2660,7 +2772,7 @@ def normalize_notifications(value):
     return sorted(notifications, key=lambda item: item.get('created_at', ''), reverse=True)[:50]
 
 def ensure_user_defaults(user):
-    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends', 'notifications']:
+    for key in ['favorites', 'history', 'review_keys', 'viewed_keys', 'quiz_history', 'friends', 'notifications', 'sengoku_boss_clears']:
         if not isinstance(user.get(key), list):
             user[key] = []
     del user['history'][80:]
@@ -2694,6 +2806,7 @@ def ensure_user_defaults(user):
         user['sengoku_mode'] = False
     if not isinstance(user.get('sengoku_medal'), bool):
         user['sengoku_medal'] = False
+    user['sengoku_boss_clears'] = normalize_sengoku_boss_clears(user.get('sengoku_boss_clears', []))
     if not isinstance(user.get('all_viewed_granted'), bool):
         user['all_viewed_granted'] = False
     restore_all_viewed_progress_if_unlocked(user)
@@ -2857,7 +2970,7 @@ def request_browser_backup_restore():
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
-      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'all_viewed_granted', 'friends', 'notifications'];
+      const userFields = ['password_hash', 'favorites', 'history', 'notes', 'viewed_keys', 'collections', 'quiz_history', 'review_keys', 'quiz_stats', 'avatar', 'name_color', 'hide_public_profile', 'battle_wins', 'battle_unlocked', 'battle_unlocked_notified', 'sengoku_unlocked', 'sengoku_unlocked_notified', 'sengoku_mode', 'sengoku_medal', 'sengoku_boss_clears', 'all_viewed_granted', 'friends', 'notifications'];
       const looksLikeRecord = value => !!(value && typeof value === 'object' && userFields.some(field => Object.prototype.hasOwnProperty.call(value, field)));
       const mergeRecord = (username, value) => {{
         if (!username || !value || typeof value !== 'object') return;
@@ -3336,7 +3449,13 @@ def user_badge_marks(user):
         marks.append('👹')
     if user.get('sengoku_medal'):
         marks.append('🏅')
-    return ''.join(marks)
+    if all_sengoku_bosses_cleared(user):
+        marks.append('🏅')
+    unique_marks = []
+    for mark in marks:
+        if mark not in unique_marks:
+            unique_marks.append(mark)
+    return ''.join(unique_marks)
 
 def display_user_name(username, user=None):
     name = str(username or '').strip()
@@ -3345,6 +3464,224 @@ def display_user_name(username, user=None):
 
 def current_user_display_name(user=None):
     return display_user_name(current_user_label(), user)
+
+def sengoku_boss_definitions():
+    return [
+        {
+            'id': 'boss_1',
+            'name': {'ja': '第一将・標準強化BOT', 'en': 'Boss 1: Enhanced BOT', 'zh': '第一将：强化BOT'},
+            'summary': {'ja': '戦国モードの強化BOTそのもの。まずは基本の強さを突破します。', 'en': 'A standard enhanced Sengoku BOT.', 'zh': '标准战国强化BOT。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': [],
+        },
+        {
+            'id': 'boss_2',
+            'name': {'ja': '第二将・倍化する要塞', 'en': 'Boss 2: Double Fortress', 'zh': '第二将：倍化要塞'},
+            'summary': {'ja': '敵HPが2倍。長期戦になりやすい相手です。', 'en': 'The enemy has double HP.', 'zh': '敌方HP翻倍。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 2,
+            'timeout': 180,
+            'forced_events': [],
+        },
+        {
+            'id': 'boss_3',
+            'name': {'ja': '第三将・バチカンの霧', 'en': 'Boss 3: Vatican Fog', 'zh': '第三将：梵蒂冈之雾'},
+            'summary': {'ja': '常にバチカン市国大量発生。ただし敵のバチカンは別カードに変化します。', 'en': 'Vatican City appears constantly, but the boss converts its own Vatican cards.', 'zh': '梵蒂冈大量出现，但敌方会把自己的梵蒂冈换成其他牌。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['vatican'],
+            'vatican_immunity': True,
+        },
+        {
+            'id': 'boss_4',
+            'name': {'ja': '第四将・海上封鎖', 'en': 'Boss 4: Naval Blockade', 'zh': '第四将：海上封锁'},
+            'summary': {'ja': '常に海上封鎖。制限時間は30秒です。', 'en': 'Naval Blockade is always active and turns last 30 seconds.', 'zh': '海上封锁常驻，回合限时30秒。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 30,
+            'forced_events': ['blockade'],
+        },
+        {
+            'id': 'boss_5',
+            'name': {'ja': '第五将・双頭同盟', 'en': 'Boss 5: Twin Alliance', 'zh': '第五将：双头同盟'},
+            'summary': {'ja': '1対2のチーム戦。常に国名が伏せられます。', 'en': 'A 1v2 team battle with country names hidden.', 'zh': '1对2团队战，国名始终隐藏。'},
+            'mode': TEAM_MODE,
+            'enemy_count': 2,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['flag_only'],
+        },
+        {
+            'id': 'boss_6',
+            'name': {'ja': '第六将・革命停戦圏', 'en': 'Boss 6: Revolutionary Ceasefire', 'zh': '第六将：革命停战圈'},
+            'summary': {'ja': '革命・停戦・カードシャッフルが常に発生します。', 'en': 'Revolution, Ceasefire, and card redistribution stay active.', 'zh': '革命、停战、手牌再分配常驻。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['revolution', 'ceasefire', 'replace'],
+        },
+        {
+            'id': 'boss_7',
+            'name': {'ja': '第七将・世界大戦炉', 'en': 'Boss 7: World War Furnace', 'zh': '第七将：世界大战炉'},
+            'summary': {'ja': '常に第三次世界大戦状態。暴発カードが多く混ざります。', 'en': 'World War is always active and dangerous cards appear more often.', 'zh': '第三次世界大战常驻，危险牌更多。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['world_war'],
+            'special_pressure': True,
+        },
+        {
+            'id': 'boss_8',
+            'name': {'ja': '第八将・全特性統合体', 'en': 'Boss 8: Combined Overlord', 'zh': '第八将：全特性统合体'},
+            'summary': {'ja': 'これまでの特性をまとめた最終戦。敵の指揮力は実質無限です。', 'en': 'The final boss combines previous traits and has effectively infinite command.', 'zh': '最终战，汇集全部特性，敌方指挥力近乎无限。'},
+            'mode': TEAM_MODE,
+            'enemy_count': 2,
+            'hp_multiplier': 2,
+            'timeout': 30,
+            'forced_events': ['world_war', 'vatican', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace'],
+            'vatican_immunity': True,
+            'special_pressure': True,
+            'command_infinite': True,
+        },
+    ]
+
+def sengoku_boss_definitions():
+    return [
+        {
+            'id': 'boss_1',
+            'name': {'ja': 'アッカド帝国', 'en': 'Akkadian Empire', 'zh': '阿卡德帝国'},
+            'summary': {'ja': '最初期の大帝国を冠する第一戦。戦国モード強化BOTの基本形です。', 'en': 'The first boss, named after one of the earliest empires. A standard enhanced BOT.', 'zh': '以早期大帝国为名的第一战。标准强化BOT。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': [],
+        },
+        {
+            'id': 'boss_2',
+            'name': {'ja': 'アケメネス朝ペルシア', 'en': 'Achaemenid Persia', 'zh': '阿契美尼德波斯'},
+            'summary': {'ja': '古代オリエントの広域帝国。敵HPが2倍になります。', 'en': 'A vast ancient Near Eastern empire. The enemy has double HP.', 'zh': '古代近东的大帝国。敌方HP翻倍。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 2,
+            'timeout': 180,
+            'forced_events': [],
+        },
+        {
+            'id': 'boss_3',
+            'name': {'ja': 'ローマ帝国', 'en': 'Roman Empire', 'zh': '罗马帝国'},
+            'summary': {'ja': '地中海世界の巨大帝国。常時バチカン市国大量発生と補給投下が起こり、敵のバチカンは別カードへ変化します。', 'en': 'A Mediterranean superpower. Vatican outbreak and Supply Drop stay active, but the boss converts its Vatican cards.', 'zh': '地中海世界的大帝国。梵蒂冈大量出现与补给投下常驻，敌方梵蒂冈会换成别的牌。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['vatican', 'supply_drop'],
+            'vatican_immunity': True,
+        },
+        {
+            'id': 'boss_4',
+            'name': {'ja': '唐', 'en': 'Tang Dynasty', 'zh': '唐'},
+            'summary': {'ja': '東アジアの大帝国。常時海上封鎖、制限時間30秒です。', 'en': 'A major East Asian empire. Naval Blockade is always active and turns last 30 seconds.', 'zh': '东亚大帝国。海上封锁常驻，回合限时30秒。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 30,
+            'forced_events': ['blockade'],
+        },
+        {
+            'id': 'boss_5',
+            'name': {'ja': 'モンゴル帝国', 'en': 'Mongol Empire', 'zh': '蒙古帝国'},
+            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名始终隐藏。'},
+            'mode': TEAM_MODE,
+            'enemy_count': 2,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['flag_only'],
+        },
+        {
+            'id': 'boss_6',
+            'name': {'ja': 'オスマン帝国', 'en': 'Ottoman Empire', 'zh': '奥斯曼帝国'},
+            'summary': {'ja': '長く続いた三大陸の帝国。革命・停戦・カードシャッフルが常に発生します。', 'en': 'A long-lived empire across three continents. Revolution, Ceasefire, and card redistribution stay active.', 'zh': '横跨三大洲的长期帝国。革命、停战、手牌再分配常驻。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['revolution', 'ceasefire', 'replace'],
+        },
+        {
+            'id': 'boss_7',
+            'name': {'ja': '大英帝国', 'en': 'British Empire', 'zh': '大英帝国'},
+            'summary': {'ja': '世界規模の海洋帝国。常時第三次世界大戦状態で、暴発カードが多く混ざります。', 'en': 'A global maritime empire. World War is always active and dangerous cards appear more often.', 'zh': '世界规模的海洋帝国。第三次世界大战常驻，危险牌更多。'},
+            'mode': BOT_MODE,
+            'enemy_count': 1,
+            'hp_multiplier': 1,
+            'timeout': 180,
+            'forced_events': ['world_war'],
+            'special_pressure': True,
+        },
+        {
+            'id': 'boss_8',
+            'name': {'ja': 'ソビエト連邦', 'en': 'Soviet Union', 'zh': '苏联'},
+            'summary': {'ja': '最後に立ちはだかる近現代の超大国。これまでの特性を併せ持ち、敵の指揮力は実質無限です。', 'en': 'The final modern superpower boss. It combines previous traits and has effectively infinite command.', 'zh': '最终的近现代超级大国。汇集此前特性，敌方指挥力近乎无限。'},
+            'mode': TEAM_MODE,
+            'enemy_count': 2,
+            'hp_multiplier': 2,
+            'timeout': 30,
+            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace'],
+            'vatican_immunity': True,
+            'special_pressure': True,
+            'command_infinite': True,
+        },
+    ]
+
+def sengoku_boss_by_id(boss_id):
+    boss_id = str(boss_id or '')
+    for boss in sengoku_boss_definitions():
+        if boss['id'] == boss_id:
+            return boss
+    return None
+
+def localized_boss_text(boss, key):
+    value = (boss or {}).get(key, {})
+    if isinstance(value, dict):
+        return value.get(state.lang, value.get('ja', value.get('en', '')))
+    return str(value or '')
+
+def normalize_sengoku_boss_clears(value):
+    valid = [boss['id'] for boss in sengoku_boss_definitions()]
+    seen = set()
+    clears = []
+    for boss_id in value if isinstance(value, list) else []:
+        boss_id = str(boss_id or '')
+        if boss_id in valid and boss_id not in seen:
+            clears.append(boss_id)
+            seen.add(boss_id)
+    return clears
+
+def sengoku_boss_clear_count(user):
+    return len(normalize_sengoku_boss_clears((user or {}).get('sengoku_boss_clears', [])))
+
+def sengoku_boss_is_cleared(user, boss_id):
+    return str(boss_id or '') in normalize_sengoku_boss_clears((user or {}).get('sengoku_boss_clears', []))
+
+def sengoku_boss_is_unlocked(user, boss_id):
+    bosses = sengoku_boss_definitions()
+    ids = [boss['id'] for boss in bosses]
+    if boss_id not in ids:
+        return False
+    return ids.index(boss_id) <= sengoku_boss_clear_count(user)
+
+def all_sengoku_bosses_cleared(user):
+    return sengoku_boss_clear_count(user) >= len(sengoku_boss_definitions())
 
 def show_staff_roll():
     credits = [
@@ -3376,7 +3713,7 @@ def show_staff_roll():
             .classes('absolute top-2 right-2 z-10')
         with ui.column().classes('wa-staff-roll-scroll w-full px-8 py-10 gap-1'):
             ui.label(t('staff_roll_title')).classes('text-4xl font-black text-white mb-8')
-            ui.label('戦国BOTタイマン 完全勝利').classes('text-2xl font-black text-yellow-200 mb-8')
+            ui.label('戦国ボス八将 完全制覇').classes('text-2xl font-black text-yellow-200 mb-8')
             for role, name in credits:
                 ui.label(role).classes('text-sm font-bold text-blue-200 mt-3')
                 ui.label(name).classes('text-2xl font-black text-white')
@@ -4607,6 +4944,7 @@ def public_user_profiles():
             'battle_unlocked': bool(record.get('battle_unlocked')),
             'sengoku_unlocked': bool(record.get('sengoku_unlocked')),
             'sengoku_medal': bool(record.get('sengoku_medal')),
+            'sengoku_boss_clears': normalize_sengoku_boss_clears(record.get('sengoku_boss_clears', [])),
             'all_viewed': set(all_public_country_keys()).issubset(set(viewed)),
             'last_viewed': format_timestamp(latest_history.get('timestamp')),
         })
@@ -5607,7 +5945,7 @@ def quiz_option_count():
 
 def quiz_difficulty_options():
     options = ['easy', 'medium', 'hard']
-    if sengoku_is_user_eligible():
+    if state.sengoku_mode and sengoku_is_user_eligible():
         options.append('extreme')
     return options
 
@@ -6914,6 +7252,12 @@ def normalize_battle_timeout_seconds(value):
     return seconds
 
 def battle_timeout_label(seconds):
+    try:
+        raw_seconds = int(seconds)
+    except (TypeError, ValueError):
+        raw_seconds = None
+    if raw_seconds == 30:
+        return '30秒' if state.lang == 'ja' else '30 sec'
     seconds = normalize_battle_timeout_seconds(seconds)
     if seconds == BATTLE_TURN_TIMEOUT_UNLIMITED:
         return t('battle_time_unlimited')
@@ -6928,7 +7272,13 @@ def selected_battle_timeout_seconds():
     return normalize_battle_timeout_seconds(getattr(state, 'battle_turn_timeout_seconds', BATTLE_TURN_TIMEOUT_SECONDS))
 
 def battle_room_timeout_seconds(room):
-    return normalize_battle_timeout_seconds((room or {}).get('turn_timeout_seconds'))
+    try:
+        seconds = int((room or {}).get('turn_timeout_seconds'))
+    except (TypeError, ValueError):
+        seconds = BATTLE_TURN_TIMEOUT_SECONDS
+    if is_sengoku_boss_room(room) and seconds == 30:
+        return 30
+    return normalize_battle_timeout_seconds(seconds)
 
 def normalize_battle_world_war_turn(value):
     try:
@@ -6961,8 +7311,47 @@ def selected_battle_events_enabled():
 def battle_room_events_enabled(room):
     return bool((room or {}).get('events_enabled', True))
 
+def sengoku_boss_for_room(room):
+    return sengoku_boss_by_id((room or {}).get('sengoku_boss_id'))
+
+def is_sengoku_boss_room(room):
+    return bool(sengoku_boss_for_room(room))
+
+def sengoku_boss_forced_events(room):
+    boss = sengoku_boss_for_room(room)
+    return set((boss or {}).get('forced_events', []))
+
+def battle_player_hp_limit(room, player):
+    limit = BATTLE_MAX_HP
+    boss = sengoku_boss_for_room(room)
+    if boss and is_battle_bot(player) and (room or {}).get('mode') != TEAM_MODE:
+        try:
+            limit *= max(1, int(boss.get('hp_multiplier', 1) or 1))
+        except (TypeError, ValueError):
+            pass
+    return limit
+
+def apply_sengoku_boss_forced_state(room):
+    boss = sengoku_boss_for_room(room)
+    if not boss:
+        return
+    forced_events = set(boss.get('forced_events', []))
+    if 'world_war' in forced_events:
+        room['world_war_started'] = True
+    for event_name, field in SENGOKU_BOSS_EVENT_FIELDS.items():
+        if event_name in forced_events:
+            room[field] = max(int(room.get(field, 0) or 0), SENGOKU_BOSS_FORCED_TURN)
+    if boss.get('command_infinite'):
+        for player in room.get('players', []):
+            if is_battle_bot(player):
+                room.setdefault('command', {})[player] = BATTLE_MAX_COMMAND
+
 def battle_player_command(room, player):
     command_map = (room or {}).setdefault('command', {})
+    boss = sengoku_boss_for_room(room)
+    if boss and boss.get('command_infinite') and is_battle_bot(player):
+        command_map[player] = BATTLE_MAX_COMMAND
+        return BATTLE_MAX_COMMAND
     try:
         current = int(command_map.get(player, BATTLE_MAX_COMMAND))
     except (TypeError, ValueError):
@@ -7191,6 +7580,7 @@ def normalize_battle_room(room):
     room.setdefault('world_war_started', False)
     room.setdefault('events_enabled', True)
     room.setdefault('sengoku_mode', False)
+    room.setdefault('sengoku_boss_id', None)
     room.setdefault('kicked', [])
     room.setdefault('revolution_until_turn', 0)
     room.setdefault('flag_only_until_turn', 0)
@@ -7212,16 +7602,18 @@ def normalize_battle_room(room):
     room.setdefault('bot', False)
     room['turn_timeout_seconds'] = battle_room_timeout_seconds(room)
     room['world_war_turn'] = battle_room_world_war_turn(room)
+    apply_sengoku_boss_forced_state(room)
     room.setdefault('turn_started_at', current_timestamp())
     hp = room.setdefault('hp', {})
     now_stamp = current_timestamp()
     seen = room.setdefault('player_seen_at', {})
     for player in room.get('players', []):
+        hp_limit = battle_player_hp_limit(room, player)
         try:
-            current_hp = int(hp.get(player, BATTLE_MAX_HP))
+            current_hp = int(hp.get(player, hp_limit))
         except (TypeError, ValueError):
-            current_hp = BATTLE_MAX_HP
-        hp[player] = max(0, min(current_hp, BATTLE_MAX_HP))
+            current_hp = hp_limit
+        hp[player] = max(0, min(current_hp, hp_limit))
         if not is_battle_bot(player):
             seen.setdefault(player, now_stamp)
         battle_player_command(room, player)
@@ -7491,6 +7883,9 @@ def set_sengoku_mode(enabled):
         return False
     user['sengoku_mode'] = bool(enabled)
     state.sengoku_mode = bool(enabled)
+    if not state.sengoku_mode and state.quiz_difficulty == 'extreme':
+        state.quiz_difficulty = 'hard'
+        state.quiz = None
     persist_current_user_data(user_data, immediate_browser=True)
     ui.notify(t('sengoku_mode_on' if enabled else 'sengoku_mode_off'), color='positive' if enabled else 'info')
     refresh_current_screen()
@@ -7596,6 +7991,34 @@ def random_battle_special_cards(count):
     weights = [max(0.01, float(BATTLE_SPECIAL_CARDS[key].get('weight', 1))) for key in keys]
     return random.choices(keys, weights=weights, k=count)
 
+def draw_non_vatican_battle_cards(count, room=None):
+    vatican_key = battle_vatican_country_key()
+    cards = []
+    attempts = 0
+    while len(cards) < count and attempts < count * 8:
+        attempts += 1
+        for key in weighted_battle_country_sample(count - len(cards)):
+            if key != vatican_key:
+                cards.append(key)
+            if len(cards) >= count:
+                break
+    return cards[:count]
+
+def apply_sengoku_boss_hand_modifiers(room, player):
+    boss = sengoku_boss_for_room(room)
+    if not boss or not is_battle_bot(player):
+        return
+    if boss.get('vatican_immunity'):
+        vatican_key = battle_vatican_country_key()
+        if vatican_key:
+            hand = room.setdefault('hands', {}).setdefault(player, [])
+            replacements = draw_non_vatican_battle_cards(hand.count(vatican_key), room)
+            for index, key in enumerate(list(hand)):
+                if key == vatican_key and replacements:
+                    hand[index] = replacements.pop(0)
+    if boss.get('command_infinite'):
+        room.setdefault('command', {})[player] = BATTLE_MAX_COMMAND
+
 def draw_battle_cards(count=5, room=None):
     count = max(0, int(count or 0))
     if count <= 0:
@@ -7617,6 +8040,14 @@ def draw_battle_cards(count=5, room=None):
         specials = random_battle_special_cards(special_count)
         cards.extend(specials)
         random.shuffle(cards)
+    boss = sengoku_boss_for_room(room)
+    if boss and boss.get('special_pressure') and battle_world_war_active(room) and count > 1:
+        extra_limit = min(3, max(1, count - 1))
+        current_specials = sum(1 for key in cards if is_battle_special_card(key))
+        extra_count = max(0, extra_limit - current_specials)
+        if extra_count:
+            cards = cards[:max(0, count - extra_count)] + random_battle_special_cards(extra_count)
+            random.shuffle(cards)
     return cards
 
 def deal_battle_hand(room=None, count=5):
@@ -7658,12 +8089,16 @@ def create_battle_bot_names(players, target_count):
         names.append(name)
     return names
 
-def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None, player_count=None, team_count=None, team_choices=None, host=None, events_enabled=True, sengoku_mode=False):
+def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, turn_timeout_seconds=None, world_war_turn=None, player_count=None, team_count=None, team_choices=None, host=None, events_enabled=True, sengoku_mode=False, sengoku_boss_id=None):
     state_data = state_data or load_battle_state()
     players = [clean_username(player) for player in players if clean_username(player)]
     if len(players) < 2:
         return None
-    turn_timeout_seconds = normalize_battle_timeout_seconds(turn_timeout_seconds)
+    try:
+        raw_timeout_seconds = int(turn_timeout_seconds)
+    except (TypeError, ValueError):
+        raw_timeout_seconds = None
+    turn_timeout_seconds = 30 if sengoku_boss_id and raw_timeout_seconds == 30 else normalize_battle_timeout_seconds(turn_timeout_seconds)
     world_war_turn = normalize_battle_world_war_turn(world_war_turn)
     player_count = normalize_battle_player_count(player_count or len(players), mode)
     team_count = normalize_battle_team_count(team_count or 2)
@@ -7697,6 +8132,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'world_war_turn': world_war_turn,
         'events_enabled': bool(events_enabled),
         'sengoku_mode': bool(sengoku_mode),
+        'sengoku_boss_id': str(sengoku_boss_id or ''),
         'revolution_until_turn': 0,
         'flag_only_until_turn': 0,
         'vatican_until_turn': 0,
@@ -7716,7 +8152,11 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'bot': bool(bot),
         'kicked': [],
     }
+    apply_sengoku_boss_forced_state(room)
     room['hands'] = {player: deal_battle_hand(room) for player in players}
+    for player in players:
+        hp_limit = battle_player_hp_limit(room, player)
+        room['hp'][player] = hp_limit
     ensure_battle_team_hp(room)
     state_data.setdefault('rooms', {})[room_id] = room
     for player in players:
@@ -7749,6 +8189,49 @@ def create_bot_battle():
         sengoku_mode=bool(state.sengoku_mode),
     )
     ui.notify(t('battle_matched'), color='positive')
+    refresh_battle_view()
+
+def create_sengoku_boss_battle(boss_id):
+    username = state.current_user
+    user_data = load_user_data()
+    user = get_current_user_record(user_data)
+    if not username or not user or not sengoku_is_user_eligible(user=user) or not state.sengoku_mode:
+        ui.notify(t('unlock_condition_not_met'), color='warning')
+        return
+    boss = sengoku_boss_by_id(boss_id)
+    if not boss or not sengoku_boss_is_unlocked(user, boss['id']):
+        ui.notify('このボスはまだ解放されていません。', color='warning')
+        return
+    state_data = load_battle_state()
+    if battle_room_for_user(username, state_data):
+        refresh_battle_view()
+        return
+    enemy_count = max(1, int(boss.get('enemy_count', 1) or 1))
+    players = [username]
+    players.extend(create_battle_bot_names(players, len(players) + enemy_count))
+    team_choices = {}
+    if boss.get('mode') == TEAM_MODE:
+        team_choices = {username: 'A'}
+        for player in players[1:]:
+            team_choices[player] = 'B'
+    room = create_battle_room(
+        *players,
+        state_data=state_data,
+        mode=boss.get('mode', BOT_MODE),
+        bot=True,
+        turn_timeout_seconds=boss.get('timeout', 180),
+        world_war_turn=75,
+        player_count=len(players),
+        team_count=2,
+        team_choices=team_choices,
+        events_enabled=True,
+        sengoku_mode=True,
+        sengoku_boss_id=boss['id'],
+    )
+    if room:
+        append_battle_log(room, f"ボス戦: {localized_boss_text(boss, 'name')}")
+        save_battle_state(state_data)
+    ui.notify(f"{localized_boss_text(boss, 'name')} に挑戦します。", color='positive')
     refresh_battle_view()
 
 def battle_queue_entry_matches(entry, mode, turn_timeout_seconds, world_war_turn, player_count, team_count, events_enabled=None):
@@ -7958,6 +8441,45 @@ def add_battle_win(username):
     if username == state.current_user:
         sync_current_user_to_browser(user_data)
 
+def award_sengoku_boss_clear_if_needed(username, room):
+    username = clean_username(username)
+    boss = sengoku_boss_for_room(room)
+    if not username or not boss or is_battle_bot(username):
+        return False
+    winner = room.get('winner')
+    user_won = winner == username
+    if isinstance(winner, str) and winner.startswith('team:'):
+        user_won = room.get('teams', {}).get(username) == winner.split(':', 1)[1]
+    if not user_won:
+        return False
+    user_data = load_user_data()
+    user = get_users(user_data).get(username)
+    if not user:
+        return False
+    ensure_user_defaults(user)
+    clears = normalize_sengoku_boss_clears(user.get('sengoku_boss_clears', []))
+    newly_cleared = boss['id'] not in clears
+    if newly_cleared:
+        clears.append(boss['id'])
+    user['sengoku_boss_clears'] = normalize_sengoku_boss_clears(clears)
+    completed = all_sengoku_bosses_cleared(user)
+    newly_awarded = completed and not bool(user.get('sengoku_medal'))
+    if completed:
+        user['sengoku_medal'] = True
+    room['sengoku_boss_cleared_by'] = username
+    room['sengoku_boss_clear_count'] = sengoku_boss_clear_count(user)
+    save_user_data(user_data)
+    if username == state.current_user:
+        sync_current_user_to_browser(user_data)
+        if newly_cleared:
+            ui.notify(f"{localized_boss_text(boss, 'name')} を撃破しました。", color='positive')
+        if newly_awarded:
+            ui.notify(t('sengoku_medal_unlocked_notice'), color='positive')
+            if state.staff_roll_room_shown != room.get('id'):
+                state.staff_roll_room_shown = room.get('id')
+                ui.timer(0.2, show_staff_roll, once=True)
+    return newly_cleared or newly_awarded
+
 def is_sengoku_medal_battle(room, winner):
     winner = clean_username(winner)
     if not winner or is_battle_bot(winner) or not isinstance(room, dict):
@@ -7976,25 +8498,9 @@ def is_sengoku_medal_battle(room, winner):
 
 def award_sengoku_medal_if_needed(username, room):
     username = clean_username(username)
-    if not is_sengoku_medal_battle(room, username):
-        return False
-    user_data = load_user_data()
-    user = get_users(user_data).get(username)
-    if not user:
-        return False
-    ensure_user_defaults(user)
-    newly_awarded = not bool(user.get('sengoku_medal'))
-    user['sengoku_medal'] = True
-    room['sengoku_medal_awarded_to'] = username
-    save_user_data(user_data)
-    if username == state.current_user:
-        sync_current_user_to_browser(user_data)
-        if newly_awarded:
-            ui.notify(t('sengoku_medal_unlocked_notice'), color='positive')
-        if state.staff_roll_room_shown != room.get('id'):
-            state.staff_roll_room_shown = room.get('id')
-            ui.timer(0.2, show_staff_roll, once=True)
-    return newly_awarded
+    if award_sengoku_boss_clear_if_needed(username, room):
+        return True
+    return False
 
 def battle_base_powers_for_keys(keys, room=None):
     lookup = battle_country_lookup()
@@ -8745,6 +9251,9 @@ def set_battle_winner_if_finished(room):
                 if teams.get(player) == winning_team and room.setdefault('hp', {}).get(player, 0) > 0
             ]
             room['winner'] = f"team:{winning_team}"
+            if is_sengoku_boss_room(room):
+                for winner in winners:
+                    award_sengoku_boss_clear_if_needed(winner, room)
             if count_wins:
                 for winner in winners:
                     if not is_battle_bot(winner):
@@ -9164,6 +9673,7 @@ def submit_bot_players(room):
         if not is_battle_bot(player) or player in room.setdefault('submitted', {}):
             continue
         reload_set = set(room.get('reload_after_turn', []))
+        apply_sengoku_boss_hand_modifiers(room, player)
         hand = room.setdefault('hands', {}).setdefault(player, [])
         playable_hand = [key for key in hand if is_battle_selectable_card(key)]
         defenseless = player in reload_set or not hand or not playable_hand or battle_player_command(room, player) < battle_command_cost_for_count(1)
@@ -9509,6 +10019,7 @@ def battle_screen_signature(state_data=None):
     if room:
         payload = {
             'room': room.get('id'),
+            'sengoku_boss_id': room.get('sengoku_boss_id'),
             'turn': room.get('turn'),
             'turn_timeout_seconds': battle_room_timeout_seconds(room),
             'world_war_turn': battle_room_world_war_turn(room),
@@ -9551,6 +10062,7 @@ def battle_screen_signature(state_data=None):
             'rooms': [
                 {
                     'id': room.get('id'),
+                    'sengoku_boss_id': room.get('sengoku_boss_id'),
                     'mode': room.get('mode'),
                     'turn_timeout_seconds': battle_room_timeout_seconds(room),
                     'world_war_turn': battle_room_world_war_turn(room),
@@ -10012,7 +10524,7 @@ def render_header(container):
                     )
                     header_name = current_user_display_name(header_user)
                     ui.label(header_name) \
-                        .classes('text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
+                        .classes('wa-user-pill text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
                         .style(f'color: {user_name_color(header_user)};')
                     if header_user and sengoku_is_user_eligible(user=header_user):
                         ui.button(
@@ -10087,7 +10599,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
                 top_user = get_current_user_record()
                 top_name = current_user_display_name(top_user)
                 ui.label(t('logged_in_as').format(user=top_name)) \
-                    .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
+                    .classes('wa-user-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(top_user)};')
                 daily = today_country()
                 if daily:
@@ -11612,7 +12124,7 @@ def poll_social_updates():
 
 ui.timer(8.0, poll_social_updates)
 
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
+with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0') as battle_screen:
     header_container_battle = ui.column().classes('w-full p-0 m-0')
     battle_content = ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center')
     battle_countdown_label = {'component': None}
@@ -11667,6 +12179,39 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                                     with ui.row().classes('w-full items-start gap-2 no-wrap'):
                                         ui.icon('circle', size='0.45rem').classes('text-blue-500 mt-2 flex-shrink-0')
                                         ui.label(item).classes('text-sm text-gray-700 leading-relaxed whitespace-normal')
+
+    def render_sengoku_boss_panel(user):
+        if not state.sengoku_mode or not user or not sengoku_is_user_eligible(user=user):
+            return
+        clears = normalize_sengoku_boss_clears(user.get('sengoku_boss_clears', []))
+        with ui.card().classes('wa-boss-card w-full p-5 gap-4 border border-purple-200 bg-purple-50'):
+            with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                ui.label('戦国ボス戦').classes('text-2xl font-black text-purple-900')
+                ui.badge(f'{len(clears)} / {len(sengoku_boss_definitions())}', color='purple')
+            ui.label('過去に存在した巨大国家を冠した8体のボスを、古い時代から順番に撃破していきます。全撃破でスタッフロールが流れます。') \
+                .classes('text-sm font-bold text-purple-800')
+            with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
+                for index, boss in enumerate(sengoku_boss_definitions(), start=1):
+                    unlocked = sengoku_boss_is_unlocked(user, boss['id'])
+                    cleared = sengoku_boss_is_cleared(user, boss['id'])
+                    with ui.column().classes('w-full gap-2 rounded border border-purple-200 bg-white p-3'):
+                        with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
+                            ui.label(f"{index}. {localized_boss_text(boss, 'name')}").classes('font-black text-[#1a2332]')
+                            if cleared:
+                                ui.badge('撃破済み', color='green')
+                            elif unlocked:
+                                ui.badge('挑戦可能', color='purple')
+                            else:
+                                ui.badge('未解放', color='grey')
+                        ui.label(localized_boss_text(boss, 'summary')).classes('text-xs text-gray-600 leading-relaxed')
+                        button = ui.button(
+                            '再戦' if cleared else '挑戦',
+                            icon='sports_martial_arts',
+                            on_click=lambda _, boss_id=boss['id']: create_sengoku_boss_battle(boss_id),
+                        ).props('color=purple dense' if unlocked else 'outline color=grey dense')
+                        if not unlocked:
+                            button.disable()
+
     def render_battle_card(key, lookup, room=None):
         if is_battle_special_card(key):
             hp_limit = battle_team_hp_limit(room) if room and room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
@@ -12015,6 +12560,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
         mode = room.get('mode', DUEL_MODE)
         teams = room.get('teams', {})
         is_spectator = username not in players
+        boss = sengoku_boss_for_room(room)
 
         room_card_classes = 'w-full p-5 gap-4'
         if battle_revolution_active(room):
@@ -12041,6 +12587,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             )
             if room.get('sengoku_mode'):
                 ui.badge(t('sengoku_mode'), color='purple')
+            if boss:
+                ui.badge(f"ボス戦: {localized_boss_text(boss, 'name')}", color='purple')
             if mode in [FFA_MODE, TEAM_MODE]:
                 ui.badge(f"{t('battle_room_players')}: {len(players)} / {room.get('player_count', len(players))}", color='green')
             if not winner:
@@ -12070,8 +12618,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
                         with ui.column().classes('w-full gap-2'):
                             render_hp_bar(
                                 player,
-                                room.setdefault('hp', {}).get(player, BATTLE_MAX_HP),
-                                BATTLE_MAX_HP,
+                                room.setdefault('hp', {}).get(player, battle_player_hp_limit(room, player)),
+                                battle_player_hp_limit(room, player),
                                 f"{t('battle_hand_count')}: {hand_count}",
                             )
                             if clean_username(room.get('host')) == username and player != username and not is_battle_bot(player):
@@ -12199,6 +12747,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as battle_scree
             if room:
                 render_battle_room(room)
                 return
+
+            render_sengoku_boss_panel(user)
 
             with ui.card().classes('w-full p-5 gap-4'):
                 if is_current_user_waiting_for_battle():
@@ -12373,7 +12923,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
             with ui.row().classes('w-full items-center gap-2 flex-wrap'):
                 account_name = current_user_display_name(user)
                 ui.label(t('logged_in_as').format(user=account_name)) \
-                    .classes('px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
+                    .classes('wa-user-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
                     .style(f'color: {user_name_color(user)};')
                 ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
                     .props('outline color=primary dense')
