@@ -3681,6 +3681,8 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 2,
+            'player_hand_multiplier': 2,
+            'player_damage_surge': True,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3770,6 +3772,8 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 2,
+            'player_hand_multiplier': 2,
+            'player_damage_surge': True,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3879,6 +3883,14 @@ def sengoku_boss_is_unlocked(user, boss_id):
 
 def all_sengoku_bosses_cleared(user):
     return sengoku_boss_clear_count(user) >= len(sengoku_boss_definitions())
+
+def next_sengoku_boss_id(boss_id):
+    ids = [boss['id'] for boss in sengoku_boss_definitions()]
+    boss_id = str(boss_id or '')
+    if boss_id not in ids:
+        return None
+    index = ids.index(boss_id) + 1
+    return ids[index] if index < len(ids) else None
 
 def show_staff_roll():
     credits = [
@@ -7005,13 +7017,20 @@ def battle_exclusive_event_active(room):
         battle_blockade_active(room),
     ])
 
-def battle_event_damage_multiplier(room):
+def battle_event_damage_multiplier(room, player=None):
     if not battle_room_events_enabled(room):
         return 1
     multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
+    boss = sengoku_boss_for_room(room)
+    if player and boss and boss.get('player_damage_surge') and not is_battle_bot(player):
+        multiplier *= BATTLE_DAMAGE_SURGE_MULTIPLIER
     if battle_ceasefire_active(room):
         multiplier *= BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER
     return multiplier
+
+def battle_group_event_damage_multiplier(room, players):
+    multipliers = [battle_event_damage_multiplier(room, player) for player in players or []]
+    return max(multipliers) if multipliers else battle_event_damage_multiplier(room)
 
 def battle_vatican_country_key(data=None):
     for country in battle_country_list(data):
@@ -7527,6 +7546,16 @@ def battle_player_hp_limit(room, player):
         except (TypeError, ValueError):
             pass
     return limit
+
+def battle_deal_count_for_player(room, player):
+    count = 5
+    boss = sengoku_boss_for_room(room)
+    if boss and boss.get('player_hand_multiplier') and not is_battle_bot(player):
+        try:
+            count *= max(1, int(boss.get('player_hand_multiplier', 1) or 1))
+        except (TypeError, ValueError):
+            pass
+    return count
 
 def apply_sengoku_boss_forced_state(room):
     boss = sengoku_boss_for_room(room)
@@ -8350,7 +8379,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'kicked': [],
     }
     apply_sengoku_boss_forced_state(room)
-    room['hands'] = {player: deal_battle_hand(room) for player in players}
+    room['hands'] = {player: deal_battle_hand(room, battle_deal_count_for_player(room, player)) for player in players}
     for player in players:
         hp_limit = battle_player_hp_limit(room, player)
         room['hp'][player] = hp_limit
@@ -8388,7 +8417,7 @@ def create_bot_battle():
     ui.notify(t('battle_matched'), color='positive')
     refresh_battle_view()
 
-def create_sengoku_boss_battle(boss_id):
+def create_sengoku_boss_battle(boss_id, replace_current=False):
     username = state.current_user
     user_data = load_user_data()
     user = get_current_user_record(user_data)
@@ -8400,9 +8429,18 @@ def create_sengoku_boss_battle(boss_id):
         ui.notify('このボスはまだ解放されていません。', color='warning')
         return
     state_data = load_battle_state()
-    if battle_room_for_user(username, state_data):
-        refresh_battle_view()
-        return
+    current_room = battle_room_for_user(username, state_data)
+    if current_room:
+        if replace_current and current_room.get('winner') and is_sengoku_boss_room(current_room):
+            state_data.setdefault('user_room', {}).pop(username, None)
+            state_data.setdefault('spectator_room', {}).pop(username, None)
+            current_room['spectators'] = [name for name in current_room.get('spectators', []) if name != username]
+            prune_empty_battle_rooms(state_data)
+            state.battle_id = None
+            state.battle_selected_keys = set()
+        else:
+            refresh_battle_view()
+            return
     enemy_count = max(1, int(boss.get('enemy_count', 1) or 1))
     players = [username]
     players.extend(create_battle_bot_names(players, len(players) + enemy_count))
@@ -8878,7 +8916,7 @@ def battle_visual_payload(room, entries):
         'replace': battle_replace_active(room),
         'bomb': battle_bomb_active(room),
         'lytton': battle_lytton_active(room),
-        'damage_surge': battle_damage_surge_active(room),
+        'damage_surge': battle_damage_surge_active(room) or bool((sengoku_boss_for_room(room) or {}).get('player_damage_surge')),
         'ceasefire': battle_ceasefire_active(room),
         'command_surge': battle_command_surge_active(room),
         'supply_drop': battle_supply_drop_active(room),
@@ -8968,7 +9006,7 @@ def battle_turn_pressure_scale(turn):
 def apply_battle_turn_pressure(value, turn):
     return max(0, int(value) * battle_turn_pressure_scale(turn) // BATTLE_BONUS_DENOMINATOR)
 
-def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, world_war=False, event_multiplier=1, defense_base=None, defense_labels=None, defense_multiplier=1):
+def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, world_war=False, event_multiplier=1, defense_base=None, defense_labels=None, defense_multiplier=1, counter_event_multiplier=None):
     power_gap = max(0, int(win_power) - int(lose_power))
     defense = max(0, int(defense or 0))
     attack_after_bonus = apply_battle_bonus_value(power_gap, labels)
@@ -8979,8 +9017,9 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
     pressured_counter = apply_battle_turn_pressure(counter_base, turn)
     world_war_multiplier = BATTLE_WORLD_WAR_DAMAGE_MULTIPLIER if world_war else 1
     event_multiplier = max(0.01, float(event_multiplier or 1))
+    counter_event_multiplier = event_multiplier if counter_event_multiplier is None else max(0.01, float(counter_event_multiplier or 1))
     damage = int(pressured_damage * world_war_multiplier * event_multiplier * BATTLE_DAMAGE_OUTPUT_PERCENT / 100)
-    counter = int(pressured_counter * world_war_multiplier * event_multiplier * BATTLE_DAMAGE_OUTPUT_PERCENT / 100)
+    counter = int(pressured_counter * world_war_multiplier * counter_event_multiplier * BATTLE_DAMAGE_OUTPUT_PERCENT / 100)
     if defense_base is None:
         defense_base = defense
     defense_base = max(0, int(defense_base or 0))
@@ -9002,6 +9041,7 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
         'turn_pressure_multiplier': battle_turn_pressure_scale(turn) / BATTLE_BONUS_DENOMINATOR,
         'world_war_multiplier': world_war_multiplier,
         'event_multiplier': event_multiplier,
+        'counter_event_multiplier': counter_event_multiplier,
         'damage_output_multiplier': BATTLE_DAMAGE_OUTPUT_PERCENT / 100,
         'damage': max(0, damage),
         'counter': max(0, counter),
@@ -9181,7 +9221,7 @@ def apply_battle_special_card_damage(room, result_parts, visual):
 
 def finish_battle_turn(room, reload_set, defenseless_players):
     for player in defenseless_players:
-        room.setdefault('hands', {})[player] = deal_battle_hand(room)
+        room.setdefault('hands', {})[player] = deal_battle_hand(room, battle_deal_count_for_player(room, player))
     for player in room.get('players', []):
         if room.setdefault('hp', {}).get(player, 0) <= 0:
             continue
@@ -9600,6 +9640,8 @@ def resolve_battle_turn(room):
                 multiplier, labels = battle_bonus_for_keys(attack_keys)
                 defense_base = team_defense_base.get(target_team, 0)
                 defense_multiplier = (team_defense.get(target_team, 0) / defense_base) if defense_base else 1
+                target_players = [player for player in team_players.get(target_team, []) if room['hp'].get(player, 0) > 0]
+                source_players = [player for player in team_players.get(source_team, []) if room['hp'].get(player, 0) > 0]
                 breakdown = battle_damage_breakdown(
                     win_power,
                     lose_power,
@@ -9607,17 +9649,16 @@ def resolve_battle_turn(room):
                     labels,
                     room.get('turn', 1),
                     battle_world_war_active(room),
-                    event_multiplier,
+                    battle_group_event_damage_multiplier(room, attack_players),
                     defense_base=defense_base,
                     defense_labels=sorted(set(team_defense_labels.get(target_team, []))),
                     defense_multiplier=defense_multiplier,
+                    counter_event_multiplier=battle_group_event_damage_multiplier(room, target_players),
                 )
                 breakdown['raw_team_attack'] = raw_power
                 breakdown['split_count'] = split_count
                 breakdown['split_penalty_value'] = max(0, raw_power - win_power)
                 damage, counter = breakdown['damage'], breakdown['counter']
-                target_players = [player for player in team_players.get(target_team, []) if room['hp'].get(player, 0) > 0]
-                source_players = [player for player in team_players.get(source_team, []) if room['hp'].get(player, 0) > 0]
                 if damage:
                     team_hp[target_team] = max(0, team_hp.get(target_team, battle_team_hp_limit(room)) - damage)
                     winners.extend(source_players)
@@ -9665,10 +9706,11 @@ def resolve_battle_turn(room):
                     [],
                     room.get('turn', 1),
                     battle_world_war_active(room),
-                    event_multiplier,
+                    battle_event_damage_multiplier(room, attacker),
                     defense_base=entries[target].get('defense_base', 0),
                     defense_labels=entries[target].get('defense_bonus_labels', []),
                     defense_multiplier=entries[target].get('defense_multiplier', 1),
+                    counter_event_multiplier=battle_event_damage_multiplier(room, target),
                 )
                 visual['damage'].append({
                     'source': attacker,
@@ -9687,10 +9729,11 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
-                event_multiplier,
+                battle_event_damage_multiplier(room, attacker),
                 defense_base=entries[target].get('defense_base', 0),
                 defense_labels=entries[target].get('defense_bonus_labels', []),
                 defense_multiplier=entries[target].get('defense_multiplier', 1),
+                counter_event_multiplier=battle_event_damage_multiplier(room, target),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage_events.append((attacker, target, damage, counter, labels, multiplier, breakdown))
@@ -9736,10 +9779,11 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
-                event_multiplier,
+                battle_event_damage_multiplier(room, player_one),
                 defense_base=entries[player_two].get('defense_base', 0),
                 defense_labels=entries[player_two].get('defense_bonus_labels', []),
                 defense_multiplier=entries[player_two].get('defense_multiplier', 1),
+                counter_event_multiplier=battle_event_damage_multiplier(room, player_two),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
@@ -9780,10 +9824,11 @@ def resolve_battle_turn(room):
                 labels,
                 room.get('turn', 1),
                 battle_world_war_active(room),
-                event_multiplier,
+                battle_event_damage_multiplier(room, player_two),
                 defense_base=entries[player_one].get('defense_base', 0),
                 defense_labels=entries[player_one].get('defense_bonus_labels', []),
                 defense_multiplier=entries[player_one].get('defense_multiplier', 1),
+                counter_event_multiplier=battle_event_damage_multiplier(room, player_one),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
@@ -10092,7 +10137,7 @@ def active_battle_rooms():
     state_data = load_battle_state_with_timeouts()
     rooms = []
     for room in state_data.get('rooms', {}).values():
-        if not isinstance(room, dict) or room.get('winner'):
+        if not isinstance(room, dict) or room.get('winner') or is_sengoku_boss_room(room):
             continue
         players = room.get('players', [])
         if players:
@@ -10106,7 +10151,7 @@ def spectate_battle_room(room_id):
         return
     state_data = load_battle_state()
     room = state_data.get('rooms', {}).get(str(room_id))
-    if not room or room.get('winner'):
+    if not room or room.get('winner') or is_sengoku_boss_room(room):
         refresh_battle_view()
         return
     if username in room.get('kicked', []):
@@ -10147,6 +10192,9 @@ def send_battle_chat(message):
     if not room:
         refresh_battle_view()
         return
+    if is_sengoku_boss_room(room):
+        refresh_battle_view()
+        return
     room.setdefault('chat', []).insert(0, {
         'user': username,
         'text': text[:160],
@@ -10164,6 +10212,9 @@ def send_battle_team_chat(message):
     state_data = load_battle_state()
     room = battle_room_for_user(username, state_data)
     if not room or room.get('mode') != TEAM_MODE or username not in room.get('players', []):
+        refresh_battle_view()
+        return
+    if is_sengoku_boss_room(room):
         refresh_battle_view()
         return
     team = room.get('teams', {}).get(username)
@@ -10271,7 +10322,7 @@ def battle_screen_signature(state_data=None):
                     'winner': room.get('winner'),
                 }
                 for room in state_data.get('rooms', {}).values()
-                if isinstance(room, dict) and not room.get('winner')
+                if isinstance(room, dict) and not room.get('winner') and not is_sengoku_boss_room(room)
             ],
         }
     return json.dumps(payload, ensure_ascii=False, sort_keys=True)
@@ -12494,7 +12545,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             with ui.card().classes('w-full p-5 gap-2 border-2 border-sky-300 bg-sky-50'):
                 ui.label(t('battle_lytton_title')).classes('text-2xl font-black text-sky-800')
                 ui.label(t('battle_lytton_notice')).classes('text-sm font-bold text-sky-700')
-        if battle_damage_surge_active(room):
+        if battle_damage_surge_active(room) or bool((sengoku_boss_for_room(room) or {}).get('player_damage_surge')):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
                 ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
                 ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
@@ -12842,12 +12893,19 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 ui.label(battle_winner_label(room)).classes('text-lg font-bold text-gray-700')
                 with ui.row().classes('w-full gap-2 flex-wrap'):
                     if not is_spectator:
-                        ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
+                        if boss:
+                            next_boss_id = next_sengoku_boss_id(boss['id'])
+                            if is_winner and next_boss_id:
+                                ui.button('次のボスへ', icon='arrow_forward', on_click=lambda boss_id=next_boss_id: create_sengoku_boss_battle(boss_id, replace_current=True)).props('color=purple')
+                            ui.button('再挑戦', icon='replay', on_click=lambda boss_id=boss['id']: create_sengoku_boss_battle(boss_id, replace_current=True)).props('outline color=purple')
+                        else:
+                            ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
                         ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
                     else:
                         ui.button(t('battle_leave_spectate'), icon='visibility_off', on_click=leave_battle_spectate).props('outline color=primary')
-                render_battle_team_chat(room)
-                render_battle_chat(room)
+                if not boss:
+                    render_battle_team_chat(room)
+                    render_battle_chat(room)
                 render_battle_last_turn(room)
                 return
 
@@ -12908,8 +12966,9 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                         ui.button(t('battle_submit'), icon='sports_martial_arts', on_click=submit_battle_hand).props('color=primary')
 
         render_battle_last_turn(room)
-        render_battle_team_chat(room)
-        render_battle_chat(room)
+        if not boss:
+            render_battle_team_chat(room)
+            render_battle_chat(room)
         with ui.card().classes('w-full p-5 gap-3'):
             ui.label(t('battle_log')).classes('text-xl font-bold text-[#1a2332]')
             if not room.get('log'):
