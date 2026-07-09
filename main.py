@@ -13510,8 +13510,18 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                         else:
                             with ui.row().classes('gap-2 flex-wrap'):
                                 for key in hand:
-                                    name = battle_special_card_label(key) if is_battle_special_card(key) else battle_card_display_name(key, lookup, room)
-                                    ui.badge(name or str(key), color='red' if is_battle_special_card(key) else 'blue').classes('whitespace-normal')
+                                    if is_battle_special_card(key):
+                                        with ui.column().classes('w-28 gap-1 rounded border border-red-200 bg-red-50 p-2'):
+                                            ui.icon('warning').classes('text-red-600')
+                                            ui.label(battle_special_card_label(key) or str(key)).classes('text-xs font-bold text-red-800 whitespace-normal')
+                                        continue
+                                    country = lookup.get(key)
+                                    if not country:
+                                        ui.badge(str(key), color='blue').classes('whitespace-normal')
+                                        continue
+                                    with ui.column().classes('w-28 gap-1 rounded border border-sky-100 bg-white p-2 shadow-sm'):
+                                        render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
+                                        ui.label(battle_card_display_name(key, lookup, room)).classes('text-xs font-bold text-[#1a2332] whitespace-normal')
 
     def render_battle_last_turn(room):
         visual = room.get('last_turn') if isinstance(room.get('last_turn'), dict) else {}
