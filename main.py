@@ -681,9 +681,10 @@ def user_record_from_candidate(value):
         return None
     if looks_like_user_record(value):
         return value
-    record = value.get('record')
-    if looks_like_user_record(record):
-        return record
+    for key in ['record', 'user', 'data', 'profile']:
+        record = value.get(key)
+        if looks_like_user_record(record):
+            return record
     return None
 
 def normalize_sengoku_boss_clears(value):
@@ -3602,6 +3603,11 @@ def normalize_backup_payload(payload):
         record = user_record_from_candidate(value)
         if record:
             restored[username] = {'record': record}
+    if not restored:
+        record = user_record_from_candidate(payload)
+        if record:
+            username = clean_username(payload.get('username') or payload.get('name') or payload.get('id') or GUEST_USERNAME)
+            restored[username] = {'record': record}
     return restored
 
 def apply_restored_progress_snapshot(user, record):
@@ -3725,6 +3731,14 @@ def read_backup_upload_text(event):
         except Exception:
             pass
         raw = content.read()
+    if raw is None and hasattr(event, 'file'):
+        file_obj = getattr(event, 'file')
+        if hasattr(file_obj, 'read'):
+            try:
+                file_obj.seek(0)
+            except Exception:
+                pass
+            raw = file_obj.read()
     if raw is None:
         raw = getattr(event, 'bytes', None) or getattr(event, 'data', None) or getattr(event, 'value', None)
     if isinstance(raw, str):
@@ -3791,8 +3805,13 @@ def enter_restored_guest(guest_username):
     show_screen('top')
     return True
 
-async def import_guest_backup_file(event):
-    guest_username = await browser_guest_username()
+def import_guest_backup_file(event):
+    guest_id = str(uuid.uuid4())
+    guest_username = guest_username_from_id(guest_id)
+    try:
+        ui.run_javascript(f"localStorage.setItem('{GUEST_BROWSER_KEY}', {json.dumps(guest_id)});")
+    except Exception as e:
+        print(f"Guest id browser save skipped: {e}", flush=True)
     restored = import_user_backup_file(
         event,
         target_username=guest_username,
