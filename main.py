@@ -3682,10 +3682,14 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_2',
             'name': {'ja': '第二将・倍化する要塞', 'en': 'Boss 2: Double Fortress', 'zh': '第二将：倍化要塞'},
-            'summary': {'ja': '敵HPが10倍。特殊な手札補助や火力補助はない、純粋な耐久型ボスです。', 'en': 'The enemy has 10x HP. This is a pure durability boss with no extra hand or damage support.', 'zh': '敌方HP为10倍。没有额外手牌或伤害支援，是纯耐久型Boss。'},
+            'summary': {'ja': '敵HPが10倍。属州シールドを崩すたびに敵HP上限が下がります。王の道の補給は、タグや地域を合わせた攻撃で遮断できます。', 'en': 'The enemy has 10x HP. Break satrapy shields to lower its HP cap, and block Royal Road supplies by matching tags or regions.', 'zh': '敌方HP为10倍。击破行省护盾可降低敌方HP上限，用标签或地域相符的攻击可切断王道补给。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 10,
+            'satrapy_shields': 3,
+            'satrapy_hp_drop_percent': 12,
+            'royal_road_interval': 3,
+            'royal_road_heal_percent': 5,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3786,10 +3790,14 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_2',
             'name': {'ja': 'アケメネス朝ペルシア', 'en': 'Achaemenid Persia', 'zh': '阿契美尼德波斯'},
-            'summary': {'ja': '古代オリエントの広域帝国。敵HPが10倍の、純粋な耐久型ボスです。こちらの手札増加や火力補助はありません。', 'en': 'A vast ancient Near Eastern empire. The enemy has 10x HP, making this a pure durability boss with no extra hand or damage support for you.', 'zh': '古代近东的大帝国。敌方HP为10倍，是纯耐久型Boss。己方不会获得额外手牌或伤害支援。'},
+            'summary': {'ja': '古代オリエントの広域帝国。敵HPが10倍。属州シールドを崩すたびに敵HP上限が下がります。王の道の補給は、タグや地域を合わせた攻撃で遮断できます。', 'en': 'A vast ancient Near Eastern empire with 10x enemy HP. Break satrapy shields to lower its HP cap, and block Royal Road supplies by matching tags or regions.', 'zh': '古代近东的大帝国。敌方HP为10倍。击破行省护盾可降低敌方HP上限，用标签或地域相符的攻击可切断王道补给。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 10,
+            'satrapy_shields': 3,
+            'satrapy_hp_drop_percent': 12,
+            'royal_road_interval': 3,
+            'royal_road_heal_percent': 5,
             'timeout': 180,
             'forced_events': [],
         },
@@ -7585,6 +7593,49 @@ def is_sengoku_boss_enemy_bot(room, player):
         return (room or {}).get('teams', {}).get(player) == sengoku_boss_enemy_team(room)
     return True
 
+def battle_boss_label(labels):
+    return labels.get(state.lang, labels.get('ja', labels.get('en', '')))
+
+def battle_satrapy_shield_total(room):
+    try:
+        return max(0, int((sengoku_boss_for_room(room) or {}).get('satrapy_shields', 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+def battle_satrapy_shields_broken(room):
+    try:
+        return max(0, int((room or {}).get('satrapy_shields_broken', 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+def battle_satrapy_shields_remaining(room):
+    return max(0, battle_satrapy_shield_total(room) - battle_satrapy_shields_broken(room))
+
+def battle_satrapy_hp_drop_percent(room):
+    try:
+        return max(0, int((sengoku_boss_for_room(room) or {}).get('satrapy_hp_drop_percent', 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+def battle_royal_road_interval(room):
+    try:
+        return max(0, int((sengoku_boss_for_room(room) or {}).get('royal_road_interval', 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+def battle_royal_road_heal_percent(room):
+    try:
+        return max(0, int((sengoku_boss_for_room(room) or {}).get('royal_road_heal_percent', 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+def battle_shared_tag_region_labels(left_keys, right_keys):
+    shared_tags = battle_tags_for_keys(left_keys) & battle_tags_for_keys(right_keys)
+    shared_regions = battle_regions_for_keys(left_keys) & battle_regions_for_keys(right_keys)
+    labels = [tag_label(tag) for tag in sorted(shared_tags, key=lambda tag: tag_label(tag).lower())]
+    labels.extend(region_label(region) for region in sorted(shared_regions, key=lambda region: region_label(region).lower()))
+    return labels
+
 def sengoku_boss_forced_events(room):
     boss = sengoku_boss_for_room(room)
     return set((boss or {}).get('forced_events', []))
@@ -7603,6 +7654,9 @@ def battle_player_hp_limit(room, player):
                 limit = max(1, limit * hp_percent // 100)
         except (TypeError, ValueError):
             pass
+        shield_drop = battle_satrapy_shields_broken(room) * battle_satrapy_hp_drop_percent(room)
+        if shield_drop > 0:
+            limit = max(1, limit * max(10, 100 - shield_drop) // 100)
     return limit
 
 def battle_deal_count_for_player(room, player):
@@ -9432,6 +9486,83 @@ def battle_apply_damage_to_player_or_team(room, player, damage):
     hp[player] = max(0, before - damage)
     return before - hp[player]
 
+def battle_apply_direct_damage(room, target, damage, source=None, breakdown=None):
+    damage = max(0, int(damage or 0))
+    hp = room.setdefault('hp', {})
+    if damage <= 0:
+        return 0, ''
+    if battle_satrapy_shields_remaining(room) > 0 and is_sengoku_boss_enemy_bot(room, target):
+        broken = battle_satrapy_shields_broken(room) + 1
+        room['satrapy_shields_broken'] = broken
+        remaining = battle_satrapy_shields_remaining(room)
+        hp_limit = battle_player_hp_limit(room, target)
+        hp[target] = min(hp.get(target, hp_limit), hp_limit)
+        if isinstance(breakdown, dict):
+            breakdown['satrapy_shield_absorbed'] = damage
+            breakdown['satrapy_shields_remaining'] = remaining
+        message = battle_boss_label({
+            'ja': f'属州シールドが攻撃を吸収。残り{remaining}枚、敵HP上限がさらに低下しました。',
+            'en': f'A satrapy shield absorbed the attack. {remaining} shield(s) remain, and enemy max HP fell.',
+            'zh': f'行省护盾吸收了攻击。剩余{remaining}层，敌方HP上限进一步下降。',
+        })
+        return 0, message
+    before = hp.get(target, battle_player_hp_limit(room, target))
+    hp[target] = max(0, before - damage)
+    return before - hp[target], ''
+
+def battle_apply_royal_road_supply(room, entries, result_parts, visual=None):
+    interval = battle_royal_road_interval(room)
+    heal_percent = battle_royal_road_heal_percent(room)
+    if interval <= 0 or heal_percent <= 0:
+        return
+    turn = int(room.get('turn', 1) or 1)
+    if turn % interval != 0:
+        return
+    enemies = [player for player in room.get('players', []) if is_sengoku_boss_enemy_bot(room, player) and room.setdefault('hp', {}).get(player, 0) > 0]
+    humans = [player for player in room.get('players', []) if not is_battle_bot(player) and room.setdefault('hp', {}).get(player, 0) > 0]
+    if not enemies or not humans:
+        return
+    enemy = enemies[0]
+    human = humans[0]
+    human_keys = list((entries.get(human) or {}).get('keys', []))
+    enemy_entry = entries.get(enemy) or {}
+    enemy_keys = list(enemy_entry.get('keys', [])) + list(enemy_entry.get('defense_keys', []))
+    shared_labels = battle_shared_tag_region_labels(human_keys, enemy_keys)
+    if shared_labels:
+        repaired = False
+        if battle_satrapy_shields_broken(room) > 0:
+            room['satrapy_shields_broken'] = max(0, battle_satrapy_shields_broken(room) - 1)
+            repaired = True
+        result_parts.append(battle_boss_label({
+            'ja': f"王の道の補給を遮断: {', '.join(shared_labels[:4])}" + (' / 属州シールドが1枚だけ復旧' if repaired else ''),
+            'en': f"Royal Road supplies blocked: {', '.join(shared_labels[:4])}" + (' / one satrapy shield recovered' if repaired else ''),
+            'zh': f"王道补给被切断: {', '.join(shared_labels[:4])}" + (' / 行省护盾恢复1层' if repaired else ''),
+        }))
+        if isinstance(visual, dict):
+            visual.setdefault('boss_effects', []).append({'type': 'royal_road_blocked', 'labels': shared_labels[:4], 'shield_repaired': repaired})
+        return
+    hp_limit = battle_player_hp_limit(room, enemy)
+    before = room.setdefault('hp', {}).get(enemy, hp_limit)
+    heal = max(1, hp_limit * heal_percent // 100)
+    room['hp'][enemy] = min(hp_limit, before + heal)
+    actual = room['hp'][enemy] - before
+    restored = battle_satrapy_shields_broken(room) > 0
+    if restored:
+        room['satrapy_shields_broken'] = 0
+    if actual > 0 or restored:
+        extra = battle_boss_label({
+            'ja': ' / 属州シールドが全復旧',
+            'en': ' / all satrapy shields recovered',
+            'zh': ' / 行省护盾全部恢复',
+        }) if restored else ''
+        result_parts.append(battle_boss_label({
+            'ja': f'王の道の補給: {enemy} が {format_battle_number(actual)} 回復{extra}',
+            'en': f'Royal Road supplies: {enemy} recovered {format_battle_number(actual)}{extra}',
+            'zh': f'王道补给: {enemy} 恢复 {format_battle_number(actual)}{extra}',
+        }))
+        if isinstance(visual, dict):
+            visual.setdefault('boss_effects', []).append({'type': 'royal_road_heal', 'target': enemy, 'heal': actual, 'shields_restored': restored})
+
 def battle_expire_bomb_event(room, result_parts):
     holder = battle_find_bomb_holder(room)
     remove_all_battle_bomb_cards(room)
@@ -9866,9 +9997,13 @@ def resolve_battle_turn(room):
             damage, counter = breakdown['damage'], breakdown['counter']
             damage_events.append((attacker, target, damage, counter, labels, multiplier, breakdown))
         for attacker, target, damage, counter, labels, multiplier, breakdown in damage_events:
-            room['hp'][target] = max(0, room['hp'].get(target, BATTLE_MAX_HP) - damage)
+            damage, shield_message = battle_apply_direct_damage(room, target, damage, attacker, breakdown)
+            if shield_message:
+                result_parts.append(shield_message)
             if counter:
-                room['hp'][attacker] = max(0, room['hp'].get(attacker, BATTLE_MAX_HP) - counter)
+                counter, counter_shield_message = battle_apply_direct_damage(room, attacker, counter, target, breakdown)
+                if counter_shield_message:
+                    result_parts.append(counter_shield_message)
             if damage > 0:
                 winners.append(attacker)
                 losers.append(target)
@@ -9914,9 +10049,13 @@ def resolve_battle_turn(room):
                 counter_event_multiplier=battle_event_damage_multiplier(room, player_two),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
-            room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - damage)
+            damage, shield_message = battle_apply_direct_damage(room, player_two, damage, player_one, breakdown)
+            if shield_message:
+                result_parts.append(shield_message)
             if counter:
-                room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - counter)
+                counter, counter_shield_message = battle_apply_direct_damage(room, player_one, counter, player_two, breakdown)
+                if counter_shield_message:
+                    result_parts.append(counter_shield_message)
                 if counter > 0:
                     winners = [player_two]
                     losers = [player_one]
@@ -9959,9 +10098,13 @@ def resolve_battle_turn(room):
                 counter_event_multiplier=battle_event_damage_multiplier(room, player_one),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
-            room['hp'][player_one] = max(0, room['hp'].get(player_one, BATTLE_MAX_HP) - damage)
+            damage, shield_message = battle_apply_direct_damage(room, player_one, damage, player_two, breakdown)
+            if shield_message:
+                result_parts.append(shield_message)
             if counter:
-                room['hp'][player_two] = max(0, room['hp'].get(player_two, BATTLE_MAX_HP) - counter)
+                counter, counter_shield_message = battle_apply_direct_damage(room, player_two, counter, player_one, breakdown)
+                if counter_shield_message:
+                    result_parts.append(counter_shield_message)
                 if counter > 0:
                     winners = [player_one]
                     losers = [player_two]
@@ -10000,6 +10143,7 @@ def resolve_battle_turn(room):
             result_parts.append(f"{player_one} vs {player_two}: draw")
 
     resolve_battle_bomb_transfers(room, entries, result_parts, visual)
+    battle_apply_royal_road_supply(room, entries, result_parts, visual)
     steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual, entries)
     apply_battle_special_card_damage(room, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
@@ -10422,6 +10566,7 @@ def battle_screen_signature(state_data=None):
             'teams': room.get('teams', {}),
             'player_count': room.get('player_count'),
             'team_count': room.get('team_count'),
+            'satrapy_shields_broken': room.get('satrapy_shields_broken', 0),
             'hands_count': {
                 player: len(room.setdefault('hands', {}).get(player, []))
                 for player in room.get('players', [])
@@ -12664,6 +12809,15 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                     ui.label('x1').classes('text-xs font-bold text-red-700')
 
     def render_battle_crisis_notice(room):
+        shield_total = battle_satrapy_shield_total(room)
+        if shield_total:
+            remaining = battle_satrapy_shields_remaining(room)
+            interval = battle_royal_road_interval(room)
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-amber-400 bg-amber-50'):
+                ui.label('属州シールド').classes('text-2xl font-black text-amber-900')
+                ui.label(f'残り {remaining} / {shield_total} 枚。攻撃を受け止め、割れるたびに敵HP上限が下がります。').classes('text-sm font-bold text-amber-800')
+                if interval:
+                    ui.label(f'王の道: {interval}ターンごとに補給。タグや地域が重なる攻撃で遮断できます。').classes('text-sm font-bold text-amber-800')
         if battle_world_war_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-red-500 bg-red-50'):
                 ui.label(t('battle_world_war_title')).classes('text-2xl font-black text-red-800')
