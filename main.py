@@ -4051,7 +4051,7 @@ def sengoku_boss_definitions():
             'enemy_count': 1,
             'hp_multiplier': 1,
             'timeout': 30,
-            'forced_events': ['blockade'],
+            'forced_events': ['blockade', 'damage_surge'],
         },
         {
             'id': 'boss_5',
@@ -4062,7 +4062,7 @@ def sengoku_boss_definitions():
             'hp_multiplier': 1,
             'enemy_team_hp_percent': 50,
             'timeout': 180,
-            'forced_events': ['flag_only'],
+            'forced_events': ['flag_only', 'random_target'],
         },
         {
             'id': 'boss_6',
@@ -4099,7 +4099,7 @@ def sengoku_boss_definitions():
             'player_hand_bonus': 1,
             'player_command_bonus': 1,
             'timeout': 30,
-            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'command_surge'],
+            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'random_target', 'command_surge'],
             'bomb_every_turns': 3,
             'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
             'satrapy_shield_hits': 3,
