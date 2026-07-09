@@ -3685,9 +3685,10 @@ def sengoku_boss_definitions():
             'summary': {'ja': '敵HPが2倍。長期戦になりやすい相手です。', 'en': 'The enemy has double HP.', 'zh': '敌方HP翻倍。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
-            'hp_multiplier': 2,
+            'hp_multiplier': 10,
             'player_hand_multiplier': 2,
             'player_damage_surge': True,
+            'player_damage_surge_multiplier': 500,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3698,6 +3699,9 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
+            'bot_card_limit': 2,
+            'bot_choice_pool': 6,
+            'bot_strategy': 'training',
             'timeout': 180,
             'forced_events': ['vatican'],
             'vatican_immunity': True,
@@ -3719,6 +3723,7 @@ def sengoku_boss_definitions():
             'mode': TEAM_MODE,
             'enemy_count': 2,
             'hp_multiplier': 1,
+            'enemy_team_hp_percent': 50,
             'timeout': 180,
             'forced_events': ['flag_only'],
         },
@@ -3748,10 +3753,16 @@ def sengoku_boss_definitions():
             'name': {'ja': '第八将・全特性統合体', 'en': 'Boss 8: Combined Overlord', 'zh': '第八将：全特性统合体'},
             'summary': {'ja': 'これまでの特性をまとめた最終戦。敵の指揮力は実質無限です。', 'en': 'The final boss combines previous traits and has effectively infinite command.', 'zh': '最终战，汇集全部特性，敌方指挥力近乎无限。'},
             'mode': TEAM_MODE,
-            'enemy_count': 2,
-            'hp_multiplier': 2,
+            'enemy_count': 3,
+            'player_ally_count': 1,
+            'hp_multiplier': 10,
+            'enemy_team_hp_multiplier': 10,
+            'player_team_hp_multiplier': 5,
+            'player_hand_bonus': 1,
+            'player_command_bonus': 1,
             'timeout': 30,
-            'forced_events': ['world_war', 'vatican', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace'],
+            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'command_surge'],
+            'bomb_every_turns': 3,
             'vatican_immunity': True,
             'special_pressure': True,
             'command_infinite': True,
@@ -3778,12 +3789,13 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_2',
             'name': {'ja': 'アケメネス朝ペルシア', 'en': 'Achaemenid Persia', 'zh': '阿契美尼德波斯'},
-            'summary': {'ja': '古代オリエントの広域帝国。敵HPが2倍になります。', 'en': 'A vast ancient Near Eastern empire. The enemy has double HP.', 'zh': '古代近东的大帝国。敌方HP翻倍。'},
+            'summary': {'ja': '古代オリエントの広域帝国。敵HPが10倍になり、こちらは手札が増えますが、火力補助は控えめです。', 'en': 'A vast ancient Near Eastern empire. The enemy has 10x HP; your hand grows, but the damage boost is modest.', 'zh': '古代近东的大帝国。敌方HP提升至10倍；己方手牌增加，但伤害增幅较温和。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
-            'hp_multiplier': 2,
+            'hp_multiplier': 10,
             'player_hand_multiplier': 2,
             'player_damage_surge': True,
+            'player_damage_surge_multiplier': 500,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3794,6 +3806,9 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
+            'bot_card_limit': 2,
+            'bot_choice_pool': 6,
+            'bot_strategy': 'training',
             'timeout': 180,
             'forced_events': ['vatican', 'supply_drop'],
             'vatican_immunity': True,
@@ -3811,10 +3826,11 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_5',
             'name': {'ja': 'モンゴル帝国', 'en': 'Mongol Empire', 'zh': '蒙古帝国'},
-            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名始终隐藏。'},
+            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。敵チームHPは半分です。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden. The enemy team has half HP.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名始终隐藏。敌方队伍HP减半。'},
             'mode': TEAM_MODE,
             'enemy_count': 2,
             'hp_multiplier': 1,
+            'enemy_team_hp_percent': 50,
             'timeout': 180,
             'forced_events': ['flag_only'],
         },
@@ -3842,12 +3858,18 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_8',
             'name': {'ja': 'ソビエト連邦', 'en': 'Soviet Union', 'zh': '苏联'},
-            'summary': {'ja': '最後に立ちはだかる近現代の超大国。これまでの特性を併せ持ち、敵の指揮力は実質無限です。', 'en': 'The final modern superpower boss. It combines previous traits and has effectively infinite command.', 'zh': '最终的近现代超级大国。汇集此前特性，敌方指挥力近乎无限。'},
+            'summary': {'ja': '最後に立ちはだかる近現代の超大国。全イベント級の混沌、3ターンごとの爆弾、敵HP10倍と指揮力無限が襲いかかります。味方側にも支援BOTとHP・手札・指揮力補助があります。', 'en': 'The final modern superpower boss. Nearly every event is active, bombs recur every 3 turns, and the enemy has 10x HP plus effectively infinite command. Your side gains an ally BOT and HP, hand, and command support.', 'zh': '最终的近现代超级大国。几乎所有事件常驻，炸弹每3回合出现，敌方HP10倍且指挥力近乎无限。己方也会获得友方BOT，以及HP、手牌和指挥力支援。'},
             'mode': TEAM_MODE,
-            'enemy_count': 2,
-            'hp_multiplier': 2,
+            'enemy_count': 3,
+            'player_ally_count': 1,
+            'hp_multiplier': 10,
+            'enemy_team_hp_multiplier': 10,
+            'player_team_hp_multiplier': 5,
+            'player_hand_bonus': 1,
+            'player_command_bonus': 1,
             'timeout': 30,
-            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace'],
+            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'command_surge'],
+            'bomb_every_turns': 3,
             'vatican_immunity': True,
             'special_pressure': True,
             'command_infinite': True,
@@ -7033,7 +7055,11 @@ def battle_event_damage_multiplier(room, player=None):
     multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
     boss = sengoku_boss_for_room(room)
     if player and boss and boss.get('player_damage_surge') and not is_battle_bot(player):
-        multiplier *= BATTLE_DAMAGE_SURGE_MULTIPLIER
+        try:
+            boss_multiplier = float(boss.get('player_damage_surge_multiplier', BATTLE_DAMAGE_SURGE_MULTIPLIER) or BATTLE_DAMAGE_SURGE_MULTIPLIER)
+        except (TypeError, ValueError):
+            boss_multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER
+        multiplier *= max(1, boss_multiplier)
     if battle_ceasefire_active(room):
         multiplier *= BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER
     return multiplier
@@ -7543,6 +7569,28 @@ def sengoku_boss_for_room(room):
 def is_sengoku_boss_room(room):
     return bool(sengoku_boss_for_room(room))
 
+def sengoku_boss_player_team(room):
+    return str((sengoku_boss_for_room(room) or {}).get('player_team', 'A') or 'A')
+
+def sengoku_boss_enemy_team(room):
+    return str((sengoku_boss_for_room(room) or {}).get('enemy_team', 'B') or 'B')
+
+def is_sengoku_boss_player_side(room, player):
+    boss = sengoku_boss_for_room(room)
+    if not boss or not player:
+        return False
+    if (room or {}).get('mode') == TEAM_MODE:
+        return (room or {}).get('teams', {}).get(player) == sengoku_boss_player_team(room)
+    return not is_battle_bot(player)
+
+def is_sengoku_boss_enemy_bot(room, player):
+    boss = sengoku_boss_for_room(room)
+    if not boss or not player or not is_battle_bot(player):
+        return False
+    if (room or {}).get('mode') == TEAM_MODE:
+        return (room or {}).get('teams', {}).get(player) == sengoku_boss_enemy_team(room)
+    return True
+
 def sengoku_boss_forced_events(room):
     boss = sengoku_boss_for_room(room)
     return set((boss or {}).get('forced_events', []))
@@ -7550,7 +7598,7 @@ def sengoku_boss_forced_events(room):
 def battle_player_hp_limit(room, player):
     limit = BATTLE_MAX_HP
     boss = sengoku_boss_for_room(room)
-    if boss and is_battle_bot(player) and (room or {}).get('mode') != TEAM_MODE:
+    if boss and is_sengoku_boss_enemy_bot(room, player) and (room or {}).get('mode') != TEAM_MODE:
         try:
             limit *= max(1, int(boss.get('hp_multiplier', 1) or 1))
         except (TypeError, ValueError):
@@ -7566,7 +7614,7 @@ def battle_player_hp_limit(room, player):
 def battle_deal_count_for_player(room, player):
     count = 5
     boss = sengoku_boss_for_room(room)
-    if boss and boss.get('player_hand_multiplier') and not is_battle_bot(player):
+    if boss and is_sengoku_boss_player_side(room, player):
         try:
             count *= max(1, int(boss.get('player_hand_multiplier', 1) or 1))
         except (TypeError, ValueError):
@@ -7589,29 +7637,41 @@ def apply_sengoku_boss_forced_state(room):
             room[field] = max(int(room.get(field, 0) or 0), SENGOKU_BOSS_FORCED_TURN)
     if boss.get('command_infinite'):
         for player in room.get('players', []):
-            if is_battle_bot(player):
+            if is_sengoku_boss_enemy_bot(room, player):
                 room.setdefault('command', {})[player] = BATTLE_MAX_COMMAND
+
+def battle_player_command_limit(room, player):
+    limit = BATTLE_MAX_COMMAND
+    boss = sengoku_boss_for_room(room)
+    if boss and is_sengoku_boss_player_side(room, player):
+        try:
+            limit += max(0, int(boss.get('player_command_bonus', 0) or 0))
+        except (TypeError, ValueError):
+            pass
+    return max(1, limit)
 
 def battle_player_command(room, player):
     command_map = (room or {}).setdefault('command', {})
     boss = sengoku_boss_for_room(room)
-    if boss and boss.get('command_infinite') and is_battle_bot(player):
+    if boss and boss.get('command_infinite') and is_sengoku_boss_enemy_bot(room, player):
         command_map[player] = BATTLE_MAX_COMMAND
         return BATTLE_MAX_COMMAND
+    limit = battle_player_command_limit(room, player)
     try:
-        current = int(command_map.get(player, BATTLE_MAX_COMMAND))
+        current = int(command_map.get(player, limit))
     except (TypeError, ValueError):
-        current = BATTLE_MAX_COMMAND
-    current = max(0, min(BATTLE_MAX_COMMAND, current))
+        current = limit
+    current = max(0, min(limit, current))
     command_map[player] = current
     return current
 
 def set_battle_player_command(room, player, value):
+    limit = battle_player_command_limit(room, player)
     try:
         value = int(value)
     except (TypeError, ValueError):
-        value = BATTLE_MAX_COMMAND
-    room.setdefault('command', {})[player] = max(0, min(BATTLE_MAX_COMMAND, value))
+        value = limit
+    room.setdefault('command', {})[player] = max(0, min(limit, value))
 
 def battle_command_cost_for_count(count):
     try:
@@ -7785,14 +7845,48 @@ def save_battle_state(state_data):
     BATTLE_STATE_CACHE = state_data
     BATTLE_STATE_CACHE_MTIME = file_mtime(BATTLE_STATE_FILE)
 
-def battle_team_hp_limit(room):
+def battle_team_hp_limit(room, team=None):
     teams = room.get('teams', {})
     counts = {}
     for player in room.get('players', []):
-        team = teams.get(player)
-        if team:
-            counts[team] = counts.get(team, 0) + 1
-    return BATTLE_MAX_HP * max(counts.values(), default=1)
+        player_team = teams.get(player)
+        if player_team:
+            counts[player_team] = counts.get(player_team, 0) + 1
+    base_limit = BATTLE_MAX_HP * max(counts.values(), default=1)
+    boss = sengoku_boss_for_room(room)
+
+    def adjusted_limit(team_name):
+        limit = base_limit
+        if boss and team_name:
+            if team_name == sengoku_boss_enemy_team(room):
+                try:
+                    limit *= max(1, int(boss.get('enemy_team_hp_multiplier', 1) or 1))
+                except (TypeError, ValueError):
+                    pass
+                try:
+                    percent = int(boss.get('enemy_team_hp_percent', 100) or 100)
+                    if percent > 0:
+                        limit = max(1, limit * percent // 100)
+                except (TypeError, ValueError):
+                    pass
+            if team_name == sengoku_boss_player_team(room):
+                try:
+                    limit *= max(1, int(boss.get('player_team_hp_multiplier', 1) or 1))
+                except (TypeError, ValueError):
+                    pass
+                try:
+                    percent = int(boss.get('player_team_hp_percent', 100) or 100)
+                    if percent > 0:
+                        limit = max(1, limit * percent // 100)
+                except (TypeError, ValueError):
+                    pass
+        return max(1, int(limit))
+
+    if team:
+        return adjusted_limit(team)
+    if counts:
+        return max(adjusted_limit(team_name) for team_name in counts)
+    return max(1, int(base_limit))
 
 def ensure_battle_team_hp(room):
     if room.get('mode') != TEAM_MODE:
@@ -7801,9 +7895,9 @@ def ensure_battle_team_hp(room):
     if not teams:
         for index, player in enumerate(room.get('players', [])):
             teams[player] = 'A' if index % 2 == 0 else 'B'
-    limit = battle_team_hp_limit(room)
     team_hp = room.setdefault('team_hp', {})
     for team in set(teams.values()):
+        limit = battle_team_hp_limit(room, team)
         try:
             current_hp = int(team_hp.get(team, limit))
         except (TypeError, ValueError):
@@ -8254,7 +8348,7 @@ def apply_sengoku_boss_hand_modifiers(room, player):
     boss = sengoku_boss_for_room(room)
     if not boss or not is_battle_bot(player):
         return
-    if boss.get('vatican_immunity'):
+    if boss.get('vatican_immunity') and is_sengoku_boss_enemy_bot(room, player):
         vatican_key = battle_vatican_country_key()
         if vatican_key:
             hand = room.setdefault('hands', {}).setdefault(player, [])
@@ -8262,7 +8356,7 @@ def apply_sengoku_boss_hand_modifiers(room, player):
             for index, key in enumerate(list(hand)):
                 if key == vatican_key and replacements:
                     hand[index] = replacements.pop(0)
-    if boss.get('command_infinite'):
+    if boss.get('command_infinite') and is_sengoku_boss_enemy_bot(room, player):
         room.setdefault('command', {})[player] = BATTLE_MAX_COMMAND
 
 def draw_battle_cards(count=5, room=None):
@@ -8399,6 +8493,8 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'kicked': [],
     }
     apply_sengoku_boss_forced_state(room)
+    for player in players:
+        room.setdefault('command', {})[player] = battle_player_command_limit(room, player)
     room['hands'] = {player: deal_battle_hand(room, battle_deal_count_for_player(room, player)) for player in players}
     for player in players:
         hp_limit = battle_player_hp_limit(room, player)
@@ -8462,13 +8558,21 @@ def create_sengoku_boss_battle(boss_id, replace_current=False):
             refresh_battle_view()
             return
     enemy_count = max(1, int(boss.get('enemy_count', 1) or 1))
+    player_ally_count = max(0, int(boss.get('player_ally_count', 0) or 0))
     players = [username]
-    players.extend(create_battle_bot_names(players, len(players) + enemy_count))
+    ally_bots = create_battle_bot_names(players, len(players) + player_ally_count)
+    players.extend(ally_bots)
+    enemy_bots = create_battle_bot_names(players, len(players) + enemy_count)
+    players.extend(enemy_bots)
     team_choices = {}
     if boss.get('mode') == TEAM_MODE:
-        team_choices = {username: 'A'}
-        for player in players[1:]:
-            team_choices[player] = 'B'
+        player_team = str(boss.get('player_team', 'A') or 'A')
+        enemy_team = str(boss.get('enemy_team', 'B') or 'B')
+        team_choices = {username: player_team}
+        for player in ally_bots:
+            team_choices[player] = player_team
+        for player in enemy_bots:
+            team_choices[player] = enemy_team
     room = create_battle_room(
         *players,
         state_data=state_data,
@@ -8484,6 +8588,8 @@ def create_sengoku_boss_battle(boss_id, replace_current=False):
         sengoku_boss_id=boss['id'],
     )
     if room:
+        if ally_bots:
+            room['boss_player_allies'] = ally_bots
         append_battle_log(room, f"ボス戦: {localized_boss_text(boss, 'name')}")
         save_battle_state(state_data)
     ui.notify(f"{localized_boss_text(boss, 'name')} に挑戦します。", color='positive')
@@ -9324,7 +9430,7 @@ def battle_apply_damage_to_player_or_team(room, player, damage):
         team_hp = ensure_battle_team_hp(room)
         if not team:
             return 0
-        before = int(team_hp.get(team, battle_team_hp_limit(room)) or 0)
+        before = int(team_hp.get(team, battle_team_hp_limit(room, team)) or 0)
         team_hp[team] = max(0, before - damage)
         return before - team_hp[team]
     hp = room.setdefault('hp', {})
@@ -9380,7 +9486,7 @@ def battle_trigger_lytton_bomb(room, viewer, visible_players):
         ui.timer(0.2, refresh_battle_view, once=True)
     return True
 
-def battle_start_bomb_event(room, turn, result_parts):
+def battle_start_bomb_event(room, turn, result_parts, until_turn=None):
     players = active_battle_players(room)
     if not players:
         return
@@ -9390,7 +9496,7 @@ def battle_start_bomb_event(room, turn, result_parts):
     if BATTLE_BOMB_CARD not in hand:
         hand.append(BATTLE_BOMB_CARD)
     room['bomb_holder'] = holder
-    room['bomb_until_turn'] = battle_future_event_until_turn(turn)
+    room['bomb_until_turn'] = int(until_turn) if until_turn is not None else battle_future_event_until_turn(turn)
     result_parts.append(t('battle_bomb_start_log').format(player=holder))
 
 def battle_apply_replace_event(room, result_parts):
@@ -9445,6 +9551,14 @@ def update_battle_crisis_state(room, result_parts=None):
     if not battle_room_events_enabled(room):
         return
 
+    boss = sengoku_boss_for_room(room)
+    try:
+        bomb_every_turns = int((boss or {}).get('bomb_every_turns', 0) or 0)
+    except (TypeError, ValueError):
+        bomb_every_turns = 0
+    if bomb_every_turns > 0 and (turn - 1) % bomb_every_turns == 0 and not battle_find_bomb_holder(room):
+        battle_start_bomb_event(room, turn, result_parts, turn + bomb_every_turns - 1)
+
     if not battle_revolution_active(room):
         revolution_chance = BATTLE_WORLD_WAR_REVOLUTION_CHANCE if room.get('world_war_started') else BATTLE_REVOLUTION_CHANCE
         if random.random() < revolution_chance:
@@ -9460,7 +9574,7 @@ def update_battle_crisis_state(room, result_parts=None):
         random_events.append(('vatican_until_turn', 'battle_vatican_start_log', 0.9))
     if not battle_replace_active(room):
         random_events.append(('replace_until_turn', 'battle_replace_start_log', 0.9))
-    if not battle_bomb_active(room) and not battle_find_bomb_holder(room):
+    if not bomb_every_turns and not battle_bomb_active(room) and not battle_find_bomb_holder(room):
         random_events.append(('bomb_until_turn', 'battle_bomb_start_log', 0.65))
     if not battle_lytton_active(room):
         random_events.append(('lytton_until_turn', 'battle_lytton_start_log', BATTLE_LYTTON_EVENT_WEIGHT))
@@ -9680,7 +9794,7 @@ def resolve_battle_turn(room):
                 breakdown['split_penalty_value'] = max(0, raw_power - win_power)
                 damage, counter = breakdown['damage'], breakdown['counter']
                 if damage:
-                    team_hp[target_team] = max(0, team_hp.get(target_team, battle_team_hp_limit(room)) - damage)
+                    team_hp[target_team] = max(0, team_hp.get(target_team, battle_team_hp_limit(room, target_team)) - damage)
                     winners.extend(source_players)
                     losers.extend(target_players)
                 visual['damage'].append({
@@ -9691,7 +9805,7 @@ def resolve_battle_turn(room):
                     'outcome': 'damage' if damage else 'blocked',
                 })
                 if counter:
-                    team_hp[source_team] = max(0, team_hp.get(source_team, battle_team_hp_limit(room)) - counter)
+                    team_hp[source_team] = max(0, team_hp.get(source_team, battle_team_hp_limit(room, source_team)) - counter)
                     winners.extend(target_players)
                     losers.extend(source_players)
                     visual['counters'].append({
@@ -9924,6 +10038,9 @@ def choose_bot_battle_cards(hand, room=None, player=None):
     human_players = [name for name in active_battle_players(room) if not is_battle_bot(name)] if room else []
     if room and room.get('sengoku_mode') and player and is_battle_bot(player) and len(human_players) <= 1:
         boss = sengoku_boss_for_room(room)
+        if boss and not is_sengoku_boss_enemy_bot(room, player):
+            max_cards = min(len(playable), random.randint(1, max_playable))
+            return random.sample(playable, max_cards)
         try:
             if boss and boss.get('bot_card_limit'):
                 max_playable = min(max_playable, max(1, int(boss.get('bot_card_limit') or max_playable)))
@@ -12477,18 +12594,21 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 for index, boss in enumerate(sengoku_boss_definitions(), start=1):
                     unlocked = sengoku_boss_is_unlocked(user, boss['id'])
                     cleared = sengoku_boss_is_cleared(user, boss['id'])
+                    visible = unlocked or cleared
                     with ui.column().classes('wa-light-fallback w-full gap-2 rounded border border-purple-200 bg-white p-3'):
                         with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
-                            ui.label(f"{index}. {localized_boss_text(boss, 'name')}").classes('font-black text-[#1a2332]')
+                            boss_name = localized_boss_text(boss, 'name') if visible else 'シークレット'
+                            ui.label(f"{index}. {boss_name}").classes('font-black text-[#1a2332]')
                             if cleared:
                                 ui.badge('撃破済み', color='green')
                             elif unlocked:
                                 ui.badge('挑戦可能', color='purple')
                             else:
                                 ui.badge('未解放', color='grey')
-                        ui.label(localized_boss_text(boss, 'summary')).classes('text-xs text-gray-600 leading-relaxed')
+                        boss_summary = localized_boss_text(boss, 'summary') if visible else 'このボスの情報はまだ伏せられています。'
+                        ui.label(boss_summary).classes('text-xs text-gray-600 leading-relaxed')
                         button = ui.button(
-                            '再戦' if cleared else '挑戦',
+                            '再挑戦' if cleared else ('挑戦' if unlocked else '未解放'),
                             icon='sports_martial_arts',
                             on_click=lambda _, boss_id=boss['id']: create_sengoku_boss_battle(boss_id),
                         ).props('color=purple dense' if unlocked else 'outline color=grey dense')
@@ -12881,9 +13001,9 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 if clean_username(room.get('host')) == username and int(room.get('turn', 1) or 1) == 1 and not room.get('submitted'):
                     ui.button(t('battle_team_randomize'), icon='shuffle', on_click=randomize_current_battle_teams).props('outline color=primary dense')
                 team_hp = ensure_battle_team_hp(room)
-                team_limit = battle_team_hp_limit(room)
                 with ui.grid(columns=1 if is_mobile_ui() else min(4, len(team_hp))).classes('w-full gap-4'):
                     for team in sorted(team_hp):
+                        team_limit = battle_team_hp_limit(room, team)
                         render_hp_bar(f"{t('battle_team')} {team}", team_hp.get(team, team_limit), team_limit)
                 with ui.row().classes('w-full gap-2 flex-wrap'):
                     for player in players:
@@ -12932,6 +13052,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             if is_winner and next_boss_id:
                                 ui.button('次のボスへ', icon='arrow_forward', on_click=lambda boss_id=next_boss_id: create_sengoku_boss_battle(boss_id, replace_current=True)).props('color=purple')
                             ui.button('再挑戦', icon='replay', on_click=lambda boss_id=boss['id']: create_sengoku_boss_battle(boss_id, replace_current=True)).props('outline color=purple')
+                            ui.button('国力対戦へ戻る', icon='sports_esports', on_click=lambda: leave_finished_battle(False)).props('outline color=primary')
                         else:
                             ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: leave_finished_battle(True)).props('color=primary')
                         ui.button(t('account'), icon='person', on_click=lambda: (leave_finished_battle(False), show_screen('account'))).props('outline color=primary')
@@ -12965,7 +13086,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                     with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                         ui.label(t('battle_hand')).classes('text-lg font-bold text-[#1a2332]')
                         with ui.row().classes('items-center gap-2 flex-wrap'):
-                            ui.badge(f"{t('battle_command')}: {battle_player_command(room, username)} / {BATTLE_MAX_COMMAND}", color='purple')
+                            ui.badge(f"{t('battle_command')}: {battle_player_command(room, username)} / {battle_player_command_limit(room, username)}", color='purple')
                             ui.label(t('battle_power_hidden_hint')).classes('text-sm font-bold text-red-700')
                             turn = int(room.get('turn', 1))
                             redraw_used = int(room.setdefault('redraw_turns', {}).get(username, 0) or 0) == turn
