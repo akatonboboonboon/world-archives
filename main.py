@@ -3690,16 +3690,44 @@ def restore_user_backup_payload(payload):
             sync_current_user_to_browser(user_data)
     return restored
 
+def read_backup_upload_text(event):
+    content = getattr(event, 'content', None)
+    raw = None
+    if isinstance(content, str):
+        return content
+    if isinstance(content, (bytes, bytearray)):
+        raw = bytes(content)
+    elif hasattr(content, 'read'):
+        try:
+            content.seek(0)
+        except Exception:
+            pass
+        raw = content.read()
+    if raw is None:
+        raw = getattr(event, 'bytes', None) or getattr(event, 'data', None) or getattr(event, 'value', None)
+    if isinstance(raw, str):
+        return raw
+    if isinstance(raw, bytearray):
+        raw = bytes(raw)
+    if isinstance(raw, bytes):
+        for encoding in ['utf-8-sig', 'utf-8', 'cp932']:
+            try:
+                return raw.decode(encoding)
+            except UnicodeDecodeError:
+                continue
+    raise ValueError(f'Unsupported upload content: {type(content).__name__}')
+
 def import_user_backup_file(event):
     labels = backup_labels()
     try:
-        raw = event.content.read()
-        if isinstance(raw, bytes):
-            raw = raw.decode('utf-8-sig')
+        raw = read_backup_upload_text(event).strip()
+        if not raw:
+            raise ValueError('Backup file is empty')
         payload = json.loads(raw)
         restored = restore_user_backup_payload(payload)
     except Exception as e:
-        print(f'Backup import failed: {e}', flush=True)
+        filename = getattr(event, 'name', '') or getattr(event, 'filename', '')
+        print(f'Backup import failed: {filename} / {e}', flush=True)
         ui.notify(labels['invalid'], color='negative')
         return
     if restored:
