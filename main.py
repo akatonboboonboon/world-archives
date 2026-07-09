@@ -3655,7 +3655,8 @@ def apply_restored_progress_snapshot(user, record):
         user['sengoku_medal'] = False
         user['sengoku_boss_clears'] = []
 
-def restore_user_backup_payload(payload):
+def restore_user_backup_payload(payload, target_username=None):
+    target_username = clean_username(target_username)
     known_from_payload = []
     if isinstance(payload, dict) and isinstance(payload.get('known_users'), list):
         known_from_payload = [clean_username(username) for username in payload['known_users']]
@@ -3666,11 +3667,19 @@ def restore_user_backup_payload(payload):
         remember_known_user(username, user_data)
     restored = 0
     for raw_username, backup in backups.items():
-        username = clean_username(raw_username)
-        if not username or not isinstance(backup, dict):
+        if not isinstance(backup, dict):
             continue
         record = user_record_from_candidate(backup)
         if not record:
+            continue
+        username = clean_username(raw_username)
+        if is_guest_record(username, record):
+            if not target_username:
+                continue
+            username = target_username
+            record = dict(record)
+            record['is_guest'] = is_guest_record(target_username)
+        if not username:
             continue
         remember_known_user(username, user_data)
         existing = users.get(username, {})
@@ -3724,7 +3733,7 @@ def import_user_backup_file(event):
         if not raw:
             raise ValueError('Backup file is empty')
         payload = json.loads(raw)
-        restored = restore_user_backup_payload(payload)
+        restored = restore_user_backup_payload(payload, target_username=state.current_user)
     except Exception as e:
         filename = getattr(event, 'name', '') or getattr(event, 'filename', '')
         print(f'Backup import failed: {filename} / {e}', flush=True)
