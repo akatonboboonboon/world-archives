@@ -5168,6 +5168,9 @@ def displayable_flag_code(code):
 
 QUIZ_FLAG_EXCLUDED_TOKENS = {
     'umayyad_flag.svg',
+    'banner_of_arms_kingdom_of_castille_habsbourg_style.svg',
+    'flag_of_the_kingdom_of_naples.svg',
+    'flag_of_ragusa.svg',
 }
 
 def has_quiz_visual_flag_code(code):

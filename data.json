@@ -37874,9 +37874,9 @@
     },
     {
       "names": {
-        "ja": "カスティーリャ王冠",
+        "ja": "カスティーリャ連合王国",
         "en": "Crown of Castile",
-        "zh": "卡斯蒂利亚王冠"
+        "zh": "卡斯蒂利亚联合王国"
       },
       "capital": {
         "ja": "トレド / ブルゴス",
@@ -37899,7 +37899,7 @@
         "en": "A core Iberian monarchy behind Spain's formation, important for the Reconquista, oceanic expansion, and the Spanish Empire.",
         "zh": "西班牙形成的核心伊比利亚王权，因收复失地运动、海洋扩张和西班牙帝国而重要。"
       },
-      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Banner_of_arms_kingdom_of_Castille_Habsbourg_style.svg",
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Royal_Banner_of_the_Kingdom_of_Castile.svg",
       "period": {
         "start": 1230,
         "end": 1715,
@@ -37933,9 +37933,9 @@
       },
       "details": {
         "key_figures": {
-          "ja": "カスティーリャ王冠では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地トレド / ブルゴスの支配層が政治、軍事、外交を動かした。",
+          "ja": "カスティーリャ連合王国では、君主・軍事指導者・行政官・宗教権威・交易や都市運営を担った人々が重要人物となる。中心地トレド / ブルゴスの支配層が政治、軍事、外交を動かした。",
           "en": "For Crown of Castile, key figures include rulers, military leaders, administrators, religious authorities, and people involved in trade or urban rule. Elites around Toledo / Burgos shaped politics, warfare, and diplomacy.",
-          "zh": "卡斯蒂利亚王冠的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以托莱多 / 布尔戈斯为中心的统治集团影响政治、军事和外交。"
+          "zh": "卡斯蒂利亚联合王国的重要人物包括君主、军事领导人、行政官、宗教权威以及贸易或城市治理相关人物。以托莱多 / 布尔戈斯为中心的统治集团影响政治、军事和外交。"
         },
         "major_events": {
           "ja": "1230年〜1715年に活動。トレド / ブルゴスを中心に成立・拡大し、戦争、外交、交易、宗教、統治制度を通じてイベリア半島の歴史に影響を与えた。",
@@ -38316,7 +38316,7 @@
           "zh": "内部冲突、地区分裂和统治结构变化削弱了其统一政权的力量。"
         },
         "successors": {
-          "ja": "スペイン、フランス、カスティーリャ王冠、アラゴン連合王国と関連が深い。",
+          "ja": "スペイン、フランス、カスティーリャ連合王国、アラゴン連合王国と関連が深い。",
           "en": "It connects with Spain, France, Castile, and Aragon.",
           "zh": "与西班牙、法国、卡斯蒂利亚和阿拉贡关系密切。"
         },
