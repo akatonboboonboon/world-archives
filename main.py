@@ -2639,6 +2639,7 @@ for _lang, _values in {
         'battle_random_target_notice': '攻撃対象がランダムになります。チーム戦では自分のチームも対象に入ります。',
         'battle_random_target_start_log': '標的錯乱が始まりました。攻撃対象がランダムになります。',
         'battle_random_target_log': '{player}の攻撃対象が{target}に変わりました。',
+        'battle_random_target_self_damage_log': '{team}は標的錯乱で攻撃が味方側へ逸れ、{damage}ダメージを受けました。',
     },
     'en': {
         'battle_damage_surge_title': 'Operation Confusion',
@@ -2653,6 +2654,7 @@ for _lang, _values in {
         'battle_random_target_notice': 'Attack targets are randomized. In team battles, your own team can also be chosen.',
         'battle_random_target_start_log': 'Target Scramble began. Attack targets are randomized.',
         'battle_random_target_log': "{player}'s target changed to {target}.",
+        'battle_random_target_self_damage_log': "{team}'s attack veered into its own side for {damage} damage.",
     },
     'zh': {
         'battle_damage_surge_title': '作战混乱',
@@ -2667,6 +2669,7 @@ for _lang, _values in {
         'battle_random_target_notice': '攻击目标会随机决定。团队战中自己的队伍也会成为目标。',
         'battle_random_target_start_log': '目标错乱开始。攻击目标会随机决定。',
         'battle_random_target_log': '{player}的攻击目标变为{target}。',
+        'battle_random_target_self_damage_log': '{team}因目标错乱攻击偏向己方，受到{damage}伤害。',
     },
 }.items():
     TRANSLATIONS.setdefault(_lang, {}).update(_values)
@@ -10094,6 +10097,15 @@ def battle_apply_team_direct_damage(room, target_team, damage, source_team=None,
     team_hp[target_team] = max(0, before - damage)
     return before - team_hp[target_team], shield_message
 
+def battle_apply_team_self_damage(room, target_team, damage):
+    damage = max(0, int(damage or 0))
+    if damage <= 0 or not target_team:
+        return 0
+    team_hp = ensure_battle_team_hp(room)
+    before = int(team_hp.get(target_team, battle_team_hp_limit(room, target_team)) or 0)
+    team_hp[target_team] = max(0, before - damage)
+    return before - team_hp[target_team]
+
 def battle_apply_royal_road_supply(room, entries, result_parts, visual=None):
     interval = battle_royal_road_interval(room)
     heal_percent = battle_royal_road_heal_percent(room)
@@ -10565,6 +10577,44 @@ def resolve_battle_turn(room):
                 breakdown['raw_team_attack'] = raw_power
                 breakdown['split_count'] = split_count
                 breakdown['split_penalty_value'] = max(0, raw_power - win_power)
+                if battle_random_target_active(room) and target_team == source_team:
+                    breakdown = battle_damage_breakdown(
+                        win_power,
+                        0,
+                        0,
+                        labels,
+                        room.get('turn', 1),
+                        battle_world_war_active(room),
+                        battle_group_event_damage_multiplier(room, attack_players),
+                        defense_base=0,
+                        defense_labels=[],
+                        defense_multiplier=1,
+                        counter_event_multiplier=1,
+                    )
+                    breakdown['raw_team_attack'] = raw_power
+                    breakdown['split_count'] = split_count
+                    breakdown['split_penalty_value'] = max(0, raw_power - win_power)
+                    damage = battle_apply_enemy_extra_actions(room, breakdown['damage'], source_team=source_team, breakdown=breakdown)
+                    damage = battle_apply_team_self_damage(room, source_team, damage)
+                    team_label = f"{t('battle_team')} {source_team}"
+                    visual['damage'].append({
+                        'source': team_label,
+                        'target': team_label,
+                        'damage': damage,
+                        'breakdown': breakdown,
+                        'outcome': 'self_damage' if damage else 'blocked',
+                    })
+                    if damage > 0:
+                        visual.setdefault('self_damage', []).append({
+                            'player': team_label,
+                            'name': t('battle_random_target_title'),
+                            'damage': damage,
+                        })
+                    result_parts.append(t('battle_random_target_self_damage_log').format(
+                        team=team_label,
+                        damage=format_battle_number(damage),
+                    ))
+                    continue
                 damage, counter = breakdown['damage'], breakdown['counter']
                 damage = battle_apply_enemy_extra_actions(room, damage, source_team=source_team, breakdown=breakdown)
                 if damage:
