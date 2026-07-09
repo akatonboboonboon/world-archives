@@ -37,6 +37,7 @@ BATTLE_POWER_BOUNDS_CACHE = {'mtime': None, 'value': None}
 BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
 RAW_PUBLIC_COUNTRY_KEYS_CACHE = {'mtime': None, 'value': None}
 QUIZ_HISTORY_LIMIT = 80
+QUIZ_EXTREME_TIME_LIMIT_SECONDS = 30
 
 def file_mtime(path):
     try:
@@ -1236,6 +1237,8 @@ UI_FALLBACKS = {
         'quiz_detail': '詳細を見る',
         'quiz_correct': '正解です',
         'quiz_wrong': '不正解です',
+        'quiz_time_remaining': '残り {seconds} 秒',
+        'quiz_time_up': '時間切れです',
         'quiz_capital': '首都または中心地が「{capital}」なのはどれ？',
         'quiz_desc': 'この説明に当てはまるのはどれ？',
         'quiz_flag': 'この旗の国・地域はどれ？',
@@ -1379,6 +1382,8 @@ UI_FALLBACKS = {
         'quiz_detail': 'View Details',
         'quiz_correct': 'Correct',
         'quiz_wrong': 'Not quite',
+        'quiz_time_remaining': '{seconds}s left',
+        'quiz_time_up': 'Time is up',
         'quiz_capital': 'Which one has “{capital}” as its capital or main center?',
         'quiz_desc': 'Which entry matches this description?',
         'quiz_flag': 'Which country or historical state uses this flag?',
@@ -1520,6 +1525,8 @@ UI_FALLBACKS = {
         'quiz_detail': '查看详情',
         'quiz_correct': '回答正确',
         'quiz_wrong': '回答错误',
+        'quiz_time_remaining': '剩余 {seconds} 秒',
+        'quiz_time_up': '时间到',
         'quiz_capital': '首都或中心地是“{capital}”的是哪一个？',
         'quiz_desc': '以下说明对应哪一个？',
         'quiz_flag': '这面旗帜对应哪个国家或历史国家？',
@@ -6489,6 +6496,25 @@ def timeline_period(country):
 def quiz_option_count():
     return {'easy': 3, 'medium': 4, 'hard': 5, 'extreme': 8}.get(state.quiz_difficulty, 4)
 
+def quiz_time_limit_seconds():
+    return QUIZ_EXTREME_TIME_LIMIT_SECONDS if state.quiz_difficulty == 'extreme' else None
+
+def prepare_quiz_timer(quiz):
+    if not isinstance(quiz, dict):
+        return quiz
+    limit = quiz_time_limit_seconds()
+    quiz['timer_token'] = str(uuid.uuid4())
+    quiz['started_at_ts'] = app_now().timestamp()
+    quiz['time_limit_seconds'] = limit
+    quiz['deadline_ts'] = (quiz['started_at_ts'] + limit) if limit else None
+    quiz['timed_out'] = False
+    return quiz
+
+def quiz_remaining_seconds(quiz):
+    if not isinstance(quiz, dict) or quiz.get('answered') or not quiz.get('deadline_ts'):
+        return None
+    return max(0, math.ceil(float(quiz.get('deadline_ts') or 0) - app_now().timestamp()))
+
 def quiz_difficulty_options():
     options = ['easy', 'medium', 'hard']
     if state.sengoku_mode and sengoku_is_user_eligible():
@@ -7122,11 +7148,11 @@ def start_quiz(mode=None):
         state.quiz_mode = mode
     if state.quiz_difficulty not in quiz_difficulty_options():
         state.quiz_difficulty = 'hard'
-    state.quiz = build_quiz()
+    state.quiz = prepare_quiz_timer(build_quiz())
     if state.quiz_mode == 'review' and not state.quiz:
         ui.notify(t('review_empty'), color='info')
         state.quiz_mode = 'normal'
-        state.quiz = build_quiz()
+        state.quiz = prepare_quiz_timer(build_quiz())
     show_screen('quiz')
 
 def set_quiz_difficulty(difficulty):
@@ -12226,9 +12252,46 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 # ========================================
 # 4. ミニクイズ画面
 # ========================================
+quiz_timer_label = None
+
 with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
     header_container_quiz = ui.column().classes('w-full p-0 m-0')
     quiz_content = ui.column().classes('w-full max-w-3xl p-8 gap-6 self-center')
+
+    def mark_quiz_timeout(refresh=True):
+        if not state.quiz or state.quiz.get('answered') or quiz_remaining_seconds(state.quiz) != 0:
+            return False
+        state.quiz['selected_key'] = None
+        state.quiz['answered'] = True
+        state.quiz['timed_out'] = True
+        update_quiz_stats(
+            False,
+            state.quiz.get('answer_key'),
+            state.quiz_mode == 'review',
+            None,
+            state.quiz.get('type'),
+        )
+        ui.notify(t('quiz_time_up'), color='warning')
+        if refresh:
+            refresh_quiz_view()
+        return True
+
+    def update_quiz_timer_label():
+        global quiz_timer_label
+        try:
+            if not quiz_screen.visible or not state.quiz:
+                return
+            remaining = quiz_remaining_seconds(state.quiz)
+            if remaining is None:
+                if quiz_timer_label:
+                    quiz_timer_label.set_text('')
+                return
+            if quiz_timer_label:
+                quiz_timer_label.set_text(t('quiz_time_remaining').format(seconds=remaining))
+            if remaining <= 0:
+                mark_quiz_timeout(refresh=True)
+        except Exception as e:
+            print(f'Quiz timer update skipped: {e}', flush=True)
 
     def next_quiz_from_button():
         if state.quiz and not state.quiz.get('answered'):
@@ -12267,15 +12330,17 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
             show_screen('result')
 
     def refresh_quiz_view():
+        global quiz_timer_label
         render_header(header_container_quiz)
         update_mode_classes(
             quiz_content,
             'w-full max-w-3xl p-8 gap-6 self-center',
             'w-full max-w-md p-4 gap-4 self-center',
         )
+        quiz_timer_label = None
         quiz_content.clear()
         if not state.quiz:
-            state.quiz = build_quiz()
+            state.quiz = prepare_quiz_timer(build_quiz())
 
         quiz = state.quiz
         if not quiz:
@@ -12283,8 +12348,11 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                 page_heading(t('quiz_title'), 'quiz')
                 ui.label('No quiz data available.').classes('text-gray-500')
             return
+        if quiz_remaining_seconds(quiz) == 0:
+            mark_quiz_timeout(refresh=False)
 
         lookup = countries_by_key()
+        quiz = state.quiz
         answer = lookup.get(quiz['answer_key'])
         question, description, image = quiz_view_parts(quiz, answer) if answer else ('', '', None)
 
@@ -12311,6 +12379,10 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                 'text-blue-500',
                 'items-center gap-2',
             )
+            remaining = quiz_remaining_seconds(quiz)
+            if remaining is not None:
+                quiz_timer_label = ui.label(t('quiz_time_remaining').format(seconds=remaining)) \
+                    .classes('self-start rounded bg-red-600 px-3 py-1 text-sm font-bold text-white shadow')
             review_count = len(get_review_keys())
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
                 icon_label(t('quiz_mode'), 'school', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
@@ -12388,7 +12460,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
 
                 if quiz.get('answered') and answer:
                     correct = quiz.get('selected_key') == quiz_answer_option(quiz)
-                    message = t('quiz_correct') if correct else t('quiz_wrong')
+                    message = t('quiz_time_up') if quiz.get('timed_out') else (t('quiz_correct') if correct else t('quiz_wrong'))
                     badge_color = 'green' if correct else 'red'
                     with ui.row().classes('items-center gap-3 mt-4'):
                         ui.icon('check_circle' if correct else 'cancel').classes('text-green-600' if correct else 'text-red-600')
@@ -14214,6 +14286,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 # ========================================
 # 初期表示
 # ========================================
+ui.timer(1.0, update_quiz_timer_label)
 show_screen('top')
 server_port = int(os.environ.get('PORT', 8080))
 print(f'Starting World Archives on 0.0.0.0:{server_port}', flush=True)
