@@ -1174,10 +1174,11 @@ BATTLE_SATRAPY_PROVINCES = [
     {'id': 'Asia', 'name': {'ja': 'アジア属州', 'en': 'Asia Satrapy', 'zh': '亚洲行省'}},
     {'id': 'Africa', 'name': {'ja': 'アフリカ属州', 'en': 'Africa Satrapy', 'zh': '非洲行省'}},
     {'id': 'Europe', 'name': {'ja': 'ヨーロッパ属州', 'en': 'Europe Satrapy', 'zh': '欧洲行省'}},
-    {'id': 'North America', 'name': {'ja': '北アメリカ属州', 'en': 'North America Satrapy', 'zh': '北美行省'}},
-    {'id': 'South America', 'name': {'ja': '南アメリカ属州', 'en': 'South America Satrapy', 'zh': '南美行省'}},
+    {'id': 'North America', 'name': {'ja': '北アメリカ属州', 'en': 'North America Satrapy', 'zh': '北美洲行省'}},
+    {'id': 'South America', 'name': {'ja': '南アメリカ属州', 'en': 'South America Satrapy', 'zh': '南美洲行省'}},
     {'id': 'Oceania', 'name': {'ja': 'オセアニア属州', 'en': 'Oceania Satrapy', 'zh': '大洋洲行省'}},
 ]
+
 SENGOKU_BOSS_EVENT_FIELDS = {
     'revolution': 'revolution_until_turn',
     'flag_only': 'flag_only_until_turn',
@@ -3938,124 +3939,8 @@ def sengoku_boss_definitions():
     return [
         {
             'id': 'boss_1',
-            'name': {'ja': '第一将・標準強化BOT', 'en': 'Boss 1: Enhanced BOT', 'zh': '第一将：强化BOT'},
-            'summary': {'ja': '戦国モードの強化BOTそのもの。まずは基本の強さを突破します。', 'en': 'A standard enhanced Sengoku BOT.', 'zh': '标准战国强化BOT。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 1,
-            'bot_hp_percent': 70,
-            'bot_card_limit': 2,
-            'bot_choice_pool': 4,
-            'bot_strategy': 'training',
-            'player_hand_bonus': 1,
-            'timeout': 180,
-            'forced_events': [],
-        },
-        {
-            'id': 'boss_2',
-            'name': {'ja': '第二将・倍化する要塞', 'en': 'Boss 2: Double Fortress', 'zh': '第二将：倍化要塞'},
-            'summary': {'ja': '敵HPが10倍。6つの属州シールドは各地域の共鳴で3回傷つけると崩れ、敵HP上限を永久に下げます。王の道は低頻度で少しだけ回復します。', 'en': 'The enemy has 10x HP. Six regional satrapy shields break after three matching regional resonances, permanently lowering max HP. Royal Road supplies heal only a little and less often.', 'zh': '敌方HP为10倍。六个地域行省护盾在对应地域共鸣三次后破裂，并永久降低敌方HP上限。王道补给频率和回复量都较低。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 10,
-            'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
-            'satrapy_shield_hits': 3,
-            'satrapy_hp_drop_percent': 15,
-            'royal_road_interval': 5,
-            'royal_road_heal_percent': 2,
-            'timeout': 180,
-            'forced_events': ['lytton'],
-        },
-        {
-            'id': 'boss_3',
-            'name': {'ja': '第三将・バチカンの霧', 'en': 'Boss 3: Vatican Fog', 'zh': '第三将：梵蒂冈之雾'},
-            'summary': {'ja': '常にバチカン市国大量発生。ただし敵のバチカンは別カードに変化します。', 'en': 'Vatican City appears constantly, but the boss converts its own Vatican cards.', 'zh': '梵蒂冈大量出现，但敌方会把自己的梵蒂冈换成其他牌。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 1,
-            'bot_card_limit': 1,
-            'bot_choice_pool': 12,
-            'bot_strategy': 'training',
-            'timeout': 180,
-            'forced_events': ['vatican'],
-            'vatican_immunity': True,
-        },
-        {
-            'id': 'boss_4',
-            'name': {'ja': '第四将・海上封鎖', 'en': 'Boss 4: Naval Blockade', 'zh': '第四将：海上封锁'},
-            'summary': {'ja': '常に海上封鎖。制限時間は30秒です。', 'en': 'Naval Blockade is always active and turns last 30 seconds.', 'zh': '海上封锁常驻，回合限时30秒。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 1,
-            'timeout': 30,
-            'forced_events': ['blockade'],
-        },
-        {
-            'id': 'boss_5',
-            'name': {'ja': '第五将・双頭同盟', 'en': 'Boss 5: Twin Alliance', 'zh': '第五将：双头同盟'},
-            'summary': {'ja': '1対2のチーム戦。常に国名が伏せられます。', 'en': 'A 1v2 team battle with country names hidden.', 'zh': '1对2团队战，国名始终隐藏。'},
-            'mode': TEAM_MODE,
-            'enemy_count': 2,
-            'hp_multiplier': 1,
-            'enemy_team_hp_percent': 50,
-            'timeout': 180,
-            'forced_events': ['flag_only'],
-        },
-        {
-            'id': 'boss_6',
-            'name': {'ja': '第六将・革命停戦圏', 'en': 'Boss 6: Revolutionary Ceasefire', 'zh': '第六将：革命停战圈'},
-            'summary': {'ja': '革命・停戦・カードシャッフルが常に発生します。', 'en': 'Revolution, Ceasefire, and card redistribution stay active.', 'zh': '革命、停战、手牌再分配常驻。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 1,
-            'timeout': 180,
-            'forced_events': ['revolution', 'ceasefire', 'replace'],
-        },
-        {
-            'id': 'boss_7',
-            'name': {'ja': '第七将・世界大戦炉', 'en': 'Boss 7: World War Furnace', 'zh': '第七将：世界大战炉'},
-            'summary': {'ja': '常に第三次世界大戦状態。暴発カードが多く混ざり、敵は2回行動します。', 'en': 'World War is always active, dangerous cards appear more often, and the boss acts twice.', 'zh': '第三次世界大战常驻，危险牌更多，敌方会行动两次。'},
-            'mode': BOT_MODE,
-            'enemy_count': 1,
-            'hp_multiplier': 1,
-            'timeout': 180,
-            'forced_events': ['world_war'],
-            'special_pressure': True,
-            'enemy_extra_actions': 2,
-        },
-        {
-            'id': 'boss_8',
-            'name': {'ja': '第八将・全特性統合体', 'en': 'Boss 8: Combined Overlord', 'zh': '第八将：全特性统合体'},
-            'summary': {'ja': 'これまでの特性をまとめた最終戦。敵は2回行動し、属州シールドと王の道も備え、指揮力は実質無限です。', 'en': 'The final boss combines previous traits, acts twice, has satrapy shields and Royal Road supplies, and has effectively infinite command.', 'zh': '最终战，汇集全部特性。敌方会行动两次，拥有行省护盾和王道补给，指挥力近乎无限。'},
-            'mode': TEAM_MODE,
-            'enemy_count': 3,
-            'player_ally_count': 1,
-            'hp_multiplier': 10,
-            'enemy_team_hp_multiplier': 10,
-            'player_team_hp_multiplier': 5,
-            'player_hand_bonus': 1,
-            'player_command_bonus': 1,
-            'timeout': 30,
-            'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'command_surge'],
-            'bomb_every_turns': 3,
-            'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
-            'satrapy_shield_hits': 3,
-            'satrapy_hp_drop_percent': 15,
-            'royal_road_interval': 5,
-            'royal_road_heal_percent': 2,
-            'enemy_extra_actions': 2,
-            'vatican_immunity': True,
-            'special_pressure': True,
-            'command_infinite': True,
-        },
-    ]
-
-def sengoku_boss_definitions():
-    return [
-        {
-            'id': 'boss_1',
             'name': {'ja': 'アッカド帝国', 'en': 'Akkadian Empire', 'zh': '阿卡德帝国'},
-            'summary': {'ja': '最初期の大帝国を冠する第一戦。戦国モード強化BOTの基本形です。', 'en': 'The first boss, named after one of the earliest empires. A standard enhanced BOT.', 'zh': '以早期大帝国为名的第一战。标准强化BOT。'},
+            'summary': {'ja': '最初期の大帝国を冠する第一戦。戦国モード強化BOTの基本形です。', 'en': 'The first boss, named after one of the earliest empires. A standard enhanced BOT.', 'zh': '以早期大帝国命名的第一战。强化BOT的基础形态。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
@@ -4070,13 +3955,14 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_2',
             'name': {'ja': 'アケメネス朝ペルシア', 'en': 'Achaemenid Persia', 'zh': '阿契美尼德波斯'},
-            'summary': {'ja': '古代オリエントの広域帝国。敵HPが10倍。6つの属州シールドは各地域の共鳴で3回傷つけると崩れ、敵HP上限を永久に下げます。王の道は低頻度で少しだけ回復します。', 'en': 'A vast ancient Near Eastern empire with 10x enemy HP. Six regional satrapy shields break after three matching regional resonances, permanently lowering max HP. Royal Road supplies heal only a little and less often.', 'zh': '古代近东的大帝国。敌方HP为10倍。六个地域行省护盾在对应地域共鸣三次后破裂，并永久降低敌方HP上限。王道补给频率和回复量都较低。'},
+            'summary': {'ja': '敵HPが10倍。6つの属州シールドが残り1つにつきダメージを10%軽減します。対応する地域共鳴を3回当てるとその州が崩れ、敵HP上限を永久に15%下げます。王の道は低頻度で少しだけ回復します。', 'en': 'Enemy HP is 10x. Each remaining satrapy shield reduces damage by 10%. Three matching regional resonances break that province and permanently lower max HP by 15%. Royal Road supplies heal a little and less often.', 'zh': '敌方HP为10倍。每个尚存行省护盾会减少10%伤害。对应地域共鸣命中三次后会击破该行省，并永久降低敌方HP上限15%。王道补给频率较低且回复较少。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 10,
             'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
             'satrapy_shield_hits': 3,
             'satrapy_hp_drop_percent': 15,
+            'satrapy_guard_card_limit': 1,
             'royal_road_interval': 5,
             'royal_road_heal_percent': 2,
             'timeout': 180,
@@ -4085,7 +3971,7 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_3',
             'name': {'ja': 'ローマ帝国', 'en': 'Roman Empire', 'zh': '罗马帝国'},
-            'summary': {'ja': '地中海世界の巨大帝国。常時バチカン市国大量発生と補給投下が起こり、敵のバチカンは別カードへ変化します。', 'en': 'A Mediterranean superpower. Vatican outbreak and Supply Drop stay active, but the boss converts its Vatican cards.', 'zh': '地中海世界的大帝国。梵蒂冈大量出现与补给投下常驻，敌方梵蒂冈会换成别的牌。'},
+            'summary': {'ja': '地中海世界の巨大帝国。常時バチカン市国大量発生と補給投下が起こり、敵のバチカン市国は別カードへ変化します。', 'en': 'A Mediterranean superpower. Vatican outbreak and Supply Drop stay active, but the boss converts its Vatican cards.', 'zh': '地中海世界的巨大帝国。梵蒂冈大量出现与补给投下常驻，但敌方会把梵蒂冈卡变成其他卡。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
@@ -4099,7 +3985,7 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_4',
             'name': {'ja': '唐', 'en': 'Tang Dynasty', 'zh': '唐'},
-            'summary': {'ja': '東アジアの大帝国。常時海上封鎖、制限時間30秒です。', 'en': 'A major East Asian empire. Naval Blockade is always active and turns last 30 seconds.', 'zh': '东亚大帝国。海上封锁常驻，回合限时30秒。'},
+            'summary': {'ja': '東アジアの大帝国。常時海上封鎖が発生し、制限時間は30秒です。', 'en': 'A major East Asian empire. Naval Blockade is always active and turns last 30 seconds.', 'zh': '东亚大帝国。海上封锁常驻，每回合限时30秒。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
@@ -4109,7 +3995,7 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_5',
             'name': {'ja': 'モンゴル帝国', 'en': 'Mongol Empire', 'zh': '蒙古帝国'},
-            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。敵チームHPは半分です。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden. The enemy team has half HP.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名始终隐藏。敌方队伍HP减半。'},
+            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。敵チームHPは半分です。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden. The enemy team has half HP.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名常时隐藏。敌队HP减半。'},
             'mode': TEAM_MODE,
             'enemy_count': 2,
             'hp_multiplier': 1,
@@ -4120,7 +4006,7 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_6',
             'name': {'ja': 'オスマン帝国', 'en': 'Ottoman Empire', 'zh': '奥斯曼帝国'},
-            'summary': {'ja': '長く続いた三大陸の帝国。革命・停戦・カードシャッフルが常に発生します。', 'en': 'A long-lived empire across three continents. Revolution, Ceasefire, and card redistribution stay active.', 'zh': '横跨三大洲的长期帝国。革命、停战、手牌再分配常驻。'},
+            'summary': {'ja': '長く続いた三大陸の帝国。革命・停戦・カードシャッフルが常に発生します。', 'en': 'A long-lived empire across three continents. Revolution, Ceasefire, and card redistribution stay active.', 'zh': '横跨三大洲的长寿帝国。革命、停战与卡牌再分配常驻。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
@@ -4130,7 +4016,7 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_7',
             'name': {'ja': '大英帝国', 'en': 'British Empire', 'zh': '大英帝国'},
-            'summary': {'ja': '世界規模の海洋帝国。常時第三次世界大戦状態で、暴発カードが多く混ざり、敵は2回行動します。', 'en': 'A global maritime empire. World War is always active, dangerous cards appear more often, and the boss acts twice.', 'zh': '世界规模的海洋帝国。第三次世界大战常驻，危险牌更多，敌方会行动两次。'},
+            'summary': {'ja': '世界規模の海洋帝国。常時第三次世界大戦状態で、暴発カードが多く混じり、敵は2回行動します。', 'en': 'A global maritime empire. World War is always active, dangerous cards appear more often, and the boss acts twice.', 'zh': '世界规模的海洋帝国。第三次世界大战状态常驻，危险卡更多，敌方会行动两次。'},
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
@@ -4157,6 +4043,7 @@ def sengoku_boss_definitions():
             'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
             'satrapy_shield_hits': 3,
             'satrapy_hp_drop_percent': 15,
+            'satrapy_guard_card_limit': 1,
             'royal_road_interval': 5,
             'royal_road_heal_percent': 2,
             'enemy_extra_actions': 2,
@@ -8010,6 +7897,9 @@ def battle_satrapy_shields_broken(room):
 def battle_satrapy_shields_remaining(room):
     return max(0, battle_satrapy_shield_total(room) - battle_satrapy_shields_broken(room))
 
+def battle_satrapy_shield_reduction_percent(room):
+    return max(0, battle_satrapy_shields_remaining(room) * 10)
+
 def battle_satrapy_hp_drop_percent(room):
     try:
         return max(0, int((sengoku_boss_for_room(room) or {}).get('satrapy_hp_drop_percent', 0) or 0))
@@ -8048,7 +7938,23 @@ def battle_satrapy_resonant_provinces(room, keys):
             counts[province_id] += 1
     return [province_id for province_id, count in counts.items() if count >= 2]
 
-def battle_apply_satrapy_shields(room, attack_keys, absorbed_damage=0, breakdown=None):
+def battle_reduce_damage_by_satrapy_shields(room, damage, breakdown=None):
+    damage = max(0, int(damage or 0))
+    if damage <= 0:
+        return 0
+    reduction_percent = battle_satrapy_shield_reduction_percent(room)
+    reduced = max(1, damage * max(0, 100 - reduction_percent) // 100)
+    if isinstance(breakdown, dict):
+        breakdown['satrapy_shield_reduction_percent'] = reduction_percent
+        breakdown['satrapy_shield_reduced_damage'] = max(0, damage - reduced)
+        breakdown['satrapy_damage_after_reduction'] = reduced
+        if int(breakdown.get('damage', -1) or -1) == damage:
+            breakdown['damage'] = reduced
+        elif int(breakdown.get('counter', -1) or -1) == damage:
+            breakdown['counter'] = reduced
+    return reduced
+
+def battle_apply_satrapy_shields(room, attack_keys, incoming_damage=0, breakdown=None):
     provinces = battle_satrapy_provinces(room)
     if not provinces or battle_satrapy_shields_remaining(room) <= 0:
         return ''
@@ -8070,27 +7976,30 @@ def battle_apply_satrapy_shields(room, attack_keys, absorbed_damage=0, breakdown
             hit_notes.append(f'{label} {damage_map[province_id]}/{strength}')
     room['satrapy_broken_provinces'] = sorted(broken)
     room['satrapy_shields_broken'] = len(broken)
+    remaining = battle_satrapy_shields_remaining(room)
+    reduction_percent = battle_satrapy_shield_reduction_percent(room)
     if isinstance(breakdown, dict):
-        breakdown['satrapy_shield_absorbed'] = max(0, int(absorbed_damage or 0))
-        breakdown['satrapy_shields_remaining'] = battle_satrapy_shields_remaining(room)
+        breakdown['satrapy_shield_incoming_damage'] = max(0, int(incoming_damage or 0))
+        breakdown['satrapy_shields_remaining'] = remaining
+        breakdown['satrapy_shield_reduction_percent'] = reduction_percent
         breakdown['satrapy_hits'] = hit_notes
         breakdown['satrapy_breaks'] = break_notes
     if break_notes:
         return battle_boss_label({
-            'ja': f"属州シールドが攻撃を吸収。{', '.join(break_notes)}が崩壊し、敵HP上限が永久に低下しました。",
-            'en': f"Satrapy shields absorbed the attack. {', '.join(break_notes)} broke, permanently lowering enemy max HP.",
-            'zh': f"行省护盾吸收了攻击。{', '.join(break_notes)}破裂，敌方HP上限永久下降。",
+            'ja': f"属州シールドが攻撃を{reduction_percent}%軽減。{', '.join(break_notes)}が崩壊し、敵HP上限が永久に低下しました。",
+            'en': f"Satrapy shields reduced damage by {reduction_percent}%. {', '.join(break_notes)} broke, permanently lowering enemy max HP.",
+            'zh': f"行省护盾使伤害降低{reduction_percent}%。{', '.join(break_notes)}破裂，敌方HP上限永久下降。",
         })
     if hit_notes:
         return battle_boss_label({
-            'ja': f"属州シールドが攻撃を吸収。地域共鳴で {', '.join(hit_notes)} に亀裂が入りました。",
-            'en': f"Satrapy shields absorbed the attack. Regional resonance cracked {', '.join(hit_notes)}.",
-            'zh': f"行省护盾吸收了攻击。地域共鸣使 {', '.join(hit_notes)} 出现裂痕。",
+            'ja': f"属州シールドが攻撃を{reduction_percent}%軽減。地域共鳴で {', '.join(hit_notes)} に亀裂が入りました。",
+            'en': f"Satrapy shields reduced damage by {reduction_percent}%. Regional resonance cracked {', '.join(hit_notes)}.",
+            'zh': f"行省护盾使伤害降低{reduction_percent}%。地域共鸣使 {', '.join(hit_notes)} 出现裂痕。",
         })
     return battle_boss_label({
-        'ja': '属州シールドが攻撃を吸収。対応する地域共鳴がないため、シールドには傷が入りませんでした。',
-        'en': 'Satrapy shields absorbed the attack. No matching regional resonance cracked a shield.',
-        'zh': '行省护盾吸收了攻击。没有对应地域共鸣，因此护盾没有受损。',
+        'ja': f'属州シールドが攻撃を{reduction_percent}%軽減。対応する地域共鳴がないため、シールドには傷が入りませんでした。',
+        'en': f'Satrapy shields reduced damage by {reduction_percent}%. No matching regional resonance cracked a shield.',
+        'zh': f'行省护盾使伤害降低{reduction_percent}%。没有对应地域共鸣，因此护盾没有受损。',
     })
 
 def battle_shared_tag_region_labels(left_keys, right_keys):
@@ -9992,28 +9901,30 @@ def battle_apply_direct_damage(room, target, damage, source=None, breakdown=None
     hp = room.setdefault('hp', {})
     if damage <= 0:
         return 0, ''
+    shield_message = ''
     if battle_satrapy_shields_remaining(room) > 0 and is_sengoku_boss_enemy_bot(room, target):
-        message = battle_apply_satrapy_shields(room, attack_keys or [], damage, breakdown)
+        shield_message = battle_apply_satrapy_shields(room, attack_keys or [], damage, breakdown)
+        damage = battle_reduce_damage_by_satrapy_shields(room, damage, breakdown)
         hp_limit = battle_player_hp_limit(room, target)
         hp[target] = min(hp.get(target, hp_limit), hp_limit)
-        return 0, message
     before = hp.get(target, battle_player_hp_limit(room, target))
     hp[target] = max(0, before - damage)
-    return before - hp[target], ''
+    return before - hp[target], shield_message
 
 def battle_apply_team_direct_damage(room, target_team, damage, source_team=None, attack_keys=None, breakdown=None):
     damage = max(0, int(damage or 0))
     team_hp = ensure_battle_team_hp(room)
     if damage <= 0 or not target_team:
         return 0, ''
+    shield_message = ''
     if battle_satrapy_shields_remaining(room) > 0 and target_team == sengoku_boss_enemy_team(room):
-        message = battle_apply_satrapy_shields(room, attack_keys or [], damage, breakdown)
+        shield_message = battle_apply_satrapy_shields(room, attack_keys or [], damage, breakdown)
+        damage = battle_reduce_damage_by_satrapy_shields(room, damage, breakdown)
         hp_limit = battle_team_hp_limit(room, target_team)
         team_hp[target_team] = min(team_hp.get(target_team, hp_limit), hp_limit)
-        return 0, message
     before = team_hp.get(target_team, battle_team_hp_limit(room, target_team))
     team_hp[target_team] = max(0, before - damage)
-    return before - team_hp[target_team], ''
+    return before - team_hp[target_team], shield_message
 
 def battle_apply_royal_road_supply(room, entries, result_parts, visual=None):
     interval = battle_royal_road_interval(room)
@@ -10731,6 +10642,12 @@ def choose_bot_battle_cards(hand, room=None, player=None):
                 max_playable = min(max_playable, max(1, int(boss.get('bot_card_limit') or max_playable)))
         except (TypeError, ValueError):
             pass
+        if boss and is_sengoku_boss_enemy_bot(room, player) and battle_satrapy_shields_remaining(room) > 0:
+            try:
+                guard_limit = max(1, int(boss.get('satrapy_guard_card_limit', 1) or 1))
+            except (TypeError, ValueError):
+                guard_limit = 1
+            max_playable = min(max_playable, guard_limit)
         playable = sorted(playable, key=lambda key: battle_card_power_for_key(key, room=room), reverse=True)
         if boss and boss.get('bot_strategy') == 'training':
             try:
@@ -13490,6 +13407,81 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 ui.label(t('battle_blockade_title')).classes('text-2xl font-black text-gray-800')
                 ui.label(t('battle_blockade_notice')).classes('text-sm font-bold text-gray-700')
 
+    def render_battle_crisis_notice(room):
+        shield_total = battle_satrapy_shield_total(room)
+        if shield_total:
+            remaining = battle_satrapy_shields_remaining(room)
+            reduction_percent = battle_satrapy_shield_reduction_percent(room)
+            interval = battle_royal_road_interval(room)
+            damage_map, broken = battle_satrapy_state(room)
+            strength = battle_satrapy_shield_strength(room)
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-amber-400 bg-amber-50'):
+                ui.label('属州シールド').classes('text-2xl font-black text-amber-900')
+                ui.label(
+                    f'残り {remaining} / {shield_total} 州。残っている州1つにつきダメージを10%軽減します'
+                    f'（現在 -{reduction_percent}%）。対応する地域共鳴を3回当てると州が崩れ、敵HP上限も下がります。'
+                ).classes('text-sm font-bold text-amber-800')
+                with ui.row().classes('gap-2 flex-wrap'):
+                    for province in battle_satrapy_provinces(room):
+                        province_id = province['id']
+                        if province_id in broken:
+                            ui.badge(f"{battle_satrapy_province_label(province)}: 崩壊", color='red')
+                        else:
+                            ui.badge(f"{battle_satrapy_province_label(province)}: {damage_map.get(province_id, 0)}/{strength}", color='amber')
+                if interval:
+                    ui.label(
+                        f'王の道: {interval}ターンごとに少量回復します。地域やタグが重なる攻撃で補給を遮断できます。'
+                    ).classes('text-sm font-bold text-amber-800')
+        if battle_world_war_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-red-500 bg-red-50'):
+                ui.label(t('battle_world_war_title')).classes('text-2xl font-black text-red-800')
+                ui.label(t('battle_world_war_notice')).classes('text-sm font-bold text-red-700')
+        if battle_revolution_active(room):
+            with ui.card().classes('w-full p-5 gap-2 text-white border-2 border-yellow-200') \
+                .style("background-image: linear-gradient(rgba(127,29,29,0.72), rgba(127,29,29,0.72)), url('/assets/revolution_background.svg'); background-size: cover; background-position: center;"):
+                ui.label(t('battle_revolution_title')).classes('text-2xl font-black')
+                ui.label(t('battle_revolution_notice')).classes('text-sm font-bold')
+        if battle_flag_only_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-indigo-300 bg-indigo-50'):
+                ui.label(t('battle_flag_only_title')).classes('text-2xl font-black text-indigo-800')
+                ui.label(t('battle_flag_only_notice')).classes('text-sm font-bold text-indigo-700')
+        if battle_vatican_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-amber-300 bg-amber-50'):
+                ui.label(t('battle_vatican_title')).classes('text-2xl font-black text-amber-800')
+                ui.label(t('battle_vatican_notice')).classes('text-sm font-bold text-amber-700')
+        if battle_replace_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-cyan-300 bg-cyan-50'):
+                ui.label(t('battle_replace_title')).classes('text-2xl font-black text-cyan-800')
+                ui.label(t('battle_replace_notice')).classes('text-sm font-bold text-cyan-700')
+        if battle_bomb_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-pink-300 bg-pink-50'):
+                ui.label(t('battle_bomb_title')).classes('text-2xl font-black text-pink-800')
+                ui.label(t('battle_bomb_notice')).classes('text-sm font-bold text-pink-700')
+        if battle_lytton_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-sky-300 bg-sky-50'):
+                ui.label(t('battle_lytton_title')).classes('text-2xl font-black text-sky-800')
+                ui.label(t('battle_lytton_notice')).classes('text-sm font-bold text-sky-700')
+        if battle_damage_surge_active(room) or bool((sengoku_boss_for_room(room) or {}).get('player_damage_surge')):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
+                ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
+                ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
+        if battle_ceasefire_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-emerald-300 bg-emerald-50'):
+                ui.label(t('battle_ceasefire_title')).classes('text-2xl font-black text-emerald-800')
+                ui.label(t('battle_ceasefire_notice')).classes('text-sm font-bold text-emerald-700')
+        if battle_command_surge_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-blue-300 bg-blue-50'):
+                ui.label(t('battle_command_surge_title')).classes('text-2xl font-black text-blue-800')
+                ui.label(t('battle_command_surge_notice')).classes('text-sm font-bold text-blue-700')
+        if battle_supply_drop_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-lime-300 bg-lime-50'):
+                ui.label(t('battle_supply_drop_title')).classes('text-2xl font-black text-lime-800')
+                ui.label(t('battle_supply_drop_notice')).classes('text-sm font-bold text-lime-700')
+        if battle_blockade_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-gray-400 bg-gray-100'):
+                ui.label(t('battle_blockade_title')).classes('text-2xl font-black text-gray-800')
+                ui.label(t('battle_blockade_notice')).classes('text-sm font-bold text-gray-700')
+
     def render_battle_revealed_hands(room, lookup, username, is_spectator):
         if not battle_lytton_active(room):
             return
@@ -13550,6 +13542,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 'blue': 'text-blue-700',
                 'purple': 'text-purple-700',
                 'orange': 'text-orange-700',
+                'amber': 'text-amber-700',
             }.get(tone, 'text-[#1a2332]')
             with ui.column().classes('gap-1 rounded border border-gray-100 bg-gray-50 p-2'):
                 ui.label(label).classes('text-[11px] font-bold text-gray-500')
@@ -13583,12 +13576,18 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                     render_metric(t('battle_world_war_multiplier_label'), f"x{format_battle_multiplier(breakdown.get('world_war_multiplier', 1))}", 'red')
                     render_metric(t('battle_event_multiplier_label'), f"x{format_battle_multiplier(breakdown.get('event_multiplier', 1))}", 'red')
                     if int(breakdown.get('boss_extra_actions', 1) or 1) > 1:
-                        render_metric('ボス2回行動', f"x{breakdown.get('boss_extra_actions')} (+{format_battle_number(breakdown.get('boss_extra_action_damage', 0))})", 'red')
+                        render_metric('ボス追加行動', f"x{breakdown.get('boss_extra_actions')} (+{format_battle_number(breakdown.get('boss_extra_action_damage', 0))})", 'red')
                     render_metric(
                         t('battle_final_counter') if counter else t('battle_final_damage'),
                         format_battle_number(breakdown.get('counter' if counter else 'damage', 0)),
                         'red' if not counter else 'orange',
                     )
+                    if int(breakdown.get('satrapy_shield_reduction_percent', 0) or 0):
+                        render_metric(
+                            '属州シールド軽減',
+                            f"-{breakdown.get('satrapy_shield_reduction_percent')}% ({format_battle_number(breakdown.get('satrapy_shield_reduced_damage', 0))})",
+                            'amber',
+                        )
                     if int(breakdown.get('split_count', 1) or 1) > 1:
                         render_metric(t('battle_raw_team_attack'), format_battle_number(breakdown.get('raw_team_attack', 0)), 'blue')
                         render_metric(
