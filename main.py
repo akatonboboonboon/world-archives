@@ -369,6 +369,98 @@ ui.add_body_html("""
   }
 })();
 </script>
+<style id="wa-dark-late-overrides">
+html.wa-dark body .wa-dark-area,
+html.wa-dark body .wa-dark-area.bg-gray-50,
+html.wa-dark body .wa-dark-area.bg-gray-100,
+html.wa-dark body .wa-dark-area .bg-gray-50,
+html.wa-dark body .wa-dark-area .bg-gray-100 {
+  background: #090f1f !important;
+  background-color: #090f1f !important;
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .bg-white,
+html.wa-dark body .wa-dark-area .q-card,
+html.wa-dark body .wa-dark-area .q-tab-panels,
+html.wa-dark body .wa-dark-area .q-tab-panel,
+html.wa-dark body .wa-dark-area .q-expansion-item,
+html.wa-dark body .wa-dark-area .q-expansion-item__container,
+html.wa-dark body .wa-dark-area .q-expansion-item__content,
+html.wa-dark body .q-drawer.wa-dark-area,
+html.wa-dark body .q-drawer.wa-dark-area .bg-white,
+html.wa-dark body .q-drawer.wa-dark-area .q-card {
+  background: #172033 !important;
+  background-color: #172033 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .text-\\[\\#1a2332\\],
+html.wa-dark body .wa-dark-area .text-gray-800,
+html.wa-dark body .wa-dark-area .text-gray-700,
+html.wa-dark body .wa-dark-area .text-gray-600,
+html.wa-dark body .wa-dark-area .text-gray-500,
+html.wa-dark body .wa-dark-area .text-gray-400,
+html.wa-dark body .q-drawer.wa-dark-area .text-gray-800,
+html.wa-dark body .q-drawer.wa-dark-area .text-gray-700,
+html.wa-dark body .q-drawer.wa-dark-area .text-gray-600,
+html.wa-dark body .q-drawer.wa-dark-area .text-gray-500,
+html.wa-dark body .q-drawer.wa-dark-area .text-gray-400 {
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .q-btn.bg-white,
+html.wa-dark body .wa-dark-area .q-btn.text-grey-9,
+html.wa-dark body .wa-dark-area .q-btn[style*="white"],
+html.wa-dark body .wa-quiz-screen .q-btn.text-grey-9,
+html.wa-dark body .wa-quiz-screen .q-btn.bg-white {
+  background: #1f2937 !important;
+  background-color: #1f2937 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .q-btn.bg-white .q-btn__content,
+html.wa-dark body .wa-dark-area .q-btn.text-grey-9 .q-btn__content,
+html.wa-dark body .wa-quiz-screen .q-btn.text-grey-9 .q-btn__content {
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .q-field,
+html.wa-dark body .wa-dark-area .q-field__control,
+html.wa-dark body .wa-dark-area input,
+html.wa-dark body .wa-dark-area textarea {
+  background: #0f172a !important;
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+html.wa-dark body .wa-dark-area .border,
+html.wa-dark body .wa-dark-area .border-gray-200,
+html.wa-dark body .wa-dark-area .border-blue-100,
+html.wa-dark body .wa-dark-area .q-separator {
+  border-color: #475569 !important;
+}
+html.wa-dark body .q-notification,
+html.wa-dark body .q-notification__message,
+html.wa-dark body .q-notification__caption,
+html.wa-dark body .q-dialog__inner .q-card:not(.wa-staff-roll-window),
+html.wa-dark body .q-dialog__inner .q-card__section,
+html.wa-dark body .q-banner,
+html.wa-dark body .q-banner__content,
+html.wa-dark body .nicegui-reconnect,
+html.wa-dark body .nicegui-reconnect *,
+html.wa-dark body [id*="reconnect"],
+html.wa-dark body [id*="reconnect"] *,
+html.wa-dark body [class*="reconnect"],
+html.wa-dark body [class*="reconnect"] *,
+html.wa-dark body [id*="connection"],
+html.wa-dark body [id*="connection"] *,
+html.wa-dark body [class*="connection"],
+html.wa-dark body [class*="connection"] * {
+  background: #111827 !important;
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+  border-color: #475569 !important;
+}
+html.wa-dark body .wa-staff-roll-window {
+  background: radial-gradient(circle at top, #283750 0%, #0b1020 58%, #050814 100%) !important;
+  color: #f8fafc !important;
+}
+</style>
 """)
 
 def app_now():
@@ -10444,10 +10536,10 @@ def ui_mode_icon():
 # ========================================
 # 1. トップ画面
 # ========================================
-with ui.right_drawer(value=False).classes('bg-gray-100') as history_drawer:
+with ui.right_drawer(value=False).classes('wa-dark-area bg-gray-100') as history_drawer:
     history_content = ui.column().classes('w-full p-4')
 
-with ui.right_drawer(value=False).classes('bg-gray-100') as notification_drawer:
+with ui.right_drawer(value=False).classes('wa-dark-area bg-gray-100') as notification_drawer:
     notification_content = ui.column().classes('w-full p-4')
 
 def jump_from_history(history_item):
@@ -10612,7 +10704,7 @@ def render_header(container):
 # ========================================
 # 2. メイン画面
 # ========================================
-with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-gray-50') as top_screen:
+with ui.column().classes('wa-dark-area w-full h-screen items-center justify-center gap-4 bg-gray-50') as top_screen:
     top_container = ui.column().classes('items-center gap-4')
     def refresh_top_ui():
         top_container.clear()
@@ -10703,7 +10795,7 @@ with ui.column().classes('w-full h-screen items-center justify-center gap-4 bg-g
 # ========================================
 # 使い方ページ
 # ========================================
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_screen:
+with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as help_screen:
     header_container_help = ui.column().classes('w-full p-0 m-0')
     help_content = ui.column().classes('w-full max-w-5xl p-8 gap-5 self-center')
 
@@ -10768,7 +10860,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_screen:
                     .props('outline color=grey') \
                     .classes('w-full' if is_mobile_ui() else '')
 
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_detail_screen:
+with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as help_detail_screen:
     header_container_help_detail = ui.column().classes('w-full p-0 m-0')
     help_detail_content = ui.column().classes('w-full max-w-4xl p-8 gap-5 self-center')
 
@@ -10799,7 +10891,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as help_detail_
                     .props('outline color=grey') \
                     .classes('w-full' if is_mobile_ui() else '')
 
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
+with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as main_screen:
     header_container_main = ui.column().classes('w-full p-0 m-0')
 
     with ui.column().classes('w-full max-w-5xl p-6 gap-6 self-center') as main_content:
@@ -11051,7 +11143,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as main_screen:
 # ========================================
 # 3. 結果画面
 # ========================================
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_screen:
+with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as result_screen:
     header_container_result = ui.column().classes('w-full p-0 m-0')
     result_content = ui.column().classes('w-full max-w-4xl p-8 gap-6 self-center')
 
@@ -11213,7 +11305,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as result_scree
 # ========================================
 # 4. ミニクイズ画面
 # ========================================
-with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
+with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gray-50 gap-0') as quiz_screen:
     header_container_quiz = ui.column().classes('w-full p-0 m-0')
     quiz_content = ui.column().classes('w-full max-w-3xl p-8 gap-6 self-center')
 
