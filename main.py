@@ -3655,8 +3655,9 @@ def apply_restored_progress_snapshot(user, record):
         user['sengoku_medal'] = False
         user['sengoku_boss_clears'] = []
 
-def restore_user_backup_payload(payload, target_username=None):
+def restore_user_backup_payload(payload, target_username=None, target_password=None, import_mode=False):
     target_username = clean_username(target_username)
+    target_password = str(target_password or '')
     known_from_payload = []
     if isinstance(payload, dict) and isinstance(payload.get('known_users'), list):
         known_from_payload = [clean_username(username) for username in payload['known_users']]
@@ -3675,12 +3676,22 @@ def restore_user_backup_payload(payload, target_username=None):
         username = clean_username(raw_username)
         if is_guest_record(username, record):
             if not target_username:
-                continue
-            username = target_username
-            record = dict(record)
-            record['is_guest'] = is_guest_record(target_username)
+                if not import_mode:
+                    continue
+                username = guest_username_from_id(str(uuid.uuid4()))
+                record = dict(record)
+                record['is_guest'] = True
+            else:
+                username = target_username
+                record = dict(record)
+                record['is_guest'] = is_guest_record(target_username)
+                if target_password and not record.get('password_hash') and not is_guest_record(target_username):
+                    record['password_hash'] = password_hash(target_username, target_password)
         if not username:
             continue
+        if target_username and username == target_username and target_password and not record.get('password_hash') and not is_guest_record(username):
+            record = dict(record)
+            record['password_hash'] = password_hash(username, target_password)
         remember_known_user(username, user_data)
         existing = users.get(username, {})
         if (
@@ -3690,6 +3701,8 @@ def restore_user_backup_payload(payload, target_username=None):
         ):
             continue
         users[username] = merge_user_record(users.get(username, {}), record)
+        if record.get('password_hash'):
+            users[username]['password_hash'] = record['password_hash']
         apply_restored_progress_snapshot(users[username], record)
         ensure_user_defaults(users[username])
         restored += 1
@@ -3726,24 +3739,67 @@ def read_backup_upload_text(event):
                 continue
     raise ValueError(f'Unsupported upload content: {type(content).__name__}')
 
-def import_user_backup_file(event):
+def import_user_backup_file(event, target_username=None, target_password=None, refresh_after=True, login_after=False):
     labels = backup_labels()
     try:
         raw = read_backup_upload_text(event).strip()
         if not raw:
             raise ValueError('Backup file is empty')
         payload = json.loads(raw)
-        restored = restore_user_backup_payload(payload, target_username=state.current_user)
+        explicit_target = clean_username(target_username)
+        target = explicit_target if explicit_target else state.current_user
+        restored = restore_user_backup_payload(
+            payload,
+            target_username=target,
+            target_password=target_password,
+            import_mode=True,
+        )
     except Exception as e:
         filename = getattr(event, 'name', '') or getattr(event, 'filename', '')
         print(f'Backup import failed: {filename} / {e}', flush=True)
         ui.notify(labels['invalid'], color='negative')
-        return
+        return 0
     if restored:
         ui.notify(labels['imported'], color='positive')
-        refresh_account_view()
+        if login_after and target and target_password:
+            login_user(target, target_password)
+            return restored
+        if refresh_after and state.current_user:
+            refresh_account_view()
     else:
         ui.notify(labels['invalid'], color='warning')
+    return restored
+
+def enter_restored_guest(guest_username):
+    user_data = load_user_data()
+    guest = get_users(user_data).get(guest_username)
+    if not guest:
+        return False
+    guest['is_guest'] = True
+    state.current_user = guest_username
+    state.users_browser_restore_requested = False
+    ensure_user_defaults(guest)
+    unlocked_now = mark_battle_unlock_if_ready(guest)
+    sengoku_unlocked_now = mark_sengoku_unlock_if_ready(guest)
+    state.sengoku_mode = bool(guest.get('sengoku_mode') and guest.get('sengoku_unlocked'))
+    persist_current_user_data(user_data)
+    reset_social_notification_state()
+    if unlocked_now:
+        ui.notify(t('battle_unlocked_notice'), color='positive')
+    if sengoku_unlocked_now:
+        ui.notify(t('sengoku_unlocked_notice'), color='positive')
+    show_screen('top')
+    return True
+
+async def import_guest_backup_file(event):
+    guest_username = await browser_guest_username()
+    restored = import_user_backup_file(
+        event,
+        target_username=guest_username,
+        refresh_after=False,
+    )
+    if restored:
+        enter_restored_guest(guest_username)
 
 def restore_from_browser_backup():
     labels = backup_labels()
@@ -11603,6 +11659,10 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
                         .classes('w-full')
                     ui.button(backup_labels()['restore_browser'], icon='cloud_sync', on_click=restore_from_browser_backup) \
                         .props('outline color=primary') \
+                        .classes('w-full')
+                    ui.label(backup_labels()['import']).classes('text-xs font-bold text-gray-500')
+                    ui.upload(on_upload=import_guest_backup_file, auto_upload=True) \
+                        .props('accept=.json') \
                         .classes('w-full')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
