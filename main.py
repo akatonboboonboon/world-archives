@@ -2611,6 +2611,18 @@ UI_FALLBACKS.setdefault('zh', {}).update({
     'battle_bomb_lytton_notice': '李顿调查团发现了炸弹牌。你被卷入爆炸。',
 })
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'battle_bomb_notice': '爆弾カードがどこかの手札にあります。持ち主にだけ分かりやすく表示されます。',
+    'battle_bomb_start_log': '爆弾カードが誰かの手札に入りました。',
+    'battle_bomb_pass_log': '爆弾カードが移動しました。',
+    'battle_bomb_explode_log': '{player}の手札で爆弾カードが爆発し、{damage}ダメージを受けました。',
+    'battle_bomb_card_hint': '場に出すと誰かの手札へ移ります。持ったままイベントが終わると危険です。',
+    'battle_bomb_in_your_hand': '爆弾カードがあなたの手札にあります。',
+    'battle_bomb_secret_move': '爆弾カードが移動しました。',
+    'battle_bomb_lytton_explode_log': 'リットン調査団が爆弾カードを発見し、{holder}と{viewer}が{damage}ダメージに巻き込まれました。',
+    'battle_bomb_lytton_notice': 'リットン調査団が爆弾カードを見つけてしまいました。爆発に巻き込まれます。',
+})
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -8291,6 +8303,13 @@ def save_battle_state(state_data):
     BATTLE_STATE_CACHE = state_data
     BATTLE_STATE_CACHE_MTIME = file_mtime(BATTLE_STATE_FILE)
 
+def save_battle_room_snapshot(room):
+    if not isinstance(room, dict) or not room.get('id'):
+        return
+    state_data = load_battle_state()
+    state_data.setdefault('rooms', {})[str(room.get('id'))] = room
+    save_battle_state(state_data)
+
 def battle_team_hp_limit(room, team=None):
     teams = room.get('teams', {})
     counts = {}
@@ -10004,7 +10023,7 @@ def battle_apply_royal_road_supply(room, entries, result_parts, visual=None):
         if isinstance(visual, dict):
             visual.setdefault('boss_effects', []).append({'type': 'royal_road_heal', 'target': enemy, 'heal': actual})
 
-def battle_expire_bomb_event(room, result_parts):
+def battle_expire_bomb_event(room, result_parts, visual=None):
     holder = battle_find_bomb_holder(room)
     remove_all_battle_bomb_cards(room)
     room['bomb_holder'] = None
@@ -10015,6 +10034,12 @@ def battle_expire_bomb_event(room, result_parts):
     dealt = battle_apply_damage_to_player_or_team(room, holder, damage)
     if dealt:
         result_parts.append(t('battle_bomb_explode_log').format(player=holder, damage=format_battle_number(dealt)))
+        if isinstance(visual, dict):
+            visual.setdefault('bombs', []).append({
+                'player': holder,
+                'card': battle_visual_card(BATTLE_BOMB_CARD, room=room),
+                'damage': dealt,
+            })
 
 def battle_trigger_lytton_bomb(room, viewer, visible_players):
     viewer = clean_username(viewer)
@@ -10046,7 +10071,7 @@ def battle_trigger_lytton_bomb(room, viewer, visible_players):
         }],
     })
     set_battle_winner_if_finished(room)
-    save_battle_state(load_battle_state())
+    save_battle_room_snapshot(room)
     if viewer == state.current_user:
         ui.notify(t('battle_bomb_lytton_notice'), color='negative')
         ui.timer(0.2, refresh_battle_view, once=True)
@@ -10087,7 +10112,7 @@ def battle_apply_replace_event(room, result_parts):
         players=len(player_counts),
     ))
 
-def update_battle_crisis_state(room, result_parts=None):
+def update_battle_crisis_state(room, result_parts=None, visual=None):
     result_parts = result_parts if result_parts is not None else []
     turn = int(room.get('turn', 1) or 1)
     world_war_turn = battle_room_world_war_turn(room)
@@ -10112,7 +10137,7 @@ def update_battle_crisis_state(room, result_parts=None):
             room[field] = 0
     if int(room.get('bomb_until_turn', 0) or 0) and turn > int(room.get('bomb_until_turn', 0) or 0):
         room['bomb_until_turn'] = 0
-        battle_expire_bomb_event(room, result_parts)
+        battle_expire_bomb_event(room, result_parts, visual)
 
     if not battle_room_events_enabled(room):
         return
@@ -10277,15 +10302,43 @@ def apply_battle_surrender(room, player, state_data=None, timeout=False):
 
 def resolve_battle_turn(room):
     result_parts = []
-    update_battle_crisis_state(room, result_parts)
+    pre_turn_visual = {'bombs': []}
+    update_battle_crisis_state(room, result_parts, pre_turn_visual)
     players = active_battle_players(room)
     if len(players) < 2:
+        if result_parts:
+            room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {' / '.join(result_parts)}")
+            del room['log'][BATTLE_LOG_LIMIT:]
+            room['last_turn'] = trim_battle_last_turn({
+                'turn': int(room.get('turn', 1) or 1),
+                'world_war': battle_world_war_active(room),
+                'revolution': battle_revolution_active(room),
+                'flag_only': battle_flag_only_active(room),
+                'vatican': battle_vatican_active(room),
+                'replace': battle_replace_active(room),
+                'bomb': bool(pre_turn_visual.get('bombs')) or battle_bomb_active(room),
+                'lytton': battle_lytton_active(room),
+                'damage_surge': battle_damage_surge_active(room),
+                'ceasefire': battle_ceasefire_active(room),
+                'command_surge': battle_command_surge_active(room),
+                'supply_drop': battle_supply_drop_active(room),
+                'blockade': battle_blockade_active(room),
+                'played': [],
+                'damage': [],
+                'counters': [],
+                'steals': [],
+                'self_damage': [],
+                'bombs': pre_turn_visual.get('bombs', []),
+                'replacements': [],
+            })
         set_battle_winner_if_finished(room)
         return
     entries = {player: battle_entry_for_player(room, player) for player in players}
     reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
     result_parts.insert(0, battle_played_cards_log(room, entries))
     visual = battle_visual_payload(room, entries)
+    if pre_turn_visual.get('bombs'):
+        visual.setdefault('bombs', []).extend(pre_turn_visual.get('bombs', []))
     winners = []
     losers = []
     mode = room.get('mode', DUEL_MODE)
