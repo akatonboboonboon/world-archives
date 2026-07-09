@@ -38,6 +38,12 @@ BATTLE_DRAW_POOL_CACHE = {'mtime': None, 'value': None}
 RAW_PUBLIC_COUNTRY_KEYS_CACHE = {'mtime': None, 'value': None}
 QUIZ_HISTORY_LIMIT = 80
 QUIZ_EXTREME_TIME_LIMIT_SECONDS = 30
+QUIZ_TIME_LIMIT_SECONDS = {
+    'easy': 300,
+    'medium': 180,
+    'hard': 60,
+    'extreme': QUIZ_EXTREME_TIME_LIMIT_SECONDS,
+}
 
 def file_mtime(path):
     try:
@@ -1152,7 +1158,6 @@ BATTLE_RANDOM_EVENT_CHANCE = 0.03
 BATTLE_RANDOM_EVENT_MIN_TURNS = 3
 BATTLE_RANDOM_EVENT_MAX_TURNS = 7
 BATTLE_OPERATION_CONFUSION_MISSING_CHANCE_PERCENT = 20
-BATTLE_OPERATION_CONFUSION_SELF_DAMAGE_PERCENT = 8
 BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER = 0.35
 BATTLE_COMMAND_SURGE_RECOVERY = 2
 BATTLE_SUPPLY_DROP_THRESHOLD = 2
@@ -2634,7 +2639,7 @@ for _lang, _values in {
         'battle_operation_required': '作戦指定: {count}枚',
         'battle_operation_required_help': 'このターンは{count}枚まで出せます。少ない枚数で出すと、不足1枚につき20%の確率で自傷ダメージを受けます。',
         'battle_operation_too_many': '作戦混乱中は{count}枚より多く出せません。',
-        'battle_operation_self_damage_log': '{player}は作戦混乱で{missing}枚不足し、{damage}ダメージを受けました。',
+        'battle_operation_self_damage_log': '{player}は作戦混乱で{missing}枚不足し、攻撃が暴発して{damage}ダメージを受けました。',
         'battle_random_target_title': '標的錯乱',
         'battle_random_target_notice': '攻撃対象がランダムになります。チーム戦では自分のチームも対象に入ります。',
         'battle_random_target_start_log': '標的錯乱が始まりました。攻撃対象がランダムになります。',
@@ -2649,7 +2654,7 @@ for _lang, _values in {
         'battle_operation_required': 'Order: {count} cards',
         'battle_operation_required_help': 'This turn you may play up to {count} cards. If you play fewer, each missing card has a 20% chance to cause self-damage.',
         'battle_operation_too_many': 'Operation Confusion does not allow more than {count} cards.',
-        'battle_operation_self_damage_log': '{player} was short by {missing} cards and took {damage} damage from confusion.',
+        'battle_operation_self_damage_log': '{player} was short by {missing} cards; the attack misfired for {damage} self-damage.',
         'battle_random_target_title': 'Target Scramble',
         'battle_random_target_notice': 'Attack targets are randomized. In team battles, your own team can also be chosen.',
         'battle_random_target_start_log': 'Target Scramble began. Attack targets are randomized.',
@@ -2664,7 +2669,7 @@ for _lang, _values in {
         'battle_operation_required': '作战指定：{count}张',
         'battle_operation_required_help': '本回合最多可出{count}张。少出时，每少1张有20%概率受到自伤伤害。',
         'battle_operation_too_many': '作战混乱中不能超过{count}张。',
-        'battle_operation_self_damage_log': '{player}因作战混乱少出{missing}张，受到{damage}伤害。',
+        'battle_operation_self_damage_log': '{player}因作战混乱少出{missing}张，攻击暴发并受到{damage}伤害。',
         'battle_random_target_title': '目标错乱',
         'battle_random_target_notice': '攻击目标会随机决定。团队战中自己的队伍也会成为目标。',
         'battle_random_target_start_log': '目标错乱开始。攻击目标会随机决定。',
@@ -4053,7 +4058,8 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
-            'timeout': 30,
+            'player_hand_bonus': 1,
+            'timeout': 60,
             'forced_events': ['blockade', 'damage_surge'],
         },
         {
@@ -6463,7 +6469,7 @@ def quiz_option_count():
     return {'easy': 3, 'medium': 4, 'hard': 5, 'extreme': 8}.get(state.quiz_difficulty, 4)
 
 def quiz_time_limit_seconds():
-    return QUIZ_EXTREME_TIME_LIMIT_SECONDS if state.quiz_difficulty == 'extreme' else None
+    return QUIZ_TIME_LIMIT_SECONDS.get(state.quiz_difficulty)
 
 def prepare_quiz_timer(quiz):
     if not isinstance(quiz, dict):
@@ -7393,31 +7399,41 @@ def operation_confusion_missing_count(room, entry):
         return 0
     return max(0, required - len(entry.get('keys', [])))
 
-def apply_operation_confusion_penalties(room, entries, result_parts, visual=None):
-    if not battle_operation_confusion_active(room):
-        return
-    hp_limit = battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
-    damage = max(1, hp_limit * BATTLE_OPERATION_CONFUSION_SELF_DAMAGE_PERCENT // 100)
-    for player, entry in entries.items():
-        missing = operation_confusion_missing_count(room, entry)
-        if missing <= 0:
-            continue
-        chance = min(100, missing * BATTLE_OPERATION_CONFUSION_MISSING_CHANCE_PERCENT)
-        if random.randint(1, 100) > chance:
-            continue
-        dealt = battle_apply_damage_to_player_or_team(room, player, damage)
-        if dealt:
-            result_parts.append(t('battle_operation_self_damage_log').format(
-                player=player,
-                missing=missing,
-                damage=format_battle_number(dealt),
-            ))
-            if isinstance(visual, dict):
-                visual.setdefault('self_damage', []).append({
-                    'player': player,
-                    'name': t('battle_damage_surge_title'),
-                    'damage': dealt,
-                })
+def operation_confusion_triggered(room, entry):
+    missing = operation_confusion_missing_count(room, entry)
+    if missing <= 0:
+        return False, 0
+    chance = min(100, missing * BATTLE_OPERATION_CONFUSION_MISSING_CHANCE_PERCENT)
+    return random.randint(1, 100) <= chance, missing
+
+def operation_confusion_group_triggered(room, entries, players):
+    triggered = []
+    missing_total = 0
+    for player in players:
+        hit, missing = operation_confusion_triggered(room, entries.get(player))
+        if hit:
+            triggered.append(player)
+            missing_total += missing
+    return triggered, missing_total
+
+def record_operation_confusion_self_damage(room, actor_label, damage, missing, result_parts, visual=None, player=None, team=None):
+    damage = max(0, int(damage or 0))
+    if team is not None:
+        dealt = battle_apply_team_self_damage(room, team, damage)
+    else:
+        dealt = battle_apply_damage_to_player_or_team(room, player or actor_label, damage)
+    result_parts.append(t('battle_operation_self_damage_log').format(
+        player=actor_label,
+        missing=missing,
+        damage=format_battle_number(dealt),
+    ))
+    if isinstance(visual, dict):
+        visual.setdefault('self_damage', []).append({
+            'player': actor_label,
+            'name': t('battle_damage_surge_title'),
+            'damage': dealt,
+        })
+    return dealt
 
 def apply_random_target_event(room, entries, result_parts):
     if not battle_random_target_active(room):
@@ -10577,24 +10593,32 @@ def resolve_battle_turn(room):
                 breakdown['raw_team_attack'] = raw_power
                 breakdown['split_count'] = split_count
                 breakdown['split_penalty_value'] = max(0, raw_power - win_power)
+                damage, counter = breakdown['damage'], breakdown['counter']
+                damage = battle_apply_enemy_extra_actions(room, damage, source_team=source_team, breakdown=breakdown)
+                confused_players, missing_total = operation_confusion_group_triggered(room, entries, attack_players)
+                if confused_players:
+                    team_label = f"{t('battle_team')} {source_team}"
+                    actor_label = f"{team_label} ({', '.join(confused_players)})"
+                    dealt = battle_apply_team_self_damage(room, source_team, damage)
+                    visual['damage'].append({
+                        'source': actor_label,
+                        'target': actor_label,
+                        'damage': dealt,
+                        'breakdown': breakdown,
+                        'outcome': 'self_damage' if dealt else 'blocked',
+                    })
+                    visual.setdefault('self_damage', []).append({
+                        'player': actor_label,
+                        'name': t('battle_damage_surge_title'),
+                        'damage': dealt,
+                    })
+                    result_parts.append(t('battle_operation_self_damage_log').format(
+                        player=actor_label,
+                        missing=missing_total,
+                        damage=format_battle_number(dealt),
+                    ))
+                    continue
                 if battle_random_target_active(room) and target_team == source_team:
-                    breakdown = battle_damage_breakdown(
-                        win_power,
-                        0,
-                        0,
-                        labels,
-                        room.get('turn', 1),
-                        battle_world_war_active(room),
-                        battle_group_event_damage_multiplier(room, attack_players),
-                        defense_base=0,
-                        defense_labels=[],
-                        defense_multiplier=1,
-                        counter_event_multiplier=1,
-                    )
-                    breakdown['raw_team_attack'] = raw_power
-                    breakdown['split_count'] = split_count
-                    breakdown['split_penalty_value'] = max(0, raw_power - win_power)
-                    damage = battle_apply_enemy_extra_actions(room, breakdown['damage'], source_team=source_team, breakdown=breakdown)
                     damage = battle_apply_team_self_damage(room, source_team, damage)
                     team_label = f"{t('battle_team')} {source_team}"
                     visual['damage'].append({
@@ -10615,8 +10639,6 @@ def resolve_battle_turn(room):
                         damage=format_battle_number(damage),
                     ))
                     continue
-                damage, counter = breakdown['damage'], breakdown['counter']
-                damage = battle_apply_enemy_extra_actions(room, damage, source_team=source_team, breakdown=breakdown)
                 if damage:
                     damage, shield_message = battle_apply_team_direct_damage(room, target_team, damage, source_team, attack_keys, breakdown)
                     if shield_message:
@@ -10710,6 +10732,25 @@ def resolve_battle_turn(room):
             damage_events.append((attacker, target, damage, counter, labels, multiplier, breakdown))
         for attacker, target, damage, counter, labels, multiplier, breakdown in damage_events:
             damage = battle_apply_enemy_extra_actions(room, damage, source_player=attacker, breakdown=breakdown)
+            confused, missing = operation_confusion_triggered(room, entries.get(attacker))
+            if confused:
+                dealt = record_operation_confusion_self_damage(
+                    room,
+                    attacker,
+                    damage,
+                    missing,
+                    result_parts,
+                    visual,
+                    player=attacker,
+                )
+                visual['damage'].append({
+                    'source': attacker,
+                    'target': attacker,
+                    'damage': dealt,
+                    'breakdown': breakdown,
+                    'outcome': 'self_damage' if dealt else 'blocked',
+                })
+                continue
             damage, shield_message = battle_apply_direct_damage(room, target, damage, attacker, breakdown, entries.get(attacker, {}).get('keys', []))
             if shield_message:
                 result_parts.append(shield_message)
@@ -10763,39 +10804,58 @@ def resolve_battle_turn(room):
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage = battle_apply_enemy_extra_actions(room, damage, source_player=player_one, breakdown=breakdown)
-            damage, shield_message = battle_apply_direct_damage(room, player_two, damage, player_one, breakdown, entries[player_one].get('keys', []))
-            if shield_message:
-                result_parts.append(shield_message)
-            if counter:
-                counter, counter_shield_message = battle_apply_direct_damage(room, player_one, counter, player_two, breakdown, entries[player_two].get('defense_keys', []))
-                if counter_shield_message:
-                    result_parts.append(counter_shield_message)
-                if counter > 0:
-                    winners = [player_two]
-                    losers = [player_one]
-            if damage > 0:
-                winners = [player_one]
-                losers = [player_two]
-            visual['damage'].append({
-                'source': player_one,
-                'target': player_two,
-                'damage': damage,
-                'breakdown': breakdown,
-                'outcome': 'damage' if damage else 'blocked',
-            })
-            if counter > 0:
-                visual['counters'].append({
-                    'source': player_two,
+            confused, missing = operation_confusion_triggered(room, entries.get(player_one))
+            if confused:
+                dealt = record_operation_confusion_self_damage(
+                    room,
+                    player_one,
+                    damage,
+                    missing,
+                    result_parts,
+                    visual,
+                    player=player_one,
+                )
+                visual['damage'].append({
+                    'source': player_one,
                     'target': player_one,
-                    'damage': counter,
+                    'damage': dealt,
                     'breakdown': breakdown,
+                    'outcome': 'self_damage' if dealt else 'blocked',
                 })
-                result_parts.append(t('battle_counter_log').format(
-                    defender=player_two,
-                    attacker=player_one,
-                    damage=format_battle_number(counter),
-                ))
-            result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
+            else:
+                damage, shield_message = battle_apply_direct_damage(room, player_two, damage, player_one, breakdown, entries[player_one].get('keys', []))
+                if shield_message:
+                    result_parts.append(shield_message)
+                if counter:
+                    counter, counter_shield_message = battle_apply_direct_damage(room, player_one, counter, player_two, breakdown, entries[player_two].get('defense_keys', []))
+                    if counter_shield_message:
+                        result_parts.append(counter_shield_message)
+                    if counter > 0:
+                        winners = [player_two]
+                        losers = [player_one]
+                if damage > 0:
+                    winners = [player_one]
+                    losers = [player_two]
+                visual['damage'].append({
+                    'source': player_one,
+                    'target': player_two,
+                    'damage': damage,
+                    'breakdown': breakdown,
+                    'outcome': 'damage' if damage else 'blocked',
+                })
+                if counter > 0:
+                    visual['counters'].append({
+                        'source': player_two,
+                        'target': player_one,
+                        'damage': counter,
+                        'breakdown': breakdown,
+                    })
+                    result_parts.append(t('battle_counter_log').format(
+                        defender=player_two,
+                        attacker=player_one,
+                        damage=format_battle_number(counter),
+                    ))
+                result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
             multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
             breakdown = battle_damage_breakdown(
@@ -10813,39 +10873,58 @@ def resolve_battle_turn(room):
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage = battle_apply_enemy_extra_actions(room, damage, source_player=player_two, breakdown=breakdown)
-            damage, shield_message = battle_apply_direct_damage(room, player_one, damage, player_two, breakdown, entries[player_two].get('keys', []))
-            if shield_message:
-                result_parts.append(shield_message)
-            if counter:
-                counter, counter_shield_message = battle_apply_direct_damage(room, player_two, counter, player_one, breakdown, entries[player_one].get('defense_keys', []))
-                if counter_shield_message:
-                    result_parts.append(counter_shield_message)
-                if counter > 0:
-                    winners = [player_one]
-                    losers = [player_two]
-            if damage > 0:
-                winners = [player_two]
-                losers = [player_one]
-            visual['damage'].append({
-                'source': player_two,
-                'target': player_one,
-                'damage': damage,
-                'breakdown': breakdown,
-                'outcome': 'damage' if damage else 'blocked',
-            })
-            if counter > 0:
-                visual['counters'].append({
-                    'source': player_one,
+            confused, missing = operation_confusion_triggered(room, entries.get(player_two))
+            if confused:
+                dealt = record_operation_confusion_self_damage(
+                    room,
+                    player_two,
+                    damage,
+                    missing,
+                    result_parts,
+                    visual,
+                    player=player_two,
+                )
+                visual['damage'].append({
+                    'source': player_two,
                     'target': player_two,
-                    'damage': counter,
+                    'damage': dealt,
                     'breakdown': breakdown,
+                    'outcome': 'self_damage' if dealt else 'blocked',
                 })
-                result_parts.append(t('battle_counter_log').format(
-                    defender=player_one,
-                    attacker=player_two,
-                    damage=format_battle_number(counter),
-                ))
-            result_parts.append(f"{player_one} vs {player_two}: {player_one} -{format_battle_number(damage)}{battle_defense_text(entries[player_one])}{battle_bonus_text(labels, multiplier)}")
+            else:
+                damage, shield_message = battle_apply_direct_damage(room, player_one, damage, player_two, breakdown, entries[player_two].get('keys', []))
+                if shield_message:
+                    result_parts.append(shield_message)
+                if counter:
+                    counter, counter_shield_message = battle_apply_direct_damage(room, player_two, counter, player_one, breakdown, entries[player_one].get('defense_keys', []))
+                    if counter_shield_message:
+                        result_parts.append(counter_shield_message)
+                    if counter > 0:
+                        winners = [player_one]
+                        losers = [player_two]
+                if damage > 0:
+                    winners = [player_two]
+                    losers = [player_one]
+                visual['damage'].append({
+                    'source': player_two,
+                    'target': player_one,
+                    'damage': damage,
+                    'breakdown': breakdown,
+                    'outcome': 'damage' if damage else 'blocked',
+                })
+                if counter > 0:
+                    visual['counters'].append({
+                        'source': player_one,
+                        'target': player_two,
+                        'damage': counter,
+                        'breakdown': breakdown,
+                    })
+                    result_parts.append(t('battle_counter_log').format(
+                        defender=player_one,
+                        attacker=player_two,
+                        damage=format_battle_number(counter),
+                    ))
+                result_parts.append(f"{player_one} vs {player_two}: {player_one} -{format_battle_number(damage)}{battle_defense_text(entries[player_one])}{battle_bonus_text(labels, multiplier)}")
         else:
             breakdown = battle_damage_breakdown(power_one, power_two, 0, [], room.get('turn', 1), battle_world_war_active(room), event_multiplier)
             visual['damage'].append({
@@ -10861,7 +10940,6 @@ def resolve_battle_turn(room):
     battle_apply_royal_road_supply(room, entries, result_parts, visual)
     steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual, entries)
     apply_battle_special_card_damage(room, result_parts, visual)
-    apply_operation_confusion_penalties(room, entries, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
     room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
     del room['log'][BATTLE_LOG_LIMIT:]
