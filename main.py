@@ -3671,6 +3671,11 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
+            'bot_hp_percent': 70,
+            'bot_card_limit': 2,
+            'bot_choice_pool': 4,
+            'bot_strategy': 'training',
+            'player_hand_bonus': 1,
             'timeout': 180,
             'forced_events': [],
         },
@@ -3762,6 +3767,11 @@ def sengoku_boss_definitions():
             'mode': BOT_MODE,
             'enemy_count': 1,
             'hp_multiplier': 1,
+            'bot_hp_percent': 70,
+            'bot_card_limit': 2,
+            'bot_choice_pool': 4,
+            'bot_strategy': 'training',
+            'player_hand_bonus': 1,
             'timeout': 180,
             'forced_events': [],
         },
@@ -7545,6 +7555,12 @@ def battle_player_hp_limit(room, player):
             limit *= max(1, int(boss.get('hp_multiplier', 1) or 1))
         except (TypeError, ValueError):
             pass
+        try:
+            hp_percent = int(boss.get('bot_hp_percent', 100) or 100)
+            if hp_percent > 0:
+                limit = max(1, limit * hp_percent // 100)
+        except (TypeError, ValueError):
+            pass
     return limit
 
 def battle_deal_count_for_player(room, player):
@@ -7553,6 +7569,10 @@ def battle_deal_count_for_player(room, player):
     if boss and boss.get('player_hand_multiplier') and not is_battle_bot(player):
         try:
             count *= max(1, int(boss.get('player_hand_multiplier', 1) or 1))
+        except (TypeError, ValueError):
+            pass
+        try:
+            count += max(0, int(boss.get('player_hand_bonus', 0) or 0))
         except (TypeError, ValueError):
             pass
     return count
@@ -9903,7 +9923,21 @@ def choose_bot_battle_cards(hand, room=None, player=None):
         return []
     human_players = [name for name in active_battle_players(room) if not is_battle_bot(name)] if room else []
     if room and room.get('sengoku_mode') and player and is_battle_bot(player) and len(human_players) <= 1:
+        boss = sengoku_boss_for_room(room)
+        try:
+            if boss and boss.get('bot_card_limit'):
+                max_playable = min(max_playable, max(1, int(boss.get('bot_card_limit') or max_playable)))
+        except (TypeError, ValueError):
+            pass
         playable = sorted(playable, key=lambda key: battle_card_power_for_key(key, room=room), reverse=True)
+        if boss and boss.get('bot_strategy') == 'training':
+            try:
+                pool_size = max(max_playable, int(boss.get('bot_choice_pool', max_playable) or max_playable))
+            except (TypeError, ValueError):
+                pool_size = max_playable
+            pool = playable[:max(1, min(len(playable), pool_size))]
+            count = min(len(pool), random.randint(1, max_playable))
+            return random.sample(pool, count)
         return playable[:max_playable]
     max_cards = min(len(playable), random.randint(1, max_playable))
     return random.sample(playable, max_cards)
