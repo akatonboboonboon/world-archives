@@ -1109,6 +1109,7 @@ class AppState:
     social_notify_snapshot = None
     ranking_quiz_category = 'overall'
     current_screen = 'top'
+    detail_return_screen = 'main'
 
 state = AppState()
 
@@ -6415,7 +6416,21 @@ def set_network_country(country):
     state.network_country_key = country_key(country)
     show_screen('network')
 
-def open_country_detail(country):
+DETAIL_RETURN_SCREENS = {
+    'main', 'quiz', 'compare', 'timeline', 'map', 'network',
+    'account', 'users', 'public_collection', 'rankings', 'social',
+}
+
+def result_return_screen():
+    screen = getattr(state, 'detail_return_screen', 'main')
+    return screen if screen in DETAIL_RETURN_SCREENS and state.current_user else ('main' if state.current_user else 'top')
+
+def open_country_detail(country, return_screen=None):
+    source_screen = return_screen or getattr(state, 'current_screen', 'main')
+    if source_screen in DETAIL_RETURN_SCREENS:
+        state.detail_return_screen = source_screen
+    elif source_screen != 'result':
+        state.detail_return_screen = 'main'
     state.selected_country = country
     add_history(country)
     show_screen('result')
@@ -11491,9 +11506,8 @@ def jump_from_history(history_item):
     if hist_key:
         target_country = countries_by_key(data).get(hist_key)
         if target_country:
-            state.selected_country = target_country
             history_drawer.hide()
-            show_screen('result')
+            open_country_detail(target_country, return_screen='main')
             return
     code = history_item.get('flag_code')
     hist_name = history_item.get('name')
@@ -11509,9 +11523,8 @@ def jump_from_history(history_item):
         target_country = candidates[0]
 
     if target_country:
-        state.selected_country = target_country
         history_drawer.hide()
-        show_screen('result')
+        open_country_detail(target_country, return_screen='main')
 
 def refresh_history_content():
     history_content.clear()
@@ -11529,6 +11542,12 @@ def refresh_history_content():
                     card.on('click', lambda _, item=h: jump_from_history(item))
                     ui.label(h['name']).classes('font-bold text-gray-800')
                     ui.label(format_timestamp(h.get('timestamp'))).classes('text-xs text-gray-400 mt-1')
+
+def open_history_box():
+    refresh_history_content()
+    if notification_drawer.value:
+        notification_drawer.hide()
+    history_drawer.toggle()
 
 def open_notifications_box():
     refresh_notification_content()
@@ -11590,18 +11609,25 @@ def render_header(container):
                     ui.item('English (EN)', on_click=lambda: switch_language('en'))
                     ui.item('中文 (ZH)', on_click=lambda: switch_language('zh'))
                 if state.current_user:
+                    ui.button(icon='search', on_click=lambda: show_screen('main')) \
+                        .props('flat round color=white') \
+                        .tooltip(t('back_search'))
+                    ui.button(icon='history', on_click=open_history_box) \
+                        .props('flat round color=white') \
+                        .tooltip(t('history'))
                     header_user = get_current_user_record()
-                    render_avatar_image(
-                        current_user_avatar_url(header_user),
-                        header_user,
-                        'w-8 h-8 rounded-full border-2 border-white shadow bg-white flex-shrink-0',
-                        icon_size='2rem',
-                        icon_classes='text-white',
-                    )
-                    header_name = current_user_display_name(header_user)
-                    ui.label(header_name) \
-                        .classes('wa-user-pill text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
-                        .style(f'color: {user_pill_text_color(header_user)};')
+                    with ui.row().classes('gap-2 items-center cursor-pointer').on('click', lambda: show_screen('account')):
+                        render_avatar_image(
+                            current_user_avatar_url(header_user),
+                            header_user,
+                            'w-8 h-8 rounded-full border-2 border-white shadow bg-white flex-shrink-0',
+                            icon_size='2rem',
+                            icon_classes='text-white',
+                        )
+                        header_name = current_user_display_name(header_user)
+                        ui.label(header_name) \
+                            .classes('wa-user-pill text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
+                            .style(f'color: {user_pill_text_color(header_user)};')
                     if header_user and sengoku_is_user_eligible(user=header_user):
                         ui.button(
                             t('normal_mode') if state.sengoku_mode else t('sengoku_mode'),
@@ -11617,11 +11643,6 @@ def render_header(container):
                         ui.button(icon='notifications', on_click=open_notifications_box) \
                             .props('flat round color=white') \
                             .tooltip(t('notifications'))
-                def open_history():
-                    refresh_history_content()
-                    if notification_drawer.value:
-                        notification_drawer.hide()
-                    history_drawer.toggle()
                 menu_text = {'ja': '機能', 'en': 'Features', 'zh': '功能'}.get(state.lang, 'Features')
                 with ui.dropdown_button(text=menu_text, icon='apps', auto_close=True).props('flat color=white dense'):
                     ui.item(help_labels()['nav'], on_click=lambda: show_screen('help'))
@@ -11639,8 +11660,6 @@ def render_header(container):
                     ui.item(t('rankings'), on_click=lambda: show_screen('rankings'))
                     ui.item(t('friends'), on_click=lambda: show_screen('social'))
                     ui.item(t('account'), on_click=lambda: show_screen('account'))
-                    ui.separator()
-                    ui.item(t('history'), on_click=open_history)
                 if state.current_user:
                     ui.button(icon='logout', on_click=logout_user).props('flat round color=white').tooltip(t('logout'))
 
@@ -12091,9 +12110,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                 render_pagination(total_pages)
 
         def select_country(country):
-            state.selected_country = country
-            add_history(country)
-            show_screen('result')
+            open_country_detail(country, return_screen='main')
 
 # ========================================
 # 3. 結果画面
@@ -12120,7 +12137,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
         with result_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
-                ui.button(t('back_search'), icon='arrow_back', on_click=lambda: show_screen('main')) \
+                ui.button(t('back_search'), icon='arrow_back', on_click=lambda: show_screen(result_return_screen())) \
                     .props('flat color=grey dense text-lg') \
                     .classes('w-full' if is_mobile_ui() else '')
                 favorite_label = t('favorite_remove') if is_favorite(c) else t('favorite_add')
@@ -12325,9 +12342,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
             return
         country = countries_by_key().get(state.quiz['answer_key'])
         if country:
-            state.selected_country = country
-            add_history(country)
-            show_screen('result')
+            open_country_detail(country, return_screen='quiz')
 
     def refresh_quiz_view():
         global quiz_timer_label
