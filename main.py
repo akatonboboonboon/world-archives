@@ -8,6 +8,7 @@ Render Disk上のUSER_DATA_FILEに保存します。
 from nicegui import ui, app
 import base64
 import hashlib
+import inspect
 import json
 import math
 import os
@@ -3718,29 +3719,35 @@ def restore_user_backup_payload(payload, target_username=None, target_password=N
             sync_current_user_to_browser(user_data)
     return restored
 
-def read_backup_upload_text(event):
+async def await_if_needed(value):
+    if inspect.isawaitable(value):
+        return await value
+    return value
+
+async def read_file_like_upload(source):
+    if source is None or not hasattr(source, 'read'):
+        return None
+    if hasattr(source, 'seek'):
+        try:
+            await await_if_needed(source.seek(0))
+        except Exception:
+            pass
+    return await await_if_needed(source.read())
+
+async def read_backup_upload_text(event):
     content = getattr(event, 'content', None)
     raw = None
     if isinstance(content, str):
         return content
     if isinstance(content, (bytes, bytearray)):
         raw = bytes(content)
-    elif hasattr(content, 'read'):
-        try:
-            content.seek(0)
-        except Exception:
-            pass
-        raw = content.read()
+    else:
+        raw = await read_file_like_upload(content)
     if raw is None and hasattr(event, 'file'):
-        file_obj = getattr(event, 'file')
-        if hasattr(file_obj, 'read'):
-            try:
-                file_obj.seek(0)
-            except Exception:
-                pass
-            raw = file_obj.read()
+        raw = await read_file_like_upload(getattr(event, 'file'))
     if raw is None:
         raw = getattr(event, 'bytes', None) or getattr(event, 'data', None) or getattr(event, 'value', None)
+        raw = await await_if_needed(raw)
     if isinstance(raw, str):
         return raw
     if isinstance(raw, bytearray):
@@ -3753,13 +3760,28 @@ def read_backup_upload_text(event):
                 continue
     raise ValueError(f'Unsupported upload content: {type(content).__name__}')
 
-def import_user_backup_file(event, target_username=None, target_password=None, refresh_after=True, login_after=False):
+def parse_backup_json(raw):
+    raw = str(raw or '').lstrip('\ufeff').strip()
+    if not raw:
+        raise ValueError('Backup file is empty')
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        starts = [index for index in [raw.find('{'), raw.find('[')] if index >= 0]
+        ends = [index for index in [raw.rfind('}'), raw.rfind(']')] if index >= 0]
+        if not starts or not ends:
+            raise
+        start = min(starts)
+        end = max(ends)
+        if start > end:
+            raise
+        return json.loads(raw[start:end + 1])
+
+async def import_user_backup_file(event, target_username=None, target_password=None, refresh_after=True, login_after=False):
     labels = backup_labels()
     try:
-        raw = read_backup_upload_text(event).strip()
-        if not raw:
-            raise ValueError('Backup file is empty')
-        payload = json.loads(raw)
+        raw = await read_backup_upload_text(event)
+        payload = parse_backup_json(raw)
         explicit_target = clean_username(target_username)
         target = explicit_target if explicit_target else state.current_user
         restored = restore_user_backup_payload(
@@ -3805,14 +3827,14 @@ def enter_restored_guest(guest_username):
     show_screen('top')
     return True
 
-def import_guest_backup_file(event):
+async def import_guest_backup_file(event):
     guest_id = str(uuid.uuid4())
     guest_username = guest_username_from_id(guest_id)
     try:
         ui.run_javascript(f"localStorage.setItem('{GUEST_BROWSER_KEY}', {json.dumps(guest_id)});")
     except Exception as e:
         print(f"Guest id browser save skipped: {e}", flush=True)
-    restored = import_user_backup_file(
+    restored = await import_user_backup_file(
         event,
         target_username=guest_username,
         refresh_after=False,
