@@ -13,6 +13,7 @@ import math
 import os
 import random
 import re
+import uuid
 from datetime import datetime, timedelta, timezone
 from html import escape as html_escape
 from urllib.parse import quote_plus
@@ -66,6 +67,7 @@ def resolve_user_data_file():
 
 USER_DATA_FILE = resolve_user_data_file()
 GUEST_USERNAME = '__guest__'
+GUEST_BROWSER_KEY = 'world_archives_guest_id'
 KAKASI_CONVERTER = None
 PINYIN_CONVERTER = None
 APP_TIMEZONE = timezone(timedelta(hours=9), 'JST')
@@ -2868,6 +2870,31 @@ def derived_country_data(data=None):
 def clean_username(username):
     return (username or '').strip()
 
+def guest_username_from_id(guest_id):
+    guest_id = re.sub(r'[^A-Za-z0-9_-]', '', str(guest_id or ''))[:64]
+    return f'{GUEST_USERNAME}:{guest_id}' if guest_id else GUEST_USERNAME
+
+async def browser_guest_username():
+    script = f"""
+    (() => {{
+      const key = '{GUEST_BROWSER_KEY}';
+      let guestId = localStorage.getItem(key);
+      if (!guestId) {{
+        guestId = (window.crypto && window.crypto.randomUUID)
+          ? window.crypto.randomUUID()
+          : `${{Date.now()}}-${{Math.random().toString(36).slice(2)}}`;
+        localStorage.setItem(key, guestId);
+      }}
+      return guestId;
+    }})()
+    """
+    try:
+        guest_id = await ui.run_javascript(script)
+    except Exception as e:
+        print(f"Browser guest id fallback used: {e}", flush=True)
+        guest_id = str(uuid.uuid4())
+    return guest_username_from_id(guest_id)
+
 def password_hash(username, password):
     return hashlib.sha256(f'{username}:{password}'.encode('utf-8')).hexdigest()
 
@@ -2883,6 +2910,9 @@ def is_guest_record(username, record=None):
         or str(username).startswith(f'{GUEST_USERNAME}:')
         or (isinstance(record, dict) and bool(record.get('is_guest')))
     )
+
+def is_current_user_guest():
+    return is_guest_record(state.current_user, get_current_user_record())
 
 def get_current_user_record(user_data=None):
     if not state.current_user:
@@ -3164,7 +3194,6 @@ def request_browser_backup_restore():
     script = f"""
     (async () => {{
       const backupKey = '{BROWSER_BACKUP_KEY}';
-      const publicBackupKey = '{PUBLIC_BROWSER_BACKUP_KEY}';
       const knownKey = 'world_archives_known_usernames';
       const collected = {{}};
       const knownUsers = new Set();
@@ -3226,18 +3255,9 @@ def request_browser_backup_restore():
         }});
       }};
       collectPayload(localStorage.getItem(backupKey));
-      collectPayload(localStorage.getItem(publicBackupKey));
       try {{
         collectPayload({{known_users: JSON.parse(localStorage.getItem(knownKey) || '[]')}});
       }} catch (error) {{}}
-      for (let i = 0; i < localStorage.length; i += 1) {{
-        const key = localStorage.key(i) || '';
-        if (key === backupKey || key === publicBackupKey) continue;
-        const lowerKey = key.toLowerCase();
-        if (lowerKey.includes('world') || lowerKey.includes('archive') || lowerKey.includes('user')) {{
-          collectPayload(localStorage.getItem(key));
-        }}
-      }}
       if (!Object.keys(collected).length && !knownUsers.size) return;
       try {{
         await fetch('/api/restore-user-backups', {{
@@ -3653,6 +3673,13 @@ def restore_user_backup_payload(payload):
         if not record:
             continue
         remember_known_user(username, user_data)
+        existing = users.get(username, {})
+        if (
+            not is_guest_record(username, existing)
+            and not (isinstance(existing, dict) and existing.get('password_hash'))
+            and not record.get('password_hash')
+        ):
+            continue
         users[username] = merge_user_record(users.get(username, {}), record)
         apply_restored_progress_snapshot(users[username], record)
         ensure_user_defaults(users[username])
@@ -3687,7 +3714,7 @@ def restore_from_browser_backup():
     ui.notify(labels['restore_browser'], color='info')
 
 def current_user_label():
-    if state.current_user == GUEST_USERNAME:
+    if is_guest_record(state.current_user):
         return t('guest_user')
     return state.current_user or ''
 
@@ -4095,6 +4122,10 @@ def login_user(username, password):
         return False
     user_data = load_user_data()
     user = get_users(user_data).get(username)
+    if user and not is_guest_record(username, user) and not user.get('password_hash'):
+        user['password_hash'] = password_hash(username, password)
+        ensure_user_defaults(user)
+        save_user_data(user_data)
     if not user or user.get('password_hash') != password_hash(username, password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
@@ -4106,7 +4137,6 @@ def login_user(username, password):
     sengoku_unlocked_now = mark_sengoku_unlock_if_ready(user)
     state.sengoku_mode = bool(user.get('sengoku_mode') and user.get('sengoku_unlocked'))
     persist_current_user_data(user_data)
-    request_browser_backup_restore()
     ui.timer(1.2, lambda: sync_current_user_to_browser(load_user_data()), once=True)
     reset_social_notification_state(show_existing=True)
     ui.notify(t('login_success'), color='positive')
@@ -4117,10 +4147,11 @@ def login_user(username, password):
     show_screen('top')
     return True
 
-def guest_login():
+async def guest_login():
+    guest_username = await browser_guest_username()
     user_data = load_user_data()
     users = get_users(user_data)
-    guest = users.setdefault(GUEST_USERNAME, {
+    guest = users.setdefault(guest_username, {
         'password_hash': '',
         'favorites': [],
         'history': [],
@@ -4137,7 +4168,7 @@ def guest_login():
         },
     })
     guest['is_guest'] = True
-    state.current_user = GUEST_USERNAME
+    state.current_user = guest_username
     state.users_browser_restore_requested = False
     ensure_user_defaults(guest)
     unlocked_now = mark_battle_unlock_if_ready(guest)
@@ -4160,7 +4191,23 @@ def register_user(username, password):
         return False
     user_data = load_user_data()
     users = get_users(user_data)
-    if username == GUEST_USERNAME or username in users:
+    if is_guest_record(username):
+        ui.notify(t('user_exists'), color='warning')
+        return False
+    existing_user = users.get(username)
+    if isinstance(existing_user, dict) and not existing_user.get('password_hash') and not is_guest_record(username, existing_user):
+        existing_user['password_hash'] = password_hash(username, password)
+        ensure_user_defaults(existing_user)
+        remember_known_user(username, user_data)
+        state.current_user = username
+        state.users_browser_restore_requested = False
+        state.sengoku_mode = bool(existing_user.get('sengoku_mode') and existing_user.get('sengoku_unlocked'))
+        persist_current_user_data(user_data)
+        reset_social_notification_state()
+        ui.notify(t('user_created'), color='positive')
+        show_screen('top')
+        return True
+    if username in users:
         ui.notify(t('user_exists'), color='warning')
         return False
     users[username] = {
@@ -4220,7 +4267,7 @@ def rename_current_account(new_username, current_password):
     if not old_username:
         ui.notify(t('login_required'), color='warning')
         return False
-    if old_username == GUEST_USERNAME:
+    if is_guest_record(old_username):
         ui.notify(t('cannot_manage_guest'), color='warning')
         return False
     new_username = clean_username(new_username)
@@ -4233,7 +4280,7 @@ def rename_current_account(new_username, current_password):
     if not user or not current_password_is_valid(user, current_password):
         ui.notify(t('auth_invalid'), color='negative')
         return False
-    if new_username == GUEST_USERNAME or (new_username != old_username and new_username in users):
+    if is_guest_record(new_username) or (new_username != old_username and new_username in users):
         ui.notify(t('user_exists'), color='warning')
         return False
     if new_username == old_username:
@@ -4259,7 +4306,7 @@ def change_current_password(current_password, new_password):
     if not state.current_user:
         ui.notify(t('login_required'), color='warning')
         return False
-    if state.current_user == GUEST_USERNAME:
+    if is_current_user_guest():
         ui.notify(t('cannot_manage_guest'), color='warning')
         return False
     if not current_password or not new_password:
@@ -4281,7 +4328,7 @@ def delete_current_account(current_password):
     if not username:
         ui.notify(t('login_required'), color='warning')
         return False
-    if username == GUEST_USERNAME:
+    if is_guest_record(username):
         ui.notify(t('cannot_manage_guest'), color='warning')
         return False
     if not current_password:
@@ -4404,7 +4451,7 @@ def friend_status(target_username, user_data=None):
 def send_friend_request(target_username):
     current = state.current_user
     target = clean_username(target_username)
-    if not current or current == GUEST_USERNAME:
+    if not current or is_guest_record(current):
         ui.notify(t('login_required'), color='warning')
         return False
     if not target or target == current:
@@ -4512,7 +4559,7 @@ def parse_group_members(text):
 
 def create_group_chat(group_name, member_text):
     current = state.current_user
-    if not current or current == GUEST_USERNAME:
+    if not current or is_guest_record(current):
         ui.notify(t('login_required'), color='warning')
         return False
     user_data = load_user_data()
@@ -4628,7 +4675,7 @@ def notification_event_id(event):
 
 def store_notification_events(events, username=None):
     username = username or state.current_user
-    if not username or username == GUEST_USERNAME:
+    if not username or is_guest_record(username):
         return []
     user_data = load_user_data()
     user = get_named_user_record(username, user_data)
@@ -4660,7 +4707,7 @@ def store_notification_events(events, username=None):
     return added
 
 def mark_notification_read(notification_id=None, mark_all=False):
-    if not state.current_user or state.current_user == GUEST_USERNAME:
+    if not state.current_user or is_current_user_guest():
         return
     user_data = load_user_data()
     user = get_current_user_record(user_data)
@@ -11442,8 +11489,6 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
     def refresh_top_ui():
         top_container.clear()
         apply_theme()
-        if not state.current_user:
-            request_browser_backup_restore()
         update_mode_classes(top_container, 'items-center gap-4', 'items-center gap-3 px-6 text-center max-w-sm')
         with top_container:
             ui.icon('public', size='4.5rem' if is_mobile_ui() else '6rem').classes('text-[#1a2332]')
@@ -11518,6 +11563,9 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
                             .classes('flex-grow')
                     ui.button(t('guest_login'), icon='person', on_click=guest_login) \
                         .props('outline color=grey') \
+                        .classes('w-full')
+                    ui.button(backup_labels()['restore_browser'], icon='cloud_sync', on_click=restore_from_browser_backup) \
+                        .props('outline color=primary') \
                         .classes('w-full')
             with ui.row().classes('mt-8 gap-4'):
                 ui.link('JA', '#').on('click', lambda: switch_language('ja'))
@@ -12974,7 +13022,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as social_scree
                 render_selected_chat(chats)
 
 def poll_social_updates():
-    if not state.current_user or state.current_user == GUEST_USERNAME:
+    if not state.current_user or is_current_user_guest():
         return
     snapshot = social_activity_snapshot()
     signature = social_activity_signature(snapshot)
@@ -13915,7 +13963,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                         on_change=lambda e: set_current_public_visibility(e.value),
                     ).props('color=primary')
                     ui.label(t('hide_public_profile_hint')).classes('text-xs text-gray-500')
-                if state.current_user == GUEST_USERNAME:
+                if is_current_user_guest():
                     ui.label(t('cannot_manage_guest')).classes('text-sm text-gray-500')
                 else:
                     with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
