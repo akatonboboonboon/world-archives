@@ -504,6 +504,23 @@ html.wa-dark body .wa-light-fallback .q-field__label {
   background-color: #ffffff !important;
   color: #111827 !important;
 }
+html.wa-dark body .wa-user-pill,
+html.wa-dark body .wa-user-pill * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}
+html.wa-dark body .wa-type-filter .q-btn.bg-white,
+html.wa-dark body .wa-type-filter .q-btn.text-grey-8 {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+html.wa-dark body .wa-type-filter .q-btn.bg-white .q-btn__content,
+html.wa-dark body .wa-type-filter .q-btn.text-grey-8 .q-btn__content {
+  color: #111827 !important;
+}
 </style>
 """)
 
@@ -11047,7 +11064,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                             .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
 
                 with ui.row().classes('w-full gap-3 items-stretch mt-4 flex-col' if is_mobile_ui() else 'w-full justify-between items-center mt-4'):
-                    with ui.button_group().props('unelevated'):
+                    with ui.button_group().props('unelevated').classes('wa-type-filter'):
                         for key in ['All', 'Present', 'Past']:
                             label = t('tabs', key)
                             color = 'blue' if state.filter_type == key else 'white'
