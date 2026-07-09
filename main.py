@@ -2923,6 +2923,9 @@ def user_name_color(user=None):
         return normalize_name_color(user.get('name_color'))
     return DEFAULT_NAME_COLOR
 
+def user_pill_text_color(user=None):
+    return '#111827' if state.theme_mode == 'dark' else user_name_color(user)
+
 def normalize_avatar_adjustment(avatar):
     if not isinstance(avatar, dict):
         return {'mode': 'default', **default_avatar_adjustment()}
@@ -10719,7 +10722,7 @@ def render_header(container):
                     header_name = current_user_display_name(header_user)
                     ui.label(header_name) \
                         .classes('wa-user-pill text-sm font-bold px-2 py-1 rounded-full bg-white shadow-sm') \
-                        .style(f'color: {user_name_color(header_user)};')
+                        .style(f'color: {user_pill_text_color(header_user)};')
                     if header_user and sengoku_is_user_eligible(user=header_user):
                         ui.button(
                             t('normal_mode') if state.sengoku_mode else t('sengoku_mode'),
@@ -10794,7 +10797,7 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
                 top_name = current_user_display_name(top_user)
                 ui.label(t('logged_in_as').format(user=top_name)) \
                     .classes('wa-user-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
-                    .style(f'color: {user_name_color(top_user)};')
+                    .style(f'color: {user_pill_text_color(top_user)};')
                 daily = today_country()
                 if daily:
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
@@ -11067,10 +11070,11 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                     with ui.button_group().props('unelevated').classes('wa-type-filter'):
                         for key in ['All', 'Present', 'Past']:
                             label = t('tabs', key)
-                            color = 'blue' if state.filter_type == key else 'white'
-                            text_color = 'white' if state.filter_type == key else 'grey-8'
-                            ui.button(label, on_click=lambda e, k=key: set_type_filter(k)) \
-                                .props(f'color={color} text-color={text_color}')
+                            selected = state.filter_type == key
+                            button = ui.button(label, on_click=lambda e, k=key: set_type_filter(k)) \
+                                .props('color=blue text-color=white' if selected else 'color=white text-color=black')
+                            if not selected:
+                                button.classes('text-black')
                     ui.label('').bind_text_from(hits_label, 'text').classes('text-gray-500 font-bold text-lg')
 
             refresh_search_list()
@@ -13119,7 +13123,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                 account_name = current_user_display_name(user)
                 ui.label(t('logged_in_as').format(user=account_name)) \
                     .classes('wa-user-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
-                    .style(f'color: {user_name_color(user)};')
+                    .style(f'color: {user_pill_text_color(user)};')
                 ui.button(t('users'), icon='groups', on_click=lambda: show_screen('users')) \
                     .props('outline color=primary dense')
                 ui.button(t('rankings'), icon='leaderboard', on_click=lambda: show_screen('rankings')) \
