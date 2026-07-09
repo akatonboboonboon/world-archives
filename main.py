@@ -949,25 +949,20 @@ def restore_all_viewed_progress_if_unlocked(user):
     viewed_set = set(viewed)
     valid_viewed_count = len(viewed_set & public_set)
     already_current_all_viewed = bool(public_set) and public_set.issubset(viewed_set)
-    legacy_all_viewed = (
+    legacy_unlock = (
         bool(user.get('all_viewed_granted'))
-        or already_current_all_viewed
         or (
             bool(user.get('battle_unlocked') or user.get('battle_unlocked_notified') or user.get('sengoku_unlocked') or user.get('sengoku_medal'))
             and valid_viewed_count >= LEGACY_ALL_VIEWED_MIN_COUNT
         )
     )
     changed = False
-    if legacy_all_viewed:
+    if already_current_all_viewed and not user.get('all_viewed_granted'):
         user['all_viewed_granted'] = True
-        for key in public_keys:
-            if key not in viewed_set:
-                viewed.append(key)
-                viewed_set.add(key)
-                changed = True
-        if not user.get('battle_unlocked'):
-            user['battle_unlocked'] = True
-            changed = True
+        changed = True
+    if (already_current_all_viewed or legacy_unlock) and not user.get('battle_unlocked'):
+        user['battle_unlocked'] = True
+        changed = True
     return changed
 
 def migrate_embedded_user_data():
@@ -3056,16 +3051,14 @@ def sync_current_user_to_browser(user_data=None):
             Number(existingStats[field] || 0),
           );
         }});
-        ['viewed_keys'].forEach(field => {{
-          const merged = [];
-          const seen = new Set();
-          [...(payload.record[field] || []), ...(existingRecord[field] || [])].forEach(item => {{
-            if (!item || seen.has(item)) return;
-            seen.add(item);
-            merged.push(item);
-          }});
-          payload.record[field] = merged;
+        const viewed = [];
+        const viewedSeen = new Set();
+        (payload.record.viewed_keys || []).forEach(item => {{
+          if (!item || viewedSeen.has(item)) return;
+          viewedSeen.add(item);
+          viewed.push(item);
         }});
+        payload.record.viewed_keys = viewed;
         const seenQuiz = new Set();
         const mergedQuizHistory = [];
         [...(payload.record.quiz_history || []), ...(existingRecord.quiz_history || [])].forEach(item => {{
@@ -3591,6 +3584,57 @@ def normalize_backup_payload(payload):
             restored[username] = {'record': record}
     return restored
 
+def apply_restored_progress_snapshot(user, record):
+    if not isinstance(user, dict) or not isinstance(record, dict):
+        return
+    if isinstance(record.get('viewed_keys'), list):
+        user['viewed_keys'] = merge_unique_list([], record.get('viewed_keys', []))
+    for key in [
+        'battle_unlocked',
+        'battle_unlocked_notified',
+        'sengoku_unlocked',
+        'sengoku_unlocked_notified',
+        'sengoku_mode',
+        'sengoku_medal',
+        'all_viewed_granted',
+    ]:
+        if key in record and isinstance(record.get(key), bool):
+            user[key] = bool(record.get(key))
+    touched_progress = any(
+        key in record
+        for key in [
+            'viewed_keys',
+            'quiz_stats',
+            'quiz_history',
+            'battle_unlocked',
+            'sengoku_unlocked',
+            'sengoku_mode',
+            'all_viewed_granted',
+        ]
+    )
+    if not touched_progress:
+        return
+    viewed = set(user.get('viewed_keys', []))
+    all_needed = set(all_public_country_keys())
+    present_needed = set(battle_unlock_country_keys())
+    stats = normalize_quiz_stats(user)
+    all_viewed = bool(all_needed) and all_needed.issubset(viewed)
+    battle_allowed = (
+        (bool(present_needed) and present_needed.issubset(viewed))
+        or int(stats.get('correct', 0) or 0) >= 100
+    )
+    sengoku_allowed = battle_allowed and (all_viewed or sengoku_quiz_streak(user) >= 20)
+    user['all_viewed_granted'] = all_viewed
+    if not battle_allowed:
+        user['battle_unlocked'] = False
+        user['battle_unlocked_notified'] = False
+    if not sengoku_allowed:
+        user['sengoku_unlocked'] = False
+        user['sengoku_unlocked_notified'] = False
+        user['sengoku_mode'] = False
+        user['sengoku_medal'] = False
+        user['sengoku_boss_clears'] = []
+
 def restore_user_backup_payload(payload):
     known_from_payload = []
     if isinstance(payload, dict) and isinstance(payload.get('known_users'), list):
@@ -3610,6 +3654,7 @@ def restore_user_backup_payload(payload):
             continue
         remember_known_user(username, user_data)
         users[username] = merge_user_record(users.get(username, {}), record)
+        apply_restored_progress_snapshot(users[username], record)
         ensure_user_defaults(users[username])
         restored += 1
     if restored or known_from_payload:
@@ -3669,6 +3714,56 @@ def display_user_name(username, user=None):
 
 def current_user_display_name(user=None):
     return display_user_name(current_user_label(), user)
+
+def icon_label(text, icon, label_classes='font-bold text-[#1a2332]', icon_classes='text-blue-600', row_classes='items-center gap-2'):
+    with ui.row().classes(row_classes):
+        ui.icon(icon).classes(icon_classes)
+        label = ui.label(text).classes(label_classes)
+    return label
+
+def page_heading(text, icon):
+    return icon_label(
+        text,
+        icon,
+        'text-3xl font-bold text-[#1a2332]',
+        'text-blue-600',
+        'w-full items-center gap-3',
+    )
+
+def info_field(label, value, icon='info', value_classes='text-lg text-gray-800'):
+    with ui.column().classes('gap-1'):
+        icon_label(
+            label,
+            icon,
+            'text-xs font-bold text-gray-400 uppercase',
+            'text-blue-400',
+            'items-center gap-1',
+        )
+        ui.label(value).classes(value_classes)
+
+def profile_row_icon(label):
+    label_text = str(label or '')
+    icon_map = {
+        t('labels', 'population'): 'groups',
+        t('labels', 'area'): 'square_foot',
+        t('labels', 'languages'): 'translate',
+        t('labels', 'religions'): 'church',
+    }
+    return icon_map.get(label_text, 'fact_check')
+
+def country_field_icon(label):
+    label_text = str(label or '')
+    if label_text == t('labels', 'capital'):
+        return 'location_city'
+    if label_text == t('labels', 'region'):
+        return 'public'
+    if label_text == t('labels', 'tags'):
+        return 'sell'
+    if label_text == t('labels', 'desc'):
+        return 'article'
+    if label_text in [t('labels', 'population'), t('labels', 'area'), t('labels', 'languages'), t('labels', 'religions')]:
+        return profile_row_icon(label_text)
+    return 'event'
 
 def sengoku_boss_definitions():
     return [
@@ -11214,7 +11309,7 @@ def refresh_history_content():
     histories = user.get('history', []) if user else []
     with history_content:
         with ui.row().classes('w-full justify-between items-center mb-4'):
-            ui.label(t('history')).classes('text-xl font-bold text-gray-700')
+            icon_label(t('history'), 'history', 'text-xl font-bold text-gray-700', 'text-blue-500')
             ui.button(icon='close', on_click=lambda: history_drawer.toggle()).props('flat round dense')
         if not histories:
             ui.label(t('history_empty')).classes('text-gray-400')
@@ -11243,11 +11338,11 @@ def refresh_notification_content():
     unread_count = unread_notification_count(user)
     with notification_content:
         with ui.row().classes('w-full justify-between items-center mb-4'):
-            ui.label(t('notifications')).classes('text-xl font-bold text-gray-700')
+            icon_label(t('notifications'), 'notifications', 'text-xl font-bold text-gray-700', 'text-blue-500')
             ui.button(icon='close', on_click=lambda: notification_drawer.toggle()).props('flat round dense')
         if notifications:
             with ui.row().classes('w-full justify-between items-center mb-2'):
-                ui.label(t('unread_notifications').format(count=unread_count)).classes('text-sm font-bold text-gray-500')
+                icon_label(t('unread_notifications').format(count=unread_count), 'mark_email_unread', 'text-sm font-bold text-gray-500', 'text-orange-500')
                 ui.button(t('mark_all_read'), icon='done_all', on_click=mark_all_notifications_read).props('flat dense color=primary')
         else:
             ui.label(t('notification_empty')).classes('text-gray-400')
@@ -11601,7 +11696,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
             search_area_container.clear()
             with search_area_container:
-                ui.label(t('search_label')).classes('text-sm font-bold text-blue-800 mb-1')
+                icon_label(t('search_label'), 'search', 'text-sm font-bold text-blue-800 mb-1', 'text-blue-600', 'items-center gap-1')
                 with ui.row().classes('w-full gap-2 items-stretch flex-wrap' if is_mobile_ui() else 'w-full gap-2 items-center'):
                     ui.input(value=state.search_keyword, on_change=update_keyword) \
                         .props('rounded outlined prepend-inner-icon=search clearable') \
@@ -11627,10 +11722,13 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
                 with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
                     ui.select(r_opts, value=selected_region_label(), label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
+                        .props('prepend-inner-icon=public') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(tag_group_opts, value=selected_tag_group_label(), label=t('tag_group'), on_change=lambda e: set_tag_group_filter(e.value), clearable=True) \
+                        .props('prepend-inner-icon=category') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
+                        .props('prepend-inner-icon=sell') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.button(favorite_filter_label(), icon=favorite_filter_icon(), on_click=toggle_favorites_filter) \
                         .props(f'color={favorite_filter_color()}') \
@@ -11645,11 +11743,14 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                         for key in ['All', 'Present', 'Past']:
                             label = t('tabs', key)
                             selected = state.filter_type == key
-                            button = ui.button(label, on_click=lambda e, k=key: set_type_filter(k)) \
+                            type_icon = {'All': 'apps', 'Present': 'flag', 'Past': 'history_edu'}[key]
+                            button = ui.button(label, icon=type_icon, on_click=lambda e, k=key: set_type_filter(k)) \
                                 .props('color=blue text-color=white' if selected else 'color=white text-color=black')
                             if not selected:
                                 button.classes('text-black')
-                    ui.label('').bind_text_from(hits_label, 'text').classes('text-gray-500 font-bold text-lg')
+                    with ui.row().classes('items-center gap-2'):
+                        ui.icon('analytics').classes('text-blue-500')
+                        ui.label('').bind_text_from(hits_label, 'text').classes('text-gray-500 font-bold text-lg')
 
             refresh_search_list()
 
@@ -11855,41 +11956,33 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                                         ui.link('Wikipedia', wiki_url, new_tab=True) \
                                             .classes('flex-grow bg-gray-600 text-white text-center px-4 py-2 rounded shadow hover:bg-gray-700 no-underline font-bold transition')
 
-                                with ui.column().classes('gap-1'):
-                                    ui.label(t('labels', 'capital')).classes('text-xs font-bold text-gray-400 uppercase')
-                                    ui.label(get_localized_text(c.get('capital', '-'))).classes('text-lg')
+                                info_field(t('labels', 'capital'), get_localized_text(c.get('capital', '-')), 'location_city', 'text-lg')
                                 if detail_period:
-                                    with ui.column().classes('gap-1'):
-                                        ui.label(period_field_label(c)).classes('text-xs font-bold text-gray-400 uppercase')
-                                        ui.label(detail_period).classes('text-lg font-bold text-orange-700')
+                                    info_field(period_field_label(c), detail_period, 'event', 'text-lg font-bold text-orange-700')
+                                info_field(t('labels', 'region'), region_label(c.get('region', '-')), 'public', 'text-lg')
                                 with ui.column().classes('gap-1'):
-                                    ui.label(t('labels', 'region')).classes('text-xs font-bold text-gray-400 uppercase')
-                                    ui.label(region_label(c.get('region', '-'))).classes('text-lg')
-                                with ui.column().classes('gap-1'):
-                                    ui.label(t('labels', 'tags')).classes('text-xs font-bold text-gray-400 uppercase')
+                                    icon_label(t('labels', 'tags'), 'sell', 'text-xs font-bold text-gray-400 uppercase', 'text-blue-400', 'items-center gap-1')
                                     with ui.row().classes('gap-1 flex-wrap'):
                                         for tag in c.get('tags', []):
                                             tag_chip(tag, dense=False)
                             with ui.column().classes('gap-4'):
                                 for label, value in profile_rows(c):
-                                    with ui.column().classes('gap-1'):
-                                        ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
-                                        ui.label(value).classes('text-lg')
+                                    info_field(label, value, profile_row_icon(label), 'text-lg')
 
                     with ui.tab_panel(desc_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                         with ui.column().classes('w-full gap-3'):
-                            ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
+                            icon_label(t('labels', 'desc'), 'article', 'text-xs font-bold text-gray-400 uppercase', 'text-blue-400', 'items-center gap-1')
                             ui.markdown(get_localized_text(c['desc'])).classes('text-gray-800 leading-relaxed text-lg')
                             for label, value in detail_rows(c):
                                 ui.separator().classes('my-1')
-                                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
+                                icon_label(label, 'notes', 'text-xs font-bold text-gray-400 uppercase', 'text-blue-400', 'items-center gap-1')
                                 ui.markdown(value).classes('text-gray-800 leading-relaxed')
 
                     if not hide_external_links:
                         with ui.tab_panel(map_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                             with ui.column().classes('w-full gap-3'):
                                 with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
-                                    ui.label(t('map')).classes('text-lg font-bold text-[#1a2332]')
+                                    icon_label(t('map'), 'map', 'text-lg font-bold text-[#1a2332]', 'text-blue-600')
                                     ui.link('Google Maps', map_link, new_tab=True).classes('text-green-700 font-bold')
                                 if map_note_text:
                                     ui.label(map_note_text).classes('text-sm text-gray-500')
@@ -11898,7 +11991,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                     with ui.tab_panel(personal_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                         with ui.column().classes('w-full gap-5'):
                             with ui.column().classes('w-full gap-3'):
-                                ui.label(t('notes')).classes('text-lg font-bold text-[#1a2332]')
+                                icon_label(t('notes'), 'edit_note', 'text-lg font-bold text-[#1a2332]', 'text-blue-600')
                                 note_input = ui.textarea(value=get_note_for_country(c), placeholder=t('notes')) \
                                     .props('outlined autogrow') \
                                     .classes('w-full')
@@ -11908,7 +12001,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
                             ui.separator()
                             with ui.column().classes('w-full gap-3'):
-                                ui.label(t('collections')).classes('text-lg font-bold text-[#1a2332]')
+                                icon_label(t('collections'), 'folder', 'text-lg font-bold text-[#1a2332]', 'text-blue-600')
                                 collections = get_collections()
                                 if collections:
                                     with ui.row().classes('w-full gap-2 flex-wrap'):
@@ -11928,7 +12021,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
                     with ui.tab_panel(related_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                         with ui.column().classes('w-full gap-3'):
-                            ui.label(t('related_countries')).classes('text-lg font-bold text-[#1a2332]')
+                            icon_label(t('related_countries'), 'account_tree', 'text-lg font-bold text-[#1a2332]', 'text-blue-600')
                             if not related:
                                 ui.label('-').classes('text-sm text-gray-500')
                             else:
@@ -11998,7 +12091,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
         quiz = state.quiz
         if not quiz:
             with quiz_content:
-                ui.label(t('quiz_title')).classes('text-3xl font-bold text-[#1a2332]')
+                page_heading(t('quiz_title'), 'quiz')
                 ui.label('No quiz data available.').classes('text-gray-500')
             return
 
@@ -12008,24 +12101,36 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
 
         with quiz_content:
             with ui.row().classes('w-full gap-2 items-stretch flex-col' if is_mobile_ui() else 'w-full justify-between items-center'):
-                ui.label(t('quiz_title')).classes('text-2xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-3xl font-bold text-[#1a2332]')
+                icon_label(
+                    t('quiz_title'),
+                    'quiz',
+                    'text-2xl font-bold text-[#1a2332]' if is_mobile_ui() else 'text-3xl font-bold text-[#1a2332]',
+                    'text-blue-600',
+                    'items-center gap-3',
+                )
 
             stats = get_quiz_stats()
-            ui.label(t('quiz_stats').format(
-                correct=stats.get('correct', 0),
-                answered=stats.get('answered', 0),
-                streak=stats.get('streak', 0),
-                best=stats.get('best_streak', 0),
-            )).classes('text-sm text-gray-600 font-bold')
+            icon_label(
+                t('quiz_stats').format(
+                    correct=stats.get('correct', 0),
+                    answered=stats.get('answered', 0),
+                    streak=stats.get('streak', 0),
+                    best=stats.get('best_streak', 0),
+                ),
+                'bar_chart',
+                'text-sm text-gray-600 font-bold',
+                'text-blue-500',
+                'items-center gap-2',
+            )
             review_count = len(get_review_keys())
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
-                ui.label(t('quiz_mode')).classes('text-sm font-bold text-gray-500')
+                icon_label(t('quiz_mode'), 'school', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 for key, label_key in [('normal', 'quiz_mode_normal'), ('review', 'quiz_mode_review')]:
                     color = 'primary' if state.quiz_mode == key else 'grey'
                     ui.button(t(label_key) if key == 'normal' else f'{t(label_key)} ({review_count})', on_click=lambda _, m=key: start_quiz(m)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
-                ui.label(t('difficulty')).classes('text-sm font-bold text-gray-500')
+                icon_label(t('difficulty'), 'speed', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 if state.quiz_difficulty not in quiz_difficulty_options():
                     state.quiz_difficulty = 'hard'
                 for key in quiz_difficulty_options():
@@ -12033,19 +12138,19 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                     ui.button(t(f'difficulty_{key}'), on_click=lambda _, d=key: set_quiz_difficulty(d)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
-                ui.label(t('quiz_category')).classes('text-sm font-bold text-gray-500')
+                icon_label(t('quiz_category'), 'category', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 for key, label_key in QUIZ_CATEGORY_OPTIONS:
                     color = 'primary' if state.quiz_category == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, c=key: set_quiz_category(c)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
-                ui.label(t('quiz_scope')).classes('text-sm font-bold text-gray-500')
+                icon_label(t('quiz_scope'), 'filter_alt', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 for key, label_key in QUIZ_SCOPE_OPTIONS:
                     color = 'primary' if state.quiz_scope == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, s=key: set_quiz_scope(s)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
-                ui.label(t('quiz_format')).classes('text-sm font-bold text-gray-500')
+                icon_label(t('quiz_format'), 'view_module', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 for key, label_key in QUIZ_FORMAT_OPTIONS:
                     color = 'primary' if state.quiz_format == key else 'grey'
                     ui.button(t(label_key), on_click=lambda _, f=key: set_quiz_format(f)) \
@@ -12097,6 +12202,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                     message = t('quiz_correct') if correct else t('quiz_wrong')
                     badge_color = 'green' if correct else 'red'
                     with ui.row().classes('items-center gap-3 mt-4'):
+                        ui.icon('check_circle' if correct else 'cancel').classes('text-green-600' if correct else 'text-red-600')
                         ui.badge(message, color=badge_color).classes('text-base px-3 py-2')
                         ui.label(get_localized_text(answer['names'])).classes('text-lg font-bold')
                     ui.button(t('quiz_detail'), icon='open_in_new', on_click=open_quiz_answer_detail) \
@@ -12141,9 +12247,8 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
                 (t('labels', 'tags'), ', '.join(tag_label(tag) for tag in country.get('tags', []))),
             ])
             for label, value in rows:
-                ui.label(label).classes('text-xs font-bold text-gray-400 uppercase')
-                ui.label(value).classes('text-base text-gray-800')
-            ui.label(t('labels', 'desc')).classes('text-xs font-bold text-gray-400 uppercase')
+                info_field(label, value, country_field_icon(label), 'text-base text-gray-800')
+            icon_label(t('labels', 'desc'), 'article', 'text-xs font-bold text-gray-400 uppercase', 'text-blue-400', 'items-center gap-1')
             ui.markdown(get_localized_text(country.get('desc', {}))).classes('text-gray-700 leading-relaxed')
             ui.button(t('view_detail'), icon='open_in_new', on_click=lambda c=country: open_country_detail(c)) \
                 .props('outline color=primary') \
@@ -12170,7 +12275,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             state.compare_right_key = keys[1]
 
         with compare_content:
-            ui.label(t('compare_title')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('compare_title'), 'compare_arrows')
             with ui.row().classes('w-full gap-3 flex-col' if is_mobile_ui() else 'w-full gap-4 items-center'):
                 ui.select(list(label_to_key.keys()), value=key_to_label.get(state.compare_left_key), label=t('compare_left'), on_change=lambda e: set_compare_country('left', e.value)) \
                     .classes('w-full bg-white' if is_mobile_ui() else 'w-1/2 bg-white')
@@ -12230,7 +12335,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as timeline_scr
         display_list = selected_countries[start_index:end_index]
 
         with timeline_content:
-            ui.label(t('timeline_title')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('timeline_title'), 'timeline')
             with ui.row().classes('w-full gap-2 flex-wrap'):
                 for period_key in period_keys:
                     count = len(grouped[period_key])
@@ -12297,7 +12402,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as map_screen:
         country = lookup[state.map_country_key]
         map_note_text = map_target_note(country)
         with map_content:
-            ui.label(t('map_title')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('map_title'), 'map')
             ui.select(list(label_to_key.keys()), value=key_to_label.get(state.map_country_key), label=t('map'), on_change=lambda e: set_map_country_by_label(e.value)) \
                 .classes('w-full bg-white')
             with ui.card().classes('w-full p-5 gap-4'):
@@ -12358,7 +12463,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
         country = lookup[state.network_country_key]
         related = related_countries(country, limit=10)
         with network_content:
-            ui.label(t('network_title')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('network_title'), 'account_tree')
             ui.select(list(label_to_key.keys()), value=key_to_label.get(state.network_country_key), label=t('network'), on_change=lambda e: set_network_country_by_label(e.value)) \
                 .classes('w-full bg-white')
             render_network_country_card(country, central=True)
@@ -12515,14 +12620,14 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
         users_content.clear()
         lookup = public_countries_by_key()
         with users_content:
-            ui.label(t('users_title')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('users_title'), 'groups')
             with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                 ui.label(t('public_users_notice')).classes('text-sm text-gray-500')
                 ui.button(t('users_restore_browser'), icon='cloud_sync', on_click=restore_browser_users_for_list) \
                     .props('outline color=primary dense')
             raw_profiles = public_user_profiles()
             with ui.card().classes('w-full p-4 gap-3 bg-blue-50 border border-blue-100'):
-                ui.label(t('users_search')).classes('text-sm font-bold text-blue-800')
+                icon_label(t('users_search'), 'person_search', 'text-sm font-bold text-blue-800', 'text-blue-600', 'items-center gap-1')
                 label_to_key, _ = country_option_maps()
                 country_options = list(label_to_key.keys())
                 with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
@@ -12554,8 +12659,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as users_screen
             if not profiles:
                 ui.label(t('no_user_search_results') if raw_profiles else t('no_users')).classes('text-gray-500')
                 return
-            ui.label(f'{t("users_count")}: {start_index + 1}-{end_index} / {total_count}') \
-                .classes('text-sm text-gray-500 font-bold')
+            icon_label(f'{t("users_count")}: {start_index + 1}-{end_index} / {total_count}', 'manage_search', 'text-sm text-gray-500 font-bold', 'text-blue-500', 'items-center gap-1')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
                 for profile in display_profiles:
                     with ui.card().classes('w-full p-5 gap-4'):
@@ -13536,7 +13640,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
         with battle_content:
             user = get_current_user_record()
             eligible = battle_is_user_eligible(user=user)
-            ui.label(t('battle_title') if eligible else t('battle_locked')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('battle_title') if eligible else t('battle_locked'), 'sports_martial_arts' if eligible else 'lock')
             if user:
                 wins = int(user.get('battle_wins', 0))
                 ui.label(f'{t("battle_wins")}: {crown_marks(wins) or "0"}').classes('text-lg font-bold text-yellow-700')
@@ -13659,7 +13763,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                         ui.button(t('battle_mode_team'), icon='group_work', on_click=lambda: join_battle_queue(TEAM_MODE)).props('color=primary')
                         ui.button(t('battle_bot'), icon='smart_toy', on_click=create_bot_battle).props('outline color=primary')
             with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('battle_active_rooms')).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(t('battle_active_rooms'), 'visibility', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                 rooms = active_battle_rooms()
                 if not rooms:
                     ui.label(t('battle_no_rooms')).classes('text-gray-500')
@@ -13724,7 +13828,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
         collections = user.setdefault('collections', {})
         stats = user.setdefault('quiz_stats', {'answered': 0, 'correct': 0, 'streak': 0, 'best_streak': 0})
         with account_content:
-            ui.label(t('account')).classes('text-3xl font-bold text-[#1a2332]')
+            page_heading(t('account'), 'account_circle')
             with ui.row().classes('w-full items-center gap-2 flex-wrap'):
                 account_name = current_user_display_name(user)
                 ui.label(t('logged_in_as').format(user=account_name)) \
@@ -13737,7 +13841,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                 ui.button(t('friends'), icon='forum', on_click=lambda: show_screen('social')) \
                     .props('outline color=primary dense')
             with ui.card().classes('w-full p-5 gap-4'):
-                ui.label(t('avatar')).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(t('avatar'), 'badge', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                 with ui.row().classes('w-full gap-4 items-center flex-col' if is_mobile_ui() else 'w-full gap-4 items-center no-wrap'):
                     avatar_url = current_user_avatar_url(user)
                     render_avatar_image(
@@ -13784,7 +13888,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                 render_stat_card(t('battle_wins'), crown_marks(user.get('battle_wins', 0)) or '0')
 
             with ui.card().classes('w-full p-5 gap-4'):
-                ui.label(t('account_settings')).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(t('account_settings'), 'manage_accounts', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                 with ui.column().classes('w-full gap-2'):
                     ui.label(t('name_color')).classes('text-sm font-bold text-gray-700')
                     with ui.row().classes('w-full gap-2 items-end flex-wrap'):
@@ -13845,7 +13949,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 
             with ui.card().classes('w-full p-5 gap-3'):
                 eligible = battle_is_user_eligible(user=user)
-                ui.label(t('battle_title') if eligible else t('battle_locked')).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(t('battle_title') if eligible else t('battle_locked'), 'sports_martial_arts' if eligible else 'lock', 'text-xl font-bold text-[#1a2332]', 'text-purple-600' if eligible else 'text-gray-500')
                 if eligible:
                     ui.label(f'{t("battle_wins")}: {crown_marks(user.get("battle_wins", 0)) or "0"}').classes('text-sm font-bold text-yellow-700')
                     ui.button(t('battle_join'), icon='sports_esports', on_click=lambda: show_screen('battle')).props('color=primary')
@@ -13856,7 +13960,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 
             backup = backup_labels()
             with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(backup['section']).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(backup['section'], 'cloud_sync', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                 with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-2 items-center flex-wrap'):
                     ui.button(backup['export'], icon='download', on_click=export_current_user_backup) \
                         .props('color=primary') \
@@ -13870,7 +13974,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                     .classes('w-full')
 
             with ui.card().classes('w-full p-5 gap-3'):
-                ui.label(t('collections')).classes('text-xl font-bold text-[#1a2332]')
+                icon_label(t('collections'), 'folder', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                 with ui.row().classes('w-full gap-2 items-end flex-col' if is_mobile_ui() else 'w-full gap-2 items-end'):
                     collection_input = ui.input(label=t('collection_name')).props('outlined dense').classes('w-full' if is_mobile_ui() else 'flex-grow')
                     ui.button(t('create_collection'), icon='create_new_folder', on_click=lambda field=collection_input: (create_collection(field.value), refresh_account_view())) \
@@ -13893,7 +13997,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
 
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
                 with ui.card().classes('w-full p-5 gap-3'):
-                    ui.label(t('weakness')).classes('text-xl font-bold text-[#1a2332]')
+                    icon_label(t('weakness'), 'troubleshoot', 'text-xl font-bold text-[#1a2332]', 'text-red-500')
                     weakness = quiz_weakness_rows()
                     if not weakness:
                         ui.label(t('no_quiz_history')).classes('text-gray-500')
@@ -13902,7 +14006,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             ui.label(label).classes('font-bold text-gray-700')
                             ui.badge(str(count), color='red')
                 with ui.card().classes('w-full p-5 gap-3'):
-                    ui.label(t('quiz_history')).classes('text-xl font-bold text-[#1a2332]')
+                    icon_label(t('quiz_history'), 'history_edu', 'text-xl font-bold text-[#1a2332]', 'text-blue-600')
                     history = get_quiz_history()[:10]
                     if not history:
                         ui.label(t('no_quiz_history')).classes('text-gray-500')
