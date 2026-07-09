@@ -4065,9 +4065,10 @@ def sengoku_boss_definitions():
         {
             'id': 'boss_5',
             'name': {'ja': 'モンゴル帝国', 'en': 'Mongol Empire', 'zh': '蒙古帝国'},
-            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。1対2のチーム戦で、常に国名が伏せられます。敵チームHPは半分です。', 'en': 'A trans-Eurasian empire. This is a 1v2 team battle with country names hidden. The enemy team has half HP.', 'zh': '横跨欧亚的超大帝国。1对2团队战，国名常时隐藏。敌队HP减半。'},
+            'summary': {'ja': 'ユーラシアを横断した超巨大帝国。味方BOTを含む2対2のチーム戦で、常に国名が伏せられます。敵チームHPは半分です。', 'en': 'A trans-Eurasian empire. This is a 2v2 team battle with an allied BOT and hidden country names. The enemy team has half HP.', 'zh': '横跨欧亚的超大帝国。包含友方BOT的2对2团队战，国名常时隐藏。敌队HP减半。'},
             'mode': TEAM_MODE,
             'enemy_count': 2,
+            'player_ally_count': 1,
             'hp_multiplier': 1,
             'enemy_team_hp_percent': 50,
             'timeout': 180,
