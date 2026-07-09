@@ -1151,7 +1151,8 @@ BATTLE_REVOLUTION_MAX_TURNS = 7
 BATTLE_RANDOM_EVENT_CHANCE = 0.03
 BATTLE_RANDOM_EVENT_MIN_TURNS = 3
 BATTLE_RANDOM_EVENT_MAX_TURNS = 7
-BATTLE_DAMAGE_SURGE_MULTIPLIER = 1000
+BATTLE_OPERATION_CONFUSION_MISSING_CHANCE_PERCENT = 20
+BATTLE_OPERATION_CONFUSION_SELF_DAMAGE_PERCENT = 8
 BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER = 0.35
 BATTLE_COMMAND_SURGE_RECOVERY = 2
 BATTLE_SUPPLY_DROP_THRESHOLD = 2
@@ -1187,6 +1188,7 @@ SENGOKU_BOSS_EVENT_FIELDS = {
     'bomb': 'bomb_until_turn',
     'lytton': 'lytton_until_turn',
     'damage_surge': 'damage_surge_until_turn',
+    'random_target': 'random_target_until_turn',
     'ceasefire': 'ceasefire_until_turn',
     'command_surge': 'command_surge_until_turn',
     'supply_drop': 'supply_drop_until_turn',
@@ -2622,6 +2624,53 @@ UI_FALLBACKS.setdefault('ja', {}).update({
     'battle_bomb_lytton_explode_log': 'リットン調査団が爆弾カードを発見し、{holder}と{viewer}が{damage}ダメージに巻き込まれました。',
     'battle_bomb_lytton_notice': 'リットン調査団が爆弾カードを見つけてしまいました。爆発に巻き込まれます。',
 })
+
+for _lang, _values in {
+    'ja': {
+        'battle_damage_surge_title': '作戦混乱',
+        'battle_damage_surge_notice': '毎ターン、指定枚数ぴったりに近い作戦行動が求められます。指定より多くは出せず、少ないと自傷事故が起こることがあります。',
+        'battle_damage_surge_start_log': '作戦混乱が始まりました。各ターンの指定枚数に注意してください。',
+        'battle_event_multiplier_label': 'イベント補正',
+        'battle_operation_required': '作戦指定: {count}枚',
+        'battle_operation_required_help': 'このターンは{count}枚まで出せます。少ない枚数で出すと、不足1枚につき20%の確率で自傷ダメージを受けます。',
+        'battle_operation_too_many': '作戦混乱中は{count}枚より多く出せません。',
+        'battle_operation_self_damage_log': '{player}は作戦混乱で{missing}枚不足し、{damage}ダメージを受けました。',
+        'battle_random_target_title': '標的錯乱',
+        'battle_random_target_notice': '攻撃対象がランダムになります。チーム戦では自分のチームも対象に入ります。',
+        'battle_random_target_start_log': '標的錯乱が始まりました。攻撃対象がランダムになります。',
+        'battle_random_target_log': '{player}の攻撃対象が{target}に変わりました。',
+    },
+    'en': {
+        'battle_damage_surge_title': 'Operation Confusion',
+        'battle_damage_surge_notice': 'Each turn demands a specific card count. You cannot play more than it, and playing fewer can cause self-damage.',
+        'battle_damage_surge_start_log': 'Operation Confusion began. Watch the required card count each turn.',
+        'battle_event_multiplier_label': 'Event',
+        'battle_operation_required': 'Order: {count} cards',
+        'battle_operation_required_help': 'This turn you may play up to {count} cards. If you play fewer, each missing card has a 20% chance to cause self-damage.',
+        'battle_operation_too_many': 'Operation Confusion does not allow more than {count} cards.',
+        'battle_operation_self_damage_log': '{player} was short by {missing} cards and took {damage} damage from confusion.',
+        'battle_random_target_title': 'Target Scramble',
+        'battle_random_target_notice': 'Attack targets are randomized. In team battles, your own team can also be chosen.',
+        'battle_random_target_start_log': 'Target Scramble began. Attack targets are randomized.',
+        'battle_random_target_log': "{player}'s target changed to {target}.",
+    },
+    'zh': {
+        'battle_damage_surge_title': '作战混乱',
+        'battle_damage_surge_notice': '每回合会指定出牌枚数。不能超过指定枚数，少出时可能受到自伤伤害。',
+        'battle_damage_surge_start_log': '作战混乱开始。请注意每回合指定枚数。',
+        'battle_event_multiplier_label': '事件补正',
+        'battle_operation_required': '作战指定：{count}张',
+        'battle_operation_required_help': '本回合最多可出{count}张。少出时，每少1张有20%概率受到自伤伤害。',
+        'battle_operation_too_many': '作战混乱中不能超过{count}张。',
+        'battle_operation_self_damage_log': '{player}因作战混乱少出{missing}张，受到{damage}伤害。',
+        'battle_random_target_title': '目标错乱',
+        'battle_random_target_notice': '攻击目标会随机决定。团队战中自己的队伍也会成为目标。',
+        'battle_random_target_start_log': '目标错乱开始。攻击目标会随机决定。',
+        'battle_random_target_log': '{player}的攻击目标变为{target}。',
+    },
+}.items():
+    TRANSLATIONS.setdefault(_lang, {}).update(_values)
+    UI_FALLBACKS.setdefault(_lang, {}).update(_values)
 
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
@@ -7255,6 +7304,19 @@ def battle_damage_surge_active(room):
     except (TypeError, ValueError):
         return False
 
+def battle_operation_confusion_active(room):
+    return battle_room_events_enabled(room) and battle_damage_surge_active(room)
+
+def battle_random_target_active(room):
+    try:
+        return (
+            battle_room_events_enabled(room)
+            and (room or {}).get('mode') in [FFA_MODE, TEAM_MODE]
+            and int((room or {}).get('turn', 1)) <= int((room or {}).get('random_target_until_turn', 0) or 0)
+        )
+    except (TypeError, ValueError):
+        return False
+
 def battle_ceasefire_active(room):
     try:
         return int((room or {}).get('turn', 1)) <= int((room or {}).get('ceasefire_until_turn', 0) or 0)
@@ -7288,6 +7350,7 @@ def battle_exclusive_event_active(room):
         battle_bomb_active(room),
         battle_lytton_active(room),
         battle_damage_surge_active(room),
+        battle_random_target_active(room),
         battle_ceasefire_active(room),
         battle_command_surge_active(room),
         battle_supply_drop_active(room),
@@ -7297,14 +7360,7 @@ def battle_exclusive_event_active(room):
 def battle_event_damage_multiplier(room, player=None):
     if not battle_room_events_enabled(room):
         return 1
-    multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER if battle_damage_surge_active(room) else 1
-    boss = sengoku_boss_for_room(room)
-    if player and boss and boss.get('player_damage_surge') and not is_battle_bot(player):
-        try:
-            boss_multiplier = float(boss.get('player_damage_surge_multiplier', BATTLE_DAMAGE_SURGE_MULTIPLIER) or BATTLE_DAMAGE_SURGE_MULTIPLIER)
-        except (TypeError, ValueError):
-            boss_multiplier = BATTLE_DAMAGE_SURGE_MULTIPLIER
-        multiplier *= max(1, boss_multiplier)
+    multiplier = 1
     if battle_ceasefire_active(room):
         multiplier *= BATTLE_CEASEFIRE_DAMAGE_MULTIPLIER
     return multiplier
@@ -7312,6 +7368,88 @@ def battle_event_damage_multiplier(room, player=None):
 def battle_group_event_damage_multiplier(room, players):
     multipliers = [battle_event_damage_multiplier(room, player) for player in players or []]
     return max(multipliers) if multipliers else battle_event_damage_multiplier(room)
+
+def ensure_battle_operation_required_count(room):
+    if not battle_operation_confusion_active(room):
+        return None
+    turn = int((room or {}).get('turn', 1) or 1)
+    try:
+        current_turn = int((room or {}).get('operation_required_turn', 0) or 0)
+        current_count = int((room or {}).get('operation_required_count', 0) or 0)
+    except (TypeError, ValueError):
+        current_turn = 0
+        current_count = 0
+    if current_turn != turn or current_count < 1 or current_count > 5:
+        room['operation_required_turn'] = turn
+        room['operation_required_count'] = random.randint(1, 5)
+    return int(room.get('operation_required_count', 1) or 1)
+
+def operation_confusion_missing_count(room, entry):
+    required = ensure_battle_operation_required_count(room)
+    if not required or not entry or entry.get('defenseless'):
+        return 0
+    return max(0, required - len(entry.get('keys', [])))
+
+def apply_operation_confusion_penalties(room, entries, result_parts, visual=None):
+    if not battle_operation_confusion_active(room):
+        return
+    hp_limit = battle_team_hp_limit(room) if room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
+    damage = max(1, hp_limit * BATTLE_OPERATION_CONFUSION_SELF_DAMAGE_PERCENT // 100)
+    for player, entry in entries.items():
+        missing = operation_confusion_missing_count(room, entry)
+        if missing <= 0:
+            continue
+        chance = min(100, missing * BATTLE_OPERATION_CONFUSION_MISSING_CHANCE_PERCENT)
+        if random.randint(1, 100) > chance:
+            continue
+        dealt = battle_apply_damage_to_player_or_team(room, player, damage)
+        if dealt:
+            result_parts.append(t('battle_operation_self_damage_log').format(
+                player=player,
+                missing=missing,
+                damage=format_battle_number(dealt),
+            ))
+            if isinstance(visual, dict):
+                visual.setdefault('self_damage', []).append({
+                    'player': player,
+                    'name': t('battle_damage_surge_title'),
+                    'damage': dealt,
+                })
+
+def apply_random_target_event(room, entries, result_parts):
+    if not battle_random_target_active(room):
+        return
+    players = active_battle_players(room)
+    if room.get('mode') == FFA_MODE:
+        for player, entry in entries.items():
+            if entry.get('defenseless') or entry.get('power', 0) <= 0:
+                continue
+            candidates = [target for target in players if target != player]
+            if not candidates:
+                continue
+            target = random.choice(candidates)
+            entry['target'] = target
+            result_parts.append(t('battle_random_target_log').format(player=player, target=target))
+        return
+    if room.get('mode') == TEAM_MODE:
+        teams = room.get('teams', {})
+        team_hp = ensure_battle_team_hp(room)
+        alive_teams = sorted({
+            teams.get(player)
+            for player in players
+            if teams.get(player) and team_hp.get(teams.get(player), 0) > 0
+        })
+        if not alive_teams:
+            return
+        for player, entry in entries.items():
+            if entry.get('defenseless') or entry.get('power', 0) <= 0:
+                continue
+            target = random.choice(alive_teams)
+            entry['target'] = target
+            result_parts.append(t('battle_random_target_log').format(
+                player=player,
+                target=f"{t('battle_team')} {target}",
+            ))
 
 def battle_vatican_country_key(data=None):
     for country in battle_country_list(data):
@@ -8399,6 +8537,9 @@ def normalize_battle_room(room):
     room.setdefault('bomb_until_turn', 0)
     room.setdefault('lytton_until_turn', 0)
     room.setdefault('damage_surge_until_turn', 0)
+    room.setdefault('random_target_until_turn', 0)
+    room.setdefault('operation_required_turn', 0)
+    room.setdefault('operation_required_count', 0)
     room.setdefault('ceasefire_until_turn', 0)
     room.setdefault('command_surge_until_turn', 0)
     room.setdefault('supply_drop_until_turn', 0)
@@ -8538,6 +8679,10 @@ def battle_room_for_user(username, state_data=None):
     if room and (username in room.get('players', []) or username in room.get('spectators', [])):
         normalize_battle_room(room)
         changed = False
+        before_operation = (room.get('operation_required_turn'), room.get('operation_required_count'))
+        ensure_battle_operation_required_count(room)
+        if before_operation != (room.get('operation_required_turn'), room.get('operation_required_count')):
+            changed = True
         if username in room.get('spectators', []) and restore_battle_player_from_bot(room, username, state_data):
             changed = True
         if username in room.get('players', []) and mark_battle_player_seen(room, username):
@@ -8957,6 +9102,9 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'bomb_until_turn': 0,
         'lytton_until_turn': 0,
         'damage_surge_until_turn': 0,
+        'random_target_until_turn': 0,
+        'operation_required_turn': 0,
+        'operation_required_count': 0,
         'ceasefire_until_turn': 0,
         'command_surge_until_turn': 0,
         'supply_drop_until_turn': 0,
@@ -9520,6 +9668,7 @@ def battle_visual_payload(room, entries):
         'bomb': battle_bomb_active(room),
         'lytton': battle_lytton_active(room),
         'damage_surge': battle_damage_surge_active(room) or bool((sengoku_boss_for_room(room) or {}).get('player_damage_surge')),
+        'random_target': battle_random_target_active(room),
         'ceasefire': battle_ceasefire_active(room),
         'command_surge': battle_command_surge_active(room),
         'supply_drop': battle_supply_drop_active(room),
@@ -10128,6 +10277,7 @@ def update_battle_crisis_state(room, result_parts=None, visual=None):
         'replace_until_turn',
         'lytton_until_turn',
         'damage_surge_until_turn',
+        'random_target_until_turn',
         'ceasefire_until_turn',
         'command_surge_until_turn',
         'supply_drop_until_turn',
@@ -10170,7 +10320,9 @@ def update_battle_crisis_state(room, result_parts=None, visual=None):
     if not battle_lytton_active(room):
         random_events.append(('lytton_until_turn', 'battle_lytton_start_log', BATTLE_LYTTON_EVENT_WEIGHT))
     if not battle_damage_surge_active(room):
-        random_events.append(('damage_surge_until_turn', 'battle_damage_surge_start_log', 0.18))
+        random_events.append(('damage_surge_until_turn', 'battle_damage_surge_start_log', 0.65))
+    if room.get('mode') in [FFA_MODE, TEAM_MODE] and not is_sengoku_boss_room(room) and not battle_random_target_active(room):
+        random_events.append(('random_target_until_turn', 'battle_random_target_start_log', 0.55))
     if not battle_ceasefire_active(room):
         random_events.append(('ceasefire_until_turn', 'battle_ceasefire_start_log', 0.75))
     if not battle_command_surge_active(room):
@@ -10319,6 +10471,7 @@ def resolve_battle_turn(room):
                 'bomb': bool(pre_turn_visual.get('bombs')) or battle_bomb_active(room),
                 'lytton': battle_lytton_active(room),
                 'damage_surge': battle_damage_surge_active(room),
+                'random_target': battle_random_target_active(room),
                 'ceasefire': battle_ceasefire_active(room),
                 'command_surge': battle_command_surge_active(room),
                 'supply_drop': battle_supply_drop_active(room),
@@ -10334,6 +10487,7 @@ def resolve_battle_turn(room):
         set_battle_winner_if_finished(room)
         return
     entries = {player: battle_entry_for_player(room, player) for player in players}
+    apply_random_target_event(room, entries, result_parts)
     reload_set, defenseless_players = remove_submitted_cards_and_reload(room)
     result_parts.insert(0, battle_played_cards_log(room, entries))
     visual = battle_visual_payload(room, entries)
@@ -10370,10 +10524,10 @@ def resolve_battle_turn(room):
             if entry.get('defenseless') or entry.get('power', 0) <= 0:
                 continue
             source_team = teams.get(player)
-            enemy_teams = [team for team in alive_teams if team != source_team]
+            valid_target_teams = alive_teams if battle_random_target_active(room) else [team for team in alive_teams if team != source_team]
             target_team = str(entry.get('target') or '').strip()
-            if target_team not in enemy_teams:
-                target_team = enemy_teams[0] if enemy_teams else None
+            if target_team not in valid_target_teams:
+                target_team = valid_target_teams[0] if valid_target_teams else None
             if not source_team or not target_team:
                 continue
             team_targets.setdefault(source_team, {}).setdefault(target_team, []).append(player)
@@ -10657,6 +10811,7 @@ def resolve_battle_turn(room):
     battle_apply_royal_road_supply(room, entries, result_parts, visual)
     steal_remaining_cards(room, list(dict.fromkeys(winners)), list(dict.fromkeys(losers)), defenseless_players, result_parts, visual, entries)
     apply_battle_special_card_damage(room, result_parts, visual)
+    apply_operation_confusion_penalties(room, entries, result_parts, visual)
     result_text = ' / '.join(result_parts) if result_parts else 'draw'
     room.setdefault('log', []).insert(0, f"{t('battle_turn')} {room.get('turn', 1)}: {result_text}")
     del room['log'][BATTLE_LOG_LIMIT:]
@@ -10682,6 +10837,9 @@ def choose_bot_battle_cards(hand, room=None, player=None):
         return []
     command = battle_player_command(room, player) if room is not None and player else BATTLE_MAX_COMMAND
     max_playable = battle_max_playable_card_count(command, len(playable))
+    required_count = ensure_battle_operation_required_count(room) if room is not None else None
+    if required_count:
+        max_playable = min(max_playable, required_count)
     if max_playable <= 0:
         return []
     human_players = [name for name in active_battle_players(room) if not is_battle_bot(name)] if room else []
@@ -10820,12 +10978,18 @@ def submit_battle_hand():
         else:
             ui.notify(t('battle_select_card_required'), color='warning')
             return
+    required_count = ensure_battle_operation_required_count(room)
+    if required_count and not defenseless and len(selected) > required_count:
+        ui.notify(t('battle_operation_too_many').format(count=required_count), color='warning')
+        return
     command_cost = 0 if defenseless else battle_command_cost_for_count(len(selected))
     if command_cost > battle_player_command(room, username):
         ui.notify(t('battle_command_not_enough'), color='warning')
         return
     target = None
-    if room.get('mode') == FFA_MODE and not defenseless:
+    if battle_random_target_active(room) and room.get('mode') in [FFA_MODE, TEAM_MODE]:
+        target = None
+    elif room.get('mode') == FFA_MODE and not defenseless:
         active_targets = [player for player in active_battle_players(room) if player != username]
         target = clean_username(state.battle_attack_target)
         if target not in active_targets:
@@ -11061,7 +11225,7 @@ def battle_last_turn_signature(last_turn):
         'turn': last_turn.get('turn'),
         'events': {
             key: bool(last_turn.get(key))
-            for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+            for key in ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'random_target', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
         },
         'played_count': len(last_turn.get('played', [])) if isinstance(last_turn.get('played'), list) else 0,
         'damage': rows_signature(last_turn.get('damage', [])),
@@ -11110,6 +11274,9 @@ def battle_screen_signature(state_data=None):
             'bomb_until_turn': room.get('bomb_until_turn'),
             'lytton_until_turn': room.get('lytton_until_turn'),
             'damage_surge_until_turn': room.get('damage_surge_until_turn'),
+            'random_target_until_turn': room.get('random_target_until_turn'),
+            'operation_required_turn': room.get('operation_required_turn'),
+            'operation_required_count': room.get('operation_required_count'),
             'ceasefire_until_turn': room.get('ceasefire_until_turn'),
             'command_surge_until_turn': room.get('command_surge_until_turn'),
             'supply_drop_until_turn': room.get('supply_drop_until_turn'),
@@ -13338,6 +13505,14 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             button.disable()
 
     def render_battle_card(key, lookup, room=None):
+        required_count = ensure_battle_operation_required_count(room) if room is not None else None
+        selected_count = len(state.battle_selected_keys or set())
+
+        def limit_checkbox(checkbox, selected):
+            if required_count and not selected and selected_count >= required_count:
+                checkbox.disable()
+                checkbox.tooltip(t('battle_operation_too_many').format(count=required_count))
+
         if is_battle_special_card(key):
             hp_limit = battle_team_hp_limit(room) if room and room.get('mode') == TEAM_MODE else BATTLE_MAX_HP
             damage = battle_special_card_damage(key, hp_limit)
@@ -13349,7 +13524,8 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             with ui.column().classes(card_classes):
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
                     if is_battle_playable_special_card(key):
-                        ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
+                        checkbox = ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
+                        limit_checkbox(checkbox, selected)
                     ui.icon('priority_high' if is_bomb else 'warning').classes('text-pink-700' if is_bomb else 'text-red-600')
                     ui.label(battle_special_card_label(key)).classes('font-bold text-pink-900 text-sm' if is_bomb else 'font-bold text-red-800 text-sm')
                 ui.label(t('battle_special_card')).classes('text-xs font-bold text-red-600')
@@ -13369,7 +13545,8 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
         selected = key in state.battle_selected_keys
         with ui.column().classes('wa-light-fallback gap-2 rounded border border-gray-200 bg-white p-3'):
             with ui.row().classes('w-full items-center gap-2 no-wrap'):
-                ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
+                checkbox = ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
+                limit_checkbox(checkbox, selected)
                 label = t('battle_hidden_card_name') if battle_flag_only_active(room) else get_localized_text(country['names'])
                 ui.label(label).classes('font-bold text-[#1a2332] text-sm')
             render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
@@ -13443,6 +13620,14 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
                 ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
                 ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
+                required = ensure_battle_operation_required_count(room)
+                if required:
+                    ui.badge(t('battle_operation_required').format(count=required), color='purple')
+                    ui.label(t('battle_operation_required_help').format(count=required)).classes('text-sm font-bold text-purple-700')
+        if battle_random_target_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-fuchsia-300 bg-fuchsia-50'):
+                ui.label(t('battle_random_target_title')).classes('text-2xl font-black text-fuchsia-800')
+                ui.label(t('battle_random_target_notice')).classes('text-sm font-bold text-fuchsia-700')
         if battle_ceasefire_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-emerald-300 bg-emerald-50'):
                 ui.label(t('battle_ceasefire_title')).classes('text-2xl font-black text-emerald-800')
@@ -13518,6 +13703,14 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             with ui.card().classes('w-full p-5 gap-2 border-2 border-purple-400 bg-purple-50'):
                 ui.label(t('battle_damage_surge_title')).classes('text-2xl font-black text-purple-800')
                 ui.label(t('battle_damage_surge_notice')).classes('text-sm font-bold text-purple-700')
+                required = ensure_battle_operation_required_count(room)
+                if required:
+                    ui.badge(t('battle_operation_required').format(count=required), color='purple')
+                    ui.label(t('battle_operation_required_help').format(count=required)).classes('text-sm font-bold text-purple-700')
+        if battle_random_target_active(room):
+            with ui.card().classes('w-full p-5 gap-2 border-2 border-fuchsia-300 bg-fuchsia-50'):
+                ui.label(t('battle_random_target_title')).classes('text-2xl font-black text-fuchsia-800')
+                ui.label(t('battle_random_target_notice')).classes('text-sm font-bold text-fuchsia-700')
         if battle_ceasefire_active(room):
             with ui.card().classes('w-full p-5 gap-2 border-2 border-emerald-300 bg-emerald-50'):
                 ui.label(t('battle_ceasefire_title')).classes('text-2xl font-black text-emerald-800')
@@ -13672,7 +13865,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             if not visual:
                 ui.label(t('battle_no_visual')).classes('text-gray-500')
                 return
-            event_keys = ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
+            event_keys = ['world_war', 'revolution', 'flag_only', 'vatican', 'replace', 'bomb', 'lytton', 'damage_surge', 'random_target', 'ceasefire', 'command_surge', 'supply_drop', 'blockade']
             if any(visual.get(key) for key in event_keys):
                 with ui.row().classes('gap-2 flex-wrap'):
                     if visual.get('world_war'):
@@ -13691,6 +13884,8 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                         ui.badge(t('battle_lytton_title'), color='blue')
                     if visual.get('damage_surge'):
                         ui.badge(t('battle_damage_surge_title'), color='purple')
+                    if visual.get('random_target'):
+                        ui.badge(t('battle_random_target_title'), color='fuchsia')
                     if visual.get('ceasefire'):
                         ui.badge(t('battle_ceasefire_title'), color='green')
                     if visual.get('command_surge'):
@@ -13929,7 +14124,16 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             if redraw_used:
                                 redraw_button.disable()
                                 redraw_button.tooltip(t('battle_redraw_used'))
-                    if mode in [FFA_MODE, TEAM_MODE]:
+                    required_count = ensure_battle_operation_required_count(room)
+                    if required_count:
+                        with ui.row().classes('w-full items-center gap-2 flex-wrap'):
+                            ui.badge(t('battle_operation_required').format(count=required_count), color='purple')
+                            ui.label(t('battle_operation_required_help').format(count=required_count)).classes('text-sm font-bold text-purple-700')
+                    if battle_random_target_active(room) and mode in [FFA_MODE, TEAM_MODE]:
+                        with ui.row().classes('w-full items-center gap-2 flex-wrap'):
+                            ui.badge(t('battle_random_target_title'), color='fuchsia')
+                            ui.label(t('battle_random_target_notice')).classes('text-sm font-bold text-fuchsia-700')
+                    elif mode in [FFA_MODE, TEAM_MODE]:
                         if mode == TEAM_MODE:
                             own_team = teams.get(username)
                             target_options = sorted({
