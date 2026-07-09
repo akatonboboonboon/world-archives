@@ -178,6 +178,19 @@ html.wa-dark .q-panel,
 html.wa-dark .q-table,
 html.wa-dark .q-table__container {
   background: #172033 !important;
+  background-color: #172033 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark div.bg-white,
+html.wa-dark .q-card.bg-white,
+html.wa-dark .q-field.bg-white,
+html.wa-dark .q-expansion-item.bg-white,
+html.wa-dark .q-expansion-item__container,
+html.wa-dark .q-expansion-item__content,
+html.wa-dark .q-tab-panels.bg-white,
+html.wa-dark .q-tab-panel.bg-white {
+  background: #172033 !important;
+  background-color: #172033 !important;
   color: #f8fafc !important;
 }
 html.wa-dark .text-\\[\\#1a2332\\],
@@ -198,6 +211,20 @@ html.wa-dark .q-field__label,
 html.wa-dark .q-field__native,
 html.wa-dark .q-field__prefix,
 html.wa-dark .q-field__suffix {
+  color: #f8fafc !important;
+}
+html.wa-dark .bg-white .text-\\[\\#1a2332\\],
+html.wa-dark .bg-white .text-gray-800,
+html.wa-dark .bg-white .text-gray-700,
+html.wa-dark .bg-white .text-gray-600,
+html.wa-dark .bg-white .text-gray-500,
+html.wa-dark .bg-white .text-gray-400,
+html.wa-dark .q-card .text-\\[\\#1a2332\\],
+html.wa-dark .q-card .text-gray-800,
+html.wa-dark .q-card .text-gray-700,
+html.wa-dark .q-card .text-gray-600,
+html.wa-dark .q-card .text-gray-500,
+html.wa-dark .q-card .text-gray-400 {
   color: #f8fafc !important;
 }
 html.wa-dark .border,
@@ -221,14 +248,25 @@ html.wa-dark .q-btn--outline:before {
 html.wa-dark .q-btn--outline {
   color: #93c5fd !important;
 }
+html.wa-dark .q-btn.q-btn--standard:not(.bg-primary):not(.bg-secondary):not(.bg-positive):not(.bg-negative):not(.bg-warning):not(.bg-info):not(.bg-yellow):not(.bg-blue):not(.bg-green):not(.bg-red):not(.bg-orange):not(.bg-purple) {
+  background: #1f2937 !important;
+  background-color: #1f2937 !important;
+  color: #f8fafc !important;
+}
+html.wa-dark .q-btn.q-btn--standard:not(.bg-primary):not(.bg-secondary):not(.bg-positive):not(.bg-negative):not(.bg-warning):not(.bg-info):not(.bg-yellow):not(.bg-blue):not(.bg-green):not(.bg-red):not(.bg-orange):not(.bg-purple) .q-icon,
+html.wa-dark .q-btn.q-btn--standard:not(.bg-primary):not(.bg-secondary):not(.bg-positive):not(.bg-negative):not(.bg-warning):not(.bg-info):not(.bg-yellow):not(.bg-blue):not(.bg-green):not(.bg-red):not(.bg-orange):not(.bg-purple) .q-btn__content {
+  color: #f8fafc !important;
+}
 html.wa-dark .q-menu {
   background: #111827 !important;
+  background-color: #111827 !important;
   color: #f8fafc !important;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55) !important;
 }
 html.wa-dark .q-menu .q-list,
 html.wa-dark .q-menu .q-item {
   background: #111827 !important;
+  background-color: #111827 !important;
   color: #f8fafc !important;
 }
 html.wa-dark .q-menu .q-item--disabled,
@@ -249,6 +287,7 @@ html.wa-dark .wa-user-pill,
 html.wa-dark .rounded-full.bg-white,
 html.wa-dark .q-btn.bg-white {
   background: #1e293b !important;
+  background-color: #1e293b !important;
   border-color: #475569 !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
 }
@@ -258,6 +297,7 @@ html.wa-dark .q-field--outlined .q-field__control:after {
 }
 html.wa-dark .q-card .q-card {
   background: #111827 !important;
+  background-color: #111827 !important;
 }
 html.wa-dark .q-chip {
   border-color: #64748b !important;
@@ -265,6 +305,7 @@ html.wa-dark .q-chip {
 html.wa-dark .q-notification,
 html.wa-dark .q-dialog__inner .q-card:not(.wa-staff-roll-window) {
   background: #111827 !important;
+  background-color: #111827 !important;
   color: #f8fafc !important;
 }
 html.wa-dark .q-checkbox__bg {
