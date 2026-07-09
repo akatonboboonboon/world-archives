@@ -460,6 +460,50 @@ html.wa-dark body .wa-staff-roll-window {
   background: radial-gradient(circle at top, #283750 0%, #0b1020 58%, #050814 100%) !important;
   color: #f8fafc !important;
 }
+html.wa-dark body .wa-light-fallback,
+html.wa-dark body .wa-light-fallback.bg-white,
+html.wa-dark body .wa-light-fallback .bg-white,
+html.wa-dark body .wa-light-fallback .q-card,
+html.wa-dark body .wa-light-fallback .q-tab-panels,
+html.wa-dark body .wa-light-fallback .q-tab-panel,
+html.wa-dark body .wa-light-fallback .q-expansion-item,
+html.wa-dark body .wa-light-fallback .q-expansion-item__container,
+html.wa-dark body .wa-light-fallback .q-expansion-item__content {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+html.wa-dark body .wa-light-fallback,
+html.wa-dark body .wa-light-fallback *,
+html.wa-dark body .wa-light-fallback .text-\\[\\#1a2332\\],
+html.wa-dark body .wa-light-fallback .text-gray-800,
+html.wa-dark body .wa-light-fallback .text-gray-700,
+html.wa-dark body .wa-light-fallback .text-gray-600,
+html.wa-dark body .wa-light-fallback .text-gray-500,
+html.wa-dark body .wa-light-fallback .text-gray-400,
+html.wa-dark body .wa-light-fallback .q-btn__content,
+html.wa-dark body .wa-light-fallback .q-icon,
+html.wa-dark body .wa-light-fallback .q-tab,
+html.wa-dark body .wa-light-fallback .q-tab__label {
+  color: #111827 !important;
+}
+html.wa-dark body .wa-light-fallback .q-btn--outline,
+html.wa-dark body .wa-light-fallback .q-btn--outline .q-btn__content,
+html.wa-dark body .wa-light-fallback .q-btn--outline .q-icon {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #2563eb !important;
+}
+html.wa-dark body .wa-light-fallback input,
+html.wa-dark body .wa-light-fallback textarea,
+html.wa-dark body .wa-light-fallback .q-field,
+html.wa-dark body .wa-light-fallback .q-field__control,
+html.wa-dark body .wa-light-fallback .q-field__native,
+html.wa-dark body .wa-light-fallback .q-field__label {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
 </style>
 """)
 
@@ -10582,7 +10626,7 @@ def refresh_history_content():
             ui.label(t('history_empty')).classes('text-gray-400')
         with ui.column().classes('w-full gap-2'):
             for h in histories:
-                with ui.card().classes('w-full p-3 bg-white text-sm border-l-4 border-blue-500 cursor-pointer hover:bg-blue-50 transition') as card:
+                with ui.card().classes('wa-light-fallback w-full p-3 bg-white text-sm border-l-4 border-blue-500 cursor-pointer hover:bg-blue-50 transition') as card:
                     card.on('click', lambda _, item=h: jump_from_history(item))
                     ui.label(h['name']).classes('font-bold text-gray-800')
                     ui.label(format_timestamp(h.get('timestamp'))).classes('text-xs text-gray-400 mt-1')
@@ -10617,7 +10661,7 @@ def refresh_notification_content():
             for item in notifications:
                 border = 'border-orange-500' if not item.get('read') else 'border-gray-300'
                 bg = 'bg-orange-50' if not item.get('read') else 'bg-white'
-                with ui.card().classes(f'w-full p-3 text-sm border-l-4 {border} {bg} cursor-pointer hover:bg-blue-50 transition') as card:
+                with ui.card().classes(f'wa-light-fallback w-full p-3 text-sm border-l-4 {border} {bg} cursor-pointer hover:bg-blue-50 transition') as card:
                     card.on('click', lambda _, notification=item: open_notification_item(notification))
                     with ui.row().classes('w-full justify-between items-start gap-2 no-wrap'):
                         ui.label(item.get('message', '')).classes('font-bold text-gray-800 whitespace-normal break-words')
@@ -10800,7 +10844,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
     help_content = ui.column().classes('w-full max-w-5xl p-8 gap-5 self-center')
 
     def render_help_mock(index, title, body):
-        with ui.column().classes('w-full p-4 gap-3 bg-white border border-gray-200 rounded shadow-sm'):
+        with ui.column().classes('wa-light-fallback w-full p-4 gap-3 bg-white border border-gray-200 rounded shadow-sm'):
             with ui.row().classes('w-full items-center gap-2'):
                 ui.badge(str(index), color='primary')
                 ui.label(title).classes('text-lg font-bold text-[#1a2332]')
@@ -10841,7 +10885,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
             ui.label(labels['intro']).classes('text-gray-600 text-lg leading-relaxed')
             with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-3'):
                 for icon, title, body in labels['steps']:
-                    with ui.column().classes('w-full p-4 gap-2 bg-white border border-blue-100 rounded shadow-sm'):
+                    with ui.column().classes('wa-light-fallback w-full p-4 gap-2 bg-white border border-blue-100 rounded shadow-sm'):
                         ui.icon(icon, size='2rem').classes('text-blue-600')
                         ui.label(title).classes('text-lg font-bold text-[#1a2332]')
                         ui.label(body).classes('text-sm text-gray-600 leading-relaxed')
@@ -10878,7 +10922,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
             ui.label(labels['intro']).classes('text-gray-600 text-lg leading-relaxed')
             with ui.column().classes('w-full gap-3'):
                 for title, body in labels['sections']:
-                    with ui.expansion(title, icon='menu_book').classes('w-full bg-white border border-gray-200 rounded shadow-sm'):
+                    with ui.expansion(title, icon='menu_book').classes('wa-light-fallback w-full bg-white border border-gray-200 rounded shadow-sm'):
                         ui.markdown(body).classes('text-gray-700 leading-relaxed p-4')
             with ui.row().classes('w-full gap-2 flex-col' if is_mobile_ui() else 'w-full gap-3'):
                 ui.button(help_labels()['nav'], icon='help', on_click=lambda: show_screen('help')) \
@@ -10967,7 +11011,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                 with ui.row().classes('w-full gap-2 items-stretch flex-wrap' if is_mobile_ui() else 'w-full gap-2 items-center'):
                     ui.input(value=state.search_keyword, on_change=update_keyword) \
                         .props('rounded outlined prepend-inner-icon=search clearable') \
-                        .classes('text-base w-full bg-white shadow-inner' if is_mobile_ui() else 'text-lg flex-grow bg-white shadow-inner') \
+                        .classes('wa-light-fallback text-base w-full bg-white shadow-inner' if is_mobile_ui() else 'wa-light-fallback text-lg flex-grow bg-white shadow-inner') \
                         .props(f'placeholder="{t("search_ph")}"')
                     sort_field_icon = 'event' if state.sort_field == 'period' else 'sort_by_alpha'
                     sort_field_label = t('sort_period') if state.sort_field == 'period' else t('sort_name')
@@ -11177,8 +11221,8 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
             tabs = detail_tab_labels()
             related = related_countries(c)
 
-            with ui.card().classes('w-full p-0 overflow-hidden bg-white'):
-                with ui.row().classes('w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'w-full bg-white p-6 gap-6 items-start'):
+            with ui.card().classes('wa-light-fallback w-full p-0 overflow-hidden bg-white'):
+                with ui.row().classes('wa-light-fallback w-full bg-white p-4 gap-4 items-start flex-col' if is_mobile_ui() else 'wa-light-fallback w-full bg-white p-6 gap-6 items-start'):
                     render_flag_frame(
                         c,
                         'w-full shadow-md border rounded' if is_mobile_ui() else 'w-56 flex-shrink-0 shadow-md border rounded',
@@ -11190,7 +11234,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                             ui.badge(t('tabs', c['type']), color='green' if c['type']=='Present' else 'orange').props('text-lg')
 
                 ui.separator()
-                with ui.tabs().props('dense inline-label mobile-arrows outside-arrows').classes('w-full bg-white text-[#1a2332]') as detail_tabs:
+                with ui.tabs().props('dense inline-label mobile-arrows outside-arrows').classes('wa-light-fallback w-full bg-white text-[#1a2332]') as detail_tabs:
                     basic_tab = ui.tab(tabs['basic'], icon='info')
                     desc_tab = ui.tab(tabs['desc'], icon='article')
                     if not hide_external_links:
@@ -11198,7 +11242,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                     personal_tab = ui.tab(tabs['personal'], icon='edit_note')
                     related_tab = ui.tab(tabs['related'], icon='account_tree')
 
-                with ui.tab_panels(detail_tabs, value=basic_tab).classes('w-full bg-white'):
+                with ui.tab_panels(detail_tabs, value=basic_tab).classes('wa-light-fallback w-full bg-white'):
                     with ui.tab_panel(basic_tab).classes('p-4' if is_mobile_ui() else 'p-6'):
                         detail_container = ui.column().classes('w-full gap-5') if is_mobile_ui() else ui.grid(columns=2).classes('w-full gap-6')
                         with detail_container:
@@ -11415,7 +11459,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                 .props('outline color=primary') \
                 .classes('w-full' if is_mobile_ui() else 'self-start')
 
-            with ui.card().classes('w-full p-4 gap-4' if is_mobile_ui() else 'w-full p-6 gap-4'):
+            with ui.card().classes('wa-light-fallback w-full p-4 gap-4' if is_mobile_ui() else 'wa-light-fallback w-full p-6 gap-4'):
                 ui.label(question).classes('text-lg font-bold text-gray-800' if is_mobile_ui() else 'text-xl font-bold text-gray-800')
                 if description:
                     ui.markdown(description).classes('text-gray-700 text-base' if is_mobile_ui() else 'text-gray-700 text-lg')
@@ -11439,7 +11483,7 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                             option_image = quiz.get('option_images', {}).get(option_key)
                             if option_image:
                                 border_class = 'border-green-500 bg-green-50' if quiz.get('answered') and is_answer else ('border-red-500 bg-red-50' if quiz.get('answered') and is_selected else 'border-gray-200 bg-white')
-                                with ui.column().classes(f'w-full gap-2 rounded border p-2 {border_class}'):
+                                with ui.column().classes(f'wa-light-fallback w-full gap-2 rounded border p-2 {border_class}'):
                                     ui.image(option_image).classes('w-40 shadow-sm border rounded bg-white self-center').style('aspect-ratio: 3 / 2; object-fit: cover;')
                                     ui.button(label or t('quiz_select_option'), on_click=lambda _, key=option_key: select_quiz_option(key)) \
                                         .props(f'color={color} text-color={text_color}') \
@@ -12282,7 +12326,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             ui.label(title).classes('text-sm font-bold text-[#1a2332]')
                             ui.label(body).classes('text-xs text-gray-700 leading-relaxed')
                 mock = help_data['mock']
-                with ui.column().classes('w-full gap-3 rounded border border-gray-200 bg-white p-4 mx-3 mb-3'):
+                with ui.column().classes('wa-light-fallback w-full gap-3 rounded border border-gray-200 bg-white p-4 mx-3 mb-3'):
                     ui.label(mock['hand']).classes('text-base font-bold text-[#1a2332]')
                     ui.select(['Player A', 'Player B', 'Player C'], value='Player B', label=mock['target']).props('outlined dense readonly').classes('w-full max-w-sm')
                     with ui.grid(columns=1 if is_mobile_ui() else 3).classes('w-full gap-3'):
@@ -12306,7 +12350,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                     ui.label(help_data['detail_intro']).classes('text-sm text-gray-600 pb-2')
                     with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
                         for section_title, items in help_data['sections']:
-                            with ui.column().classes('w-full gap-2 rounded border border-gray-200 bg-white p-4'):
+                            with ui.column().classes('wa-light-fallback w-full gap-2 rounded border border-gray-200 bg-white p-4'):
                                 ui.label(section_title).classes('text-base font-bold text-[#1a2332]')
                                 for item in items:
                                     with ui.row().classes('w-full items-start gap-2 no-wrap'):
@@ -12327,7 +12371,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 for index, boss in enumerate(sengoku_boss_definitions(), start=1):
                     unlocked = sengoku_boss_is_unlocked(user, boss['id'])
                     cleared = sengoku_boss_is_cleared(user, boss['id'])
-                    with ui.column().classes('w-full gap-2 rounded border border-purple-200 bg-white p-3'):
+                    with ui.column().classes('wa-light-fallback w-full gap-2 rounded border border-purple-200 bg-white p-3'):
                         with ui.row().classes('w-full justify-between items-center gap-2 flex-wrap'):
                             ui.label(f"{index}. {localized_boss_text(boss, 'name')}").classes('font-black text-[#1a2332]')
                             if cleared:
@@ -12375,7 +12419,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
         if not country:
             return
         selected = key in state.battle_selected_keys
-        with ui.column().classes('gap-2 rounded border border-gray-200 bg-white p-3'):
+        with ui.column().classes('wa-light-fallback gap-2 rounded border border-gray-200 bg-white p-3'):
             with ui.row().classes('w-full items-center gap-2 no-wrap'):
                 ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
                 label = t('battle_hidden_card_name') if battle_flag_only_active(room) else get_localized_text(country['names'])
@@ -12384,7 +12428,8 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
 
     def render_battle_visual_card(card):
         border = 'border-red-300 bg-red-50' if card.get('special') else 'border-gray-200 bg-white'
-        with ui.column().classes(f'w-28 gap-1 rounded border p-2 {border}'):
+        fallback = '' if card.get('special') else 'wa-light-fallback '
+        with ui.column().classes(f'{fallback}w-28 gap-1 rounded border p-2 {border}'):
             if card.get('flag'):
                 ui.image(card.get('flag')).classes('w-full rounded border bg-white').style('aspect-ratio: 3 / 2; object-fit: cover;')
             else:
@@ -12470,7 +12515,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             with ui.grid(columns=1 if is_mobile_ui() else min(3, len(visible_players))).classes('w-full gap-3'):
                 for player in visible_players:
                     hand = [key for key in room.setdefault('hands', {}).get(player, []) if key != BATTLE_BOMB_CARD]
-                    with ui.column().classes('gap-2 rounded border border-sky-100 bg-white p-3'):
+                    with ui.column().classes('wa-light-fallback gap-2 rounded border border-sky-100 bg-white p-3'):
                         ui.label(f"{player} / {t('battle_hand_count')} {len(hand)}").classes('font-bold text-[#1a2332]')
                         if not hand:
                             ui.label('-').classes('text-gray-500')
@@ -12518,7 +12563,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             breakdown = row.get('breakdown') if isinstance(row.get('breakdown'), dict) else None
             if not breakdown:
                 return
-            with ui.column().classes('w-full gap-2 rounded border border-gray-200 bg-white p-3'):
+            with ui.column().classes('wa-light-fallback w-full gap-2 rounded border border-gray-200 bg-white p-3'):
                 ui.label(t('battle_action_details')).classes('text-xs font-bold text-gray-500')
                 with ui.grid(columns=1 if is_mobile_ui() else 4).classes('w-full gap-2'):
                     render_metric(t('battle_base_attack'), format_battle_number(breakdown.get('win_power', 0)), 'blue')
@@ -12597,7 +12642,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
             ui.label(t('battle_played_visual')).classes('text-sm font-bold text-gray-600')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-3'):
                 for item in visual.get('played', []):
-                    with ui.column().classes('gap-2 rounded border border-gray-200 bg-white p-3'):
+                    with ui.column().classes('wa-light-fallback gap-2 rounded border border-gray-200 bg-white p-3'):
                         ui.label(item.get('player', '')).classes('font-bold text-[#1a2332]')
                         if item.get('defenseless'):
                             ui.badge(t('battle_defenseless'), color='red')
@@ -12637,7 +12682,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 ui.label(title).classes('text-sm font-bold text-gray-600')
                 with ui.column().classes('w-full gap-2'):
                     for row in rows:
-                        with ui.row().classes('w-full items-center gap-2 flex-wrap rounded bg-white p-2'):
+                        with ui.row().classes('wa-light-fallback w-full items-center gap-2 flex-wrap rounded bg-white p-2'):
                             ui.badge(event_text(kind, row), color=color).classes('whitespace-normal')
                             if row.get('card'):
                                 render_battle_visual_card(row.get('card'))
