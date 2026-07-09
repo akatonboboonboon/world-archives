@@ -27746,7 +27746,15 @@
         "Buffer State",
         "Christian World",
         "Cultural Sphere",
-        "Multilingual State"
+        "Multilingual State",
+        "European Union",
+        "NATO",
+        "Landlocked State",
+        "Post-Cold War State",
+        "UN Member",
+        "Mountain State",
+        "Technology Hub",
+        "Manufacturing Hub"
       ],
       "period": {
         "start": 1989,
@@ -27759,9 +27767,9 @@
       },
       "profile": {
         "population": {
-          "ja": "約840万8,900人",
-          "en": "about 8,408,900 people",
-          "zh": "约840.89万人"
+          "ja": "約1730万人",
+          "en": "about 17.3 million people",
+          "zh": "约1730万人"
         },
         "area": {
           "ja": "165,290 km²",
@@ -27769,14 +27777,14 @@
           "zh": "165,290 km²"
         },
         "languages": {
-          "ja": "ドイツ語、日本語、セイヴリス語",
-          "en": "German, Japanese, and Savris",
-          "zh": "德语、日语、赛夫里斯语"
+          "ja": "高地ドイツ語、ドイツ語、日本語、イギリス英語",
+          "en": "High German, German, Japanese, and British English",
+          "zh": "高地德语、德语、日语、英国英语"
         },
         "religions": {
-          "ja": "キリスト教、カトリックなど",
-          "en": "Christianity, including Catholic traditions",
-          "zh": "基督教、天主教等"
+          "ja": "キリスト教、福音主義",
+          "en": "Christianity and Evangelical Protestantism",
+          "zh": "基督教、福音主义"
         }
       },
       "desc": {
@@ -27806,9 +27814,9 @@
           "zh": "该国作为联邦国家延续至今。相关国家包括日本、德国、英国、法国、奥地利和意大利，可作为文化、地理、外交和政治制度方面的重要比较对象。"
         },
         "cultural_features": {
-          "ja": "農産物ではトウモロコシ、小麦、紅茶、イチゴなどが知られる。ドイツ語圏文化を基調にしながら、日本語やセイヴリス語も使われる多文化国家で、都市部では複数の言語と宗教が日常的に共存している。",
-          "en": "Its agricultural products include corn, wheat, tea, and strawberries. The country is grounded in German-speaking culture while also using Japanese and Savris, and its urban life is marked by the everyday coexistence of multiple languages and religions.",
-          "zh": "该国农产物包括玉米、小麦、红茶和草莓等。它以德语圈文化为基础，同时使用日语和赛夫里斯语，城市生活中多种语言与宗教日常共存。"
+          "ja": "農産物ではトウモロコシ、小麦、紅茶、イチゴなどが知られる。高地ドイツ語とドイツ語を基調にしながら、日本語やイギリス英語も使われる多文化国家で、都市部では複数の言語と宗教が日常的に共存している。",
+          "en": "Its agricultural products include corn, wheat, tea, and strawberries. The country is grounded in High German and German while also using Japanese and British English, and its urban life is marked by the everyday coexistence of multiple languages and religions.",
+          "zh": "该国农产物包括玉米、小麦、红茶和草莓等。它以高地德语和德语为基础，同时使用日语和英国英语，城市生活中多种语言与宗教日常共存。"
         }
       },
       "related": [
