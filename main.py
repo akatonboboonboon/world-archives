@@ -7618,6 +7618,8 @@ def battle_card_display_name(key, lookup=None, room=None, reveal_bomb=False):
         if str(key or '') == BATTLE_BOMB_CARD and not reveal_bomb:
             country = battle_bomb_cover_country(room, lookup)
             if country:
+                if battle_flag_only_active(room):
+                    return t('battle_hidden_card_name')
                 return get_localized_text(country.get('names', {}))
         return battle_special_card_label(key)
     lookup = lookup or battle_country_lookup()
@@ -9774,7 +9776,7 @@ def battle_visual_card(key, lookup=None, room=None, reveal_bomb=False):
             if country:
                 return {
                     'key': key,
-                    'name': get_localized_text(country.get('names', {})),
+                    'name': battle_card_display_name(key, lookup, room),
                     'special': False,
                     'disguised_bomb': True,
                     'flag': get_flag_url(country.get('flag_code')),
@@ -13779,7 +13781,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
                     checkbox = ui.checkbox(value=selected, on_change=lambda e, k=key: toggle_battle_card(k, e.value)).props('dense')
                     limit_checkbox(checkbox, selected)
-                    label = get_localized_text(country.get('names', {})) if country else battle_card_display_name(key, lookup, room)
+                    label = battle_card_display_name(key, lookup, room)
                     ui.label(label).classes('font-bold text-[#1a2332] text-sm')
                 if country:
                     render_flag_frame(country, 'w-full rounded border border-gray-200', 'w-full h-full object-cover')
