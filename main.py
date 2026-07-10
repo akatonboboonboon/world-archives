@@ -7608,9 +7608,30 @@ def battle_bomb_cover_key(room, lookup=None):
     room['bomb_cover_key'] = cover_key
     return cover_key
 
+def battle_bomb_flag_cover_key(room, lookup=None):
+    if not isinstance(room, dict):
+        return None
+    lookup = lookup or battle_country_lookup()
+    name_key = battle_bomb_cover_key(room, lookup)
+    flag_key = str(room.get('bomb_flag_cover_key') or '')
+    if flag_key in lookup and flag_key != name_key:
+        return flag_key
+    candidates = [key for key in battle_country_keys() if key in lookup and key != name_key]
+    if not candidates:
+        room['bomb_flag_cover_key'] = name_key
+        return name_key
+    flag_key = random.choice(candidates)
+    room['bomb_flag_cover_key'] = flag_key
+    return flag_key
+
 def battle_bomb_cover_country(room, lookup=None):
     lookup = lookup or battle_country_lookup()
     key = battle_bomb_cover_key(room, lookup)
+    return lookup.get(key) if key else None
+
+def battle_bomb_flag_cover_country(room, lookup=None):
+    lookup = lookup or battle_country_lookup()
+    key = battle_bomb_flag_cover_key(room, lookup)
     return lookup.get(key) if key else None
 
 def battle_card_display_name(key, lookup=None, room=None, reveal_bomb=False):
@@ -8653,8 +8674,10 @@ def normalize_battle_room(room):
     room.setdefault('blockade_until_turn', 0)
     room.setdefault('bomb_holder', None)
     room.setdefault('bomb_cover_key', None)
-    if room.get('bomb_holder') and not room.get('bomb_cover_key'):
+    room.setdefault('bomb_flag_cover_key', None)
+    if room.get('bomb_holder') and (not room.get('bomb_cover_key') or not room.get('bomb_flag_cover_key')):
         battle_bomb_cover_key(room)
+        battle_bomb_flag_cover_key(room)
     room.setdefault('mode', DUEL_MODE)
     room.setdefault('teams', {})
     room['player_count'] = normalize_battle_player_count(room.get('player_count', len(room.get('players', []))), room.get('mode', DUEL_MODE))
@@ -9225,6 +9248,7 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         'blockade_until_turn': 0,
         'bomb_holder': None,
         'bomb_cover_key': None,
+        'bomb_flag_cover_key': None,
         'turn_timeout_seconds': turn_timeout_seconds,
         'turn': 1,
         'turn_started_at': current_timestamp(),
@@ -9772,14 +9796,14 @@ def battle_visual_card(key, lookup=None, room=None, reveal_bomb=False):
     lookup = lookup or battle_country_lookup()
     if is_battle_special_card(key):
         if str(key or '') == BATTLE_BOMB_CARD and not reveal_bomb:
-            country = battle_bomb_cover_country(room, lookup)
-            if country:
+            flag_country = battle_bomb_flag_cover_country(room, lookup)
+            if flag_country:
                 return {
                     'key': key,
                     'name': battle_card_display_name(key, lookup, room),
                     'special': False,
                     'disguised_bomb': True,
-                    'flag': get_flag_url(country.get('flag_code')),
+                    'flag': get_flag_url(flag_country.get('flag_code')),
                 }
         return {
             'key': key,
@@ -10067,6 +10091,7 @@ def battle_explode_bomb(room, holder, result_parts, visual=None, reason='played'
                 'reason': reason,
             })
     room['bomb_cover_key'] = None
+    room['bomb_flag_cover_key'] = None
     return dealt
 
 def resolve_battle_bomb_detonations(room, entries, result_parts, visual=None):
@@ -10342,6 +10367,7 @@ def battle_expire_bomb_event(room, result_parts, visual=None):
         remove_all_battle_bomb_cards(room)
         room['bomb_holder'] = None
         room['bomb_cover_key'] = None
+        room['bomb_flag_cover_key'] = None
         return
     battle_explode_bomb(room, holder, result_parts, visual, reason='expired')
 
@@ -10356,7 +10382,9 @@ def battle_start_bomb_event(room, turn, result_parts, until_turn=None):
         hand.append(BATTLE_BOMB_CARD)
     room['bomb_holder'] = holder
     room['bomb_cover_key'] = None
+    room['bomb_flag_cover_key'] = None
     battle_bomb_cover_key(room)
+    battle_bomb_flag_cover_key(room)
     room['bomb_until_turn'] = int(until_turn) if until_turn is not None else battle_future_event_until_turn(turn)
     result_parts.append(t('battle_bomb_start_log').format(player=holder))
 
@@ -13775,7 +13803,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 checkbox.tooltip(t('battle_operation_too_many').format(count=required_count))
 
         if key == BATTLE_BOMB_CARD:
-            country = battle_bomb_cover_country(room, lookup)
+            country = battle_bomb_flag_cover_country(room, lookup)
             selected = key in state.battle_selected_keys
             with ui.column().classes('wa-light-fallback gap-2 rounded border border-gray-200 bg-white p-3'):
                 with ui.row().classes('w-full items-center gap-2 no-wrap'):
