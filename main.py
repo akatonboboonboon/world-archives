@@ -8944,10 +8944,13 @@ def battle_draw_pool():
     BATTLE_DRAW_POOL_CACHE = {'mtime': mtime, 'value': pool}
     return pool
 
-def weighted_battle_country_sample(count):
+def weighted_battle_country_sample(count, room=None):
     pool = [dict(item) for item in battle_draw_pool()]
     if count <= 0 or not pool:
         return []
+    if battle_revolution_active(room):
+        for item in pool:
+            item['weight'] = max(0.01, 1.08 - float(item.get('weight', 0.08) or 0.08))
     selected = []
     for _ in range(min(count, len(pool))):
         total_weight = sum(max(0.01, item.get('weight', 0.01)) for item in pool)
@@ -8980,7 +8983,7 @@ def draw_non_vatican_battle_cards(count, room=None):
     attempts = 0
     while len(cards) < count and attempts < count * 8:
         attempts += 1
-        for key in weighted_battle_country_sample(count - len(cards)):
+        for key in weighted_battle_country_sample(count - len(cards), room):
             if key != vatican_key:
                 cards.append(key)
             if len(cards) >= count:
@@ -9011,7 +9014,7 @@ def draw_battle_cards(count=5, room=None):
         special_count = sum(1 for _ in range(count) if random.random() < BATTLE_SPECIAL_CARD_CHANCE)
         special_count = min(special_count, BATTLE_SPECIAL_CARD_MAX_PER_HAND, count - 1)
     normal_count = max(0, count - special_count)
-    cards = weighted_battle_country_sample(normal_count)
+    cards = weighted_battle_country_sample(normal_count, room)
     if battle_room_events_enabled(room) and battle_vatican_active(room):
         vatican_key = battle_vatican_country_key()
         if vatican_key:
@@ -9531,11 +9534,18 @@ def battle_power_for_keys(keys, room=None):
 def battle_bonus_scale(labels):
     return BATTLE_BONUS_DENOMINATOR + (BATTLE_BONUS_PER_MATCH_BPS * len(labels))
 
-def battle_bonus_multiplier(labels):
-    return battle_bonus_scale(labels) / BATTLE_BONUS_DENOMINATOR
+def battle_bonus_multiplier(labels, revolution=False):
+    scale = battle_bonus_scale(labels)
+    if revolution and labels:
+        return BATTLE_BONUS_DENOMINATOR / scale
+    return scale / BATTLE_BONUS_DENOMINATOR
 
-def apply_battle_bonus_value(value, labels):
-    return max(0, int(value) * battle_bonus_scale(labels) // BATTLE_BONUS_DENOMINATOR)
+def apply_battle_bonus_value(value, labels, revolution=False):
+    value = max(0, int(value))
+    scale = battle_bonus_scale(labels)
+    if revolution and labels:
+        return value * BATTLE_BONUS_DENOMINATOR // scale
+    return value * scale // BATTLE_BONUS_DENOMINATOR
 
 def battle_defense_breakdown_for_keys(keys, room=None):
     labels = repeated_battle_bonus_labels(keys)
@@ -9613,13 +9623,21 @@ def repeated_battle_bonus_labels(keys):
     )
     return [tag_label(tag) for tag in repeated_tags] + [region_label(region) for region in repeated_regions]
 
-def battle_bonus_for_keys(keys):
+def battle_bonus_for_keys(keys, room=None):
     labels = repeated_battle_bonus_labels(keys)
-    return battle_bonus_multiplier(labels), labels
+    return battle_bonus_multiplier(labels, battle_revolution_active(room)), labels
 
 def format_battle_multiplier(multiplier):
     text = f'{float(multiplier):.3f}'.rstrip('0').rstrip('.')
     return text or '1'
+
+def format_signed_battle_number(value):
+    try:
+        value = int(value)
+    except (TypeError, ValueError):
+        return str(value)
+    sign = '+' if value >= 0 else '-'
+    return f'{sign}{format_battle_number(abs(value))}'
 
 def battle_bonus_text(labels, multiplier):
     if not labels:
@@ -9786,11 +9804,11 @@ def battle_turn_pressure_scale(turn):
 def apply_battle_turn_pressure(value, turn):
     return max(0, int(value) * battle_turn_pressure_scale(turn) // BATTLE_BONUS_DENOMINATOR)
 
-def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, world_war=False, event_multiplier=1, defense_base=None, defense_labels=None, defense_multiplier=1, counter_event_multiplier=None):
+def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, world_war=False, event_multiplier=1, defense_base=None, defense_labels=None, defense_multiplier=1, counter_event_multiplier=None, revolution=False):
     power_gap = max(0, int(win_power) - int(lose_power))
     defense = max(0, int(defense or 0))
-    attack_after_bonus = apply_battle_bonus_value(power_gap, labels)
-    attack_bonus_value = max(0, attack_after_bonus - power_gap)
+    attack_after_bonus = apply_battle_bonus_value(power_gap, labels, revolution)
+    attack_bonus_value = attack_after_bonus - power_gap
     blocked_damage = max(0, attack_after_bonus - defense)
     counter_base = max(0, defense - attack_after_bonus)
     pressured_damage = apply_battle_turn_pressure(blocked_damage, turn)
@@ -9807,10 +9825,11 @@ def battle_damage_breakdown(win_power, lose_power, defense, labels, turn=1, worl
         'win_power': int(win_power),
         'lose_power': int(lose_power),
         'power_gap': power_gap,
-        'attack_bonus_multiplier': battle_bonus_multiplier(labels),
+        'attack_bonus_multiplier': battle_bonus_multiplier(labels, revolution),
         'attack_bonus_labels': list(labels or []),
         'attack_bonus_value': attack_bonus_value,
         'attack_after_bonus': attack_after_bonus,
+        'revolution_bonus_inverted': bool(revolution and labels),
         'defense_base': defense_base,
         'defense': defense,
         'defense_bonus_value': max(0, defense - defense_base),
@@ -10581,7 +10600,7 @@ def resolve_battle_turn(room):
                     raw_power += int(entry.get('power', 0) or 0)
                 win_power = max(1, raw_power // split_count) if raw_power else 0
                 lose_power = team_power.get(target_team, 0)
-                multiplier, labels = battle_bonus_for_keys(attack_keys)
+                multiplier, labels = battle_bonus_for_keys(attack_keys, room)
                 defense_base = team_defense_base.get(target_team, 0)
                 defense_multiplier = (team_defense.get(target_team, 0) / defense_base) if defense_base else 1
                 target_players = [player for player in team_players.get(target_team, []) if room['hp'].get(player, 0) > 0]
@@ -10598,6 +10617,7 @@ def resolve_battle_turn(room):
                     defense_labels=sorted(set(team_defense_labels.get(target_team, []))),
                     defense_multiplier=defense_multiplier,
                     counter_event_multiplier=battle_group_event_damage_multiplier(room, target_players),
+                    revolution=battle_revolution_active(room),
                 )
                 breakdown['raw_team_attack'] = raw_power
                 breakdown['split_count'] = split_count
@@ -10640,6 +10660,7 @@ def resolve_battle_turn(room):
                         defense_labels=[],
                         defense_multiplier=1,
                         counter_event_multiplier=1,
+                        revolution=battle_revolution_active(room),
                     )
                     breakdown['raw_team_attack'] = raw_power
                     breakdown['split_count'] = split_count
@@ -10740,7 +10761,7 @@ def resolve_battle_turn(room):
                 })
                 result_parts.append(f"{attacker} -> {target}: draw")
                 continue
-            multiplier, labels = battle_bonus_for_keys(entry.get('keys', []))
+            multiplier, labels = battle_bonus_for_keys(entry.get('keys', []), room)
             breakdown = battle_damage_breakdown(
                 entry.get('power', 0),
                 entries[target].get('power', 0),
@@ -10753,6 +10774,7 @@ def resolve_battle_turn(room):
                 defense_labels=entries[target].get('defense_bonus_labels', []),
                 defense_multiplier=entries[target].get('defense_multiplier', 1),
                 counter_event_multiplier=battle_event_damage_multiplier(room, target),
+                revolution=battle_revolution_active(room),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage_events.append((attacker, target, damage, counter, labels, multiplier, breakdown))
@@ -10814,7 +10836,7 @@ def resolve_battle_turn(room):
         power_one = entries[player_one]['power']
         power_two = entries[player_two]['power']
         if power_one > power_two:
-            multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'])
+            multiplier, labels = battle_bonus_for_keys(entries[player_one]['keys'], room)
             breakdown = battle_damage_breakdown(
                 power_one,
                 power_two,
@@ -10827,6 +10849,7 @@ def resolve_battle_turn(room):
                 defense_labels=entries[player_two].get('defense_bonus_labels', []),
                 defense_multiplier=entries[player_two].get('defense_multiplier', 1),
                 counter_event_multiplier=battle_event_damage_multiplier(room, player_two),
+                revolution=battle_revolution_active(room),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage = battle_apply_enemy_extra_actions(room, damage, source_player=player_one, breakdown=breakdown)
@@ -10883,7 +10906,7 @@ def resolve_battle_turn(room):
                     ))
                 result_parts.append(f"{player_one} vs {player_two}: {player_two} -{format_battle_number(damage)}{battle_defense_text(entries[player_two])}{battle_bonus_text(labels, multiplier)}")
         elif power_two > power_one:
-            multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'])
+            multiplier, labels = battle_bonus_for_keys(entries[player_two]['keys'], room)
             breakdown = battle_damage_breakdown(
                 power_two,
                 power_one,
@@ -10896,6 +10919,7 @@ def resolve_battle_turn(room):
                 defense_labels=entries[player_one].get('defense_bonus_labels', []),
                 defense_multiplier=entries[player_one].get('defense_multiplier', 1),
                 counter_event_multiplier=battle_event_damage_multiplier(room, player_one),
+                revolution=battle_revolution_active(room),
             )
             damage, counter = breakdown['damage'], breakdown['counter']
             damage = battle_apply_enemy_extra_actions(room, damage, source_player=player_two, breakdown=breakdown)
@@ -13970,7 +13994,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                     render_metric(t('battle_power_gap'), format_battle_number(breakdown.get('power_gap', 0)), 'purple')
                     render_metric(
                         t('battle_attack_bonus_value'),
-                        f"+{format_battle_number(breakdown.get('attack_bonus_value', 0))} / x{format_battle_multiplier(breakdown.get('attack_bonus_multiplier', 1))}",
+                        f"{format_signed_battle_number(breakdown.get('attack_bonus_value', 0))} / x{format_battle_multiplier(breakdown.get('attack_bonus_multiplier', 1))}",
                         'green',
                     )
                     render_metric(t('battle_after_bonus'), format_battle_number(breakdown.get('attack_after_bonus', 0)), 'blue')
