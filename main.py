@@ -10628,6 +10628,23 @@ def resolve_battle_turn(room):
                     ))
                     continue
                 if battle_random_target_active(room) and target_team == source_team:
+                    breakdown = battle_damage_breakdown(
+                        win_power,
+                        0,
+                        0,
+                        labels,
+                        room.get('turn', 1),
+                        battle_world_war_active(room),
+                        battle_group_event_damage_multiplier(room, attack_players),
+                        defense_base=0,
+                        defense_labels=[],
+                        defense_multiplier=1,
+                        counter_event_multiplier=1,
+                    )
+                    breakdown['raw_team_attack'] = raw_power
+                    breakdown['split_count'] = split_count
+                    breakdown['split_penalty_value'] = max(0, raw_power - win_power)
+                    damage = battle_apply_enemy_extra_actions(room, breakdown['damage'], source_team=source_team, breakdown=breakdown)
                     damage = battle_apply_team_self_damage(room, source_team, damage)
                     team_label = f"{t('battle_team')} {source_team}"
                     visual['damage'].append({
