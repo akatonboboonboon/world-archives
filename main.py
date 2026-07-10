@@ -3779,6 +3779,9 @@ def restore_user_backup_payload(payload, target_username=None, target_password=N
             record['password_hash'] = password_hash(username, target_password)
         remember_known_user(username, user_data)
         existing = users.get(username, {})
+        existing_password_hash = ''
+        if not is_guest_record(username, existing) and isinstance(existing, dict):
+            existing_password_hash = str(existing.get('password_hash') or '')
         if (
             not is_guest_record(username, existing)
             and not (isinstance(existing, dict) and existing.get('password_hash'))
@@ -3786,8 +3789,13 @@ def restore_user_backup_payload(payload, target_username=None, target_password=N
         ):
             continue
         users[username] = merge_user_record(users.get(username, {}), record)
-        if record.get('password_hash'):
-            users[username]['password_hash'] = record['password_hash']
+        if not is_guest_record(username, users[username]):
+            if target_username and username == target_username and target_password:
+                users[username]['password_hash'] = password_hash(username, target_password)
+            elif existing_password_hash:
+                users[username]['password_hash'] = existing_password_hash
+            elif record.get('password_hash'):
+                users[username]['password_hash'] = record['password_hash']
         apply_restored_progress_snapshot(users[username], record)
         ensure_user_defaults(users[username])
         restored += 1
