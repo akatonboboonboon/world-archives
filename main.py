@@ -1078,6 +1078,7 @@ class AppState:
     quiz_category = 'all'
     quiz_format = 'mixed'
     quiz_scope = 'all'
+    quiz_timer_enabled = True
     compare_left_key = None
     compare_right_key = None
     map_country_key = None
@@ -2696,6 +2697,22 @@ for _lang, _values in {
     TRANSLATIONS.setdefault(_lang, {}).update(_values)
     UI_FALLBACKS.setdefault(_lang, {}).update(_values)
 
+UI_FALLBACKS.setdefault('ja', {}).update({
+    'sengoku_unlock_hint': '国力対戦解放後、全国家を閲覧するか、タイマーありの上級・総合・全問・混合ミニクイズで20問連続正解すると解放されます。',
+})
+UI_FALLBACKS.setdefault('en', {}).update({
+    'sengoku_unlock_hint': 'After unlocking Power Battle, view every country or get 20 consecutive correct answers with Timer On on Hard / Overall / All / Mixed quiz settings.',
+})
+UI_FALLBACKS.setdefault('zh', {}).update({
+    'sengoku_unlock_hint': '解锁国力对战后，浏览所有国家，或在计时开启的高级/综合/全问/混合设置下连续答对20题即可解锁。',
+})
+for _lang, _key, _text in [
+    ('ja', 'sengoku_unlock_hint', '国力対戦解放後、全国家を閲覧するか、タイマーありの上級・総合・全問・混合ミニクイズで20問連続正解すると解放されます。'),
+    ('en', 'sengoku_unlock_hint', 'After unlocking Power Battle, view every country or get 20 consecutive correct answers with Timer On on Hard / Overall / All / Mixed quiz settings.'),
+    ('zh', 'sengoku_unlock_hint', '解锁国力对战后，浏览所有国家，或在计时开启的高级/综合/全问/混合设置下连续答对20题即可解锁。'),
+]:
+    TRANSLATIONS.setdefault(_lang, {})[_key] = _text
+
 def t(key, subkey=None):
     lang_data = TRANSLATIONS.get(state.lang, TRANSLATIONS.get('en', {}))
     fallback = UI_FALLBACKS.get(state.lang, UI_FALLBACKS['en']).get(key, key)
@@ -4053,7 +4070,7 @@ def sengoku_boss_definitions():
             'enemy_count': 1,
             'hp_multiplier': 10,
             'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
-            'satrapy_shield_hits': 3,
+            'satrapy_shield_hits': 1,
             'satrapy_hp_drop_percent': 15,
             'satrapy_guard_card_limit': 1,
             'royal_road_interval': 5,
@@ -4136,7 +4153,7 @@ def sengoku_boss_definitions():
             'forced_events': ['world_war', 'vatican', 'supply_drop', 'blockade', 'flag_only', 'revolution', 'ceasefire', 'replace', 'lytton', 'damage_surge', 'random_target', 'command_surge'],
             'bomb_every_turns': 3,
             'satrapy_provinces': [province['id'] for province in BATTLE_SATRAPY_PROVINCES],
-            'satrapy_shield_hits': 3,
+            'satrapy_shield_hits': 1,
             'satrapy_hp_drop_percent': 15,
             'satrapy_guard_card_limit': 1,
             'royal_road_interval': 5,
@@ -5757,6 +5774,7 @@ def update_quiz_stats(correct, answer_key=None, review_mode=False, selected_key=
         'category': state.quiz_category,
         'scope': state.quiz_scope,
         'format': state.quiz_format,
+        'timer_enabled': bool((state.quiz or {}).get('timer_enabled', getattr(state, 'quiz_timer_enabled', True))),
     })
     del history[QUIZ_HISTORY_LIMIT:]
     normalize_quiz_stats(user)
@@ -6494,6 +6512,8 @@ def quiz_option_count():
     return {'easy': 3, 'medium': 4, 'hard': 5, 'extreme': 8}.get(state.quiz_difficulty, 4)
 
 def quiz_time_limit_seconds():
+    if not getattr(state, 'quiz_timer_enabled', True):
+        return None
     return QUIZ_TIME_LIMIT_SECONDS.get(state.quiz_difficulty)
 
 def prepare_quiz_timer(quiz):
@@ -6503,6 +6523,7 @@ def prepare_quiz_timer(quiz):
     quiz['timer_token'] = str(uuid.uuid4())
     quiz['started_at_ts'] = app_now().timestamp()
     quiz['time_limit_seconds'] = limit
+    quiz['timer_enabled'] = bool(getattr(state, 'quiz_timer_enabled', True))
     quiz['deadline_ts'] = (quiz['started_at_ts'] + limit) if limit else None
     quiz['timed_out'] = False
     return quiz
@@ -7168,6 +7189,10 @@ def set_quiz_format(quiz_format):
     state.quiz_format = quiz_format
     start_quiz()
 
+def set_quiz_timer_enabled(enabled):
+    state.quiz_timer_enabled = bool(enabled)
+    start_quiz()
+
 def set_quiz_scope(scope):
     if scope not in [key for key, _ in QUIZ_SCOPE_OPTIONS]:
         scope = 'all'
@@ -7374,6 +7399,10 @@ def battle_blockade_active(room):
         return int((room or {}).get('turn', 1)) <= int((room or {}).get('blockade_until_turn', 0) or 0)
     except (TypeError, ValueError):
         return False
+
+def battle_all_events_summary_active(room):
+    boss = sengoku_boss_for_room(room)
+    return bool(boss and boss.get('id') == 'boss_8')
 
 def battle_exclusive_event_active(room):
     return any([
@@ -8578,6 +8607,15 @@ def ensure_battle_team_hp(room):
         team_hp[team] = max(0, min(current_hp, limit))
     return team_hp
 
+def reset_battle_team_hp_to_limits(room):
+    if room.get('mode') != TEAM_MODE:
+        return {}
+    ensure_battle_team_hp(room)
+    team_hp = room.setdefault('team_hp', {})
+    for team in set(room.setdefault('teams', {}).values()):
+        team_hp[team] = battle_team_hp_limit(room, team)
+    return team_hp
+
 def normalize_battle_room(room):
     room.setdefault('redraw_turns', {})
     room.setdefault('reload_after_turn', [])
@@ -8865,6 +8903,7 @@ def sengoku_quiz_streak(user):
             and entry.get('scope') == 'all'
             and entry.get('format') == 'mixed'
             and entry.get('mode') == 'normal'
+            and bool(entry.get('timer_enabled'))
         ):
             streak += 1
             continue
@@ -9199,6 +9238,8 @@ def create_battle_room(*players, state_data=None, mode=DUEL_MODE, bot=False, tur
         hp_limit = battle_player_hp_limit(room, player)
         room['hp'][player] = hp_limit
     ensure_battle_team_hp(room)
+    if mode == TEAM_MODE and sengoku_boss_id:
+        reset_battle_team_hp_to_limits(room)
     state_data.setdefault('rooms', {})[room_id] = room
     for player in players:
         if not is_battle_bot(player):
@@ -9289,6 +9330,8 @@ def create_sengoku_boss_battle(boss_id, replace_current=False):
     if room:
         if ally_bots:
             room['boss_player_allies'] = ally_bots
+        if room.get('mode') == TEAM_MODE:
+            reset_battle_team_hp_to_limits(room)
         append_battle_log(room, f"ボス戦: {localized_boss_text(boss, 'name')}")
         save_battle_state(state_data)
     ui.notify(f"{localized_boss_text(boss, 'name')} に挑戦します。", color='positive')
@@ -12752,6 +12795,21 @@ with ui.column().classes('wa-dark-area wa-quiz-screen w-full min-h-screen bg-gra
                     ui.button(t(f'difficulty_{key}'), on_click=lambda _, d=key: set_quiz_difficulty(d)) \
                         .props(f'outline color={color} dense')
             with ui.row().classes('w-full gap-2 items-center flex-wrap'):
+                icon_label(
+                    battle_log_label({'ja': 'タイマー', 'en': 'Timer', 'zh': '计时器'}),
+                    'timer',
+                    'text-sm font-bold text-gray-500',
+                    'text-blue-500',
+                    'items-center gap-1',
+                )
+                for enabled, label in [
+                    (True, battle_log_label({'ja': 'あり', 'en': 'On', 'zh': '开'})),
+                    (False, battle_log_label({'ja': 'なし', 'en': 'Off', 'zh': '关'})),
+                ]:
+                    color = 'primary' if bool(state.quiz_timer_enabled) == enabled else 'grey'
+                    ui.button(label, on_click=lambda _, value=enabled: set_quiz_timer_enabled(value)) \
+                        .props(f'outline color={color} dense')
+            with ui.row().classes('w-full gap-2 items-center flex-wrap'):
                 icon_label(t('quiz_category'), 'category', 'text-sm font-bold text-gray-500', 'text-blue-500', 'items-center gap-1')
                 for key, label_key in QUIZ_CATEGORY_OPTIONS:
                     color = 'primary' if state.quiz_category == key else 'grey'
@@ -13781,7 +13839,74 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 if card.get('destroy_one'):
                     ui.label('x1').classes('text-xs font-bold text-red-700')
 
+    def render_battle_all_events_summary(room):
+        title = battle_log_label({'ja': '全イベント発動中', 'en': 'All events active', 'zh': '全部事件发动中'})
+        notice = battle_log_label({
+            'ja': '第8ボスでは複数のイベントが同時に動きます。確認が必要な情報だけここにまとめています。',
+            'en': 'Boss 8 runs many events at once. Key information is grouped here.',
+            'zh': '第8个首领会同时发动多个事件。需要确认的信息汇总在这里。',
+        })
+        with ui.card().classes('wa-light-fallback w-full p-5 gap-3 border-2 border-purple-500 bg-purple-50'):
+            ui.label(title).classes('text-2xl font-black text-purple-900')
+            ui.label(notice).classes('text-sm font-bold text-purple-800')
+            with ui.row().classes('gap-2 flex-wrap'):
+                if battle_world_war_active(room):
+                    ui.badge(t('battle_world_war_title'), color='red')
+                if battle_revolution_active(room):
+                    ui.badge(t('battle_revolution_title'), color='orange')
+                if battle_flag_only_active(room):
+                    ui.badge(t('battle_flag_only_title'), color='indigo')
+                if battle_vatican_active(room):
+                    ui.badge(t('battle_vatican_title'), color='amber')
+                if battle_replace_active(room):
+                    ui.badge(t('battle_replace_title'), color='cyan')
+                if battle_random_target_active(room):
+                    ui.badge(t('battle_random_target_title'), color='fuchsia')
+                if battle_ceasefire_active(room):
+                    ui.badge(t('battle_ceasefire_title'), color='green')
+                if battle_command_surge_active(room):
+                    ui.badge(t('battle_command_surge_title'), color='blue')
+                if battle_supply_drop_active(room):
+                    ui.badge(t('battle_supply_drop_title'), color='lime')
+                if battle_blockade_active(room):
+                    ui.badge(t('battle_blockade_title'), color='grey')
+            shield_total = battle_satrapy_shield_total(room)
+            if shield_total:
+                remaining = battle_satrapy_shields_remaining(room)
+                reduction_percent = battle_satrapy_shield_reduction_percent(room)
+                strength = battle_satrapy_shield_strength(room)
+                damage_map, broken = battle_satrapy_state(room)
+                ui.label(
+                    battle_log_label({
+                        'ja': f'シールド: 残り {remaining}/{shield_total} / 軽減 {reduction_percent}% / 共鳴 {strength}回で崩壊',
+                        'en': f'Shields: {remaining}/{shield_total} left / {reduction_percent}% reduction / breaks after {strength} resonance',
+                        'zh': f'护盾: 剩余 {remaining}/{shield_total} / 减伤 {reduction_percent}% / 共鸣 {strength}次破坏',
+                    })
+                ).classes('text-sm font-black text-amber-900')
+                with ui.row().classes('gap-2 flex-wrap'):
+                    for province in battle_satrapy_provinces(room):
+                        province_id = province['id']
+                        if province_id in broken:
+                            ui.badge(f"{battle_satrapy_province_label(province)}: break", color='red')
+                        else:
+                            ui.badge(f"{battle_satrapy_province_label(province)}: {damage_map.get(province_id, 0)}/{strength}", color='amber')
+            if battle_bomb_active(room):
+                if battle_find_bomb_holder(room) == state.current_user:
+                    ui.badge(t('battle_bomb_in_your_hand'), color='pink').classes('text-base px-3 py-2')
+                else:
+                    ui.badge(t('battle_bomb_title'), color='pink')
+            if battle_lytton_active(room):
+                ui.badge(t('battle_lytton_title'), color='blue').classes('text-base px-3 py-2')
+            if battle_operation_confusion_active(room):
+                required = ensure_battle_operation_required_count(room)
+                if required:
+                    ui.badge(t('battle_operation_required').format(count=required), color='purple').classes('text-base px-3 py-2')
+                    ui.label(t('battle_operation_required_help').format(count=required)).classes('text-sm font-bold text-purple-800')
+
     def render_battle_crisis_notice(room):
+        if battle_all_events_summary_active(room):
+            render_battle_all_events_summary(room)
+            return
         shield_total = battle_satrapy_shield_total(room)
         if shield_total:
             remaining = battle_satrapy_shields_remaining(room)
@@ -13861,6 +13986,9 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                 ui.label(t('battle_blockade_notice')).classes('text-sm font-bold text-gray-700')
 
     def render_battle_crisis_notice(room):
+        if battle_all_events_summary_active(room):
+            render_battle_all_events_summary(room)
+            return
         shield_total = battle_satrapy_shield_total(room)
         if shield_total:
             remaining = battle_satrapy_shields_remaining(room)
