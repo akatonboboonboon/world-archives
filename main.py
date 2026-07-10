@@ -13920,11 +13920,30 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             ui.badge(f"{battle_satrapy_province_label(province)}: break", color='red')
                         else:
                             ui.badge(f"{battle_satrapy_province_label(province)}: {damage_map.get(province_id, 0)}/{strength}", color='amber')
-            if battle_bomb_active(room):
-                if battle_find_bomb_holder(room) == state.current_user:
+            bomb_holder = battle_find_bomb_holder(room)
+            if battle_bomb_active(room) or bomb_holder:
+                if bomb_holder == state.current_user:
                     ui.badge(t('battle_bomb_in_your_hand'), color='pink').classes('text-base px-3 py-2')
-                else:
+                    bomb_status = battle_log_label({
+                        'ja': '爆弾カード: 手元にあります。',
+                        'en': 'Bomb card: in your hand.',
+                        'zh': '炸弹牌：在你的手中。',
+                    })
+                elif bomb_holder:
                     ui.badge(t('battle_bomb_title'), color='pink')
+                    bomb_status = battle_log_label({
+                        'ja': '爆弾カード: 手元にはありません。',
+                        'en': 'Bomb card: not in your hand.',
+                        'zh': '炸弹牌：不在你的手中。',
+                    })
+                else:
+                    ui.badge(t('battle_bomb_title'), color='grey')
+                    bomb_status = battle_log_label({
+                        'ja': '爆弾カード: 現在は場にありません。',
+                        'en': 'Bomb card: not currently in play.',
+                        'zh': '炸弹牌：当前不在场上。',
+                    })
+                ui.label(bomb_status).classes('text-sm font-black text-pink-800')
             if battle_lytton_active(room):
                 ui.badge(t('battle_lytton_title'), color='blue').classes('text-base px-3 py-2')
             if battle_operation_confusion_active(room):
