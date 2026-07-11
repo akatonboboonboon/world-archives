@@ -15,7 +15,7 @@
       "hits": "件ヒット",
       "close": "閉じる",
       "back_home": "トップへ戻る",
-      "back_search": "検索に戻る",
+      "back_search": "検索",
       "no_result": "該当する国・地域は見つかりませんでした。",
       "tabs": {
         "All": "すべて",
@@ -364,7 +364,7 @@
       "hits": " hits",
       "close": "Close",
       "back_home": "Back to Top",
-      "back_search": "Back to Search",
+      "back_search": "Search",
       "no_result": "No countries found.",
       "tabs": {
         "All": "All",
@@ -707,7 +707,7 @@
       "history": "搜索历史",
       "history_empty": "暂无历史",
       "close": "关闭",
-      "back_search": "返回搜索",
+      "back_search": "搜索",
       "tabs": {
         "All": "全部",
         "Present": "现存",

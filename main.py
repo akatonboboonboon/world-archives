@@ -521,6 +521,48 @@ html.wa-dark body .wa-user-pill * {
   color: #111827 !important;
   border-color: #cbd5e1 !important;
 }
+html.wa-dark body .wa-login-status-pill,
+html.wa-dark body .wa-login-status-pill *,
+html.wa-dark body .wa-user-pill,
+html.wa-dark body .wa-user-pill * {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  text-shadow: none !important;
+}
+html.wa-dark body .wa-top-lang-link,
+html.wa-dark body .wa-top-lang-link * {
+  color: #93c5fd !important;
+  -webkit-text-fill-color: #93c5fd !important;
+  font-weight: 800 !important;
+}
+html.wa-dark body .q-notification {
+  border: 0 !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35) !important;
+}
+html.wa-dark body .q-notification,
+html.wa-dark body .q-notification *,
+html.wa-dark body .q-notification__message,
+html.wa-dark body .q-notification__caption {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: transparent !important;
+}
+html.wa-dark body .q-notification.bg-info {
+  background: #2563eb !important;
+  background-color: #2563eb !important;
+}
+html.wa-dark body .q-notification.bg-positive {
+  background: #16a34a !important;
+  background-color: #16a34a !important;
+}
+html.wa-dark body .q-notification.bg-negative {
+  background: #dc2626 !important;
+  background-color: #dc2626 !important;
+}
+html.wa-dark body .q-notification.bg-warning {
+  background: #d97706 !important;
+  background-color: #d97706 !important;
+}
 html.wa-dark body .wa-type-filter .q-btn.bg-white,
 html.wa-dark body .wa-type-filter .q-btn.text-grey-8 {
   background: #ffffff !important;
@@ -12099,12 +12141,15 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
             ui.button(help_labels()['detail_nav'], icon='menu_book', on_click=lambda: show_screen('help_detail')) \
                 .props('outline color=grey') \
                 .classes('w-full px-6 py-2 rounded-full shadow-sm font-bold' if is_mobile_ui() else 'px-8 py-2 rounded-full shadow-sm font-bold')
+            with ui.row().classes('gap-4 justify-center'):
+                ui.link('JA', '#').classes('wa-top-lang-link').on('click', lambda: switch_language('ja'))
+                ui.link('EN', '#').classes('wa-top-lang-link').on('click', lambda: switch_language('en'))
+                ui.link('ZH', '#').classes('wa-top-lang-link').on('click', lambda: switch_language('zh'))
             if state.current_user:
                 top_user = get_current_user_record()
                 top_name = current_user_display_name(top_user)
                 ui.label(t('logged_in_as').format(user=top_name)) \
-                    .classes('wa-user-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold') \
-                    .style(f'color: {user_pill_text_color(top_user)};')
+                    .classes('wa-user-pill wa-login-status-pill px-3 py-2 rounded-full bg-white border shadow-sm text-sm font-bold')
                 daily = today_country()
                 if daily:
                     with ui.card().classes('w-full max-w-md p-4 gap-2 shadow-md border border-blue-100'):
@@ -12164,10 +12209,6 @@ with ui.column().classes('wa-dark-area w-full h-screen items-center justify-cent
                     ui.upload(on_upload=import_guest_backup_file, auto_upload=True) \
                         .props('accept=.json') \
                         .classes('w-full')
-            with ui.row().classes('mt-8 gap-4'):
-                ui.link('JA', '#').on('click', lambda: switch_language('ja'))
-                ui.link('EN', '#').on('click', lambda: switch_language('en'))
-                ui.link('ZH', '#').on('click', lambda: switch_language('zh'))
     refresh_top_ui()
 
 # ========================================
@@ -12367,13 +12408,13 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
 
                 with ui.row().classes('w-full gap-2 mt-2 flex-col' if is_mobile_ui() else 'w-full gap-4 mt-2'):
                     ui.select(r_opts, value=selected_region_label(), label=t('labels', 'region'),on_change=lambda e: set_region_filter(e.value), clearable=True) \
-                        .props('prepend-inner-icon=public') \
+                        .props('prepend-inner-icon=public use-input input-debounce=0') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(tag_group_opts, value=selected_tag_group_label(), label=t('tag_group'), on_change=lambda e: set_tag_group_filter(e.value), clearable=True) \
-                        .props('prepend-inner-icon=category') \
+                        .props('prepend-inner-icon=category use-input input-debounce=0') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.select(t_opts, value=selected_tag_label(), label=t('labels', 'tags'),on_change=lambda e: set_tag_filter(e.value), clearable=True) \
-                        .props('prepend-inner-icon=sell') \
+                        .props('prepend-inner-icon=sell use-input input-debounce=0') \
                         .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
                     ui.button(favorite_filter_label(), icon=favorite_filter_icon(), on_click=toggle_favorites_filter) \
                         .props(f'color={favorite_filter_color()}') \
@@ -12381,6 +12422,7 @@ with ui.column().classes('wa-dark-area w-full min-h-screen bg-gray-50 gap-0') as
                     collection_names = list(get_collections().keys())
                     if collection_names:
                         ui.select(collection_names, value=state.collection_filter, label=t('collections'), on_change=lambda e: set_collection_filter(e.value), clearable=True) \
+                            .props('use-input input-debounce=0') \
                             .classes('w-full bg-white' if is_mobile_ui() else 'w-48 bg-white')
 
                 with ui.row().classes('w-full gap-3 items-stretch mt-4 flex-col' if is_mobile_ui() else 'w-full justify-between items-center mt-4'):
@@ -12980,8 +13022,10 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as compare_scre
             page_heading(t('compare_title'), 'compare_arrows')
             with ui.row().classes('w-full gap-3 flex-col' if is_mobile_ui() else 'w-full gap-4 items-center'):
                 ui.select(list(label_to_key.keys()), value=key_to_label.get(state.compare_left_key), label=t('compare_left'), on_change=lambda e: set_compare_country('left', e.value)) \
+                    .props('outlined dense use-input input-debounce=0') \
                     .classes('w-full bg-white' if is_mobile_ui() else 'w-1/2 bg-white')
                 ui.select(list(label_to_key.keys()), value=key_to_label.get(state.compare_right_key), label=t('compare_right'), on_change=lambda e: set_compare_country('right', e.value)) \
+                    .props('outlined dense use-input input-debounce=0') \
                     .classes('w-full bg-white' if is_mobile_ui() else 'w-1/2 bg-white')
             with ui.grid(columns=1 if is_mobile_ui() else 2).classes('w-full gap-4'):
                 render_compare_column(lookup.get(state.compare_left_key))
@@ -13106,6 +13150,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as map_screen:
         with map_content:
             page_heading(t('map_title'), 'map')
             ui.select(list(label_to_key.keys()), value=key_to_label.get(state.map_country_key), label=t('map'), on_change=lambda e: set_map_country_by_label(e.value)) \
+                .props('outlined dense use-input input-debounce=0') \
                 .classes('w-full bg-white')
             with ui.card().classes('w-full p-5 gap-4'):
                 with ui.row().classes('w-full justify-between items-center flex-wrap gap-2'):
@@ -13167,6 +13212,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as network_scre
         with network_content:
             page_heading(t('network_title'), 'account_tree')
             ui.select(list(label_to_key.keys()), value=key_to_label.get(state.network_country_key), label=t('network'), on_change=lambda e: set_network_country_by_label(e.value)) \
+                .props('outlined dense use-input input-debounce=0') \
                 .classes('w-full bg-white')
             render_network_country_card(country, central=True)
             with ui.row().classes('w-full justify-center'):
@@ -14545,7 +14591,7 @@ with ui.column().classes('wa-battle-surface w-full min-h-screen bg-gray-50 gap-0
                             value=state.battle_attack_target,
                             label=t('battle_attack_target'),
                             on_change=lambda e: setattr(state, 'battle_attack_target', e.value),
-                        ).props('outlined dense').classes('w-full bg-white')
+                        ).props('outlined dense use-input input-debounce=0').classes('w-full bg-white')
                     with ui.grid(columns=1 if is_mobile_ui() else 5).classes('w-full gap-3'):
                         for key in hand:
                             render_battle_card(key, lookup, room)
@@ -14798,7 +14844,7 @@ with ui.column().classes('w-full min-h-screen bg-gray-50 gap-0') as account_scre
                             label=t('avatar_flag'),
                             on_change=lambda e: set_avatar_country(e.value),
                             clearable=True,
-                        ).props('outlined dense').classes('w-full')
+                        ).props('outlined dense use-input input-debounce=0').classes('w-full')
                         ui.label(t('avatar_upload')).classes('text-sm font-bold text-gray-500')
                         ui.label(t('avatar_file_hint')).classes('text-xs text-gray-500')
                         render_avatar_upload_control()
