@@ -51121,6 +51121,2610 @@
         "Maratha Empire",
         "Bahmani Sultanate"
       ]
+    },
+    {
+      "names": {
+        "ja": "ヴァイマル共和国",
+        "en": "Weimar Republic",
+        "zh": "魏玛共和国"
+      },
+      "capital": {
+        "ja": "ベルリン",
+        "en": "Berlin",
+        "zh": "柏林"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Republic",
+        "Interwar State",
+        "Modern Era State",
+        "Modern Nation-State",
+        "Christian World",
+        "Industrial Power"
+      ],
+      "desc": {
+        "ja": "第一次世界大戦後のドイツに成立した共和政国家。民主政治、賠償問題、経済危機、政治的暴力が交差した。",
+        "en": "The republican German state after World War I, marked by democracy, reparations, economic crisis, and political violence.",
+        "zh": "第一次世界大战后德国成立的共和国家，民主政治、赔款问题、经济危机与政治暴力交织。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Germany.svg",
+      "period": {
+        "start": 1918,
+        "end": 1933,
+        "label": {
+          "ja": "1918年〜1933年",
+          "en": "1918-1933",
+          "zh": "1918年—1933年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約6500万人",
+          "en": "peak estimate: about 65 million",
+          "zh": "鼎盛期估计：约6500万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約468,000 km²",
+          "en": "maximum extent estimate: about 468,000 km²",
+          "zh": "最大领域估计：约468,000 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語",
+          "en": "German",
+          "zh": "德语"
+        },
+        "religions": {
+          "ja": "キリスト教、ユダヤ教",
+          "en": "Christianity and Judaism",
+          "zh": "基督教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ヴァイマル共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ベルリンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Weimar Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Berlin, war, peace settlements, and border changes shaped the state.",
+          "zh": "魏玛共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以柏林为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1933年に活動。第一次世界大戦後のドイツに成立した共和政国家。民主政治、賠償問題、経済危機、政治的暴力が交差した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1933. The republican German state after World War I, marked by democracy, reparations, economic crisis, and political violence. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1933年。第一次世界大战后德国成立的共和国家，民主政治、赔款问题、经济危机与政治暴力交织。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "世界恐慌と政治的分極化の中でナチ党が台頭し、1933年に体制が崩れた。",
+          "en": "The Great Depression and political polarization enabled the Nazi rise to power, ending the republic in 1933.",
+          "zh": "大萧条与政治两极化推动纳粹上台，1933年共和国体制终结。"
+        },
+        "successors": {
+          "ja": "ナチス・ドイツ、現在のドイツと関係づけて理解できる。",
+          "en": "It connects to Nazi Germany and present-day Germany.",
+          "zh": "可与纳粹德国及现代德国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はドイツ語、主な宗教はキリスト教、ユダヤ教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: German; main religions: Christianity and Judaism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为德语，主要宗教为基督教、犹太教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ナチス・ドイツ",
+        "en": "Nazi Germany",
+        "zh": "纳粹德国"
+      },
+      "capital": {
+        "ja": "ベルリン",
+        "en": "Berlin",
+        "zh": "柏林"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Military Government",
+        "One-Party State",
+        "Empire",
+        "Modern Nation-State",
+        "Industrial Power",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "アドルフ・ヒトラー率いる一党独裁体制のドイツ。第二次世界大戦とホロコーストを引き起こした中心国家である。",
+        "en": "A one-party dictatorship under Adolf Hitler, central to World War II and the Holocaust.",
+        "zh": "阿道夫·希特勒领导的一党独裁德国，是第二次世界大战和大屠杀的核心国家。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Germany_%281935%E2%80%931945%29.svg",
+      "period": {
+        "start": 1933,
+        "end": 1945,
+        "label": {
+          "ja": "1933年〜1945年",
+          "en": "1933-1945",
+          "zh": "1933年—1945年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約7900万人",
+          "en": "peak estimate: about 79 million",
+          "zh": "鼎盛期估计：约7900万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約633,000 km²",
+          "en": "maximum extent estimate: about 633,000 km²",
+          "zh": "最大领域估计：约633,000 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語",
+          "en": "German",
+          "zh": "德语"
+        },
+        "religions": {
+          "ja": "キリスト教、国家主義的イデオロギー",
+          "en": "Christianity and nationalist ideology",
+          "zh": "基督教、民族主义意识形态"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ナチス・ドイツでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ベルリンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Nazi Germany, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Berlin, war, peace settlements, and border changes shaped the state.",
+          "zh": "纳粹德国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以柏林为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1933年〜1945年に活動。アドルフ・ヒトラー率いる一党独裁体制のドイツ。第二次世界大戦とホロコーストを引き起こした中心国家である。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1933-1945. A one-party dictatorship under Adolf Hitler, central to World War II and the Holocaust. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1933年—1945年。阿道夫·希特勒领导的一党独裁德国，是第二次世界大战和大屠杀的核心国家。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "第二次世界大戦で連合国に敗北し、占領と分割統治を受けた。",
+          "en": "It was defeated by the Allies in World War II and placed under occupation and division.",
+          "zh": "第二次世界大战中被同盟国击败，随后遭到占领与分区管理。"
+        },
+        "successors": {
+          "ja": "東西ドイツ、現在のドイツ、ヨーロッパ統合史と関係づけて理解できる。",
+          "en": "It connects to East and West Germany, present-day Germany, and European integration.",
+          "zh": "可与东西德、现代德国及欧洲一体化史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はドイツ語、主な宗教はキリスト教、国家主義的イデオロギー。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: German; main religions: Christianity and nationalist ideology. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为德语，主要宗教为基督教、民族主义意识形态。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ヴィシー・フランス",
+        "en": "Vichy France",
+        "zh": "维希法国"
+      },
+      "capital": {
+        "ja": "ヴィシー",
+        "en": "Vichy",
+        "zh": "维希"
+      },
+      "type": "Past",
+      "region": "Europe, Western Europe",
+      "tags": [
+        "Military Government",
+        "Modern Nation-State",
+        "Francophone World",
+        "Christian World",
+        "Colonial Empire"
+      ],
+      "desc": {
+        "ja": "ドイツ占領下で成立したフランス国。協力政権、植民地支配、レジスタンスとの対立が特徴である。",
+        "en": "The French State created under German domination, marked by collaboration, colonial issues, and conflict with the Resistance.",
+        "zh": "德国控制下成立的法国国家，以合作政权、殖民地问题和抵抗运动冲突为特征。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_France.svg",
+      "period": {
+        "start": 1940,
+        "end": 1944,
+        "label": {
+          "ja": "1940年〜1944年",
+          "en": "1940-1944",
+          "zh": "1940年—1944年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約4000万人",
+          "en": "peak estimate: about 40 million",
+          "zh": "鼎盛期估计：约4000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約550,000 km²",
+          "en": "maximum extent estimate: about 550,000 km²",
+          "zh": "最大领域估计：约550,000 km²"
+        },
+        "languages": {
+          "ja": "フランス語",
+          "en": "French",
+          "zh": "法语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリック",
+          "en": "Christianity and Catholicism",
+          "zh": "基督教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ヴィシー・フランスでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ヴィシーを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Vichy France, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Vichy, war, peace settlements, and border changes shaped the state.",
+          "zh": "维希法国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以维希为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1940年〜1944年に活動。ドイツ占領下で成立したフランス国。協力政権、植民地支配、レジスタンスとの対立が特徴である。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1940-1944. The French State created under German domination, marked by collaboration, colonial issues, and conflict with the Resistance. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1940年—1944年。德国控制下成立的法国国家，以合作政权、殖民地问题和抵抗运动冲突为特征。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "連合軍の解放と自由フランスの進出により崩壊した。",
+          "en": "It collapsed as Allied liberation and Free French authority advanced.",
+          "zh": "随着盟军解放和自由法国推进而崩溃。"
+        },
+        "successors": {
+          "ja": "フランス共和国、自由フランス、第二次世界大戦後のフランスと関係づけて理解できる。",
+          "en": "It connects to the French Republic, Free France, and postwar France.",
+          "zh": "可与法兰西共和国、自由法国及战后法国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はフランス語、主な宗教はキリスト教、カトリック。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: French; main religions: Christianity and Catholicism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为法语，主要宗教为基督教、天主教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "イタリア社会共和国",
+        "en": "Italian Social Republic",
+        "zh": "意大利社会共和国"
+      },
+      "capital": {
+        "ja": "サロ、ヴェローナ、ミラノ",
+        "en": "Salò, Verona, and Milan",
+        "zh": "萨罗、维罗纳、米兰"
+      },
+      "type": "Past",
+      "region": "Europe, Southern Europe",
+      "tags": [
+        "Republic",
+        "Military Government",
+        "One-Party State",
+        "Modern Nation-State",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "ムッソリーニが北イタリアで樹立したドイツ支援下の政権。イタリア内戦の一方の当事者となった。",
+        "en": "A German-backed regime led by Mussolini in northern Italy, one side of the Italian Civil War.",
+        "zh": "墨索里尼在意大利北部建立的德国支持政权，是意大利内战的一方。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Italy.svg",
+      "period": {
+        "start": 1943,
+        "end": 1945,
+        "label": {
+          "ja": "1943年〜1945年",
+          "en": "1943-1945",
+          "zh": "1943年—1945年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1300万人",
+          "en": "peak estimate: about 13 million",
+          "zh": "鼎盛期估计：约1300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約150,000 km²",
+          "en": "maximum extent estimate: about 150,000 km²",
+          "zh": "最大领域估计：约150,000 km²"
+        },
+        "languages": {
+          "ja": "イタリア語",
+          "en": "Italian",
+          "zh": "意大利语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリック",
+          "en": "Christianity and Catholicism",
+          "zh": "基督教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "イタリア社会共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地サロ、ヴェローナ、ミラノを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Italian Social Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Salò, Verona, and Milan, war, peace settlements, and border changes shaped the state.",
+          "zh": "意大利社会共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以萨罗、维罗纳、米兰为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1943年〜1945年に活動。ムッソリーニが北イタリアで樹立したドイツ支援下の政権。イタリア内戦の一方の当事者となった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1943-1945. A German-backed regime led by Mussolini in northern Italy, one side of the Italian Civil War. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1943年—1945年。墨索里尼在意大利北部建立的德国支持政权，是意大利内战的一方。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "ドイツ軍の敗北、パルチザンの蜂起、連合軍の進撃で崩壊した。",
+          "en": "It fell with German defeat, partisan uprising, and Allied advance.",
+          "zh": "随着德军失败、游击队起义和盟军推进而崩溃。"
+        },
+        "successors": {
+          "ja": "イタリア共和国、第二次世界大戦後のイタリアと関係づけて理解できる。",
+          "en": "It connects to the Italian Republic and postwar Italy.",
+          "zh": "可与意大利共和国及战后意大利联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はイタリア語、主な宗教はキリスト教、カトリック。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Italian; main religions: Christianity and Catholicism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为意大利语，主要宗教为基督教、天主教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "スロバキア共和国 (1939-1945)",
+        "en": "Slovak Republic (1939-1945)",
+        "zh": "斯洛伐克共和国（1939-1945）"
+      },
+      "capital": {
+        "ja": "ブラチスラヴァ",
+        "en": "Bratislava",
+        "zh": "布拉迪斯拉发"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Republic",
+        "One-Party State",
+        "Interwar State",
+        "Modern Nation-State",
+        "Christian World",
+        "Slavic World"
+      ],
+      "desc": {
+        "ja": "チェコスロバキア解体後に成立したドイツの衛星国。第二次世界大戦期の中央ヨーロッパ秩序を示す。",
+        "en": "A German-aligned state formed after Czechoslovakia was broken up, showing the wartime order of Central Europe.",
+        "zh": "捷克斯洛伐克解体后成立的亲德国国家，反映战时中欧秩序。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Slovakia_%281939%E2%80%931945%29.svg",
+      "period": {
+        "start": 1939,
+        "end": 1945,
+        "label": {
+          "ja": "1939年〜1945年",
+          "en": "1939-1945",
+          "zh": "1939年—1945年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約270万人",
+          "en": "peak estimate: about 2.7 million",
+          "zh": "鼎盛期估计：约270万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約38,055 km²",
+          "en": "maximum extent estimate: about 38,055 km²",
+          "zh": "最大领域估计：约38,055 km²"
+        },
+        "languages": {
+          "ja": "スロバキア語",
+          "en": "Slovak",
+          "zh": "斯洛伐克语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリック",
+          "en": "Christianity and Catholicism",
+          "zh": "基督教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "スロバキア共和国 (1939-1945)では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ブラチスラヴァを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Slovak Republic (1939-1945), key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Bratislava, war, peace settlements, and border changes shaped the state.",
+          "zh": "斯洛伐克共和国（1939-1945）的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以布拉迪斯拉发为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1939年〜1945年に活動。チェコスロバキア解体後に成立したドイツの衛星国。第二次世界大戦期の中央ヨーロッパ秩序を示す。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1939-1945. A German-aligned state formed after Czechoslovakia was broken up, showing the wartime order of Central Europe. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1939年—1945年。捷克斯洛伐克解体后成立的亲德国国家，反映战时中欧秩序。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "ドイツ敗戦とチェコスロバキア再建により消滅した。",
+          "en": "It disappeared with Germany's defeat and the restoration of Czechoslovakia.",
+          "zh": "随着德国战败和捷克斯洛伐克重建而消失。"
+        },
+        "successors": {
+          "ja": "チェコスロバキア、現在のスロバキアと関係づけて理解できる。",
+          "en": "It connects to Czechoslovakia and present-day Slovakia.",
+          "zh": "可与捷克斯洛伐克及现代斯洛伐克联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はスロバキア語、主な宗教はキリスト教、カトリック。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Slovak; main religions: Christianity and Catholicism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为斯洛伐克语，主要宗教为基督教、天主教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "クロアチア独立国",
+        "en": "Independent State of Croatia",
+        "zh": "克罗地亚独立国"
+      },
+      "capital": {
+        "ja": "ザグレブ",
+        "en": "Zagreb",
+        "zh": "萨格勒布"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Military Government",
+        "One-Party State",
+        "Modern Nation-State",
+        "Christian World",
+        "Islamic World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "第二次世界大戦期に枢軸国の支援で成立したバルカンの国家。民族政策と内戦で大きな被害を出した。",
+        "en": "An Axis-backed Balkan state during World War II, marked by ethnic policy and civil war.",
+        "zh": "二战时期轴心国支持下的巴尔干国家，以民族政策和内战造成巨大伤害。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Independent_State_of_Croatia.svg",
+      "period": {
+        "start": 1941,
+        "end": 1945,
+        "label": {
+          "ja": "1941年〜1945年",
+          "en": "1941-1945",
+          "zh": "1941年—1945年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約650万人",
+          "en": "peak estimate: about 6.5 million",
+          "zh": "鼎盛期估计：约650万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約115,000 km²",
+          "en": "maximum extent estimate: about 115,000 km²",
+          "zh": "最大领域估计：约115,000 km²"
+        },
+        "languages": {
+          "ja": "クロアチア語、セルビア語、ボスニア語",
+          "en": "Croatian, Serbian, and Bosnian",
+          "zh": "克罗地亚语、塞尔维亚语、波斯尼亚语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "クロアチア独立国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ザグレブを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Independent State of Croatia, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Zagreb, war, peace settlements, and border changes shaped the state.",
+          "zh": "克罗地亚独立国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以萨格勒布为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1941年〜1945年に活動。第二次世界大戦期に枢軸国の支援で成立したバルカンの国家。民族政策と内戦で大きな被害を出した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1941-1945. An Axis-backed Balkan state during World War II, marked by ethnic policy and civil war. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1941年—1945年。二战时期轴心国支持下的巴尔干国家，以民族政策和内战造成巨大伤害。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "パルチザン勢力と連合国側の勝利により崩壊し、ユーゴスラビアに再編された。",
+          "en": "It collapsed with the victory of the Partisans and Allies and was reorganized into Yugoslavia.",
+          "zh": "随着游击队和同盟国胜利而崩溃，并被重组进南斯拉夫。"
+        },
+        "successors": {
+          "ja": "ユーゴスラビア、現在のクロアチア、ボスニア・ヘルツェゴビナと関係づけて理解できる。",
+          "en": "It connects to Yugoslavia, Croatia, and Bosnia and Herzegovina.",
+          "zh": "可与南斯拉夫、克罗地亚和波斯尼亚和黑塞哥维那联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はクロアチア語、セルビア語、ボスニア語、主な宗教はキリスト教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Croatian, Serbian, and Bosnian; main religions: Christianity and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为克罗地亚语、塞尔维亚语、波斯尼亚语，主要宗教为基督教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "自由都市ダンツィヒ",
+        "en": "Free City of Danzig",
+        "zh": "但泽自由市"
+      },
+      "capital": {
+        "ja": "ダンツィヒ",
+        "en": "Danzig",
+        "zh": "但泽"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "City-State",
+        "Buffer State",
+        "Port City Network",
+        "Trade Hub",
+        "Interwar State",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ヴェルサイユ体制下で国際管理された港湾都市国家。ドイツとポーランドの対立点となった。",
+        "en": "A port city-state under the Versailles settlement and international supervision, disputed between Germany and Poland.",
+        "zh": "凡尔赛体系下受国际管理的港口城市国家，是德国与波兰矛盾焦点。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Free_City_of_Danzig.svg",
+      "period": {
+        "start": 1920,
+        "end": 1939,
+        "label": {
+          "ja": "1920年〜1939年",
+          "en": "1920-1939",
+          "zh": "1920年—1939年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約41万人",
+          "en": "peak estimate: about 410,000",
+          "zh": "鼎盛期估计：约41万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約1,966 km²",
+          "en": "maximum extent estimate: about 1,966 km²",
+          "zh": "最大领域估计：约1,966 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語、ポーランド語",
+          "en": "German and Polish",
+          "zh": "德语、波兰语"
+        },
+        "religions": {
+          "ja": "キリスト教、ユダヤ教",
+          "en": "Christianity and Judaism",
+          "zh": "基督教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "自由都市ダンツィヒでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ダンツィヒを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Free City of Danzig, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Danzig, war, peace settlements, and border changes shaped the state.",
+          "zh": "但泽自由市的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以但泽为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1920年〜1939年に活動。ヴェルサイユ体制下で国際管理された港湾都市国家。ドイツとポーランドの対立点となった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1920-1939. A port city-state under the Versailles settlement and international supervision, disputed between Germany and Poland. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1920年—1939年。凡尔赛体系下受国际管理的港口城市国家，是德国与波兰矛盾焦点。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1939年にナチス・ドイツが併合し、第二次世界大戦の発端の一つとなった。",
+          "en": "It was annexed by Nazi Germany in 1939, becoming one trigger of World War II.",
+          "zh": "1939年被纳粹德国吞并，成为二战爆发的重要导火索之一。"
+        },
+        "successors": {
+          "ja": "現在のポーランドのグダニスク、ドイツ・ポーランド関係史と関係づけて理解できる。",
+          "en": "It connects to Gdansk in Poland and German-Polish relations.",
+          "zh": "可与今日波兰格但斯克以及德波关系史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はドイツ語、ポーランド語、主な宗教はキリスト教、ユダヤ教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: German and Polish; main religions: Christianity and Judaism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为德语、波兰语，主要宗教为基督教、犹太教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "トゥヴァ人民共和国",
+        "en": "Tuvan People's Republic",
+        "zh": "图瓦人民共和国"
+      },
+      "capital": {
+        "ja": "クズル",
+        "en": "Kyzyl",
+        "zh": "克孜勒"
+      },
+      "type": "Past",
+      "region": "Asia, Central Asia",
+      "tags": [
+        "Socialist State",
+        "One-Party State",
+        "Revolutionary State",
+        "Landlocked State",
+        "Turkic World",
+        "Pastoral Nomadism",
+        "Buddhist Sphere"
+      ],
+      "desc": {
+        "ja": "ロシアとモンゴルの間に存在した社会主義系の小国家。ソ連とモンゴルのみが正式承認した。",
+        "en": "A small socialist state between Russia and Mongolia, formally recognized mainly by the Soviet Union and Mongolia.",
+        "zh": "位于俄罗斯和蒙古之间的小型社会主义国家，主要得到苏联和蒙古正式承认。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Tuvan_People%27s_Republic_%281943-1944%29.svg",
+      "period": {
+        "start": 1921,
+        "end": 1944,
+        "label": {
+          "ja": "1921年〜1944年",
+          "en": "1921-1944",
+          "zh": "1921年—1944年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約9.5万人",
+          "en": "peak estimate: about 95,000",
+          "zh": "鼎盛期估计：约9.5万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約170,500 km²",
+          "en": "maximum extent estimate: about 170,500 km²",
+          "zh": "最大领域估计：约170,500 km²"
+        },
+        "languages": {
+          "ja": "トゥバ語、ロシア語",
+          "en": "Tuvan and Russian",
+          "zh": "图瓦语、俄语"
+        },
+        "religions": {
+          "ja": "チベット仏教、シャーマニズム",
+          "en": "Tibetan Buddhism and shamanism",
+          "zh": "藏传佛教、萨满信仰"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "トゥヴァ人民共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地クズルを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Tuvan People's Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Kyzyl, war, peace settlements, and border changes shaped the state.",
+          "zh": "图瓦人民共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以克孜勒为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1921年〜1944年に活動。ロシアとモンゴルの間に存在した社会主義系の小国家。ソ連とモンゴルのみが正式承認した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1921-1944. A small socialist state between Russia and Mongolia, formally recognized mainly by the Soviet Union and Mongolia. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1921年—1944年。位于俄罗斯和蒙古之间的小型社会主义国家，主要得到苏联和蒙古正式承认。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1944年にソ連へ編入され、ロシアSFSR内の自治地域となった。",
+          "en": "It was incorporated into the Soviet Union in 1944 as an autonomous region of the Russian SFSR.",
+          "zh": "1944年并入苏联，成为俄罗斯苏维埃联邦社会主义共和国的自治地区。"
+        },
+        "successors": {
+          "ja": "現在のロシア連邦トゥヴァ共和国、モンゴル、ソ連史と関係づけて理解できる。",
+          "en": "It connects to Russia's Tuva Republic, Mongolia, and Soviet history.",
+          "zh": "可与俄罗斯图瓦共和国、蒙古及苏联史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はトゥバ語、ロシア語、主な宗教はチベット仏教、シャーマニズム。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Tuvan and Russian; main religions: Tibetan Buddhism and shamanism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为图瓦语、俄语，主要宗教为藏传佛教、萨满信仰。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ハタイ国",
+        "en": "Hatay State",
+        "zh": "哈塔伊国"
+      },
+      "capital": {
+        "ja": "アンタキヤ",
+        "en": "Antakya",
+        "zh": "安塔基亚"
+      },
+      "type": "Past",
+      "region": "Middle East, Levant",
+      "tags": [
+        "Republic",
+        "Buffer State",
+        "Strategic Crossroads",
+        "Modern Nation-State",
+        "Islamic World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "フランス委任統治領シリアのアレクサンドレッタ地方に成立した短命国家。トルコ編入までの過渡的存在だった。",
+        "en": "A short-lived state in Alexandretta under the French Mandate of Syria, transitional before incorporation into Turkey.",
+        "zh": "法国委任统治叙利亚的亚历山大勒塔地区短命国家，是并入土耳其前的过渡体。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Hatay.svg",
+      "period": {
+        "start": 1938,
+        "end": 1939,
+        "label": {
+          "ja": "1938年〜1939年",
+          "en": "1938-1939",
+          "zh": "1938年—1939年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約22万人",
+          "en": "peak estimate: about 220,000",
+          "zh": "鼎盛期估计：约22万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約4,700 km²",
+          "en": "maximum extent estimate: about 4,700 km²",
+          "zh": "最大领域估计：约4,700 km²"
+        },
+        "languages": {
+          "ja": "トルコ語、アラビア語、アルメニア語",
+          "en": "Turkish, Arabic, and Armenian",
+          "zh": "土耳其语、阿拉伯语、亚美尼亚语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ハタイ国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地アンタキヤを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Hatay State, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Antakya, war, peace settlements, and border changes shaped the state.",
+          "zh": "哈塔伊国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以安塔基亚为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1938年〜1939年に活動。フランス委任統治領シリアのアレクサンドレッタ地方に成立した短命国家。トルコ編入までの過渡的存在だった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1938-1939. A short-lived state in Alexandretta under the French Mandate of Syria, transitional before incorporation into Turkey. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1938年—1939年。法国委任统治叙利亚的亚历山大勒塔地区短命国家，是并入土耳其前的过渡体。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1939年にトルコへ編入され、ハタイ県となった。",
+          "en": "It joined Turkey in 1939 and became Hatay Province.",
+          "zh": "1939年并入土耳其，成为哈塔伊省。"
+        },
+        "successors": {
+          "ja": "現在のトルコ、シリア、レバント地域史と関係づけて理解できる。",
+          "en": "It connects to Turkey, Syria, and Levantine history.",
+          "zh": "可与土耳其、叙利亚及黎凡特史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はトルコ語、アラビア語、アルメニア語、主な宗教はイスラム教、キリスト教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Turkish, Arabic, and Armenian; main religions: Islam and Christianity. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为土耳其语、阿拉伯语、亚美尼亚语，主要宗教为伊斯兰教、基督教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ウクライナ人民共和国",
+        "en": "Ukrainian People's Republic",
+        "zh": "乌克兰人民共和国"
+      },
+      "capital": {
+        "ja": "キーウ",
+        "en": "Kyiv",
+        "zh": "基辅"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Republic",
+        "Revolutionary State",
+        "Anti-Colonial Independence",
+        "Interwar State",
+        "Modern Nation-State",
+        "Slavic World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "ロシア革命後に成立したウクライナの独立国家。内戦、ドイツの介入、ポーランド・ソビエト戦争に揺れた。",
+        "en": "A Ukrainian state born after the Russian Revolution, shaken by civil war, German intervention, and the Polish-Soviet War.",
+        "zh": "俄国革命后成立的乌克兰独立国家，受内战、德国干预和波苏战争影响。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ukraine_%281917%E2%80%931921%29.svg",
+      "period": {
+        "start": 1917,
+        "end": 1921,
+        "label": {
+          "ja": "1917年〜1921年",
+          "en": "1917-1921",
+          "zh": "1917年—1921年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約3000万人",
+          "en": "peak estimate: about 30 million",
+          "zh": "鼎盛期估计：约3000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約600,000 km²",
+          "en": "maximum extent estimate: about 600,000 km²",
+          "zh": "最大领域估计：约600,000 km²"
+        },
+        "languages": {
+          "ja": "ウクライナ語、ロシア語、ポーランド語、イディッシュ語",
+          "en": "Ukrainian, Russian, Polish, and Yiddish",
+          "zh": "乌克兰语、俄语、波兰语、意第绪语"
+        },
+        "religions": {
+          "ja": "キリスト教、ユダヤ教",
+          "en": "Christianity and Judaism",
+          "zh": "基督教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ウクライナ人民共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地キーウを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Ukrainian People's Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Kyiv, war, peace settlements, and border changes shaped the state.",
+          "zh": "乌克兰人民共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以基辅为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1917年〜1921年に活動。ロシア革命後に成立したウクライナの独立国家。内戦、ドイツの介入、ポーランド・ソビエト戦争に揺れた。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1917-1921. A Ukrainian state born after the Russian Revolution, shaken by civil war, German intervention, and the Polish-Soviet War. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1917年—1921年。俄国革命后成立的乌克兰独立国家，受内战、德国干预和波苏战争影响。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "戦争と外交上の敗北により領土を失い、政府は亡命した。",
+          "en": "It lost territory through war and diplomacy, and its government went into exile.",
+          "zh": "因战争和外交失败失去领土，政府流亡。"
+        },
+        "successors": {
+          "ja": "現在のウクライナ、ソ連、ポーランドと関係づけて理解できる。",
+          "en": "It connects to present-day Ukraine, the Soviet Union, and Poland.",
+          "zh": "可与现代乌克兰、苏联和波兰联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はウクライナ語、ロシア語、ポーランド語、イディッシュ語、主な宗教はキリスト教、ユダヤ教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Ukrainian, Russian, Polish, and Yiddish; main religions: Christianity and Judaism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为乌克兰语、俄语、波兰语、意第绪语，主要宗教为基督教、犹太教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "西ウクライナ人民共和国",
+        "en": "West Ukrainian People's Republic",
+        "zh": "西乌克兰人民共和国"
+      },
+      "capital": {
+        "ja": "リヴィウ",
+        "en": "Lviv",
+        "zh": "利沃夫"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Republic",
+        "Revolutionary State",
+        "Interwar State",
+        "Modern Nation-State",
+        "Slavic World",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "オーストリア＝ハンガリー崩壊後、東ガリツィアに成立した短命国家。ポーランドとの戦争に直面した。",
+        "en": "A short-lived state in Eastern Galicia after Austria-Hungary collapsed, facing war with Poland.",
+        "zh": "奥匈帝国崩溃后在东加利西亚成立的短命国家，面临与波兰的战争。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ukraine_%281917%E2%80%931921%29.svg",
+      "period": {
+        "start": 1918,
+        "end": 1919,
+        "label": {
+          "ja": "1918年〜1919年",
+          "en": "1918-1919",
+          "zh": "1918年—1919年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約540万人",
+          "en": "peak estimate: about 5.4 million",
+          "zh": "鼎盛期估计：约540万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約70,000 km²",
+          "en": "maximum extent estimate: about 70,000 km²",
+          "zh": "最大领域估计：约70,000 km²"
+        },
+        "languages": {
+          "ja": "ウクライナ語、ポーランド語、イディッシュ語",
+          "en": "Ukrainian, Polish, and Yiddish",
+          "zh": "乌克兰语、波兰语、意第绪语"
+        },
+        "religions": {
+          "ja": "ギリシア・カトリック、カトリック、ユダヤ教",
+          "en": "Greek Catholicism, Catholicism, and Judaism",
+          "zh": "希腊天主教、天主教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "西ウクライナ人民共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地リヴィウを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For West Ukrainian People's Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Lviv, war, peace settlements, and border changes shaped the state.",
+          "zh": "西乌克兰人民共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以利沃夫为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1919年に活動。オーストリア＝ハンガリー崩壊後、東ガリツィアに成立した短命国家。ポーランドとの戦争に直面した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1919. A short-lived state in Eastern Galicia after Austria-Hungary collapsed, facing war with Poland. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1919年。奥匈帝国崩溃后在东加利西亚成立的短命国家，面临与波兰的战争。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "ポーランド軍の進出で領土を失い、亡命政府化した。",
+          "en": "It lost territory to Polish forces and became a government in exile.",
+          "zh": "因波兰军队推进失去领土，并转为流亡政府。"
+        },
+        "successors": {
+          "ja": "現在のウクライナ西部、ポーランド、チェコスロバキア、ルーマニアと関係づけて理解できる。",
+          "en": "It connects to western Ukraine, Poland, Czechoslovakia, and Romania.",
+          "zh": "可与乌克兰西部、波兰、捷克斯洛伐克和罗马尼亚联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はウクライナ語、ポーランド語、イディッシュ語、主な宗教はギリシア・カトリック、カトリック、ユダヤ教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Ukrainian, Polish, and Yiddish; main religions: Greek Catholicism, Catholicism, and Judaism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为乌克兰语、波兰语、意第绪语，主要宗教为希腊天主教、天主教、犹太教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ベラルーシ人民共和国",
+        "en": "Belarusian People's Republic",
+        "zh": "白俄罗斯人民共和国"
+      },
+      "capital": {
+        "ja": "ミンスク、フロドナ",
+        "en": "Minsk and Hrodna",
+        "zh": "明斯克、格罗德诺"
+      },
+      "type": "Past",
+      "region": "Europe, Eastern Europe",
+      "tags": [
+        "Republic",
+        "Revolutionary State",
+        "Anti-Colonial Independence",
+        "Interwar State",
+        "Modern Nation-State",
+        "Slavic World",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "ドイツ占領下の混乱の中で独立を宣言したベラルーシの短命国家。亡命政府の継続でも知られる。",
+        "en": "A short-lived Belarusian state proclaimed amid German occupation and revolution, noted for its government-in-exile.",
+        "zh": "在德国占领和革命混乱中宣布独立的白俄罗斯短命国家，也以流亡政府延续著称。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Belarus_%281918%2C_1991-1995%29.svg",
+      "period": {
+        "start": 1918,
+        "end": 1919,
+        "label": {
+          "ja": "1918年〜1919年",
+          "en": "1918-1919",
+          "zh": "1918年—1919年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約700万人",
+          "en": "peak estimate: about 7 million",
+          "zh": "鼎盛期估计：约700万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約300,000 km²",
+          "en": "maximum extent estimate: about 300,000 km²",
+          "zh": "最大领域估计：约300,000 km²"
+        },
+        "languages": {
+          "ja": "ベラルーシ語、ロシア語、ポーランド語、イディッシュ語",
+          "en": "Belarusian, Russian, Polish, and Yiddish",
+          "zh": "白俄罗斯语、俄语、波兰语、意第绪语"
+        },
+        "religions": {
+          "ja": "キリスト教、ユダヤ教",
+          "en": "Christianity and Judaism",
+          "zh": "基督教、犹太教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ベラルーシ人民共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ミンスク、フロドナを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Belarusian People's Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Minsk and Hrodna, war, peace settlements, and border changes shaped the state.",
+          "zh": "白俄罗斯人民共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以明斯克、格罗德诺为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1919年に活動。ドイツ占領下の混乱の中で独立を宣言したベラルーシの短命国家。亡命政府の継続でも知られる。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1919. A short-lived Belarusian state proclaimed amid German occupation and revolution, noted for its government-in-exile. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1919年。在德国占领和革命混乱中宣布独立的白俄罗斯短命国家，也以流亡政府延续著称。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "ソビエト勢力とポーランド勢力の間で実効支配を失った。",
+          "en": "It lost effective control between Soviet and Polish forces.",
+          "zh": "在苏维埃和波兰势力之间失去实际控制。"
+        },
+        "successors": {
+          "ja": "現在のベラルーシ、ポーランド、ソ連史と関係づけて理解できる。",
+          "en": "It connects to Belarus, Poland, and Soviet history.",
+          "zh": "可与现代白俄罗斯、波兰和苏联史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はベラルーシ語、ロシア語、ポーランド語、イディッシュ語、主な宗教はキリスト教、ユダヤ教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Belarusian, Russian, Polish, and Yiddish; main religions: Christianity and Judaism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为白俄罗斯语、俄语、波兰语、意第绪语，主要宗教为基督教、犹太教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "グルジア民主共和国",
+        "en": "Democratic Republic of Georgia",
+        "zh": "格鲁吉亚民主共和国"
+      },
+      "capital": {
+        "ja": "トビリシ",
+        "en": "Tbilisi",
+        "zh": "第比利斯"
+      },
+      "type": "Past",
+      "region": "Europe / Asia, Caucasus",
+      "tags": [
+        "Republic",
+        "Revolutionary State",
+        "Anti-Colonial Independence",
+        "Interwar State",
+        "Modern Nation-State",
+        "Christian World",
+        "Strategic Crossroads"
+      ],
+      "desc": {
+        "ja": "ロシア帝国崩壊後に南コーカサスで独立した共和国。メンシェヴィキ政権として知られる。",
+        "en": "A South Caucasian republic independent after the Russian Empire collapsed, known for its Menshevik government.",
+        "zh": "俄罗斯帝国崩溃后在南高加索独立的共和国，以孟什维克政府著称。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Georgia_%281918%E2%80%931921%2C_4-5%29.svg",
+      "period": {
+        "start": 1918,
+        "end": 1921,
+        "label": {
+          "ja": "1918年〜1921年",
+          "en": "1918-1921",
+          "zh": "1918年—1921年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約250万人",
+          "en": "peak estimate: about 2.5 million",
+          "zh": "鼎盛期估计：约250万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約107,600 km²",
+          "en": "maximum extent estimate: about 107,600 km²",
+          "zh": "最大领域估计：约107,600 km²"
+        },
+        "languages": {
+          "ja": "グルジア語、ロシア語、アルメニア語、アゼルバイジャン語",
+          "en": "Georgian, Russian, Armenian, and Azerbaijani",
+          "zh": "格鲁吉亚语、俄语、亚美尼亚语、阿塞拜疆语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "グルジア民主共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地トビリシを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Democratic Republic of Georgia, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Tbilisi, war, peace settlements, and border changes shaped the state.",
+          "zh": "格鲁吉亚民主共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以第比利斯为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1921年に活動。ロシア帝国崩壊後に南コーカサスで独立した共和国。メンシェヴィキ政権として知られる。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1921. A South Caucasian republic independent after the Russian Empire collapsed, known for its Menshevik government. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1921年。俄罗斯帝国崩溃后在南高加索独立的共和国，以孟什维克政府著称。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "赤軍の侵攻によりソビエト化された。",
+          "en": "It was Sovietized after the Red Army invasion.",
+          "zh": "红军入侵后被苏维埃化。"
+        },
+        "successors": {
+          "ja": "現在のジョージア、ソ連、南コーカサス史と関係づけて理解できる。",
+          "en": "It connects to present-day Georgia, the Soviet Union, and South Caucasus history.",
+          "zh": "可与现代格鲁吉亚、苏联和南高加索史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はグルジア語、ロシア語、アルメニア語、アゼルバイジャン語、主な宗教はキリスト教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Georgian, Russian, Armenian, and Azerbaijani; main religions: Christianity and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为格鲁吉亚语、俄语、亚美尼亚语、阿塞拜疆语，主要宗教为基督教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "アルメニア第一共和国",
+        "en": "First Republic of Armenia",
+        "zh": "亚美尼亚第一共和国"
+      },
+      "capital": {
+        "ja": "エレヴァン",
+        "en": "Yerevan",
+        "zh": "埃里温"
+      },
+      "type": "Past",
+      "region": "Europe / Asia, Caucasus",
+      "tags": [
+        "Republic",
+        "Anti-Colonial Independence",
+        "Interwar State",
+        "Modern Nation-State",
+        "Mountain State",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "第一次世界大戦とロシア帝国崩壊後に成立したアルメニアの共和国。難民、戦争、国境問題に直面した。",
+        "en": "An Armenian republic formed after World War I and the Russian collapse, facing refugees, war, and border disputes.",
+        "zh": "一战和俄罗斯帝国崩溃后成立的亚美尼亚共和国，面临难民、战争和边界问题。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Armenia_%281918%E2%80%931922%29.svg",
+      "period": {
+        "start": 1918,
+        "end": 1920,
+        "label": {
+          "ja": "1918年〜1920年",
+          "en": "1918-1920",
+          "zh": "1918年—1920年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約130万人",
+          "en": "peak estimate: about 1.3 million",
+          "zh": "鼎盛期估计：约130万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約70,000 km²",
+          "en": "maximum extent estimate: about 70,000 km²",
+          "zh": "最大领域估计：约70,000 km²"
+        },
+        "languages": {
+          "ja": "アルメニア語、ロシア語",
+          "en": "Armenian and Russian",
+          "zh": "亚美尼亚语、俄语"
+        },
+        "religions": {
+          "ja": "アルメニア使徒教会",
+          "en": "Armenian Apostolic Christianity",
+          "zh": "亚美尼亚使徒教会"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アルメニア第一共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地エレヴァンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For First Republic of Armenia, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Yerevan, war, peace settlements, and border changes shaped the state.",
+          "zh": "亚美尼亚第一共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以埃里温为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1920年に活動。第一次世界大戦とロシア帝国崩壊後に成立したアルメニアの共和国。難民、戦争、国境問題に直面した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1920. An Armenian republic formed after World War I and the Russian collapse, facing refugees, war, and border disputes. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1920年。一战和俄罗斯帝国崩溃后成立的亚美尼亚共和国，面临难民、战争和边界问题。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "トルコとの戦争とソビエト化により消滅した。",
+          "en": "It disappeared through war with Turkey and Sovietization.",
+          "zh": "因与土耳其战争和苏维埃化而消失。"
+        },
+        "successors": {
+          "ja": "現在のアルメニア、トルコ、ソ連史と関係づけて理解できる。",
+          "en": "It connects to Armenia, Turkey, and Soviet history.",
+          "zh": "可与现代亚美尼亚、土耳其和苏联史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアルメニア語、ロシア語、主な宗教はアルメニア使徒教会。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Armenian and Russian; main religions: Armenian Apostolic Christianity. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为亚美尼亚语、俄语，主要宗教为亚美尼亚使徒教会。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "アゼルバイジャン民主共和国",
+        "en": "Azerbaijan Democratic Republic",
+        "zh": "阿塞拜疆民主共和国"
+      },
+      "capital": {
+        "ja": "バクー",
+        "en": "Baku",
+        "zh": "巴库"
+      },
+      "type": "Past",
+      "region": "Europe / Asia, Caucasus",
+      "tags": [
+        "Republic",
+        "Anti-Colonial Independence",
+        "Interwar State",
+        "Modern Nation-State",
+        "Oil & Gas Economy",
+        "Islamic World",
+        "Turkic World"
+      ],
+      "desc": {
+        "ja": "南コーカサスに成立した近代的な共和国。バクー油田と民族・国境問題が重要だった。",
+        "en": "A modern republic in the South Caucasus where Baku oil and ethnic-border issues were central.",
+        "zh": "南高加索的现代共和国，巴库油田和民族边界问题十分重要。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Azerbaijan_1918.svg",
+      "period": {
+        "start": 1918,
+        "end": 1920,
+        "label": {
+          "ja": "1918年〜1920年",
+          "en": "1918-1920",
+          "zh": "1918年—1920年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約290万人",
+          "en": "peak estimate: about 2.9 million",
+          "zh": "鼎盛期估计：约290万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約100,000 km²",
+          "en": "maximum extent estimate: about 100,000 km²",
+          "zh": "最大领域估计：约100,000 km²"
+        },
+        "languages": {
+          "ja": "アゼルバイジャン語、ロシア語、アルメニア語",
+          "en": "Azerbaijani, Russian, and Armenian",
+          "zh": "阿塞拜疆语、俄语、亚美尼亚语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アゼルバイジャン民主共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地バクーを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Azerbaijan Democratic Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Baku, war, peace settlements, and border changes shaped the state.",
+          "zh": "阿塞拜疆民主共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以巴库为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1920年に活動。南コーカサスに成立した近代的な共和国。バクー油田と民族・国境問題が重要だった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1920. A modern republic in the South Caucasus where Baku oil and ethnic-border issues were central. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1920年。南高加索的现代共和国，巴库油田和民族边界问题十分重要。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "赤軍の進出によりソビエト化された。",
+          "en": "It was Sovietized after the Red Army advanced.",
+          "zh": "红军进入后被苏维埃化。"
+        },
+        "successors": {
+          "ja": "現在のアゼルバイジャン、ソ連、カスピ海地域と関係づけて理解できる。",
+          "en": "It connects to Azerbaijan, the Soviet Union, and the Caspian region.",
+          "zh": "可与现代阿塞拜疆、苏联和里海地区联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアゼルバイジャン語、ロシア語、アルメニア語、主な宗教はイスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Azerbaijani, Russian, and Armenian; main religions: Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为阿塞拜疆语、俄语、亚美尼亚语，主要宗教为伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ザカフカース民主連邦共和国",
+        "en": "Transcaucasian Democratic Federative Republic",
+        "zh": "外高加索民主联邦共和国"
+      },
+      "capital": {
+        "ja": "ティフリス",
+        "en": "Tiflis",
+        "zh": "第比利斯"
+      },
+      "type": "Past",
+      "region": "Europe / Asia, Caucasus",
+      "tags": [
+        "Federation",
+        "Republic",
+        "Interwar State",
+        "Modern Nation-State",
+        "Strategic Crossroads",
+        "Christian World",
+        "Islamic World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "南コーカサスの三地域をまとめようとした一か月ほどの連邦共和国。",
+        "en": "A roughly one-month federation attempting to unite the South Caucasus regions.",
+        "zh": "试图联合南高加索各地区、存在约一个月的联邦共和国。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Transcaucasian_Federation.svg",
+      "period": {
+        "start": 1918,
+        "end": 1918,
+        "label": {
+          "ja": "1918年〜1918年",
+          "en": "1918-1918",
+          "zh": "1918年—1918年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約550万人",
+          "en": "peak estimate: about 5.5 million",
+          "zh": "鼎盛期估计：约550万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約186,000 km²",
+          "en": "maximum extent estimate: about 186,000 km²",
+          "zh": "最大领域估计：约186,000 km²"
+        },
+        "languages": {
+          "ja": "グルジア語、アルメニア語、アゼルバイジャン語、ロシア語",
+          "en": "Georgian, Armenian, Azerbaijani, and Russian",
+          "zh": "格鲁吉亚语、亚美尼亚语、阿塞拜疆语、俄语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ザカフカース民主連邦共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ティフリスを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Transcaucasian Democratic Federative Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Tiflis, war, peace settlements, and border changes shaped the state.",
+          "zh": "外高加索民主联邦共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以第比利斯为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1918年に活動。南コーカサスの三地域をまとめようとした一か月ほどの連邦共和国。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1918. A roughly one-month federation attempting to unite the South Caucasus regions. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1918年。试图联合南高加索各地区、存在约一个月的联邦共和国。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "内部対立と戦時外交の違いにより、ジョージア・アルメニア・アゼルバイジャンへ分裂した。",
+          "en": "Internal divisions and wartime diplomacy split it into Georgia, Armenia, and Azerbaijan.",
+          "zh": "因内部矛盾和战时外交分歧，分裂为格鲁吉亚、亚美尼亚和阿塞拜疆。"
+        },
+        "successors": {
+          "ja": "ジョージア、アルメニア、アゼルバイジャンと関係づけて理解できる。",
+          "en": "It connects directly to Georgia, Armenia, and Azerbaijan.",
+          "zh": "可直接与格鲁吉亚、亚美尼亚和阿塞拜疆联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はグルジア語、アルメニア語、アゼルバイジャン語、ロシア語、主な宗教はキリスト教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Georgian, Armenian, Azerbaijani, and Russian; main religions: Christianity and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为格鲁吉亚语、亚美尼亚语、阿塞拜疆语、俄语，主要宗教为基督教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ドイツ＝オーストリア共和国",
+        "en": "Republic of German-Austria",
+        "zh": "德意志奥地利共和国"
+      },
+      "capital": {
+        "ja": "ウィーン",
+        "en": "Vienna",
+        "zh": "维也纳"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Republic",
+        "Interwar State",
+        "Modern Nation-State",
+        "Landlocked State",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "オーストリア＝ハンガリー帝国解体後、ドイツ系地域の統合を目指して成立した共和国。",
+        "en": "A republic formed after Austria-Hungary collapsed, seeking to represent German-speaking Austrian lands.",
+        "zh": "奥匈帝国解体后成立，试图代表德语奥地利地区的共和国。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Austria.svg",
+      "period": {
+        "start": 1918,
+        "end": 1919,
+        "label": {
+          "ja": "1918年〜1919年",
+          "en": "1918-1919",
+          "zh": "1918年—1919年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約650万人",
+          "en": "peak estimate: about 6.5 million",
+          "zh": "鼎盛期估计：约650万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約83,900 km²",
+          "en": "maximum extent estimate: about 83,900 km²",
+          "zh": "最大领域估计：约83,900 km²"
+        },
+        "languages": {
+          "ja": "ドイツ語",
+          "en": "German",
+          "zh": "德语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリック",
+          "en": "Christianity and Catholicism",
+          "zh": "基督教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ドイツ＝オーストリア共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ウィーンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Republic of German-Austria, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Vienna, war, peace settlements, and border changes shaped the state.",
+          "zh": "德意志奥地利共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以维也纳为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1918年〜1919年に活動。オーストリア＝ハンガリー帝国解体後、ドイツ系地域の統合を目指して成立した共和国。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1918-1919. A republic formed after Austria-Hungary collapsed, seeking to represent German-speaking Austrian lands. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1918年—1919年。奥匈帝国解体后成立，试图代表德语奥地利地区的共和国。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "サン＝ジェルマン条約でドイツとの合邦が禁じられ、オーストリア共和国へ移行した。",
+          "en": "The Treaty of Saint-Germain barred union with Germany and it became the Austrian Republic.",
+          "zh": "圣日耳曼条约禁止与德国合并，随后转为奥地利共和国。"
+        },
+        "successors": {
+          "ja": "現在のオーストリア、ドイツ、オーストリア＝ハンガリー帝国と関係づけて理解できる。",
+          "en": "It connects to Austria, Germany, and Austria-Hungary.",
+          "zh": "可与现代奥地利、德国和奥匈帝国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はドイツ語、主な宗教はキリスト教、カトリック。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: German; main religions: Christianity and Catholicism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为德语，主要宗教为基督教、天主教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ハンガリー・ソビエト共和国",
+        "en": "Hungarian Soviet Republic",
+        "zh": "匈牙利苏维埃共和国"
+      },
+      "capital": {
+        "ja": "ブダペスト",
+        "en": "Budapest",
+        "zh": "布达佩斯"
+      },
+      "type": "Past",
+      "region": "Europe, Central Europe",
+      "tags": [
+        "Socialist State",
+        "One-Party State",
+        "Revolutionary State",
+        "Interwar State",
+        "Modern Nation-State",
+        "Landlocked State",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "第一次世界大戦後の混乱で成立した短命の共産主義政権。",
+        "en": "A short-lived communist regime born amid post-World War I turmoil.",
+        "zh": "一战后混乱中成立的短命共产主义政权。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Red_flag.svg",
+      "period": {
+        "start": 1919,
+        "end": 1919,
+        "label": {
+          "ja": "1919年〜1919年",
+          "en": "1919-1919",
+          "zh": "1919年—1919年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約760万人",
+          "en": "peak estimate: about 7.6 million",
+          "zh": "鼎盛期估计：约760万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約93,000 km²",
+          "en": "maximum extent estimate: about 93,000 km²",
+          "zh": "最大领域估计：约93,000 km²"
+        },
+        "languages": {
+          "ja": "ハンガリー語",
+          "en": "Hungarian",
+          "zh": "匈牙利语"
+        },
+        "religions": {
+          "ja": "キリスト教、ユダヤ教、国家無神論",
+          "en": "Christianity, Judaism, and state atheism",
+          "zh": "基督教、犹太教、国家无神论"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ハンガリー・ソビエト共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ブダペストを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Hungarian Soviet Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Budapest, war, peace settlements, and border changes shaped the state.",
+          "zh": "匈牙利苏维埃共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以布达佩斯为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1919年〜1919年に活動。第一次世界大戦後の混乱で成立した短命の共産主義政権。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1919-1919. A short-lived communist regime born amid post-World War I turmoil. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1919年—1919年。一战后混乱中成立的短命共产主义政权。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "国内混乱と周辺国の軍事圧力により崩壊した。",
+          "en": "It collapsed under domestic turmoil and military pressure from neighboring states.",
+          "zh": "因国内混乱和邻国军事压力而崩溃。"
+        },
+        "successors": {
+          "ja": "ハンガリー王国、戦間期ハンガリー、ソ連型革命運動と関係づけて理解できる。",
+          "en": "It connects to the Kingdom of Hungary, interwar Hungary, and Soviet-style revolutionary movements.",
+          "zh": "可与匈牙利王国、战间期匈牙利和苏联式革命运动联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はハンガリー語、主な宗教はキリスト教、ユダヤ教、国家無神論。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Hungarian; main religions: Christianity, Judaism, and state atheism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为匈牙利语，主要宗教为基督教、犹太教、国家无神论。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "フィウーメ自由国",
+        "en": "Free State of Fiume",
+        "zh": "阜姆自由邦"
+      },
+      "capital": {
+        "ja": "フィウーメ",
+        "en": "Fiume",
+        "zh": "阜姆"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "City-State",
+        "Port City Network",
+        "Buffer State",
+        "Interwar State",
+        "Trade Hub",
+        "Multilingual State",
+        "Christian World"
+      ],
+      "desc": {
+        "ja": "アドリア海北部の港湾都市フィウーメをめぐる国際調整から生まれた短命の都市国家。",
+        "en": "A short-lived city-state created around the disputed Adriatic port of Fiume.",
+        "zh": "围绕亚得里亚海港口阜姆争议而产生的短命城市国家。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Free_State_of_Fiume.svg",
+      "period": {
+        "start": 1920,
+        "end": 1924,
+        "label": {
+          "ja": "1920年〜1924年",
+          "en": "1920-1924",
+          "zh": "1920年—1924年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約5万人",
+          "en": "peak estimate: about 50,000",
+          "zh": "鼎盛期估计：约5万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約28 km²",
+          "en": "maximum extent estimate: about 28 km²",
+          "zh": "最大领域估计：约28 km²"
+        },
+        "languages": {
+          "ja": "イタリア語、クロアチア語、ハンガリー語",
+          "en": "Italian, Croatian, and Hungarian",
+          "zh": "意大利语、克罗地亚语、匈牙利语"
+        },
+        "religions": {
+          "ja": "キリスト教、カトリック",
+          "en": "Christianity and Catholicism",
+          "zh": "基督教、天主教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "フィウーメ自由国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地フィウーメを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Free State of Fiume, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Fiume, war, peace settlements, and border changes shaped the state.",
+          "zh": "阜姆自由邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以阜姆为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1920年〜1924年に活動。アドリア海北部の港湾都市フィウーメをめぐる国際調整から生まれた短命の都市国家。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1920-1924. A short-lived city-state created around the disputed Adriatic port of Fiume. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1920年—1924年。围绕亚得里亚海港口阜姆争议而产生的短命城市国家。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "イタリアとユーゴスラビア間の取り決めで解体され、地域は分割された。",
+          "en": "It ended through Italian-Yugoslav arrangements and partition of the area.",
+          "zh": "因意大利和南斯拉夫之间的安排而解体，地区被分割。"
+        },
+        "successors": {
+          "ja": "現在のクロアチアのリエカ、イタリア、ユーゴスラビアと関係づけて理解できる。",
+          "en": "It connects to Rijeka in Croatia, Italy, and Yugoslavia.",
+          "zh": "可与今日克罗地亚里耶卡、意大利和南斯拉夫联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はイタリア語、クロアチア語、ハンガリー語、主な宗教はキリスト教、カトリック。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Italian, Croatian, and Hungarian; main religions: Christianity and Catholicism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为意大利语、克罗地亚语、匈牙利语，主要宗教为基督教、天主教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "北ベトナム",
+        "en": "North Vietnam",
+        "zh": "北越"
+      },
+      "capital": {
+        "ja": "ハノイ",
+        "en": "Hanoi",
+        "zh": "河内"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Socialist State",
+        "One-Party State",
+        "Cold War State",
+        "Anti-Colonial Independence",
+        "Modern Nation-State",
+        "Buddhist Sphere",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "正式にはベトナム民主共和国。インドシナ戦争とベトナム戦争で中心的役割を果たした。",
+        "en": "Officially the Democratic Republic of Vietnam, central to the Indochina and Vietnam Wars.",
+        "zh": "正式名称为越南民主共和国，是印度支那战争和越南战争的核心。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Vietnam_%281945%E2%80%931955%29.svg",
+      "period": {
+        "start": 1945,
+        "end": 1976,
+        "label": {
+          "ja": "1945年〜1976年",
+          "en": "1945-1976",
+          "zh": "1945年—1976年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約2300万人",
+          "en": "peak estimate: about 23 million",
+          "zh": "鼎盛期估计：约2300万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約158,000 km²",
+          "en": "maximum extent estimate: about 158,000 km²",
+          "zh": "最大领域估计：约158,000 km²"
+        },
+        "languages": {
+          "ja": "ベトナム語",
+          "en": "Vietnamese",
+          "zh": "越南语"
+        },
+        "religions": {
+          "ja": "仏教、民間信仰、国家無神論",
+          "en": "Buddhism, folk religion, and state atheism",
+          "zh": "佛教、民间信仰、国家无神论"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "北ベトナムでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ハノイを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For North Vietnam, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Hanoi, war, peace settlements, and border changes shaped the state.",
+          "zh": "北越的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以河内为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1945年〜1976年に活動。正式にはベトナム民主共和国。インドシナ戦争とベトナム戦争で中心的役割を果たした。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1945-1976. Officially the Democratic Republic of Vietnam, central to the Indochina and Vietnam Wars. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1945年—1976年。正式名称为越南民主共和国，是印度支那战争和越南战争的核心。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1976年に南ベトナムと統一され、ベトナム社会主義共和国となった。",
+          "en": "In 1976 it unified with South Vietnam as the Socialist Republic of Vietnam.",
+          "zh": "1976年与南越统一，成为越南社会主义共和国。"
+        },
+        "successors": {
+          "ja": "現在のベトナム、南ベトナム、冷戦史と関係づけて理解できる。",
+          "en": "It connects to present-day Vietnam, South Vietnam, and Cold War history.",
+          "zh": "可与现代越南、南越和冷战史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はベトナム語、主な宗教は仏教、民間信仰、国家無神論。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Vietnamese; main religions: Buddhism, folk religion, and state atheism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为越南语，主要宗教为佛教、民间信仰、国家无神论。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "南イエメン",
+        "en": "South Yemen",
+        "zh": "南也门"
+      },
+      "capital": {
+        "ja": "アデン",
+        "en": "Aden",
+        "zh": "亚丁"
+      },
+      "type": "Past",
+      "region": "Middle East, Arabian Peninsula",
+      "tags": [
+        "Socialist State",
+        "One-Party State",
+        "Cold War State",
+        "Anti-Colonial Independence",
+        "Modern Nation-State",
+        "Maritime Power",
+        "Arab-Islamic Culture",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "正式にはイエメン人民民主共和国。アデンを中心としたアラブ世界の社会主義国家だった。",
+        "en": "Officially the People's Democratic Republic of Yemen, a socialist Arab state centered on Aden.",
+        "zh": "正式名称为也门民主人民共和国，是以亚丁为中心的阿拉伯社会主义国家。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_South_Yemen.svg",
+      "period": {
+        "start": 1967,
+        "end": 1990,
+        "label": {
+          "ja": "1967年〜1990年",
+          "en": "1967-1990",
+          "zh": "1967年—1990年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約250万人",
+          "en": "peak estimate: about 2.5 million",
+          "zh": "鼎盛期估计：约250万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約333,000 km²",
+          "en": "maximum extent estimate: about 333,000 km²",
+          "zh": "最大领域估计：约333,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語",
+          "en": "Arabic",
+          "zh": "阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "南イエメンでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地アデンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For South Yemen, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Aden, war, peace settlements, and border changes shaped the state.",
+          "zh": "南也门的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以亚丁为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1967年〜1990年に活動。正式にはイエメン人民民主共和国。アデンを中心としたアラブ世界の社会主義国家だった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1967-1990. Officially the People's Democratic Republic of Yemen, a socialist Arab state centered on Aden. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1967年—1990年。正式名称为也门民主人民共和国，是以亚丁为中心的阿拉伯社会主义国家。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1990年に北イエメンと統一してイエメン共和国となった。",
+          "en": "It unified with North Yemen in 1990 to form the Republic of Yemen.",
+          "zh": "1990年与北也门统一，组成也门共和国。"
+        },
+        "successors": {
+          "ja": "現在のイエメン、北イエメン、アデン植民地史と関係づけて理解できる。",
+          "en": "It connects to Yemen, North Yemen, and Aden's colonial history.",
+          "zh": "可与现代也门、北也门和亚丁殖民史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアラビア語、主な宗教はイスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Arabic; main religions: Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为阿拉伯语，主要宗教为伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "イエメン・アラブ共和国",
+        "en": "Yemen Arab Republic",
+        "zh": "阿拉伯也门共和国"
+      },
+      "capital": {
+        "ja": "サナア",
+        "en": "Sanaa",
+        "zh": "萨那"
+      },
+      "type": "Past",
+      "region": "Middle East, Arabian Peninsula",
+      "tags": [
+        "Republic",
+        "Cold War State",
+        "Modern Nation-State",
+        "Mountain State",
+        "Arab-Islamic Culture",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "通称北イエメン。イエメン王国を倒した共和革命後に成立した。",
+        "en": "Known as North Yemen, it was formed after the republican revolution against the Mutawakkilite Kingdom.",
+        "zh": "通称北也门，在推翻也门王国的共和革命后成立。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Yemen.svg",
+      "period": {
+        "start": 1962,
+        "end": 1990,
+        "label": {
+          "ja": "1962年〜1990年",
+          "en": "1962-1990",
+          "zh": "1962年—1990年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約750万人",
+          "en": "peak estimate: about 7.5 million",
+          "zh": "鼎盛期估计：约750万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約195,000 km²",
+          "en": "maximum extent estimate: about 195,000 km²",
+          "zh": "最大领域估计：约195,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語",
+          "en": "Arabic",
+          "zh": "阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "イエメン・アラブ共和国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地サナアを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Yemen Arab Republic, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Sanaa, war, peace settlements, and border changes shaped the state.",
+          "zh": "阿拉伯也门共和国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以萨那为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1962年〜1990年に活動。通称北イエメン。イエメン王国を倒した共和革命後に成立した。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1962-1990. Known as North Yemen, it was formed after the republican revolution against the Mutawakkilite Kingdom. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1962年—1990年。通称北也门，在推翻也门王国的共和革命后成立。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1990年に南イエメンと統一してイエメン共和国となった。",
+          "en": "It unified with South Yemen in 1990 to form the Republic of Yemen.",
+          "zh": "1990年与南也门统一，组成也门共和国。"
+        },
+        "successors": {
+          "ja": "現在のイエメン、南イエメン、アラブ冷戦と関係づけて理解できる。",
+          "en": "It connects to Yemen, South Yemen, and the Arab Cold War.",
+          "zh": "可与现代也门、南也门和阿拉伯冷战联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアラビア語、主な宗教はイスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Arabic; main religions: Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为阿拉伯语，主要宗教为伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "南アラビア連邦",
+        "en": "Federation of South Arabia",
+        "zh": "南阿拉伯联邦"
+      },
+      "capital": {
+        "ja": "アル・イッティハード、アデン",
+        "en": "Al-Ittihad and Aden",
+        "zh": "伊蒂哈德、亚丁"
+      },
+      "type": "Past",
+      "region": "Middle East, Arabian Peninsula",
+      "tags": [
+        "Federation",
+        "Colonial Successor State",
+        "Anti-Colonial Independence",
+        "Strategic Crossroads",
+        "Maritime Power",
+        "Arab-Islamic Culture",
+        "Islamic World"
+      ],
+      "desc": {
+        "ja": "イギリス保護領群とアデンをまとめようとした連邦。独立直前の南アラビア再編策だった。",
+        "en": "A federation grouping British protectorates and Aden, part of a late-colonial reorganization of South Arabia.",
+        "zh": "将英国保护国和亚丁整合的联邦，是南阿拉伯独立前的殖民末期重组方案。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_Federation_of_South_Arabia.svg",
+      "period": {
+        "start": 1962,
+        "end": 1967,
+        "label": {
+          "ja": "1962年〜1967年",
+          "en": "1962-1967",
+          "zh": "1962年—1967年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約100万人",
+          "en": "peak estimate: about 1 million",
+          "zh": "鼎盛期估计：约100万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約287,000 km²",
+          "en": "maximum extent estimate: about 287,000 km²",
+          "zh": "最大领域估计：约287,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語、英語",
+          "en": "Arabic and English",
+          "zh": "阿拉伯语、英语"
+        },
+        "religions": {
+          "ja": "イスラム教",
+          "en": "Islam",
+          "zh": "伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "南アラビア連邦では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地アル・イッティハード、アデンを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Federation of South Arabia, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Al-Ittihad and Aden, war, peace settlements, and border changes shaped the state.",
+          "zh": "南阿拉伯联邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以伊蒂哈德、亚丁为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1962年〜1967年に活動。イギリス保護領群とアデンをまとめようとした連邦。独立直前の南アラビア再編策だった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1962-1967. A federation grouping British protectorates and Aden, part of a late-colonial reorganization of South Arabia. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1962年—1967年。将英国保护国和亚丁整合的联邦，是南阿拉伯独立前的殖民末期重组方案。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "民族解放運動の勝利により南イエメンへ移行した。",
+          "en": "It was replaced by South Yemen after nationalist liberation movements won.",
+          "zh": "民族解放运动胜利后转为南也门。"
+        },
+        "successors": {
+          "ja": "南イエメン、現在のイエメン、イギリス帝国と関係づけて理解できる。",
+          "en": "It connects to South Yemen, modern Yemen, and the British Empire.",
+          "zh": "可与南也门、现代也门和大英帝国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアラビア語、英語、主な宗教はイスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Arabic and English; main religions: Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为阿拉伯语、英语，主要宗教为伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "マラヤ連邦",
+        "en": "Federation of Malaya",
+        "zh": "马来亚联合邦"
+      },
+      "capital": {
+        "ja": "クアラルンプール",
+        "en": "Kuala Lumpur",
+        "zh": "吉隆坡"
+      },
+      "type": "Past",
+      "region": "Asia, Southeast Asia",
+      "tags": [
+        "Federation",
+        "Commonwealth",
+        "Anti-Colonial Independence",
+        "Modern Nation-State",
+        "Islamic World",
+        "Buddhist Sphere",
+        "Multilingual State",
+        "Trade Hub"
+      ],
+      "desc": {
+        "ja": "英領マラヤから独立し、マレー半島の諸邦をまとめた連邦。マレーシア成立の前段階である。",
+        "en": "A federation of Malay states that became independent from British rule, preceding Malaysia.",
+        "zh": "由马来半岛各邦组成、从英国统治下独立的联邦，是马来西亚成立的前阶段。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Malaya.svg",
+      "period": {
+        "start": 1948,
+        "end": 1963,
+        "label": {
+          "ja": "1948年〜1963年",
+          "en": "1948-1963",
+          "zh": "1948年—1963年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約630万人",
+          "en": "peak estimate: about 6.3 million",
+          "zh": "鼎盛期估计：约630万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約131,000 km²",
+          "en": "maximum extent estimate: about 131,000 km²",
+          "zh": "最大领域估计：约131,000 km²"
+        },
+        "languages": {
+          "ja": "マレー語、英語、中国語、タミル語",
+          "en": "Malay, English, Chinese, and Tamil",
+          "zh": "马来语、英语、汉语、泰米尔语"
+        },
+        "religions": {
+          "ja": "イスラム教、仏教、ヒンドゥー教、キリスト教",
+          "en": "Islam, Buddhism, Hinduism, and Christianity",
+          "zh": "伊斯兰教、佛教、印度教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "マラヤ連邦では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地クアラルンプールを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Federation of Malaya, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Kuala Lumpur, war, peace settlements, and border changes shaped the state.",
+          "zh": "马来亚联合邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以吉隆坡为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1948年〜1963年に活動。英領マラヤから独立し、マレー半島の諸邦をまとめた連邦。マレーシア成立の前段階である。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1948-1963. A federation of Malay states that became independent from British rule, preceding Malaysia. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1948年—1963年。由马来半岛各邦组成、从英国统治下独立的联邦，是马来西亚成立的前阶段。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1963年にシンガポール、サバ、サラワクとともにマレーシアへ再編された。",
+          "en": "In 1963 it was reorganized into Malaysia with Singapore, Sabah, and Sarawak.",
+          "zh": "1963年与新加坡、沙巴、砂拉越共同组成马来西亚。"
+        },
+        "successors": {
+          "ja": "現在のマレーシア、シンガポール、イギリス帝国と関係づけて理解できる。",
+          "en": "It connects to Malaysia, Singapore, and the British Empire.",
+          "zh": "可与现代马来西亚、新加坡和大英帝国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はマレー語、英語、中国語、タミル語、主な宗教はイスラム教、仏教、ヒンドゥー教、キリスト教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Malay, English, Chinese, and Tamil; main religions: Islam, Buddhism, Hinduism, and Christianity. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为马来语、英语、汉语、泰米尔语，主要宗教为伊斯兰教、佛教、印度教、基督教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "西インド連邦",
+        "en": "West Indies Federation",
+        "zh": "西印度联邦"
+      },
+      "capital": {
+        "ja": "チャグアラマス",
+        "en": "Chaguaramas",
+        "zh": "查瓜拉马斯"
+      },
+      "type": "Past",
+      "region": "North America, Caribbean",
+      "tags": [
+        "Federation",
+        "Commonwealth",
+        "Island Nation",
+        "Archipelago State",
+        "Maritime Power",
+        "Anglophone World",
+        "Colonial Successor State"
+      ],
+      "desc": {
+        "ja": "英領カリブ海地域を一つの連邦国家として独立させる構想から生まれた。",
+        "en": "Created from a plan to federate the British Caribbean into a single independent state.",
+        "zh": "源于将英属加勒比地区整合为一个独立联邦国家的构想。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_West_Indies_Federation_%281958%E2%80%931962%29.svg",
+      "period": {
+        "start": 1958,
+        "end": 1962,
+        "label": {
+          "ja": "1958年〜1962年",
+          "en": "1958-1962",
+          "zh": "1958年—1962年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約320万人",
+          "en": "peak estimate: about 3.2 million",
+          "zh": "鼎盛期估计：约320万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約20,000 km²",
+          "en": "maximum extent estimate: about 20,000 km²",
+          "zh": "最大领域估计：约20,000 km²"
+        },
+        "languages": {
+          "ja": "英語、クレオール諸語",
+          "en": "English and Creole languages",
+          "zh": "英语、克里奥尔语"
+        },
+        "religions": {
+          "ja": "キリスト教、ヒンドゥー教、イスラム教",
+          "en": "Christianity, Hinduism, and Islam",
+          "zh": "基督教、印度教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "西インド連邦では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地チャグアラマスを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For West Indies Federation, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Chaguaramas, war, peace settlements, and border changes shaped the state.",
+          "zh": "西印度联邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以查瓜拉马斯为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1958年〜1962年に活動。英領カリブ海地域を一つの連邦国家として独立させる構想から生まれた。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1958-1962. Created from a plan to federate the British Caribbean into a single independent state. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1958年—1962年。源于将英属加勒比地区整合为一个独立联邦国家的构想。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "ジャマイカとトリニダード・トバゴの離脱で解体した。",
+          "en": "It collapsed after Jamaica and Trinidad and Tobago withdrew.",
+          "zh": "因牙买加和特立尼达和多巴哥退出而解体。"
+        },
+        "successors": {
+          "ja": "カリブ海の英連邦諸国、ジャマイカ、トリニダード・トバゴと関係づけて理解できる。",
+          "en": "It connects to Commonwealth Caribbean states, Jamaica, and Trinidad and Tobago.",
+          "zh": "可与英联邦加勒比国家、牙买加和特立尼达和多巴哥联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語は英語、クレオール諸語、主な宗教はキリスト教、ヒンドゥー教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: English and Creole languages; main religions: Christianity, Hinduism, and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为英语、克里奥尔语，主要宗教为基督教、印度教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "アラブ共和国連邦",
+        "en": "Federation of Arab Republics",
+        "zh": "阿拉伯共和国联邦"
+      },
+      "capital": {
+        "ja": "カイロ、トリポリ、ダマスカス",
+        "en": "Cairo, Tripoli, and Damascus",
+        "zh": "开罗、的黎波里、大马士革"
+      },
+      "type": "Past",
+      "region": "Middle East / Africa",
+      "tags": [
+        "Federation",
+        "Republic",
+        "Cold War State",
+        "Arab League",
+        "Arab-Islamic Culture",
+        "Islamic World",
+        "Oil & Gas Economy",
+        "Transcontinental State"
+      ],
+      "desc": {
+        "ja": "エジプト、リビア、シリアによる汎アラブ的な連邦構想。制度上は連邦を掲げたが実質統合は進まなかった。",
+        "en": "A pan-Arab federation project of Egypt, Libya, and Syria that proclaimed federation but achieved little integration.",
+        "zh": "埃及、利比亚和叙利亚的泛阿拉伯联邦构想，名义上联邦化但实际整合有限。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Syria_%281972%E2%80%931980%29.svg",
+      "period": {
+        "start": 1972,
+        "end": 1977,
+        "label": {
+          "ja": "1972年〜1977年",
+          "en": "1972-1977",
+          "zh": "1972年—1977年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約5000万人",
+          "en": "peak estimate: about 50 million",
+          "zh": "鼎盛期估计：约5000万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約2,895,000 km²",
+          "en": "maximum extent estimate: about 2,895,000 km²",
+          "zh": "最大领域估计：约2,895,000 km²"
+        },
+        "languages": {
+          "ja": "アラビア語",
+          "en": "Arabic",
+          "zh": "阿拉伯语"
+        },
+        "religions": {
+          "ja": "イスラム教、キリスト教",
+          "en": "Islam and Christianity",
+          "zh": "伊斯兰教、基督教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "アラブ共和国連邦では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地カイロ、トリポリ、ダマスカスを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Federation of Arab Republics, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Cairo, Tripoli, and Damascus, war, peace settlements, and border changes shaped the state.",
+          "zh": "阿拉伯共和国联邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以开罗、的黎波里、大马士革为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1972年〜1977年に活動。エジプト、リビア、シリアによる汎アラブ的な連邦構想。制度上は連邦を掲げたが実質統合は進まなかった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1972-1977. A pan-Arab federation project of Egypt, Libya, and Syria that proclaimed federation but achieved little integration. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1972年—1977年。埃及、利比亚和叙利亚的泛阿拉伯联邦构想，名义上联邦化但实际整合有限。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "加盟国間の政治方針の違いにより機能しなくなり解体した。",
+          "en": "It ceased functioning because member states disagreed politically.",
+          "zh": "因成员国政治路线分歧而停止运作并解体。"
+        },
+        "successors": {
+          "ja": "エジプト、リビア、シリア、アラブ連合共和国と関係づけて理解できる。",
+          "en": "It connects to Egypt, Libya, Syria, and the United Arab Republic.",
+          "zh": "可与埃及、利比亚、叙利亚和阿拉伯联合共和国联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はアラビア語、主な宗教はイスラム教、キリスト教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Arabic; main religions: Islam and Christianity. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为阿拉伯语，主要宗教为伊斯兰教、基督教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "シッキム王国",
+        "en": "Kingdom of Sikkim",
+        "zh": "锡金王国"
+      },
+      "capital": {
+        "ja": "ガントク",
+        "en": "Gangtok",
+        "zh": "甘托克"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Theocratic State",
+        "Mountain State",
+        "Landlocked State",
+        "Buffer State",
+        "Buddhist Sphere",
+        "Hindu Sphere",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ヒマラヤ東部のチョギャル王朝国家。インド、チベット、ブータン、ネパールの間の緩衝地帯だった。",
+        "en": "A Chogyal monarchy in the eastern Himalayas, a buffer between India, Tibet, Bhutan, and Nepal.",
+        "zh": "东喜马拉雅的却嘉王朝国家，是印度、西藏、不丹和尼泊尔之间的缓冲地带。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Sikkim_%281967%E2%80%931975%29.svg",
+      "period": {
+        "start": 1642,
+        "end": 1975,
+        "label": {
+          "ja": "1642年〜1975年",
+          "en": "1642-1975",
+          "zh": "1642年—1975年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約20万人",
+          "en": "peak estimate: about 200,000",
+          "zh": "鼎盛期估计：约20万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約7,096 km²",
+          "en": "maximum extent estimate: about 7,096 km²",
+          "zh": "最大领域估计：约7,096 km²"
+        },
+        "languages": {
+          "ja": "シッキム語、ネパール語、レプチャ語",
+          "en": "Sikkimese, Nepali, and Lepcha",
+          "zh": "锡金语、尼泊尔语、雷布查语"
+        },
+        "religions": {
+          "ja": "チベット仏教、ヒンドゥー教",
+          "en": "Tibetan Buddhism and Hinduism",
+          "zh": "藏传佛教、印度教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "シッキム王国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ガントクを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Kingdom of Sikkim, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Gangtok, war, peace settlements, and border changes shaped the state.",
+          "zh": "锡金王国的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以甘托克为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1642年〜1975年に活動。ヒマラヤ東部のチョギャル王朝国家。インド、チベット、ブータン、ネパールの間の緩衝地帯だった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1642-1975. A Chogyal monarchy in the eastern Himalayas, a buffer between India, Tibet, Bhutan, and Nepal. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1642年—1975年。东喜马拉雅的却嘉王朝国家，是印度、西藏、不丹和尼泊尔之间的缓冲地带。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1975年の住民投票とインド編入により王国は消滅した。",
+          "en": "The monarchy ended after the 1975 referendum and incorporation into India.",
+          "zh": "1975年公投和并入印度后王国终结。"
+        },
+        "successors": {
+          "ja": "現在のインド・シッキム州、チベット、ブータン、ネパールと関係づけて理解できる。",
+          "en": "It connects to Sikkim state in India, Tibet, Bhutan, and Nepal.",
+          "zh": "可与印度锡金邦、西藏、不丹和尼泊尔联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はシッキム語、ネパール語、レプチャ語、主な宗教はチベット仏教、ヒンドゥー教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Sikkimese, Nepali, and Lepcha; main religions: Tibetan Buddhism and Hinduism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为锡金语、尼泊尔语、雷布查语，主要宗教为藏传佛教、印度教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ジャンムー・カシミール藩王国",
+        "en": "Jammu and Kashmir",
+        "zh": "查谟和克什米尔土邦"
+      },
+      "capital": {
+        "ja": "シュリーナガル、ジャンムー",
+        "en": "Srinagar and Jammu",
+        "zh": "斯利那加、查谟"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Colonial Successor State",
+        "Mountain State",
+        "Strategic Crossroads",
+        "Islamic World",
+        "Hindu Sphere",
+        "Buddhist Sphere",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "イギリス領インドの藩王国。分割独立時にインドとパキスタンの対立の焦点となった。",
+        "en": "A princely state of British India that became central to the India-Pakistan conflict at partition.",
+        "zh": "英属印度的土邦，在印巴分治时成为冲突焦点。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Jammu_and_Kashmir_%281936-1953%29.svg",
+      "period": {
+        "start": 1846,
+        "end": 1947,
+        "label": {
+          "ja": "1846年〜1947年",
+          "en": "1846-1947",
+          "zh": "1846年—1947年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約400万人",
+          "en": "peak estimate: about 4 million",
+          "zh": "鼎盛期估计：约400万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約222,236 km²",
+          "en": "maximum extent estimate: about 222,236 km²",
+          "zh": "最大领域估计：约222,236 km²"
+        },
+        "languages": {
+          "ja": "カシミール語、ドグリ語、ラダック語、バルティ語、英語",
+          "en": "Kashmiri, Dogri, Ladakhi, Balti, and English",
+          "zh": "克什米尔语、多格里语、拉达克语、巴尔蒂语、英语"
+        },
+        "religions": {
+          "ja": "イスラム教、ヒンドゥー教、仏教、シク教",
+          "en": "Islam, Hinduism, Buddhism, and Sikhism",
+          "zh": "伊斯兰教、印度教、佛教、锡克教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジャンムー・カシミール藩王国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地シュリーナガル、ジャンムーを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Jammu and Kashmir, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Srinagar and Jammu, war, peace settlements, and border changes shaped the state.",
+          "zh": "查谟和克什米尔土邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以斯利那加、查谟为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1846年〜1947年に活動。イギリス領インドの藩王国。分割独立時にインドとパキスタンの対立の焦点となった。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1846-1947. A princely state of British India that became central to the India-Pakistan conflict at partition. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1846年—1947年。英属印度的土邦，在印巴分治时成为冲突焦点。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "1947年の印パ分離と第一次印パ戦争の中で、藩王国としての姿を失った。",
+          "en": "It ceased as a princely state amid partition and the First Kashmir War.",
+          "zh": "在印巴分治和第一次克什米尔战争中失去土邦形态。"
+        },
+        "successors": {
+          "ja": "現在のインド、パキスタン、中国が関係するカシミール問題と結びつく。",
+          "en": "It connects to the Kashmir dispute involving India, Pakistan, and China.",
+          "zh": "与涉及印度、巴基斯坦和中国的克什米尔问题相联系。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はカシミール語、ドグリ語、ラダック語、バルティ語、英語、主な宗教はイスラム教、ヒンドゥー教、仏教、シク教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Kashmiri, Dogri, Ladakhi, Balti, and English; main religions: Islam, Hinduism, Buddhism, and Sikhism. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为克什米尔语、多格里语、拉达克语、巴尔蒂语、英语，主要宗教为伊斯兰教、印度教、佛教、锡克教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "ジュナーガド藩王国",
+        "en": "Junagadh State",
+        "zh": "朱纳加德土邦"
+      },
+      "capital": {
+        "ja": "ジュナーガド",
+        "en": "Junagadh",
+        "zh": "朱纳加德"
+      },
+      "type": "Past",
+      "region": "Asia, South Asia",
+      "tags": [
+        "Kingdom",
+        "Colonial Successor State",
+        "Strategic Crossroads",
+        "Islamic World",
+        "Hindu Sphere",
+        "Maritime Power"
+      ],
+      "desc": {
+        "ja": "カーティヤーワール半島の藩王国。インド・パキスタン分離時の帰属問題で注目された。",
+        "en": "A princely state in Kathiawar, notable for its accession dispute during the partition of India and Pakistan.",
+        "zh": "卡提阿瓦半岛的土邦，在印巴分治时因归属问题受到关注。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/State_Flag_of_Junaghad.jpg",
+      "period": {
+        "start": 1730,
+        "end": 1948,
+        "label": {
+          "ja": "1730年〜1948年",
+          "en": "1730-1948",
+          "zh": "1730年—1948年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約46万人",
+          "en": "peak estimate: about 465,000",
+          "zh": "鼎盛期估计：约46万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約8,643 km²",
+          "en": "maximum extent estimate: about 8,643 km²",
+          "zh": "最大领域估计：约8,643 km²"
+        },
+        "languages": {
+          "ja": "グジャラート語、ウルドゥー語、英語",
+          "en": "Gujarati, Urdu, and English",
+          "zh": "古吉拉特语、乌尔都语、英语"
+        },
+        "religions": {
+          "ja": "ヒンドゥー教、イスラム教",
+          "en": "Hinduism and Islam",
+          "zh": "印度教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "ジュナーガド藩王国では、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ジュナーガドを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Junagadh State, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Junagadh, war, peace settlements, and border changes shaped the state.",
+          "zh": "朱纳加德土邦的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以朱纳加德为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "1730年〜1948年に活動。カーティヤーワール半島の藩王国。インド・パキスタン分離時の帰属問題で注目された。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 1730-1948. A princely state in Kathiawar, notable for its accession dispute during the partition of India and Pakistan. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于1730年—1948年。卡提阿瓦半岛的土邦，在印巴分治时因归属问题受到关注。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "住民投票とインド側の統合政策により、サウラーシュトラ州へ編入された。",
+          "en": "It was integrated into Saurashtra after a plebiscite and Indian consolidation policy.",
+          "zh": "经公投和印度整合政策并入索拉什特拉。"
+        },
+        "successors": {
+          "ja": "現在のインド・グジャラート州、インド・パキスタン分離史と関係づけて理解できる。",
+          "en": "It connects to Gujarat in India and the history of partition.",
+          "zh": "可与印度古吉拉特邦及印巴分治史联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はグジャラート語、ウルドゥー語、英語、主な宗教はヒンドゥー教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Gujarati, Urdu, and English; main religions: Hinduism and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为古吉拉特语、乌尔都语、英语，主要宗教为印度教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
+    },
+    {
+      "names": {
+        "ja": "セルビア・モンテネグロ",
+        "en": "Serbia and Montenegro",
+        "zh": "塞尔维亚和黑山"
+      },
+      "capital": {
+        "ja": "ベオグラード",
+        "en": "Belgrade",
+        "zh": "贝尔格莱德"
+      },
+      "type": "Past",
+      "region": "Europe, Balkans",
+      "tags": [
+        "Federation",
+        "Republic",
+        "Post-Cold War State",
+        "Modern Nation-State",
+        "Slavic World",
+        "Orthodox Sphere",
+        "Christian World",
+        "Multilingual State"
+      ],
+      "desc": {
+        "ja": "ユーゴスラビア解体後に残ったセルビアとモンテネグロの国家連合。",
+        "en": "A state union of Serbia and Montenegro after the breakup of Yugoslavia.",
+        "zh": "南斯拉夫解体后由塞尔维亚和黑山组成的国家联盟。"
+      },
+      "flag_code": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Serbia_and_Montenegro.svg",
+      "period": {
+        "start": 2003,
+        "end": 2006,
+        "label": {
+          "ja": "2003年〜2006年",
+          "en": "2003-2006",
+          "zh": "2003年—2006年"
+        }
+      },
+      "profile": {
+        "population": {
+          "ja": "最盛期推定: 約1080万人",
+          "en": "peak estimate: about 10.8 million",
+          "zh": "鼎盛期估计：约1080万人"
+        },
+        "area": {
+          "ja": "最大領域推定: 約102,350 km²",
+          "en": "maximum extent estimate: about 102,350 km²",
+          "zh": "最大领域估计：约102,350 km²"
+        },
+        "languages": {
+          "ja": "セルビア語、モンテネグロ語、アルバニア語、ハンガリー語",
+          "en": "Serbian, Montenegrin, Albanian, and Hungarian",
+          "zh": "塞尔维亚语、黑山语、阿尔巴尼亚语、匈牙利语"
+        },
+        "religions": {
+          "ja": "キリスト教、イスラム教",
+          "en": "Christianity and Islam",
+          "zh": "基督教、伊斯兰教"
+        }
+      },
+      "details": {
+        "key_figures": {
+          "ja": "セルビア・モンテネグロでは、政府首脳、軍事指導者、外交官、革命運動や民族運動の指導者が重要人物となる。中心地ベオグラードを軸に、戦争・講和・国境再編への対応が国家の性格を決めた。",
+          "en": "For Serbia and Montenegro, key figures include heads of government, military leaders, diplomats, and leaders of revolutionary or national movements. Around Belgrade, war, peace settlements, and border changes shaped the state.",
+          "zh": "塞尔维亚和黑山的重要人物包括政府首脑、军事领导人、外交官以及革命或民族运动领导者。以贝尔格莱德为中心，战争、和约与边界重组塑造了国家性质。"
+        },
+        "major_events": {
+          "ja": "2003年〜2006年に活動。ユーゴスラビア解体後に残ったセルビアとモンテネグロの国家連合。 第一次世界大戦後から冷戦期にかけての国際秩序、民族自決、同盟関係、植民地解体を理解する手がかりになる。",
+          "en": "Active during 2003-2006. A state union of Serbia and Montenegro after the breakup of Yugoslavia. It helps explain the post-World War I order, national self-determination, alliances, and decolonization through the Cold War era.",
+          "zh": "活跃于2003年—2006年。南斯拉夫解体后由塞尔维亚和黑山组成的国家联盟。 它有助于理解一战后国际秩序、民族自决、同盟关系以及冷战时期的殖民体系解体。"
+        },
+        "fall_reason": {
+          "ja": "2006年のモンテネグロ独立住民投票により解体した。",
+          "en": "It dissolved after Montenegro's 2006 independence referendum.",
+          "zh": "2006年黑山独立公投后解体。"
+        },
+        "successors": {
+          "ja": "現在のセルビア、モンテネグロ、旧ユーゴスラビア諸国と関係づけて理解できる。",
+          "en": "It connects to Serbia, Montenegro, and the former Yugoslav states.",
+          "zh": "可与现代塞尔维亚、黑山和前南斯拉夫国家联系理解。"
+        },
+        "cultural_features": {
+          "ja": "主な言語はセルビア語、モンテネグロ語、アルバニア語、ハンガリー語、主な宗教はキリスト教、イスラム教。近現代の短命国家として、戦争、民族運動、思想対立、国際承認の問題が政治制度や社会に強く表れた。",
+          "en": "Main languages: Serbian, Montenegrin, Albanian, and Hungarian; main religions: Christianity and Islam. As a modern short-lived state, war, nationalism, ideology, and recognition shaped its institutions and society.",
+          "zh": "主要语言为塞尔维亚语、黑山语、阿尔巴尼亚语、匈牙利语，主要宗教为基督教、伊斯兰教。作为近现代短命国家，战争、民族运动、意识形态和国际承认问题深刻影响制度与社会。"
+        }
+      }
     }
   ],
   "tag_categories": {
