@@ -1,3 +1,5 @@
 nicegui
 pykakasi
 pypinyin
+# Render eMudhra advisory: refresh the CA bundle used by HTTPX/Requests.
+certifi>=2026.10.19
